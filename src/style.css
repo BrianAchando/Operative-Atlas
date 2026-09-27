@@ -1,0 +1,160 @@
+/* Hilum: an operating-room monitor, deliberately one dark theme. Teal = the structure being worked on (matches the
+   3D glow and the CT outline), red = protect, steel = staples. */
+:root {
+  --bg: #0b0f13; --panel: #10161c; --raised: #16202a; --line: #223040; --line-2: #2d3e50;
+  --text: #dde6ec; --muted: #8b9cab; --faint: #5d6e7d;
+  --work: #46c2c7; --work-bg: rgba(70, 194, 199, 0.12);
+  --danger: #ff5a63; --danger-bg: rgba(255, 90, 99, 0.12);
+  --steel: #c9d1d9; --pearl: #e3b765;
+  --sans: 'IBM Plex Sans', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --cond: 'IBM Plex Sans Condensed', 'Arial Narrow', var(--sans);
+  --mono: 'IBM Plex Mono', ui-monospace, 'SFMono-Regular', Menlo, monospace;
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+html, body { height: 100%; margin: 0; }
+body { background: var(--bg); color: var(--text); font: 14px/1.5 var(--sans); -webkit-font-smoothing: antialiased; overflow: hidden; }
+button { font: inherit; color: inherit; background: none; border: 0; cursor: pointer; }
+button:focus-visible, input:focus-visible, summary:focus-visible, label.btn:focus-within { outline: 2px solid var(--work); outline-offset: 2px; }
+[hidden] { display: none !important; }
+
+#app { height: 100%; display: grid; grid-template-rows: auto 1fr; grid-template-columns: minmax(300px, 34%) 1fr minmax(320px, 360px); grid-template-areas: "top top top" "ct stage panel"; }
+#topbar { grid-area: top; display: flex; align-items: center; gap: 12px; padding: 8px 16px; padding-top: calc(8px + env(safe-area-inset-top, 0px)); border-bottom: 1px solid var(--line); background: var(--panel); flex-wrap: wrap; }
+.brand { display: flex; align-items: baseline; gap: 8px; margin-right: 8px; }
+.brand b { font: 600 18px/1 var(--cond); letter-spacing: 0.02em; }
+.brand span { color: var(--muted); font-size: 12px; }
+.spacer { flex: 1; }
+
+.seg { display: inline-flex; border: 1px solid var(--line-2); border-radius: 6px; overflow: hidden; }
+.seg button { padding: 5px 11px; font-size: 13px; color: var(--muted); border-right: 1px solid var(--line-2); }
+.seg button:last-child { border-right: 0; }
+.seg button[aria-pressed="true"] { background: var(--raised); color: var(--text); box-shadow: inset 0 -2px 0 var(--work); }
+.seg button:hover { color: var(--text); }
+.seg.small button { padding: 3px 8px; font-size: 12px; }
+.btn { display: inline-flex; align-items: center; gap: 6px; padding: 6px 12px; border-radius: 6px; border: 1px solid var(--line-2); font-size: 13px; cursor: pointer; white-space: nowrap; }
+.btn:hover { border-color: var(--muted); }
+.btn.primary { background: var(--work); color: #06221f; border-color: var(--work); font-weight: 600; }
+.btn.primary:disabled { opacity: 0.35; cursor: default; }
+.btn.ghost:disabled { opacity: 0.3; cursor: default; }
+.btn.staple { background: linear-gradient(#dfe5ea, #aab4bd); color: #111820; border-color: #dfe5ea; font-weight: 600; }
+.link { color: var(--work); font-size: 12px; text-decoration: underline; text-underline-offset: 2px; padding: 0 2px; }
+
+/* ---------------------------------------------------------------- CT */
+#ct { grid-area: ct; display: flex; flex-direction: column; min-height: 0; border-right: 1px solid var(--line); background: #000; position: relative; }
+.ct-bar { display: flex; gap: 8px; align-items: center; padding: 8px 10px; background: var(--panel); flex-wrap: wrap; }
+.ct-bar.lower { border-top: 1px solid var(--line); }
+.ct-bar .hint { color: var(--faint); font-size: 11px; margin-left: auto; }
+.chip-toggle { font-size: 12px; padding: 3px 9px; border-radius: 99px; border: 1px solid var(--line-2); color: var(--muted); }
+.chip-toggle.on { color: var(--text); border-color: var(--work); background: var(--work-bg); }
+.ct-main { position: relative; flex: 1; min-height: 200px; }
+.ct-main canvas { position: absolute; inset: 22px; width: calc(100% - 44px); height: calc(100% - 44px); object-fit: contain; cursor: crosshair; touch-action: none; }
+.edge { position: absolute; font: 500 11px var(--mono); color: var(--pearl); }
+.edge.t { top: 4px; left: 50%; } .edge.b { bottom: 4px; left: 50%; } .edge.l { left: 7px; top: 50%; } .edge.r { right: 7px; top: 50%; }
+.ct-hud { position: absolute; left: 10px; top: 4px; display: flex; flex-direction: column; gap: 1px; font: 11px/1.35 var(--mono); color: var(--muted); pointer-events: none; max-width: 45%; }
+.ct-hud .under { color: var(--work); }
+.ct-minis { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--line); height: 24%; min-height: 110px; }
+.mini { position: relative; background: #000; padding: 0; overflow: hidden; }
+.mini canvas { width: 100%; height: 100%; object-fit: contain; display: block; pointer-events: none; }
+.mini-lab, .mini-ro { position: absolute; left: 6px; font: 10px var(--mono); color: var(--muted); text-transform: capitalize; }
+.mini-lab { top: 4px; } .mini-ro { bottom: 4px; text-transform: none; }
+.mini:hover { outline: 1px solid var(--work); outline-offset: -1px; }
+.drop-hint { display: none; position: absolute; inset: 12px; border: 2px dashed var(--work); border-radius: 10px; align-items: center; justify-content: center; font: 600 15px var(--cond); color: var(--work); background: rgba(6, 30, 30, 0.7); }
+#ct.dragging .drop-hint { display: flex; }
+#ct.aligning .ct-main canvas { cursor: cell; }
+#ct.aligning .ct-main::after { content: 'Click the carina'; position: absolute; right: 10px; top: 6px; font: 600 12px var(--cond); color: #06221f; background: var(--work); padding: 2px 8px; border-radius: 4px; }
+
+/* ---------------------------------------------------------------- 3D */
+#stage { grid-area: stage; position: relative; min-width: 0; min-height: 0; }
+#view3d { position: absolute; inset: 0; }
+#view3d canvas { display: block; width: 100%; height: 100%; }
+#hover { position: absolute; left: 12px; bottom: 10px; font: 12px var(--mono); color: var(--muted); pointer-events: none; }
+#status { position: absolute; inset: 0; display: grid; place-items: center; font: 500 14px var(--mono); color: var(--muted); background: var(--bg); }
+.labels3d { position: absolute; inset: 0; pointer-events: none; overflow: hidden; }
+.lab3d { position: absolute; left: 0; top: 0; font: 500 12px/1.2 var(--cond); padding: 2px 7px; border-radius: 3px; white-space: nowrap; margin: -10px 0 0 10px; background: rgba(11, 15, 19, 0.82); border-left: 2px solid var(--muted); color: var(--text); }
+.lab3d.hi { border-color: var(--work); color: #d8fbfb; }
+.lab3d.danger { border-color: var(--danger); color: #ffd6d9; }
+.upload-note { position: absolute; left: 12px; right: 12px; top: 12px; display: flex; flex-wrap: wrap; gap: 4px 10px; align-items: baseline; padding: 9px 12px; border-radius: 8px; background: rgba(16, 22, 28, 0.94); border: 1px solid var(--line-2); font-size: 13px; z-index: 2; }
+.upload-note span { color: var(--muted); }
+.upload-note .align-cta { color: var(--work); font-weight: 500; }
+.upload-note.err { border-color: var(--danger); }
+
+/* ---------------------------------------------------------------- panel */
+#panel { grid-area: panel; border-left: 1px solid var(--line); background: var(--panel); overflow-y: auto; padding: 16px 18px 24px; }
+.proc-head h2 { font: 600 22px/1.15 var(--cond); margin: 4px 0 12px; text-wrap: balance; }
+.eyebrow { font: 500 11px var(--mono); color: var(--muted); letter-spacing: 0.04em; text-transform: uppercase; }
+.body { color: #c9d4dc; }
+.body p { margin: 0 0 10px; }
+.body b, .body strong { color: var(--text); }
+.body.veiled { display: none; }
+.veil-note { color: var(--muted); font-size: 12px; margin: 2px 0 8px; }
+.ask { border: 1px solid var(--line-2); border-radius: 8px; padding: 12px; margin: 0 0 14px; background: var(--raised); }
+.ask.nudge { animation: nudge 0.4s; border-color: var(--work); }
+@keyframes nudge { 25% { transform: translateX(-4px); } 75% { transform: translateX(4px); } }
+.ask .q { font-weight: 600; margin-bottom: 8px; }
+.choices { display: grid; gap: 6px; }
+.choice { text-align: left; padding: 7px 10px; border-radius: 6px; border: 1px solid var(--line-2); background: var(--panel); }
+.choice:hover:not(:disabled) { border-color: var(--work); }
+.choice.right { border-color: var(--work); background: var(--work-bg); }
+.choice.wrong { border-color: var(--danger); background: var(--danger-bg); }
+.choice.dim { opacity: 0.45; }
+.choice:disabled { cursor: default; }
+.why { margin: 10px 0 0; font-size: 13px; color: #c9d4dc; }
+.why.ok b { color: var(--work); } .why.no b { color: var(--danger); }
+.legend { display: flex; gap: 14px; font: 11px var(--mono); color: var(--muted); margin: 6px 0 6px; }
+.legend .k::before { content: ''; display: inline-block; width: 9px; height: 9px; border-radius: 2px; margin-right: 6px; vertical-align: -1px; }
+.legend .hi::before { background: var(--work); } .legend .danger::before { background: var(--danger); }
+.chips { display: flex; flex-wrap: wrap; gap: 6px; margin: 4px 0 12px; }
+.chip { font-size: 12px; padding: 3px 9px; border-radius: 99px; border: 1px solid var(--line-2); }
+.chip.hi { border-color: var(--work); background: var(--work-bg); }
+.chip.danger { border-color: var(--danger); background: var(--danger-bg); }
+.chip i, .tree i { color: var(--faint); font-style: italic; }
+.pearl { border-left: 2px solid var(--pearl); padding: 2px 0 2px 10px; color: #e8d6ae; font-size: 13px; margin: 0 0 14px; }
+.nav { display: flex; gap: 8px; align-items: center; padding: 10px 0; border-top: 1px solid var(--line); margin-top: 6px; position: sticky; bottom: -24px; background: var(--panel); }
+.nav .primary { margin-left: auto; }
+.outline { margin-top: 8px; }
+.outline summary { cursor: pointer; color: var(--muted); font-size: 12px; }
+.steps { list-style: none; margin: 8px 0 0; padding: 0; display: grid; gap: 2px; }
+.steps button { display: flex; gap: 10px; width: 100%; text-align: left; padding: 4px 6px; border-radius: 4px; font-size: 13px; color: var(--muted); }
+.steps .n { font: 500 11px var(--mono); width: 18px; text-align: right; color: var(--faint); padding-top: 2px; }
+.steps li.done button { color: #9fb0bd; } .steps li.done .n { color: var(--work); }
+.steps li.cur button { background: var(--raised); color: var(--text); }
+.steps button:hover { color: var(--text); }
+.foot { color: var(--faint); font-size: 11px; margin-top: 16px; }
+
+.tree details { border-top: 1px solid var(--line); padding: 6px 0; }
+.tree summary { display: flex; justify-content: space-between; cursor: pointer; font: 600 13px var(--cond); letter-spacing: 0.02em; padding: 2px 0; }
+.tree-items { display: grid; gap: 1px; margin: 4px 0; }
+.tree-row { display: flex; align-items: center; gap: 8px; padding: 2px 4px; border-radius: 4px; }
+.tree-row.sel { background: var(--work-bg); }
+.tree-row .sw { width: 9px; height: 9px; border-radius: 2px; flex: none; }
+.tree-row .name { text-align: left; font-size: 13px; color: #c9d4dc; }
+.tree-row input { accent-color: var(--work); margin: 0; }
+
+@media (max-width: 1000px) {
+  body { overflow: auto; }
+  #app { height: auto; grid-template-columns: 1fr; grid-template-areas: "top" "stage" "ct" "panel"; }
+  #stage { height: 55vh; }
+  #ct { height: 75vh; border-right: 0; }
+  #panel { border-left: 0; border-top: 1px solid var(--line); overflow: visible; }
+  .nav { position: static; }
+}
+@media (prefers-reduced-motion: reduce) { .ask.nudge { animation: none; } }
+.lab3d.shifted { border-left-style: dashed; }
+
+/* sequence strip: the order to remember, coloured like the structures (PA blue, vein red-violet, bronchus cream) */
+.seqstrip { list-style: none; margin: 0 0 14px; padding: 0; display: flex; flex-wrap: wrap; gap: 4px; align-items: center; }
+.seqstrip li { display: flex; align-items: center; }
+.seqstrip li + li::before { content: '→'; color: var(--faint); margin: 0 4px 0 0; font-size: 12px; }
+.seqstrip button { font: 600 12px var(--cond); letter-spacing: 0.02em; padding: 4px 8px; border-radius: 4px; border: 1px solid var(--line-2); color: var(--muted); background: transparent; }
+.seqstrip .artery button { border-color: #5068b4; } .seqstrip .vein button { border-color: #9a2e48; }
+.seqstrip .bronchus button { border-color: #ece3d1; } .seqstrip .fissure button { border-color: #f4e3a1; }
+.seqstrip .done button { color: var(--text); opacity: 0.55; text-decoration: line-through; text-decoration-thickness: 1px; }
+.seqstrip .cur button { color: #0b0f13; opacity: 1; text-decoration: none; }
+.seqstrip .cur.artery button { background: #5068b4; color: #fff; } .seqstrip .cur.vein button { background: #9a2e48; color: #fff; }
+.seqstrip .cur.bronchus button { background: #ece3d1; } .seqstrip .cur.fissure button { background: #f4e3a1; }
+.seqstrip .cur.other button { background: var(--work); }
+.btn.staple:disabled { opacity: 0.6; }
+
+/* thoracoscope feel in the operation: a soft circular vignette over the 3D view */
+body.proc #view3d::after { content: ''; position: absolute; inset: 0; pointer-events: none;
+  background: radial-gradient(ellipse 72% 78% at 50% 50%, transparent 62%, rgba(4, 3, 3, 0.55) 88%, rgba(4, 3, 3, 0.85) 100%); }

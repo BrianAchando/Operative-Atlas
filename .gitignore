@@ -1,0 +1,12 @@
+node_modules
+dist
+public/data
+work
+.venv
+pipeline/.venv
+*.cjs
+__pycache__
+sample
+*.nrrd
+*.nii.gz
+*.zip

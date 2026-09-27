@@ -1,0 +1,56 @@
+import type { Vec3, Plane } from './ctview.ts';
+
+export interface Choice { text: string; correct: boolean; why: string }
+
+/** what the surgeon does in a step, played in 3D with the instrument coming through a port */
+export interface Action {
+  kind: 'staple' | 'ligate' | 'dissect' | 'open-fissure' | 'staple-fissure';
+  /** button text, e.g. "Fire the stapler" */
+  label: string;
+  /** structures divided (staple, ligate) */
+  ids?: string[];
+  /** landmark id of the port the instrument comes through */
+  port: string;
+  /** peanut tip path (dissect, open-fissure) or the staple line (staple-fissure), world mm */
+  path?: Vec3[];
+  /** lobes pushed apart as the fissure opens */
+  spread?: { ids: string[]; offset: Vec3 }[];
+  reload?: 'vascular' | 'tissue';
+  /** staple-fissure: the jaws close along this direction (the fissure normal) */
+  normal?: Vec3;
+}
+
+export interface Retract { ids: string[]; offset: Vec3; opacity: number }
+
+export interface Step {
+  id: string;
+  title: string;
+  /** the phase shown above the title: Anatomy, Setup, Fissure, Artery, Bronchus, Vein, Close */
+  phase: string;
+  body: string;                          // HTML, short paragraphs
+  view: { eye: Vec3; target: Vec3 } | { frame: string[]; dir: Vec3; pad?: number };
+  highlight?: string[];
+  danger?: string[];
+  labels?: string[];                     // extra structures to name in 3D
+  show?: string[];                       // make visible for this step
+  hide?: string[];
+  opacity?: Record<string, number>;      // e.g. lobes made translucent
+  retract?: Retract | Retract[];
+  action?: Action;
+  specimen?: { ids: string[]; offset: Vec3 };
+  spin?: boolean;                        // slow turntable (anatomy overview)
+  ct?: { focus: Vec3 | string; plane: Plane; window?: string };
+  ask?: { question: string; choices: Choice[] };
+  pearl?: string;
+  /** the step's place in the approach's sequence strip */
+  seq?: number;
+}
+
+export interface Procedure {
+  id: string; name: string; approach: string; summary: string;
+  /** the order to remember, shown as a strip: e.g. Fissure → A2 → Truncus → Bronchus → Vein */
+  sequence: { label: string; kind: 'artery' | 'vein' | 'bronchus' | 'fissure' | 'other' }[];
+  ports: { id: string; name: string; at: Vec3; note: string }[];
+  steps: Step[];
+  sources: { title: string; url: string }[];
+}

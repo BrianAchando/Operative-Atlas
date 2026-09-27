@@ -1,0 +1,22 @@
+{
+  "name": "surgical-atlas",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite --port 5174",
+    "build": "vite build",
+    "typecheck": "tsc --noEmit",
+    "data": "python pipeline/build.py && python pipeline/procedures.py"
+  },
+  "dependencies": {
+    "three": "0.185.1",
+    "dicom-parser": "1.8.21"
+  },
+  "devDependencies": {
+    "@types/three": "0.185.4",
+    "typescript": "5.9.3",
+    "vite": "8.2.2",
+    "@gltf-transform/cli": "4.5.0"
+  }
+}
