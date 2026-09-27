@@ -215,7 +215,7 @@ function goStep(n: number, fly = true): void {
     if (i === state.step) { for (const id of st.show ?? []) scene3d.setVisible(id, true); for (const id of st.hide ?? []) scene3d.setVisible(id, false); }
     for (const [id, op] of Object.entries(st.opacity ?? {})) scene3d.setOpacity(id, op);
     for (const r of st.retract ? (Array.isArray(st.retract) ? st.retract : [st.retract]) : []) for (const id of r.ids) scene3d.retract(id, r.offset, r.opacity, i === state.step ? 900 : 1);
-    if (i < state.step && st.action) { scene3d.applyDone(st.action); state.acted.add(st.id); }
+    if (i < state.step && st.action) { scene3d.applyDone(st.action, portOf(st.action.port)); state.acted.add(st.id); }
     if (st.specimen && i <= state.step) scene3d.moveSpecimen(st.specimen.ids, st.specimen.offset, 0.45, i === state.step ? 1800 : 1);
   }
   for (const k of [...state.acted]) if (proc.steps.findIndex((x) => x.id === k) >= state.step) state.acted.delete(k);

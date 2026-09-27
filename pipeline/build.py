@@ -301,6 +301,7 @@ for v in [f'T{i}' for i in range(2, 11)]:
     emit(f'vert-{v.lower()}', f'{v} vertebra', 'chest-wall', '#e6dcc6', ts(f'vertebrae_{v}'), AT, faces=4000, label=False)
 for i in range(1, 11):
     emit(f'rib-{i}-l', f'Left rib {i}', 'chest-wall', '#e6dcc6', ts(f'rib_left_{i}'), AT, faces=2500, opacity=0.9, visible=False, label=False)
+    emit(f'rib-{i}-r', f'Right rib {i}', 'chest-wall', '#e6dcc6', ts(f'rib_right_{i}'), AT, faces=2500, opacity=0.9, visible=False, label=False)
 emit('sternum', 'Sternum', 'chest-wall', '#e6dcc6', ts('sternum'), AT, faces=5000, visible=False, label=False)
 
 
@@ -332,7 +333,7 @@ if (WORK / 'vessels_right.nii.gz').exists():
     emit('br-rul', 'Right upper lobe bronchus', 'airway', BRONCH, owned(ra, r_air, nu), AR, faces=5000, division=division_at(ra, rul_b, edt_rair, into=5.0, look=11.0))
     emit('br-intermedius', 'Bronchus intermedius', 'airway', BRONCH, owned(ra, r_air, bi_nodes), AR, faces=5000)
     emit('br-rml', 'Middle lobe bronchus', 'airway', BRONCH, owned(ra, r_air, split_hilar(ra, rml_b, 14.0)[0]), AR, faces=4000, division=division_at(ra, rml_b, edt_rair, into=4.0, look=9.0))
-    emit('br-rll', 'Right lower lobe bronchus', 'airway', BRONCH, owned(ra, r_air, split_hilar(ra, rll_b, 18.0)[0]), AR, faces=5000)
+    emit('br-rll', 'Right lower lobe bronchus', 'airway', BRONCH, owned(ra, r_air, split_hilar(ra, rll_b, 18.0)[0]), AR, faces=5000, division=division_at(ra, rll_b, edt_rair, into=4.0, look=10.0))
     emit('br-right-main', 'Right main bronchus', 'airway', BRONCH, owned(ra, r_air, rmb_nodes), AR, faces=5000)
     emit('rul-bronchi', 'Right upper lobe segmental bronchi', 'rul-intra', BRONCH, owned(ra, r_air, fu), AR, faces=8000, opacity=0.8, label=False)
     R_SEC = ra.mm[up_path[1]]                         # upper lobe take-off (the "secondary carina" of the right)
@@ -514,27 +515,32 @@ nodes = {
 }
 # inferior pulmonary ligament: the double pleural fold from the lower border of the inferior vein down the posterior
 # mediastinal surface of the lower lobe to the diaphragm (schematic: drawn on the lobe's medial edge)
-lll_mm = vox_mm(Dt)
+def lig_sheet(lobe_mm, pvi, med):
+    """edge points and a triangulated sheet for the inferior pulmonary ligament; med = +1 if medial is +x (left lung), -1 (right)"""
+    edge = []
+    for k, z in enumerate(np.linspace(pvi[2] - 6, lobe_mm[:, 2].min() + 10, 9)):
+        sl = slab(lobe_mm, z, 3.0)
+        band = sl[(sl[:, 1] > pvi[1] - 32 - 2 * k) & (sl[:, 1] < pvi[1] + 6)]   # behind and below the vein, drifting back
+        sl = band if len(band) > 20 else sl
+        e = sl[np.argmax(med * sl[:, 0])] + np.array([med * 1.0, 0, 0])      # medial-most point of the lobe
+        if k == 0: e = pvi - SUP * 7 + np.array([med * 1.0, 0, 0])            # starts at the lower border of the vein
+        edge.append(e)
+    edge = np.array(edge)
+    edge[1:-1] = (edge[:-2] + 2 * edge[1:-1] + edge[2:]) / 4                  # smooth the lung edge so the fold hangs cleanly
+    edge = list(edge); medp = []
+    for e in edge:                                                          # attaches to the mediastinum along the oesophagus
+        es = slab(eso_mm, e[2], 4.0); tgt = es.mean(0) if len(es) else e + np.array([med * 12.0, 0, 0])
+        d = tgt - e; d[2] = 0; L_ = np.linalg.norm(d)
+        medp.append(e + d / (L_ + 1e-9) * min(L_ - 4.0, 16.0) if L_ > 6 else e + np.array([med * 6.0, 0, 0]))
+    V_ = np.array([W(p_) for p_ in edge + medp]); n_ = len(edge)
+    F_ = [[i, i + 1, n_ + i] for i in range(n_ - 1)] + [[i + 1, n_ + i + 1, n_ + i] for i in range(n_ - 1)]
+    F_ += [f[::-1] for f in F_]
+    return edge, trimesh.Trimesh(V_, np.array(F_), process=False)
+
+
 pvi = np.array(next(s_['division']['point'] for s_ in structures if s_['id'] == 'pv-inferior')) + CARINA
-edge, med = [], []
-for k, z in enumerate(np.linspace(pvi[2] - 6, lll_mm[:, 2].min() + 10, 9)):
-    sl = slab(lll_mm, z, 3.0)
-    band = sl[(sl[:, 1] > pvi[1] - 32 - 2 * k) & (sl[:, 1] < pvi[1] + 6)]   # stays behind and below the vein, drifting back
-    sl = band if len(band) > 20 else sl
-    e = sl[np.argmax(sl[:, 0])] + LEFT * -1.0                                 # medial-most point (+x is medial on the left)
-    if k == 0: e = pvi - SUP * 7 - LEFT * 1.0                                 # starts at the lower border of the vein
-    edge.append(e)
-edge = np.array(edge)
-edge[1:-1] = (edge[:-2] + 2 * edge[1:-1] + edge[2:]) / 4          # smooth the lung edge so the fold hangs cleanly
-edge = list(edge); med = []
-for e in edge:                                                      # the fold attaches to the mediastinum along the oesophagus
-    es = slab(eso_mm, e[2], 4.0); tgt = es.mean(0) if len(es) else e - LEFT * 12
-    d = tgt - e; d[2] = 0; L_ = np.linalg.norm(d)
-    med.append(e + d / (L_ + 1e-9) * min(L_ - 4.0, 16.0) if L_ > 6 else e - LEFT * 6)
-V_ = np.array([W(p_) for p_ in edge + med]); n_ = len(edge)
-F_ = [[i, i + 1, n_ + i] for i in range(n_ - 1)] + [[i + 1, n_ + i + 1, n_ + i] for i in range(n_ - 1)]
-F_ += [f[::-1] for f in F_]
-emit_mesh('ipl', 'Inferior pulmonary ligament', 'pleura', '#e8d9c9', trimesh.Trimesh(V_, np.array(F_), process=False),
+edge, lig_mesh = lig_sheet(vox_mm(Dt), pvi, +1)
+emit_mesh('ipl', 'Inferior pulmonary ligament', 'pleura', '#e8d9c9', lig_mesh,
           note='Schematic: the pleural fold below the inferior pulmonary vein, divided first in a lower lobectomy. Station 9 nodes lie in it.')
 nodes['ln-9l'] = ('Station 9L (pulmonary ligament)', np.mean(edge[2:5], axis=0) - LEFT * 4, 4.5)
 for id_, (nm, c, r) in nodes.items():
@@ -572,6 +578,12 @@ if RIGHT_IDS:
     rnodes = {'ln-4r': ('Station 4R (lower paratracheal)', (trs_[np.argmax(trs_[:, 0])] + svc_s2[np.argmin(svc_s2[:, 0])]) / 2, 6.5),
               'ln-10r': ('Station 10R (hilar)', R_SEC + SUP * 9 + RIGHT * 3, 5.5),
               'ln-11r': ('Station 11R (interlobar)', R_SEC + RIGHT * 8 - SUP * 8, 5.0)}
+    rpvi_s = next((s_ for s_ in structures if s_['id'] == 'rpv-inferior'), None)
+    if rpvi_s:
+        redge, rlig = lig_sheet(vox_mm(RD_t), np.array(rpvi_s['division']['point']) + CARINA, -1)
+        emit_mesh('ipl-r', 'Inferior pulmonary ligament (right)', 'pleura', '#e8d9c9', rlig,
+                  note='Schematic: the pleural fold below the right inferior pulmonary vein, divided first in a lower lobectomy. Station 9R nodes lie in it.')
+        rnodes['ln-9r'] = ('Station 9R (pulmonary ligament)', np.mean(redge[2:5], axis=0) - RIGHT * 4, 4.5)
     for id_, (nm, c, r) in rnodes.items():
         emit_mesh(id_, nm, 'nodes', '#8fc79a', sphere(W(c), r), note='Schematic node station placed on landmarks (IASLC map).')
     RIGHT_IDS |= {q['id'] for q in structures[n0:]}
@@ -639,6 +651,17 @@ PORTS = {
                     ('camera', 'Camera port, low, posterior axillary', port(7, -25, 'right')),
                     ('posterior', 'Working port, posterior', port(6, -65, 'right'))],
 }
+# posterolateral thoracotomy: a curved incision along the 5th intercostal space, anterior axillary line round below the
+# scapular tip; the chest is entered over the upper border of the 6th rib
+THOR = {}
+for sd in ('left', 'right'):
+    pts = np.array([port(5, az, sd) for az in range(50, -121, -10)])
+    pts[1:-1] = (pts[:-2] + 2 * pts[1:-1] + pts[2:]) / 4
+    c_ = lung_c if sd == 'left' else lung_cr
+    inward = lambda q: q + (c_ - q) * np.array([1, 1, 0]) / (np.linalg.norm((c_ - q)[:2]) + 1e-9) * 14.0
+    THOR[sd] = {'path': pts, 'centre': inward(port(5, -25, sd))}
+    emit_mesh(f'incision-{sd[0]}', 'Posterolateral thoracotomy incision (5th space)', f'ports-open-{sd}', '#d0433a', tube([W(q) for q in pts], 1.8), visible=False,
+              note='Schematic: from the anterior axillary line, curving below the tip of the scapula; latissimus dorsi divided, serratus anterior spared, chest entered over the 6th rib.')
 for appr, ps in PORTS.items():
     for k, nm, p in ps:
         emit_mesh(f'port-{appr}-{k}', nm, f'ports-{appr}', '#46c2c7', sphere(W(p), 5.5 if k == 'utility' else 3.5), visible=False)
@@ -689,12 +712,14 @@ LEFT_IDS = {'lul', 'lll', 'fissure', 'ipl', 'lig-art', 'n-phrenic', 'n-vagus', '
 RIGHT_IDS |= {'rul', 'rml', 'rll', 'fissure-h', 'fissure-r'}
 for q in structures:
     i = q['id']
-    if i in RIGHT_IDS or i.startswith('port-r-'):
+    if i in RIGHT_IDS or i.startswith('port-r-') or i == 'incision-r' or (i.startswith('rib-') and i.endswith('-r')):
         q['side'] = 'right'; q['sideVisible'] = q.get('visible', True); q['visible'] = False
-    elif i in LEFT_IDS or i.startswith(('pa-', 'pv-', 'lul-', 'lll-', 'port-anterior', 'port-posterior', 'rib-')):
+    elif i in LEFT_IDS or i == 'incision-l' or i.startswith(('pa-', 'pv-', 'lul-', 'lll-', 'port-anterior', 'port-posterior', 'rib-')):
         q['side'] = 'left'
 for appr, ps in PORTS.items():
     for k, _, p in ps: landmarks[f'port-{appr}-{k}'] = [round(float(x), 1) for x in W(p)]
+for sd, th in THOR.items():
+    landmarks[f'thor-{sd[0]}'] = [round(float(x), 1) for x in W(th['centre'])]
 atlas = {
     'ct': {'file': 'ct.hu8.gz', 'dims': [int(x) for x in shape], 'affine': [[round(float(x), 4) for x in row] for row in w_aff[:3]], 'scale': STEP, 'offset': HU0, 'spacing': vox},
     'labels': {'file': 'labels.u8.gz', 'lut': lut},
@@ -705,7 +730,8 @@ atlas = {
                {'id': 'lll-intra', 'name': 'Lower lobe, intrapulmonary'}, {'id': 'chest-wall', 'name': 'Chest wall and spine'},
                {'id': 'ports-anterior', 'name': 'Ports, anterior approach'}, {'id': 'ports-posterior', 'name': 'Ports, posterior approach'},
                {'id': 'rul-intra', 'name': 'Right upper lobe, intrapulmonary'},
-               {'id': 'ports-r-anterior', 'name': 'Ports, right anterior approach'}, {'id': 'ports-r-posterior', 'name': 'Ports, right posterior approach'}],
+               {'id': 'ports-r-anterior', 'name': 'Ports, right anterior approach'}, {'id': 'ports-r-posterior', 'name': 'Ports, right posterior approach'},
+               {'id': 'ports-open-left', 'name': 'Thoracotomy, left'}, {'id': 'ports-open-right', 'name': 'Thoracotomy, right'}],
     'structures': structures,
     'landmarks': landmarks,
     'source': {'name': 'Reference CT: 3D Slicer sample CTA (CTA-cardio)', 'licence': 'unstated',
