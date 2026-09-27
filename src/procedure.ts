@@ -5,6 +5,10 @@ export interface Choice { text: string; correct: boolean; why: string }
 /** what the surgeon does in a step, played in 3D with the instrument coming through a port */
 export interface Action {
   kind: 'staple' | 'ligate' | 'dissect' | 'open-fissure' | 'staple-fissure';
+  /** dissecting instrument: peanut (blunt) or diathermy hook */
+  tool?: 'peanut' | 'hook';
+  /** structures taken down by the action (e.g. the pulmonary ligament), hidden once it is done */
+  remove?: string[];
   /** button text, e.g. "Fire the stapler" */
   label: string;
   /** structures divided (staple, ligate) */
@@ -48,6 +52,8 @@ export interface Step {
 
 export interface Procedure {
   id: string; name: string; approach: string; summary: string;
+  /** the operation this approach belongs to, e.g. 'lul', and its display name */
+  op: string; opName: string;
   /** the order to remember, shown as a strip: e.g. Fissure → A2 → Truncus → Bronchus → Vein */
   sequence: { label: string; kind: 'artery' | 'vein' | 'bronchus' | 'fissure' | 'other' }[];
   ports: { id: string; name: string; at: Vec3; note: string }[];

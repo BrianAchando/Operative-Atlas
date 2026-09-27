@@ -109,3 +109,16 @@ export function stapleRun(a: THREE.Vector3, b: THREE.Vector3, normal: THREE.Vect
   }
   return g;
 }
+
+/** diathermy hook: insulated shaft, bare L-shaped tip; tip at the origin, aimed at the port */
+export function hook(): { group: THREE.Group; aim(tip: THREE.Vector3, port: THREE.Vector3): void } {
+  const g = new THREE.Group();
+  const bare = metal();
+  const up = new THREE.Mesh(new THREE.CylinderGeometry(0.8, 0.8, 7, 10), bare); up.position.set(0, 3.5, 0); g.add(up);         // the hook's short limb
+  const neck = new THREE.Mesh(new THREE.CylinderGeometry(0.8, 0.8, 9, 10), bare); neck.rotation.x = Math.PI / 2; neck.position.z = 4.5; g.add(neck);
+  const shaft = new THREE.Mesh(new THREE.CylinderGeometry(2.5, 2.5, 260, 16), ghost(0x2e333b)); shaft.rotation.x = Math.PI / 2; shaft.position.z = 9 + 130; g.add(shaft);
+  return {
+    group: g,
+    aim(tip, port) { g.position.copy(tip); g.quaternion.setFromUnitVectors(new THREE.Vector3(0, 0, 1), port.clone().sub(tip).normalize()); },
+  };
+}

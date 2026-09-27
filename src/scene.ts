@@ -4,7 +4,7 @@ import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 import { RoomEnvironment } from 'three/addons/environments/RoomEnvironment.js';
 import { MeshoptDecoder } from 'three/addons/libs/meshopt_decoder.module.js';
 import type { Vec3 } from './ctview.ts';
-import { stapler, peanut, tie, knotPusher, stapleRun, RELOAD } from './instruments.ts';
+import { stapler, peanut, hook, tie, knotPusher, stapleRun, RELOAD } from './instruments.ts';
 import type { Action } from './procedure.ts';
 
 export interface StructureMeta {
@@ -53,10 +53,21 @@ diffuseColor.rgb = mix(diffuseColor.rgb, vec3(0.16, 0.13, 0.14), smoothstep(0.83
   };
 }
 
+/** see-through organs drawn as silhouettes: nearly clear face-on, denser at the edges, so the outline reads without a veil */
+function rimShader(mat: THREE.MeshPhysicalMaterial): void {
+  const prev = mat.onBeforeCompile;
+  mat.onBeforeCompile = (sh, r) => {
+    prev?.call(mat, sh, r);
+    sh.fragmentShader = sh.fragmentShader
+      .replace('#include <normal_fragment_maps>', '#include <normal_fragment_maps>\nfloat rimF = 1.0 - abs(dot(normalize(normal), normalize(vViewPosition)));')
+      .replace('#include <opaque_fragment>', 'diffuseColor.a = min(1.0, diffuseColor.a * (0.22 + 2.6 * pow(rimF, 2.2)));\n#include <opaque_fragment>');
+  };
+}
+
 /** a slightly inflated back-face shell: the glowing outline for "working on" and "protect" */
 function hullMaterial(): THREE.MeshBasicMaterial {
   const m = new THREE.MeshBasicMaterial({ color: 0x46c2c7, side: THREE.BackSide, transparent: true, opacity: 0.9, depthWrite: false, toneMapped: false });
-  m.onBeforeCompile = (sh) => { sh.vertexShader = sh.vertexShader.replace('#include <begin_vertex>', 'vec3 transformed = vec3(position) + normal * 0.9;'); };
+  m.onBeforeCompile = (sh) => { sh.vertexShader = sh.vertexShader.replace('#include <begin_vertex>', 'vec3 transformed = vec3(position) + normal * 0.6;'); };
   return m;
 }
 
@@ -160,6 +171,7 @@ export class Scene3D {
         transparent: m.opacity < 1, opacity: m.opacity, depthWrite: m.opacity >= 0.6, side: THREE.DoubleSide, envMapIntensity: m.group === 'lungs' ? 0.08 : 0.28 });
       if (m.schematic) mat.roughness = 0.55;
       if (m.group === 'lungs' && m.id !== 'fissure') lungShader(mat);
+      if (m.group === 'lungs' || m.id === 'heart' || m.id === 'skin') rimShader(mat);
       // lungs and skin: front faces only, so a camera inside them (a retracted lobe, the chest wall) sees through
       if (m.group === 'lungs' || m.id === 'skin') mat.side = THREE.FrontSide;
       const mesh = new THREE.Mesh(geo, mat); mesh.name = m.id; mesh.userData['id'] = m.id; mesh.renderOrder = m.opacity < 1 ? 5 : 0;
@@ -338,7 +350,7 @@ export class Scene3D {
     this.clearTools(); const P = new THREE.Vector3(...port);
     // staplers arrive only when fired, so the waiting view shows the structure unobstructed
     if ((a.kind === 'dissect' || a.kind === 'open-fissure') && a.path?.length) {
-      const pn = peanut(); pn.aim(new THREE.Vector3(...a.path[0]!), P); this.tools.add(pn.group);
+      const pn = a.tool === 'hook' ? hook() : peanut(); pn.aim(new THREE.Vector3(...a.path[0]!), P); this.tools.add(pn.group);
     } else if (a.kind === 'ligate' && a.ids?.length) {
       const d = this.items.get(a.ids[0]!)?.meta.division; if (!d) return;
       const tip = new THREE.Vector3(...d.point).addScaledVector(new THREE.Vector3(...d.dir), -4.5);
@@ -385,7 +397,7 @@ export class Scene3D {
       }
     } else if (a.kind === 'dissect' || a.kind === 'open-fissure') {
       const path = (a.path ?? []).map((v) => new THREE.Vector3(...v)); if (!path.length) return true;
-      const pn = peanut(); this.tools.add(pn.group);
+      const pn = a.tool === 'hook' ? hook() : peanut(); this.tools.add(pn.group);
       const curve = path.length > 1 ? new THREE.CatmullRomCurve3(path) : null;
       for (const s of a.spread ?? []) for (const id of s.ids) { const it = this.items.get(id); if (it) this.retract(id, s.offset, it.mat.opacity, 2600); }
       const ms = 2600;
@@ -393,11 +405,12 @@ export class Scene3D {
         const tip = curve ? curve.getPointAt(e) : path[0]!.clone();
         const tan = curve ? curve.getTangentAt(e) : new THREE.Vector3(1, 0, 0);
         const side = new THREE.Vector3().crossVectors(tan, P.clone().sub(tip).normalize()).normalize();
-        tip.addScaledVector(side, Math.sin(e * Math.PI * 9) * 3.2);   // short sweeping strokes
+        tip.addScaledVector(side, Math.sin(e * Math.PI * 9) * (a.tool === 'hook' ? 1.2 : 3.2));   // short sweeping strokes
         pn.aim(tip, P);
       }, token);
       if (!ok) return false;
       await this.wait(250, token); this.clearTools();
+      for (const id of a.remove ?? []) this.fadeOut(id, 500);
     } else if (a.kind === 'staple-fissure') {
       const path = (a.path ?? []).map((v) => new THREE.Vector3(...v)); const N = new THREE.Vector3(...(a.normal ?? [0, 1, 0]));
       for (let i = 0; i < path.length - 1; i++) {
@@ -418,8 +431,16 @@ export class Scene3D {
     return true;
   }
 
+  private fadeOut(id: string, ms: number): void {
+    const it = this.items.get(id); if (!it) return;
+    const op0 = it.mat.opacity; const t0 = performance.now();
+    const f = () => { const x = Math.min(1, (performance.now() - t0) / ms); this.setOpacity(id, op0 * (1 - x)); this.invalidate(); if (x < 1) requestAnimationFrame(f); else it.mesh.visible = false; };
+    f();
+  }
+
   /** the end state of an action already done (rebuilding the scene when the reader jumps between steps) */
   applyDone(a: Action): void {
+    for (const id of a.remove ?? []) this.setVisible(id, false);
     if (a.kind === 'staple') for (const id of a.ids ?? []) this.divide(id, false, 'staple');
     else if (a.kind === 'ligate') for (const id of a.ids ?? []) {
       const { meshes } = this.tieOff(id); this.divide(id, false, 'tie');
@@ -439,7 +460,7 @@ export class Scene3D {
     for (const id of ids) {
       const it = this.items.get(id); if (!it) continue;
       let el = this.labels.get(id);
-      if (!el) { el = document.createElement('div'); el.textContent = it.meta.name + (it.meta.schematic ? ' (schematic)' : ''); this.labelsHost.append(el); this.labels.set(id, el); }
+      if (!el) { el = document.createElement('div'); el.textContent = it.meta.name.replace(/ \(.*\)$/, ''); this.labelsHost.append(el); this.labels.set(id, el); }
       el.className = `lab3d ${kind(id)}`;
     }
     this.invalidate();
@@ -484,14 +505,16 @@ export class Scene3D {
     const pulse = now < this.activeUntil ? 0.5 + 0.5 * Math.sin(t / 380) : 1;
     for (const [id, it] of this.items) {
       const on = this.highlight.has(id), dg = this.danger.has(id);
-      if ((on || dg) && it.mesh.visible) {
+      const sheet = it.meta.group === 'pleura' || it.meta.id === 'fissure';   // thin sheets glow instead of taking an outline
+      if ((on || dg) && it.mesh.visible && !sheet) {
         if (!it.hull) { it.hull = new THREE.Mesh(it.mesh.geometry, hullMaterial()); it.hull.renderOrder = 4; it.mesh.add(it.hull); }
         const hm = it.hull.material as THREE.MeshBasicMaterial;
-        hm.color.set(on ? 0x46e0e6 : 0xff4a55); hm.opacity = (on ? 0.55 : 0.4) + 0.4 * pulse; hm.clippingPlanes = it.mat.clippingPlanes;
+        hm.color.set(on ? 0x46e0e6 : 0xff4a55); hm.opacity = (on ? 0.5 : 0.35) + 0.35 * pulse; hm.clippingPlanes = it.mat.clippingPlanes;
         it.hull.visible = true;
       } else if (it.hull) it.hull.visible = false;
       const em = on ? 0.06 + 0.06 * pulse : 0;
-      it.mat.emissive.setRGB(em, em, em);
+      if (sheet && (on || dg)) it.mat.emissive.setRGB(on ? 0.05 : 0.35, on ? 0.3 + 0.15 * pulse : 0.05, on ? 0.32 + 0.15 * pulse : 0.07);
+      else it.mat.emissive.setRGB(em, em, em);
       if (it.distal) (it.distal.material as THREE.MeshPhysicalMaterial).emissive.setRGB(em, em, em);
     }
     this.syncPlane();

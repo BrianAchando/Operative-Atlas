@@ -33,7 +33,7 @@ const hex2rgb = (c: string): [number, number, number] => { const n = parseInt(c.
 // ------------------------------------------------------------------ state
 const state = {
   mode: 'procedure' as 'explore' | 'procedure',
-  approach: 'anterior' as string,
+  approach: 'lul-anterior' as string,
   step: 0,
   answered: new Set<string>(),
   acted: new Set<string>(),
@@ -93,7 +93,7 @@ async function boot(): Promise<void> {
   window.addEventListener('keydown', key);
   const hash = new URLSearchParams(location.hash.slice(1));
   if (hash.get('mode') === 'explore') state.mode = 'explore';
-  if (hash.get('approach')) state.approach = hash.get('approach')!;
+  if (hash.get('approach')) { const a = hash.get('approach')!; state.approach = procedures[a] ? a : procedures[`lul-${a}`] ? `lul-${a}` : state.approach; }
   if (hash.get('step')) state.step = Number(hash.get('step'));
   setFocus(atlas.landmarks['carina'] ?? [0, 0, 0]);
   if (state.mode === 'procedure') goStep(state.step); else setMode('explore');
@@ -170,16 +170,23 @@ function mountViews(): void {
 // ------------------------------------------------------------------ top bar
 function buildTopbar(): void {
   const bar = $('#topbar');
-  const modes = h('div', { class: 'seg', 'aria-label': 'Mode' },
-    h('button', { 'data-mode': 'procedure', onclick: () => setMode('procedure') }, 'VATS left upper lobectomy'),
-    h('button', { 'data-mode': 'explore', onclick: () => setMode('explore') }, 'Explore anatomy'));
+  // operations (each with its approaches) and the free anatomy explorer
+  const ops = [...new Map(Object.entries(procedures).map(([, p]) => [p.op, p.opName])).entries()];
+  const modes = h('div', { class: 'seg', 'aria-label': 'Operation' });
+  for (const [op, name] of ops) modes.append(h('button', { 'data-op': op, onclick: () => pickOp(op) }, name));
+  modes.append(h('button', { 'data-mode': 'explore', onclick: () => setMode('explore') }, 'Explore anatomy'));
   const approach = h('div', { class: 'seg', id: 'approach', 'aria-label': 'Approach' });
-  for (const [k, p] of Object.entries(procedures)) approach.append(h('button', { 'data-approach': k, onclick: () => { state.approach = k; state.step = 0; state.answered.clear(); state.acted.clear(); goStep(0, true); } }, p.approach));
+  for (const [k, p] of Object.entries(procedures)) approach.append(h('button', { 'data-approach': k, 'data-of': p.op, onclick: () => { state.approach = k; state.step = 0; state.answered.clear(); state.acted.clear(); goStep(0, true); } }, p.approach));
   const src = h('div', { class: 'seg', 'aria-label': 'CT source' },
     h('button', { 'data-src': 'reference', onclick: () => { state.source = 'reference'; state.aligning = false; render(); } }, 'Reference CT'),
     h('button', { 'data-src': 'upload', id: 'src-upload', onclick: () => { if (upVol) { state.source = 'upload'; render(); } else $('#file').click(); } }, 'Your CT'));
   const up = h('label', { class: 'btn', for: 'file' }, 'Load DICOM…');
   bar.append(h('div', { class: 'brand' }, h('b', {}, 'Hilum'), h('span', {}, 'operative anatomy atlas')), modes, approach, h('div', { class: 'spacer' }), src, up);
+}
+
+function pickOp(op: string): void {
+  if (procedures[state.approach]?.op !== op) { state.approach = Object.keys(procedures).find((k) => procedures[k]!.op === op)!; state.step = 0; state.answered.clear(); state.acted.clear(); }
+  if (state.mode !== 'procedure') setMode('procedure'); else goStep(state.step, true);
 }
 
 function setMode(m: 'explore' | 'procedure'): void {
@@ -336,7 +343,8 @@ function finishAlign(p: Vec3): void {
 function render(): void {
   document.body.classList.toggle('proc', state.mode === 'procedure');
   document.querySelectorAll<HTMLElement>('[data-mode]').forEach((b) => b.setAttribute('aria-pressed', String(b.dataset['mode'] === state.mode)));
-  document.querySelectorAll<HTMLElement>('[data-approach]').forEach((b) => b.setAttribute('aria-pressed', String(b.dataset['approach'] === state.approach)));
+  document.querySelectorAll<HTMLElement>('[data-approach]').forEach((b) => { b.setAttribute('aria-pressed', String(b.dataset['approach'] === state.approach)); b.hidden = b.dataset['of'] !== procedures[state.approach]?.op; });
+  document.querySelectorAll<HTMLElement>('[data-op]').forEach((b) => b.setAttribute('aria-pressed', String(state.mode === 'procedure' && b.dataset['op'] === procedures[state.approach]?.op)));
   document.querySelectorAll<HTMLElement>('[data-plane]').forEach((b) => b.setAttribute('aria-pressed', String(b.dataset['plane'] === state.plane)));
   document.querySelectorAll<HTMLElement>('[data-window]').forEach((b) => b.setAttribute('aria-pressed', String(b.dataset['window'] === state.window)));
   document.querySelectorAll<HTMLElement>('[data-src]').forEach((b) => b.setAttribute('aria-pressed', String(b.dataset['src'] === state.source)));

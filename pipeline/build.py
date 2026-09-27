@@ -259,7 +259,8 @@ trachea_nodes = np.array([p for p in air_t.order if air_t.dist[p] <= air_t.dist[
 near_u, far_u = split_hilar(air_t, lul_b, 22.0)
 near_d, far_d = split_hilar(air_t, lll_b, 22.0)
 emit('br-lul', 'Upper lobe bronchus', 'airway', BRONCH, owned(air_t, air, near_u), AL, faces=5000, division=division_at(air_t, lul_b, edt_air, into=6.0, look=12.0))
-emit('br-lll', 'Lower lobe bronchus', 'airway', BRONCH, owned(air_t, air, near_d), AL, faces=5000)
+# lower lobe bronchus: staple just beyond the secondary carina, proximal to the superior segmental (B6) origin
+emit('br-lll', 'Lower lobe bronchus', 'airway', BRONCH, owned(air_t, air, near_d), AL, faces=5000, division=division_at(air_t, lll_b, edt_air, into=5.0, look=11.0))
 emit('br-left-main', 'Left main bronchus', 'airway', BRONCH, owned(air_t, air, lmb_nodes), AL, faces=5000)
 emit('trachea', 'Trachea and carina', 'airway', BRONCH, owned(air_t, air, trachea_nodes), AL, faces=6000)
 emit('lul-bronchi', 'Upper lobe segmental bronchi', 'lul-intra', BRONCH, owned(air_t, air, far_u), AL, faces=8000, opacity=0.8, label=False)
@@ -400,6 +401,31 @@ nodes = {
     'ln-10l': ('Station 10L (hilar)', lmb_mm[np.argmin(lmb_mm[:, 0])] + SUP * 9 - ANT * 2, 5.5),
     'ln-11l': ('Station 11L (interlobar)', SEC_CARINA + LEFT * 9 - SUP * 3, 5.0),
 }
+# inferior pulmonary ligament: the double pleural fold from the lower border of the inferior vein down the posterior
+# mediastinal surface of the lower lobe to the diaphragm (schematic: drawn on the lobe's medial edge)
+lll_mm = vox_mm(Dt)
+pvi = np.array(next(s_['division']['point'] for s_ in structures if s_['id'] == 'pv-inferior')) + CARINA
+edge, med = [], []
+for k, z in enumerate(np.linspace(pvi[2] - 6, lll_mm[:, 2].min() + 10, 9)):
+    sl = slab(lll_mm, z, 3.0)
+    band = sl[(sl[:, 1] > pvi[1] - 32 - 2 * k) & (sl[:, 1] < pvi[1] + 6)]   # stays behind and below the vein, drifting back
+    sl = band if len(band) > 20 else sl
+    e = sl[np.argmax(sl[:, 0])] + LEFT * -1.0                                 # medial-most point (+x is medial on the left)
+    if k == 0: e = pvi - SUP * 7 - LEFT * 1.0                                 # starts at the lower border of the vein
+    edge.append(e)
+edge = np.array(edge)
+edge[1:-1] = (edge[:-2] + 2 * edge[1:-1] + edge[2:]) / 4          # smooth the lung edge so the fold hangs cleanly
+edge = list(edge); med = []
+for e in edge:                                                      # the fold attaches to the mediastinum along the oesophagus
+    es = slab(eso_mm, e[2], 4.0); tgt = es.mean(0) if len(es) else e - LEFT * 12
+    d = tgt - e; d[2] = 0; L_ = np.linalg.norm(d)
+    med.append(e + d / (L_ + 1e-9) * min(L_ - 4.0, 16.0) if L_ > 6 else e - LEFT * 6)
+V_ = np.array([W(p_) for p_ in edge + med]); n_ = len(edge)
+F_ = [[i, i + 1, n_ + i] for i in range(n_ - 1)] + [[i + 1, n_ + i + 1, n_ + i] for i in range(n_ - 1)]
+F_ += [f[::-1] for f in F_]
+emit_mesh('ipl', 'Inferior pulmonary ligament', 'pleura', '#e8d9c9', trimesh.Trimesh(V_, np.array(F_), process=False),
+          note='Schematic: the pleural fold below the inferior pulmonary vein, divided first in a lower lobectomy. Station 9 nodes lie in it.')
+nodes['ln-9l'] = ('Station 9L (pulmonary ligament)', np.mean(edge[2:5], axis=0) - LEFT * 4, 4.5)
 for id_, (nm, c, r) in nodes.items():
     emit_mesh(id_, nm, 'nodes', '#8fc79a', sphere(W(c), r), note='Schematic node station placed on landmarks (IASLC map).')
 
@@ -479,7 +505,7 @@ atlas = {
     'labels': {'file': 'labels.u8.gz', 'lut': lut},
     'groups': [{'id': 'lungs', 'name': 'Lungs and fissure', 'open': True}, {'id': 'arteries', 'name': 'Pulmonary arteries', 'open': True},
                {'id': 'veins', 'name': 'Pulmonary veins', 'open': True}, {'id': 'airway', 'name': 'Airway', 'open': True},
-               {'id': 'nerves', 'name': 'Nerves (schematic)', 'open': True}, {'id': 'nodes', 'name': 'Lymph node stations (schematic)'},
+               {'id': 'nerves', 'name': 'Nerves (schematic)', 'open': True}, {'id': 'pleura', 'name': 'Pleura and ligament (schematic)'}, {'id': 'nodes', 'name': 'Lymph node stations (schematic)'},
                {'id': 'mediastinum', 'name': 'Heart, great vessels, oesophagus'}, {'id': 'lul-intra', 'name': 'Upper lobe, intrapulmonary'},
                {'id': 'lll-intra', 'name': 'Lower lobe, intrapulmonary'}, {'id': 'chest-wall', 'name': 'Chest wall and spine'},
                {'id': 'ports-anterior', 'name': 'Ports, anterior approach'}, {'id': 'ports-posterior', 'name': 'Ports, posterior approach'}],
