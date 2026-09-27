@@ -13,6 +13,10 @@ export interface StructureMeta {
   /** staple line: point on the vessel/bronchus and the direction from proximal (kept) to distal (specimen) */
   division?: { point: Vec3; dir: Vec3; radius: number };
   note?: string;
+  /** left or right hilum: an operation shows only its own side */
+  side?: 'left' | 'right';
+  /** for right-side structures: visible when the right side is shown */
+  sideVisible?: boolean;
 }
 
 interface Item { meta: StructureMeta; mesh: THREE.Mesh; mat: THREE.MeshPhysicalMaterial; hull?: THREE.Mesh; home: THREE.Vector3; ghost?: THREE.Mesh; distal?: THREE.Mesh; distalPlane?: THREE.Plane; staple?: THREE.Group; ties?: THREE.Mesh[] }

@@ -54,6 +54,8 @@ export interface Procedure {
   id: string; name: string; approach: string; summary: string;
   /** the operation this approach belongs to, e.g. 'lul', and its display name */
   op: string; opName: string;
+  /** which hilum the operation is on */
+  side: 'left' | 'right';
   /** the order to remember, shown as a strip: e.g. Fissure → A2 → Truncus → Bronchus → Vein */
   sequence: { label: string; kind: 'artery' | 'vein' | 'bronchus' | 'fissure' | 'other' }[];
   ports: { id: string; name: string; at: Vec3; note: string }[];

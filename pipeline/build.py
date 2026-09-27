@@ -271,8 +271,15 @@ print('== lobes, heart, great vessels')
 LUNG = '#e9b2a6'
 emit('lul', 'Left upper lobe', 'lungs', LUNG, ts('lung_upper_lobe_left'), AT, faces=20000, opacity=0.3, sigma=1.3)
 emit('lll', 'Left lower lobe', 'lungs', '#d9a69a', ts('lung_lower_lobe_left'), AT, faces=20000, opacity=0.3, sigma=1.3)
-for n_, nm in (('lung_upper_lobe_right', 'Right upper lobe'), ('lung_middle_lobe_right', 'Right middle lobe'), ('lung_lower_lobe_right', 'Right lower lobe')):
-    emit('r' + n_.split('_')[1][0] + 'l', nm, 'lungs', LUNG, ts(n_), AT, faces=10000, opacity=0.18, visible=False, sigma=1.3, label=False)
+emit('rul', 'Right upper lobe', 'lungs', LUNG, ts('lung_upper_lobe_right'), AT, faces=16000, opacity=0.3, sigma=1.3)
+emit('rml', 'Right middle lobe', 'lungs', '#e2ab9e', ts('lung_middle_lobe_right'), AT, faces=10000, opacity=0.3, sigma=1.3)
+emit('rll', 'Right lower lobe', 'lungs', '#d9a69a', ts('lung_lower_lobe_right'), AT, faces=16000, opacity=0.3, sigma=1.3)
+RU_t, RM_t, RD_t = ts('lung_upper_lobe_right'), ts('lung_middle_lobe_right'), ts('lung_lower_lobe_right')
+d1 = lambda m: ndimage.binary_dilation(m, iterations=1)
+emit('fissure-h', 'Horizontal fissure (right)', 'lungs', '#f4e3a1', d1(RU_t) & d1(RM_t), AT, faces=6000, opacity=0.55, sigma=0.8, label=False,
+     note='Between the right upper and middle lobes; often incomplete.')
+emit('fissure-r', 'Oblique fissure (right)', 'lungs', '#f4e3a1', d1(RU_t | RM_t) & d1(RD_t), AT, faces=9000, opacity=0.55, sigma=0.8, label=False,
+     note='Between the lower lobe and the upper and middle lobes.')
 Ut, Dt = ts('lung_upper_lobe_left'), ts('lung_lower_lobe_left')
 fis = ndimage.binary_dilation(Ut, iterations=1) & ndimage.binary_dilation(Dt, iterations=1)
 emit('fissure', 'Oblique fissure (left)', 'lungs', '#f4e3a1', fis, AT, faces=9000, opacity=0.55, sigma=0.8, label=False,
@@ -295,6 +302,110 @@ for v in [f'T{i}' for i in range(2, 11)]:
 for i in range(1, 11):
     emit(f'rib-{i}-l', f'Left rib {i}', 'chest-wall', '#e6dcc6', ts(f'rib_left_{i}'), AT, faces=2500, opacity=0.9, visible=False, label=False)
 emit('sternum', 'Sternum', 'chest-wall', '#e6dcc6', ts('sternum'), AT, faces=5000, visible=False, label=False)
+
+
+# ------------------------------------------------------------------ right hilum (TotalSegmentator lung_vessels on the right hemithorax)
+RIGHT_IDS: set[str] = set()
+if (WORK / 'vessels_right.nii.gz').exists():
+    print('== right hilum')
+    n0 = len(structures)
+    rv_img = nib.load(WORK / 'vessels_right.nii.gz'); RV = np.asanyarray(rv_img.dataobj); AR = rv_img.affine
+    rU, rM, rD = (pull(m, AT, RV.shape, AR) for m in (RU_t, RM_t, RD_t))
+    lobes_r = {'U': rU, 'M': rM, 'D': rD}
+    r_air = biggest((RV == 1) | (RV == 2)); r_art = biggest(RV == 3); r_vein_all = RV == 4
+    edt_rair = ndimage.distance_transform_edt(r_air, sampling=np.abs(np.diag(AR)[:3]))
+    edt_rart = ndimage.distance_transform_edt(r_art, sampling=np.abs(np.diag(AR)[:3]))
+
+    # ---- airway: right main bronchus -> upper lobe bronchus, bronchus intermedius -> middle and lower lobe bronchi
+    # root in the trachea just above the carina (the top of this crop can be an apical bronchus, not the trachea)
+    ra = Tree(r_air, AR, CARINA + np.array([0, 0, 25.0]))
+    ra_terr = ra.territory(lobes_r)
+    rul_b = sorted(lobe_origins(ra, ra_terr, 'U', min_size=30), key=lambda i: -ra_terr['_size'][i])[0]
+    rml_b = sorted(lobe_origins(ra, ra_terr, 'M', min_size=20), key=lambda i: -ra_terr['_size'][i])[0]
+    rll_b = sorted(lobe_origins(ra, ra_terr, 'D', min_size=30), key=lambda i: -ra_terr['_size'][i])[0]
+    up_path = ra.path_to_root(rul_b)
+    # the main bronchus: from the carina (nearest node to the left tree's carina) to the upper lobe take-off
+    car_r = int(cKDTree(ra.mm).query(CARINA)[1])
+    rmb_nodes = np.array([q for q in up_path[1:] if ra.dist[q] >= ra.dist[car_r] - 1])
+    bi_nodes = np.array([q for q in ra.path_to_root(rml_b)[1:] if ra.dist[q] > ra.dist[up_path[1]]])
+    nu, fu = split_hilar(ra, rul_b, 20.0)
+    emit('br-rul', 'Right upper lobe bronchus', 'airway', BRONCH, owned(ra, r_air, nu), AR, faces=5000, division=division_at(ra, rul_b, edt_rair, into=5.0, look=11.0))
+    emit('br-intermedius', 'Bronchus intermedius', 'airway', BRONCH, owned(ra, r_air, bi_nodes), AR, faces=5000)
+    emit('br-rml', 'Middle lobe bronchus', 'airway', BRONCH, owned(ra, r_air, split_hilar(ra, rml_b, 14.0)[0]), AR, faces=4000, division=division_at(ra, rml_b, edt_rair, into=4.0, look=9.0))
+    emit('br-rll', 'Right lower lobe bronchus', 'airway', BRONCH, owned(ra, r_air, split_hilar(ra, rll_b, 18.0)[0]), AR, faces=5000)
+    emit('br-right-main', 'Right main bronchus', 'airway', BRONCH, owned(ra, r_air, rmb_nodes), AR, faces=5000)
+    emit('rul-bronchi', 'Right upper lobe segmental bronchi', 'rul-intra', BRONCH, owned(ra, r_air, fu), AR, faces=8000, opacity=0.8, label=False)
+    R_SEC = ra.mm[up_path[1]]                         # upper lobe take-off (the "secondary carina" of the right)
+    R_RMB = ra.mm[rmb_nodes].mean(0) if len(rmb_nodes) else CARINA
+
+    # ---- arteries: right PA -> truncus anterior (truncus superior), ascending posterior (A2), middle lobe, A6, basal trunk
+    rav = np.argwhere(r_art)
+    rt = Tree(r_art, AR, mm(rav[np.argmin(rav[:, 0])], AR))          # root at the most medial point: the right PA origin
+    rt_terr = rt.territory(lobes_r)
+    ru_or = sorted(lobe_origins(rt, rt_terr, 'U', min_size=40), key=lambda i: rt.dist[i])
+    rm_or = sorted(lobe_origins(rt, rt_terr, 'M', min_size=25), key=lambda i: rt.dist[i])
+    rd_or = lobe_origins(rt, rt_terr, 'D', min_size=40)
+    lim = min([rt.dist[o] for o in rm_or + list(rd_or)], default=np.inf) + 12.0
+    ru_or = [o for o in ru_or if rt.dist[o] <= lim]      # an 'upper lobe origin' distal to the basal trunk is a lobe-boundary artefact
+    rnames: dict[int, tuple[str, str]] = {}
+    if ru_or:
+        rnames[ru_or[0]] = ('rpa-truncus', 'Truncus anterior (right; A1 + A3)')
+        # beyond the truncus: branches heading back are ascending posterior (A2), heading forward ascending anterior (A3)
+        na = npo = 0
+        for o in ru_or[1:]:
+            v_ = rt.mm[rt.subtree(o)].mean(0) - rt.mm[o]
+            if v_[1] > 0.35 * np.linalg.norm(v_): na += 1; rnames[o] = (f'rpa-a3-{na}', 'Ascending anterior artery (A3)')
+            else: npo += 1; rnames[o] = (f'rpa-a2-{npo}', 'Ascending posterior artery (A2)')
+    for k, o in enumerate(rm_or[:2]):
+        rnames[o] = (f'rpa-ml-{k + 1}', 'Middle lobe artery (A4+5)' if len(rm_or) == 1 else f'Middle lobe artery {k + 1}')
+    rd_info = [(o, rt.mm[rt.subtree(o)].mean(0)) for o in rd_or]
+    if rd_info:
+        rbas = max(rd_info, key=lambda x: rt_terr['_size'][x[0]]); rnames[rbas[0]] = ('rpa-basal', 'Basal trunk (right lower lobe)')
+        rsup = [x for x in rd_info if x[0] != rbas[0]]
+        if rsup: rnames[max(rsup, key=lambda x: x[1][2])[0]] = ('rpa-a6', 'Superior segmental artery (A6, right)')
+    r_intra, r_branch = [], []
+    for o, (id_, nm) in sorted(rnames.items(), key=lambda kv: rt.dist[kv[0]]):
+        near, far = split_hilar(rt, o, 30.0); r_branch.append(rt.subtree(o))
+        if id_.startswith(('rpa-truncus', 'rpa-a2', 'rpa-a3')): r_intra.append(far)
+        emit(id_, nm, 'arteries', ART, owned(rt, r_art, near), AR, faces=5000, division=division_at(rt, o, edt_rart))
+    rmain = np.setdiff1d(np.flatnonzero(rt.keep), np.concatenate(r_branch) if r_branch else np.array([], int))
+    emit('rpa', 'Right pulmonary artery', 'arteries', ART, owned(rt, r_art, rmain), AR, faces=9000)
+    if r_intra: emit('rul-arteries', 'Right upper lobe segmental arteries', 'rul-intra', ART, owned(rt, r_art, np.concatenate(r_intra)), AR, faces=12000, opacity=0.85, label=False)
+    print('  right artery names', {v[0]: round(float(rt.dist[k]), 1) for k, v in rnames.items()})
+
+    # ---- veins: superior vein (upper + middle lobe) and inferior vein, split at their atrial ostia; in the superior
+    #      vein the upper lobe trunk and the middle lobe vein are separated by territory
+    rheart = pull(ts('heart'), AT, RV.shape, AR); rla = ndimage.binary_dilation(rheart, iterations=2)
+    rvein = biggest(r_vein_all & ~rla)
+    # one tree from the atrium; the two veins often share the atrial contact, so they are split by what they drain
+    hdr = ndimage.distance_transform_edt(~rla)
+    vv_ = np.argwhere(rvein); vroot_ = vv_[np.argmin(hdr[tuple(vv_.T)])]
+    rvt = Tree(rvein, AR, mm(vroot_, AR)); vte = rvt.territory(lobes_r)
+    tot_ = vte['U'] + vte['M'] + vte['D'] + 1e-9
+    fr = {k: vte[k] / tot_ for k in 'UMD'}
+    first = lambda k, frac, size, pool=None: min((i for i in (rvt.order if pool is None else pool) if rvt.pred[i] >= 0 and fr[k][i] >= frac and fr[k][rvt.pred[i]] < frac and vte['_size'][i] >= size),
+                                                   key=lambda i: rvt.dist[i], default=None)
+    ipv_o = first('D', 0.9, 150)
+    ipv_nodes = rvt.subtree(ipv_o) if ipv_o is not None else np.array([], int)
+    spv_pool = np.setdiff1d(rvt.order, ipv_nodes)
+    u_o = max((i for i in spv_pool if rvt.pred[i] >= 0 and fr['U'][i] >= 0.9 and fr['U'][rvt.pred[i]] < 0.9 and vte['_size'][i] >= 40), key=lambda i: vte['_size'][i], default=None)
+    m_o = max((i for i in spv_pool if rvt.pred[i] >= 0 and fr['M'][i] >= 0.9 and fr['M'][rvt.pred[i]] < 0.9 and vte['_size'][i] >= 20), key=lambda i: vte['_size'][i], default=None)
+    edt_v = ndimage.distance_transform_edt(rvein, sampling=np.abs(np.diag(AR)[:3]))
+    taken = [ipv_nodes]
+    if u_o is not None:
+        nr, fr_ = split_hilar(rvt, u_o, 25.0); taken.append(rvt.subtree(u_o))
+        emit('rpv-rul', 'Upper lobe veins (superior vein, upper trunk)', 'veins', VEIN, owned(rvt, rvein, nr), AR, faces=5000, division=division_at(rvt, u_o, edt_v, into=6.0, look=14.0))
+        emit('rul-veins', 'Right upper lobe segmental veins', 'rul-intra', VEIN, owned(rvt, rvein, fr_), AR, faces=10000, opacity=0.85, label=False)
+    if m_o is not None:
+        taken.append(rvt.subtree(m_o))
+        emit('rpv-ml', 'Middle lobe vein', 'veins', VEIN, owned(rvt, rvein, split_hilar(rvt, m_o, 20.0)[0]), AR, faces=4000, division=division_at(rvt, m_o, edt_v, into=5.0, look=12.0))
+    trunk = np.setdiff1d(spv_pool[rvt.dist[spv_pool] <= 40.0], np.concatenate(taken))
+    emit('rpv-superior', 'Right superior pulmonary vein', 'veins', VEIN, owned(rvt, rvein, trunk), AR, faces=5000)
+    if ipv_o is not None:
+        emit('rpv-inferior', 'Right inferior pulmonary vein', 'veins', VEIN, owned(rvt, rvein, ipv_nodes[rvt.dist[ipv_nodes] - rvt.dist[ipv_o] <= 30.0]), AR, faces=6000,
+             division=division_at(rvt, ipv_o, edt_v, into=6.0, look=16.0))
+    print('  right veins: upper', u_o is not None, 'middle', m_o is not None, 'inferior', ipv_o is not None)
+    RIGHT_IDS |= {q['id'] for q in structures[n0:]}
 
 # ------------------------------------------------------------------ schematic structures on landmarks
 print('== schematic')
@@ -429,28 +540,85 @@ nodes['ln-9l'] = ('Station 9L (pulmonary ligament)', np.mean(edge[2:5], axis=0) 
 for id_, (nm, c, r) in nodes.items():
     emit_mesh(id_, nm, 'nodes', '#8fc79a', sphere(W(c), r), note='Schematic node station placed on landmarks (IASLC map).')
 
+# ---- right side, schematic on landmarks
+RIGHT = -LEFT
+if RIGHT_IDS:
+    n0 = len(structures)
+    svc_mm = vox_mm(ts('superior_vena_cava'))
+    def ra_point(v, off):
+        pts = vox_mm(ts(f'vertebrae_{v}')); return pts[np.argmax(pts[:, 0] + pts[:, 1])] + off
+    arch_z = R_RMB[2] + 14
+    svc_s = slab(svc_mm, arch_z, 3.0)
+    az = [ra_point('T8', RIGHT * 3 + ANT * 3), ra_point('T6', RIGHT * 3 + ANT * 3), ra_point('T5', RIGHT * 4 + ANT * 2 + SUP * 4),
+          R_RMB + RIGHT * 9 - ANT * 10 + SUP * 14, R_RMB + RIGHT * 10 + SUP * 16, svc_s[np.argmin(svc_s[:, 1])] - ANT * 1]
+    emit_mesh('azygos', 'Azygos vein (arch)', 'mediastinum', SYSV, tube([W(p_) for p_ in az], 4.5),
+              note='Schematic: ascends on the right of the vertebral bodies and arches forward over the right main bronchus into the back of the SVC.')
+    rph = []
+    svc_top = svc_mm[:, 2].max()
+    for z in (svc_top - 10, arch_z, R_RMB[2] - 10):
+        ss = slab(svc_mm, z, 3.0); rph.append(ss[np.argmax(ss[:, 0])] + RIGHT * 3 + ANT * 2)
+    for dz in (-35, -70):
+        hs = slab(heart_mm, hilum_z + dz); hs = hs[hs[:, 1] > np.median(hs[:, 1])]; rph.append(hs[np.argmax(hs[:, 0])] + RIGHT * 3)
+    emit_mesh('n-phrenic-r', 'Right phrenic nerve', 'nerves', '#f2d24b', tube([W(p_) for p_ in rph], 1.4),
+              note='Schematic: on the lateral surface of the SVC, then the pericardium anterior to the hilum.')
+    trs_ = slab(tr_mm, arch_z + 30); t1 = trs_[np.argmax(trs_[:, 0] - trs_[:, 1])]
+    trs_ = slab(tr_mm, arch_z + 5); t2 = trs_[np.argmax(trs_[:, 0] - trs_[:, 1])]
+    rvag = [t1 + RIGHT * 3 - ANT * 3, t2 + RIGHT * 3 - ANT * 4, R_RMB - ANT * 13 + RIGHT * 4]
+    for dz in (-45, -95):
+        es = slab(eso_mm, hilum_z + dz); rvag.append(es[np.argmax(es[:, 0])] + RIGHT * 2 - ANT * 3)
+    emit_mesh('n-vagus-r', 'Right vagus nerve', 'nerves', '#f2d24b', tube([W(p_) for p_ in rvag], 1.6),
+              note='Schematic: descends on the right of the trachea, passes medial to the azygos arch and behind the hilum onto the oesophagus.')
+    trs_ = slab(tr_mm, arch_z + 12); svc_s2 = slab(svc_mm, arch_z + 12, 3.0)
+    rnodes = {'ln-4r': ('Station 4R (lower paratracheal)', (trs_[np.argmax(trs_[:, 0])] + svc_s2[np.argmin(svc_s2[:, 0])]) / 2, 6.5),
+              'ln-10r': ('Station 10R (hilar)', R_SEC + SUP * 9 + RIGHT * 3, 5.5),
+              'ln-11r': ('Station 11R (interlobar)', R_SEC + RIGHT * 8 - SUP * 8, 5.0)}
+    for id_, (nm, c, r) in rnodes.items():
+        emit_mesh(id_, nm, 'nodes', '#8fc79a', sphere(W(c), r), note='Schematic node station placed on landmarks (IASLC map).')
+    RIGHT_IDS |= {q['id'] for q in structures[n0:]}
+
 # ------------------------------------------------------------------ skin and ports
 body = biggest(ndimage.binary_opening(CT > -400, iterations=2))
 body_ds = body[::2, ::2, ::2]
+# the skin is the outer surface: fill the lungs slice by slice so their surfaces are not mistaken for skin
+body_fill = np.stack([ndimage.binary_fill_holes(body_ds[:, :, k]) for k in range(body_ds.shape[2])], axis=2)
 a2 = AT.copy(); a2[:3, :3] *= 2
 emit('skin', 'Chest wall (skin)', 'chest-wall', '#d9b8a4', body_ds, a2, faces=24000, opacity=0.1, visible=False, sigma=1.5, label=False)
-skin_mm = mm(np.argwhere(body_ds & ~ndimage.binary_erosion(body_ds)), a2)
+skin_mm = mm(np.argwhere(body_fill & ~ndimage.binary_erosion(body_fill)), a2)
 lung_c = vox_mm(Ut | Dt).mean(0)
+lung_cr = vox_mm(RU_t | RM_t | RD_t).mean(0)
+lung_pts = {'left': vox_mm(Ut | Dt)[::7], 'right': vox_mm(RU_t | RM_t | RD_t)[::7]}
 
 
-def rib_z(n, az):
-    r = vox_mm(ts(f'rib_left_{n}'))
-    ang = np.degrees(np.arctan2(r[:, 1] - lung_c[1], -(r[:, 0] - lung_c[0])))
+def rib_z(n, az, side='left'):
+    c = lung_c if side == 'left' else lung_cr; sg = -1 if side == 'left' else 1
+    r = vox_mm(ts(f'rib_{side}_{n}'))
+    ang = np.degrees(np.arctan2(r[:, 1] - c[1], sg * (r[:, 0] - c[0])))
     s = r[np.abs(ang - az) < 8]
     return float(np.median(s[:, 2])) if len(s) else None
 
 
-def port(ics, az):
-    """skin point in the ics-th intercostal space (between ribs ics and ics+1) at azimuth az (0 = lateral, + = anterior)"""
-    z1, z2 = rib_z(ics, az), rib_z(ics + 1, az)
-    z = (z1 + z2) / 2 if z1 and z2 else lung_c[2]
-    s = slab(skin_mm, z, 3.0); s = s[s[:, 0] < lung_c[0]]
-    ang = np.degrees(np.arctan2(s[:, 1] - lung_c[1], -(s[:, 0] - lung_c[0])))
+def port(ics, az, side='left'):
+    # skin point in the ics-th intercostal space (between ribs ics and ics+1) at azimuth az (0 = lateral, + = anterior)
+    c = lung_c if side == 'left' else lung_cr; sg = -1 if side == 'left' else 1
+    z1, z2 = rib_z(ics, az, side), rib_z(ics + 1, az, side)
+    z = (z1 + z2) / 2 if z1 and z2 else c[2]
+    s = slab(skin_mm, z, 3.0); s = s[(s[:, 0] < c[0]) if side == 'left' else (s[:, 0] > c[0])]
+    ang = np.degrees(np.arctan2(s[:, 1] - c[1], sg * (s[:, 0] - c[0])))
+    near = s[np.abs(ang - az) < 4]
+    # an arm lying against the chest can merge with it: keep skin within 45 mm of the lung edge along that direction
+    lp = slab(lung_pts[side], z, 4.0)
+    if len(lp) < 20: lp = lung_pts[side]            # below the lung base: use the whole lung's outline in that direction
+    if len(lp) and len(near):
+        la = np.degrees(np.arctan2(lp[:, 1] - c[1], sg * (lp[:, 0] - c[0]))); lp = lp[np.abs(la - az) < 6]
+        if len(lp):
+            rl = np.linalg.norm(lp[:, :2] - c[:2], axis=1).max()
+            ok = np.linalg.norm(near[:, :2] - c[:2], axis=1) <= rl + 45
+            if ok.any(): near = near[ok]
+            else:   # the arm is fused to the chest wall in this slice: place the port on the chest wall estimate
+                a_ = np.radians(az); d_ = np.array([sg * np.cos(a_), np.sin(a_)])
+                return np.array([c[0] + d_[0] * (rl + 22), c[1] + d_[1] * (rl + 22), z])
+    if len(near):   # the chest wall, not an arm lying beside it: the nearest skin along that direction
+        return near[np.argmin(np.linalg.norm(near[:, :2] - c[:2], axis=1))]
     return s[np.argmin(np.abs(ang - az))]
 
 
@@ -464,6 +632,12 @@ PORTS = {
     'posterior': [('utility', 'Utility incision, in line with the fissure (5th space)', port(5, 10)),
                   ('camera', 'Camera port, low, posterior axillary', port(7, -25)),
                   ('posterior', 'Working port, posterior', port(6, -65))],
+    'r-anterior': [('utility', 'Utility incision, anterior, over the hilum (4th space)', port(4, 45, 'right')),
+                   ('camera', 'Camera port, low anterior (diaphragm level)', port(7, 40, 'right')),
+                   ('posterior', 'Working port, same level, posterior', port(7, -35, 'right'))],
+    'r-posterior': [('utility', 'Utility incision, in line with the fissure (5th space)', port(5, 10, 'right')),
+                    ('camera', 'Camera port, low, posterior axillary', port(7, -25, 'right')),
+                    ('posterior', 'Working port, posterior', port(6, -65, 'right'))],
 }
 for appr, ps in PORTS.items():
     for k, nm, p in ps:
@@ -498,6 +672,27 @@ w_aff = shifted(g_aff)
 landmarks = {'carina': [0.0, 0.0, 0.0], 'secondary-carina': [round(float(x), 1) for x in W(SEC_CARINA)],
              'ap-window': [round(float(x), 1) for x in W((a_lig + p_lig) / 2)], 'lung-centre': [round(float(x), 1) for x in W(lung_c)],
              'fissure-centre': [round(float(x), 1) for x in W(FIS_C)], 'fissure-normal': [round(float(x), 3) for x in FIS_N]}
+
+
+def plane_of(mask, pos, neg):
+    # centre and unit normal (pointing from `neg` toward `pos`) of a fissure surface
+    P = vox_mm(mask); c = P.mean(0); _, _, vt = np.linalg.svd(P - c, full_matrices=False)
+    n = vt[2] * np.sign(np.dot(vt[2], vox_mm(pos).mean(0) - vox_mm(neg).mean(0))); return c, n
+
+
+if RIGHT_IDS:
+    landmarks['r-secondary-carina'] = [round(float(x), 1) for x in W(R_SEC)]
+    for nm_, (c_, n_) in (('fissure-h', plane_of(d1(RU_t) & d1(RM_t), RU_t, RM_t)), ('fissure-r', plane_of(d1(RU_t | RM_t) & d1(RD_t), RU_t | RM_t, RD_t))):
+        landmarks[f'{nm_}-centre'] = [round(float(x), 1) for x in W(c_)]; landmarks[f'{nm_}-normal'] = [round(float(x), 3) for x in n_]
+# which side a structure belongs to: each operation shows one side's hilum
+LEFT_IDS = {'lul', 'lll', 'fissure', 'ipl', 'lig-art', 'n-phrenic', 'n-vagus', 'n-rln', 'ln-5', 'ln-6', 'ln-10l', 'ln-11l', 'ln-9l', 'br-lul', 'br-lll', 'br-left-main'}
+RIGHT_IDS |= {'rul', 'rml', 'rll', 'fissure-h', 'fissure-r'}
+for q in structures:
+    i = q['id']
+    if i in RIGHT_IDS or i.startswith('port-r-'):
+        q['side'] = 'right'; q['sideVisible'] = q.get('visible', True); q['visible'] = False
+    elif i in LEFT_IDS or i.startswith(('pa-', 'pv-', 'lul-', 'lll-', 'port-anterior', 'port-posterior', 'rib-')):
+        q['side'] = 'left'
 for appr, ps in PORTS.items():
     for k, _, p in ps: landmarks[f'port-{appr}-{k}'] = [round(float(x), 1) for x in W(p)]
 atlas = {
@@ -508,7 +703,9 @@ atlas = {
                {'id': 'nerves', 'name': 'Nerves (schematic)', 'open': True}, {'id': 'pleura', 'name': 'Pleura and ligament (schematic)'}, {'id': 'nodes', 'name': 'Lymph node stations (schematic)'},
                {'id': 'mediastinum', 'name': 'Heart, great vessels, oesophagus'}, {'id': 'lul-intra', 'name': 'Upper lobe, intrapulmonary'},
                {'id': 'lll-intra', 'name': 'Lower lobe, intrapulmonary'}, {'id': 'chest-wall', 'name': 'Chest wall and spine'},
-               {'id': 'ports-anterior', 'name': 'Ports, anterior approach'}, {'id': 'ports-posterior', 'name': 'Ports, posterior approach'}],
+               {'id': 'ports-anterior', 'name': 'Ports, anterior approach'}, {'id': 'ports-posterior', 'name': 'Ports, posterior approach'},
+               {'id': 'rul-intra', 'name': 'Right upper lobe, intrapulmonary'},
+               {'id': 'ports-r-anterior', 'name': 'Ports, right anterior approach'}, {'id': 'ports-r-posterior', 'name': 'Ports, right posterior approach'}],
     'structures': structures,
     'landmarks': landmarks,
     'source': {'name': 'Reference CT: 3D Slicer sample CTA (CTA-cardio)', 'licence': 'unstated',

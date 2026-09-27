@@ -1,9 +1,10 @@
 """Step 1: segment a chest CT with TotalSegmentator into the work folder that build.py reads.
 
-    python pipeline/segment.py --input <DICOM folder | ct.nii.gz> [--work work/] [--device gpu|cpu] [--lowmem]
+    python pipeline/segment.py --input <DICOM folder | ct.nii.gz> [--work work/] [--device gpu|cpu] [--lowmem] [--side left|right]
 
 Writes work/ct.nii.gz (cropped to the body, RAS), work/total.nii.gz (task 'total': lobes, heart, great vessels,
-bones) and work/vessels.nii.gz (task 'lung_vessels' on the left hemithorax: airways, arteries, veins).
+bones) and the hilar vessels of one hemithorax (task 'lung_vessels': airways, arteries, veins):
+work/vessels.nii.gz for --side left (the default), work/vessels_right.nii.gz for --side right.
 Each output is reused if it already exists, so a run that stops can be restarted.
 
 Memory: 'lung_vessels' works at 0.7 mm and needs about 8 GB for one hemithorax. With --lowmem the hemithorax is
@@ -39,6 +40,7 @@ def main() -> None:
     ap.add_argument('--work', type=Path, default=HERE.parent / 'work')
     ap.add_argument('--device', default='gpu', help="'gpu' or 'cpu'")
     ap.add_argument('--lowmem', action='store_true', help='split the heavy steps to fit in ~5 GB of RAM')
+    ap.add_argument('--side', default='left', choices=['left', 'right'], help='which hemithorax to segment the hilar vessels of')
     a = ap.parse_args()
     w = a.work; w.mkdir(parents=True, exist_ok=True)
 
@@ -64,17 +66,21 @@ def main() -> None:
     # ---- 2. whole-body structures
     run_ts(ct_path, w / 'total.nii.gz', 'total', a.device, a.lowmem)
 
-    # ---- 3. hilar vessels and airways on the left hemithorax at the model's own spacing
-    out = w / 'vessels.nii.gz'
+    # ---- 3. hilar vessels and airways on one hemithorax at the model's own spacing
+    sfx = '' if a.side == 'left' else '_right'
+    out = w / f'vessels{sfx}.nii.gz'
     if out.exists():
         print('  reuse', out.name); return
-    crop = w / 'vessels_input.nii.gz'
+    crop = w / f'vessels_input{sfx}.nii.gz'
     if not crop.exists():
         ct = nib.load(str(ct_path)); L = np.asanyarray(nib.load(str(w / 'total.nii.gz')).dataobj)
-        ii = np.argwhere(np.isin(L, [TS['lung_upper_lobe_left'], TS['lung_lower_lobe_left'], TS['trachea'], TS['pulmonary_vein']]))
+        lobes = ['lung_upper_lobe_left', 'lung_lower_lobe_left'] if a.side == 'left' else ['lung_upper_lobe_right', 'lung_middle_lobe_right', 'lung_lower_lobe_right']
+        ii = np.argwhere(np.isin(L, [TS[n] for n in lobes] + [TS['trachea'], TS['pulmonary_vein']]))
         lo = np.maximum(ii.min(0) - 6, 0); hi = np.minimum(ii.max(0) + 7, L.shape)
-        # keep 15 mm to the right of the trachea so the carina and the left PA origin are inside
-        tx = np.median(np.argwhere(L == TS['trachea'])[:, 0]); hi[0] = min(hi[0], int(tx + 15 / abs(ct.affine[0, 0])))
+        # keep 15 mm across the midline past the trachea so the carina and the main PA origin are inside (RAS: +x = right)
+        tx = np.median(np.argwhere(L == TS['trachea'])[:, 0]); m15 = int(15 / abs(ct.affine[0, 0]))
+        if a.side == 'left': hi[0] = min(hi[0], int(tx) + m15)
+        else: lo[0] = max(lo[0], int(tx) - m15)
         d = np.asanyarray(ct.dataobj)[lo[0]:hi[0], lo[1]:hi[1], lo[2]:hi[2]]
         aff = ct.affine.copy(); aff[:3, 3] = ct.affine[:3, :3] @ lo + ct.affine[:3, 3]
         r = resample_to_output(nib.Nifti1Image(d.astype(np.int16), aff), (0.703125, 0.703125, 1.0), order=1, cval=-1024)
@@ -87,7 +93,7 @@ def main() -> None:
     merged = np.zeros(d.shape, np.uint8)
     for n, k0 in enumerate(starts):
         k1 = min(nz, k0 + size)
-        blk = w / f'vessels_block{n}.nii.gz'; blk_out = w / f'vessels_block{n}_seg.nii.gz'
+        blk = w / f'vessels{sfx}_block{n}.nii.gz'; blk_out = w / f'vessels{sfx}_block{n}_seg.nii.gz'
         if not blk_out.exists():
             aff = A.copy(); aff[:3, 3] = A[:3, :3] @ [0, 0, k0] + A[:3, 3]
             nib.save(nib.Nifti1Image(d[:, :, k0:k1], aff), blk)

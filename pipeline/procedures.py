@@ -326,6 +326,159 @@ lll_hilum_first = [
 ]
 lll_hilum_first[5]['view'] = scope('posterior', (a6 + bas) / 2, dist=110, side=[-1, -0.55, 0.1])
 
+# ==================================================================================================== right upper lobectomy
+RUL_OK = has('rpa-truncus') and has('rpv-rul') and has('br-rul')
+if RUL_OK:
+    RULS = ['rul', 'rul-arteries', 'rul-veins', 'rul-bronchi']
+    ASC = [i for i in ('rpa-a3-1', 'rpa-a3-2', 'rpa-a2-1', 'rpa-a2-2') if has(i)]
+    ML = [i for i in ('rpa-ml-1', 'rpa-ml-2') if has(i)]
+    RCLEAR = {'rul': 0.35, 'rml': 0.35, 'rll': 0.35, 'heart': 0.45}
+    RLAT = V([1.0, 0, 0])
+    tR = V(pt('rpa-truncus')); vU = V(pt('rpv-rul')); vM = V(pt('rpv-ml')) if has('rpv-ml') else vU + V([0, 0, -15])
+    bR = V(pt('br-rul'))
+    J = np.mean([V(pt(i)) for i in ASC[-1:] + ML[:1] + (['rpa-a6'] if has('rpa-a6') else [])], axis=0)   # where the fissures meet over the artery
+    Nh, Nr = V(LM['fissure-h-normal']), V(LM['fissure-r-normal']); Ch, Cr = V(LM['fissure-h-centre']), V(LM['fissure-r-centre'])
+    inplane = lambda v, n: (lambda w: w / np.linalg.norm(w))(v - n * np.dot(v, n))
+    onp = lambda p, c, n: p - n * np.dot(p - c, n)
+    AXh = inplane(V([0, 1.0, 0]), Nh)                 # along the horizontal fissure, toward the front
+    AXr = inplane(V([0, -1.0, 0.6]), Nr)              # along the oblique fissure, up and back
+    Jl = J + RLAT * 10
+    H_LINE = [onp(Jl + AXh * t, Ch, Nh) for t in (72, 46, 22, 0)]
+    O_LINE = [onp(Jl + AXr * t, Cr, Nr) for t in (0, 24, 48, 66)]
+    RSPREAD = [{'ids': RULS, 'offset': [4, 6, 12]}, {'ids': ['rml', 'rll', 'fissure-h', 'fissure-r'], 'offset': [2, -4, -9]}]
+    RBACK = {'ids': RULS, 'offset': [4, -16, 4], 'opacity': 0.3}          # upper lobe retracted back to open the front of the hilum
+    rnodes = [i for i in ('ln-4r', 'ln-7', 'ln-10r', 'ln-11r') if has(i)]
+    rports = lambda a: [f'port-{a}-{k}' for k in ('utility', 'camera', 'posterior')]
+
+    def rul_anatomy(op, front):
+        return {'id': f'{op}-anatomy', 'phase': 'Anatomy', 'seq': 0, 'title': 'The right hilum' + (' from the front' if front else ' from behind'),
+                'body': ('<p>From the front, the <b>superior pulmonary vein</b> is the most anterior structure. Its upper tributaries drain the upper lobe; its lowest tributary, the <b>middle lobe vein</b>, must be kept. '
+                         'Above and behind the vein, the <b>truncus anterior</b> leaves the right pulmonary artery as its first branch, just below the <b>azygos arch</b> and behind the <b>SVC</b>.</p>'
+                         '<p>Order from the front: <b>upper lobe veins → truncus → bronchus → ascending arteries → fissures</b>.</p>'
+                         if front else
+                         '<p>From behind, the <b>upper lobe bronchus</b> leaves the right main bronchus high, above the artery (the eparterial bronchus), with the <b>bronchus intermedius</b> continuing below. '
+                         'The <b>azygos arch</b> crosses above it into the SVC; the <b>vagus</b> runs down behind the hilum.</p>'
+                         '<p>Where the fissures meet, the interlobar artery gives the <b>ascending posterior artery (A2)</b> up to the upper lobe, the <b>middle lobe artery</b> forward and <b>A6</b> back.</p>'
+                         '<p>Order from behind: <b>fissure → ascending arteries → bronchus → truncus → upper lobe veins</b>.</p>'),
+                'view': {'frame': ['rpa', 'rpa-truncus', 'rpv-superior', 'rpv-rul', 'br-rul', 'br-intermedius'], 'dir': [1, 0.45, 0.2] if front else [1, -0.6, 0.25], 'pad': 0.95},
+                'opacity': {'rul': 0.08, 'rml': 0.08, 'rll': 0.08, 'fissure-h': 0.1, 'fissure-r': 0.1, 'heart': 0.35}, 'spin': True,
+                'labels': ['rpa', 'rpa-truncus', *ASC[:1], *ML[:1], 'rpv-rul', 'rpv-ml', 'br-rul', 'br-intermedius', 'azygos', 'svc'],
+                'ct': ct('rpa-truncus', 'coronal')}
+
+    rv_step = lambda op, seq, port, body, view: {
+        'id': f'{op}-veins', 'phase': 'Vein', 'seq': seq, 'title': 'Upper lobe veins: staple, keep the middle lobe vein',
+        'body': body, 'view': view, 'retract': RBACK, 'opacity': {'heart': 0.4, 'rml': 0.3, 'rll': 0.3},
+        'highlight': ['rpv-rul'], 'danger': ['rpv-ml', 'rpa', 'n-phrenic-r'],
+        'action': {'kind': 'staple', 'label': 'Fire the stapler', 'ids': ['rpv-rul'], 'port': port, 'reload': 'vascular'},
+        'ask': ask('Stapling the upper lobe veins, which tributary of the superior pulmonary vein must be kept?', 'The middle lobe vein',
+                   'The middle lobe vein is the lowest tributary of the right superior vein; taking it with the upper lobe veins leaves the middle lobe congested and may force a bilobectomy.',
+                   'The apical vein', 'The inferior pulmonary vein'),
+        'ct': ct('rpv-rul')}
+
+    truncus_step = lambda op, seq, port, kind: {
+        'id': f'{op}-truncus', 'phase': 'Artery', 'seq': seq, 'title': 'Truncus anterior: ' + ('staple' if kind == 'staple' else 'ligate and divide'),
+        'body': '<p>The <b>truncus anterior</b> is the first branch of the right pulmonary artery, leaving its upper surface for the apical and anterior segments. It is short and wide, just below the <b>azygos arch</b> and behind the SVC.</p>'
+                '<p>Clear the <b>station 10R</b> node from the angle between the truncus and the artery; that exposes the length you need. ' + ('Pass the vascular stapler and fire.' if kind == 'staple' else 'Two ties on the artery side, one on the lobe side, then divide.') + '</p>',
+        'view': scope('anterior', tR, dist=100, side=[1, 0.3, 0.6]), 'opacity': {**RCLEAR, 'rul': 0.3, 'svc': 0.3},
+        'highlight': ['rpa-truncus'], 'danger': ['rpa', 'svc', 'azygos'], 'labels': ['ln-10r', 'br-rul'],
+        'action': ({'kind': 'staple', 'label': 'Fire the stapler', 'ids': ['rpa-truncus'], 'port': port, 'reload': 'vascular'} if kind == 'staple'
+                   else {'kind': 'ligate', 'label': 'Tie and divide', 'ids': ['rpa-truncus'], 'port': port}),
+        'ask': ask('What lies immediately above the right truncus anterior as you clear it?', 'The azygos arch',
+                   'The azygos arches forward over the right main bronchus into the SVC just above the truncus; it can be divided for exposure if needed.', 'The phrenic nerve', 'The inferior pulmonary vein'),
+        'ct': ct('rpa-truncus')}
+
+    bronchus_step = lambda op, seq, port, view, extra='': {
+        'id': f'{op}-bronchus', 'phase': 'Bronchus', 'seq': seq, 'title': 'Upper lobe bronchus: clamp, inflate, staple',
+        'body': '<p>Sweep <b>stations 10R and 11R</b> toward the specimen. The <b>upper lobe bronchus</b> leaves the right main bronchus high; below it the <b>bronchus intermedius</b> must stay intact.</p>'
+                '<p>Close the stapler (thick-tissue reload) on the upper lobe bronchus and inflate: <b>the middle and lower lobes must ventilate</b>. Then fire.</p>' + extra,
+        'view': view, 'opacity': {**RCLEAR, 'rul': 0.3},
+        'highlight': ['br-rul'], 'danger': ['br-intermedius', 'br-right-main', 'rpa'], 'labels': ['ln-11r', 'ln-10r'],
+        'action': {'kind': 'staple', 'label': 'Clamp, inflate, fire', 'ids': ['br-rul'], 'port': port, 'reload': 'tissue'},
+        'ask': ask('Stapler closed on the right upper lobe bronchus: which lobes must inflate?', 'The middle and lower lobes',
+                   'If the middle and lower lobes do not ventilate, the stapler is across the bronchus intermedius or the main bronchus.', 'Only the lower lobe', 'None: the lung is collapsed'),
+        'ct': ct('br-rul')}
+
+    asc_step = lambda op, seq, port, body, view, retract=None: {
+        'id': f'{op}-ascending', 'phase': 'Artery', 'seq': seq, 'title': 'Ascending arteries to the upper lobe',
+        'body': body, 'view': view, 'opacity': RCLEAR, **({'retract': retract} if retract else {}),
+        'highlight': ASC, 'danger': ML + [i for i in ('rpa-a6', 'rpa-basal') if has(i)],
+        'action': {'kind': 'staple', 'label': 'Staple each artery', 'ids': ASC, 'port': port, 'reload': 'vascular'},
+        'ask': ask('Dividing the ascending posterior artery in the fissure, which branch arises close by and must be kept?', 'The superior segmental artery of the lower lobe (A6)',
+                   'A2 leaves the interlobar artery at about the level of A6 and the middle lobe artery; identify all three before dividing.', 'The truncus anterior', 'The azygos vein'),
+        'ct': ct(ASC[0])}
+
+    rspec = lambda op, seq: {
+        'id': f'{op}-specimen', 'phase': 'Close', 'seq': seq, 'title': 'Specimen out, nodes, leak test',
+        'body': '<p>Bag the lobe and remove it. Complete the nodal dissection: <b>stations 2R and 4R</b> (between the SVC, trachea and azygos), <b>7</b> below the carina, <b>10R and 11R</b> at the hilum.</p>'
+                '<p>Leak-test the stump under saline. Check that the <b>middle lobe</b> is pink, ventilating and not twisted; if it is mobile on a complete fissure, fix it to the lower lobe to prevent torsion.</p>',
+        'view': {'frame': ['rpa', 'br-right-main', 'rpv-superior', 'rpv-inferior', 'svc'], 'dir': [0.8, 0.4, 0.3], 'pad': 1.1}, 'opacity': {'heart': 0.4, 'rml': 0.3, 'rll': 0.3},
+        'highlight': rnodes, 'specimen': {'ids': RULS, 'offset': [120, 20, 60]}, 'ct': ct(LM['carina'], 'coronal')}
+
+    rul_anterior = [
+        rul_anatomy('ra', True),
+        {'id': 'ra-setup', 'phase': 'Setup', 'title': 'Position and ports',
+         'body': '<p>Left lateral decubitus, table flexed, left lung ventilated through a double-lumen tube.</p><p>Utility incision anteriorly in the <b>4th intercostal space</b> over the hilum; camera low and anterior; working port at the same level further back.</p>',
+         'view': {'frame': ['skin'], 'dir': [1, 0.25, 0.15], 'pad': 1.05}, 'show': ['skin', *rports('r-anterior')], 'labels': rports('r-anterior'), 'ct': ct(LM['port-r-anterior-utility'], 'axial', 'lung')},
+        {'id': 'ra-hilum', 'phase': 'Hilum', 'seq': 1, 'title': 'Open the pleura over the front of the hilum',
+         'body': '<p>Retract the upper lobe back. With the peanut, sweep the mediastinal pleura off the front of the hilum <b>behind the phrenic nerve</b>, from the azygos arch down to the middle lobe vein.</p>'
+                 '<p>Identify all the tributaries of the superior vein, including the <b>middle lobe vein</b> at its lower border.</p>',
+         'view': scope('anterior', (vU + tR) / 2, dist=115, side=[1, 0.55, 0.2]), 'retract': RBACK, 'opacity': {'heart': 0.4, 'rml': 0.3, 'rll': 0.3},
+         'highlight': ['rpv-rul'], 'danger': ['n-phrenic-r', 'svc'], 'labels': ['rpv-ml', 'rpa-truncus'],
+         'action': {'kind': 'dissect', 'label': 'Dissect with the peanut', 'port': 'port-r-anterior-utility',
+                    'path': [R(tR + V([9, 13, 8])), R(vU + V([8, 11, 6])), R(vU + V([9, 11, -6])), R(vM + V([8, 10, -2]))]},
+         'ct': ct('rpv-rul')},
+        rv_step('ra', 1, 'port-r-anterior-posterior',
+                '<p>Encircle the <b>upper lobe tributaries</b> of the superior vein and pass the vascular stapler from the working port.</p><p>Before firing, trace the <b>middle lobe vein</b> into the middle lobe and keep it out of the jaws.</p>',
+                scope('anterior', vU, dist=105, side=[1, 0.55, 0.15])),
+        truncus_step('ra', 2, 'port-r-anterior-posterior', 'staple'),
+        bronchus_step('ra', 3, 'port-r-anterior-utility', scope('anterior', bR, dist=105, side=[1, 0.2, 0.45])),
+        asc_step('ra', 4, 'port-r-anterior-utility',
+                 '<p>Lift the bronchial stump: the remaining upper lobe arteries rise from the interlobar artery below it. The <b>ascending posterior artery (A2)</b> and any <b>ascending anterior branch</b> go up into the upper lobe.</p>'
+                 '<p>The <b>middle lobe artery</b> runs forward and <b>A6</b> back at the same level: keep both.</p>',
+                 scope('anterior', np.mean([V(pt(i)) for i in ASC], axis=0), dist=110, side=[1, 0.1, 0.4])),
+        {'id': 'ra-fissure-h', 'phase': 'Fissure', 'seq': 5, 'title': 'Horizontal fissure, front to back',
+         'body': '<p>Only the fissures hold the upper lobe now. Staple the <b>horizontal fissure</b> from the front back to where the fissures meet, keeping the middle lobe below the staple line.</p>',
+         'view': scope('anterior', np.mean(H_LINE, axis=0), dist=150, side=[1, 0.3, 0.6]), 'opacity': {'rul': 0.45, 'rml': 0.45, 'rll': 0.35, 'heart': 0.4},
+         'labels': ['fissure-h'], 'danger': ML,
+         'action': {'kind': 'staple-fissure', 'label': 'Staple the horizontal fissure', 'port': 'port-r-anterior-utility', 'reload': 'tissue', 'normal': R(Nh), 'path': [R(p) for p in H_LINE]},
+         'ct': ct(R(Ch), 'sagittal', 'lung')},
+        {'id': 'ra-fissure-o', 'phase': 'Fissure', 'seq': 5, 'title': 'Posterior oblique fissure',
+         'body': '<p>Finish with the <b>posterior part of the oblique fissure</b>, from the junction up and back, keeping <b>A6</b> and the lower lobe below the line.</p>',
+         'view': scope('posterior', np.mean(O_LINE, axis=0), dist=150, side=[1, -0.45, 0.5]), 'opacity': {'rul': 0.45, 'rml': 0.45, 'rll': 0.45, 'heart': 0.4},
+         'labels': ['fissure-r'], 'danger': [i for i in ('rpa-a6',) if has(i)],
+         'action': {'kind': 'staple-fissure', 'label': 'Staple the posterior fissure', 'port': 'port-r-anterior-posterior', 'reload': 'tissue', 'normal': R(Nr), 'path': [R(p) for p in O_LINE], 'spread': RSPREAD},
+         'ct': ct(R(Cr), 'sagittal', 'lung')},
+        rspec('ra', 6),
+    ]
+
+    rul_posterior = [
+        rul_anatomy('rp', False),
+        {'id': 'rp-setup', 'phase': 'Setup', 'title': 'Position and ports',
+         'body': '<p>Left lateral decubitus, left lung ventilated. For a fissure-first approach the utility incision sits in the <b>5th intercostal space</b> over the fissures, with a posterior working port. Port sites vary between units.</p>',
+         'view': {'frame': ['skin'], 'dir': [1, -0.35, 0.15], 'pad': 1.05}, 'show': ['skin', *rports('r-posterior')], 'labels': rports('r-posterior'), 'ct': ct(LM['port-r-posterior-utility'], 'axial', 'lung')},
+        {'id': 'rp-fissure', 'phase': 'Fissure', 'seq': 1, 'title': 'Open the fissure junction with a peanut',
+         'body': '<p>Where the horizontal and oblique fissures meet, open the visceral pleura and <b>dissect bluntly with the peanut</b> onto the interlobar artery.</p>'
+                 '<p>Map its branches before dividing anything: <b>A2</b> up into the upper lobe, the <b>middle lobe artery</b> forward, <b>A6</b> back, the <b>basal trunk</b> down.</p>',
+         'view': scope('posterior', J + RLAT * 10, dist=140, side=[1, -0.1, 0.55]), 'opacity': {**RCLEAR, 'fissure-h': 0.2, 'fissure-r': 0.2},
+         'highlight': ['rpa'], 'labels': [*ASC[:1], *ML[:1], 'rpa-a6', 'rpa-basal'],
+         'action': {'kind': 'open-fissure', 'label': 'Open the fissure', 'port': 'port-r-posterior-utility', 'spread': RSPREAD,
+                    'path': [R(J + RLAT * 40 + V([0, 6, 8])), R(J + RLAT * 24 + V([0, 3, 4])), R(J + RLAT * 8), R(V(pt(ASC[-1])) + RLAT * 6)]},
+         'ct': ct(ASC[-1], 'sagittal', 'lung')},
+        asc_step('rp', 2, 'port-r-posterior-posterior',
+                 '<p>In the open fissure, follow the interlobar artery up: the <b>ascending posterior artery (A2)</b> is the first upper lobe branch you meet from here, and any <b>ascending anterior branch</b> lies just in front.</p>'
+                 '<p>Keep the <b>middle lobe artery</b> and <b>A6</b>, which leave at about the same level. Divide the ascending branches.</p>',
+                 scope('posterior', np.mean([V(pt(i)) for i in ASC], axis=0), dist=105, side=[1, -0.3, 0.5]),
+                 retract=[{'ids': sp['ids'], 'offset': sp['offset'], 'opacity': 0.35} for sp in RSPREAD]),
+        bronchus_step('rp', 3, 'port-r-posterior-posterior', scope('posterior', bR, dist=100, side=[1, -0.7, 0.3]),
+                      '<p>From behind, the bronchus is reached by opening the posterior mediastinal pleura below the azygos arch, in front of the vagus.</p>'),
+        truncus_step('rp', 4, 'port-r-posterior-utility', 'ligate'),
+        rv_step('rp', 5, 'port-r-posterior-utility',
+                '<p>Roll the lobe back to show the front of the hilum. Only the <b>upper lobe veins</b> remain. Keep the phrenic nerve on the pericardium and the <b>middle lobe vein</b> out of the jaws, then fire.</p>',
+                scope('anterior', (vU + vM) / 2, dist=115, side=[1, 0.6, 0.2])),
+        rspec('rp', 6),
+    ]
+    rul_posterior[3]['retract'] = [{'ids': sp['ids'], 'offset': sp['offset'], 'opacity': 0.35} for sp in RSPREAD]
+
 sources = [
     {'title': 'Hansen HJ, Petersen RH. Video-assisted thoracoscopic lobectomy using a standardized three-port anterior approach: the Copenhagen experience. Ann Cardiothorac Surg 2012;1(1):70-76', 'url': 'https://doi.org/10.3978/j.issn.2225-319X.2012.04.15'},
     {'title': 'McElnay P, Casali G, Batchelor T, West D. Adopting a standardized anterior approach significantly increases VATS lobectomy rates. Eur J Cardiothorac Surg 2014;46(1):100', 'url': 'https://academic.oup.com/ejcts/article/46/1/100/394433'},
@@ -334,14 +487,14 @@ sources = [
 ]
 # every operative step: the intrapulmonary trees and the spine recede so the hilar structures read clearly
 BASE = {'lul-arteries': 0.16, 'lul-veins': 0.16, 'lul-bronchi': 0.2, **{f'vert-t{i}': 0.22 for i in range(2, 11)}}
-for steps in (anterior, posterior, lll_fissure_first, lll_hilum_first):
+for steps in (anterior, posterior, lll_fissure_first, lll_hilum_first, *((rul_anterior, rul_posterior) if RUL_OK else ())):
     for s in steps:
         if s['phase'] != 'Setup':
             s['opacity'] = {**BASE, **s.get('opacity', {})}
             # clean view: only what the step is about. Spine, nerves and intrapulmonary trees stay hidden unless named.
             named = set(s.get('highlight', [])) | set(s.get('danger', [])) | set(s.get('labels', []))
-            quiet = [f'vert-t{i}' for i in range(2, 11)] + [i for i in ('n-phrenic', 'n-vagus', 'n-rln', 'lig-art', 'esophagus', 'svc', 'lbcv', 'ipl') if i not in named]
-            quiet += ['lul-arteries', 'lul-veins', 'lul-bronchi']
+            quiet = [f'vert-t{i}' for i in range(2, 11)] + [i for i in ('n-phrenic', 'n-vagus', 'n-rln', 'lig-art', 'esophagus', 'svc', 'lbcv', 'ipl', 'n-phrenic-r', 'n-vagus-r') if i not in named]
+            quiet += ['lul-arteries', 'lul-veins', 'lul-bronchi', 'rul-arteries', 'rul-veins', 'rul-bronchi']
             s['hide'] = [i for i in quiet if has(i)]
         for k in ('ct', 'retract'):
             if s.get(k) is None: s.pop(k, None)
@@ -349,24 +502,35 @@ for steps in (anterior, posterior, lll_fissure_first, lll_hilum_first):
             if k in s: s[k] = [i for i in s[k] if has(i)]
         if 'action' in s and 'ids' in s['action']: s['action']['ids'] = [i for i in s['action']['ids'] if has(i)]
 procs = {
-    'lul-anterior': {'id': 'vats-lul-anterior', 'op': 'lul', 'opName': 'Left upper lobectomy', 'name': 'VATS left upper lobectomy', 'approach': 'Anterior approach', 'summary': 'Hilum first: vein, truncus, bronchus, remaining arteries, fissure last.',
+    'lul-anterior': {'id': 'vats-lul-anterior', 'op': 'lul', 'opName': 'Left upper lobectomy', 'side': 'left', 'name': 'VATS left upper lobectomy', 'approach': 'Anterior approach', 'summary': 'Hilum first: vein, truncus, bronchus, remaining arteries, fissure last.',
                  'sequence': [{'label': 'Anatomy', 'kind': 'other'}, {'label': 'Superior vein', 'kind': 'vein'}, {'label': 'Truncus', 'kind': 'artery'}, {'label': 'Bronchus', 'kind': 'bronchus'},
                               {'label': 'A2 + lingular', 'kind': 'artery'}, {'label': 'Fissure', 'kind': 'fissure'}, {'label': 'Specimen', 'kind': 'other'}],
                  'ports': [], 'steps': anterior, 'sources': sources},
-    'lul-posterior': {'id': 'vats-lul-posterior', 'op': 'lul', 'opName': 'Left upper lobectomy', 'name': 'VATS left upper lobectomy', 'approach': 'Posterior approach', 'summary': 'Fissure first: arteries in the fissure, truncus, bronchus, vein last.',
+    'lul-posterior': {'id': 'vats-lul-posterior', 'op': 'lul', 'opName': 'Left upper lobectomy', 'side': 'left', 'name': 'VATS left upper lobectomy', 'approach': 'Posterior approach', 'summary': 'Fissure first: arteries in the fissure, truncus, bronchus, vein last.',
                   'sequence': [{'label': 'Anatomy', 'kind': 'other'}, {'label': 'Fissure', 'kind': 'fissure'}, {'label': 'A2 + lingular', 'kind': 'artery'}, {'label': 'Truncus', 'kind': 'artery'},
                                {'label': 'Bronchus', 'kind': 'bronchus'}, {'label': 'Vein', 'kind': 'vein'}, {'label': 'Specimen', 'kind': 'other'}],
                   'ports': [], 'steps': posterior, 'sources': sources},
 }
-procs['lll-fissure'] = {'id': 'vats-lll-fissure', 'op': 'lll', 'opName': 'Left lower lobectomy', 'name': 'VATS left lower lobectomy', 'approach': 'Fissure first',
+procs['lll-fissure'] = {'id': 'vats-lll-fissure', 'op': 'lll', 'opName': 'Left lower lobectomy', 'side': 'left', 'name': 'VATS left lower lobectomy', 'approach': 'Fissure first',
                         'summary': 'Ligament, fissure, A6 and basal trunk, inferior vein, bronchus.',
                         'sequence': [{'label': 'Anatomy', 'kind': 'other'}, {'label': 'Ligament', 'kind': 'other'}, {'label': 'Fissure', 'kind': 'fissure'}, {'label': 'A6 + basal', 'kind': 'artery'},
                                      {'label': 'Inferior vein', 'kind': 'vein'}, {'label': 'Bronchus', 'kind': 'bronchus'}, {'label': 'Specimen', 'kind': 'other'}],
                         'ports': [], 'steps': lll_fissure_first, 'sources': sources}
-procs['lll-hilum'] = {'id': 'vats-lll-hilum', 'op': 'lll', 'opName': 'Left lower lobectomy', 'name': 'VATS left lower lobectomy', 'approach': 'Hilum first (fissureless)',
+procs['lll-hilum'] = {'id': 'vats-lll-hilum', 'op': 'lll', 'opName': 'Left lower lobectomy', 'side': 'left', 'name': 'VATS left lower lobectomy', 'approach': 'Hilum first (fissureless)',
                       'summary': 'Ligament, inferior vein, bronchus, A6 and basal trunk, fissure last.',
                       'sequence': [{'label': 'Anatomy', 'kind': 'other'}, {'label': 'Ligament', 'kind': 'other'}, {'label': 'Inferior vein', 'kind': 'vein'}, {'label': 'Bronchus', 'kind': 'bronchus'},
                                    {'label': 'A6 + basal', 'kind': 'artery'}, {'label': 'Fissure', 'kind': 'fissure'}, {'label': 'Specimen', 'kind': 'other'}],
                       'ports': [], 'steps': lll_hilum_first, 'sources': sources}
+if RUL_OK:
+    procs['rul-anterior'] = {'id': 'vats-rul-anterior', 'op': 'rul', 'opName': 'Right upper lobectomy', 'side': 'right', 'name': 'VATS right upper lobectomy', 'approach': 'Anterior approach',
+                             'summary': 'Upper lobe veins, truncus, bronchus, ascending arteries, fissures last.',
+                             'sequence': [{'label': 'Anatomy', 'kind': 'other'}, {'label': 'Upper lobe veins', 'kind': 'vein'}, {'label': 'Truncus', 'kind': 'artery'}, {'label': 'Bronchus', 'kind': 'bronchus'},
+                                          {'label': 'A2 + A3', 'kind': 'artery'}, {'label': 'Fissures', 'kind': 'fissure'}, {'label': 'Specimen', 'kind': 'other'}],
+                             'ports': [], 'steps': rul_anterior, 'sources': sources}
+    procs['rul-posterior'] = {'id': 'vats-rul-posterior', 'op': 'rul', 'opName': 'Right upper lobectomy', 'side': 'right', 'name': 'VATS right upper lobectomy', 'approach': 'Posterior approach',
+                              'summary': 'Fissure junction, ascending arteries, bronchus, truncus, upper lobe veins.',
+                              'sequence': [{'label': 'Anatomy', 'kind': 'other'}, {'label': 'Fissure', 'kind': 'fissure'}, {'label': 'A2 + A3', 'kind': 'artery'}, {'label': 'Bronchus', 'kind': 'bronchus'},
+                                           {'label': 'Truncus', 'kind': 'artery'}, {'label': 'Upper lobe veins', 'kind': 'vein'}, {'label': 'Specimen', 'kind': 'other'}],
+                              'ports': [], 'steps': rul_posterior, 'sources': sources}
 (OUT / 'procedures.json').write_text(json.dumps(procs, indent=1))
 print({k: len(v['steps']) for k, v in procs.items()})

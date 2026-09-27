@@ -207,7 +207,8 @@ function goStep(n: number, fly = true): void {
   state.step = Math.max(0, Math.min(proc.steps.length - 1, n));
   state.playing = false;
   scene3d.resetOperative();
-  for (const s of atlas.structures) scene3d.setVisible(s.id, s.visible !== false);
+  // one side's hilum per operation: the other side's structures stay hidden
+  for (const s of atlas.structures) scene3d.setVisible(s.id, s.side ? (s.side === proc.side && (s.side === 'right' ? s.sideVisible !== false : s.visible !== false)) : s.visible !== false);
   for (let i = 0; i <= state.step; i++) {
     const st = proc.steps[i]!;
     // show / hide belong to their own step (the skin and ports of the setup step do not stay on)
