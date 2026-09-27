@@ -170,18 +170,21 @@ function mountViews(): void {
 // ------------------------------------------------------------------ top bar
 function buildTopbar(): void {
   const bar = $('#topbar');
-  // operations (each with its approaches) and the free anatomy explorer
-  const ops = [...new Map(Object.entries(procedures).map(([, p]) => [p.op, p.opName])).entries()];
-  const modes = h('div', { class: 'seg', 'aria-label': 'Operation' });
-  for (const [op, name] of ops) modes.append(h('button', { 'data-op': op, onclick: () => pickOp(op) }, name));
-  modes.append(h('button', { 'data-mode': 'explore', onclick: () => setMode('explore') }, 'Explore anatomy'));
+  // operations (each with its approaches), grouped in one menu, and the free anatomy explorer
+  const opSel = h('select', { id: 'op-select', class: 'op-select', 'aria-label': 'Operation', onchange: (e: Event) => pickOp((e.target as HTMLSelectElement).value) }) as HTMLSelectElement;
+  const groups = new Map<string, Map<string, string>>();
+  for (const p of Object.values(procedures)) { const g = p.group ?? 'Operations'; if (!groups.has(g)) groups.set(g, new Map()); groups.get(g)!.set(p.op, p.opName); }
+  for (const [g, ops] of groups) { const og = h('optgroup', { label: g }); for (const [op, name] of ops) og.append(h('option', { value: op }, name)); opSel.append(og); }
+  const modes = h('div', { class: 'seg', 'aria-label': 'Mode' },
+    h('button', { 'data-mode': 'procedure', onclick: () => pickOp(opSel.value) }, 'Operate'),
+    h('button', { 'data-mode': 'explore', onclick: () => setMode('explore') }, 'Explore anatomy'));
   const approach = h('div', { class: 'seg', id: 'approach', 'aria-label': 'Approach' });
   for (const [k, p] of Object.entries(procedures)) approach.append(h('button', { 'data-approach': k, 'data-of': p.op, onclick: () => { state.approach = k; state.step = 0; state.answered.clear(); state.acted.clear(); goStep(0, true); } }, p.approach));
   const src = h('div', { class: 'seg', 'aria-label': 'CT source' },
     h('button', { 'data-src': 'reference', onclick: () => { state.source = 'reference'; state.aligning = false; render(); } }, 'Reference CT'),
     h('button', { 'data-src': 'upload', id: 'src-upload', onclick: () => { if (upVol) { state.source = 'upload'; render(); } else $('#file').click(); } }, 'Your CT'));
   const up = h('label', { class: 'btn', for: 'file' }, 'Load DICOM…');
-  bar.append(h('div', { class: 'brand' }, h('b', {}, 'Hilum'), h('span', {}, 'operative anatomy atlas')), modes, approach, h('div', { class: 'spacer' }), src, up);
+  bar.append(h('div', { class: 'brand' }, h('b', {}, 'Operative Atlas'), h('span', {}, 'thoracic')), modes, opSel, approach, h('div', { class: 'spacer' }), src, up);
 }
 
 function pickOp(op: string): void {
@@ -345,7 +348,7 @@ function render(): void {
   document.body.classList.toggle('proc', state.mode === 'procedure');
   document.querySelectorAll<HTMLElement>('[data-mode]').forEach((b) => b.setAttribute('aria-pressed', String(b.dataset['mode'] === state.mode)));
   document.querySelectorAll<HTMLElement>('[data-approach]').forEach((b) => { b.setAttribute('aria-pressed', String(b.dataset['approach'] === state.approach)); b.hidden = b.dataset['of'] !== procedures[state.approach]?.op; });
-  document.querySelectorAll<HTMLElement>('[data-op]').forEach((b) => b.setAttribute('aria-pressed', String(state.mode === 'procedure' && b.dataset['op'] === procedures[state.approach]?.op)));
+  const sel = document.getElementById('op-select') as HTMLSelectElement | null; if (sel) { sel.value = procedures[state.approach]?.op ?? ''; sel.disabled = state.mode !== 'procedure'; }
   document.querySelectorAll<HTMLElement>('[data-plane]').forEach((b) => b.setAttribute('aria-pressed', String(b.dataset['plane'] === state.plane)));
   document.querySelectorAll<HTMLElement>('[data-window]').forEach((b) => b.setAttribute('aria-pressed', String(b.dataset['window'] === state.window)));
   document.querySelectorAll<HTMLElement>('[data-src]').forEach((b) => b.setAttribute('aria-pressed', String(b.dataset['src'] === state.source)));

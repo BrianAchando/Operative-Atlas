@@ -632,6 +632,175 @@ if RUL_OK:
     rml_fissure_first[3]['retract'] = [{'ids': sp['ids'], 'offset': sp['offset'], 'opacity': 0.35} for sp in RML_SPREAD]
 
 
+# ==================================================================================================== pneumonectomy
+LPA_BR = [i for i in S if i.startswith('pa-') and i != 'pa-left']
+L_SPEC = [i for i in ('lul', 'lll', 'fissure', 'lul-arteries', 'lul-veins', 'lul-bronchi', 'lll-arteries', 'lll-veins', 'lll-bronchi', 'br-lul', 'br-lll',
+                      'br-lingular', 'br-upper-div', 'br-b6', 'pv-lingular', 'pv-upper-div', 'pv-v6', *LPA_BR) if has(i)]
+LPN_OK = all(has(i) and 'division' in S[i] for i in ('pa-left', 'br-left-main', 'pv-superior', 'pv-inferior'))
+
+
+def pn_steps(side):
+    L = side == 'left'
+    sx = -1 if L else 1
+    pa, spv_, ipv_, mb = ('pa-left', 'pv-superior', 'pv-inferior', 'br-left-main') if L else ('rpa', 'rpv-superior', 'rpv-inferior', 'br-right-main')
+    lig_id, lig_node = ('ipl', 'ln-9l') if L else ('ipl-r', 'ln-9r')
+    lobes = ['lul', 'lll'] if L else ['rul', 'rml', 'rll']
+    spec = L_SPEC if L else [i for i in ('rul', 'rml', 'rll', 'fissure-h', 'fissure-r', 'rul-arteries', 'rul-veins', 'rul-bronchi', 'br-rul', 'br-intermedius', 'br-rml', 'br-rll',
+                                         'rpv-rul', 'rpv-ml', *[k for k in S if k.startswith('rpa-')]) if has(i)]
+    nerves = ['n-phrenic', 'n-vagus', 'n-rln'] if L else ['n-phrenic-r', 'n-vagus-r']
+    port = lambda k: f'port-{"" if L else "r-"}anterior-{k}'
+    P, SV, IV, MB = V(pt(pa)), V(pt(spv_)), V(pt(ipv_)), V(pt(mb))
+    lig_c = V(S[lig_id]['centroid']) if has(lig_id) else IV + V([0, -20, -40]); lig_lo = V(S[lig_id]['bbox'][0]) if has(lig_id) else lig_c
+    clear = {k: 0.3 for k in lobes} | {'heart': 0.4}
+    up = [{'ids': lobes, 'offset': [sx * 6, 4, 14], 'opacity': 0.3}]
+    back = [{'ids': lobes, 'offset': [sx * 4, -14, 4], 'opacity': 0.3}]
+    pre = 'lp' if L else 'rp'
+    st = [
+        {'id': f'{pre}-anatomy', 'phase': 'Anatomy', 'seq': 0, 'title': f'The {side} hilum as a whole',
+         'body': ('<p>A pneumonectomy divides four structures: the <b>main pulmonary artery</b>, the <b>superior</b> and <b>inferior pulmonary veins</b>, and the <b>main bronchus</b>. '
+                  + ('On the left the artery arches over the bronchus under the <b>aortic arch</b>, tethered by the <b>ligamentum arteriosum</b>, with the <b>recurrent laryngeal nerve</b> hooking round it. The left main bronchus is long and runs under the arch to the carina.</p>'
+                     if L else 'On the right the artery runs behind the <b>SVC</b>, below the <b>azygos arch</b>; the right main bronchus is short, with the upper lobe bronchus leaving it close to the carina.</p>')
+                  + '<p>Before committing, assess the <b>fissure and hilum for a lobectomy</b> option, and trial-clamp the artery to see that the right heart tolerates it.</p>'),
+         'view': {'frame': [pa, spv_, ipv_, mb], 'dir': [sx, 0.35, 0.2], 'pad': 1.0},
+         'opacity': {**{k: 0.08 for k in lobes}, 'heart': 0.35}, 'spin': True,
+         'labels': [pa, spv_, ipv_, mb, 'aorta', *(['lig-art', 'n-rln'] if L else ['azygos', 'svc'])], 'ct': ct(pa, 'coronal')},
+        {'id': f'{pre}-setup', 'phase': 'Setup', 'title': 'Position and ports',
+         'body': f'<p>{"Right" if L else "Left"} lateral decubitus, table flexed, {"right" if L else "left"} lung ventilated through a double-lumen tube (the tube must not sit in the bronchus you will divide). Anterior utility incision over the hilum, low camera port, posterior working port.</p>',
+         'view': {'frame': ['skin'], 'dir': [sx, 0.25, 0.15], 'pad': 1.05}, 'show': ['skin', *[port(k) for k in ('utility', 'camera', 'posterior')]], 'labels': [port(k) for k in ('utility', 'camera', 'posterior')],
+         'ct': ct(LM[port('utility')], 'axial', 'lung')},
+        {'id': f'{pre}-ligament', 'phase': 'Ligament', 'seq': 1, 'title': 'Divide the inferior pulmonary ligament',
+         'body': '<p>Retract the lower lobe up and divide the <b>inferior pulmonary ligament</b> with the hook up to the inferior vein, taking station 9. The oesophagus lies just medial.</p>',
+         'view': scope('posterior', (lig_c + IV) / 2, dist=125, side=[sx * 0.75, -0.8, -0.25]), 'retract': up, 'opacity': clear,
+         'highlight': [lig_id], 'danger': ['esophagus'], 'labels': [ipv_, lig_node],
+         'action': {'kind': 'dissect', 'tool': 'hook', 'label': 'Divide with the hook', 'port': port('posterior'), 'remove': [lig_id],
+                    'path': [R(lig_lo + V([-sx * 3, 6, 4])), R((lig_lo + lig_c) / 2 + V([-sx * 3, 4, 0])), R(lig_c + V([-sx * 3, 3, 0])), R(IV + V([-sx * 4, -4, -9]))]},
+         'ct': ct(R(lig_c), 'coronal')},
+        {'id': f'{pre}-ipv', 'phase': 'Vein', 'seq': 2, 'title': 'Inferior pulmonary vein: staple',
+         'body': '<p>Clear the <b>inferior pulmonary vein</b> circumferentially down to the pericardium and staple it with a vascular load. For a central tumour it can be taken <b>inside the pericardium</b>.</p>',
+         'view': scope('posterior', IV, dist=110, side=[sx, -0.55, -0.3]), 'retract': up, 'opacity': clear,
+         'highlight': [ipv_], 'danger': ['esophagus'],
+         'action': {'kind': 'staple', 'label': 'Fire the stapler', 'ids': [ipv_], 'port': port('posterior'), 'reload': 'vascular'}, 'ct': ct(ipv_)},
+        {'id': f'{pre}-spv', 'phase': 'Vein', 'seq': 3, 'title': 'Superior pulmonary vein: staple',
+         'body': '<p>Retract the lung back, open the pleura over the front of the hilum <b>behind the phrenic nerve</b>, and staple the <b>superior pulmonary vein</b> as a trunk, close to the pericardium.</p>',
+         'view': scope('anterior', SV, dist=110, side=[sx, 0.55, 0.15]), 'retract': back, 'opacity': clear,
+         'highlight': [spv_], 'danger': [nerves[0], pa],
+         'action': {'kind': 'staple', 'label': 'Fire the stapler', 'ids': [spv_], 'port': port('posterior'), 'reload': 'vascular'}, 'ct': ct(spv_)},
+        {'id': f'{pre}-pa', 'phase': 'Artery', 'seq': 4, 'title': 'Main pulmonary artery: clamp test, staple',
+         'body': ('<p>The <b>main pulmonary artery</b> now lies free above the bronchus. Clear it proximal to its first branch'
+                  + (', staying below the <b>aortic arch</b> and clear of the <b>recurrent laryngeal nerve</b> at the ligamentum.' if L else ', behind the SVC and below the azygos.')
+                  + '</p><p><b>Trial-clamp</b> it for a few minutes: watch blood pressure, heart rate and the right ventricle on echo. If tolerated, staple with a vascular load.</p>'),
+         'view': scope('anterior', P, dist=110, side=[sx, 0.3, 0.55]), 'retract': back, 'opacity': clear | ({'svc': 0.3} if not L else {}),
+         'highlight': [pa], 'danger': (['n-rln', 'lig-art', 'aorta'] if L else ['svc', 'azygos']),
+         'action': {'kind': 'staple', 'label': 'Fire the stapler', 'ids': [pa], 'port': port('posterior'), 'reload': 'vascular'},
+         'ask': ask('Why trial-clamp the main pulmonary artery before dividing it?', 'To see whether the right ventricle tolerates the whole cardiac output going to one lung',
+                    'Acute right heart strain or a fall in pressure on clamping warns that pneumonectomy may not be tolerated.', 'To check for bleeding from the bronchial arteries', 'To test the bronchial stump'),
+         'ct': ct(pa)},
+        {'id': f'{pre}-bronchus', 'phase': 'Bronchus', 'seq': 5, 'title': 'Main bronchus: staple flush with the carina',
+         'body': ('<p>Clear the subcarinal nodes (<b>station 7</b>) and follow the <b>main bronchus</b> to the carina. Staple it <b>flush with the carina</b> with a thick-tissue load: a long stump pools secretions and leaks.</p>'
+                  + ('<p>On the left the bronchus runs under the aortic arch: pull the lung down and out to reach the carina.</p>' if L else '<p>On the right the stump has no aortic arch to cover it and leaks more often: plan to cover it.</p>')),
+         'view': scope('posterior', MB, dist=110, side=[sx, -0.5, 0.35]), 'opacity': clear, 'highlight': [mb], 'danger': ['trachea', 'esophagus', *(['aorta'] if L else ['azygos'])], 'labels': ['ln-7'],
+         'action': {'kind': 'staple', 'label': 'Clamp, fire', 'ids': [mb], 'port': port('utility'), 'reload': 'tissue'},
+         'ask': ask('Why staple the main bronchus flush with the carina?', 'A long stump pools secretions and is prone to breakdown (bronchopleural fistula)',
+                    'The shorter the stump, the less dead space for infection and dehiscence.', 'To preserve the contralateral lung', 'To make the specimen easier to remove'),
+         'ct': ct(mb)},
+        {'id': f'{pre}-specimen', 'phase': 'Close', 'seq': 6, 'title': 'Specimen out, cover the stump, leak test',
+         'body': '<p>Remove the lung in a bag through an enlarged incision. Leak-test the stump under saline at 20–25 cmH<sub>2</sub>O. '
+                 + ('Cover it with a vascularised flap (pericardial fat, pleura or intercostal muscle), especially after induction therapy.' if L else '<b>Cover the right stump</b> with a vascularised flap (intercostal muscle, pericardial fat or azygos-pleura).')
+                 + '</p><p>Complete the nodal dissection. Leave a balanced drain or none, and keep the mediastinum central; restrict fluids.</p>',
+         'view': {'frame': [pa, mb, spv_, 'heart'], 'dir': [sx * 0.8, 0.3, 0.3], 'pad': 1.2}, 'opacity': {'heart': 0.4},
+         'highlight': [i for i in (['ln-5', 'ln-7', 'ln-10l'] if L else ['ln-4r', 'ln-7', 'ln-10r']) if has(i)],
+         'specimen': {'ids': spec, 'offset': [sx * 150, 10, -60]}, 'ct': ct(LM['carina'], 'coronal')},
+    ]
+    return st
+
+
+PN = {}
+if LPN_OK: PN['left'] = pn_steps('left')
+if RUL_OK and all(has(i) and 'division' in S[i] for i in ('rpa', 'br-right-main', 'rpv-superior', 'rpv-inferior')): PN['right'] = pn_steps('right')
+
+
+def artery_first(steps):
+    """open pneumonectomy, artery first: ligament, main PA, superior vein, inferior vein, bronchus"""
+    d = {x['id'].split('-', 1)[1]: x for x in steps}
+    order = [d['anatomy'], d['setup'], d['ligament'], d['pa'], d['spv'], d['ipv'], d['bronchus'], d['specimen']]
+    out = copy.deepcopy(order)
+    for i, x in enumerate(out):
+        if 'seq' in x: x['seq'] = i - 1 if i > 1 else 0
+    return out
+
+
+# ==================================================================================================== left segmentectomies
+SEG_OK = all(has(i) for i in ('seg-lingula', 'seg-lul-upper', 'isp-lingula', 'br-lingular', 'pv-lingular'))
+if SEG_OK:
+    def plane_path(isp, hilum_pt):
+        c, n, a = V(LM[f'{isp}-centre']), V(LM[f'{isp}-normal']), V(LM[f'{isp}-axis'])
+        pts = [c + a * t for t in (-45, -15, 15, 45)]
+        if np.linalg.norm(pts[-1] - hilum_pt) < np.linalg.norm(pts[0] - hilum_pt): pts = pts[::-1]   # staple from the hilum outward
+        return pts, n
+
+    def seg_proc(op, title, target_seg, keep_seg, isp, arteries, vein, bronchus, protect, anat_body, notes):
+        showsegs = [target_seg, keep_seg]
+        segop = {'lul': 0.06, 'lll': 0.06, target_seg: 0.4, keep_seg: 0.25, 'heart': 0.4}
+        hil = V(pt(bronchus)); path, n = plane_path(isp, hil)
+        base_show = lambda: list(showsegs)
+        steps = [
+            {'id': f'{op}-anatomy', 'phase': 'Anatomy', 'seq': 0, 'title': title, 'body': anat_body,
+             'view': {'frame': [target_seg, *arteries, vein, bronchus], 'dir': [-1, -0.2, 0.3], 'pad': 1.0}, 'show': base_show(),
+             'opacity': segop, 'spin': True, 'labels': [target_seg, keep_seg, *arteries, vein, bronchus], 'ct': ct(bronchus, 'coronal', 'lung')},
+            {**copy.deepcopy(posterior[1]), 'id': f'{op}-setup'},
+            {**copy.deepcopy(posterior[2]), 'id': f'{op}-fissure', 'seq': 1, 'show': base_show(), 'highlight': arteries[:1], 'labels': ['fissure', *protect[:2]]},
+            {'id': f'{op}-artery', 'phase': 'Artery', 'seq': 2, 'title': 'Segmental arter' + ('ies' if len(arteries) > 1 else 'y'),
+             'body': notes['artery'], 'view': scope('posterior', np.mean([V(pt(i)) for i in arteries], axis=0), dist=110, side=[-1, -0.3, 0.45]),
+             'show': base_show(), 'opacity': {**segop, 'lul': 0.2, 'lll': 0.2}, 'highlight': arteries, 'danger': protect,
+             'action': {'kind': 'staple', 'label': 'Staple' + (' each artery' if len(arteries) > 1 else ''), 'ids': arteries, 'port': 'port-posterior-posterior', 'reload': 'vascular'},
+             'ct': ct(arteries[0])},
+            {'id': f'{op}-vein', 'phase': 'Vein', 'seq': 3, 'title': 'Segmental vein', 'body': notes['vein'],
+             'view': scope('anterior', V(pt(vein)), dist=105, side=notes.get('vein_side', [-1, 0.5, 0.1])), 'show': base_show(), 'opacity': {**segop, 'lul': 0.2, 'lll': 0.2},
+             'highlight': [vein], 'danger': notes['vein_keep'],
+             'action': {'kind': 'staple', 'label': 'Fire the stapler', 'ids': [vein], 'port': 'port-posterior-utility', 'reload': 'vascular'}, 'ct': ct(vein)},
+            {'id': f'{op}-bronchus', 'phase': 'Bronchus', 'seq': 4, 'title': 'Segmental bronchus, then inflate: the plane appears', 'body': notes['bronchus'],
+             'view': scope('posterior', hil, dist=100, side=[-1, -0.35, 0.3]), 'show': base_show(), 'opacity': {**segop, 'lul': 0.2, 'lll': 0.2},
+             'highlight': [bronchus], 'danger': notes['bronchus_keep'],
+             'action': {'kind': 'staple', 'label': 'Clamp, fire', 'ids': [bronchus], 'port': 'port-posterior-utility', 'reload': 'tissue'},
+             'ask': ask('After the segmental bronchus is divided, how is the intersegmental plane shown with the inflation–deflation method?', 'Inflate the whole lung, then let it deflate: the target segment stays inflated',
+                        'Air trapped behind the divided bronchus keeps the segment inflated while the rest deflates, drawing the boundary; intravenous ICG after dividing the artery is the alternative.', 'The segment deflates first', 'By palpation of the fissure'),
+             'ct': ct(bronchus)},
+            {'id': f'{op}-plane', 'phase': 'Plane', 'seq': 5, 'title': 'Divide the intersegmental plane',
+             'body': '<p>Lift the divided bronchus and vessels with the specimen and staple along the <b>inflation–deflation line</b>, from the hilum outward, keeping the <b>intersegmental veins</b> on the side that stays.</p>'
+                     '<p>A margin of at least the tumour diameter (and 2 cm) is the aim for cancer.</p>',
+             'view': scope('posterior', np.mean(path, axis=0), dist=160, side=[-1, 0.0, 0.35]), 'show': [*showsegs, isp], 'opacity': {**segop, isp: 0.35},
+             'labels': [isp], 'danger': protect[:2],
+             'action': {'kind': 'staple-fissure', 'label': 'Staple the plane', 'port': 'port-posterior-utility', 'reload': 'tissue', 'normal': R(n), 'path': [R(p_) for p_ in path]}, 'ct': ct(R(np.mean(path, axis=0)), 'sagittal', 'lung')},
+            {'id': f'{op}-specimen', 'phase': 'Close', 'seq': 6, 'title': 'Specimen out, nodes, margins',
+             'body': '<p>Remove the segment in a bag. Sample <b>stations 10, 11 and 12/13</b> at its root: a positive intersegmental node means converting to lobectomy. Check the margin, then leak-test the stapled plane under saline.</p>',
+             'view': {'frame': [keep_seg, bronchus, 'pa-left'], 'dir': [-1, -0.2, 0.3], 'pad': 1.3}, 'show': [keep_seg], 'opacity': {'lul': 0.06, 'lll': 0.06, keep_seg: 0.3, 'heart': 0.4},
+             'highlight': [i for i in ('ln-10l', 'ln-11l') if has(i)], 'specimen': {'ids': [target_seg], 'offset': [-120, 10, -30]}, 'ct': ct(bronchus, 'coronal', 'lung')},
+        ]
+        return steps
+
+    lingulectomy = seg_proc('sl', 'Lingular segmentectomy (S4+5)', 'seg-lingula', 'seg-lul-upper', 'isp-lingula', ['pa-lingular'], 'pv-lingular', 'br-lingular',
+                            ['pa-a6', 'pa-basal-trunk', *POST[:1]],
+                            '<p>The lingula is the upper lobe\'s lower division, supplied by its own three structures: the <b>lingular artery</b> from the front of the artery in the fissure, the <b>lingular vein</b> as the lowest tributary of the superior vein, '
+                            'and the <b>lingular bronchus</b>, the lower branch of the upper lobe bronchus.</p><p>What stays: the <b>upper division</b> above, A6 and the basal trunk in the fissure.</p>',
+                            {'artery': '<p>In the open fissure, the <b>lingular artery</b> leaves the front of the interlobar artery toward the lingula, often opposite <b>A6</b>. Staple it clear of the basal trunk.</p>',
+                             'vein': '<p>Roll the lobe back. The <b>lingular vein</b> is the lowest tributary of the superior pulmonary vein; the <b>upper division veins</b> join above it and must be kept.</p>', 'vein_keep': ['pv-upper-div', 'pv-inferior'],
+                             'bronchus': '<p>Behind the vein, the <b>lingular bronchus</b> leaves the lower side of the upper lobe bronchus. Clamp it and inflate: the <b>upper division must still ventilate</b>. Fire.</p>', 'bronchus_keep': ['br-upper-div', 'br-lll']})
+    trisegmentectomy = seg_proc('su', 'Upper division segmentectomy (S1+2, S3)', 'seg-lul-upper', 'seg-lingula', 'isp-lingula', ['pa-truncus-anterior', *POST], 'pv-upper-div', 'br-upper-div',
+                                ['pa-lingular', 'pa-a6', 'pv-lingular'],
+                                '<p>A lingula-sparing upper lobectomy: the <b>upper division</b> (S1+2 and S3) is removed and the lingula kept. Its artery supply is the <b>truncus anterior</b> and the <b>posterior segmental arteries</b>; its veins are the upper tributaries of the superior vein; '
+                                'its bronchus is the <b>upper division bronchus</b>.</p><p>What stays: the <b>lingular artery, vein and bronchus</b>.</p>',
+                                {'artery': '<p>From the fissure, divide the <b>posterior segmental arteries</b>; from above and in front, the <b>truncus anterior</b>. The <b>lingular artery</b> lower down stays.</p>',
+                                 'vein': '<p>Divide the <b>upper division veins</b> (V1+2, V3) where they join the superior vein, keeping the <b>lingular vein</b> below.</p>', 'vein_keep': ['pv-lingular'],
+                                 'bronchus': '<p>The <b>upper division bronchus</b> is the upper branch of the upper lobe bronchus. Clamp it and inflate: the <b>lingula must ventilate</b>. Fire.</p>', 'bronchus_keep': ['br-lingular', 'br-lll']})
+    s6seg = None
+    if has('seg-s6') and has('pv-v6') and has('br-b6'):
+        s6seg = seg_proc('s6', 'Superior segmentectomy (S6)', 'seg-s6', 'seg-lll-basal', 'isp-s6', ['pa-a6'], 'pv-v6', 'br-b6', ['pa-basal-trunk', 'pa-lingular', *POST[-1:]],
+                         '<p>The superior segment is the top of the lower lobe, supplied by <b>A6</b> from the back of the artery in the fissure, drained by <b>V6</b>, the highest tributary of the inferior vein, and aerated by <b>B6</b>, the first posterior branch of the lower lobe bronchus.</p>'
+                         '<p>What stays: the <b>basal trunk</b>, basal veins and basal bronchus.</p>',
+                         {'artery': '<p>In the fissure, <b>A6</b> leaves the back of the interlobar artery; the <b>basal trunk</b> continues below and the <b>lingular artery</b> leaves the front opposite. Staple A6 only.</p>',
+                          'vein': '<p>From behind, with the lower lobe lifted, <b>V6</b> is the highest tributary of the inferior pulmonary vein. Divide it, keeping the basal veins.</p>', 'vein_keep': ['pv-inferior'], 'vein_side': [-1, -0.6, 0.1],
+                          'bronchus': '<p><b>B6</b> leaves the back of the lower lobe bronchus just below the secondary carina. Clamp it and inflate: the <b>basal segments must ventilate</b>. Fire.</p>', 'bronchus_keep': ['br-lll', 'br-lul']})
+
 # ==================================================================================================== open thoracotomy, for every lobectomy
 def thoracotomy_step(op, side, upper=True):
     sd = side[0]
@@ -670,9 +839,13 @@ sources = [
 # every operative step: the intrapulmonary trees and the spine recede so the hilar structures read clearly
 BASE = {'lul-arteries': 0.16, 'lul-veins': 0.16, 'lul-bronchi': 0.2, **{f'vert-t{i}': 0.22 for i in range(2, 11)}}
 OPEN = {'lul': open_version(posterior, 'lo', 'left'), 'lll': open_version(lll_fissure_first, 'llo', 'left')}
+for sd, st_ in PN.items(): OPEN[f'pn{sd[0]}'] = open_version(artery_first(st_), f'pn{sd[0]}o', sd)
+SEGS = {}
+if SEG_OK:
+    SEGS = {'lingula': lingulectomy, 'lul-updiv': trisegmentectomy, **({'s6': s6seg} if s6seg else {})}
 if RUL_OK:
     OPEN.update({'rul': open_version(rul_posterior, 'ro', 'right'), 'rll': open_version(rll_fissure_first, 'rlo', 'right'), 'rml': open_version(rml_fissure_first, 'mo', 'right')})
-for steps in (anterior, posterior, lll_fissure_first, lll_hilum_first, *OPEN.values(), *((rul_anterior, rul_posterior, rll_fissure_first, rll_hilum_first, rml_anterior, rml_fissure_first) if RUL_OK else ())):
+for steps in (anterior, posterior, lll_fissure_first, lll_hilum_first, *OPEN.values(), *PN.values(), *SEGS.values(), *((rul_anterior, rul_posterior, rll_fissure_first, rll_hilum_first, rml_anterior, rml_fissure_first) if RUL_OK else ())):
     for s in steps:
         if s['phase'] != 'Setup':
             s['opacity'] = {**BASE, **s.get('opacity', {})}
@@ -731,13 +904,28 @@ if RUL_OK:
     procs['rml-fissure'] = {'id': 'vats-rml-fissure', 'op': 'rml', 'opName': 'Right middle lobectomy', 'side': 'right', 'name': 'VATS right middle lobectomy', 'approach': 'Fissure first',
                             'summary': 'Fissure junction, artery, vein, bronchus, horizontal fissure.', 'ports': [], 'steps': rml_fissure_first, 'sources': sources,
                             'sequence': seq(('Anatomy', 'other'), ('Fissure', 'fissure'), ('Artery', 'artery'), ('Vein', 'vein'), ('Bronchus', 'bronchus'), ('Horizontal fissure', 'fissure'), ('Specimen', 'other'))}
-# open thoracotomy, one per operation, following that operation's fissure-first sequence
+seq = lambda *xs: [{'label': l, 'kind': k} for l, k in xs]
+for sd, st_ in PN.items():
+    procs[f'pn{sd[0]}-vats'] = {'id': f'vats-pn-{sd}', 'op': f'pn{sd[0]}', 'opName': f'{sd.capitalize()} pneumonectomy', 'side': sd, 'name': f'VATS {sd} pneumonectomy', 'approach': 'VATS (veins first)',
+                                'summary': 'Ligament, inferior vein, superior vein, main artery, main bronchus.', 'ports': [], 'steps': st_, 'sources': sources,
+                                'sequence': seq(('Anatomy', 'other'), ('Ligament', 'other'), ('Inferior vein', 'vein'), ('Superior vein', 'vein'), ('Main PA', 'artery'), ('Main bronchus', 'bronchus'), ('Specimen', 'other'))}
+SEGNAME = {'lingula': ('Lingulectomy', 'Lingula (S4+5)'), 'lul-updiv': ('Upper division segmentectomy', 'S1+2, S3'), 's6': ('S6 segmentectomy', 'Superior segment')}
+for k, st_ in SEGS.items():
+    procs[f'seg-{k}'] = {'id': f'vats-seg-{k}', 'op': f'seg-{k}', 'opName': SEGNAME[k][0], 'side': 'left', 'name': SEGNAME[k][0], 'approach': 'VATS, fissure first',
+                         'summary': 'Fissure, segmental artery, vein, bronchus, inflation–deflation line, intersegmental plane.', 'ports': [], 'steps': st_, 'sources': sources,
+                         'sequence': seq(('Anatomy', 'other'), ('Fissure', 'fissure'), ('Artery', 'artery'), ('Vein', 'vein'), ('Bronchus', 'bronchus'), ('Plane', 'fissure'), ('Specimen', 'other'))}
+# open thoracotomy, one per operation, following that operation's fissure-first sequence (artery first for pneumonectomy)
 for op_, steps_ in OPEN.items():
-    base = next(v for v in procs.values() if v['op'] == op_ and v['approach'] in ('Posterior approach', 'Fissure first'))
+    base = next(v for v in procs.values() if v['op'] == op_ and v['approach'] in ('Posterior approach', 'Fissure first', 'VATS (veins first)'))
     procs[f'{op_}-open'] = {**base, 'id': f'open-{op_}', 'approach': 'Open thoracotomy', 'name': base['opName'] + ', open', 'steps': steps_,
                             'summary': 'Posterolateral thoracotomy, then ' + base['summary'][0].lower() + base['summary'][1:]}
+    if op_.startswith('pn'):
+        procs[f'{op_}-open']['summary'] = 'Posterolateral thoracotomy; artery first: main PA, superior vein, inferior vein, bronchus.'
+        procs[f'{op_}-open']['sequence'] = seq(('Anatomy', 'other'), ('Ligament', 'other'), ('Main PA', 'artery'), ('Superior vein', 'vein'), ('Inferior vein', 'vein'), ('Main bronchus', 'bronchus'), ('Specimen', 'other'))
 # operations appear in the menu in this order
-ORDER = ['lul', 'lll', 'rul', 'rml', 'rll']
+ORDER = ['lul', 'lll', 'rul', 'rml', 'rll', 'pnl', 'pnr', 'seg-lingula', 'seg-lul-updiv', 'seg-s6']
 procs = dict(sorted(procs.items(), key=lambda kv: (ORDER.index(kv[1]['op']), list(procs).index(kv[0]))))
+for v in procs.values():
+    v['group'] = 'Pneumonectomy' if v['op'].startswith('pn') else 'Segmentectomy' if v['op'].startswith('seg-') else 'Lobectomy'
 (OUT / 'procedures.json').write_text(json.dumps(procs, indent=1))
 print({k: len(v['steps']) for k, v in procs.items()})

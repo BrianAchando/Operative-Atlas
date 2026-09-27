@@ -151,6 +151,15 @@ def division_at(t: Tree, origin: int, edt: np.ndarray, into=7.0, look=14.0) -> d
     return {'point': [round(float(x), 1) for x in W(p)], 'dir': [round(float(x), 3) for x in d], 'radius': round(max(r, 2.5), 1)}
 
 
+def div_before(t: Tree, node: int, back: float, edt: np.ndarray) -> dict:
+    """staple line on the trunk `back` mm proximal to `node`, pointing proximal -> distal"""
+    path = t.path_to_root(node); p = path[-1]
+    for q in path:
+        if t.dist[q] <= t.dist[node] - back: p = q; break
+    d = t.mm[node] - t.mm[p]; d = d / (np.linalg.norm(d) + 1e-9)
+    return {'point': [round(float(x), 1) for x in W(t.mm[p])], 'dir': [round(float(x), 3) for x in d], 'radius': round(max(float(edt[tuple(t.vox[p])]), 3.0), 1)}
+
+
 def split_hilar(t: Tree, origin: int, reach: float) -> tuple[np.ndarray, np.ndarray]:
     sub = t.subtree(origin)
     near = sub[t.dist[sub] - t.dist[origin] <= reach]
@@ -206,7 +215,8 @@ for o, (id_, nm) in sorted(names.items(), key=lambda kv: art_t.dist[kv[0]]):
     emit(id_, nm, 'arteries', ART, owned(art_t, art, near), AL, faces=5000, division=division_at(art_t, o, edt_art))
 all_branch = np.concatenate(branch_nodes) if branch_nodes else np.array([], int)
 main_nodes = np.setdiff1d(np.flatnonzero(art_t.keep), all_branch)
-emit('pa-left', 'Left pulmonary artery', 'arteries', ART, owned(art_t, art, main_nodes), AL, faces=9000)
+trunc_o = next((o for o, v in names.items() if v[0] == 'pa-truncus-anterior'), None)
+emit('pa-left', 'Left pulmonary artery', 'arteries', ART, owned(art_t, art, main_nodes), AL, faces=9000, division=div_before(art_t, trunc_o, 12.0, edt_art) if trunc_o is not None else None)
 emit('lul-arteries', 'Upper lobe segmental arteries', 'lul-intra', ART, owned(art_t, art, np.concatenate(intra_u)) if intra_u else None, AL, faces=12000, opacity=0.85, label=False)
 emit('lll-arteries', 'Lower lobe segmental arteries', 'lll-intra', ART, owned(art_t, art, np.concatenate(intra_d)) if intra_d else None, AL, faces=12000, opacity=0.6, visible=False, label=False)
 
@@ -261,11 +271,98 @@ near_d, far_d = split_hilar(air_t, lll_b, 22.0)
 emit('br-lul', 'Upper lobe bronchus', 'airway', BRONCH, owned(air_t, air, near_u), AL, faces=5000, division=division_at(air_t, lul_b, edt_air, into=6.0, look=12.0))
 # lower lobe bronchus: staple just beyond the secondary carina, proximal to the superior segmental (B6) origin
 emit('br-lll', 'Lower lobe bronchus', 'airway', BRONCH, owned(air_t, air, near_d), AL, faces=5000, division=division_at(air_t, lll_b, edt_air, into=5.0, look=11.0))
-emit('br-left-main', 'Left main bronchus', 'airway', BRONCH, owned(air_t, air, lmb_nodes), AL, faces=5000)
+_lmb_div = None
+if len(lmb_nodes):
+    _q = min(lmb_nodes, key=lambda q: abs(air_t.dist[q] - (air_t.dist[CARINA_NODE] + 9.0)))
+    _dd = air_t.mm[lul_b] - air_t.mm[_q]; _dd /= np.linalg.norm(_dd) + 1e-9
+    _lmb_div = {'point': [round(float(x), 1) for x in W(air_t.mm[_q])], 'dir': [round(float(x), 3) for x in _dd], 'radius': round(max(float(edt_air[tuple(air_t.vox[_q])]), 4.0), 1)}
+emit('br-left-main', 'Left main bronchus', 'airway', BRONCH, owned(air_t, air, lmb_nodes), AL, faces=5000, division=_lmb_div)
 emit('trachea', 'Trachea and carina', 'airway', BRONCH, owned(air_t, air, trachea_nodes), AL, faces=6000)
 emit('lul-bronchi', 'Upper lobe segmental bronchi', 'lul-intra', BRONCH, owned(air_t, air, far_u), AL, faces=8000, opacity=0.8, label=False)
 emit('lll-bronchi', 'Lower lobe segmental bronchi', 'lll-intra', BRONCH, owned(air_t, air, far_d), AL, faces=8000, opacity=0.6, visible=False, label=False)
 SEC_CARINA = air_t.mm[air_t.pred[lul_b]]
+
+Ut = ts('lung_upper_lobe_left')
+
+print('== left segments')
+SEGC = {'seg-lul-upper': '#d9b36a', 'seg-lingula': '#7fb38f', 'seg-s6': '#b58fc9', 'seg-lll-basal': '#8fa7c9'}
+sizes = air_t.subtree_sizes()
+
+
+def first_split(t, start, min_size=25):
+    """walk down the largest branch from `start` to the first node with two substantial children"""
+    cur = start
+    while True:
+        ch = sorted(t.children.get(cur, []), key=lambda c: -sizes[c])
+        if len(ch) >= 2 and sizes[ch[1]] >= min_size: return cur, ch
+        if not ch: return cur, []
+        cur = ch[0]
+
+
+cen = lambda n: air_t.mm[air_t.subtree(n)].mean(0)
+sp_u, ch_u = first_split(air_t, lul_b)
+b_ling, b_updiv = (ch_u[0], ch_u[1]) if cen(ch_u[0])[2] < cen(ch_u[1])[2] else (ch_u[1], ch_u[0])
+# B6: walking down the lower lobe bronchus, the first sizeable branch that heads up and back
+b6, cur = None, lll_b
+for _ in range(80):
+    ch = sorted(air_t.children.get(cur, []), key=lambda c: -sizes[c])
+    if not ch: break
+    for c in ch[1:]:
+        v_ = cen(c) - air_t.mm[cur]
+        if sizes[c] >= 15 and v_[2] > -3 and v_[1] < 0: b6 = c; break
+    if b6 is not None: break
+    cur = ch[0]
+b_basal = cur if b6 is not None else lll_b
+print('  bronchi: lingula', b_ling, 'upper division', b_updiv, 'B6', b6)
+
+
+def territories(lobe_mask, parts):
+    """label each lobe voxel (TS grid) by the nearest airway node of each part's subtree"""
+    nodes, labs = [], []
+    for k, n in enumerate(parts): sub = air_t.subtree(n); nodes.append(sub); labs.append(np.full(len(sub), k))
+    kd = cKDTree(air_t.mm[np.concatenate(nodes)]); lab = np.concatenate(labs)
+    vox = np.argwhere(lobe_mask); _, nn = kd.query(mm(vox, AT))
+    out = [np.zeros(lobe_mask.shape, bool) for _ in parts]
+    for k in range(len(parts)): out[k][tuple(vox[lab[nn] == k].T)] = True
+    return [biggest(ndimage.binary_opening(o, iterations=1)) for o in out]
+
+
+S_UPDIV, S_LING = territories(Ut if 'Ut' in dir() else ts('lung_upper_lobe_left'), [b_updiv, b_ling])
+SEG = {'seg-lul-upper': ('Upper division (S1+2, S3)', S_UPDIV), 'seg-lingula': ('Lingula (S4, S5)', S_LING)}
+if b6 is not None:
+    S_S6, S_BAS = territories(ts('lung_lower_lobe_left'), [b6, b_basal])
+    SEG.update({'seg-s6': ('Superior segment (S6)', S_S6), 'seg-lll-basal': ('Basal segments (S7-S10)', S_BAS)})
+for id_, (nm, m_) in SEG.items():
+    emit(id_, nm, 'segments', SEGC[id_], m_, AT, faces=12000, opacity=0.35, visible=False, sigma=1.3)
+d1l = lambda m: ndimage.binary_dilation(m, iterations=1)
+ISP = {'isp-lingula': ('Intersegmental plane: lingula / upper division', d1l(S_LING) & d1l(S_UPDIV), S_UPDIV, S_LING)}
+if b6 is not None: ISP['isp-s6'] = ('Intersegmental plane: S6 / basal', d1l(S_S6) & d1l(S_BAS), S_S6, S_BAS)
+ISP_LM = {}
+for id_, (nm, m_, pos, neg) in ISP.items():
+    emit(id_, nm, 'segments', '#f4e3a1', m_, AT, faces=6000, opacity=0.5, visible=False, sigma=0.8, label=False)
+    P_ = mm(np.argwhere(m_), AT); c_ = P_.mean(0); _, _, vt_ = np.linalg.svd(P_ - c_, full_matrices=False)
+    n_ = vt_[2] * np.sign(np.dot(vt_[2], mm(np.argwhere(pos), AT).mean(0) - mm(np.argwhere(neg), AT).mean(0)))
+    ISP_LM[id_] = (c_, n_, vt_[0])
+
+# segmental bronchi
+for id_, nm, n in (('br-lingular', 'Lingular bronchus (B4+5)', b_ling), ('br-upper-div', 'Upper division bronchus (B1+2, B3)', b_updiv), ('br-b6', 'Superior segmental bronchus (B6)', b6)):
+    if n is None: continue
+    emit(id_, nm, 'airway', BRONCH, owned(air_t, air, split_hilar(air_t, n, 12.0)[0]), AL, faces=3000, division=division_at(air_t, n, edt_air, into=3.0, look=8.0))
+
+# segmental veins: the lingular vein and V6, by the segment territories they drain
+segLV = {k: pull(v[1], AT, LV.shape, AL) for k, v in SEG.items()}
+for vid, root_key, mine, other, nm in (('pv-lingular', 'pv-superior', 'seg-lingula', 'seg-lul-upper', 'Lingular vein (V4+5)'),
+                                       ('pv-upper-div', 'pv-superior', 'seg-lul-upper', 'seg-lingula', 'Upper division veins (V1+2, V3)'),
+                                       ('pv-v6', 'pv-inferior', 'seg-s6', 'seg-lll-basal', 'Superior segmental vein (V6)')):
+    if mine not in segLV: continue
+    vm = biggest(spv if root_key == 'pv-superior' else ipv)
+    tv = Tree(vm, AL, mm(roots[root_key], AL)); tt = tv.territory({'A': segLV[mine], 'B': segLV[other]})
+    fA = tt['A'] / (tt['A'] + tt['B'] + 1e-9)
+    cand = [i for i in tv.order if tv.pred[i] >= 0 and fA[i] >= 0.85 and fA[tv.pred[i]] < 0.85 and tt['_size'][i] >= 20]
+    if not cand: print('  no', vid); continue
+    o = max(cand, key=lambda i: tt['_size'][i])
+    edt_sv = ndimage.distance_transform_edt(vm, sampling=np.abs(np.diag(AL)[:3]))
+    emit(vid, nm, 'veins', VEIN, owned(tv, vm, split_hilar(tv, o, 14.0)[0]), AL, faces=3000, division=division_at(tv, o, edt_sv, into=4.0, look=10.0))
 
 print('== lobes, heart, great vessels')
 LUNG = '#e9b2a6'
@@ -334,7 +431,12 @@ if (WORK / 'vessels_right.nii.gz').exists():
     emit('br-intermedius', 'Bronchus intermedius', 'airway', BRONCH, owned(ra, r_air, bi_nodes), AR, faces=5000)
     emit('br-rml', 'Middle lobe bronchus', 'airway', BRONCH, owned(ra, r_air, split_hilar(ra, rml_b, 14.0)[0]), AR, faces=4000, division=division_at(ra, rml_b, edt_rair, into=4.0, look=9.0))
     emit('br-rll', 'Right lower lobe bronchus', 'airway', BRONCH, owned(ra, r_air, split_hilar(ra, rll_b, 18.0)[0]), AR, faces=5000, division=division_at(ra, rll_b, edt_rair, into=4.0, look=10.0))
-    emit('br-right-main', 'Right main bronchus', 'airway', BRONCH, owned(ra, r_air, rmb_nodes), AR, faces=5000)
+    _rq = min(rmb_nodes, key=lambda q: abs(ra.dist[q] - (ra.dist[car_r] + 7.0))) if len(rmb_nodes) else None
+    _rdiv = None
+    if _rq is not None:
+        _dd = ra.mm[rul_b] - ra.mm[_rq]; _dd /= np.linalg.norm(_dd) + 1e-9
+        _rdiv = {'point': [round(float(x), 1) for x in W(ra.mm[_rq])], 'dir': [round(float(x), 3) for x in _dd], 'radius': round(max(float(edt_rair[tuple(ra.vox[_rq])]), 4.0), 1)}
+    emit('br-right-main', 'Right main bronchus', 'airway', BRONCH, owned(ra, r_air, rmb_nodes), AR, faces=5000, division=_rdiv)
     emit('rul-bronchi', 'Right upper lobe segmental bronchi', 'rul-intra', BRONCH, owned(ra, r_air, fu), AR, faces=8000, opacity=0.8, label=False)
     R_SEC = ra.mm[up_path[1]]                         # upper lobe take-off (the "secondary carina" of the right)
     R_RMB = ra.mm[rmb_nodes].mean(0) if len(rmb_nodes) else CARINA
@@ -370,7 +472,8 @@ if (WORK / 'vessels_right.nii.gz').exists():
         if id_.startswith(('rpa-truncus', 'rpa-a2', 'rpa-a3')): r_intra.append(far)
         emit(id_, nm, 'arteries', ART, owned(rt, r_art, near), AR, faces=5000, division=division_at(rt, o, edt_rart))
     rmain = np.setdiff1d(np.flatnonzero(rt.keep), np.concatenate(r_branch) if r_branch else np.array([], int))
-    emit('rpa', 'Right pulmonary artery', 'arteries', ART, owned(rt, r_art, rmain), AR, faces=9000)
+    rtr_o = next((o for o, v in rnames.items() if v[0] == 'rpa-truncus'), None)
+    emit('rpa', 'Right pulmonary artery', 'arteries', ART, owned(rt, r_art, rmain), AR, faces=9000, division=div_before(rt, rtr_o, 10.0, edt_rart) if rtr_o is not None else None)
     if r_intra: emit('rul-arteries', 'Right upper lobe segmental arteries', 'rul-intra', ART, owned(rt, r_art, np.concatenate(r_intra)), AR, faces=12000, opacity=0.85, label=False)
     print('  right artery names', {v[0]: round(float(rt.dist[k]), 1) for k, v in rnames.items()})
 
@@ -401,7 +504,8 @@ if (WORK / 'vessels_right.nii.gz').exists():
         taken.append(rvt.subtree(m_o))
         emit('rpv-ml', 'Middle lobe vein', 'veins', VEIN, owned(rvt, rvein, split_hilar(rvt, m_o, 20.0)[0]), AR, faces=4000, division=division_at(rvt, m_o, edt_v, into=5.0, look=12.0))
     trunk = np.setdiff1d(spv_pool[rvt.dist[spv_pool] <= 40.0], np.concatenate(taken))
-    emit('rpv-superior', 'Right superior pulmonary vein', 'veins', VEIN, owned(rvt, rvein, trunk), AR, faces=5000)
+    emit('rpv-superior', 'Right superior pulmonary vein', 'veins', VEIN, owned(rvt, rvein, trunk), AR, faces=5000,
+         division=div_before(rvt, u_o, 8.0, edt_v) if u_o is not None else None)
     if ipv_o is not None:
         emit('rpv-inferior', 'Right inferior pulmonary vein', 'veins', VEIN, owned(rvt, rvein, ipv_nodes[rvt.dist[ipv_nodes] - rvt.dist[ipv_o] <= 30.0]), AR, faces=6000,
              division=division_at(rvt, ipv_o, edt_v, into=6.0, look=16.0))
@@ -703,12 +807,14 @@ def plane_of(mask, pos, neg):
     n = vt[2] * np.sign(np.dot(vt[2], vox_mm(pos).mean(0) - vox_mm(neg).mean(0))); return c, n
 
 
+for id_, (c_, n_, a_) in ISP_LM.items():
+    landmarks[f'{id_}-centre'] = [round(float(x), 1) for x in W(c_)]; landmarks[f'{id_}-normal'] = [round(float(x), 3) for x in n_]; landmarks[f'{id_}-axis'] = [round(float(x), 3) for x in a_]
 if RIGHT_IDS:
     landmarks['r-secondary-carina'] = [round(float(x), 1) for x in W(R_SEC)]
     for nm_, (c_, n_) in (('fissure-h', plane_of(d1(RU_t) & d1(RM_t), RU_t, RM_t)), ('fissure-r', plane_of(d1(RU_t | RM_t) & d1(RD_t), RU_t | RM_t, RD_t))):
         landmarks[f'{nm_}-centre'] = [round(float(x), 1) for x in W(c_)]; landmarks[f'{nm_}-normal'] = [round(float(x), 3) for x in n_]
 # which side a structure belongs to: each operation shows one side's hilum
-LEFT_IDS = {'lul', 'lll', 'fissure', 'ipl', 'lig-art', 'n-phrenic', 'n-vagus', 'n-rln', 'ln-5', 'ln-6', 'ln-10l', 'ln-11l', 'ln-9l', 'br-lul', 'br-lll', 'br-left-main'}
+LEFT_IDS = {'lul', 'lll', 'fissure', 'ipl', 'seg-lul-upper', 'seg-lingula', 'seg-s6', 'seg-lll-basal', 'isp-lingula', 'isp-s6', 'br-lingular', 'br-upper-div', 'br-b6', 'lig-art', 'n-phrenic', 'n-vagus', 'n-rln', 'ln-5', 'ln-6', 'ln-10l', 'ln-11l', 'ln-9l', 'br-lul', 'br-lll', 'br-left-main'}
 RIGHT_IDS |= {'rul', 'rml', 'rll', 'fissure-h', 'fissure-r'}
 for q in structures:
     i = q['id']
@@ -731,7 +837,7 @@ atlas = {
                {'id': 'ports-anterior', 'name': 'Ports, anterior approach'}, {'id': 'ports-posterior', 'name': 'Ports, posterior approach'},
                {'id': 'rul-intra', 'name': 'Right upper lobe, intrapulmonary'},
                {'id': 'ports-r-anterior', 'name': 'Ports, right anterior approach'}, {'id': 'ports-r-posterior', 'name': 'Ports, right posterior approach'},
-               {'id': 'ports-open-left', 'name': 'Thoracotomy, left'}, {'id': 'ports-open-right', 'name': 'Thoracotomy, right'}],
+               {'id': 'segments', 'name': 'Segments (from bronchial territories)'}, {'id': 'ports-open-left', 'name': 'Thoracotomy, left'}, {'id': 'ports-open-right', 'name': 'Thoracotomy, right'}],
     'structures': structures,
     'landmarks': landmarks,
     'source': {'name': 'Reference CT: 3D Slicer sample CTA (CTA-cardio)', 'licence': 'unstated',

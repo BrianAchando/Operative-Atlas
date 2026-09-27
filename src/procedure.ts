@@ -4,7 +4,12 @@ export interface Choice { text: string; correct: boolean; why: string }
 
 /** what the surgeon does in a step, played in 3D with the instrument coming through a port */
 export interface Action {
-  kind: 'staple' | 'ligate' | 'dissect' | 'open-fissure' | 'staple-fissure';
+  kind: 'staple' | 'ligate' | 'dissect' | 'open-fissure' | 'staple-fissure' | 'thoracotomy';
+  /** thoracotomy: the incision to draw and the two ribs either side of the space (upper first) */
+  incision?: string;
+  ribs?: [string, string];
+  /** structures made visible once the action is done, and kept visible (e.g. the ribs around a thoracotomy) */
+  show?: string[];
   /** dissecting instrument: peanut (blunt) or diathermy hook */
   tool?: 'peanut' | 'hook';
   /** structures taken down by the action (e.g. the pulmonary ligament), hidden once it is done */

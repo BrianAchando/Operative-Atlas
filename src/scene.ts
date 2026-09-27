@@ -4,7 +4,7 @@ import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 import { RoomEnvironment } from 'three/addons/environments/RoomEnvironment.js';
 import { MeshoptDecoder } from 'three/addons/libs/meshopt_decoder.module.js';
 import type { Vec3 } from './ctview.ts';
-import { stapler, peanut, hook, tie, knotPusher, stapleRun, RELOAD } from './instruments.ts';
+import { stapler, peanut, hook, tie, knotPusher, stapleRun, ribSpreader, RELOAD } from './instruments.ts';
 import type { Action } from './procedure.ts';
 
 export interface StructureMeta {
@@ -430,9 +430,28 @@ export class Scene3D {
         this.clearTools();
       }
       for (const s of a.spread ?? []) for (const id of s.ids) { const it = this.items.get(id); if (it) this.retract(id, s.offset, it.mat.opacity, 900); }
+    } else if (a.kind === 'thoracotomy') {
+      for (const id of a.show ?? []) { this.setVisible(id, true); this.setOpacity(id, 0.5); }
+      if (a.incision) { this.setVisible(a.incision, true); const it = this.items.get(a.incision); if (it) { if (!await this.anim(700, (e) => this.setOpacity(a.incision!, e), token)) return false; } }
+      const sp = this.spreader(P, a); if (!sp) return true;
+      if (!await this.wait(300, token)) return false;
+      for (const [k, id] of (a.ribs ?? []).entries()) { const it = this.items.get(id); if (it) this.retract(id, sp.shift(k), it.mat.opacity, 1600); }
+      if (!await this.anim(1600, (e) => sp.set(4 + 66 * e), token)) return false;
     }
+    for (const id of a.show ?? []) this.setVisible(id, true);
     this.invalidate(400);
     return true;
+  }
+
+  /** the rib spreader seated in the thoracotomy at `P`, with the rib offsets it produces when opened */
+  private spreader(P: THREE.Vector3, a: Action): { set(mm: number): void; shift(k: number): Vec3 } | null {
+    const [up, lo] = (a.ribs ?? []).map((id) => this.items.get(id)); if (!up || !lo) return null;
+    const cu = new THREE.Vector3(...up.meta.centroid), cl = new THREE.Vector3(...lo.meta.centroid);
+    const sep = cu.clone().sub(cl).normalize();                          // lower rib -> upper rib
+    const out = new THREE.Vector3(P.x, P.y, 0).normalize();               // away from the midline, in the axial plane
+    const along = new THREE.Vector3().crossVectors(sep, out);
+    const sp = ribSpreader(P, out, along, sep); this.extras.add(sp.group);
+    return { set: (mm) => { sp.setGap(mm); this.invalidate(); }, shift: (k) => { const v = sep.clone().multiplyScalar(k === 0 ? 30 : -30); return [v.x, v.y, v.z]; } };
   }
 
   private fadeOut(id: string, ms: number): void {
@@ -443,8 +462,13 @@ export class Scene3D {
   }
 
   /** the end state of an action already done (rebuilding the scene when the reader jumps between steps) */
-  applyDone(a: Action): void {
+  applyDone(a: Action, port?: Vec3): void {
     for (const id of a.remove ?? []) this.setVisible(id, false);
+    for (const id of a.show ?? []) { this.setVisible(id, true); if (a.kind === 'thoracotomy') this.setOpacity(id, 0.5); }
+    if (a.kind === 'thoracotomy' && port) {
+      const sp = this.spreader(new THREE.Vector3(...port), a);
+      if (sp) { sp.set(70); for (const [k, id] of (a.ribs ?? []).entries()) { const it = this.items.get(id); if (it) this.retract(id, sp.shift(k), it.mat.opacity, 1); } }
+    }
     if (a.kind === 'staple') for (const id of a.ids ?? []) this.divide(id, false, 'staple');
     else if (a.kind === 'ligate') for (const id of a.ids ?? []) {
       const { meshes } = this.tieOff(id); this.divide(id, false, 'tie');

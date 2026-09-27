@@ -122,3 +122,29 @@ export function hook(): { group: THREE.Group; aim(tip: THREE.Vector3, port: THRE
     aim(tip, port) { g.position.copy(tip); g.quaternion.setFromUnitVectors(new THREE.Vector3(0, 0, 1), port.clone().sub(tip).normalize()); },
   };
 }
+
+/**
+ * Rib spreader (Finochietto type): two blades hooked over the ribs either side of the intercostal space, on arms
+ * that slide along a toothed rack outside the chest. `c` is the centre of the space, `out` points out of the chest,
+ * `along` runs along the ribs; the blades open along `sep` (roughly head-to-foot).
+ */
+export function ribSpreader(c: THREE.Vector3, out: THREE.Vector3, along: THREE.Vector3, sep: THREE.Vector3): { group: THREE.Group; setGap(mm: number): void } {
+  const g = new THREE.Group();
+  const O = out.clone().normalize(); const S = sep.clone().sub(O.clone().multiplyScalar(sep.dot(O))).normalize(); const A = new THREE.Vector3().crossVectors(S, O);
+  const frame = new THREE.Group(); frame.matrixAutoUpdate = false; frame.matrix.makeBasis(A, S, O).setPosition(c); g.add(frame);
+  const steel = metal();
+  const blade = () => {
+    const b = new THREE.Group();
+    const plate = new THREE.Mesh(new THREE.BoxGeometry(64, 3, 26), steel); plate.position.z = -4; b.add(plate);          // goes into the chest
+    const lip = new THREE.Mesh(new THREE.BoxGeometry(64, 8, 3), steel); lip.position.set(0, 0, 9); b.add(lip);            // hooks over the rib
+    const arm = new THREE.Mesh(new THREE.BoxGeometry(10, 5, 34), steel); arm.position.set(-38, 0, 20); b.add(arm);        // up to the rack
+    return b;
+  };
+  const b1 = blade(), b2 = blade(); frame.add(b1, b2);
+  const rack = new THREE.Mesh(new THREE.BoxGeometry(8, 150, 5), steel); rack.position.set(-38, 0, 38); frame.add(rack);
+  for (let k = -12; k <= 12; k++) { const t = new THREE.Mesh(new THREE.BoxGeometry(9, 1.2, 2), steel); t.position.set(-38, k * 5.5, 41); frame.add(t); }
+  const crank = new THREE.Mesh(new THREE.CylinderGeometry(3, 3, 22, 12), dark()); crank.rotation.z = Math.PI / 2; crank.position.set(-26, 0, 44); frame.add(crank);
+  const setGap = (mm: number) => { b1.position.y = mm / 2; b2.position.y = -mm / 2; crank.position.y = -mm / 2; };
+  setGap(4);
+  return { group: g, setGap };
+}
