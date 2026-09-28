@@ -10,13 +10,15 @@
     "data": "python pipeline/build.py && python pipeline/procedures.py"
   },
   "dependencies": {
-    "three": "0.185.1",
-    "dicom-parser": "1.8.21"
+    "dicom-parser": "1.8.21",
+    "n8ao": "^2.0.1",
+    "postprocessing": "^6.39.5",
+    "three": "0.185.1"
   },
   "devDependencies": {
+    "@gltf-transform/cli": "4.5.0",
     "@types/three": "0.185.4",
     "typescript": "5.9.3",
-    "vite": "8.2.2",
-    "@gltf-transform/cli": "4.5.0"
+    "vite": "8.2.2"
   }
 }

@@ -1,4 +1,4 @@
-"""The heart for the cardiac module: mitral, aortic and tricuspid valve surgery and their accesses.
+"""The heart for the cardiac module: mitral, aortic and tricuspid valve surgery, aortic root replacement (Bentall, Ross), and their accesses.
 
 From the CT (TotalSegmentator licensed tasks, run by segment_heart.py): the four chambers and the myocardium
 (heartchambers_highres), the LV outflow tract and the three aortic cusps (aortic_sinuses), the coronaries.
@@ -197,6 +197,7 @@ def build(ctx):
     # ================================================================ the aortic root, for aortic valve replacement
     if (work / 'sinuses.nii.gz').exists():
         aortic_root(ctx, work, mm, LM, DIRS, SC, ra_mm, la_mm, lv_mm)
+        root_repl(ctx, mm, H, LM, DIRS, SC)
     print(f'  annulus radius {R:.1f} mm; prosthesis ~{2 * rp:.0f} mm')
     return LM, DIRS, SC
 
@@ -456,3 +457,102 @@ def tricuspid(ctx, RA, RV, mm, LM, DIRS, SC, ra_mm, lv_mm, csos, svc_p, ra_low):
               note='Tapes round both cavae, tightened over the cannulas so that the right atrium can be opened without air entering the venous line.')
     LM['tv-centre'] = c; DIRS['tv-normal'] = n; DIRS['tv-septal'] = s; SC['tv-radius'] = R
     print(f'  tricuspid annulus radius {R:.1f} mm; ring ~{2 * R * 0.82:.0f} mm; prosthesis ~{2 * rp:.0f} mm')
+
+
+def _lathe(c, n, e1, prof, sections=40):
+    """a surface of revolution about axis n through c: prof = [(height, radius), ...]"""
+    e2 = np.cross(n, e1); V_, F = [], []
+    ts = np.linspace(0, 2 * np.pi, sections, endpoint=False)
+    for h, r in prof:
+        for t in ts: V_.append(c + n * h + (e1 * np.cos(t) + e2 * np.sin(t)) * r)
+    m = len(ts)
+    for i in range(len(prof) - 1):
+        for j in range(m):
+            a, b = i * m + j, i * m + (j + 1) % m; F += [[a, b, b + m], [a, b + m, a + m]]
+    return np.array(V_), np.array(F)
+
+
+def root_repl(ctx, mm, H, LM, DIRS, SC):
+    """Aortic root replacement: a schematic aneurysmal root, the composite valved graft (Bentall), coronary buttons on the
+    sinuses and reimplanted on the graft; for the Ross: the pulmonary root (autograft) from the RV-PA junction, the first
+    septal perforator, the autograft in the aortic position, and a pulmonary homograft."""
+    emit_mesh, W, tube, sphere = ctx['emit_mesh'], ctx['W'], ctx['tube'], ctx['sphere']
+    if 'av-centre' not in LM: return
+    c, n, e1, R = LM['av-centre'], DIRS['av-axis'], DIRS['av-e1'], SC['av-radius']
+    CA = ctx['CARINA']
+    mk = lambda V_, F: trimesh.Trimesh(V_ - CA, F, process=True)
+    # the aneurysmal root (schematic, about 55 mm at the sinuses), to show the indication and to be excised
+    prof = [(-1, R + 1.5), (6, R + 9), (14, 27.0), (24, 26.0), (34, 22.0), (44, 18.0)]
+    emit_mesh('root-aneurysm', 'Aortic root aneurysm (schematic, ~55 mm at the sinuses)', 'cardiac', '#c96a5a', mk(*_lathe(c, n, e1, prof)), opacity=0.45, visible=False,
+              note='Schematic: sinuses of Valsalva dilated, effacing the sinotubular junction. The CT root itself is normal size.')
+    # coronary buttons: a cuff of sinus wall round each ostium; their new positions on the graft
+    gr = R + 2.5; gtop = 46.0
+    for k in ('l', 'r'):
+        if f'ostium-{k}' not in LM: continue
+        p = LM[f'ostium-{k}']; d_ = (p - c) - n * np.dot(p - c, n); d_ /= np.linalg.norm(d_)
+        tor = trimesh.creation.torus(major_radius=5.5, minor_radius=1.1, major_sections=28, minor_sections=8)
+        T = trimesh.geometry.align_vectors([0, 0, 1], d_); T[:3, 3] = W(p); tor.apply_transform(T)
+        emit_mesh(f'button-{k}', f'{"Left main" if k == "l" else "Right coronary"} button', 'cardiac', '#e38b6f', tor, visible=False,
+                  note='A 5-8 mm cuff of sinus wall round the ostium, mobilised just enough to reach the graft without tension.')
+        h_new = 14.0 if k == 'l' else 17.0                                     # the right a little higher: it kinks if placed low
+        q = c + n * h_new + d_ * gr
+        tor2 = trimesh.creation.torus(major_radius=5.0, minor_radius=0.9, major_sections=28, minor_sections=8)
+        T2 = trimesh.geometry.align_vectors([0, 0, 1], d_); T2[:3, 3] = W(q); tor2.apply_transform(T2)
+        emit_mesh(f'button-{k}-graft', f'{"Left main" if k == "l" else "Right coronary"} button, reimplanted', 'cardiac', '#e38b6f',
+                  trimesh.util.concatenate([tor2, tube([W(q), W(q + d_ * 6), W(p + d_ * 4)], 1.8)]), visible=False,
+                  note='Sewn end-to-side to a hole in the graft with running 5-0 polypropylene. The right button is placed with the heart filled, to avoid kinking.')
+        LM[f'button-{k}-graft'] = q
+    # the composite valved graft: a crimped polyester tube with a valve at its base
+    prof_g = [(h, gr) for h in np.linspace(0, gtop, 24)]
+    gv, gf = _lathe(c, n, e1, prof_g, 36)
+    parts = [mk(gv, gf)]
+    for h in np.linspace(3, gtop - 3, 14):
+        rg = trimesh.creation.torus(major_radius=gr + 0.3, minor_radius=0.5, major_sections=36, minor_sections=6)
+        T = trimesh.geometry.align_vectors([0, 0, 1], n); T[:3, 3] = W(c + n * h); rg.apply_transform(T); parts.append(rg)
+    sw = trimesh.creation.torus(major_radius=gr + 1.0, minor_radius=1.8, major_sections=40, minor_sections=8)
+    T = trimesh.geometry.align_vectors([0, 0, 1], n); T[:3, 3] = W(c + n * 0.5); sw.apply_transform(T); parts.append(sw)
+    for sx in (-1, 1):
+        leaf = trimesh.creation.box(extents=[gr * 0.95, 0.8, 5.0]); leaf.apply_translation([sx * gr * 0.45, 0, 2.5])
+        leaf.apply_transform(trimesh.transformations.rotation_matrix(np.radians(75) * sx, [0, 1, 0], point=[sx * gr * 0.9, 0, 2.5]))
+        Tl = trimesh.geometry.align_vectors([0, 0, 1], n); Tl[:3, 3] = W(c); leaf.apply_transform(Tl); parts.append(leaf)
+    emit_mesh('cvg', f'Composite valved graft (~{round(2 * gr)} mm tube, mechanical valve)', 'cardiac', '#f1f1ea', trimesh.util.concatenate(parts), opacity=0.85, visible=False,
+              note='Schematic: a crimped polyester graft with the valve sewn into its base (or a tissue valve: a "bio-Bentall").')
+    dist = c + n * gtop
+    rd = trimesh.creation.torus(major_radius=gr + 1.2, minor_radius=1.3, major_sections=40, minor_sections=8)
+    T = trimesh.geometry.align_vectors([0, 0, 1], n); T[:3, 3] = W(dist); rd.apply_transform(T)
+    emit_mesh('root-distal', 'Distal anastomosis (graft to ascending aorta)', 'cardiac', '#3fa7d6', rd, visible=False)
+    LM['root-distal'] = dist; LM['root-top'] = c + n * 30
+    # ---------------------------------------------------------------- the pulmonary root: the RV-PA junction
+    RV, PA = H == 5, H == 7
+    if RV.sum() < 50 or PA.sum() < 50: print('  root: no pulmonary artery; Ross skipped'); return
+    iface = mm(PA & ndimage.binary_dilation(RV, iterations=2))
+    if len(iface) < 20: print('  root: no RV-PA junction; Ross skipped'); return
+    pc = iface.mean(0); _, _, vt = np.linalg.svd(iface - pc, full_matrices=False)
+    pa_mm = mm(PA); pn = vt[2] * np.sign(np.dot(vt[2], pa_mm.mean(0) - pc))
+    rel = iface - pc; pr = float(np.clip(np.percentile(np.linalg.norm(rel - np.outer(rel @ pn, pn), axis=1), 85), 10, 14))
+    pe1 = np.cross(pn, SUP); pe1 = pe1 / np.linalg.norm(pe1) if np.linalg.norm(pe1) > 0.1 else e1
+    prof_a = [(-5, pr + 1.0), (0, pr + 1.2), (6, pr + 2.8), (13, pr + 3.0), (20, pr + 1.2), (24, pr + 0.8)]
+    av_, af_ = _lathe(pc, pn, pe1, prof_a, 36)
+    emit_mesh('pa-root', 'Pulmonary root (the autograft)', 'cardiac', '#6f86c9', mk(av_, af_), opacity=0.8, visible=False,
+              note='The pulmonary valve with 3-5 mm of RV muscle below it and the trunk above it, harvested as a whole root.')
+    # harvest lines: the trunk just below the bifurcation; the RVOT a few millimetres below the valve
+    ring = lambda cc, nn, ee, r, h: [cc + nn * h + (ee * np.cos(t) + np.cross(nn, ee) * np.sin(t)) * r for t in np.linspace(0, 2 * np.pi, 33)]
+    emit_mesh('pa-harvest', 'Autograft harvest lines (PA trunk above, RVOT below)', 'cardiac', '#d0433a',
+              trimesh.util.concatenate([tube([W(p) for p in ring(pc, pn, pe1, pr + 1.6, 24)], 1.0), tube([W(p) for p in ring(pc, pn, pe1, pr + 1.8, -5)], 1.0)]), visible=False,
+              note='Transect the trunk below the bifurcation; open the RVOT 3-5 mm below the valve and free the root off the septum, staying shallow posteriorly.')
+    # the first septal perforator: from the LAD, runs just below and behind the pulmonary root into the septum
+    lv = mm(H == 3); toward = lv.mean(0) - pc; toward -= pn * np.dot(toward, pn); toward /= np.linalg.norm(toward)
+    s0 = pc - pn * 7 + toward * (pr + 4) + ANT * 3
+    sp_ = [s0, s0 - pn * 4 + toward * 6, s0 - pn * 9 + toward * 14 - ANT * 4, s0 - pn * 13 + toward * 22 - ANT * 8]
+    emit_mesh('septal-perforator', 'First septal perforator (LAD)', 'cardiac', '#d0433a', tube([W(p) for p in sp_], 1.3), visible=False,
+              note='Schematic: leaves the LAD and runs into the septum just beneath the posterior RVOT. Deep dissection here during harvest divides it (septal infarction).')
+    LM['pa-root'] = pc; LM['septal-perforator'] = sp_[1]; DIRS['pa-axis'] = pn; SC['pa-radius'] = pr
+    # the autograft in the aortic position, and the homograft in the pulmonary position
+    prof_ao = [(h - 5 * 0 , r) for h, r in [(-1, R + 0.8), (4, R + 2.6), (12, R + 3.0), (20, R + 1.6), (40, gr)]]
+    emit_mesh('autograft-ao', 'Pulmonary autograft in the aortic position', 'cardiac', '#6f86c9', mk(*_lathe(c, n, e1, prof_ao, 36)), opacity=0.8, visible=False,
+              note='Sewn to the aortic annulus with interrupted sutures, the coronary buttons reimplanted into its sinuses, then joined to the ascending aorta. Often reinforced (inclusion in a polyester graft, or annular and STJ stabilisation) to prevent dilatation.')
+    hv, hf = _lathe(pc, pn, pe1, [(-4, pr + 1.4), (2, pr + 2.6), (12, pr + 2.6), (24, pr + 1.4)], 36)
+    emit_mesh('homograft', 'Pulmonary homograft (RVOT reconstruction)', 'cardiac', '#b7c6a2', mk(hv, hf), opacity=0.85, visible=False,
+              note='A cryopreserved pulmonary homograft sewn to the RVOT below and the PA trunk above.')
+    LM['autograft-ao'] = c + n * 10
+    print(f'  root: graft ~{2 * gr:.0f} mm; pulmonary root radius {pr:.1f} mm')

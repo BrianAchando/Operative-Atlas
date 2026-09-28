@@ -2619,8 +2619,183 @@ if TV_OK:
         procs[key] = {'id': key, 'op': 'tricuspid', 'opName': 'Tricuspid valve surgery', 'side': 'both', 'name': 'Tricuspid valve surgery', 'approach': appr,
                       'summary': 'Guideline indications, bicaval snares, arrested or beating, assessment and sizing, ring vs suture repair, replacement, conduction and RCA safety.',
                       'ports': [], 'steps': steps_, 'sources': TVSRC, 'group': 'Cardiac', 'sequence': sq}
+# ==================================================================================================== cardiac: aortic root replacement (Bentall, Ross)
+ROOT_OK = AVR_OK and has('cvg') and 'root-distal' in LM
+if ROOT_OK:
+    RD_ = Lc('root-distal'); RT_ = Lc('root-top')
+    BTN = [i for i in ('button-l', 'button-r') if has(i)]; BTN_G = [i for i in ('button-l-graft', 'button-r-graft') if has(i)]
+    ROSS = has('pa-root') and 'pa-root' in LM
+    root_view = clook(RT_, AN * 0.3 + V([0.2, 1.0, 0.1]), 190)
+    RTSRC = [
+        {'title': 'Kouchoukos NT, Blackstone EH, Hanley FL, Kirklin JK. Kirklin/Barratt-Boyes Cardiac Surgery, 4th ed. Elsevier 2013: aortic root replacement; Ross operation', 'url': pm('Kirklin Barratt-Boyes aortic root replacement')},
+        {'title': 'Bentall H, De Bono A. A technique for complete replacement of the ascending aorta. Thorax 1968;23:338-9', 'url': pm('Bentall De Bono technique complete replacement ascending aorta Thorax 1968')},
+        {'title': 'Isselbacher EM, et al. 2022 ACC/AHA guideline for the diagnosis and management of aortic disease. Circulation 2022', 'url': 'https://pubmed.ncbi.nlm.nih.gov/36322642/'},
+        {'title': 'Praz F, Borger MA, et al. 2025 ESC/EACTS Guidelines for the management of valvular heart disease. Eur Heart J 2025', 'url': 'https://www.escardio.org/guidelines/clinical-practice-guidelines/all-esc-practice-guidelines/valvular-heart-disease/'},
+        {'title': 'Otto CM, Nishimura RA, et al. 2020 ACC/AHA guideline for the management of patients with valvular heart disease. Circulation 2021', 'url': 'https://pubmed.ncbi.nlm.nih.gov/33332150/'},
+        {'title': 'Pantaleo A, et al. Biological versus mechanical Bentall procedure for aortic root replacement: propensity score analysis of 1112 patients. Eur J Cardiothorac Surg 2017;52:143-9', 'url': 'https://academic.oup.com/ejcts/article/52/1/143/3603551'},
+        {'title': 'Evolution and current applications of the Cabrol procedure and its modifications. Ann Thorac Surg 2011', 'url': 'https://www.annalsthoracicsurgery.org/article/S0003-4975(11)00251-7/fulltext'},
+        {'title': 'Ross DN. Replacement of aortic and mitral valves with a pulmonary autograft. Lancet 1967;2:956-8', 'url': pm('Ross replacement aortic mitral valves pulmonary autograft Lancet 1967')},
+        {'title': 'El-Hamamsy I, et al. Long-term outcomes after autograft versus homograft aortic root replacement in adults with aortic valve disease: a randomised controlled trial. Lancet 2010;376:524-31', 'url': 'https://www.thelancet.com/journals/lancet/article/PIIS0140-6736(10)60828-8/abstract'},
+        {'title': 'EACTS Expert Consensus Statement on the Ross procedure in adult patients. Eur J Cardiothorac Surg 2025;68:ezaf295', 'url': 'https://academic.oup.com/ejcts/article/68/2/ezaf295/8276889'},
+        {'title': 'Ross procedure in rheumatic aortic valve disease (81 patients). Eur J Cardiothorac Surg 2006;29:156', 'url': 'https://academic.oup.com/ejcts/article/29/2/156/533641'},
+        {'title': 'The Ross procedure: clinical relevance, guidelines recognition, and centers of excellence (editorial). J Am Coll Cardiol 2022', 'url': 'https://www.sciencedirect.com/science/article/pii/S073510972200064X'},
+    ]
+
+    def rt_anat(pre, ross=False):
+        return {'id': f'{pre}-anatomy', 'phase': 'Anatomy', 'seq': 0, 'title': 'The aortic root as a unit' + (' and the pulmonary root beside it' if ross else ''),
+                'body': '<p>The <b>root</b> runs from the ventricular attachment of the cusps (the annulus) to the <b>sinotubular junction</b>: the cusps, the three <b>sinuses of Valsalva</b>, the <b>coronary ostia</b> and the interleaflet triangles. In a root aneurysm the sinuses dilate and the STJ effaces, so replacing only the valve or only the tube above leaves diseased sinuses behind.</p>'
+                        + ('<p>The <b>pulmonary root</b> lies in front and to the left, sharing a fascial plane with the aortic root. <b>Behind it</b> run the <b>left main coronary</b> and, beneath its posterior RVOT, the <b>first septal perforator</b> of the LAD. Both are at risk during harvest.</p>' if ross else '')
+                        + ev('the root as a functional unit is from Anderson\'s anatomical work and the Kirklin/Barratt-Boyes descriptions; the sinuses and the STJ shape how the cusps close, which is why valve-sparing operations restore them.'),
+                'view': clook(RT_, AN * 0.4 + V([0.3, 0.9, 0.2]), 230), 'spin': True,
+                'show': [*CH, 'root-aneurysm', *ROOT, *AV_DANGER, *(['pa-root', 'septal-perforator'] if ross and ROSS else [])], 'hide': HEART_OFF,
+                'opacity': {**AV_FAINT, 'pa-trunk': 0.2, 'rv': 0.2}, 'highlight': ['root-aneurysm'] if not ross else ['pa-root'],
+                'danger': ['ostium-l', 'ostium-r', *(['septal-perforator'] if ross else [])],
+                'labels': ['root-aneurysm', 'ostium-l', 'ostium-r', 'stj', *(['pa-root', 'septal-perforator'] if ross else [])],
+                'ask': ask('Why is a Bentall (or valve-sparing root) needed for a root aneurysm rather than an AVR plus a supracoronary tube?',
+                           'The dilated sinuses would be left behind and keep enlarging', 'In root disease the sinuses themselves are aneurysmal; a supracoronary graft leaves them in place to dilate or dissect.',
+                           'The coronary ostia are always too low', 'An AVR cannot be done in a large root'),
+                'ct': ct(R(AC), 'coronal')}
+
+    def rt_decide(pre, ross=False):
+        body = ('<p><b>When to replace the root</b> (ACC/AHA 2022): sporadic aneurysm at <b>5.5 cm</b> (5.0 cm is reasonable with an experienced surgeon), or with symptoms or rapid growth; <b>bicuspid</b> at 5.5 cm, at 5.0–5.4 cm with risk factors, and at <b>4.5 cm or more when the valve is being operated on anyway</b>; '
+                '<b>Marfan</b> at 5.0 cm (4.5 cm with a family history of dissection or rapid growth); <b>Loeys–Dietz</b> by variant, size and growth.</p>'
+                '<p><b>Which root operation:</b></p><ul>'
+                '<li><b>Valve-sparing root replacement</b> (David, Yacoub) when the cusps are good: no prosthesis, no warfarin. It needs experience.</li>'
+                '<li><b>Bentall</b> (composite valved graft) when the valve is diseased: the reliable standard. <b>Mechanical</b> for the young with reliable INR monitoring, <b>biological</b> ("bio-Bentall") for the older.</li>'
+                '<li><b>Ross</b> (pulmonary autograft) for selected young adults with aortic valve disease, at experienced centres.</li></ul>')
+        if ross:
+            body += ('<p><b>Ross: good candidates</b>: young adults (typically under about 50–60) with a long life expectancy, active lives, women planning pregnancy (no warfarin). <b>Cautions</b> (EACTS consensus 2025): <b>rheumatic</b> valve disease, connective tissue disease, a <b>dilated annulus</b> or severe AR (dilatation risk), and a need for other valve surgery.</p>'
+                     '<p><b>Rheumatic disease</b> matters here: in 81 rheumatic Ross patients (mean age 29.5), freedom from autograft dysfunction was 65% under 30 vs 98.5% over 30, and explanted autografts showed rheumatic valvulitis.</p>')
+        ev_t = ('Ross: the one RCT (El-Hamamsy et al., Lancet 2010; 228 adults, mean age 38) found 10-year survival of 97% after the autograft vs 83% after a homograft root, and 99% vs 51% freedom from aortic valve reoperation at 13 years; survival matched the general population. '
+                'ACC/AHA 2020 gives the Ross a class 2b recommendation in young adults, at experienced centres; ESC/EACTS 2025 calls it a valid alternative in well-selected young patients.' if ross else
+                'no randomised trial compares mechanical and biological Bentall; in a propensity-matched series of 1,112 patients (Pantaleo et al., EJCTS 2017), 5-year survival did not differ (84% vs 87%), with more reoperation after tissue valves and more bleeding after mechanical ones.')
+        return {'id': f'{pre}-decide', 'phase': 'Decision', 'seq': 1, 'title': 'Which root operation' + (': is this patient for a Ross?' if ross else ''),
+                'body': body + ev(ev_t),
+                'view': clook(RT_, V([0.3, 0.9, 0.4]), 300), 'show': [*CH, 'root-aneurysm'], 'hide': HEART_OFF, 'opacity': AV_FAINT, 'labels': ['root-aneurysm'],
+                'ask': (ask('A 24-year-old with rheumatic aortic regurgitation and mild mitral disease asks for the Ross operation. What does the evidence suggest?',
+                            'Rheumatic disease is a caution: the autograft can be affected and fail early; a mechanical valve (or a repair) is usually the better choice',
+                            'In young rheumatic patients autograft dysfunction was far more common (freedom only 65%), with rheumatic changes in the explanted autografts; EACTS 2025 lists rheumatic disease among the cautions.',
+                            'The Ross is ideal: young and wants to avoid warfarin', 'A homograft root') if ross else
+                        ask('A 45-year-old with a 5.6 cm root aneurysm and a severely stenotic bicuspid valve. What operation fits?',
+                            'A Bentall (mechanical composite graft, if INR monitoring is reliable)', 'The root is past 5.5 cm and the valve is diseased, so valve-sparing is not an option; at 45 guidelines favour a mechanical valve if anticoagulation is safe.',
+                            'AVR alone', 'A valve-sparing root replacement', 'Surveillance')),
+                'ct': ct(R(AC), 'coronal')}
+
+    def rt_cannulate(pre, seq_):
+        return {'id': f'{pre}-cannulate', 'phase': 'Bypass', 'seq': seq_, 'title': 'Cannulate distally, vent, protect',
+                'body': '<p>The arterial cannula <b>high</b>: distal ascending aorta or arch, or the <b>right axillary artery</b> if the aorta is large up to the arch. A two-stage venous cannula; an <b>LV vent</b> through the right superior pulmonary vein; retrograde cardioplegia in the coronary sinus.</p>'
+                        + ev('practice by consensus (Kirklin/Barratt-Boyes): the whole root is replaced, so the cannula and clamp must sit above the diseased segment.'),
+                'view': clook(V(LM['can-aortic']), V([0.4, 0.9, 0.35]), 330), 'show': CH, 'hide': HEART_OFF, 'opacity': FAINT,
+                'highlight': AV_CANS, 'labels': AV_CANS,
+                'action': {'kind': 'reveal', 'label': 'Place the cannulas', 'port': 'sternotomy', 'ids': AV_CANS}, 'ct': ct(R(V(LM['can-aortic'])), 'axial')}
+
+    def rt_excise(pre, seq_, ross=False):
+        return {'id': f'{pre}-excise', 'phase': 'Root', 'seq': seq_, 'title': 'Transect, excise the sinuses, keep the coronary buttons',
+                'body': '<p>Cross-clamp high; cardioplegia <b>retrograde</b> and <b>directly into the ostia</b> once open. Transect the aorta above the STJ. Excise the <b>valve</b> and the <b>sinus walls</b>, leaving a 3–5 mm rim at the annulus and a <b>button</b> of sinus wall (5–8 mm) round each coronary ostium.</p>'
+                        '<p>Mobilise each button <b>just enough</b> to reach the graft: the left main is short and lies behind the pulmonary trunk; the right coronary has branches (conus, RV branches) that tether it.</p>'
+                        + ev('the "open" button technique replaced the older inclusion and wrap methods, which were associated with pseudoaneurysms at the coronary suture lines. When buttons cannot be mobilised (redo, low ostia), a small interposition graft (Cabrol) is used.'),
+                'view': root_view, 'show': [*ROOT, 'root-aneurysm', *BTN, *AV_DANGER], 'hide': [*HEART_OFF, 'aorta'], 'opacity': AV_FAINT,
+                'highlight': BTN, 'danger': ['ostium-l', 'ostium-r'], 'labels': [*BTN, 'root-aneurysm'],
+                'action': {'kind': 'dissect', 'tool': 'hook', 'label': 'Excise the root, keep the buttons', 'port': 'sternotomy', 'remove': ['root-aneurysm', *CUSPS],
+                           'path': [R(AC + (AE * np.cos(t) + V(np.cross(AN, AE)) * np.sin(t)) * (AR_ + 8) + AN * 20) for t in np.linspace(0, 2 * np.pi, 7)]},
+                'ct': ct(R(AC), 'coronal')}
+
+    def rt_graft(pre, seq_):
+        return {'id': f'{pre}-graft', 'phase': 'Root', 'seq': seq_, 'title': 'Sew the composite graft to the annulus',
+                'body': '<p>Size the annulus. Place <b>pledgeted horizontal mattress sutures</b> round the annulus (non-everting, pledgets below, so the valve sits supra-annular), through the sewing ring of the composite graft, and tie. Shallow bites under the right–non-coronary commissure (His bundle).</p>'
+                        '<p>The graft diameter is usually the annulus size plus a few millimetres, so the coronary buttons can be reached and the distal aorta matched.</p>'
+                        + ev('pledgeted interrupted sutures are the usual choice at the proximal line, where bleeding after the graft is in is hard to reach; there is no trial of techniques in root replacement.'),
+                'view': root_view, 'show': ['aortic-annulus', 'cvg', *BTN, 'his-bundle'], 'hide': [*HEART_OFF, 'aorta', *CUSPS], 'opacity': AV_FAINT,
+                'highlight': ['cvg'], 'labels': ['cvg', *BTN],
+                'action': {'kind': 'seat', 'label': 'Seat the composite graft', 'port': 'sternotomy', 'ids': ['cvg'], 'from': R(AN * 60)}, 'ct': ct(R(AC), 'coronal')}
+
+    def rt_buttons(pre, seq_, into='cvg'):
+        return {'id': f'{pre}-buttons', 'phase': 'Root', 'seq': seq_, 'title': 'Reimplant the coronary buttons',
+                'body': '<p>Cut a hole in the graft (cautery) opposite each ostium. Sew each button end-to-side with running <b>5-0 polypropylene</b>, often with a felt or pericardial strip on the outside. '
+                        '<b>Left main first</b> (lower, posterior). Place the <b>right</b> with the heart <b>filled</b> (release the vent briefly, or fill the root) so it is not too low, twisted or stretched.</p>'
+                        '<p>Test each suture line (cardioplegia down the graft) <b>before</b> the distal anastomosis: afterwards the back of these suture lines is hard to reach.</p>'
+                        + ev('coronary button problems (kinking, tension, bleeding) are the main technical causes of early death and ischaemia after root replacement in series; positioning with the heart filled is standard advice.'),
+                'view': root_view, 'show': ['aortic-annulus', into, *BTN_G, 'ostium-l', 'ostium-r'], 'hide': [*HEART_OFF, 'aorta', *CUSPS, *BTN], 'opacity': AV_FAINT,
+                'highlight': BTN_G, 'danger': ['ostium-l', 'ostium-r'], 'labels': [*BTN_G],
+                'action': {'kind': 'reveal', 'label': 'Sew on the buttons', 'port': 'sternotomy', 'ids': BTN_G},
+                'ask': ask('After a Bentall, the patient comes off bypass with inferior ST elevation and a failing RV. The left side looks fine. Most likely?',
+                           'The right coronary button is kinked or under tension', 'The right button, placed too low or with the heart empty, kinks when the heart fills. Go back on bypass and redo it (or bypass the RCA).',
+                           'Air in the left main', 'A paravalvular leak'),
+                'ct': ct(R(AC), 'coronal')}
+
+    def rt_distal(pre, seq_, into='cvg'):
+        return {'id': f'{pre}-distal', 'phase': 'Wean', 'seq': seq_, 'title': 'Distal anastomosis, de-air, check',
+                'body': '<p>Cut the graft to length and join it to the ascending aorta with running <b>4-0 polypropylene</b>, often with a felt strip. De-air through the root vent in the graft, release the clamp, and check <b>every suture line</b>, especially the backs of the buttons.</p>'
+                        '<p><b>TOE</b>: valve function, <b>regional wall motion</b> in the left and right coronary territories, no leak. Bleeding is the other big risk: keep haemostatic agents and blood ready.</p>'
+                        + ev('bleeding and coronary problems dominate early morbidity after root replacement in large series (Kirklin/Barratt-Boyes).'),
+                'view': clook(RD_, AN * 0.3 + V([0.2, 1.0, 0.1]), 220), 'show': [*CH, into, *BTN_G, 'root-distal', 'can-aortic'], 'hide': [*HEART_OFF, *CUSPS, *BTN], 'opacity': {**FAINT, 'aorta': 0.5},
+                'highlight': ['root-distal'], 'labels': ['root-distal', into],
+                'action': {'kind': 'suture', 'label': 'Distal anastomosis', 'port': 'sternotomy', 'path': [R(RD_ + (AE * np.cos(t) + V(np.cross(AN, AE)) * np.sin(t)) * (AR_ + 3.5)) for t in np.linspace(0, 2 * np.pi, 13)], 'normal': R(AN), 'axis': R(AE)},
+                'ct': ct(R(RD_), 'axial')}
+
+    bentall = [rt_anat('rb'), rt_decide('rb'), {**mv_sternotomy('rb', 2), 'id': 'rb-sternotomy'}, rt_cannulate('rb', 3), {**av_clamp('rb', 4), 'id': 'rb-clamp'},
+               rt_excise('rb', 5), rt_graft('rb', 6), rt_buttons('rb', 7), rt_distal('rb', 8), {**av_wean('rb', 9), 'show': [*CH, 'cvg', *BTN_G, *AV_CANS], 'hide': [*HEART_OFF, *CUSPS, *BTN]}]
+    procs['root-bentall'] = {'steps': bentall, 'appr': 'Bentall (composite valved graft)',
+                             'sq': seq(('Anatomy', 'other'), ('Decide', 'other'), ('Sternotomy', 'other'), ('Cannulate', 'artery'), ('Clamp', 'artery'), ('Excise', 'fissure'), ('Graft', 'bronchus'), ('Buttons', 'artery'), ('Distal', 'artery'), ('Wean', 'artery'))}
+    if ROSS:
+        PC_, PN_ = Lc('pa-root'), V(LM['pa-axis'])
+        ross_view = clook(PC_, PN_ * 0.3 + V([0.1, 1.0, 0.3]), 200)
+        ross = [rt_anat('rr', ross=True), rt_decide('rr', ross=True), {**mv_sternotomy('rr', 2), 'id': 'rr-sternotomy'}, rt_cannulate('rr', 3), {**av_clamp('rr', 4), 'id': 'rr-clamp'},
+                {**rt_excise('rr', 5, ross=True), 'title': 'Transect the aorta, excise the valve, take the buttons'},
+                {'id': 'rr-harvest', 'phase': 'Pulmonary root', 'seq': 6, 'title': 'Harvest the pulmonary autograft',
+                 'body': '<p>Transect the <b>PA trunk</b> just below its bifurcation and look at the pulmonary valve: it must be <b>tricuspid and competent</b>, or the Ross is abandoned. Open the <b>RVOT 3–5 mm below the valve</b> (a right-angle clamp through the valve marks the level).</p>'
+                         '<p>Free the root from the septum <b>posteriorly and to the left</b>, keeping the plane shallow: the <b>first septal perforator</b> runs just beneath, and the <b>left main</b> lies behind the root. Keep the muscle cuff thin but intact.</p>'
+                         + ev('injury to the first septal perforator (septal infarction, ventricular arrhythmia) is a recognised harvest complication; the EACTS 2025 consensus highlights preserving it.'),
+                 'view': ross_view, 'show': [*CH, 'pa-root', 'pa-harvest', 'septal-perforator', 'ostium-l'], 'hide': HEART_OFF, 'opacity': {**AV_FAINT, 'pa-trunk': 0.15, 'rv': 0.25},
+                 'highlight': ['pa-harvest'], 'danger': ['septal-perforator', 'ostium-l'], 'labels': ['pa-root', 'septal-perforator', 'ostium-l'],
+                 'action': {'kind': 'dissect', 'tool': 'hook', 'label': 'Harvest the autograft', 'port': 'sternotomy',
+                            'path': [R(PC_ + (V(np.cross(PN_, [0, 0, 1])) * np.cos(t) + V(np.cross(PN_, np.cross(PN_, [0, 0, 1]))) * np.sin(t)) * 14 - PN_ * 5) for t in np.linspace(0, 2 * np.pi, 7)]},
+                 'ask': ask('During harvest, dissection is carried deep into the muscle behind the pulmonary root. What is at risk?',
+                            'The first septal perforator of the LAD', 'It runs just beneath the posterior RVOT; dividing it gives a septal infarct. Stay shallow and close to the root.',
+                            'The right coronary artery', 'The AV node'),
+                 'ct': ct(R(PC_), 'axial')},
+                {'id': 'rr-implant', 'phase': 'Root', 'seq': 7, 'title': 'Implant the autograft as a root; stabilise it',
+                 'body': '<p>Sew the autograft to the aortic annulus with <b>interrupted</b> sutures (or a running suture with a strip), <b>in the same plane</b> as the annulus so the cusps do not distort. The pulmonary sinuses are thinner than aortic ones.</p>'
+                         '<p>To limit later <b>dilatation</b> (the main long-term failure mode): reduce and fix the annulus if it is large, keep the STJ at the right size, and consider <b>reinforcing</b> the autograft (inclusion inside a polyester graft, or an external wrap), especially with pre-existing AR or a big annulus.</p>'
+                         + ev('the EACTS 2025 consensus recommends annular assessment and stabilisation, and considering autograft reinforcement in higher-risk roots. The full-root technique is the most widely used; the best form of reinforcement is not settled.'),
+                 'view': root_view, 'show': ['aortic-annulus', 'autograft-ao', *BTN, 'his-bundle'], 'hide': [*HEART_OFF, 'aorta', 'pa-root', *CUSPS], 'opacity': AV_FAINT,
+                 'highlight': ['autograft-ao'], 'labels': ['autograft-ao', *BTN],
+                 'action': {'kind': 'seat', 'label': 'Move the autograft to the aortic position', 'port': 'sternotomy', 'ids': ['autograft-ao'], 'from': R(PC_ - AC)},
+                 'ct': ct(R(AC), 'coronal')},
+                {**rt_buttons('rr', 8, into='autograft-ao'), 'body': rt_buttons('rr', 8)['body'].replace('Cut a hole in the graft (cautery) opposite each ostium.', 'Open the autograft\'s facing sinuses opposite each ostium.')},
+                {**rt_distal('rr', 9, into='autograft-ao'), 'title': 'Join the autograft to the ascending aorta'},
+                {'id': 'rr-homograft', 'phase': 'Pulmonary root', 'seq': 10, 'title': 'Rebuild the RVOT with a pulmonary homograft',
+                 'body': '<p>Sew a <b>pulmonary homograft</b> (or another conduit if none is available) to the PA bifurcation and to the RVOT with running 4-0 polypropylene, often on the beating heart after the clamp is off. It lies in the low-pressure circuit, so it lasts longer than a homograft would in the aortic position.</p>'
+                         + ev('the homograft in the pulmonary position is the second valve at risk after a Ross; in long-term series its degeneration, rather than the autograft\'s, is a common reason for reintervention, often transcatheter.'),
+                 'view': ross_view, 'show': [*CH, 'autograft-ao', 'homograft'], 'hide': [*HEART_OFF, 'pa-root'], 'opacity': {**FAINT, 'pa-trunk': 0.15},
+                 'highlight': ['homograft'], 'labels': ['homograft', 'autograft-ao'],
+                 'action': {'kind': 'seat', 'label': 'Sew in the homograft', 'port': 'sternotomy', 'ids': ['homograft'], 'from': R(PN_ * 40 + V([0, 30, 0]))},
+                 'ct': ct(R(PC_), 'axial')},
+                {**av_wean('rr', 11), 'title': 'Wean; control blood pressure', 'show': [*CH, 'autograft-ao', 'homograft', *BTN_G, *AV_CANS], 'hide': [*HEART_OFF, *CUSPS, *BTN, 'pa-root'],
+                 'body': '<p>TOE: autograft competence (no AR), RVOT gradient across the homograft, regional wall motion (coronary buttons, septal perforator). '
+                         'Afterwards, <b>strict blood-pressure control</b> in the first months while the autograft adapts to systemic pressure, then lifelong surveillance of the autograft and the homograft.</p>'
+                         + ev('blood-pressure control after the Ross is recommended in expert consensus (EACTS 2025) to limit early autograft dilatation; its exact targets have not been tested in trials.')}]
+        procs['root-ross'] = {'steps': ross, 'appr': 'Ross (pulmonary autograft)',
+                              'sq': seq(('Anatomy', 'other'), ('Decide', 'other'), ('Sternotomy', 'other'), ('Cannulate', 'artery'), ('Clamp', 'artery'), ('Excise', 'fissure'), ('Harvest', 'vein'), ('Implant', 'bronchus'), ('Buttons', 'artery'), ('Distal', 'artery'), ('Homograft', 'vein'), ('Wean', 'artery'))}
+    for key in [k for k in ('root-bentall', 'root-ross') if k in procs and 'appr' in procs[k]]:
+        steps_, appr, sq = procs[key]['steps'], procs[key]['appr'], procs[key]['sq']
+        for s in steps_:
+            named = set(s.get('highlight', [])) | set(s.get('danger', [])) | set(s.get('labels', [])) | set(s.get('show', []))
+            off_groups = {'arteries', 'veins', 'airway', 'lul-intra', 'lll-intra', 'rul-intra', 'nodes', 'nerves', 'pleura', 'segments', 'trauma', 'muscles', 'landmarks'}
+            s['hide'] = [*s.get('hide', []), *[q['id'] for q in atlas['structures'] if q['group'] in off_groups and q['id'] not in named],
+                         *[i for i in ('esophagus', 'thymus', 'thyroid') if has(i) and i not in named], *(['sternum'] if s.get('seq', 0) >= 3 else [])]
+            if s['phase'] in ('Root', 'Anatomy', 'Pulmonary root'):
+                s['hide'] = [*s['hide'], 'svc', 'ra', 'la', 'myocardium', *[i for i in (*AV_CANS, 'can-svc', 'can-ivc', 'can-ostial') if i not in named], *[f'vert-t{i}' for i in range(1, 13)]]
+                s['opacity'] = {**s.get('opacity', {}), 'lv': 0.12, 'lvot': 0.2}
+            if s['phase'] == 'Root': s['hide'] = [*s['hide'], 'pa-trunk', 'rv']
+            s['opacity'] = {**{f'vert-t{i}': 0.25 for i in range(2, 11)}, **s.get('opacity', {})}
+            for kk in ('highlight', 'danger', 'labels', 'show'):
+                if kk in s: s[kk] = [i for i in s[kk] if has(i) or i == 'skin']
+        procs[key] = {'id': key, 'op': 'root', 'opName': 'Aortic root replacement', 'side': 'both', 'name': 'Aortic root replacement', 'approach': appr,
+                      'summary': 'Thresholds, choice of root operation, excision with coronary buttons, composite graft or pulmonary autograft, button reimplantation, distal anastomosis, homograft.',
+                      'ports': [], 'steps': steps_, 'sources': RTSRC, 'group': 'Cardiac', 'sequence': sq}
 # operations appear in the menu in this order
-ORDER = ['position', 'thoracotomy-l', 'thoracotomy-r', 'vats-ports-l', 'vats-ports-r', 'lul', 'lll', 'rul', 'rml', 'rll', 'pnl', 'pnr', 'seg-lingula', 'seg-lul-updiv', 'seg-s6', 'trachea', 'thymectomy', 'oesophagectomy', 'duct', 'empyema', 'rt', 'clamshell', 'cardio', 'tract', 'hilar', 'mvr', 'avr', 'tricuspid']
+ORDER = ['position', 'thoracotomy-l', 'thoracotomy-r', 'vats-ports-l', 'vats-ports-r', 'lul', 'lll', 'rul', 'rml', 'rll', 'pnl', 'pnr', 'seg-lingula', 'seg-lul-updiv', 'seg-s6', 'trachea', 'thymectomy', 'oesophagectomy', 'duct', 'empyema', 'rt', 'clamshell', 'cardio', 'tract', 'hilar', 'mvr', 'avr', 'root', 'tricuspid']
 procs = dict(sorted(procs.items(), key=lambda kv: (ORDER.index(kv[1]['op']), list(procs).index(kv[0]))))
 for v in procs.values():
     v['group'] = v.get('group') or ('Pneumonectomy' if v['op'].startswith('pn') else 'Segmentectomy' if v['op'].startswith('seg-') else 'Lobectomy')

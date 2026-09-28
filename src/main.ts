@@ -157,13 +157,14 @@ function buildCTPanel(): void {
   for (const [k, w] of Object.entries(WINDOWS)) wins.append(h('button', { 'data-window': k, onclick: () => { state.window = k; render(); } }, w.label));
   const labelsBtn = h('button', { class: 'chip-toggle', id: 'all-labels', onclick: () => { state.showAllLabels = !state.showAllLabels; render(); } }, 'All labels');
   const planeBtn = h('button', { class: 'chip-toggle on', id: 'plane3d', onclick: () => { planeIn3d = !planeIn3d; render(); } }, 'Slice in 3D');
+  const hdBtn = h('button', { class: 'chip-toggle', id: 'hd3d', title: 'Realistic lighting: ambient occlusion and soft shadows', onclick: () => { scene3d.setHD(!scene3d.hd); render(); } }, 'HD');
   const main = h('div', { class: 'ct-main', id: 'ct-main' },
     h('span', { class: 'edge t', id: 'edge-t' }), h('span', { class: 'edge r', id: 'edge-r' }), h('span', { class: 'edge b', id: 'edge-b' }), h('span', { class: 'edge l', id: 'edge-l' }),
     h('div', { class: 'ct-hud' }, h('span', { id: 'ct-src' }), h('span', { 'data-readout': 'main', id: 'ct-readout' }), h('span', { id: 'ct-under', class: 'under' })),
     h('div', { class: 'drop-hint', id: 'drop-hint' }, 'Drop a DICOM folder or a .nii file'),
   );
   const minis = h('div', { class: 'ct-minis', id: 'ct-minis' });
-  host.append(h('div', { class: 'ct-bar' }, tabs, wins), main, h('div', { class: 'ct-bar lower' }, labelsBtn, planeBtn, h('span', { class: 'hint' }, 'Scroll = slice · click = move crosshair')), minis);
+  host.append(h('div', { class: 'ct-bar' }, tabs, wins), main, h('div', { class: 'ct-bar lower' }, labelsBtn, planeBtn, hdBtn, h('span', { class: 'hint' }, 'Scroll = slice · click = move crosshair')), minis);
   mountViews();
 }
 
@@ -367,6 +368,7 @@ function render(): void {
   $('#approach').hidden = state.mode !== 'procedure';
   $('#all-labels').classList.toggle('on', state.showAllLabels);
   $('#plane3d').classList.toggle('on', planeIn3d);
+  $('#hd3d').classList.toggle('on', scene3d?.hd ?? true);
   $('#ct-src').textContent = state.source === 'upload' && upVol ? upVol.name : 'Reference CTA';
   $('#ct').classList.toggle('aligning', state.aligning && state.source === 'upload');
   renderCT();

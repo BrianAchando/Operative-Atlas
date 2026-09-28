@@ -3,6 +3,10 @@ import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 import { RoomEnvironment } from 'three/addons/environments/RoomEnvironment.js';
 import { MeshoptDecoder } from 'three/addons/libs/meshopt_decoder.module.js';
+import { EffectComposer } from 'three/addons/postprocessing/EffectComposer.js';
+import { OutputPass } from 'three/addons/postprocessing/OutputPass.js';
+import { N8AOPass } from 'n8ao';
+import { tissueOf, applyTissue, mainAxis } from './tissue.ts';
 import type { Vec3 } from './ctview.ts';
 import { stapler, peanut, hook, tie, knotPusher, stapleRun, ribSpreader, vascularClamp, pledgetStitch, needleDriver, sawBlade, RELOAD } from './instruments.ts';
 import type { Action } from './procedure.ts';
@@ -27,8 +31,8 @@ interface Item { meta: StructureMeta; mesh: THREE.Mesh; mat: THREE.MeshPhysicalM
  * speckles, pericardial fat pale yellow, adult hilar nodes anthracotic grey-black).
  */
 const REAL: Record<string, string> = {
-  arteries: '#3b52a8', 'lul-intra-a': '#3b52a8', veins: '#8c1f3c', airway: '#e6dcc6', lungs: '#dc9d92', nerves: '#efe1a8', nodes: '#4d4845',
-  aorta: '#b8382e', bct: '#b8382e', lcca: '#b8382e', lsca: '#b8382e', svc: '#5e6a92', lbcv: '#5e6a92', heart: '#d6b577', laa: '#b0645a',
+  arteries: '#4f5592', 'lul-intra-a': '#4f5592', veins: '#86293b', airway: '#e8ddd0', lungs: '#dc9d92', nerves: '#efe1a8', nodes: '#4d4845',
+  aorta: '#d48b76', bct: '#d48b76', lcca: '#d48b76', lsca: '#d48b76', svc: '#5b5d8c', lbcv: '#5b5d8c', heart: '#dcbd76', laa: '#a8564d',
   esophagus: '#d49a88', fissure: '#f1dfa0', skin: '#d9b8a4', 'lig-art': '#d8c9ae', bone: '#e9dec6',
 };
 function realColour(m: StructureMeta): string {
@@ -75,6 +79,18 @@ function hullMaterial(): THREE.MeshBasicMaterial {
   return m;
 }
 
+/** HD blends in linear light, which makes a faint structure look denser; this exponent keeps opacities as in the plain view */
+const alphaGamma = { value: 1.0 };
+function withAlphaGamma(mat: THREE.Material): void {
+  const prev = mat.onBeforeCompile;
+  mat.onBeforeCompile = (sh, r) => {
+    prev?.call(mat, sh, r);
+    sh.uniforms['uAG'] = alphaGamma;
+    sh.fragmentShader = sh.fragmentShader.replace('#include <common>', '#include <common>\nuniform float uAG;')
+      .replace('#include <opaque_fragment>', 'diffuseColor.a = pow(clamp(diffuseColor.a, 0.0, 1.0), uAG);\n#include <opaque_fragment>');
+  };
+}
+
 const ease = (t: number) => (t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2);
 
 /**
@@ -83,6 +99,12 @@ const ease = (t: number) => (t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 
  */
 export class Scene3D {
   readonly renderer: THREE.WebGLRenderer;
+  private composer!: EffectComposer;
+  private ao!: N8AOPass;
+  private key!: THREE.DirectionalLight;
+  /** HD: ambient occlusion and shadows (off by default on phones and tablets) */
+  hd = true;
+  setHD(on: boolean): void { this.hd = on; alphaGamma.value = on ? 1.9 : 1.0; this.renderer.shadowMap.enabled = on; this.key.castShadow = on; for (const it of this.items.values()) it.mat.needsUpdate = true; this.invalidate(); }
   readonly scene = new THREE.Scene();
   readonly camera = new THREE.PerspectiveCamera(40, 1, 1, 5000);
   readonly controls: OrbitControls;
@@ -111,7 +133,8 @@ export class Scene3D {
     this.renderer = new THREE.WebGLRenderer({ antialias: true, alpha: false });
     this.renderer.setPixelRatio(Math.min(2, window.devicePixelRatio));
     this.renderer.localClippingEnabled = true;
-    this.renderer.toneMapping = THREE.ACESFilmicToneMapping; this.renderer.toneMappingExposure = 0.95;
+    this.renderer.toneMapping = THREE.NeutralToneMapping; this.renderer.toneMappingExposure = 1.0;
+    this.renderer.shadowMap.enabled = true; this.renderer.shadowMap.type = THREE.PCFSoftShadowMap;
     this.renderer.setClearColor(0x0b0f13);
     host.append(this.renderer.domElement);
     this.labelsHost = document.createElement('div'); this.labelsHost.className = 'labels3d'; host.append(this.labelsHost);
@@ -120,11 +143,20 @@ export class Scene3D {
     this.controls.enableDamping = true; this.controls.dampingFactor = 0.12; this.controls.zoomToCursor = true;
     this.controls.addEventListener('change', () => this.invalidate(300));
     const hemi = new THREE.HemisphereLight(0xf3f6ff, 0x30343a, 0.8); hemi.position.set(0, 0, 1); this.scene.add(hemi);
-    const key = new THREE.DirectionalLight(0xffffff, 1.5); key.position.set(-300, 400, 500); this.scene.add(key);
+    // the operating light: warm, from above and in front, casting soft shadows into the field
+    const key = new THREE.DirectionalLight(0xfff4e6, 1.7); key.position.set(-220, 420, 520); this.scene.add(key);
+    key.castShadow = true; key.shadow.mapSize.set(2048, 2048); key.shadow.bias = -0.0004; key.shadow.normalBias = 0.8; key.shadow.radius = 4;
+    const sc = key.shadow.camera; sc.left = -320; sc.right = 320; sc.top = 320; sc.bottom = -320; sc.near = 10; sc.far = 1600; this.key = key;
     const rim = new THREE.DirectionalLight(0xbfd8ff, 0.6); rim.position.set(300, -300, 100); this.scene.add(rim);
     // head lamp, like a thoracoscope's light: follows the camera
     const lamp = new THREE.PointLight(0xfff1e0, 1.1, 0, 0); this.camera.add(lamp); this.scene.add(this.camera);
     const pm = new THREE.PMREMGenerator(this.renderer); this.scene.environment = pm.fromScene(new RoomEnvironment(), 0.04).texture; pm.dispose();
+    // ambient occlusion: soft contact shadow where structures meet (a vessel on the pericardium, the hilum in its fat)
+    this.composer = new EffectComposer(this.renderer, new THREE.WebGLRenderTarget(1, 1, { type: THREE.HalfFloatType, samples: 4 }));
+    this.ao = new N8AOPass(this.scene, this.camera, 1, 1);
+    Object.assign(this.ao.configuration, { aoRadius: 9, distanceFalloff: 1.2, intensity: 2.6, aoSamples: 16, denoiseSamples: 8, denoiseRadius: 10, halfRes: true, transparencyAware: false, gammaCorrection: false, color: new THREE.Color(0x1a0806) });
+    this.composer.addPass(this.ao); this.composer.addPass(new OutputPass());
+    this.hd = !window.matchMedia('(pointer: coarse)').matches; this.renderer.shadowMap.enabled = this.hd; key.castShadow = this.hd; alphaGamma.value = this.hd ? 1.9 : 1.0;
     const g = new THREE.BufferGeometry();
     g.setAttribute('position', new THREE.Float32BufferAttribute(new Array(12).fill(0), 3));
     g.setAttribute('uv', new THREE.Float32BufferAttribute([0, 1, 1, 1, 0, 0, 1, 0], 2));
@@ -145,7 +177,8 @@ export class Scene3D {
 
   resize(): void {
     const w = this.host.clientWidth || 1, h = this.host.clientHeight || 1;
-    this.renderer.setSize(w, h, false); this.camera.aspect = w / h; this.camera.updateProjectionMatrix(); this.invalidate();
+    this.renderer.setSize(w, h, false); this.camera.aspect = w / h; this.camera.updateProjectionMatrix();
+    const pr = this.renderer.getPixelRatio(); this.composer?.setSize(w, h); this.composer?.setPixelRatio(pr); this.invalidate();
   }
 
   async load(base: string, metas: StructureMeta[], onProgress: (f: number) => void): Promise<void> {
@@ -174,11 +207,16 @@ export class Scene3D {
       const mat = new THREE.MeshPhysicalMaterial({ color: realColour(m), roughness: m.group === 'lungs' ? 0.55 : 0.38, metalness: 0.0, clearcoat: wet ? 0.4 : 0, clearcoatRoughness: 0.25,
         transparent: m.opacity < 1, opacity: m.opacity, depthWrite: m.opacity >= 0.6, side: THREE.DoubleSide, envMapIntensity: m.group === 'lungs' ? 0.08 : 0.28 });
       if (m.schematic) mat.roughness = 0.55;
+      const lung = m.group === 'lungs' || m.group === 'segments';
+      const rim = m.group === 'lungs' || m.id === 'heart' || m.id === 'skin';
+      if (!lung) applyTissue(mat, tissueOf(m), mainAxis(geo), rim ? '-rim' : '');
       if (m.group === 'lungs' && m.id !== 'fissure') lungShader(mat);
       if (m.group === 'lungs' || m.id === 'heart' || m.id === 'skin') rimShader(mat);
+      withAlphaGamma(mat);
       // lungs and skin: front faces only, so a camera inside them (a retracted lobe, the chest wall) sees through
       if (m.group === 'lungs' || m.id === 'skin') mat.side = THREE.FrontSide;
       const mesh = new THREE.Mesh(geo, mat); mesh.name = m.id; mesh.userData['id'] = m.id; mesh.renderOrder = m.opacity < 1 ? 5 : 0;
+      const solid = tissueOf(m) !== 'plain' && m.id !== 'skin' && !lung; mesh.castShadow = solid; mesh.receiveShadow = solid || lung;
       mesh.visible = m.visible !== false;
       this.scene.add(mesh);
       this.items.set(m.id, { meta: m, mesh, mat, home: new THREE.Vector3() });
@@ -231,7 +269,7 @@ export class Scene3D {
     const keep = new THREE.Plane().setFromNormalAndCoplanarPoint(n.clone().negate(), p.clone().addScaledVector(n, -gap / 2));
     const go = new THREE.Plane().setFromNormalAndCoplanarPoint(n, p.clone().addScaledVector(n, gap / 2));
     it.mat.clippingPlanes = [keep]; it.mat.needsUpdate = true; it.keepPlane = keep; it.keepPlane = keep;
-    const dm = it.mat.clone(); dm.clippingPlanes = [go.clone()];
+    const dm = it.mat.clone(); dm.clippingPlanes = [go.clone()]; dm.onBeforeCompile = it.mat.onBeforeCompile; dm.customProgramCacheKey = it.mat.customProgramCacheKey;
     const distal = new THREE.Mesh(it.mesh.geometry, dm); distal.userData['id'] = id; distal.position.copy(it.mesh.position);
     this.scene.add(distal); it.distal = distal; it.distalPlane = go;
     if (style === 'staple') {
@@ -850,7 +888,7 @@ export class Scene3D {
       if (it.distal) (it.distal.material as THREE.MeshPhysicalMaterial).emissive.setRGB(em, em, em);
     }
     this.syncPlane();
-    this.renderer.render(this.scene, this.camera);
+    if (this.hd) this.composer.render(); else this.renderer.render(this.scene, this.camera);
     this.placeLabels();
   }
 

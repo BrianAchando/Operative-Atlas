@@ -961,6 +961,7 @@ for k, v in TRLM.items():
 for k, v in NKDIR.items(): landmarks[k] = [round(float(x), 3) for x in v]
 for k, v in CDDIR.items(): landmarks[k] = [round(float(x), 3) for x in v]
 if CDSC: landmarks['mv-dims'] = [round(CDSC['mv-radius'], 1), 0.0, 0.0]
+if 'tv-radius' in CDSC: landmarks['tv-dims'] = [round(CDSC['tv-radius'], 1), 0.0, 0.0]
 if 'av-radius' in CDSC: landmarks['av-dims'] = [round(CDSC['av-radius'], 1), 0.0, 0.0]
 landmarks['trach-dims'] = [round(NKSC.get('trach-radius', 9.0), 1), round(NKSC.get('stenosis-length', 20.0), 1), 0.0]
 # the left hilum as a pivot (hilar clamp and twist): the centre of its four staple lines, and the axis out into the lung
