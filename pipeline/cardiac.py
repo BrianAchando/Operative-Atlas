@@ -1,4 +1,4 @@
-"""The heart for the cardiac module: mitral valve replacement and its accesses.
+"""The heart for the cardiac module: mitral and aortic valve replacement and their accesses.
 
 From the CT (TotalSegmentator licensed tasks, run by segment_heart.py): the four chambers and the myocardium
 (heartchambers_highres), the LV outflow tract and the three aortic cusps (aortic_sinuses), the coronaries.
@@ -193,5 +193,170 @@ def build(ctx):
         LM['mics'] = pts[2]
         cl = ctx['port'](3, 0, 'right'); LM['chitwood'] = cl
         emit_mesh('port-chitwood', 'Transthoracic (Chitwood) clamp site, 3rd space', 'ports-vats', '#46c2c7', sphere(W(cl), 3.5), visible=False)
+    # ================================================================ the aortic root, for aortic valve replacement
+    if (work / 'sinuses.nii.gz').exists():
+        aortic_root(ctx, work, mm, LM, DIRS, SC, ra_mm, la_mm, lv_mm)
     print(f'  annulus radius {R:.1f} mm; prosthesis ~{2 * rp:.0f} mm')
     return LM, DIRS, SC
+
+
+def aortic_root(ctx, work, mm, LM, DIRS, SC, ra_mm, la_mm, lv_mm):
+    """The aortic root from the sinus segmentation: the scalloped (crown) annulus, the three cusps (schematic, calcified),
+    commissures, coronary ostia, the His bundle under the right-non-coronary commissure, the aortotomy, a stented
+    bioprosthesis, and the accesses for AVR (upper hemisternotomy, right anterior mini-thoracotomy)."""
+    emit_mesh, W, tube, sphere = ctx['emit_mesh'], ctx['W'], ctx['tube'], ctx['sphere']
+    S = np.asanyarray(nib.as_closest_canonical(nib.load(str(work / 'sinuses.nii.gz'))).dataobj)
+    lvot = S == 1; sin = {k: mm(S == lab) for k, lab in (('r', 2), ('l', 3), ('n', 4)) if (S == lab).sum() > 30}
+    if len(sin) < 3 or lvot.sum() < 30: print('  aortic root: sinuses incomplete; skipped'); return
+    allc = np.vstack(list(sin.values()))
+    iface = mm(lvot & ndimage.binary_dilation(S >= 2, iterations=2))
+    if len(iface) < 20: iface = mm(lvot)[np.argsort(-(mm(lvot) @ (allc.mean(0) - mm(lvot).mean(0))))[:200]]
+    c = iface.mean(0); _, _, vt = np.linalg.svd(iface - c, full_matrices=False)
+    n = vt[2] * np.sign(np.dot(vt[2], allc.mean(0) - c))              # the root axis, from the LV into the aorta
+    # the basal ring: the lowest points of the three sinuses define it better than the interface alone
+    nadir = {k: p[np.argmin((p - c) @ n)] for k, p in sin.items()}
+    c = c + n * float(np.mean([(nadir[k] - c) @ n for k in sin]))
+    e1 = nadir['r'] - c; e1 -= n * np.dot(e1, n); e1 /= np.linalg.norm(e1); e2 = np.cross(n, e1)
+    ang = lambda p: float(np.arctan2((p - c) @ e2, (p - c) @ e1))
+    ctr = {k: np.arctan2(np.mean(np.sin([ang(q) for q in p[::5]])), np.mean(np.cos([ang(q) for q in p[::5]]))) for k, p in sin.items()}
+    h = {k: (p - c) @ n for k, p in sin.items()}; hs = float(np.percentile(np.concatenate(list(h.values())), 96))   # sinotubular junction
+    rad = lambda p: np.linalg.norm((p - c) - np.outer((p - c) @ n, n), axis=1)
+    R = float(np.clip(np.percentile(rad(iface), 95), 9.5, 14.0))
+    hs = float(np.clip(hs, 17, 26)); hc = hs * 0.85                         # commissures just below the STJ
+    at = lambda t, r, z: c + e1 * np.cos(t) * r + e2 * np.sin(t) * r + n * z
+    def mid(a, b):
+        d = (b - a + np.pi) % (2 * np.pi) - np.pi; return a + d / 2
+    order = sorted(sin, key=lambda k: ctr[k] % (2 * np.pi))
+    pairs = [(order[i], order[(i + 1) % 3]) for i in range(3)]
+    com = {frozenset(p): mid(ctr[p[0]], ctr[p[1]]) for p in pairs}
+    # the crown: each cusp's hinge runs from one commissure (high) down to its nadir (low) and back
+    crown, cusp_rows = [], {}
+    for k in order:
+        a0 = [com[f] for f in com if k in f]
+        t0, t1 = sorted(a0, key=lambda t: ((t - ctr[k] + np.pi) % (2 * np.pi)) - np.pi)
+        d0 = ((t0 - ctr[k] + np.pi) % (2 * np.pi)) - np.pi; d1 = ((t1 - ctr[k] + np.pi) % (2 * np.pi)) - np.pi
+        ts = ctr[k] + np.linspace(d0, d1, 17)
+        s = np.linspace(-1, 1, 17); z = hc * s ** 2; r_ = R * (1 + 0.18 * s ** 2)     # wider toward the commissures
+        pts = [at(t, rr, zz) for t, rr, zz in zip(ts, r_, z)]; crown += pts[:-1]; cusp_rows[k] = (ts, r_, z)
+    crown = np.array(crown)
+    emit_mesh('aortic-annulus', 'Aortic annulus (crown-shaped hinge line)', 'cardiac', '#e9dec6', tube([W(p) for p in [*crown, crown[0]]], 1.3), visible=False,
+              note='The cusps hinge on a three-pronged crown: low at each nadir (the virtual basal ring), high at the commissures just below the sinotubular junction. Sutures follow this line.')
+    stj = np.array([at(t, R * 1.1, hs) for t in np.linspace(-np.pi, np.pi, 40)])
+    emit_mesh('stj', 'Sinotubular junction', 'cardiac', '#b9c2c9', tube([W(p) for p in [*stj, stj[0]]], 0.9), visible=False)
+    # the cusps, closed: each a curved sheet from its hinge to the centre, bellied toward the ventricle
+    nm = {'r': 'Right coronary cusp (leaflet)', 'l': 'Left coronary cusp (leaflet)', 'n': 'Non-coronary cusp (leaflet)'}
+    calc = []
+    rng = np.random.default_rng(3)
+    for k in order:
+        ts, r_, z = cusp_rows[k]; Vv, F = [], []; rows = 7
+        for t, rr, zz in zip(ts, r_, z):
+            a = at(t, rr, zz); b = c + n * (hc * 0.55)
+            for q in range(rows):
+                s_ = q / (rows - 1); Vv.append(a + (b - a) * s_ - n * 3.5 * np.sin(np.pi * s_) * (1 - abs(t - ctr[k]) / np.pi))
+        for j in range(len(ts) - 1):
+            for q in range(rows - 1):
+                a_, b_ = j * rows + q, (j + 1) * rows + q; F += [[a_, b_, b_ + 1], [a_, b_ + 1, a_ + 1]]
+        m = trimesh.Trimesh(np.array(Vv) - ctx['CARINA'], np.array(F), process=True)
+        emit_mesh(f'av-cusp-{k}', nm[k], 'cardiac', '#e3d6bf', m, visible=False, note='Schematic, thickened and calcified as in degenerative or rheumatic stenosis.')
+        Vv = np.array(Vv)
+        for _ in range(4):
+            j = rng.integers(3, len(ts) - 3); q = rng.integers(1, rows - 2)
+            calc.append(sphere(W(Vv[j * rows + q] - n * 1.0), float(rng.uniform(1.6, 2.8))))
+        calc.append(sphere(W(at(ctr[k], R * 0.95, 1.5)), 2.4))                    # at the nadir, into the annulus
+    emit_mesh('av-calcium', 'Calcium on the cusps and annulus', 'cardiac', '#f4f0e0', trimesh.util.concatenate(calc), visible=False,
+              note='Schematic: nodular calcium on the cusps, extending into the annulus at the nadirs. Debride it all, catching every fragment.')
+    # coronary ostia: where the segmented coronaries leave the left and right sinuses, else high in the sinus wall
+    C = np.asanyarray(nib.as_closest_canonical(nib.load(str(work / 'coronary.nii.gz'))).dataobj) > 0 if (work / 'coronary.nii.gz').exists() else None
+    cmm = mm(C) if C is not None and C.sum() > 50 else np.zeros((0, 3))
+    for k in ('r', 'l'):
+        guess = at(ctr[k], R * 1.28, hs * 0.62)
+        p = guess
+        if len(cmm):
+            d = np.linalg.norm(cmm - guess, axis=1); j = np.argmin(d)
+            if d[j] < 14: p = cmm[j]
+        LM[f'ostium-{k}'] = p
+        emit_mesh(f'ostium-{k}', 'Left main coronary ostium' if k == 'l' else 'Right coronary ostium', 'cardiac', '#d0433a',
+                  trimesh.util.concatenate([sphere(W(p), 2.6), tube([W(p), W(p + (p - c - n * np.dot(p - c, n)) / np.linalg.norm(p - c - n * np.dot(p - c, n)) * 14)], 1.6)]), visible=False,
+                  note='About 1-1.5 cm above the annulus in its sinus. Keep prosthesis posts and pledgets clear of it, and look into it before closing.')
+    # the His bundle: in the membranous septum under the right-non-coronary commissure
+    rn = com[frozenset(('r', 'n'))]; his = at(rn, R * 0.95, -4.0)
+    emit_mesh('his-bundle', 'Membranous septum and His bundle', 'cardiac', '#f2d24b', sphere(W(his), 3.6), visible=False,
+              note='Below the commissure between the right and non-coronary cusps. Deep bites or aggressive debridement here cause complete heart block.')
+    LM['his'] = his
+    ln = com[frozenset(('l', 'n'))]; LM['aml-curtain'] = at(ln, R, -5.0)
+    # the aortotomy: oblique (hockey-stick), 1-1.5 cm above the right coronary ostium, curving down into the non-coronary sinus
+    ao = ctx['aorta_mm']; z_top = hs + 16
+    def ao_r(z):
+        s = ao[np.abs((ao - c) @ n - z) < 2.5]
+        return float(np.median(rad(s))) if len(s) > 20 else R * 1.3
+    ra_ = ao_r(z_top); tR, tN = ctr['r'], ctr['n']
+    d_ = ((tN - tR + np.pi) % (2 * np.pi)) - np.pi
+    leg1 = [at(tR - 0.9 * np.sign(d_), ra_ + 1.5, z_top + 3), at(tR, ra_ + 1.5, z_top), at(tR + d_ * 0.5, ra_ + 1.5, z_top - 3)]
+    leg2 = [at(tR + d_ * (0.5 + 0.5 * s), R * 1.3 + (ra_ - R * 1.3) * (1 - s) + 1.5, z_top - 3 - (z_top - 3 - hs * 0.45) * s) for s in np.linspace(0.2, 1, 5)]
+    line = np.array([*leg1, *leg2])
+    emit_mesh('aortotomy', 'Aortotomy (oblique, into the non-coronary sinus)', 'cardiac', '#d0433a', tube([W(p) for p in line], 1.4), visible=False,
+              note='Oblique ("hockey-stick"): across the front of the aorta 1-1.5 cm above the right coronary, then down into the non-coronary sinus toward its nadir. Stay above the right coronary ostium.')
+    for i, q in enumerate(line): LM[f'aot-{i}'] = q
+    LM['aortotomy'] = line[2]; LM['av-centre'] = c; DIRS['av-axis'] = n; DIRS['av-e1'] = e1; SC['av-radius'] = R
+    # a stented bioprosthesis: sewing ring, three posts aligned with the native commissures, three leaflets
+    rp = float(np.clip(R * 0.95, 9.5, 13.5)); base = c + n * 1.5; post_h = hs * 0.8
+    parts = []
+    ring = trimesh.creation.torus(major_radius=rp + 1.3, minor_radius=1.8, major_sections=48, minor_sections=10)
+    T = trimesh.geometry.align_vectors([0, 0, 1], n); T[:3, 3] = W(base); ring.apply_transform(T); parts.append(ring)
+    tcs = [com[frozenset(p)] for p in pairs]
+    for t in tcs:
+        parts.append(tube([W(base + e1 * np.cos(t) * rp + e2 * np.sin(t) * rp), W(base + e1 * np.cos(t) * rp * 0.93 + e2 * np.sin(t) * rp * 0.93 + n * post_h)], 1.1, seg=8))
+    for i in range(3):
+        t0, t1 = tcs[i], tcs[(i + 1) % 3]; dd = ((t1 - t0) % (2 * np.pi)); Vv, F = [], []
+        ts = t0 + np.linspace(0, dd, 13); rows = 6
+        for t in ts:
+            s = (t - t0) / dd; zz = post_h * (1 - np.sin(np.pi * s)) * 0.95 + 1.0
+            a = base + e1 * np.cos(t) * rp * 0.95 + e2 * np.sin(t) * rp * 0.95 + n * zz; b = base + n * post_h * 0.7
+            for q in range(rows):
+                u_ = q / (rows - 1); Vv.append(a + (b - a) * u_ - n * 2.0 * np.sin(np.pi * u_))
+        for j in range(len(ts) - 1):
+            for q in range(rows - 1):
+                a_, b_ = j * rows + q, (j + 1) * rows + q; F += [[a_, b_, b_ + 1], [a_, b_ + 1, a_ + 1]]
+        parts.append(trimesh.Trimesh(np.array(Vv) - ctx['CARINA'], np.array(F), process=True))
+    emit_mesh('av-prosthesis', f'Stented bioprosthesis (~{round(2 * rp)} mm)', 'cardiac', '#d9dcc8', trimesh.util.concatenate(parts), visible=False,
+              note='Schematic: sewing ring on the annulus, three posts at the native commissures so none faces a coronary ostium.')
+    # cannulas for AVR: two-stage venous through the right atrial appendage, LV vent through the right superior pulmonary vein, ostial cardioplegia
+    ra_top = ra_mm[np.argmax(ra_mm @ (SUP * 0.6 + ANT * 0.8))]; ra_low = LM['can-ivc']
+    emit_mesh('can-2stage', 'Two-stage venous cannula (RA appendage to IVC)', 'cardiac', CANNULA,
+              tube([W(p) for p in [ra_low - SUP * 20, ra_low, (ra_top + ra_low) / 2 + RIGHT * 4, ra_top, ra_top + ANT * 40 + SUP * 25, ra_top + ANT * 90 + SUP * 40]], 4.2), opacity=0.9, visible=False,
+              note='Schematic: through a purse-string in the right atrial appendage, the tip in the IVC, the side holes in the atrium.')
+    rspv = la_mm[np.argmax(la_mm @ (RIGHT * 1.0 + SUP * 0.4 - ANT * 0.2))]
+    emit_mesh('can-lvvent', 'LV vent (right superior pulmonary vein)', 'cardiac', CANNULA,
+              tube([W(p) for p in [LM['mv-centre'] - DIRS['mv-normal'] * 20, LM['mv-centre'], rspv, rspv + RIGHT * 25 + ANT * 30, rspv + RIGHT * 40 + ANT * 90 + SUP * 20]], 1.7), opacity=0.9, visible=False,
+              note='Schematic: through the right superior pulmonary vein, across the mitral valve into the LV. Keeps the arrested ventricle empty, above all with aortic regurgitation.')
+    LM['rspv'] = rspv
+    osts = []
+    for k in ('l', 'r'):
+        p = LM[f'ostium-{k}']; osts.append(tube([W(p), W(c + n * (hs + 8)), W(c + n * (hs + 60) + ANT * 40)], 1.3))
+    emit_mesh('can-ostial', 'Hand-held ostial cardioplegia cannulas', 'cardiac', CANNULA, trimesh.util.concatenate(osts), opacity=0.9, visible=False,
+              note='Schematic: soft-tipped cannulas held in the left main and right coronary ostia once the aorta is open.')
+    # accesses: upper J-hemisternotomy and right anterior mini-thoracotomy (2nd space)
+    st = ctx.get('sternum_mm')
+    if st is not None and len(st):
+        mid_x = float(np.median(st[:, 0])); top = float(st[:, 2].max()) - 3
+        j_end = ctx['port'](3, 80, 'right') if ctx.get('port') is not None else None
+        zj = float(j_end[2]) if j_end is not None else top - 60
+        zs = np.linspace(top, zj + 6, 8); cut = []
+        for z in zs:
+            s = st[np.abs(st[:, 2] - z) < 2.5]; s = s[np.abs(s[:, 0] - mid_x) < 4] if len(s) else s
+            cut.append(s[np.argmax(s[:, 1])] + ANT * 1.5 if len(s) else np.array([mid_x, st[:, 1].max(), z]))
+        s = st[np.abs(st[:, 2] - zj) < 3]
+        edge = s[np.argmax(s[:, 0])] + ANT * 1.5 if len(s) else cut[-1] + RIGHT * 15
+        cut += [cut[-1] * 0.5 + edge * 0.5 - SUP * 3, edge]
+        emit_mesh('hemi-cut', 'Upper hemisternotomy (J into the right 3rd/4th space)', 'incisions', '#d0433a', tube([W(p) for p in cut], 1.6), visible=False,
+                  note='From the sternal notch down the midline to the 3rd or 4th space, then out to the right. The lower sternum stays whole; watch the right internal thoracic vessels at the J.')
+        LM['hemi'] = cut[len(cut) // 2]
+        sk = [p + ANT * 9 for p in cut[1:7]]
+        emit_mesh('incision-hemi', 'Skin incision for upper hemisternotomy (about 6-8 cm)', 'incisions', '#ff6a5a', tube([W(p) for p in sk], 1.6), visible=False)
+    if ctx.get('port') is not None:
+        pts = np.array([ctx['port'](2, a, 'right') for a in np.linspace(82, 50, 5)])
+        cr = ctx['lung_cr']; r_ = pts[:, :2] - cr[:2]; pts[:, :2] += r_ / np.linalg.norm(r_, axis=1, keepdims=True) * 3.0
+        emit_mesh('incision-ramt', 'Right anterior mini-thoracotomy (2nd space)', 'incisions', '#d0433a', tube([W(p) for p in pts], 1.8), visible=False,
+                  note='5-6 cm in the right 2nd space from the sternal edge; the right internal thoracic vessels ligated or kept, the 3rd costal cartilage divided if more room is needed.')
+        LM['ramt'] = pts[1]
+    print(f'  aortic root: radius {R:.1f} mm, STJ {hs:.0f} mm above the annulus, prosthesis ~{2 * rp:.0f} mm')

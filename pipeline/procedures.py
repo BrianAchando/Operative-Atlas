@@ -2037,12 +2037,25 @@ if MVR_OK:
                 'ct': ct(R(MC), 'axial')}
 
     def mv_sutures(pre, seq_, port='sternotomy', view=None):
-        return {'id': f'{pre}-sutures', 'phase': 'Valve', 'seq': seq_, 'title': 'Pledgeted annular sutures',
-                'body': '<p><b>2-0 braided polyester, pledgeted horizontal mattress</b> sutures, 12–16 of them, into the annulus (pledgets usually on the atrial side; technique varies with the valve and the surgeon).</p>'
-                        '<p>Bites <b>in the annulus, not beyond it</b>: shallow <b>anteriorly</b> (the aortic cusps lie just below), careful <b>posteriorly</b> (circumflex and coronary sinus), and at the <b>posteromedial commissure</b> (the AV node).</p>',
+        return {'id': f'{pre}-sutures', 'phase': 'Valve', 'seq': seq_, 'title': 'Annular sutures: which technique?',
+                'body': '<p><b>2-0 braided polyester horizontal mattress</b> sutures, 12–16 of them. Where the pledgets sit decides where the valve sits, and the choice follows the <b>quality of the annulus</b>.</p>'
+                        '<p><b>Ventricular pledgets</b> (non-everting: needle from the LV side up through the annulus; the valve sits <b>supra-annular</b>)<br>'
+                        '<b>For:</b> the strongest hold in <b>friable, calcified, rheumatic or infected</b> tissue, so fewer paravalvular leaks and dehiscences; the pledget spreads the load; supra-annular seating often takes <b>one size larger</b>.<br>'
+                        '<b>Against:</b> deeper, blinder bites (circumflex and AV groove posteriorly, AV node at the posteromedial commissure, aortic cusps anteriorly); pledgets and preserved chordae under the ring can <b>trap a leaflet</b> or seed pannus and thrombus; anterior pledgets can narrow the <b>LVOT</b>; awkward through a small LA or a MICS port.</p>'
+                        '<p><b>Annulus-only</b> (everting, with <b>atrial pledgets</b>, or unpledgeted; the valve sits <b>intra-annular</b>)<br>'
+                        '<b>For:</b> shallow bites you can see; nothing below the ring to catch a leaflet; LVOT clear; quicker; suits a <b>healthy annulus</b> and MICS.<br>'
+                        '<b>Against:</b> sutures can <b>cut through</b> poor tissue; the prosthesis is often a size smaller; <b>unpledgeted</b> sutures are the weakest.</p>'
+                        '<p>A common compromise: <b>ventricular pledgets posteriorly and at the commissures</b> (where the tissue is worst and leaks happen), <b>atrial pledgets anteriorly</b> (to protect the aortic valve and LVOT).</p>'
+                        '<p>Whatever the technique, bite <b>in the annulus, not beyond it</b>.</p>'
+                        '<p class="evidence"><b>Evidence:</b> no randomised trial compares everting and non-everting sutures in MVR. In the AVERT trial cohort, <b>pledgeted</b> sutures were associated with fewer major paravalvular leaks than unpledgeted ones (Englberger et al., <i>Eur J Cardiothorac Surg</i> 2005). '
+                        'The ACC/AHA 2020 and ESC/EACTS 2021 valve guidelines make no recommendation on suture technique, but support <b>preserving the subvalvular apparatus</b> in MVR (for LV function), and that is one more reason to keep pledgets clear of preserved chordae.</p>',
                 'view': view or valve_view, 'show': [*[i for i in VALVE if i != 'mv-ant-leaflet'], *DANGER], 'hide': [*HEART_OFF, 'mv-ant-leaflet'], 'opacity': {**FAINT, 'la': 0.12, 'lv': 0.25},
                 'highlight': ['mitral-annulus'], 'danger': DANGER,
                 'action': {'kind': 'annulus', 'label': 'Place the annular sutures', 'port': port, 'at': R(MC), 'axis': R(MN), 'anterior': R(MU), 'radius': MR_ - 0.5, 'count': 14},
+                'ask': ask('Rheumatic mitral stenosis with a heavily calcified, small posterior annulus. Which suture technique gives the most secure seat and the largest valve?',
+                           'Pledgeted mattress sutures with ventricular pledgets (non-everting, supra-annular), at least posteriorly',
+                           'Ventricular pledgets hold best in poor tissue and seat the ring above the annulus, which usually allows a larger size. Keep bites in the annulus to spare the circumflex and AV groove, and check that no pledget traps a leaflet.',
+                           'Unpledgeted simple interrupted sutures', 'A continuous polypropylene suture', 'Everting sutures with atrial pledgets all round, one size smaller'),
                 'ct': ct(R(MC), 'axial')}
 
     def mv_seat(pre, seq_, port='sternotomy', view=None):
@@ -2060,12 +2073,27 @@ if MVR_OK:
     def mv_close(pre, seq_, septal=False, mics=False):
         return {'id': f'{pre}-close', 'phase': 'Wean', 'seq': seq_, 'title': 'Close the atrium, de-air, clamp off',
                 'body': ('<p>Close the septum and the right atrium (3-0/4-0 polypropylene); release the caval snares.</p>' if septal else '<p>Close the left atriotomy with 3-0/4-0 polypropylene, leaving the LV vent across until the last suture.</p>')
-                        + '<p><b>De-air</b>: fill the heart, head down, vent the aortic root and the LV; release the clamp; rewarm. Consider closing the <b>left atrial appendage</b> if the patient is in AF.</p>'
+                        + '<p><b>De-air</b>: CO₂ in the field, head down, fill the heart as the last sutures go in, ventilate the lungs to push air out of the pulmonary veins, aortic root vent on suction; release the clamp; rewarm. Consider closing the <b>left atrial appendage</b> if the patient is in AF.</p>'
+                        '<p><b>De-air early and come off</b> (most de-airing done in the arrested heart before the clamp is released; vent out and wean soon after)<br>'
+                        '<b>For:</b> the flaccid, arrested heart can be balloted and needle-vented; a shorter bypass and clamp time.<br>'
+                        '<b>Against:</b> air stays trapped in the <b>pulmonary veins, LA appendage and LV trabeculae</b> until the heart beats and the lungs are ventilated. It then comes out when the root vent is already out: into the <b>RCA</b> (the most anterior ostium, uppermost with the patient supine), giving inferior ST elevation, RV failure and VF, or into the <b>brain</b>. Mitral surgery opens the left heart widely, so it carries more air than CABG.</p>'
+                        '<p><b>Keep de-airing during reperfusion</b> (the beating, ejecting heart on partial bypass, root vent still on, until TOE is clear)<br>'
+                        '<b>For:</b> contraction and ventilation release the trapped air while the vent can still catch it; if air does reach the RCA, the heart is still supported, so raise the perfusion pressure and let it pass. It overlaps with the rest the heart needs anyway.<br>'
+                        '<b>Against:</b> longer bypass; strong root-vent suction with a low root pressure can draw air <b>in</b> through the purse-string; handling the beating heart can cause arrhythmia.</p>'
+                        '<p>The end-point is <b>TOE, not the clock</b>: no bubbles in the LA, LV or pulmonary veins at near-normal filling, then vent out.</p>'
+                        + ('<p>In <b>MICS</b> the heart cannot be handled or balloted, so CO₂ flooding and TOE-guided venting matter even more.</p>' if mics else '')
+                        + '<p class="evidence"><b>Evidence:</b> no trial compares early with late de-airing; practice rests on physiology and TOE studies. CO₂ field flooding cut microemboli on TOE in a randomised trial (Svenarud et al., <i>Circulation</i> 2004) and reduced neurocognitive impairment in another (Martens et al., <i>Ann Thorac Surg</i> 2008); a benefit for stroke has not been shown. '
+                        'Intraoperative TOE in valve surgery, including to guide de-airing, is standard practice (ASE/SCA guidelines, Hahn et al., <i>J Am Soc Echocardiogr</i> 2013).</p>'
                         '<p><b>TOE</b> before leaving theatre: no paravalvular leak, leaflets moving, no LVOT obstruction. Pacing wires, drains.</p>'
                         + ('<p>Decannulate the femoral vessels and repair them; check the right lung re-expands.</p>' if mics else '')
                         + '<p>Serious complications: <b>AV groove disruption</b> (catastrophic), circumflex injury, heart block, paravalvular leak, stroke.</p>',
                 'view': clook(MC, V([0.4, 0.8, 0.45]), 300), 'show': [*CH, 'mv-prosthesis'], 'hide': [*HEART_OFF, 'mv-ant-leaflet'], 'opacity': FAINT,
-                'labels': ['mv-prosthesis'], 'ct': ct(R(MC), 'axial')}
+                'labels': ['mv-prosthesis'],
+                'ask': ask('Ten minutes after the clamp is released and the root vent is removed, the inferior leads show ST elevation and the RV dilates. The likely cause and the move?',
+                           'Air in the right coronary: stay on (or go back on) bypass, raise the perfusion pressure, and let the heart beat unloaded until it clears',
+                           'The RCA ostium is uppermost with the patient supine and catches retained left-heart air. Supported, higher-pressure perfusion usually clears it in minutes; weaning onto a failing RV does not. Keeping the root vent on until TOE is clear prevents it.',
+                           'Circumflex injury from an annular suture: re-arrest and inspect', 'Protamine reaction: stop the protamine', 'Prosthetic leaflet stuck: re-open the atrium'),
+                'ct': ct(R(MC), 'axial')}
 
     def mv_reperfuse(pre, seq_, mics=False):
         return {'id': f'{pre}-reperfuse', 'phase': 'Wean', 'seq': seq_, 'title': 'Reperfuse on bypass, or separate early?',
@@ -2142,8 +2170,251 @@ if MVR_OK:
         procs[key] = {'id': key, 'op': 'mvr', 'opName': 'Mitral valve replacement', 'side': 'both', 'name': 'Mitral valve replacement', 'approach': appr,
                       'summary': 'Access, bypass, left atrium, chordal-sparing excision, pledgeted annular sutures, prosthesis, de-airing.', 'ports': [], 'steps': steps_, 'sources': MVSRC,
                       'group': 'Cardiac', 'sequence': sq}
+# ==================================================================================================== cardiac: aortic valve replacement
+AVR_OK = MVR_OK and has('aortic-annulus') and 'av-centre' in LM
+if AVR_OK:
+    AC, AN, AE = Lc('av-centre'), V(LM['av-axis']), V(LM['av-e1']); AR_ = LM['av-dims'][0]
+    AOT = [Lc(f'aot-{i}') for i in range(8) if f'aot-{i}' in LM]
+    CUSPS = [i for i in ('av-cusp-r', 'av-cusp-l', 'av-cusp-n', 'av-calcium') if has(i)]
+    ROOT = [i for i in ('aortic-annulus', 'stj', *CUSPS) if has(i)]
+    AV_DANGER = [i for i in ('ostium-r', 'ostium-l', 'his-bundle', 'mv-ant-leaflet') if has(i)]
+    AV_CANS = [i for i in ('can-aortic', 'can-2stage', 'can-cp', 'can-lvvent', 'can-retro') if has(i)]
+    AV_FAINT = {**FAINT, 'aorta': 0.18, 'lvot': 0.25, 'cusp-r': 0.15, 'cusp-l': 0.15, 'cusp-n': 0.15}
+    root_view = clook(AC, AN * 0.85 + V([0.15, 0.55, 0.0]), 150)
+    open_view = clook(AC, AN * 0.45 + V([0.15, 1.0, 0.0]), 100)
+    ev = lambda t: f'<p class="evidence"><b>Evidence:</b> {t}</p>'
+    pm = lambda term: 'https://pubmed.ncbi.nlm.nih.gov/?term=' + term.replace(' ', '+')
+    AVSRC = [
+        {'title': 'Kouchoukos NT, Blackstone EH, Hanley FL, Kirklin JK. Kirklin/Barratt-Boyes Cardiac Surgery, 4th ed. Elsevier 2013: aortic valve replacement', 'url': pm('Kirklin Barratt-Boyes cardiac surgery aortic valve')},
+        {'title': 'Praz F, Borger MA, et al. 2025 ESC/EACTS Guidelines for the management of valvular heart disease. Eur Heart J 2025', 'url': 'https://www.escardio.org/guidelines/clinical-practice-guidelines/all-esc-practice-guidelines/valvular-heart-disease/'},
+        {'title': 'Otto CM, Nishimura RA, et al. 2020 ACC/AHA guideline for the management of patients with valvular heart disease. Circulation 2021;143:e72-e227', 'url': 'https://pubmed.ncbi.nlm.nih.gov/33332150/'},
+        {'title': 'Isselbacher EM, et al. 2022 ACC/AHA guideline for the diagnosis and management of aortic disease. Circulation 2022', 'url': 'https://pubmed.ncbi.nlm.nih.gov/36322642/'},
+        {'title': 'Mack MJ, et al. Transcatheter aortic-valve replacement with a balloon-expandable valve in low-risk patients (PARTNER 3). N Engl J Med 2019', 'url': pm('Mack PARTNER 3 low-risk transcatheter NEJM 2019')},
+        {'title': 'Popma JJ, et al. Transcatheter aortic-valve replacement with a self-expanding valve in low-risk patients (Evolut Low Risk). N Engl J Med 2019', 'url': pm('Popma Evolut low risk self-expanding NEJM 2019')},
+        {'title': 'Généreux P, et al. Valve Academic Research Consortium 3 (VARC-3): updated endpoint definitions. J Am Coll Cardiol 2021', 'url': pm('VARC-3 updated endpoint definitions Genereux 2021')},
+        {'title': 'Impact of prosthesis-patient mismatch after surgical aortic valve replacement: systematic review and meta-analysis of reconstructed time-to-event data of 122 989 patients. J Am Heart Assoc 2024', 'url': 'https://www.ahajournals.org/doi/10.1161/JAHA.123.033176'},
+        {'title': 'Englberger L, et al. Importance of implant technique on risk of major paravalvular leak after St. Jude mechanical valve replacement (AVERT). Eur J Cardiothorac Surg 2005;28:838-43', 'url': 'https://academic.oup.com/ejcts/article/28/6/838/377180'},
+        {'title': 'Boltje JWT, et al. The use of pledget-reinforced sutures during surgical aortic valve replacement: systematic review and meta-analysis. 2024', 'url': 'https://pmc.ncbi.nlm.nih.gov/articles/PMC11387225/'},
+        {'title': 'Tabata M, et al. Simple interrupted suturing increases valve performance after aortic valve replacement with a small supra-annular bioprosthesis. J Thorac Cardiovasc Surg 2014;147:321-5', 'url': 'https://www.sciencedirect.com/science/article/pii/S0022522312013979'},
+        {'title': 'Fischlein T, et al. Sutureless versus conventional bioprostheses for aortic valve replacement in severe symptomatic aortic stenosis (PERSIST-AVR). J Thorac Cardiovasc Surg 2021', 'url': pm('Fischlein PERSIST-AVR sutureless conventional bioprostheses')},
+        {'title': 'Yang B, et al. Early outcomes of the Y-incision technique to enlarge the aortic annulus 3 to 4 valve sizes. J Thorac Cardiovasc Surg', 'url': 'https://www.jtcvs.org/article/S0022-5223(22)00722-X/fulltext'},
+        {'title': 'Miceli A, Ferrarini M, Glauber M. Right anterior minithoracotomy for aortic valve replacement. Ann Cardiothorac Surg 2015;4:91-3', 'url': 'https://www.annalscts.com/article/view/5486/6313'},
+        {'title': 'Svenarud P, et al. Effect of CO2 insufflation on the number and behavior of air microemboli in open-heart surgery: a randomized clinical trial. Circulation 2004', 'url': pm('Svenarud carbon dioxide insufflation microemboli open-heart randomized Circulation 2004')},
+    ]
+
+    def av_anat(pre):
+        return {'id': f'{pre}-anatomy', 'phase': 'Anatomy', 'seq': 0, 'title': 'The aortic root and what lies around it',
+                'body': '<p>The cusps do not hinge on a flat ring but on a <b>three-pronged crown</b>: low at each <b>nadir</b> (the virtual basal ring, which is what echo and CT call the annulus) and high at the three <b>commissures</b>, just below the <b>sinotubular junction</b>.</p>'
+                        '<p>What the sutures and the debridement can injure:</p><ul>'
+                        '<li><b>Coronary ostia</b>: the left main in the left sinus, the right coronary in the right sinus, usually 1–1.5 cm above the annulus. Keep prosthesis posts and pledgets clear of them.</li>'
+                        '<li><b>Membranous septum and His bundle</b>: below the commissure between the <b>right and non-coronary cusps</b>. Deep bites or aggressive decalcification here cause complete heart block.</li>'
+                        '<li><b>Anterior mitral leaflet</b>: below the <b>left and non-coronary cusps</b>, through the fibrous aortomitral curtain. Deep bites there distort the mitral valve.</li></ul>'
+                        + ev('the crown-shaped annulus and its relations are from anatomical and CT studies of the root; conduction injury is the main cause of the permanent pacemakers needed after surgical AVR.'),
+                'view': root_view, 'spin': True, 'show': [*CH, *ROOT, *AV_DANGER, 'lvot'], 'hide': HEART_OFF, 'opacity': AV_FAINT,
+                'highlight': ['aortic-annulus'], 'danger': AV_DANGER,
+                'labels': ['aortic-annulus', 'stj', 'av-cusp-r', 'av-cusp-l', 'av-cusp-n', 'ostium-r', 'ostium-l', 'his-bundle', 'mv-ant-leaflet'],
+                'ask': ask('A deep annular suture below the commissure between the right and non-coronary cusps is most likely to cause…', 'Complete heart block',
+                           'The His bundle runs in the membranous septum just below that commissure.', 'Mitral regurgitation', 'Occlusion of the left main'),
+                'ct': ct(R(AC), 'coronal')}
+
+    def av_decide(pre):
+        return {'id': f'{pre}-decide', 'phase': 'Decision', 'seq': 1, 'title': 'SAVR or TAVI; mechanical or tissue; which access',
+                'body': '<p><b>Surgical or transcatheter.</b> A Heart Team decision on age, life expectancy, anatomy (bicuspid, annulus size, coronary heights, access), other lesions, and the patient\'s wishes.</p><ul>'
+                        '<li><b>ESC/EACTS 2025</b>: TAVI (class I) from <b>70 years</b> with tricuspid aortic stenosis and suitable anatomy, whatever the surgical risk; SAVR (class I) <b>under 70</b> at low risk.</li>'
+                        '<li><b>ACC/AHA 2020</b>: SAVR under 65 or with life expectancy over 20 years; TAVI over 80 or with life expectancy under 10 years; either between 65 and 80.</li>'
+                        '<li>SAVR remains the choice for <b>bicuspid</b> or <b>rheumatic</b> valves in the young, for <b>endocarditis</b>, a <b>small annulus</b> needing enlargement, and concomitant aortic, mitral or coronary surgery.</li></ul>'
+                        '<p><b>Mechanical or tissue.</b> ESC/EACTS 2025: mechanical preferred <b>under 60</b> (aortic), tissue <b>over 65</b>, individual choice between. ACC/AHA 2020: mechanical under 50, tissue over 65, choice between 50 and 65. '
+                        'In the young, a tissue valve degenerates early (sooner still after rheumatic disease) and means reoperation or valve-in-valve. A mechanical valve means lifelong warfarin (aortic INR target 2.5, higher with risk factors), so it needs reliable INR monitoring. Pregnancy weighs against warfarin.</p>'
+                        '<p><b>The ascending aorta.</b> ACC/AHA 2022: replacing it at AVR is reasonable at <b>5.0 cm or more</b> (4.5 cm or more in experienced centres), and at <b>4.5 cm or more</b> with a <b>bicuspid</b> valve.</p>'
+                        '<p><b>Access.</b> Full sternotomy: the default, and for anything concomitant. <b>Upper hemisternotomy</b>: isolated AVR, most anatomies. <b>Right anterior mini-thoracotomy</b>: isolated AVR when CT shows a rightward aorta close to the sternum.</p>'
+                        + ev('PARTNER 3 and Evolut Low Risk (NEJM 2019) showed TAVI non-inferior (PARTNER 3: superior at one year on a composite endpoint) to SAVR in low-risk patients with tricuspid stenosis, mostly in their 70s. They excluded bicuspid and rheumatic valves, and their durability beyond 10 years is not yet known.'),
+                'view': clook(AC, V([0.3, 0.9, 0.4]), 300), 'show': [*CH, *ROOT], 'hide': HEART_OFF, 'opacity': AV_FAINT, 'labels': ['aorta', 'lv'],
+                'ask': ask('A 34-year-old with rheumatic aortic stenosis and regurgitation, no plans for pregnancy, reliable INR clinic access. Which valve do the guidelines favour?',
+                           'A mechanical valve', 'Under 60 (ESC/EACTS) or 50 (ACC/AHA) with reliable anticoagulation, a mechanical valve avoids the early degeneration of tissue valves, which is faster after rheumatic disease. TAVI trials did not include rheumatic valves.',
+                           'A tissue valve, then valve-in-valve later', 'TAVI', 'A stentless tissue root'),
+                'ct': ct(R(AC), 'coronal')}
+
+    def av_cannulate(pre, seq_):
+        return {'id': f'{pre}-cannulate', 'phase': 'Bypass', 'seq': seq_, 'title': 'Cannulation: aorta, one venous cannula, LV vent',
+                'body': '<p>Heparin (ACT above 480 s). Arterial cannula in the <b>distal ascending aorta</b>, high enough to leave room for the clamp and an aortotomy below it. For isolated AVR the right atrium is not opened, so a single <b>two-stage cannula</b> (appendage to IVC) drains both cavae.</p>'
+                        '<p>Root cardioplegia and vent line; a <b>retrograde</b> cannula in the coronary sinus; an <b>LV vent through the right superior pulmonary vein</b>, placed <b>before the heart slows</b> if there is aortic regurgitation, so the ventricle never distends.</p>'
+                        + ev('this is standard practice (Kirklin/Barratt-Boyes). A regurgitant valve lets cardioplegia and bypass return fill the arrested LV; distension damages the myocardium, which is why the vent goes in early.'),
+                'view': clook(V(LM['can-aortic']), V([0.4, 0.9, 0.35]), 330), 'show': CH, 'hide': HEART_OFF, 'opacity': FAINT,
+                'highlight': AV_CANS, 'labels': [*AV_CANS, 'aorta'],
+                'action': {'kind': 'reveal', 'label': 'Place the cannulas', 'port': 'sternotomy', 'ids': AV_CANS},
+                'ct': ct(R(V(LM['can-aortic'])), 'axial')}
+
+    def av_clamp(pre, seq_, port='sternotomy'):
+        return {'id': f'{pre}-clamp', 'phase': 'Bypass', 'seq': seq_, 'title': 'Cross-clamp; cardioplegia depends on the valve',
+                'body': '<p>On full bypass, clamp the ascending aorta below the arterial cannula.</p><ul>'
+                        '<li><b>Aortic stenosis, competent valve</b>: antegrade into the root arrests the heart.</li>'
+                        '<li><b>Aortic regurgitation</b>: antegrade into the root <b>runs into the LV</b> and distends it instead of perfusing the coronaries. Give it <b>retrograde</b>, and/or open the aorta and give it <b>directly into each ostium</b> with hand-held cannulas.</li></ul>'
+                        '<p>Repeat every 15–20 minutes (retrograde, or down the ostia), or as the solution in use requires.</p>'
+                        + ev('the choice follows the physiology rather than trials; retrograde perfusion reaches the right ventricle less well, which is one reason many combine retrograde with direct ostial doses.'),
+                'view': clook(Lc('clamp-ao'), V([0.3, 1, 0.3]), 280), 'show': [*CH, *AV_CANS], 'hide': HEART_OFF, 'opacity': FAINT,
+                'highlight': ['aorta'], 'labels': ['can-cp', 'can-retro', 'can-lvvent'],
+                'action': {'kind': 'clamp', 'label': 'Apply the cross-clamp', 'port': port, 'at': R(Lc('clamp-ao')), 'axis': R(V(LM['ao-axis'])), 'radius': 14, 'jawLen': 50},
+                'ask': ask('Severe aortic regurgitation. After the cross-clamp, antegrade root cardioplegia is started and the LV swells while the heart keeps beating. Next?',
+                           'Stop the root infusion, vent the LV, open the aorta and give cardioplegia directly into the ostia (and/or retrograde)',
+                           'Root cardioplegia is going through the incompetent valve into the LV, not down the coronaries. Distension injures the myocardium.',
+                           'Increase the root infusion pressure', 'Cool further and wait for arrest'),
+                'ct': ct(R(Lc('clamp-ao')), 'axial')}
+
+    def av_aortotomy(pre, seq_, port='sternotomy'):
+        return {'id': f'{pre}-aortotomy', 'phase': 'Aorta', 'seq': seq_, 'title': 'Oblique aortotomy into the non-coronary sinus',
+                'body': '<p>Find the <b>right coronary</b> origin first. Open the aorta <b>1–1.5 cm above it</b>, across the front, and carry the incision <b>obliquely down into the non-coronary sinus</b> toward its nadir ("hockey stick"). A transverse aortotomy above the STJ is the alternative, and is easier to close for a later root operation.</p>'
+                        '<p>Stay above the right coronary and away from the <b>left main</b> on the other side. Stay sutures open the aorta; give ostial cardioplegia now if needed.</p>'
+                        + ev('the placement is technique by consensus (Kirklin/Barratt-Boyes); the risks it avoids are right coronary injury and distortion of the sinuses and STJ when closing.'),
+                'view': clook(AOT[3] if AOT else AC, AN * 0.3 + V([0.2, 1.0, 0.1]), 170), 'show': [*CH, *AV_CANS, 'aortotomy', 'ostium-r', 'ostium-l'], 'hide': HEART_OFF,
+                'opacity': {**FAINT, 'aorta': 0.55}, 'highlight': ['aortotomy'], 'danger': ['ostium-r', 'ostium-l'], 'labels': ['aortotomy', 'ostium-r'],
+                'action': {'kind': 'dissect', 'tool': 'hook', 'label': 'Open the aorta', 'port': port, 'path': [R(p) for p in AOT[::2]] or [R(AC)]},
+                'ct': ct(R(AC), 'axial')}
+
+    def av_excise(pre, seq_, port='sternotomy', view=None):
+        return {'id': f'{pre}-excise', 'phase': 'Valve', 'seq': seq_, 'title': 'Excise the cusps, debride the annulus, catch every fragment',
+                'body': '<p>Protect the LV: a moist sponge or gauze through the valve into the outflow tract, and the vent on. Excise the cusps 1–2 mm from their hinge, one cusp at a time.</p>'
+                        '<p><b>Debride the calcium</b> back to a pliable annulus so the sewing ring can sit flat, without leaks. The danger zones:</p><ul>'
+                        '<li>under the <b>right and non-coronary commissure</b>: the membranous septum and His bundle (heart block; a VSD if you go through);</li>'
+                        '<li>under the <b>left and non-coronary cusps</b>: the aortomitral curtain (a hole into the left atrium; mitral damage);</li>'
+                        '<li>the <b>ostia</b>: calcium near them is lifted out, not avulsed.</li></ul>'
+                        '<p>Remove the sponge, <b>irrigate the LV and root</b> with saline and suction, and look for loose fragments before sizing.</p>'
+                        + ev('stroke after SAVR is mostly embolic, and calcific debris is one source; catching and irrigating it is standard practice. Aggressive debridement near the membranous septum raises the risk of heart block and of annular disruption.'),
+                'view': view or open_view, 'show': [*ROOT, *AV_DANGER], 'hide': HEART_OFF, 'opacity': AV_FAINT,
+                'highlight': CUSPS, 'danger': AV_DANGER, 'labels': ['av-calcium', 'his-bundle', 'mv-ant-leaflet', 'ostium-l', 'ostium-r'],
+                'action': {'kind': 'dissect', 'tool': 'hook', 'label': 'Excise and decalcify', 'port': port, 'remove': CUSPS,
+                           'path': [R(AC + AE * AR_ * np.cos(t) + V(np.cross(AN, AE)) * AR_ * np.sin(t) + AN * 3) for t in np.linspace(0, 2 * np.pi, 7)]},
+                'ask': ask('While debriding, you take calcium from beneath the commissure between the right and non-coronary cusps and see the septum bulge. What is at risk?',
+                           'The His bundle (heart block) and the membranous septum (a VSD)', 'That area is the membranous septum carrying the His bundle. Take less calcium there; a little residual calcium is safer than a VSD or heart block.',
+                           'The left main coronary', 'The anterior mitral leaflet'),
+                'ct': ct(R(AC), 'coronal')}
+
+    def av_size(pre, seq_, view=None, ramt=False):
+        return {'id': f'{pre}-size', 'phase': 'Valve', 'seq': seq_, 'title': 'Size, and avoid patient–prosthesis mismatch',
+                'body': '<p>Measure the annulus with the <b>sizers made for the chosen valve</b> (sizes differ between makers). The question is not only "what fits" but whether the valve\'s <b>effective orifice area indexed to body surface area (EOAi)</b> will be big enough for this patient.</p>'
+                        '<p><b>Patient–prosthesis mismatch (VARC-3)</b>, BMI under 30: moderate at EOAi 0.85–0.66, severe at 0.65 cm²/m² or less. BMI 30 or more: moderate 0.70–0.56, severe 0.55 or less. Look up the valve\'s expected EOA before choosing.</p>'
+                        '<p>If the annulus is too small:</p><ul><li>a valve with a better orifice for its size (supra-annular, thin-sewing-ring, or stentless);</li>'
+                        '<li><b>annular enlargement</b>: <b>Nicks</b> (through the non-coronary sinus toward the aortomitral curtain), <b>Manouguian</b> (through the left–non-coronary commissure into the curtain and the anterior mitral leaflet), '
+                        '<b>Y-incision</b> (Yang: through the left–non-coronary commissure with a Y into both trigones, allowing about 3–4 sizes larger). The <b>Konno</b> operation (into the septum) is mainly for children.</li></ul>'
+                        + ('<p>Through a mini-thoracotomy, a <b>sutureless or rapid-deployment</b> valve shortens the clamp time and needs few or no annular sutures.</p>' if ramt else '')
+                        + ev('VARC-3 (Généreux et al., JACC 2021) sets the definitions. In a meta-analysis of about 123,000 patients (J Am Heart Assoc 2024), mismatch after SAVR was associated with higher late mortality and earlier failure of tissue valves. The Y-incision series (Yang et al., JTCVS) reported enlargement by 3–4 sizes with low early mortality; these are single-centre, non-randomised data.'
+                             + (' PERSIST-AVR (Fischlein et al., JTCVS 2021), a randomised trial, found a sutureless valve non-inferior to a stented one for major adverse events at one year, with <b>more permanent pacemakers</b>.' if ramt else '')),
+                'view': view or open_view, 'show': ['aortic-annulus', *AV_DANGER], 'hide': [*HEART_OFF, *CUSPS], 'opacity': AV_FAINT,
+                'highlight': ['aortic-annulus'], 'labels': ['aortic-annulus'],
+                'ask': ask('A 1.9 m² patient (BMI 26). The largest valve that fits has an expected EOA of 1.2 cm². What is the predicted mismatch, and what should you consider?',
+                           'EOAi 0.63: severe mismatch; consider annular enlargement or a valve with a larger orifice', '1.2 / 1.9 = 0.63 cm²/m², which is 0.65 or less: severe by VARC-3 (BMI under 30).',
+                           'EOAi 0.63: acceptable', 'EOAi 1.1: no mismatch'),
+                'ct': ct(R(AC), 'coronal')}
+
+    def av_sutures(pre, seq_, port='sternotomy', view=None):
+        return {'id': f'{pre}-sutures', 'phase': 'Valve', 'seq': seq_, 'title': 'Annular sutures: which technique?',
+                'body': '<p>Usually 12–15 sutures of <b>2-0 braided polyester</b>, following the crown: up to the commissures, down to the nadirs. Where they sit decides where the valve sits.</p>'
+                        '<p><b>Non-everting mattress, pledgets below</b> (on the LV side; the valve sits <b>supra-annular</b>)<br><b>For:</b> the usual technique for supra-annular valves; pledgets spread the load in calcified or fragile tissue; the largest valve for the annulus.<br>'
+                        '<b>Against:</b> pledgets sit in the outflow tract; the bites below the right–non-coronary commissure are near the His bundle.</p>'
+                        '<p><b>Everting mattress, pledgets above</b> (on the aortic side; the valve sits <b>intra-annular</b>)<br><b>For:</b> nothing below the annulus; everts the tissue for a good seal.<br><b>Against:</b> the ring sits inside the annulus, so the valve is often a size smaller: a mismatch risk in a small root.</p>'
+                        '<p><b>Simple interrupted</b> (no pledgets)<br><b>For:</b> less material on the annulus, so the valve seats deeper and opens more. <b>Against:</b> no buttress in poor tissue.</p>'
+                        '<p><b>Continuous polypropylene</b><br><b>For:</b> fast. <b>Against:</b> one weak point can loosen the whole line; not for calcified or infected annuli.</p>'
+                        '<p>Keep pledgets and sutures clear of the <b>ostia</b>; take shallow bites under the <b>right–non-coronary commissure</b>.</p>'
+                        + ev('no randomised trial has settled this. In the AVERT cohort (807 patients), major paravalvular leak occurred in 1.7% with pledgets and 5.8% without (Englberger et al., EJCTS 2005). '
+                             'A 2024 meta-analysis of 9 observational SAVR studies (4,390 patients; Boltje et al.) found no clear difference in leak, gradients or mortality, and concluded that the evidence neither supports nor opposes pledgets. '
+                             'In 152 patients with small (19–21 mm) supra-annular bioprostheses, simple interrupted sutures gave a larger orifice and less mismatch than mattress sutures (Tabata et al., JTCVS 2014; retrospective).'),
+                'view': view or open_view, 'show': ['aortic-annulus', *AV_DANGER], 'hide': [*HEART_OFF, *CUSPS], 'opacity': AV_FAINT,
+                'highlight': ['aortic-annulus'], 'danger': AV_DANGER,
+                'action': {'kind': 'annulus', 'label': 'Place the annular sutures', 'port': port, 'at': R(AC + AN * 2), 'axis': R(AN), 'anterior': R(AE), 'radius': AR_ - 0.3, 'count': 12},
+                'ask': ask('An elderly woman with a heavily calcified 19 mm annulus, receiving a supra-annular bioprosthesis. Which suture choice best balances sealing and orifice size?',
+                           'Pledgeted non-everting mattress sutures (supra-annular), or simple interrupted where the tissue holds', 'Supra-annular seating gives the largest valve. Pledgets protect calcified tissue from cutting through; simple interrupted bites (Tabata) gain orifice where the tissue is sound. Everting sutures would push the valve intra-annular and a size down.',
+                           'Everting mattress sutures all round', 'A continuous polypropylene suture'),
+                'ct': ct(R(AC), 'coronal')}
+
+    def av_seat(pre, seq_, port='sternotomy', view=None):
+        return {'id': f'{pre}-seat', 'phase': 'Valve', 'seq': seq_, 'title': 'Seat the valve; check the ostia and the leaflets',
+                'body': '<p>Pass the sutures through the sewing ring and lower the valve. For a stented tissue valve, <b>line the three posts up with the native commissures</b>, so that no post faces a coronary ostium. Tie, with even tension, the ring seated flat.</p>'
+                        '<p>Before closing: look into <b>both ostia</b> (nothing overhanging); check for <b>gaps under the ring</b>; check that the <b>leaflets move freely</b> (for a mechanical valve, rotate it to free them of the septum).</p>'
+                        + ev('coronary obstruction after SAVR is rare but often fatal; it is prevented by post orientation and direct inspection. Post-bypass TOE confirms leaflet motion, gradient and paravalvular leak (ASE/SCA guidance).'),
+                'view': view or open_view, 'show': ['aortic-annulus', 'av-prosthesis', 'ostium-r', 'ostium-l', 'his-bundle'], 'hide': [*HEART_OFF, *CUSPS], 'opacity': AV_FAINT,
+                'highlight': ['av-prosthesis'], 'danger': ['ostium-r', 'ostium-l'], 'labels': ['av-prosthesis', 'ostium-r', 'ostium-l'],
+                'action': {'kind': 'seat', 'label': 'Seat the valve', 'port': port, 'ids': ['av-prosthesis'], 'from': R(AN * 45)},
+                'ask': ask('After weaning, new ST elevation in the anterolateral leads and poor anterior wall motion on TOE. The valve looks well seated. First suspicion?',
+                           'The left main ostium is partly obstructed by a post, a pledget or the sewing ring (or has embolised air/debris)', 'Coronary compromise right after SAVR is the prosthesis or embolism until proved otherwise: go back on bypass, inspect, and re-seat or graft.',
+                           'Heart block', 'Patient–prosthesis mismatch'),
+                'ct': ct(R(AC), 'coronal')}
+
+    def av_close(pre, seq_, mini=False):
+        return {'id': f'{pre}-close', 'phase': 'Wean', 'seq': seq_, 'title': 'Close the aorta and de-air',
+                'body': '<p>Close the aortotomy in <b>two layers of 4-0 polypropylene</b> (a horizontal mattress, then over-and-over), with felt strips if the wall is thin. Before the last sutures: fill the heart, ventilate the lungs, head down; the <b>root vent on</b>; release the clamp.</p>'
+                        '<p><b>Early vs late de-airing</b> is the same question as in mitral surgery, with less air because the left atrium was not opened: '
+                        'venting only until the clamp is off is quicker, but air trapped in the pulmonary veins and LV comes out later and goes up the right coronary (uppermost) or to the brain; '
+                        'keeping the root vent on while the heart ejects on partial bypass catches it. Stop when <b>TOE</b> shows no air, not by the clock.</p>'
+                        + ('<p>Through a mini-thoracotomy the heart cannot be handled, so <b>CO₂ in the field</b> and TOE-guided venting carry more weight.</p>' if mini else '')
+                        + ev('no trial compares de-airing strategies; CO₂ field flooding reduced microemboli on TOE in a randomised trial (Svenarud et al., Circulation 2004); a stroke benefit has not been shown.'),
+                'view': clook(AOT[3] if AOT else AC, AN * 0.3 + V([0.2, 1.0, 0.1]), 200), 'show': [*CH, 'aortotomy', 'av-prosthesis'], 'hide': [*HEART_OFF, *CUSPS], 'opacity': {**FAINT, 'aorta': 0.5},
+                'highlight': ['aortotomy'], 'labels': ['aortotomy'],
+                'action': {'kind': 'suture', 'label': 'Close the aortotomy', 'port': 'sternotomy', 'path': [R(p) for p in AOT], 'normal': R(V([0.2, 1, 0.1])), 'axis': R(AOT[-1] - AOT[0] if AOT else V([1, 0, 0]))},
+                'ct': ct(R(AC), 'axial')}
+
+    def av_wean(pre, seq_, mini=False):
+        ids = [i for i in ('can-lvvent', 'can-retro', 'can-cp', 'can-2stage', 'can-aortic') if has(i)]
+        return {'id': f'{pre}-wean', 'phase': 'Wean', 'seq': seq_, 'title': 'Reperfuse, wean, TOE, decannulate',
+                'body': '<p>Reperfuse on bypass until the heart is ready (about a third of the clamp time is a common rule of thumb; longer after a long clamp or with a thick, hypertrophied ventricle). Pace (<b>epicardial wires</b>) if there is heart block: it often recovers over days.</p>'
+                        '<p><b>TOE after bypass</b>: prosthesis gradient and leaflet motion, <b>paravalvular leak</b>, new <b>regional wall-motion abnormality</b> (ostia), mitral function, and, in a small hypertrophied LV, <b>outflow obstruction with systolic anterior motion</b> of the mitral leaflet (treat with volume and beta-blockade; stop inotropes).</p>'
+                        '<p>Then venous cannula out, protamine, arterial cannula out last.</p>'
+                        + ev('intraoperative TOE is standard in valve surgery (ASE/SCA guidelines). A leak more than mild on TOE is usually repaired before leaving theatre, because significant paravalvular leak is associated with haemolysis, heart failure and worse survival.'),
+                'view': clook(V(LM['can-aortic']), V([0.4, 0.9, 0.35]), 330), 'show': [*CH, 'av-prosthesis', *ids], 'hide': [*HEART_OFF, *CUSPS], 'opacity': FAINT,
+                'labels': ids, 'highlight': ids,
+                'action': {'kind': 'decannulate', 'label': 'Wean and decannulate', 'port': 'sternotomy', 'ids': ids},
+                'ask': ask('After AVR for severe AS (small, thick LV), the patient becomes hypotensive on adrenaline. TOE: hyperdynamic LV, mitral leaflet touching the septum in systole, high LVOT gradient. Treatment?',
+                           'Stop inotropes, give volume, a beta-blocker or phenylephrine', 'This is dynamic LVOT obstruction with systolic anterior motion of the mitral leaflet, which inotropes worsen. Fill, slow and constrict.',
+                           'More adrenaline', 'Go back on bypass and replace the mitral valve'),
+                'ct': ct(R(AC), 'axial')}
+
+    std = [av_anat('as'), av_decide('as'), {**mv_sternotomy('as', 2), 'id': 'as-sternotomy'}, av_cannulate('as', 3), av_clamp('as', 4), av_aortotomy('as', 5), av_excise('as', 6),
+           av_size('as', 7), av_sutures('as', 8), av_seat('as', 9), av_close('as', 10), av_wean('as', 11)]
+    std[2] = {**std[2], 'body': '<p>Median sternotomy; open the pericardium and hitch it up. Look at the ascending aorta (size, calcification by palpation or epiaortic scan) before choosing the cannulation and clamp sites.</p>'
+              + ev('epiaortic scanning finds atheroma that palpation misses; it changes cannulation or clamp site in a proportion of patients.')}
+    hemi = [av_anat('ah'), av_decide('ah'),
+            {'id': 'ah-access', 'phase': 'Access', 'seq': 2, 'title': 'Upper hemisternotomy (J into the right 3rd or 4th space)',
+             'body': '<p>A 6–8 cm skin incision from just below the sternal notch. Saw the sternum in the midline from the notch down to the <b>3rd or 4th space</b> (choose from CT: the level of the root), then turn the cut out into that space on the <b>right</b> ("J"). Watch the <b>right internal thoracic vessels</b> at the J. The lower sternum stays whole.</p>'
+                     '<p>Central cannulation is usually possible: the aorta directly, and venous drainage either through the right atrial appendage or <b>percutaneously from the femoral vein</b> under TOE. Convert to full sternotomy (extend the cut) if exposure is poor or there is bleeding.</p>'
+                     + ev('randomised trials and meta-analyses comparing hemisternotomy with full sternotomy show similar mortality and valve results. Differences in bleeding, ventilation and stay are small and inconsistent, and cross-clamp and bypass times are slightly longer.'),
+             'view': clook(V(LM['hemi']) if 'hemi' in LM else ST_MID, V([0.1, 1, 0.35]), 360), 'show': ['sternum', 'incision-hemi', 'hemi-cut', *CH], 'hide': HEART_OFF, 'opacity': {**FAINT, 'sternum': 0.95},
+             'highlight': ['hemi-cut'], 'labels': ['hemi-cut'],
+             'action': {'kind': 'reveal', 'label': 'Divide the upper sternum', 'port': 'sternotomy', 'ids': ['incision-hemi', 'hemi-cut']},
+             'ct': ct(R(V(LM['hemi']) if 'hemi' in LM else ST_MID), 'axial', 'bone')},
+            av_cannulate('ah', 3), av_clamp('ah', 4), av_aortotomy('ah', 5), av_excise('ah', 6), av_size('ah', 7), av_sutures('ah', 8), av_seat('ah', 9), av_close('ah', 10, mini=True), av_wean('ah', 11)]
+    ramt_view = clook(AC, AN * 0.4 + V([0.65, 0.8, 0.0]), 130)
+    rm = [av_anat('ar'), av_decide('ar'),
+          {'id': 'ar-access', 'phase': 'Access', 'seq': 2, 'title': 'Right anterior mini-thoracotomy: select on CT first',
+           'body': '<p><b>CT selection</b> (Glauber and colleagues): more than half of the ascending aorta lies to the <b>right of the right sternal border</b>; the aorta is <b>less than 10 cm</b> from the sternum; and the aorta\'s angle to the midline is over 45°. If not, choose hemisternotomy.</p>'
+                   '<p>A 5–6 cm incision in the <b>right 2nd space</b> from the sternal edge. Ligate the right internal thoracic vessels (or keep them); divide the 3rd costal cartilage for more room if needed. '
+                   '<b>Femoral venous</b> cannulation percutaneously, the arterial cannula in the <b>ascending aorta</b> directly (or femoral). CO₂ in the field; external defibrillator pads.</p>'
+                   + ev('criteria and technique from Miceli, Ferrarini and Glauber (Ann Cardiothorac Surg 2015). Large series and meta-analyses report mortality similar to sternotomy with longer clamp times. The evidence is mostly observational and from experienced centres.'),
+           'view': clook(V(LM['ramt']) if 'ramt' in LM else AC, V([0.45, 1.0, 0.25]), 330), 'show': ['skin', 'incision-ramt'], 'opacity': {'skin': 1.0}, 'hide': HEART_OFF,
+           'highlight': ['incision-ramt'], 'labels': ['incision-ramt'], 'ct': ct(R(AC), 'axial')},
+          av_clamp('ar', 3, port='ramt'), av_aortotomy('ar', 4, port='ramt'), av_excise('ar', 5, port='ramt', view=ramt_view), av_size('ar', 6, view=ramt_view, ramt=True),
+          av_sutures('ar', 7, port='ramt', view=ramt_view), av_seat('ar', 8, port='ramt', view=ramt_view), av_close('ar', 9, mini=True), av_wean('ar', 10, mini=True)]
+    rm[3]['show'] = [*CH, 'can-aortic', 'can-cp', 'can-lvvent']
+    rm[3]['body'] = rm[3]['body'].replace('<p>On full bypass, clamp', '<p>Femoral venous and aortic cannulation are already in. On full bypass, clamp (through the incision, or a flexible clamp)')
+    for key, appr, steps_, sq in (
+            ('avr-std', 'Median sternotomy (Kouchoukos)', std, seq(('Anatomy', 'other'), ('Decide', 'other'), ('Sternotomy', 'other'), ('Cannulate', 'artery'), ('Clamp', 'artery'), ('Aortotomy', 'artery'), ('Excise', 'fissure'), ('Size', 'other'), ('Sutures', 'fissure'), ('Seat', 'bronchus'), ('Close', 'other'), ('Wean', 'artery'))),
+            ('avr-hemi', 'Upper hemisternotomy', hemi, seq(('Anatomy', 'other'), ('Decide', 'other'), ('Hemisternotomy', 'other'), ('Cannulate', 'artery'), ('Clamp', 'artery'), ('Aortotomy', 'artery'), ('Excise', 'fissure'), ('Size', 'other'), ('Sutures', 'fissure'), ('Seat', 'bronchus'), ('Close', 'other'), ('Wean', 'artery'))),
+            ('avr-ramt', 'Right anterior mini-thoracotomy', rm, seq(('Anatomy', 'other'), ('Decide', 'other'), ('Access', 'other'), ('Clamp', 'artery'), ('Aortotomy', 'artery'), ('Excise', 'fissure'), ('Size', 'other'), ('Sutures', 'fissure'), ('Seat', 'bronchus'), ('Close', 'other'), ('Wean', 'artery')))):
+        for s in steps_:
+            named = set(s.get('highlight', [])) | set(s.get('danger', [])) | set(s.get('labels', [])) | set(s.get('show', []))
+            off_groups = {'arteries', 'veins', 'airway', 'lul-intra', 'lll-intra', 'rul-intra', 'nodes', 'nerves', 'pleura', 'segments', 'trauma', 'muscles', 'landmarks'}
+            s['hide'] = [*s.get('hide', []), *[q['id'] for q in atlas['structures'] if q['group'] in off_groups and q['id'] not in named],
+                         *[i for i in ('esophagus', 'thymus', 'thyroid') if has(i) and i not in named], *(['sternum'] if s.get('seq', 0) >= 3 else [])]
+            if s['phase'] in ('Valve', 'Wean', 'Aorta'): s['opacity'] = {**{c_: 0.3 for c_ in AV_CANS}, **s.get('opacity', {})}
+            if s['phase'] in ('Valve', 'Anatomy'):
+                s['hide'] = [*s['hide'], 'svc', 'pa-trunk', 'ra', 'rv', 'la', 'myocardium', *[i for i in (*AV_CANS, 'can-svc', 'can-ivc', 'can-ostial') if i not in named]]
+                s['opacity'] = {**s.get('opacity', {}), 'lv': 0.12, 'aorta': 0.12, 'lvot': 0.2}
+                s['hide'] = [*s['hide'], 'esophagus', *[f'vert-t{i}' for i in range(1, 13)]]
+            s['opacity'] = {**{f'vert-t{i}': 0.25 for i in range(2, 11)}, **s.get('opacity', {})}
+            for kk in ('highlight', 'danger', 'labels', 'show'):
+                if kk in s: s[kk] = [i for i in s[kk] if has(i) or i == 'skin']
+        procs[key] = {'id': key, 'op': 'avr', 'opName': 'Aortic valve replacement', 'side': 'both', 'name': 'Aortic valve replacement', 'approach': appr,
+                      'summary': 'Heart Team decision, access, bypass and protection by valve lesion, aortotomy, debridement, sizing against mismatch, annular sutures, prosthesis, de-airing, TOE.',
+                      'ports': [], 'steps': steps_, 'sources': AVSRC, 'group': 'Cardiac', 'sequence': sq}
 # operations appear in the menu in this order
-ORDER = ['position', 'thoracotomy-l', 'thoracotomy-r', 'vats-ports-l', 'vats-ports-r', 'lul', 'lll', 'rul', 'rml', 'rll', 'pnl', 'pnr', 'seg-lingula', 'seg-lul-updiv', 'seg-s6', 'trachea', 'thymectomy', 'oesophagectomy', 'duct', 'empyema', 'rt', 'clamshell', 'cardio', 'tract', 'hilar', 'mvr']
+ORDER = ['position', 'thoracotomy-l', 'thoracotomy-r', 'vats-ports-l', 'vats-ports-r', 'lul', 'lll', 'rul', 'rml', 'rll', 'pnl', 'pnr', 'seg-lingula', 'seg-lul-updiv', 'seg-s6', 'trachea', 'thymectomy', 'oesophagectomy', 'duct', 'empyema', 'rt', 'clamshell', 'cardio', 'tract', 'hilar', 'mvr', 'avr']
 procs = dict(sorted(procs.items(), key=lambda kv: (ORDER.index(kv[1]['op']), list(procs).index(kv[0]))))
 for v in procs.values():
     v['group'] = v.get('group') or ('Pneumonectomy' if v['op'].startswith('pn') else 'Segmentectomy' if v['op'].startswith('seg-') else 'Lobectomy')

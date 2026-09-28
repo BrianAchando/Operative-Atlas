@@ -892,7 +892,7 @@ TRLM.update(NKLM)
 # ------------------------------------------------------------------ the heart: mitral valve replacement (needs work/heart.nii.gz from segment_heart.py)
 import cardiac  # noqa: E402
 CDLM, CDDIR, CDSC = cardiac.build(dict(emit=emit, emit_mesh=emit_mesh, W=W, tube=tube, sphere=sphere, work=Path(WORK), aorta_mm=aorta_mm,
-                                       bct_mm=vox_mm(ts('brachiocephalic_trunk')), svc_mm=vox_mm(ts('superior_vena_cava')), port=port, lung_cr=lung_cr, CARINA=CARINA))
+                                       bct_mm=vox_mm(ts('brachiocephalic_trunk')), svc_mm=vox_mm(ts('superior_vena_cava')), port=port, lung_cr=lung_cr, CARINA=CARINA, sternum_mm=st_mm))
 TRLM.update(CDLM)
 CW_L |= MD_L; CW_R |= MD_R
 for appr, ps in PORTS.items():
@@ -961,6 +961,7 @@ for k, v in TRLM.items():
 for k, v in NKDIR.items(): landmarks[k] = [round(float(x), 3) for x in v]
 for k, v in CDDIR.items(): landmarks[k] = [round(float(x), 3) for x in v]
 if CDSC: landmarks['mv-dims'] = [round(CDSC['mv-radius'], 1), 0.0, 0.0]
+if 'av-radius' in CDSC: landmarks['av-dims'] = [round(CDSC['av-radius'], 1), 0.0, 0.0]
 landmarks['trach-dims'] = [round(NKSC.get('trach-radius', 9.0), 1), round(NKSC.get('stenosis-length', 20.0), 1), 0.0]
 # the left hilum as a pivot (hilar clamp and twist): the centre of its four staple lines, and the axis out into the lung
 _hp = [np.array(rec_of(i)['division']['point']) for i in ('pa-left', 'pv-superior', 'pv-inferior', 'br-lul') if 'division' in rec_of(i)]
