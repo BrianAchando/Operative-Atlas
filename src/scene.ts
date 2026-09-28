@@ -4,7 +4,7 @@ import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 import { RoomEnvironment } from 'three/addons/environments/RoomEnvironment.js';
 import { MeshoptDecoder } from 'three/addons/libs/meshopt_decoder.module.js';
 import type { Vec3 } from './ctview.ts';
-import { stapler, peanut, hook, tie, knotPusher, stapleRun, ribSpreader, RELOAD } from './instruments.ts';
+import { stapler, peanut, hook, tie, knotPusher, stapleRun, ribSpreader, vascularClamp, pledgetStitch, needleDriver, sawBlade, RELOAD } from './instruments.ts';
 import type { Action } from './procedure.ts';
 
 export interface StructureMeta {
@@ -95,7 +95,7 @@ export class Scene3D {
   private labels = new Map<string, HTMLElement>();
   private raycaster = new THREE.Raycaster();
   private tween: { from: [THREE.Vector3, THREE.Vector3]; to: [THREE.Vector3, THREE.Vector3]; t0: number; ms: number } | null = null;
-  private moves: { item: Item; from: THREE.Vector3; to: THREE.Vector3; op0: number; op1: number; t0: number; ms: number }[] = [];
+  private moves: { item: Item; from: THREE.Vector3; to: THREE.Vector3; op0: number; op1: number; t0: number; ms: number; keepOp?: boolean }[] = [];
   highlight = new Set<string>();
   danger = new Set<string>();
   /** render on demand: until this time (ms) the scene animates; after it, frames are drawn only when invalidated */
@@ -216,7 +216,7 @@ export class Scene3D {
   /** move a structure away from home (retraction) with an eased animation */
   retract(id: string, offset: Vec3, opacity: number, ms = 900): void {
     const it = this.items.get(id); if (!it) return;
-    this.moves.push({ item: it, from: it.mesh.position.clone(), to: new THREE.Vector3(...offset), op0: it.mat.opacity, op1: opacity, t0: performance.now(), ms });
+    this.moves.push({ item: it, from: it.mesh.position.clone(), to: new THREE.Vector3(...offset), op0: it.mat.opacity, op1: opacity < 0 ? it.mat.opacity : opacity, t0: performance.now(), ms, keepOp: opacity < 0 });
     this.invalidate(ms + 100);
   }
 
@@ -224,10 +224,10 @@ export class Scene3D {
    * Divide at the staple line: the proximal side stays (clipped), the distal side becomes a separate mesh that moves
    * with the specimen. `staple` lays two staple rows across the cut; `tie` expects ligatures placed by tieOff().
    */
-  divide(id: string, animate = true, style: 'staple' | 'tie' = 'staple'): void {
+  divide(id: string, animate = true, style: 'staple' | 'tie' | 'cut' = 'staple'): void {
     const it = this.items.get(id); const d = it?.meta.division; if (!it || !d || it.distal) return;
     const n = new THREE.Vector3(...d.dir).normalize(); const p = new THREE.Vector3(...d.point);
-    const gap = style === 'tie' ? 1.2 : 2.2;   // mm between the two cut faces
+    const gap = style === 'tie' ? 1.2 : style === 'cut' ? 1.5 : 2.2;   // mm between the two cut faces
     const keep = new THREE.Plane().setFromNormalAndCoplanarPoint(n.clone().negate(), p.clone().addScaledVector(n, -gap / 2));
     const go = new THREE.Plane().setFromNormalAndCoplanarPoint(n, p.clone().addScaledVector(n, gap / 2));
     it.mat.clippingPlanes = [keep]; it.mat.needsUpdate = true;
@@ -253,7 +253,7 @@ export class Scene3D {
       if (animate) { staple.scale.setScalar(0.01); const t0 = performance.now(); const grow = () => { const f = Math.min(1, (performance.now() - t0) / 350); staple.scale.setScalar(ease(f)); this.invalidate(); if (f < 1) requestAnimationFrame(grow); }; grow(); }
     }
     // open the cut a little so the two ends read as divided
-    const sep = n.clone().multiplyScalar(style === 'tie' ? 3.5 : 3);
+    const sep = n.clone().multiplyScalar(style === 'tie' ? 3.5 : style === 'cut' ? 1.5 : 3);
     if (animate) { const t0 = performance.now(); const from = distal.position.clone(); const stepf = () => { const f = Math.min(1, (performance.now() - t0) / 500); this.shiftDistal(it, from.clone().addScaledVector(sep, ease(f))); this.invalidate(); if (f < 1) requestAnimationFrame(stepf); }; stepf(); }
     else this.shiftDistal(it, distal.position.clone().add(sep));
     this.invalidate(600);
@@ -305,7 +305,7 @@ export class Scene3D {
 
   resetOperative(): void {
     this.seq++;
-    for (const [id, it] of this.items) { this.undivide(id); it.mesh.position.set(0, 0, 0); this.setOpacity(id, it.meta.opacity); it.mesh.visible = it.meta.visible !== false; }
+    for (const [id, it] of this.items) { this.undivide(id); it.mesh.position.set(0, 0, 0); it.mesh.quaternion.identity(); it.mesh.scale.setScalar(1); this.setOpacity(id, it.meta.opacity); it.mesh.visible = it.meta.visible !== false; }
     this.moves = [];
     this.clearTools(); this.clearExtras();
     this.controls.autoRotate = false;
@@ -435,8 +435,44 @@ export class Scene3D {
       if (a.incision) { this.setVisible(a.incision, true); const it = this.items.get(a.incision); if (it) { if (!await this.anim(700, (e) => this.setOpacity(a.incision!, e), token)) return false; } }
       const sp = this.spreader(P, a); if (!sp) return true;
       if (!await this.wait(300, token)) return false;
-      for (const [k, id] of (a.ribs ?? []).entries()) { const it = this.items.get(id); if (it) this.retract(id, sp.shift(k), it.mat.opacity, 1600); }
+      for (const [k, id] of (a.ribs ?? []).entries()) { const it = this.items.get(id); if (it) this.retract(id, sp.shift(k), -1, 1600); }
       if (!await this.anim(1600, (e) => sp.set(4 + 66 * e), token)) return false;
+    } else if (a.kind === 'saw') {
+      const id = a.ids?.[0]; const d = id ? this.items.get(id)?.meta.division : undefined;
+      if (d) {
+        const p = new THREE.Vector3(...d.point); const blade = sawBlade(); this.tools.add(blade);
+        // blade lies in the cut plane, teeth down into the bone, body out of the chest
+        const n = new THREE.Vector3(...d.dir).normalize(); const out = new THREE.Vector3(0, 1, 0).addScaledVector(n, -n.y).normalize();
+        blade.quaternion.setFromRotationMatrix(new THREE.Matrix4().makeBasis(new THREE.Vector3().crossVectors(n, out), n, out));
+        if (!await this.anim(1800, (e) => { blade.position.copy(p).addScaledVector(out, 10 - 16 * e).addScaledVector(new THREE.Vector3().crossVectors(n, out), Math.sin(e * Math.PI * 28) * 3); }, token)) return false;
+        this.clearTools(); this.divide(id!, true, 'cut');
+        if (!await this.wait(650, token)) return false;
+      }
+      if (a.hinge) { const h = a.hinge; if (!await this.anim(1800, (e) => this.turn(h, e), token)) return false; }
+    } else if (a.kind === 'twist') {
+      if (a.hinge) { const h = a.hinge; if (!await this.anim(2600, (e) => this.turn(h, e), token)) return false; }
+    } else if (a.kind === 'clamp') {
+      const c = this.clampAt(a, P); if (!c) return true;
+      const dir = new THREE.Vector3(...(a.at ?? [0, 0, 0])).sub(P).normalize().multiplyScalar(-40);
+      if (!await this.anim(800, (e) => c.group.position.copy(dir.clone().multiplyScalar(1 - e)), token)) return false;
+      if (!await this.anim(600, (e) => c.setClamp(e), token)) return false;
+    } else if (a.kind === 'suture') {
+      for (const s of this.stitches(a)) {
+        const nd = needleDriver(s.c.clone().addScaledVector(s.across, 7), P, s.n); this.tools.add(nd);
+        if (!await this.anim(600, (e) => nd.position.copy(s.across.clone().multiplyScalar(-14 * e)), token)) return false;
+        this.clearTools();
+        const st = pledgetStitch(s.c, s.across, s.n); st.scale.setScalar(0.01); this.extras.add(st);
+        if (!await this.anim(350, (e) => { st.scale.setScalar(Math.max(0.01, e)); st.position.copy(s.c.clone().multiplyScalar(1 - Math.max(0.01, e))); }, token)) return false;
+      }
+      for (const id of a.remove ?? []) this.fadeOut(id, 600);
+    } else if (a.kind === 'massage') {
+      const id = a.ids?.[0] ?? 'heart'; const it = this.items.get(id);
+      if (it) {
+        const c = new THREE.Vector3(...it.meta.centroid);
+        const ok = await this.anim(3600, (e) => { const s = 1 - 0.09 * Math.max(0, Math.sin(e * Math.PI * 12)); it.mesh.scale.set(s, s, s); it.mesh.position.copy(c).multiplyScalar(1 - s); }, token);
+        it.mesh.scale.setScalar(1); it.mesh.position.set(0, 0, 0);
+        if (!ok) return false;
+      }
     }
     for (const id of a.show ?? []) this.setVisible(id, true);
     this.invalidate(400);
@@ -444,14 +480,47 @@ export class Scene3D {
   }
 
   /** the rib spreader seated in the thoracotomy at `P`, with the rib offsets it produces when opened */
-  private spreader(P: THREE.Vector3, a: Action): { set(mm: number): void; shift(k: number): Vec3 } | null {
+  private spreader(P: THREE.Vector3, a: Action): { set(mm: number): void; shift(k: number): Vec3; ghost(): void } | null {
     const [up, lo] = (a.ribs ?? []).map((id) => this.items.get(id)); if (!up || !lo) return null;
     const cu = new THREE.Vector3(...up.meta.centroid), cl = new THREE.Vector3(...lo.meta.centroid);
     const sep = cu.clone().sub(cl).normalize();                          // lower rib -> upper rib
     const out = new THREE.Vector3(P.x, P.y, 0).normalize();               // away from the midline, in the axial plane
     const along = new THREE.Vector3().crossVectors(sep, out);
     const sp = ribSpreader(P, out, along, sep); this.extras.add(sp.group);
-    return { set: (mm) => { sp.setGap(mm); this.invalidate(); }, shift: (k) => { const v = sep.clone().multiplyScalar(k === 0 ? 30 : -30); return [v.x, v.y, v.z]; } };
+    const ghost = () => sp.group.traverse((o) => { const m = (o as THREE.Mesh).material as THREE.MeshStandardMaterial | undefined; if (m) { m.transparent = true; m.opacity = 0.28; m.depthWrite = false; } });
+    return { ghost, set: (mm) => { sp.setGap(mm); this.invalidate(); }, shift: (k) => { const v = sep.clone().multiplyScalar(k === 0 ? 30 : -30); return [v.x, v.y, v.z]; } };
+  }
+
+  /** turn structures (or the divided distal part, e.g. the upper sternum) by `f` of the hinge angle about its axis */
+  private turn(h: NonNullable<Action['hinge']>, f: number): void {
+    const pivot = new THREE.Vector3(...h.pivot);
+    const q = new THREE.Quaternion().setFromAxisAngle(new THREE.Vector3(...h.axis).normalize(), THREE.MathUtils.degToRad(h.angle) * f);
+    for (const id of h.ids) {
+      const it = this.items.get(id); if (!it) continue;
+      const o = it.distal ?? it.mesh;
+      o.quaternion.copy(q); o.position.copy(pivot).sub(pivot.clone().applyQuaternion(q));
+      if (it.distal && it.distalPlane) { o.updateMatrixWorld(true); (it.distal.material as THREE.Material).clippingPlanes = [it.distalPlane.clone().applyMatrix4(o.matrixWorld)]; }
+      this.moves = this.moves.filter((m) => m.item !== it || it.distal);
+    }
+    this.invalidate(50);
+  }
+
+  /** a vascular clamp closed across the action's point (kept on until the end of the operation) */
+  private clampAt(a: Action, P: THREE.Vector3): ReturnType<typeof vascularClamp> | null {
+    if (!a.at) return null;
+    const p = new THREE.Vector3(...a.at); const n = new THREE.Vector3(...(a.axis ?? [0, 0, 1])).normalize();
+    const u = P.clone().sub(p).normalize();
+    let jaw = u.clone().negate().addScaledVector(n, u.dot(n)); if (jaw.lengthSq() < 1e-4) jaw = new THREE.Vector3(0, 0, 1).cross(n);
+    jaw.normalize();
+    const c = vascularClamp(p, jaw, new THREE.Vector3().crossVectors(n, jaw), P, a.radius ?? 10, a.jawLen ?? 60);
+    this.extras.add(c.group); return c;
+  }
+
+  /** stitch centres along a wound, with the direction across it */
+  private stitches(a: Action): { c: THREE.Vector3; across: THREE.Vector3; n: THREE.Vector3 }[] {
+    const n = new THREE.Vector3(...(a.normal ?? [0, 1, 0])).normalize(); const ax = new THREE.Vector3(...(a.axis ?? [1, 0, 0])).normalize();
+    const across = new THREE.Vector3().crossVectors(n, ax).normalize();
+    return (a.path ?? []).map((v) => ({ c: new THREE.Vector3(...v), across, n }));
   }
 
   private fadeOut(id: string, ms: number): void {
@@ -467,9 +536,13 @@ export class Scene3D {
     for (const id of a.show ?? []) { this.setVisible(id, true); if (a.kind === 'thoracotomy') this.setOpacity(id, 0.5); }
     if (a.kind === 'thoracotomy' && port) {
       const sp = this.spreader(new THREE.Vector3(...port), a);
-      if (sp) { sp.set(70); for (const [k, id] of (a.ribs ?? []).entries()) { const it = this.items.get(id); if (it) this.retract(id, sp.shift(k), it.mat.opacity, 1); } }
+      if (sp) { sp.set(70); sp.ghost(); for (const [k, id] of (a.ribs ?? []).entries()) { const it = this.items.get(id); if (it) this.retract(id, sp.shift(k), -1, 1); } }
     }
-    if (a.kind === 'staple') for (const id of a.ids ?? []) this.divide(id, false, 'staple');
+    if (a.kind === 'saw') { for (const id of a.ids ?? []) { this.divide(id, false, 'cut'); } if (a.hinge) this.turn(a.hinge, 1); }
+    else if (a.kind === 'twist') { if (a.hinge) this.turn(a.hinge, 1); }
+    else if (a.kind === 'clamp' && port) { this.clampAt(a, new THREE.Vector3(...port))?.setClamp(1); }
+    else if (a.kind === 'suture') { for (const s of this.stitches(a)) this.extras.add(pledgetStitch(s.c, s.across, s.n)); }
+    else if (a.kind === 'staple') for (const id of a.ids ?? []) this.divide(id, false, 'staple');
     else if (a.kind === 'ligate') for (const id of a.ids ?? []) {
       const { meshes } = this.tieOff(id); this.divide(id, false, 'tie');
       const it = this.items.get(id)!; const t2 = meshes[2]!; if (it.distal) { t2.position.sub(it.distal.position); it.distal.add(t2); }
@@ -525,7 +598,7 @@ export class Scene3D {
     this.moves = this.moves.filter((mv) => {
       const f = Math.min(1, (performance.now() - mv.t0) / mv.ms); const e = ease(f);
       mv.item.mesh.position.lerpVectors(mv.from, mv.to, e);
-      this.setOpacity(mv.item.meta.id, mv.op0 + (mv.op1 - mv.op0) * e);
+      if (!mv.keepOp) this.setOpacity(mv.item.meta.id, mv.op0 + (mv.op1 - mv.op0) * e);
       return f < 1;
     });
     this.controls.update();
@@ -568,7 +641,7 @@ export class Scene3D {
     for (const [id, el] of this.labels) {
       const it = this.items.get(id); if (!it) continue;
       const c = it.meta.division ? it.meta.division.point : it.meta.centroid;
-      v.set(...c).add(it.mesh.position).project(this.camera);
+      it.mesh.updateMatrixWorld(); v.set(...c).applyMatrix4(it.mesh.matrixWorld).project(this.camera);
       const vis = v.z < 1 && Math.abs(v.x) < 1.05 && Math.abs(v.y) < 1.05 && it.mesh.visible;
       el.style.display = vis ? '' : 'none';
       if (vis) placed.push({ x: ((v.x + 1) / 2) * w, y: ((1 - v.y) / 2) * h, el, w: el.offsetWidth || 120 });

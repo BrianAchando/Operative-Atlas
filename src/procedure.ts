@@ -4,7 +4,11 @@ export interface Choice { text: string; correct: boolean; why: string }
 
 /** what the surgeon does in a step, played in 3D with the instrument coming through a port */
 export interface Action {
-  kind: 'staple' | 'ligate' | 'dissect' | 'open-fissure' | 'staple-fissure' | 'thoracotomy';
+  kind: 'staple' | 'ligate' | 'dissect' | 'open-fissure' | 'staple-fissure' | 'thoracotomy' | 'saw' | 'clamp' | 'twist' | 'suture' | 'massage';
+  /** clamp: where the jaws close, the axis of the vessel (or hilum) they cross, its radius and the jaw length */
+  at?: Vec3; axis?: Vec3; radius?: number; jawLen?: number;
+  /** saw (the chest-wall lid of a clamshell) and twist (the lung about its hilum): structures turned about an axis */
+  hinge?: { ids: string[]; pivot: Vec3; axis: Vec3; angle: number };
   /** thoracotomy: the incision to draw and the two ribs either side of the space (upper first) */
   incision?: string;
   ribs?: [string, string];
@@ -59,8 +63,10 @@ export interface Procedure {
   id: string; name: string; approach: string; summary: string;
   /** the operation this approach belongs to, e.g. 'lul', and its display name */
   op: string; opName: string;
+  /** menu group: Lobectomy, Pneumonectomy, Segmentectomy, … */
+  group?: string;
   /** which hilum the operation is on */
-  side: 'left' | 'right';
+  side: 'left' | 'right' | 'both';
   /** the order to remember, shown as a strip: e.g. Fissure → A2 → Truncus → Bronchus → Vein */
   sequence: { label: string; kind: 'artery' | 'vein' | 'bronchus' | 'fissure' | 'other' }[];
   ports: { id: string; name: string; at: Vec3; note: string }[];

@@ -766,6 +766,98 @@ for sd in ('left', 'right'):
     THOR[sd] = {'path': pts, 'centre': inward(port(5, -25, sd))}
     emit_mesh(f'incision-{sd[0]}', 'Posterolateral thoracotomy incision (5th space)', f'ports-open-{sd}', '#d0433a', tube([W(q) for q in pts], 1.8), visible=False,
               note='Schematic: from the anterior axillary line, curving below the tip of the scapula; latissimus dorsi divided, serratus anterior spared, chest entered over the 6th rib.')
+# ------------------------------------------------------------------ trauma: anterolateral and clamshell incisions, internal
+# mammary arteries, pericardiotomy line, a right ventricular stab wound, a missile tract through the left lower lobe
+print('== trauma')
+TRLM = {}
+st_mm = vox_mm(ts('sternum'))
+
+
+def rec_of(i):
+    return next(q for q in structures if q['id'] == i)
+
+
+AL = {}
+st_z0, st_z1 = float(st_mm[:, 2].min()), float(st_mm[:, 2].max())
+raw = {}
+for sd in ('left', 'right'):
+    # anterolateral thoracotomy: along the 5th space from the sternal edge to the mid-axillary line
+    ok_az = [az for az in range(105, -21, -10) if rib_z(5, az, sd) and rib_z(6, az, sd)]
+    raw[sd] = np.array([port(5, az, sd) for az in ok_az])
+# the transverse sternotomy lies in the sternal body at the level of the 4th/5th costal cartilages: the 5th space ends
+# at the costal margin laterally, so the cut level is clamped into the sternal body and both incisions curve up to it
+z_cs = float(np.clip((raw['left'][0][2] + raw['right'][0][2]) / 2, st_z0 + 30, st_z1 - 60))
+print('  sternum z', round(st_z0, 1), round(st_z1, 1), 'transverse sternotomy z', round(z_cs, 1))
+sts = slab(st_mm, z_cs, 4.0)
+for sd in ('left', 'right'):
+    pts = raw[sd]; a0 = pts[0]
+    edge_x = sts[:, 0].min() - 8 if sd == 'left' else sts[:, 0].max() + 8
+    front = sts[:, 1].max() - 2
+    pts = np.vstack([[edge_x, front, z_cs], [(2 * edge_x + a0[0]) / 3, (2 * front + a0[1]) / 3 + 3, (2 * z_cs + a0[2]) / 3],
+                     [(edge_x + 2 * a0[0]) / 3, (front + 2 * a0[1]) / 3 + 3, (z_cs + 2 * a0[2]) / 3], pts])
+    pts[1:-1] = (pts[:-2] + 2 * pts[1:-1] + pts[2:]) / 4
+    AL[sd] = pts
+    c_ = lung_c if sd == 'left' else lung_cr
+    q = port(5, 45, sd); ctr = q + (c_ - q) * np.array([1, 1, 0]) / (np.linalg.norm((c_ - q)[:2]) + 1e-9) * 14.0
+    TRLM[f'thor-a{sd[0]}'] = ctr
+    emit_mesh(f'incision-a{sd[0]}', 'Anterolateral thoracotomy incision (5th space)', 'trauma', '#d0433a', tube([W(q_) for q_ in pts], 1.8), visible=False,
+              note='Schematic: along the 5th intercostal space (below the nipple, in the inframammary fold in women), from the sternal edge to the mid-axillary line.')
+# clamshell: both anterolateral incisions joined across the sternum
+mid_ = sts[np.abs(sts[:, 0] - np.median(sts[:, 0])) < 6]
+st_front = np.array([np.median(sts[:, 0]), mid_[:, 1].max(), z_cs])
+bridge = [AL['left'][0], (AL['left'][0] + st_front) / 2 + ANT * 6, st_front + ANT * 8, (AL['right'][0] + st_front) / 2 + ANT * 6, AL['right'][0]]
+cs_path = list(AL['left'][::-1]) + bridge[1:-1] + list(AL['right'])
+emit_mesh('incision-cs', 'Clamshell incision (bilateral anterolateral + transverse sternotomy)', 'trauma', '#d0433a', tube([W(q_) for q_ in cs_path], 1.8), visible=False,
+          note='Schematic: both 5th-space anterolateral incisions joined across the sternum.')
+TRLM['sternotomy'] = st_front
+# the sternum is divided transversely at that level: the upper half goes up with the chest wall "lid"
+st_c = sts.mean(0)
+rec_of('sternum')['division'] = {'point': [round(float(x), 1) for x in W(st_c)], 'dir': [0.0, 0.0, 1.0], 'radius': 12.0}
+# internal mammary (thoracic) arteries: from the subclavian, 1-2 cm lateral to the sternal edge behind the costal cartilages
+for sd, sub_name in (('l', 'subclavian_artery_left'), ('r', 'subclavian_artery_right')):
+    sub = vox_mm(ts(sub_name)); sgn = -1 if sd == 'l' else 1
+    o = sub[np.argmin(np.abs(sub[:, 0] - (st_mm[:, 0].min() if sd == 'l' else st_mm[:, 0].max()) - sgn * 10) + 0.3 * sub[:, 2])]
+    path = [o]
+    for z in np.linspace(st_mm[:, 2].max() - 5, z_cs - 45, 7):
+        ss = slab(st_mm, z, 4.0)
+        if not len(ss): continue
+        edge = ss[:, 0].min() if sd == 'l' else ss[:, 0].max()
+        path.append(np.array([edge + sgn * 13, ss[:, 1].min() + 2, z]))
+    path = np.array(path)
+    emit_mesh(f'ima-{sd}', f'{"Left" if sd == "l" else "Right"} internal mammary artery', 'trauma', '#c24a3e', tube([W(q_) for q_ in path], 1.3), visible=False,
+              note='Schematic: descends behind the costal cartilages 1-2 cm from the sternal edge. Divided by a clamshell; ligate both ends once there is a circulation.')
+    k = int(np.argmin(np.abs(path[:, 2] - z_cs)))
+    rec_of(f'ima-{sd}')['division'] = {'point': [round(float(x), 1) for x in W(np.array([path[k][0], path[k][1], z_cs]))], 'dir': [0.0, 0.0, 1.0], 'radius': 2.2}
+# pericardiotomy: longitudinal, anterior to and parallel with the left phrenic nerve
+heart_surf = cKDTree(heart_mm[::3])
+pc = []
+for p_ in [ph[2] + SUP * 22, ph[2], ph[3], ph[4]]:
+    q_ = p_ + ANT * 16 - LEFT * 6
+    _, i_ = heart_surf.query(q_); pc.append(heart_surf.data[i_] + ANT * 1.5)
+emit_mesh('pericardiotomy', 'Pericardiotomy line', 'trauma', '#2a0d10', tube([W(q_) for q_ in pc], 1.1), visible=False,
+          note='Opened longitudinally, anterior to and parallel with the phrenic nerve, from the base to the apex.')
+TRLM['pericardiotomy-a'], TRLM['pericardiotomy-b'] = pc[0], pc[-1]
+# a stab wound of the right ventricle: anterior surface, mid-ventricle
+hs = slab(heart_mm, hilum_z - 45, 4.0); wpt = hs[np.argmax(hs[:, 1])] + ANT * 1.0
+wm = trimesh.creation.icosphere(subdivisions=2, radius=1.0); wm.apply_scale([8.0, 2.2, 2.6]); wm.apply_translation(W(wpt))
+emit_mesh('wound-rv', 'Stab wound, right ventricle', 'trauma', '#2a0507', wm, visible=False, note='Teaching example of a ventricular stab wound.')
+TRLM['wound-rv'] = wpt
+# a through-and-through missile tract in the left lower lobe, away from the hilum
+lll_mm = vox_mm(Dt)
+lz = float(np.median(lll_mm[:, 2])); ls_ = slab(lll_mm, lz, 3.0)
+ta = ls_[np.argmin(ls_[:, 0])] + np.array([6.0, 0, 0])
+hil_ = np.mean([np.array(rec_of(i)['division']['point']) + CARINA for i in ('pa-left', 'pv-superior', 'pv-inferior') if 'division' in rec_of(i)], axis=0)
+tb_s = slab(lll_mm, lz - 12, 3.0); far_ok = tb_s[np.linalg.norm(tb_s - hil_, axis=1) > 50]
+tb = far_ok[np.argmax(np.linalg.norm(far_ok - ta, axis=1))]
+tb = tb + (ta - tb) / np.linalg.norm(ta - tb) * 6.0            # stop just inside the far surface
+emit_mesh('tract-l', 'Missile tract, left lower lobe', 'trauma', '#4a0f14', tube([W(ta), W((ta + tb) / 2 + np.array([4.0, 0, 3])), W(tb)], 3.2), visible=False,
+          note='Teaching example: a bleeding through-and-through tract away from the hilum, treated by tractotomy.')
+TRLM['tract-a'], TRLM['tract-b'] = ta, tb
+# descending thoracic aorta just above the diaphragm: where it is cross-clamped
+z_ac = float(lll_mm[:, 2].min() + 35); a_s = slab(aorta_mm, z_ac, 4.0)
+a_s = a_s[a_s[:, 1] < np.median(aorta_mm[:, 1])] if len(a_s[a_s[:, 1] < np.median(aorta_mm[:, 1])]) else a_s
+TRLM['aorta-clamp'] = a_s.mean(0)
+TRLM['lower-lung-lz'] = np.array([lung_c[0], lung_c[1], z_ac])
 for appr, ps in PORTS.items():
     for k, nm, p in ps:
         emit_mesh(f'port-{appr}-{k}', nm, f'ports-{appr}', '#46c2c7', sphere(W(p), 5.5 if k == 'utility' else 3.5), visible=False)
@@ -826,6 +918,13 @@ for appr, ps in PORTS.items():
     for k, _, p in ps: landmarks[f'port-{appr}-{k}'] = [round(float(x), 1) for x in W(p)]
 for sd, th in THOR.items():
     landmarks[f'thor-{sd[0]}'] = [round(float(x), 1) for x in W(th['centre'])]
+for k, v in TRLM.items():
+    landmarks[k] = [round(float(x), 1) for x in W(v)]
+# the left hilum as a pivot (hilar clamp and twist): the centre of its four staple lines, and the axis out into the lung
+_hp = [np.array(rec_of(i)['division']['point']) for i in ('pa-left', 'pv-superior', 'pv-inferior', 'br-lul') if 'division' in rec_of(i)]
+landmarks['hilum-l'] = [round(float(x), 1) for x in np.mean(_hp, axis=0)]
+_ax = W(lung_c) - np.mean(_hp, axis=0); _ax[2] = 0; _ax /= np.linalg.norm(_ax)
+landmarks['hilum-l-axis'] = [round(float(x), 3) for x in _ax]
 atlas = {
     'ct': {'file': 'ct.hu8.gz', 'dims': [int(x) for x in shape], 'affine': [[round(float(x), 4) for x in row] for row in w_aff[:3]], 'scale': STEP, 'offset': HU0, 'spacing': vox},
     'labels': {'file': 'labels.u8.gz', 'lut': lut},
@@ -837,7 +936,7 @@ atlas = {
                {'id': 'ports-anterior', 'name': 'Ports, anterior approach'}, {'id': 'ports-posterior', 'name': 'Ports, posterior approach'},
                {'id': 'rul-intra', 'name': 'Right upper lobe, intrapulmonary'},
                {'id': 'ports-r-anterior', 'name': 'Ports, right anterior approach'}, {'id': 'ports-r-posterior', 'name': 'Ports, right posterior approach'},
-               {'id': 'segments', 'name': 'Segments (from bronchial territories)'}, {'id': 'ports-open-left', 'name': 'Thoracotomy, left'}, {'id': 'ports-open-right', 'name': 'Thoracotomy, right'}],
+               {'id': 'segments', 'name': 'Segments (from bronchial territories)'}, {'id': 'trauma', 'name': 'Trauma (schematic)'}, {'id': 'ports-open-left', 'name': 'Thoracotomy, left'}, {'id': 'ports-open-right', 'name': 'Thoracotomy, right'}],
     'structures': structures,
     'landmarks': landmarks,
     'source': {'name': 'Reference CT: 3D Slicer sample CTA (CTA-cardio)', 'licence': 'unstated',

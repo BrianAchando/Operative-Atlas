@@ -922,10 +922,315 @@ for op_, steps_ in OPEN.items():
     if op_.startswith('pn'):
         procs[f'{op_}-open']['summary'] = 'Posterolateral thoracotomy; artery first: main PA, superior vein, inferior vein, bronchus.'
         procs[f'{op_}-open']['sequence'] = seq(('Anatomy', 'other'), ('Ligament', 'other'), ('Main PA', 'artery'), ('Superior vein', 'vein'), ('Inferior vein', 'vein'), ('Main bronchus', 'bronchus'), ('Specimen', 'other'))
+# ==================================================================================================== chest trauma
+TR_OK = all(k in LM for k in ('thor-al', 'thor-ar', 'aorta-clamp', 'wound-rv', 'tract-a', 'tract-b', 'hilum-l', 'hilum-l-axis', 'sternotomy')) and has('incision-al')
+TRAUMA = {}
+if TR_OK:
+    T_AL, T_AR, STN = V(LM['thor-al']), V(LM['thor-ar']), V(LM['sternotomy'])
+    WND, ACL = V(LM['wound-rv']), V(LM['aorta-clamp'])
+    TA_, TB_ = V(LM['tract-a']), V(LM['tract-b'])
+    HIL, HAX = V(LM['hilum-l']), V(LM['hilum-l-axis'])
+    PCA, PCB = V(LM['pericardiotomy-a']), V(LM['pericardiotomy-b'])
+    LUNG_L = [i for i in ('lul', 'lll', 'fissure') if has(i)]
+    L_TWIST = [i for i in ('lul', 'lll', 'fissure', 'lul-arteries', 'lul-veins', 'lul-bronchi', 'lll-arteries', 'lll-veins', 'lll-bronchi', 'pa-truncus-anterior', *POST,
+                           'pa-lingular', 'pa-a6', 'pa-basal-trunk', 'br-lingular', 'br-upper-div', 'br-b6', 'pv-lingular', 'pv-upper-div', 'pv-v6', 'tract-l') if has(i)]
+    TSRC = [
+        {'title': 'Seamon MJ, et al. An evidence-based approach to patient selection for emergency department thoracotomy: a practice management guideline from the Eastern Association for the Surgery of Trauma. J Trauma Acute Care Surg 2015;79(1):159-173',
+         'url': 'https://pubmed.ncbi.nlm.nih.gov/?term=Seamon+emergency+department+thoracotomy+Eastern+Association+2015'},
+        {'title': 'Burlew CC, et al. Western Trauma Association critical decisions in trauma: resuscitative thoracotomy. J Trauma Acute Care Surg 2012;73(6):1359-1363',
+         'url': 'https://pubmed.ncbi.nlm.nih.gov/?term=Burlew+Western+Trauma+Association+resuscitative+thoracotomy'},
+        {'title': 'Simms ER, et al. Bilateral anterior thoracotomy (clamshell incision) is the ideal emergency thoracotomy incision: an anatomic study. World J Surg 2013;37(6):1277-1285',
+         'url': 'https://pubmed.ncbi.nlm.nih.gov/?term=Simms+clamshell+incision+ideal+emergency+thoracotomy'},
+        {'title': 'Wall MJ Jr, Hirshberg A, Mattox KL. Pulmonary tractotomy with selective vascular ligation for penetrating injuries to the lung. Am J Surg 1994;168(6):665-669',
+         'url': 'https://pubmed.ncbi.nlm.nih.gov/?term=Wall+Hirshberg+Mattox+pulmonary+tractotomy'},
+        {'title': 'Wilson A, Wall MJ Jr, Maxson R, Mattox K. The pulmonary hilum twist as a thoracic damage control procedure. Am J Surg 2003;186(1):49-52',
+         'url': 'https://pubmed.ncbi.nlm.nih.gov/?term=pulmonary+hilum+twist+thoracic+damage+control'},
+    ]
+
+    def via(tgt, T=T_AL, mn=330.0, extra=150.0):
+        """look in through the anterolateral wound (past the seated spreader) at the target"""
+        t = V(tgt); L_ = np.linalg.norm(T - t); return {'eye': R(t + (T - t) / L_ * max(mn, L_ + extra)), 'target': R(t)}
+
+    def al_entry(op, sd='l', seq=1):
+        L = sd == 'l'
+        ribs = [f'rib-{i}-{sd}' for i in range(3, 9) if has(f'rib-{i}-{sd}')]
+        return {'id': f'{op}-entry-{sd}', 'phase': 'Entry', 'seq': seq, 'title': f'{"Left" if L else "Right"} anterolateral thoracotomy, 5th space',
+                'body': ('<p>Supine, the left arm up above the head. Incise along the <b>5th intercostal space</b> from the <b>sternal edge</b> to the <b>mid-axillary line</b>: below the nipple in a man, '
+                         'in the inframammary fold in a woman (lift the breast). Curve slightly upward toward the axilla, following the rib.</p>'
+                         '<p>Cut through the pectoralis and serratus in one pass, then divide the intercostal muscles on the <b>upper border of the 6th rib</b> with scissors (heavy Mayo), pushing the lung away. '
+                         'Place the <b>rib spreader with its handle toward the axilla</b>, so it does not block an extension across the sternum.</p>'
+                         '<p>Medially the <b>internal mammary artery</b> runs 1–2 cm from the sternal edge: it is cut if the incision goes onto the sternum, and bleeds once there is a pressure.</p>'
+                         if L else
+                         '<p>The same incision on the right: 5th space, sternal edge to mid-axillary line, intercostals divided on the upper border of the 6th rib. '
+                         'A second spreader goes in with its handle toward the right axilla.</p>'
+                         '<p>The <b>right internal mammary artery</b> crosses the line of the sternal cut 1–2 cm from the edge.</p>'),
+                'view': {'frame': [f'incision-a{sd}', *ribs[1:4]], 'dir': [-0.75 if L else 0.75, 0.7, 0.2], 'pad': 1.15},
+                'labels': [f'incision-a{sd}'], 'danger': [f'ima-{sd}'], 'show': [f'ima-{sd}'],
+                'action': {'kind': 'thoracotomy', 'label': 'Open the chest', 'port': f'thor-a{sd}', 'incision': f'incision-a{sd}', 'ribs': [f'rib-5-{sd}', f'rib-6-{sd}'], 'show': ribs},
+                'ct': ct(R(T_AL if L else T_AR), 'axial', 'lung')}
+
+    def down(tgt, d=(-0.45, 1.0, 0.12), dist=300.0):
+        """the surgeon's view from above the supine patient, down through the anterolateral wound"""
+        d = V(d) / np.linalg.norm(d); return {'eye': R(V(tgt) + d * dist), 'target': R(tgt)}
+
+    LUNG_BACK = {'ids': [i for i in ('lul', 'lll', 'fissure') if has(i)], 'offset': [-10, -30, 0], 'opacity': 0.22}
+    peri_path = [R(PCA + V([0, 4, 0])), R((2 * PCA + PCB) / 3 + V([0, 5, 0])), R((PCA + 2 * PCB) / 3 + V([0, 5, 0])), R(PCB + V([0, 4, 0]))]
+    pericardium = lambda op, seq=2: {
+        'id': f'{op}-pericardium', 'phase': 'Pericardium', 'seq': seq, 'title': 'Pericardiotomy, anterior to the phrenic nerve',
+        'body': '<p>Push the collapsed lung back. The <b>phrenic nerve</b> runs down the side of the pericardium. Pick up the pericardium with toothed forceps <b>anterior to the nerve</b>, nick it with scissors, '
+                'and open it longitudinally, <b>parallel to the nerve</b>, from the apex to the root of the aorta.</p>'
+                '<p>A tense, blue, non-pulsatile pericardium is <b>tamponade</b>: scoop out the clot and deliver the heart into the wound.</p>',
+        'view': down((PCA + PCB) / 2), 'retract': LUNG_BACK, 'opacity': {'heart': 1.0, 'laa': 1.0},
+        'highlight': ['heart'], 'danger': ['n-phrenic'], 'labels': ['laa', 'aorta'],
+        'action': {'kind': 'dissect', 'tool': 'hook', 'label': 'Open the pericardium', 'port': 'thor-al', 'path': peri_path, 'show': ['pericardiotomy']},
+        'ask': ask('Where do you open the pericardium?', 'Anterior to the phrenic nerve, parallel to it',
+                   'The nerve runs on the lateral pericardium; a longitudinal cut in front of it spares it. A transverse cut divides it.', 'Posterior to the phrenic nerve', 'Transversely across the nerve'),
+        'ct': ct(R(WND), 'axial')}
+    stitch_path = [R(WND + V([dx, 1.0, 0])) for dx in (-6.0, 0.0, 6.0)]
+    cardiorrhaphy = lambda op, seq=3: {
+        'id': f'{op}-cardio', 'phase': 'Heart', 'seq': seq, 'title': 'Cardiorrhaphy: right ventricular stab wound',
+        'body': '<p>Put a <b>finger on the hole</b> first. The right ventricle is the chamber most often hit, as it lies under the sternum.</p>'
+                '<p>Close with <b>3-0 or 4-0 polypropylene</b>, <b>pledgeted horizontal mattress</b> sutures, sliding the finger along as each stitch goes in. Tie gently: ventricular muscle tears.</p>'
+                '<p>Bridges while you get ready: a <b>Foley catheter</b> through the hole, balloon inflated and pulled up gently; or a skin stapler across a clean wound.</p>',
+        'view': down(WND, dist=240), 'retract': LUNG_BACK, 'show': ['wound-rv', 'pericardiotomy'], 'opacity': {'heart': 1.0},
+        'highlight': ['wound-rv'], 'danger': ['heart'],
+        'action': {'kind': 'suture', 'label': 'Place pledgeted sutures', 'port': 'thor-al', 'path': stitch_path, 'normal': [0, 1, 0], 'axis': [1, 0, 0], 'remove': ['wound-rv']},
+        'pearl': 'Near a coronary artery, pass the mattress stitch <b>beneath</b> the artery so it is not tied off. Atrial wounds: a side-biting clamp, then a running suture.',
+        'ct': ct(R(WND), 'axial')}
+
+    rt = [
+        {'id': 'rt-decide', 'phase': 'Decision', 'seq': 0, 'title': 'Who gets a resuscitative thoracotomy',
+         'body': '<p>The goals: <b>release tamponade</b>, <b>control bleeding</b> from the heart or lung, <b>cross-clamp the descending aorta</b>, <b>internal cardiac massage</b>, and stop <b>air embolism</b>.</p>'
+                 '<p>Best results after a <b>penetrating chest wound</b> with signs of life, poorest after <b>blunt</b> injury. Commonly used cut-offs: thoracotomy is futile after about <b>15 minutes of CPR</b> for penetrating injury, '
+                 'and after about <b>10 minutes</b> for blunt injury, without a response. Follow your unit\'s protocol.</p>',
+         'view': {'frame': ['heart', 'lul', 'lll', 'aorta'], 'dir': [-0.55, 1, 0.25], 'pad': 1.0}, 'spin': True, 'opacity': {'lul': 0.3, 'lll': 0.3, 'fissure': 0.2, 'heart': 0.9},
+         'labels': ['heart', 'aorta', 'lul', 'lll'],
+         'ask': ask('A man with a stab wound to the left chest loses his pulse on arrival; CPR for 6 minutes. What now?', 'Left anterolateral thoracotomy in the resuscitation room',
+                    'Penetrating chest injury, pulseless, CPR well under 15 minutes: the best indication there is (EAST: strong recommendation).', 'Keep up CPR and give blood only', 'Pericardiocentesis and wait'),
+         'ct': ct(R(WND), 'axial')},
+        al_entry('rt'),
+        pericardium('rt'),
+        cardiorrhaphy('rt'),
+        {'id': 'rt-aorta', 'phase': 'Aorta', 'seq': 4, 'title': 'Cross-clamp the descending aorta',
+         'body': '<p>Lift the left lung <b>up and forward</b>. Just above the diaphragm, open the mediastinal pleura over the aorta and separate it from the <b>oesophagus</b> with the fingers: '
+                 'the aorta is the firm tube on the spine; a <b>nasogastric tube</b> makes the oesophagus easy to feel.</p>'
+                 '<p>Place a vascular clamp across the aorta. It diverts what cardiac output there is to the heart and brain and cuts bleeding below the diaphragm. '
+                 '<b>Note the time</b>: visceral and spinal ischaemia build after about 30 minutes.</p>',
+         'view': down(ACL, d=(-0.85, 0.75, 0.2), dist=300), 'retract': {'ids': [i for i in ('lul', 'lll', 'fissure') if has(i)], 'offset': [4, 34, 40], 'opacity': 0.15},
+         'opacity': {'heart': 0.18, 'laa': 0.18}, 'show': ['esophagus'],
+         'highlight': ['aorta'], 'danger': ['esophagus'], 'labels': ['heart'],
+         'action': {'kind': 'clamp', 'label': 'Apply the aortic clamp', 'port': 'thor-al', 'at': R(ACL), 'axis': [0, 0, 1], 'radius': 12, 'jawLen': 55},
+         'ask': ask('Where does the oesophagus lie relative to the lower descending aorta?', 'Anterior and to its right, closely applied',
+                    'Low in the chest the oesophagus lies in front of and to the right of the aorta; a blind clamp can take both.', 'Behind it, on the spine', 'Lateral to it, under the lung'),
+         'ct': ct(R(ACL), 'axial')},
+        {'id': 'rt-massage', 'phase': 'Heart', 'seq': 5, 'title': 'Internal massage and defibrillation',
+         'body': '<p><b>Two-handed</b> massage: the heart between the flat palms, compressing from the <b>apex toward the base</b>. Not the fingertips: they go through the ventricle.</p>'
+                 '<p>Fill the heart first: an empty heart gains nothing from massage. For VF, internal paddles on either side of the ventricles, starting at about <b>10–20 J</b>.</p>',
+         'view': down(V(S['heart']['centroid']), dist=330), 'retract': LUNG_BACK, 'opacity': {'heart': 1.0},
+         'highlight': ['heart'], 'labels': ['aorta'],
+         'action': {'kind': 'massage', 'label': 'Massage the heart', 'port': 'thor-al', 'ids': ['heart']},
+         'ct': ct('heart', 'axial')},
+        {'id': 'rt-next', 'phase': 'Next', 'seq': 6, 'title': 'Extend, or go to theatre',
+         'body': '<p>Cannot reach the right side of the heart, the right lung or the great vessels? <b>Extend across the sternum</b> into a clamshell (next operation in the menu).</p>'
+                 '<p>With a circulation back: go to theatre; release the aortic clamp slowly with the anaesthetist ready; <b>ligate both internal mammary arteries</b>; look for bleeding you could not see at a pressure of zero.</p>',
+         'view': {'frame': ['heart', 'lul', 'lll', 'aorta'], 'dir': [-0.6, 1, 0.3], 'pad': 1.05}, 'retract': LUNG_BACK, 'labels': ['heart', 'aorta'],
+         'ct': ct('heart', 'axial')},
+    ]
+    TRAUMA['rt'] = ('Resuscitative thoracotomy', 'Left anterolateral (ED)', 'left', 'Anterolateral thoracotomy, pericardiotomy, cardiorrhaphy, aortic cross-clamp, massage.', rt,
+                    seq(('Decide', 'other'), ('Entry', 'other'), ('Pericardium', 'other'), ('Heart wound', 'vein'), ('Aortic clamp', 'artery'), ('Massage', 'other'), ('Next', 'other')))
+
+    # ---------------------------------------------------------------- clamshell
+    ribs_lid = [f'rib-{i}-{s}' for i in range(1, 6) for s in 'lr' if has(f'rib-{i}-{s}')]
+    vt = min((k for k in S if k.startswith('vert-t')), key=lambda k: abs(S[k]['centroid'][2] - STN[2]))
+    HINGE = R([0.0, S[vt]['centroid'][1], STN[2]])
+    ima_mid = mean(['ima-l', 'ima-r'])
+    cs_view = lambda tgt, d=(0, 1, -0.35), dist=260: {'eye': R(V(tgt) + V(d) / np.linalg.norm(d) * dist), 'target': R(tgt)}
+    cs = [
+        {'id': 'cs-anat', 'phase': 'Decision', 'seq': 0, 'title': 'Clamshell: when and what it opens',
+         'body': '<p>Both 5th-space anterolateral incisions, joined by a <b>transverse sternotomy</b>. The chest wall above lifts like a lid, opening <b>both pleural cavities</b>, the <b>whole anterior heart</b>, '
+                 'the pulmonary hila and, with traction, the arch and its branches.</p>'
+                 '<p>Use it for a <b>wound to the right chest</b>, a <b>precordial wound</b> in an arrested patient, or when a left anterolateral thoracotomy cannot reach the injury. '
+                 'Many trauma teams start with a clamshell in the arrested patient.</p>',
+         'view': {'frame': ['heart', 'lul', 'rul', 'lll', 'rll'], 'dir': [0, 1, 0.25], 'pad': 1.0}, 'show': ['incision-cs', 'sternum', 'skin'], 'opacity': {'skin': 0.35, 'lul': 0.3, 'lll': 0.3, 'rul': 0.3, 'rml': 0.3, 'rll': 0.3, 'sternum': 0.8},
+         'labels': ['incision-cs', 'sternum', 'heart'], 'ct': ct(R(STN), 'axial', 'bone')},
+        {**al_entry('cs', 'l', 1), 'title': 'Left anterolateral thoracotomy, 5th space'},
+        al_entry('cs', 'r', 2),
+        {'id': 'cs-saw', 'phase': 'Sternum', 'seq': 3, 'title': 'Divide the sternum transversely',
+         'body': '<p>Join the two incisions across the sternum at the same level. Divide the bone with a <b>Gigli saw</b> passed behind it, a <b>Lebsche knife</b> struck with a mallet, or heavy trauma shears.</p>'
+                 '<p>Stay in the same intercostal level on both sides so the lid lifts evenly.</p>',
+         'view': cs_view(STN, (0, 1, -0.5), 230), 'show': ['sternum', 'ima-l', 'ima-r'], 'opacity': {'sternum': 0.9},
+         'highlight': ['sternum'], 'danger': ['ima-l', 'ima-r', 'heart'],
+         'action': {'kind': 'saw', 'label': 'Divide the sternum', 'port': 'sternotomy', 'ids': ['sternum']},
+         'ct': ct(R(STN), 'sagittal', 'bone')},
+        {'id': 'cs-ima', 'phase': 'Sternum', 'seq': 4, 'title': 'Internal mammary arteries: ligate both ends',
+         'body': '<p>Both <b>internal mammary arteries</b> are divided with the sternum. In arrest they do not bleed; once there is a pressure they bleed briskly, from <b>both ends</b>.</p>'
+                 '<p>Find each end 1–2 cm from the sternal edge on the cut surface and <b>ligate or clip</b> all four. A missed mammary is a common cause of return to theatre.</p>',
+         'view': cs_view(V(ima_mid), (0, 0.8, -1), 200), 'show': ['sternum', 'ima-l', 'ima-r'], 'opacity': {'sternum': 0.6},
+         'highlight': ['ima-l', 'ima-r'],
+         'action': {'kind': 'ligate', 'label': 'Ligate both mammaries', 'port': 'sternotomy', 'ids': ['ima-l', 'ima-r']},
+         'ask': ask('After a clamshell, the heart restarts and the chest fills with blood from the wound edges. First suspect?', 'The internal mammary arteries',
+                    'Both are cut with the sternum and do not bleed until there is a pressure.', 'The intercostal veins', 'The pericardiophrenic vessels'),
+         'ct': ct('ima-l', 'axial')},
+        {'id': 'cs-lid', 'phase': 'Exposure', 'seq': 5, 'title': 'Lift the lid',
+         'body': '<p>With both spreaders open, lift the upper chest wall and sternum <b>up toward the head</b>. The whole anterior mediastinum, both lungs and both hila come into view.</p>',
+         'view': cs_view(V(S['heart']['centroid']), (0, 1, -0.6), 330), 'show': ['sternum', 'ima-l', 'ima-r'], 'opacity': {'sternum': 0.8, 'lul': 0.3, 'lll': 0.3, 'rul': 0.3, 'rml': 0.3, 'rll': 0.3},
+         'labels': ['heart', 'sternum'],
+         'action': {'kind': 'twist', 'label': 'Lift the chest wall', 'port': 'sternotomy', 'hinge': {'ids': ['sternum', 'ima-l', 'ima-r', *ribs_lid], 'pivot': HINGE, 'axis': [1, 0, 0], 'angle': 32}},
+         'ct': ct(R(STN), 'sagittal', 'bone')},
+        {'id': 'cs-expose', 'phase': 'Exposure', 'seq': 6, 'title': 'What you can reach',
+         'body': '<p>Open the pericardium in the midline (an inverted T), clear of both phrenic nerves. You now reach the <b>whole anterior heart</b>, <b>both hila</b> for a clamp or twist, '
+                 'the <b>descending aorta</b> through the left chest, and the <b>SVC and right atrium</b> through the right.</p>'
+                 '<p>For the arch branches, add a vertical upper sternotomy from the midpoint of the transverse cut.</p>',
+         'view': cs_view(V(S['heart']['centroid']), (0, 1, -0.45), 330), 'show': ['sternum', 'ima-l', 'ima-r', 'svc'], 'opacity': {'sternum': 0.8, 'lul': 0.3, 'lll': 0.3, 'rul': 0.3, 'rml': 0.3, 'rll': 0.3},
+         'labels': ['heart', 'aorta', 'svc', 'pa-left', 'rpa', 'n-phrenic', 'n-phrenic-r'], 'danger': ['n-phrenic', 'n-phrenic-r'],
+         'ct': ct('heart', 'axial')},
+    ]
+    TRAUMA['clamshell'] = ('Clamshell thoracotomy', 'Bilateral anterolateral', 'both', 'Both 5th-space thoracotomies, transverse sternotomy, mammaries ligated, lid lifted.', cs,
+                           seq(('Decide', 'other'), ('Left', 'other'), ('Right', 'other'), ('Sternum', 'bronchus'), ('Mammaries', 'artery'), ('Lid', 'other'), ('Exposure', 'other')))
+
+    # ---------------------------------------------------------------- pulmonary tractotomy
+    tdir = (TB_ - TA_) / np.linalg.norm(TB_ - TA_); tn = np.cross(tdir, [0, 0, 1.0]); tn /= np.linalg.norm(tn)
+    tr = [
+        {'id': 'tr-decide', 'phase': 'Decision', 'seq': 0, 'title': 'The bleeding lung: what to do',
+         'body': '<p>Most lung wounds need only a <b>chest drain</b>. Operate for continuing bleeding: commonly about <b>1500 mL</b> at insertion, or <b>200 mL an hour</b> for several hours, or shock.</p>'
+                 '<p>Choose the <b>least lung resection</b> that controls it: suture (pneumonorrhaphy) for a superficial wound, <b>tractotomy</b> for a through-and-through tract, a stapled wedge at the periphery; '
+                 'lobectomy or pneumonectomy only for hilar injury. Mortality climbs steeply with each step up.</p>',
+         'view': {'frame': ['lll', 'tract-l'], 'dir': [-1, 0.3, 0.2], 'pad': 1.05}, 'show': ['tract-l'], 'opacity': {'lll': 0.3, 'lul': 0.25, 'fissure': 0.2},
+         'highlight': ['tract-l'], 'labels': ['lll'], 'spin': True,
+         'ask': ask('A missile tract runs through the left lower lobe, away from the hilum, and bleeds. Best operation?', 'Stapled tractotomy with selective ligation',
+                    'It opens the tract, controls the bleeding vessels and air leaks individually, and saves the lobe.', 'Left lower lobectomy', 'Oversew the entry and exit wounds'),
+         'ct': ct(R((TA_ + TB_) / 2), 'axial', 'lung')},
+        al_entry('tr'),
+        {'id': 'tr-find', 'phase': 'Tract', 'seq': 2, 'title': 'Find the entry and exit wounds',
+         'body': '<p>Deliver the lobe into the wound. Compress it in the hand to hold the bleeding; find both holes. Pass a finger or the jaw of a clamp along the tract to check it is a single straight path, '
+                 'well away from the hilum.</p><p>A tract through the hilum is not for tractotomy: control the hilum instead.</p>',
+         'view': via((TA_ + TB_) / 2), 'show': ['tract-l'], 'opacity': {'lll': 0.3, 'lul': 0.2, 'fissure': 0.15},
+         'highlight': ['tract-l'], 'danger': ['pa-basal-trunk', 'pv-inferior'], 'labels': ['lll'],
+         'ct': ct(R((TA_ + TB_) / 2), 'axial', 'lung')},
+        {'id': 'tr-staple', 'phase': 'Tract', 'seq': 3, 'title': 'Tractotomy: staple through the tract',
+         'body': '<p>Pass one jaw of a linear stapler (or two long clamps) <b>through the tract</b>, the other over the thin bridge of lung above it, and fire. The tract lies open as a trough.</p>',
+         'view': via((TA_ + TB_) / 2), 'show': ['tract-l'], 'opacity': {'lll': 0.35, 'lul': 0.2, 'fissure': 0.15},
+         'highlight': ['tract-l'], 'danger': ['pa-basal-trunk'],
+         'action': {'kind': 'staple-fissure', 'label': 'Fire through the tract', 'port': 'thor-al', 'path': [R(TA_), R(TB_)], 'normal': R(tn), 'reload': 'tissue'},
+         'ct': ct(R((TA_ + TB_) / 2), 'axial', 'lung')},
+        {'id': 'tr-ligate', 'phase': 'Tract', 'seq': 4, 'title': 'Selective ligation in the tract',
+         'body': '<p>In the open tract, find each <b>bleeding vessel</b> and each <b>leaking bronchus</b> and tie or suture it individually (4-0 polypropylene). '
+                 'Leave the tract <b>open</b>: closing it over traps blood and risks <b>air embolism</b>.</p>',
+         'view': via((TA_ + TB_) / 2), 'show': ['tract-l'], 'opacity': {'lll': 0.35, 'lul': 0.2, 'fissure': 0.15},
+         'highlight': ['tract-l'], 'labels': ['lll'],
+         'ask': ask('Why not simply oversew the entry and exit holes of a deep tract?', 'Bleeding continues inside, and air can enter the pulmonary veins',
+                    'An oversewn tract becomes a haematoma and a route for systemic air embolism.', 'It takes longer', 'It needs a larger incision'),
+         'ct': ct(R((TA_ + TB_) / 2), 'axial', 'lung')},
+        {'id': 'tr-close', 'phase': 'Close', 'seq': 5, 'title': 'Test and close',
+         'body': '<p>Fill the chest with warm saline and inflate the lung: <b>no bubbles</b>, no bleeding. Two drains (apical and basal). Close the ribs with pericostal sutures.</p>',
+         'view': {'frame': ['lll', 'lul'], 'dir': [-1, 0.4, 0.2], 'pad': 1.0}, 'show': ['tract-l'], 'opacity': {'lll': 0.6, 'lul': 0.5},
+         'labels': ['lll'], 'ct': ct(R((TA_ + TB_) / 2), 'axial', 'lung')},
+    ]
+    TRAUMA['tract'] = ('Pulmonary tractotomy', 'Anterolateral thoracotomy', 'left', 'Find the tract, staple through it, ligate each vessel and bronchus, leave it open.', tr,
+                       seq(('Decide', 'other'), ('Entry', 'other'), ('Find', 'other'), ('Staple', 'fissure'), ('Ligate', 'artery'), ('Close', 'other')))
+
+    # ---------------------------------------------------------------- hilar control: clamp or twist
+    lig_path = [R(LIG_LO + V([-3, 6, 4])), R((LIG_LO + LIG) / 2 + V([-3, 4, 0])), R(LIG + V([-3, 3, 0])), R(iv + V([-4, -4, -9]))]
+
+    def hil_steps(pre):
+        return [
+            {'id': f'{pre}-decide', 'phase': 'Decision', 'seq': 0, 'title': 'When to control the whole hilum',
+             'body': '<p>Hilar control is for <b>massive bleeding from the hilum or deep lung</b> that a hand cannot hold, or for <b>systemic air embolism</b> from a lung wound '
+                     '(air in the coronary arteries, sudden arrest when ventilated).</p>'
+                     '<p>Two ways: a <b>clamp across the whole hilum</b>, or the <b>hilar twist</b>. Both need the <b>inferior pulmonary ligament</b> divided first. '
+                     'The right ventricle then pumps into one lung: expect <b>acute right heart strain</b>.</p>',
+             'view': {'frame': ['pa-left', 'pv-superior', 'pv-inferior', 'br-left-main', 'lul', 'lll'], 'dir': [-1, 0.35, 0.2], 'pad': 1.0}, 'spin': True,
+             'opacity': {'lul': 0.2, 'lll': 0.2, 'fissure': 0.15, 'heart': 0.4},
+             'labels': ['pa-left', 'pv-superior', 'pv-inferior', 'br-left-main', 'ipl'], 'ct': ct('pa-left', 'coronal')},
+            al_entry(pre),
+            {'id': f'{pre}-ligament', 'phase': 'Ligament', 'seq': 2, 'title': 'Divide the inferior pulmonary ligament',
+             'body': '<p>Pull the lower lobe up. Divide the <b>inferior pulmonary ligament</b> with scissors or diathermy, close to the lung, up to the <b>inferior pulmonary vein</b>. '
+                     'The oesophagus and aorta lie just medial.</p><p>Now the whole hilum is free for a clamp or a twist.</p>',
+             'view': via((LIG + iv) / 2), 'opacity': {'lul': 0.3, 'lll': 0.3, 'fissure': 0.2, 'heart': 0.4}, 'show': ['esophagus'],
+             'highlight': ['ipl'], 'danger': ['esophagus', 'aorta', 'pv-inferior'],
+             'action': {'kind': 'dissect', 'tool': 'hook', 'label': 'Divide the ligament', 'port': 'thor-al', 'remove': ['ipl'], 'path': lig_path},
+             'ct': ct(R(LIG), 'coronal')},
+        ]
+
+    hc = hil_steps('hc') + [
+        {'id': 'hc-clamp', 'phase': 'Hilum', 'seq': 3, 'title': 'Clamp across the hilum',
+         'body': '<p>Slide a large <b>Satinsky clamp</b> round the hilum from above, the jaws taking the <b>pulmonary artery, both veins and the bronchus</b> together, as close to the mediastinum as you can. '
+                 'A hand round the hilum holds it while you position the clamp.</p>'
+                 '<p>Watch the right heart: if it dilates, release partially.</p>',
+         'view': via(HIL), 'opacity': {'lul': 0.25, 'lll': 0.25, 'fissure': 0.2, 'heart': 0.4},
+         'highlight': ['pa-left', 'pv-superior', 'pv-inferior', 'br-left-main'], 'danger': ['n-phrenic', 'n-vagus', 'heart'],
+         'action': {'kind': 'clamp', 'label': 'Clamp the hilum', 'port': 'thor-al', 'at': R(HIL + HAX * 18), 'axis': R(HAX), 'radius': 16, 'jawLen': 78},
+         'ct': ct('pa-left', 'coronal')},
+        {'id': 'hc-after', 'phase': 'After', 'seq': 4, 'title': 'After the clamp',
+         'body': '<p>The clamp buys time. Repair the injured vessel if it is proximal and simple; otherwise a <b>stapled pneumonectomy</b> (one fire across the hilum) may be all the patient can stand.</p>'
+                 '<p>Trauma pneumonectomy carries a <b>very high mortality</b>, largely from right heart failure: give fluids carefully and consider inotropes early.</p>',
+         'view': via(HIL), 'opacity': {'lul': 0.3, 'lll': 0.3, 'fissure': 0.2, 'heart': 0.5}, 'labels': ['pa-left', 'heart'],
+         'ct': ct('pa-left', 'coronal')},
+    ]
+    tw_ang = -180 if HAX[0] < 0 else 180
+    tw = hil_steps('tw') + [
+        {'id': 'tw-twist', 'phase': 'Hilum', 'seq': 3, 'title': 'The hilar twist',
+         'body': '<p>With the ligament divided, take the lower lobe in the hand and rotate it <b>forward and up over the upper lobe</b>, 180 degrees about the hilum. '
+                 'The artery, veins and bronchus <b>kink</b> on themselves: bleeding and air embolism stop.</p>'
+                 '<p>No clamp in the way, nothing to slip: pack laparotomy pads round the apex to hold the lung turned.</p>',
+         'view': via(HIL + V([-30, 0, 0])), 'opacity': {'lul': 0.45, 'lll': 0.45, 'fissure': 0.3, 'heart': 0.4},
+         'highlight': ['lll', 'lul'], 'danger': ['pa-left', 'pv-inferior'],
+         'action': {'kind': 'twist', 'label': 'Twist the lung', 'port': 'thor-al', 'hinge': {'ids': L_TWIST, 'pivot': R(HIL), 'axis': R(HAX), 'angle': tw_ang}},
+         'ask': ask('What must be done before a hilar twist?', 'Divide the inferior pulmonary ligament',
+                    'The ligament tethers the lower lobe to the mediastinum; the lung cannot turn until it is cut.', 'Divide the pulmonary artery', 'Open the fissure'),
+         'ct': ct('pa-left', 'coronal')},
+        {'id': 'tw-after', 'phase': 'After', 'seq': 4, 'title': 'Damage control, then back',
+         'body': '<p>Leave the lung twisted and packed; close temporarily or pack the chest. Back in theatre once warm, not acidotic and not coagulopathic: untwist, then decide between <b>repair</b> and a <b>stapled pneumonectomy</b>.</p>',
+         'view': via(HIL + V([-30, 0, 0])), 'opacity': {'lul': 0.45, 'lll': 0.45, 'fissure': 0.3, 'heart': 0.5}, 'labels': ['pa-left', 'heart'],
+         'ct': ct('pa-left', 'coronal')},
+    ]
+    TRAUMA['hilar'] = [('Hilar control', 'Hilar clamp', 'left', 'Anterolateral thoracotomy, ligament, Satinsky clamp across the hilum.', hc,
+                        seq(('Decide', 'other'), ('Entry', 'other'), ('Ligament', 'other'), ('Clamp', 'artery'), ('After', 'other'))),
+                       ('Hilar control', 'Hilar twist', 'left', 'Anterolateral thoracotomy, ligament, 180 degree twist of the lung about its hilum.', tw,
+                        seq(('Decide', 'other'), ('Entry', 'other'), ('Ligament', 'other'), ('Twist', 'artery'), ('After', 'other')))]
+
+    # cardiorrhaphy on its own: the cardiac box, exposure and repair
+    cr = [
+        {'id': 'cr-box', 'phase': 'Anatomy', 'seq': 0, 'title': 'The cardiac box',
+         'body': '<p>A wound between the <b>clavicles</b>, the <b>mid-clavicular lines</b> and the <b>costal margins</b> is a heart wound until proved otherwise.</p>'
+                 '<p>The <b>right ventricle</b> is the most anterior chamber and the most often hit, then the left ventricle; atrial wounds are rarer and bleed less. '
+                 'Beck\'s triad (hypotension, raised venous pressure, muffled heart sounds) is often incomplete: scan the pericardium (FAST).</p>',
+         'view': {'frame': ['heart'], 'dir': [-0.2, 1, 0.15], 'pad': 1.15}, 'show': ['wound-rv', 'sternum', 'skin'], 'opacity': {'skin': 0.3, 'sternum': 0.5, 'lul': 0.2, 'lll': 0.2, 'fissure': 0.15},
+         'highlight': ['wound-rv'], 'labels': ['heart', 'laa', 'aorta', 'sternum'], 'spin': True, 'ct': ct(R(WND), 'axial')},
+        al_entry('cr'),
+        pericardium('cr', 2),
+        cardiorrhaphy('cr', 3),
+        {'id': 'cr-after', 'phase': 'Close', 'seq': 4, 'title': 'After the repair',
+         'body': '<p>Check the <b>back of the heart</b> for an exit wound: lift the apex gently (the pressure falls while you do). Leave the pericardium <b>open or loosely closed</b> so it cannot tamponade again.</p>'
+                 '<p>Get an <b>echo</b> before discharge: septal and valve injuries are easily missed.</p>',
+         'view': down(WND, dist=280), 'retract': LUNG_BACK, 'show': ['pericardiotomy'], 'opacity': {'heart': 1.0}, 'labels': ['heart'], 'ct': ct(R(WND), 'axial')},
+    ]
+    TRAUMA['cardio'] = ('Cardiorrhaphy', 'Left anterolateral', 'left', 'Cardiac box, anterolateral thoracotomy, pericardiotomy, pledgeted repair.', cr,
+                        seq(('Box', 'other'), ('Entry', 'other'), ('Pericardium', 'other'), ('Repair', 'vein'), ('After', 'other')))
+
+    # clean views: nerves, oesophagus, intrapulmonary trees and ligament hidden unless the step names them
+    for v in TRAUMA.values():
+        for entry in (v if isinstance(v, list) else [v]):
+            for s in entry[4]:
+                named = set(s.get('highlight', [])) | set(s.get('danger', [])) | set(s.get('labels', [])) | set(s.get('show', []))
+                quiet = [i for i in ('n-phrenic', 'n-vagus', 'n-rln', 'lig-art', 'esophagus', 'ipl', 'ipl-r', 'n-phrenic-r', 'n-vagus-r', 'azygos',
+                                     'lul-arteries', 'lul-veins', 'lul-bronchi', 'rul-arteries', 'rul-veins', 'rul-bronchi') if i not in named]
+                s['hide'] = [i for i in quiet if has(i)]
+                if entry[2] != 'both' and s.get('action', {}).get('kind') != 'thoracotomy':
+                    s['hide'] += [f'rib-{k}-{sd_}' for k in (1, 2, 3, 8, 9, 10) for sd_ in 'lr' if has(f'rib-{k}-{sd_}')]
+                ribs_faint = {} if s.get('action', {}).get('kind') == 'thoracotomy' else {q['id']: 0.16 for q in atlas['structures'] if q['id'].startswith('rib-')}
+                s['opacity'] = {**{f'vert-t{i}': 0.22 for i in range(2, 11)}, **ribs_faint, **s.get('opacity', {})}
+                for k in ('highlight', 'danger', 'labels', 'show'):
+                    if k in s: s[k] = [i for i in s[k] if has(i)]
+    for op_, v in TRAUMA.items():
+        for (opName, appr, side, summ, steps_, sq) in (v if isinstance(v, list) else [v]):
+            key = f'{op_}-{appr.split()[-1].lower()}' if isinstance(v, list) else op_
+            procs[key] = {'id': f'trauma-{key}', 'op': op_, 'opName': opName, 'side': side, 'name': opName, 'approach': appr, 'summary': summ,
+                          'ports': [], 'steps': steps_, 'sources': TSRC, 'sequence': sq, 'group': 'Trauma'}
 # operations appear in the menu in this order
-ORDER = ['lul', 'lll', 'rul', 'rml', 'rll', 'pnl', 'pnr', 'seg-lingula', 'seg-lul-updiv', 'seg-s6']
+ORDER = ['lul', 'lll', 'rul', 'rml', 'rll', 'pnl', 'pnr', 'seg-lingula', 'seg-lul-updiv', 'seg-s6', 'rt', 'clamshell', 'cardio', 'tract', 'hilar']
 procs = dict(sorted(procs.items(), key=lambda kv: (ORDER.index(kv[1]['op']), list(procs).index(kv[0]))))
 for v in procs.values():
-    v['group'] = 'Pneumonectomy' if v['op'].startswith('pn') else 'Segmentectomy' if v['op'].startswith('seg-') else 'Lobectomy'
+    v['group'] = v.get('group') or ('Pneumonectomy' if v['op'].startswith('pn') else 'Segmentectomy' if v['op'].startswith('seg-') else 'Lobectomy')
 (OUT / 'procedures.json').write_text(json.dumps(procs, indent=1))
 print({k: len(v['steps']) for k, v in procs.items()})

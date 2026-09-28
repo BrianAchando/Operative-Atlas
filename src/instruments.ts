@@ -148,3 +148,80 @@ export function ribSpreader(c: THREE.Vector3, out: THREE.Vector3, along: THREE.V
   setGap(4);
   return { group: g, setGap };
 }
+
+/**
+ * Vascular clamp (Satinsky / DeBakey type): two long atraumatic jaws closing across a vessel or the whole hilum.
+ * Built like the stapler: jaws along `jaw`, opening along `sep`, the shaft leaving toward `port`. It stays on.
+ */
+export function vascularClamp(at: THREE.Vector3, jaw: THREE.Vector3, sep: THREE.Vector3, port: THREE.Vector3, radius: number, jawLen = 60): Stapler {
+  const g = new THREE.Group();
+  const Z = jaw.clone().normalize(); const X = sep.clone().sub(Z.clone().multiplyScalar(sep.dot(Z))).normalize(); const Y = new THREE.Vector3().crossVectors(Z, X);
+  const frame = new THREE.Group(); frame.matrixAutoUpdate = false; frame.matrix.makeBasis(X, Y, Z).setPosition(at); g.add(frame);
+  const back = radius + 8;
+  const steel = metal();
+  const mkJaw = () => {
+    const piv = new THREE.Group(); piv.position.set(0, 0, -back);
+    // slightly curved jaw: three short segments bending toward +Y at the tip (Satinsky curve)
+    let z = 0; let y = 0;
+    for (const [len, bend] of [[jawLen * 0.45, 0], [jawLen * 0.35, 0.18], [jawLen * 0.2, 0.42]] as [number, number][]) {
+      const b = new THREE.Mesh(new THREE.BoxGeometry(3.4, 6, len), steel); b.rotation.x = -bend; b.position.set(0, y + Math.sin(bend) * len / 2, z + Math.cos(bend) * len / 2); piv.add(b);
+      y += Math.sin(bend) * len; z += Math.cos(bend) * len;
+    }
+    frame.add(piv); return piv;
+  };
+  const j1 = mkJaw(), j2 = mkJaw();
+  const box = new THREE.Mesh(new THREE.BoxGeometry(9, 9, 9), steel); box.position.set(0, 0, -back - 4); frame.add(box);
+  const base = new THREE.Vector3(0, 0, -back - 4).applyMatrix4(frame.matrix);
+  const toPort = port.clone().sub(base); const L = Math.max(80, toPort.length() + 40); const dir = toPort.normalize();
+  for (const s of [-1, 1]) { const off = X.clone().multiplyScalar(s * 3); g.add(rod(base.clone().add(off), base.clone().add(off).addScaledVector(dir, L), 2.2, ghost(0xbcc4cc))); }
+  // ratchet handles outside the chest, see-through so they never hide the field
+  const end = base.clone().addScaledVector(dir, L);
+  for (const s of [-1, 1]) { const ring = new THREE.Mesh(new THREE.TorusGeometry(7, 1.6, 10, 24), ghost(0xbcc4cc)); ring.position.copy(end).addScaledVector(X, s * 12); ring.quaternion.setFromUnitVectors(new THREE.Vector3(0, 0, 1), Y); g.add(ring); }
+  const setClamp = (f: number) => {
+    const open = THREE.MathUtils.degToRad(16) * (1 - f); const gap = 2.4 + radius * 0.9 * (1 - f);
+    j1.position.x = gap; j1.rotation.y = open; j2.position.x = -gap; j2.rotation.y = -open;
+  };
+  setClamp(0);
+  return { group: g, setClamp, setFire: () => undefined, dispose: () => g.traverse((o) => { const m = o as THREE.Mesh; if (m.isMesh) { m.geometry.dispose(); (m.material as THREE.Material).dispose(); } }) };
+}
+
+/**
+ * One pledgeted horizontal mattress stitch across a wound: two felt pledgets either side of the wound, joined by a
+ * polypropylene loop over the top. `c` is the stitch centre, `across` runs across the wound, `n` out of the surface.
+ */
+export function pledgetStitch(c: THREE.Vector3, across: THREE.Vector3, n: THREE.Vector3): THREE.Group {
+  const g = new THREE.Group();
+  const A = across.clone().normalize(); const N = n.clone().normalize(); const B = new THREE.Vector3().crossVectors(N, A);
+  const felt = new THREE.MeshStandardMaterial({ color: 0xf4f1ea, roughness: 0.95 });
+  const thread = new THREE.MeshStandardMaterial({ color: 0x2d3fa0, roughness: 0.4 });
+  for (const s of [-1, 1]) {
+    const p = new THREE.Mesh(new THREE.BoxGeometry(3.2, 7, 1.2), felt);
+    p.position.copy(c).addScaledVector(A, s * 7).addScaledVector(N, 0.8);
+    p.quaternion.setFromRotationMatrix(new THREE.Matrix4().makeBasis(A, B, N)); g.add(p);
+  }
+  // the two limbs of the mattress, bridging the wound
+  for (const s of [-1.8, 1.8]) {
+    const pts = [-7, -3.5, 0, 3.5, 7].map((t) => c.clone().addScaledVector(A, t).addScaledVector(B, s).addScaledVector(N, 1.6 + 1.6 * Math.cos((t / 7) * Math.PI / 2)));
+    g.add(new THREE.Mesh(new THREE.TubeGeometry(new THREE.CatmullRomCurve3(pts), 16, 0.45, 6), thread));
+  }
+  return g;
+}
+
+/** curved needle in a needle holder: needle tip at `tip`, holder shaft toward `port` */
+export function needleDriver(tip: THREE.Vector3, port: THREE.Vector3, n: THREE.Vector3): THREE.Group {
+  const g = new THREE.Group();
+  const u = port.clone().sub(tip).normalize();
+  const nd = new THREE.Mesh(new THREE.TorusGeometry(6, 0.5, 8, 24, Math.PI), metal());
+  nd.position.copy(tip).addScaledVector(n.clone().normalize(), 1); nd.quaternion.setFromUnitVectors(new THREE.Vector3(0, 0, 1), new THREE.Vector3().crossVectors(u, n).normalize()); g.add(nd);
+  g.add(rod(tip.clone().addScaledVector(u, 6), tip.clone().addScaledVector(u, 200), 2.4, ghost(0xbcc4cc)));
+  return g;
+}
+
+/** oscillating sternal saw blade (or a Gigli saw) across the sternum: a thin toothed plate */
+export function sawBlade(): THREE.Group {
+  const g = new THREE.Group();
+  const b = new THREE.Mesh(new THREE.BoxGeometry(34, 0.8, 14), metal()); g.add(b);
+  for (let k = -8; k <= 8; k++) { const t = new THREE.Mesh(new THREE.ConeGeometry(0.9, 2, 4), metal()); t.position.set(k * 2, 0, -8); t.rotation.x = Math.PI; g.add(t); }
+  const body = new THREE.Mesh(new THREE.CylinderGeometry(9, 9, 60, 20), ghost(0x2e333b)); body.position.set(0, 0, 38); body.rotation.x = Math.PI / 2; g.add(body);
+  return g;
+}
