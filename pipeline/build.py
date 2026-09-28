@@ -715,9 +715,14 @@ def rib_z(n, az, side='left'):
 
 def port(ics, az, side='left'):
     # skin point in the ics-th intercostal space (between ribs ics and ics+1) at azimuth az (0 = lateral, + = anterior)
-    c = lung_c if side == 'left' else lung_cr; sg = -1 if side == 'left' else 1
+    c = lung_c if side == 'left' else lung_cr
     z1, z2 = rib_z(ics, az, side), rib_z(ics + 1, az, side)
-    z = (z1 + z2) / 2 if z1 and z2 else c[2]
+    return skin_at((z1 + z2) / 2 if z1 and z2 else c[2], az, side)
+
+
+def skin_at(z, az, side='left'):
+    # skin point at height z and azimuth az about that side's lung centre, on the chest wall rather than an arm beside it
+    c = lung_c if side == 'left' else lung_cr; sg = -1 if side == 'left' else 1
     s = slab(skin_mm, z, 3.0); s = s[(s[:, 0] < c[0]) if side == 'left' else (s[:, 0] > c[0])]
     ang = np.degrees(np.arctan2(s[:, 1] - c[1], sg * (s[:, 0] - c[0])))
     near = s[np.abs(ang - az) < 4]
@@ -762,6 +767,7 @@ for sd in ('left', 'right'):
     pts = np.array([port(5, az, sd) for az in range(50, -121, -10)])
     pts[1:-1] = (pts[:-2] + 2 * pts[1:-1] + pts[2:]) / 4
     c_ = lung_c if sd == 'left' else lung_cr
+    _r = pts[:, :2] - c_[:2]; pts[:, :2] += _r / np.linalg.norm(_r, axis=1, keepdims=True) * 2.5     # drawn on the skin, not in it
     inward = lambda q: q + (c_ - q) * np.array([1, 1, 0]) / (np.linalg.norm((c_ - q)[:2]) + 1e-9) * 14.0
     THOR[sd] = {'path': pts, 'centre': inward(port(5, -25, sd))}
     emit_mesh(f'incision-{sd[0]}', 'Posterolateral thoracotomy incision (5th space)', f'ports-open-{sd}', '#d0433a', tube([W(q) for q in pts], 1.8), visible=False,
@@ -858,6 +864,12 @@ z_ac = float(lll_mm[:, 2].min() + 35); a_s = slab(aorta_mm, z_ac, 4.0)
 a_s = a_s[a_s[:, 1] < np.median(aorta_mm[:, 1])] if len(a_s[a_s[:, 1] < np.median(aorta_mm[:, 1])]) else a_s
 TRLM['aorta-clamp'] = a_s.mean(0)
 TRLM['lower-lung-lz'] = np.array([lung_c[0], lung_c[1], z_ac])
+# ------------------------------------------------------------------ chest wall: girdle bones, muscle layers, surface landmarks, VATS incisions
+import chestwall  # noqa: E402
+_has = set(np.unique(T).tolist())
+CW_L, CW_R, CWLM = chestwall.build(dict(emit=emit, emit_mesh=emit_mesh, W=W, tube=tube, sphere=sphere, ts=ts, AT=AT, has=lambda n: n in TS and TS[n] in _has,
+                                        vox_mm=vox_mm, lung_c=lung_c, lung_cr=lung_cr, rib_z=rib_z, port=port, skin_at=skin_at, skin_mm=skin_mm, CARINA=CARINA))
+TRLM.update(CWLM)
 for appr, ps in PORTS.items():
     for k, nm, p in ps:
         emit_mesh(f'port-{appr}-{k}', nm, f'ports-{appr}', '#46c2c7', sphere(W(p), 5.5 if k == 'utility' else 3.5), visible=False)
@@ -907,7 +919,8 @@ if RIGHT_IDS:
         landmarks[f'{nm_}-centre'] = [round(float(x), 1) for x in W(c_)]; landmarks[f'{nm_}-normal'] = [round(float(x), 3) for x in n_]
 # which side a structure belongs to: each operation shows one side's hilum
 LEFT_IDS = {'lul', 'lll', 'fissure', 'ipl', 'seg-lul-upper', 'seg-lingula', 'seg-s6', 'seg-lll-basal', 'isp-lingula', 'isp-s6', 'br-lingular', 'br-upper-div', 'br-b6', 'lig-art', 'n-phrenic', 'n-vagus', 'n-rln', 'ln-5', 'ln-6', 'ln-10l', 'ln-11l', 'ln-9l', 'br-lul', 'br-lll', 'br-left-main'}
-RIGHT_IDS |= {'rul', 'rml', 'rll', 'fissure-h', 'fissure-r'}
+RIGHT_IDS |= {'rul', 'rml', 'rll', 'fissure-h', 'fissure-r'} | CW_R
+LEFT_IDS |= CW_L
 for q in structures:
     i = q['id']
     if i in RIGHT_IDS or i.startswith('port-r-') or i == 'incision-r' or (i.startswith('rib-') and i.endswith('-r')):
@@ -936,7 +949,8 @@ atlas = {
                {'id': 'ports-anterior', 'name': 'Ports, anterior approach'}, {'id': 'ports-posterior', 'name': 'Ports, posterior approach'},
                {'id': 'rul-intra', 'name': 'Right upper lobe, intrapulmonary'},
                {'id': 'ports-r-anterior', 'name': 'Ports, right anterior approach'}, {'id': 'ports-r-posterior', 'name': 'Ports, right posterior approach'},
-               {'id': 'segments', 'name': 'Segments (from bronchial territories)'}, {'id': 'trauma', 'name': 'Trauma (schematic)'}, {'id': 'ports-open-left', 'name': 'Thoracotomy, left'}, {'id': 'ports-open-right', 'name': 'Thoracotomy, right'}],
+               {'id': 'segments', 'name': 'Segments (from bronchial territories)'}, {'id': 'trauma', 'name': 'Trauma (schematic)'}, {'id': 'ports-open-left', 'name': 'Thoracotomy, left'}, {'id': 'ports-open-right', 'name': 'Thoracotomy, right'},
+               {'id': 'muscles', 'name': 'Chest wall muscles (schematic)'}, {'id': 'landmarks', 'name': 'Surface landmarks'}, {'id': 'ports-vats', 'name': 'VATS incisions, uni- and biportal'}],
     'structures': structures,
     'landmarks': landmarks,
     'source': {'name': 'Reference CT: 3D Slicer sample CTA (CTA-cardio)', 'licence': 'unstated',

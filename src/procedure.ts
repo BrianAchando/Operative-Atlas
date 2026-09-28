@@ -4,7 +4,10 @@ export interface Choice { text: string; correct: boolean; why: string }
 
 /** what the surgeon does in a step, played in 3D with the instrument coming through a port */
 export interface Action {
-  kind: 'staple' | 'ligate' | 'dissect' | 'open-fissure' | 'staple-fissure' | 'thoracotomy' | 'saw' | 'clamp' | 'twist' | 'suture' | 'massage';
+  kind: 'staple' | 'ligate' | 'dissect' | 'open-fissure' | 'staple-fissure' | 'thoracotomy' | 'saw' | 'clamp' | 'twist' | 'suture' | 'massage' | 'layers';
+  /** layers: the chest wall taken one layer at a time; each divided (cut across `dir` at `point`, the far side opened by `open` mm),
+   *  split along its fibres (same, narrower), retracted by `offset`, passed through, or spared */
+  layers?: { id: string; label: string; fate: 'divide' | 'split' | 'retract' | 'through' | 'spare'; point?: Vec3; dir?: Vec3; open?: number; offset?: Vec3 }[];
   /** clamp: where the jaws close, the axis of the vessel (or hilum) they cross, its radius and the jaw length */
   at?: Vec3; axis?: Vec3; radius?: number; jawLen?: number;
   /** saw (the chest-wall lid of a clamshell) and twist (the lung about its hilum): structures turned about an axis */
@@ -53,6 +56,8 @@ export interface Step {
   specimen?: { ids: string[]; offset: Vec3 };
   spin?: boolean;                        // slow turntable (anatomy overview)
   ct?: { focus: Vec3 | string; plane: Plane; window?: string };
+  /** 'lateral': the patient turned on the other side, operated side up, on the table */
+  pose?: 'lateral';
   ask?: { question: string; choices: Choice[] };
   pearl?: string;
   /** the step's place in the approach's sequence strip */

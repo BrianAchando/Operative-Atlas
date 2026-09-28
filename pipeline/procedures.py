@@ -1227,10 +1227,249 @@ if TR_OK:
             key = f'{op_}-{appr.split()[-1].lower()}' if isinstance(v, list) else op_
             procs[key] = {'id': f'trauma-{key}', 'op': op_, 'opName': opName, 'side': side, 'name': opName, 'approach': appr, 'summary': summ,
                           'ports': [], 'steps': steps_, 'sources': TSRC, 'sequence': sq, 'group': 'Trauma'}
+# ==================================================================================================== access: positioning, landmarks, layers
+ACC_OK = has('mus-latdorsi-l') and 'uni-4-l' in LM
+ACCESS = {}
+if ACC_OK:
+    ASRC = [
+        {'title': 'Shields TW, LoCicero J, et al. General Thoracic Surgery, 8th ed: chapters on thoracic incisions', 'url': 'https://pubmed.ncbi.nlm.nih.gov/?term=thoracic+incisions+posterolateral+muscle+sparing+thoracotomy'},
+        {'title': 'Gonzalez-Rivas D, et al. Uniportal video-assisted thoracoscopic lobectomy. J Thorac Dis 2013;5 Suppl 3:S234-45', 'url': 'https://pubmed.ncbi.nlm.nih.gov/?term=Gonzalez-Rivas+uniportal+video-assisted+thoracoscopic+lobectomy+2013'},
+        {'title': 'Hansen HJ, Petersen RH. Video-assisted thoracoscopic lobectomy using a standardized three-port anterior approach. Ann Cardiothorac Surg 2012;1(1):70-76', 'url': 'https://doi.org/10.3978/j.issn.2225-319X.2012.04.15'},
+        {'title': 'Laws D, Neville E, Duffy J. BTS guidelines for the insertion of a chest drain (the triangle of safety). Thorax 2003;58 Suppl 2:ii53-9', 'url': 'https://pubmed.ncbi.nlm.nih.gov/?term=BTS+guidelines+insertion+chest+drain+2003'},
+    ]
+
+    def lines(k):
+        return [i for i in (f'line-aal-{k}', f'line-mal-{k}', f'line-pal-{k}', f'lm-scaptip-{k}', f'lm-nipple-{k}') if has(i)]
+
+    def outward(k):
+        return V([-1.0, -0.3, 0.15]) if k == 'l' else V([1.0, -0.3, 0.15])
+
+    def lat_view(tgt, k, dist=420.0, d=None):
+        d = V(d) if d is not None else outward(k); d /= np.linalg.norm(d); return {'eye': R(V(tgt) + d * dist), 'target': R(tgt)}
+
+    WALL = lambda k: [i for i in (f'mus-latdorsi-{k}', f'mus-serratus-{k}', f'mus-trapezius-{k}', f'mus-rhomboid-{k}', f'mus-pecmajor-{k}', f'mus-intercostal-{k}') if has(i)]
+    RIBS = lambda k: [f'rib-{i}-{k}' for i in range(1, 11) if has(f'rib-{i}-{k}')]
+    GIRDLE = lambda k: [i for i in (f'scapula-{k}', f'clavicle-{k}', f'humerus-{k}', 'cartilages') if has(i)]
+    SIDE_NAME = {'l': 'left', 'r': 'right'}
+
+    def positioning(k):
+        sd = SIDE_NAME[k]; other = 'right' if k == 'l' else 'left'; out = outward(k)
+        chest = V(S['heart']['centroid'])
+        return [
+            {'id': f'po{k}-surface', 'phase': 'Landmarks', 'seq': 0, 'title': 'Surface anatomy, supine',
+             'body': '<p>Count the ribs from the <b>sternal angle</b> (angle of Louis): the 2nd costal cartilage joins the sternum there, and the 2nd space lies just below it. '
+                     'In a man the <b>nipple</b> sits over the <b>4th space</b> in the mid-clavicular line. The <b>costal margin</b> (cartilages 7 to 10) ends at the xiphoid.</p>'
+                     '<p>Laterally: the <b>anterior axillary line</b> drops from the anterior axillary fold (lower border of pectoralis major), the <b>mid-axillary line</b> from the apex of the axilla, '
+                     'the <b>posterior axillary line</b> from the posterior fold (latissimus dorsi).</p>',
+             'view': {'frame': ['sternum', *RIBS(k)[:8]], 'dir': [0, 1, 0.2], 'pad': 1.05}, 'show': ['skin', 'sternum', *RIBS(k), *GIRDLE(k), *lines(k)],
+             'opacity': {'skin': 0.22, **{r: 0.55 for r in RIBS(k)}}, 'labels': ['sternum', f'lm-nipple-{k}', f'line-aal-{k}', f'line-mal-{k}', 'cartilages', f'clavicle-{k}'],
+             'ct': ct(LM[f'nipple-{k}'], 'axial', 'bone')},
+            {'id': f'po{k}-lateral', 'phase': 'Position', 'seq': 1, 'title': f'{other.capitalize()} lateral decubitus, {sd} side up',
+             'body': '<p>Double-lumen tube placed and checked with the bronchoscope <b>before</b> turning; recheck after. Turn as a team, the head and neck with the trunk.</p>'
+                     f'<p><b>Table broken (flexed)</b> with the break under the {other} flank, between the costal margin and the iliac crest: the {sd} intercostal spaces open and the hip drops out of the way of the instruments. '
+                     '<b>Axillary roll</b> under the upper chest, a hand\'s breadth <b>below</b> the axilla (not in it), to take weight off the brachial plexus and the dependent shoulder.</p>'
+                     '<p>Dependent arm forward on a board; upper arm on a rest, shoulder flexed about 90°, <b>never hyperabducted</b>. Pillow between the knees, lower leg flexed, upper leg straight; pad the fibular head (common peroneal nerve). '
+                     'Supports or a bean bag front (pubis) and back (sacrum), strapping across the hip.</p>',
+             'view': {'frame': ['skin'], 'dir': [out[0] * 0.9, 0.75, 0.12], 'pad': 1.6}, 'pose': 'lateral', 'show': ['skin', *lines(k)], 'opacity': {'skin': 1.0},
+             'labels': [f'lm-scaptip-{k}', f'line-mal-{k}'],
+             'ask': ask('Where does the axillary roll go?', 'Under the dependent chest wall, a hand\'s breadth below the axilla',
+                        'It lifts the chest off the dependent shoulder; placed in the axilla it compresses the brachial plexus and axillary vessels.', 'In the dependent axilla', 'Under the upper arm'),
+             'ct': ct(LM[f'scaptip-{k}'], 'axial', 'lung')},
+            {'id': f'po{k}-landmarks', 'phase': 'Landmarks', 'seq': 2, 'title': 'Landmarks on the side you operate on',
+             'body': '<p><b>Tip of the scapula</b>: about the 7th rib (7th space) with the arm at rest; the posterolateral incision passes 2–3 cm below it. Lifting the arm forward draws the scapula up and forward.</p>'
+                     '<p><b>Mid-axillary line</b> at the 4th–5th space: the site for a uniportal incision, a utility incision and a chest drain. '
+                     '<b>Triangle of safety</b> for a drain: lateral border of pectoralis major, anterior border of latissimus dorsi, a line at the level of the nipple (5th space), apex below the axilla.</p>'
+                     '<p>Count ribs under the scapula from above with a hand: the highest rib felt is usually the 2nd; the 1st lies inside the curve of the 2nd.</p>',
+             'view': lat_view(LM[f'scaptip-{k}'], k, 430, d=out + V([0, 0.6, 0.1])), 'pose': 'lateral', 'show': ['skin', *lines(k), *GIRDLE(k), *RIBS(k)],
+             'opacity': {'skin': 0.3, **{r: 0.5 for r in RIBS(k)}},
+             'highlight': [f'lm-scaptip-{k}', f'line-mal-{k}'], 'labels': [f'line-aal-{k}', f'line-pal-{k}', f'lm-nipple-{k}', f'scapula-{k}', f'rib-5-{k}', f'rib-7-{k}'],
+             'ct': ct(LM[f'scaptip-{k}'], 'axial', 'bone')},
+            {'id': f'po{k}-muscles', 'phase': 'Layers', 'seq': 3, 'title': 'The muscle layers of the lateral chest wall',
+             'body': '<p>From outside in: <b>skin and fat</b>; <b>latissimus dorsi</b> behind and below (its anterior border is the posterior axillary fold); <b>trapezius</b> and <b>rhomboids</b> between the scapula and the spine; '
+                     '<b>pectoralis major</b> in front (its border is the anterior axillary fold); <b>serratus anterior</b> on the ribs from the 1st to the 8th, running back under the scapula; '
+                     'then the <b>intercostal muscles</b>, endothoracic fascia and parietal pleura.</p>'
+                     '<p>The <b>long thoracic nerve</b> runs down the outer surface of serratus anterior near the mid-axillary line; the <b>thoracodorsal</b> nerve and vessels on the deep surface of latissimus dorsi.</p>'
+                     '<p>The <b>auscultatory triangle</b> (latissimus, trapezius, medial border of the scapula) has no muscle over the ribs: the posterior limb of a thoracotomy enters there.</p>',
+             'view': lat_view(LM[f'scaptip-{k}'], k, 470, d=out + V([0, -0.25, 0.05])), 'pose': 'lateral', 'show': [*WALL(k), *GIRDLE(k), *RIBS(k), f'n-longthoracic-{k}', f'n-thoracodorsal-{k}'],
+             'opacity': {r: 0.5 for r in RIBS(k)}, 'labels': [*WALL(k)[:5], f'n-longthoracic-{k}', f'n-thoracodorsal-{k}'], 'danger': [f'n-longthoracic-{k}', f'n-thoracodorsal-{k}'],
+             'ask': ask('A patient has a winged scapula after a lateral thoracotomy. Which nerve was injured?', 'The long thoracic nerve',
+                        'It runs on the outer surface of serratus anterior in the mid-axillary line; serratus paralysis lets the scapula wing.', 'The thoracodorsal nerve', 'The intercostobrachial nerve'),
+             'ct': ct(LM[f'scaptip-{k}'], 'axial', 'mediastinum')},
+        ]
+
+    for k in ('l', 'r'):
+        ACCESS[f'position-{k}'] = ('Positioning and landmarks', f'{"Left" if k == "l" else "Right"} side up', SIDE_NAME[k], 'Surface anatomy, lateral decubitus on a broken table, landmarks, the layers of the chest wall.',
+                                   positioning(k), seq(('Surface', 'other'), ('Position', 'other'), ('Landmarks', 'other'), ('Layers', 'other')))
+
+    # ---------------------------------------------------------------- posterolateral and muscle-sparing thoracotomy
+    def thor_variant(k, variant):
+        sd = SIDE_NAME[k]; T = V(LM[f'thor-{k}']); out = outward(k)
+        cutp = R(T); zc = [0.0, 0.0, 1.0]
+        L = lambda i: f'{i}-{k}'
+        skin = {'id': 'skin', 'label': 'Skin and subcutaneous fat', 'fate': 'through'}
+        ic = {'id': L('mus-intercostal'), 'label': 'Intercostal muscles, on the upper border of the 6th rib', 'fate': 'divide', 'point': cutp, 'dir': zc, 'open': 10}
+        if variant == 'standard':
+            title, inc = 'Standard posterolateral thoracotomy (serratus-sparing)', f'incision-{k}'
+            text = ('<p>From the <b>anterior axillary line</b> along the line of the 5th space, curving <b>2–3 cm below the tip of the scapula</b>, then up between the scapula and the spine as far as needed.</p>'
+                    '<p><b>Latissimus dorsi is divided</b> in the line of the incision. <b>Serratus anterior is spared</b>: its posterior border is freed and the muscle lifted forward. '
+                    'Trapezius and rhomboids are cut only if the incision is carried up behind the scapula.</p>')
+            layers = [skin, {'id': L('mus-latdorsi'), 'label': 'Latissimus dorsi: divided', 'fate': 'divide', 'point': cutp, 'dir': zc, 'open': 18},
+                      {'id': L('mus-serratus'), 'label': 'Serratus anterior: freed and retracted forward', 'fate': 'retract', 'offset': [0, 26, 6]}, ic]
+        elif variant == 'classic':
+            title, inc = 'Classic posterolateral thoracotomy (muscle-dividing)', f'incision-{k}'
+            text = ('<p>The same curved incision below the scapular tip, but <b>both latissimus dorsi and serratus anterior are divided</b> across. Widest exposure, fastest to open and close; '
+                    'the most pain and loss of shoulder strength. Keep the serratus cut low, near its rib attachments, to spare the long thoracic nerve.</p>')
+            layers = [skin, {'id': L('mus-latdorsi'), 'label': 'Latissimus dorsi: divided', 'fate': 'divide', 'point': cutp, 'dir': zc, 'open': 18},
+                      {'id': L('mus-serratus'), 'label': 'Serratus anterior: divided', 'fate': 'divide', 'point': cutp, 'dir': zc, 'open': 14}, ic]
+        else:
+            title, inc = 'Muscle-sparing lateral thoracotomy', f'incision-ms-{k}'
+            text = ('<p>A <b>vertical incision of 10–12 cm</b> along the anterior border of latissimus dorsi, from the axilla down. Raise skin flaps widely.</p>'
+                    '<p><b>Latissimus dorsi is retracted back</b> (the thoracodorsal bundle stays on its deep surface). <b>Serratus anterior is split along its fibres</b> over the 5th space, '
+                    'or lifted forward. Divide the intercostals well beyond the skin incision so the ribs spread without breaking. Less pain and better shoulder function; seroma is common, so drain the flaps.</p>')
+            layers = [skin, {'id': L('mus-latdorsi'), 'label': 'Latissimus dorsi: retracted back', 'fate': 'retract', 'offset': [0, -30, -4]},
+                      {'id': L('mus-serratus'), 'label': 'Serratus anterior: split along its fibres', 'fate': 'split', 'point': cutp, 'dir': zc, 'open': 8}, ic]
+        pre = f'{variant[:2]}{k}'
+        steps = [
+            {'id': f'{pre}-incision', 'phase': 'Incision', 'seq': 0, 'title': title,
+             'body': text + ('<p>Landmarks: <b>tip of the scapula</b>, the <b>5th space</b> (count from above), the anterior and posterior axillary lines.</p>'),
+             'view': lat_view(T, k, 440, d=out + V([0, 0.2, 0.25])), 'pose': 'lateral', 'show': ['skin', inc, *lines(k)], 'opacity': {'skin': 1.0},
+             'highlight': [inc], 'labels': [f'lm-scaptip-{k}', f'line-aal-{k}', f'line-pal-{k}'], 'ct': ct(R(T), 'axial', 'lung')},
+            {'id': f'{pre}-layers', 'phase': 'Layers', 'seq': 1, 'title': 'Through the chest wall, layer by layer',
+             'body': '<p>' + ' → '.join(l['label'] for l in layers) + '.</p><p>Press play to take each layer in turn.</p>'
+                     '<p>Enter the chest over the <b>upper border of the 6th rib</b>: the intercostal vein, artery and nerve run in the groove under the lower border of the rib above.</p>',
+             'view': lat_view(T, k, 400, d=out + V([0, -0.35, 0.2])), 'pose': 'lateral', 'show': [inc, *WALL(k), *RIBS(k), f'scapula-{k}', f'n-longthoracic-{k}', f'n-thoracodorsal-{k}'],
+             'opacity': {r: 0.55 for r in RIBS(k)}, 'hide': ['skin'],
+             'labels': [L('mus-latdorsi'), L('mus-serratus'), L('mus-intercostal')], 'danger': [f'n-longthoracic-{k}', f'n-thoracodorsal-{k}'],
+             'action': {'kind': 'layers', 'label': 'Go through the layers', 'port': f'thor-{k}', 'layers': [l for l in layers if l['id'] != 'skin']},
+             'ct': ct(R(T), 'axial', 'mediastinum')},
+            {**thoracotomy_step(pre, sd), 'seq': 2, 'id': f'{pre}-spread', 'phase': 'Entry', 'title': 'Open the pleura and spread the ribs'},
+            {'id': f'{pre}-close', 'phase': 'Close', 'seq': 3, 'title': 'Closing and what each choice costs',
+             'body': '<p>Two drains through separate stab incisions below the wound. <b>Pericostal sutures</b> round the 5th and 6th ribs (or intracostal through the 6th, sparing the nerve below the 5th). '
+                     'Repair each muscle layer that was cut; with a muscle-sparing incision, lay the muscles back and drain the flaps.</p>'
+                     '<p>Muscle-dividing: best exposure, most pain and shoulder weakness. Serratus-sparing: the usual compromise. Muscle-sparing: least pain, smaller field, seromas.</p>',
+             'view': lat_view(T, k, 520), 'pose': 'lateral', 'show': ['skin', inc], 'opacity': {'skin': 1.0}, 'labels': [inc], 'ct': ct(R(T), 'axial', 'lung')},
+        ]
+        steps[2]['pose'] = 'lateral'; steps[2]['action'] = {**steps[2]['action'], 'incision': inc}
+        return steps
+
+    for k in ('l', 'r'):
+        for variant, appr in (('standard', 'Serratus-sparing'), ('classic', 'Muscle-dividing'), ('muscle', 'Muscle-sparing')):
+            ACCESS[f'plt-{variant}-{k}'] = (f'Thoracotomy incisions', f'{appr} ({"left" if k == "l" else "right"})', SIDE_NAME[k],
+                                           'Landmarks, the incision, each muscle layer, then the ribs.', thor_variant(k, variant),
+                                           seq(('Incision', 'other'), ('Layers', 'other'), ('Ribs', 'bronchus'), ('Close', 'other')))
+
+    # ---------------------------------------------------------------- VATS port maps
+    def vats_map(k, layout):
+        sd = SIDE_NAME[k]; out = outward(k); L = lambda i: f'{i}-{k}'
+        pre = 'r-' if k == 'r' else ''
+        if layout == 'three-a':
+            title = 'Three-port VATS, anterior approach'; pids = [f'port-{pre}anterior-{x}' for x in ('utility', 'camera', 'posterior')]; main = pids[0]
+            text = ('<p><b>Utility incision</b> (4–5 cm, no rib spreading) in the <b>4th space, anteriorly</b>, directly over the hilum and the superior vein. '
+                    '<b>Camera</b> low anterior, at the level of the top of the diaphragm (7th space). <b>Working port</b> at the same low level, further back.</p>'
+                    '<p>Hilum first, from the front (Copenhagen). Anterior ports pass through serratus anterior and, near the fold, the edge of pectoralis major.</p>')
+            through = [L('mus-serratus'), L('mus-pecmajor')]
+        elif layout == 'three-p':
+            title = 'Three-port VATS, posterior (fissure) approach'; pids = [f'port-{pre}posterior-{x}' for x in ('utility', 'camera', 'posterior')]; main = pids[0]
+            text = ('<p><b>Utility incision</b> in the <b>5th space</b> in line with the fissure; <b>camera</b> low in the posterior axillary line; <b>working port</b> posteriorly, below the scapular tip. '
+                    'Fissure first, artery first.</p><p>The posterior ports go through latissimus dorsi as well as serratus anterior.</p>')
+            through = [L('mus-latdorsi'), L('mus-serratus')]
+        elif layout == 'two':
+            title = 'Two-port (biportal) VATS'; pids = [L('bi-utility'), L('bi-camera')]; main = pids[0]
+            text = ('<p>A <b>utility incision</b> of 3–4 cm in the <b>4th space</b> (upper lobes; 5th for lower lobes) at the <b>anterior axillary line</b>, and a 1 cm <b>camera port</b> in the <b>7th or 8th space</b> in the mid- to posterior axillary line.</p>'
+                    '<p>All instruments and staplers go through the utility incision; the camera looks up from below, as in three-port VATS.</p>')
+            through = [L('mus-serratus')]
+        else:
+            title = 'Uniportal VATS'; pids = [L('uni-4'), L('uni-5')]; main = pids[0]
+            text = ('<p>A single <b>3–4 cm incision</b> between the <b>anterior and mid-axillary lines</b>: <b>4th space</b> for upper lobes, <b>5th space</b> for middle and lower lobes.</p>'
+                    '<p>Serratus anterior is split along its fibres; a wound protector holds it open. The <b>camera sits at the back</b> of the wound, instruments below and in front of it, all working in the same plane '
+                    'as in open surgery. Staplers come in from the same incision, so angles for the superior vein and the bronchus need planning (curved-tip staplers help).</p>')
+            through = [L('mus-serratus')]
+        P = V(LM[main]) if main in LM else V(pt(main))
+        layers = [{'id': 'skin', 'label': 'Skin and subcutaneous fat', 'fate': 'through'}] + \
+                 [{'id': t, 'label': f'{S[t]["name"].split(",")[0]}: {"split along its fibres" if layout == "uni" and "serratus" in t else "passed through"}',
+                   'fate': 'split' if layout == 'uni' and 'serratus' in t else 'through', 'point': R(P), 'dir': [0, 0, 1], 'open': 6} for t in through if has(t)] + \
+                 [{'id': L('mus-intercostal'), 'label': 'Intercostal muscles, on the upper border of the rib below', 'fate': 'through'}]
+        hil = V(pt('pa-left' if k == 'l' else 'rpa'))
+        d_in = (hil - P) / np.linalg.norm(hil - P)
+        return [
+            {'id': f'vm{layout}{k}-map', 'phase': 'Ports', 'seq': 0, 'title': title, 'body': text,
+             'view': lat_view(P, k, 470, d=out + V([0, 0.5, 0.3])), 'pose': 'lateral', 'show': ['skin', *pids, *lines(k)], 'opacity': {'skin': 1.0},
+             'highlight': pids, 'labels': [*pids, f'lm-scaptip-{k}', f'line-mal-{k}'], 'ct': ct(R(P), 'axial', 'lung')},
+            {'id': f'vm{layout}{k}-layers', 'phase': 'Layers', 'seq': 1, 'title': 'What the port goes through',
+             'body': '<p>' + ' → '.join(l['label'] for l in layers) + '.</p><p>Enter on the <b>upper border of the lower rib</b>; open the pleura with a finger and sweep for adhesions before the first instrument goes in.</p>',
+             'view': lat_view(P, k, 380, d=out + V([0, 0.2, 0.2])), 'pose': 'lateral', 'show': [*pids, *WALL(k), *RIBS(k)], 'hide': ['skin'], 'opacity': {r: 0.55 for r in RIBS(k)},
+             'labels': [*through, L('mus-intercostal')], 'danger': [f'n-longthoracic-{k}'],
+             'action': {'kind': 'layers', 'label': 'Go through the layers', 'port': main, 'layers': [l for l in layers if l['id'] != 'skin']}, 'ct': ct(R(P), 'axial', 'mediastinum')},
+            {'id': f'vm{layout}{k}-inside', 'phase': 'Inside', 'seq': 2, 'title': 'The view from inside',
+             'body': '<p>From the camera the hilum sits in the middle of the screen, the instruments entering from '
+                     + ('the same incision, in line with the camera.' if layout == 'uni' else 'separate ports at an angle to the camera (triangulation).') + '</p>',
+             'view': {'eye': R(P - d_in * 5), 'target': R(hil)}, 'show': [*pids], 'hide': [i for i in ('lul-arteries', 'lul-veins', 'lul-bronchi', 'lll-arteries', 'lll-veins', 'lll-bronchi', 'rul-arteries', 'rul-veins', 'rul-bronchi') if has(i)], 'opacity': {**CLEAR, **({'rul': 0.35, 'rml': 0.35, 'rll': 0.35} if k == 'r' else {})},
+             'labels': ['pa-left', 'pv-superior', 'br-lul'] if k == 'l' else ['rpa', 'rpv-superior', 'br-rul'], 'ct': ct(R(hil), 'axial', 'mediastinum')},
+        ]
+
+    for k in ('l', 'r'):
+        for layout, appr in (('three-a', 'Three-port, anterior'), ('three-p', 'Three-port, posterior'), ('two', 'Two-port'), ('uni', 'Uniportal')):
+            ACCESS[f'vats-{layout}-{k}'] = ('VATS port placement', f'{appr} ({"left" if k == "l" else "right"})', SIDE_NAME[k],
+                                           'Where the ports go, what they go through, and the view from inside.', vats_map(k, layout),
+                                           seq(('Ports', 'other'), ('Layers', 'other'), ('Inside', 'other')))
+
+    for key, (opName, appr, side, summ, steps_, sq) in ACCESS.items():
+        base_op = {'Positioning and landmarks': 'position', 'Thoracotomy incisions': 'thoracotomy', 'VATS port placement': 'vats-ports'}[opName]
+        if base_op != 'position':   # one menu entry per side, so each has a short row of approaches
+            op_ = f'{base_op}-{side[0]}'; opName = f'{opName}, {side}'; appr = appr.rsplit(' (', 1)[0]
+        else: op_ = base_op
+        KEEP = {'chest-wall', 'muscles', 'landmarks', 'ports-vats', 'ports-anterior', 'ports-posterior', 'ports-r-anterior', 'ports-r-posterior', 'ports-open-left', 'ports-open-right'}
+        for s in steps_:
+            for kk in ('highlight', 'danger', 'labels', 'show'):
+                if kk in s: s[kk] = [i for i in s[kk] if has(i) or i == 'skin']
+            if s['phase'] != 'Inside':   # the chest wall only: lungs, vessels and mediastinum out of the way
+                named = set(s.get('show', [])) | set(s.get('labels', [])) | set(s.get('highlight', [])) | set(s.get('danger', []))
+                s['hide'] = [*s.get('hide', []), *[q['id'] for q in atlas['structures'] if q['group'] not in KEEP and q['id'] not in named]]
+        procs[f'acc-{key}'] = {'id': f'access-{key}', 'op': op_, 'opName': opName, 'side': side, 'name': opName, 'approach': appr, 'summary': summ,
+                               'ports': [], 'steps': steps_, 'sources': ASRC, 'sequence': sq, 'group': 'Access and positioning'}
+
+    # ---------------------------------------------------------------- uniportal and biportal lobectomy: the fissure-first sequence through fewer ports
+    def port_version(steps, op, side, layout, lobe):
+        k = side[0]; upper = lobe in ('lul', 'rul')
+        main = f'uni-{4 if upper else 5}-{k}' if layout == 'uni' else f'bi-utility-{k}'
+        cam = main if layout == 'uni' else f'bi-camera-{k}'
+        setup = {'id': f'{op}-setup', 'phase': 'Setup', 'title': 'Uniportal incision' if layout == 'uni' else 'Two ports', 'pose': 'lateral',
+                 'body': (f'<p>{"Right" if k == "l" else "Left"} lateral decubitus, table broken. One 3–4 cm incision in the <b>{4 if upper else 5}th space</b> between the anterior and mid-axillary lines, '
+                          'wound protector in. Camera at the back of the wound; staplers and instruments below and in front of it.</p>'
+                          if layout == 'uni' else
+                          f'<p>{"Right" if k == "l" else "Left"} lateral decubitus, table broken. A 3–4 cm <b>utility incision</b> in the 4th space at the anterior axillary line and a 1 cm <b>camera port</b> in the 7th–8th space, mid- to posterior axillary line. '
+                          'Every instrument and stapler goes through the utility incision.</p>'),
+                 'view': lat_view(V(LM[main]), k, 470, d=outward(k) + V([0, 0.5, 0.3])), 'show': ['skin', main, cam, *lines(k)], 'opacity': {'skin': 1.0},
+                 'labels': [main, cam, f'line-mal-{k}', f'lm-scaptip-{k}'], 'ct': ct(R(V(LM[main])), 'axial', 'lung')}
+        out = []
+        for s_ in steps:
+            if s_['phase'] == 'Setup': continue
+            c = copy.deepcopy(s_); c['id'] = f'{op}-{s_["id"].split("-", 1)[1]}'
+            if 'action' in c: c['action']['port'] = main
+            out.append(c)
+        return [out[0], setup, *out[1:]]
+
+    BASE_SEQ = {'lul': ('lul-posterior', posterior), 'lll': ('lll-fissure', lll_fissure_first)}
+    if RUL_OK: BASE_SEQ.update({'rul': ('rul-posterior', rul_posterior), 'rml': ('rml-fissure', rml_fissure_first), 'rll': ('rll-fissure', rll_fissure_first)})
+    for lobe, (bkey, bsteps) in BASE_SEQ.items():
+        base = procs[bkey]
+        for layout, appr in (('uni', 'Uniportal VATS'), ('bi', 'Two-port VATS')):
+            procs[f'{lobe}-{layout}'] = {**base, 'id': f'{layout}-{lobe}', 'approach': appr, 'name': base['opName'] + ', ' + appr.lower(),
+                                         'steps': port_version(bsteps, f'{lobe[:2]}{layout}', base['side'], layout, lobe),
+                                         'summary': ('One incision; ' if layout == 'uni' else 'Two ports; ') + base['summary'][0].lower() + base['summary'][1:]}
 # operations appear in the menu in this order
-ORDER = ['lul', 'lll', 'rul', 'rml', 'rll', 'pnl', 'pnr', 'seg-lingula', 'seg-lul-updiv', 'seg-s6', 'rt', 'clamshell', 'cardio', 'tract', 'hilar']
+ORDER = ['position', 'thoracotomy-l', 'thoracotomy-r', 'vats-ports-l', 'vats-ports-r', 'lul', 'lll', 'rul', 'rml', 'rll', 'pnl', 'pnr', 'seg-lingula', 'seg-lul-updiv', 'seg-s6', 'rt', 'clamshell', 'cardio', 'tract', 'hilar']
 procs = dict(sorted(procs.items(), key=lambda kv: (ORDER.index(kv[1]['op']), list(procs).index(kv[0]))))
 for v in procs.values():
     v['group'] = v.get('group') or ('Pneumonectomy' if v['op'].startswith('pn') else 'Segmentectomy' if v['op'].startswith('seg-') else 'Lobectomy')
+# every VATS or open setup step: the patient on the side, the surface lines drawn
+for v in procs.values():
+    if v['group'] in ('Trauma', 'Access and positioning'): continue
+    k = v['side'][0]
+    for s in v['steps']:
+        if s['phase'] == 'Setup':
+            s['pose'] = 'lateral'
+            s['show'] = [*s.get('show', []), *[i for i in (f'line-aal-{k}', f'line-mal-{k}', f'line-pal-{k}', f'lm-scaptip-{k}') if has(i)]]
+            s['opacity'] = {**s.get('opacity', {}), 'skin': 1.0}
 (OUT / 'procedures.json').write_text(json.dumps(procs, indent=1))
 print({k: len(v['steps']) for k, v in procs.items()})

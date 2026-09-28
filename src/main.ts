@@ -48,6 +48,13 @@ const state = {
 };
 
 let atlas: Atlas;
+/** questions put to NV-Reason-CT about the reference CT, with the atlas key; answers once the model has been run */
+interface AIQ { id: string; op: string; kind: 'report' | 'preop' | 'anatomy' | 'approach'; q: string; focus: string; key: string }
+let aiQs: AIQ[] = [];
+let aiAns: { model: string; date: string; gpu: string; answers: Record<string, { answer: string; thinking: string }> } | null = null;
+const yourRead = new Map<string, string>();
+const revealed = new Set<string>();
+let aiOpen = false;
 let procedures: Record<string, Procedure> = {};
 let refVol: Volume; let upVol: Volume | null = null;
 let scene3d: Scene3D;
@@ -60,6 +67,9 @@ async function boot(): Promise<void> {
   status.textContent = 'Loading the reference CT…';
   atlas = await (await fetch(DATA + 'atlas.json')).json() as Atlas;
   procedures = await (await fetch(DATA + 'procedures.json')).json() as Record<string, Procedure>;
+  // the AI read is optional: the atlas works without it
+  try { const r = await fetch(DATA + 'ai_questions.json'); if (r.ok) aiQs = ((await r.json()) as { questions: AIQ[] }).questions; } catch { /* none */ }
+  try { const r = await fetch(DATA + 'ai_answers.json'); if (r.ok) aiAns = await r.json(); } catch { /* not run yet */ }
   for (const [k, v] of Object.entries(atlas.labels.lut)) { labelOf.set(v, Number(k)); idOfLabel.set(Number(k), v); }
   const [ctBuf, labBuf] = await Promise.all([
     fetchGunzip(DATA + atlas.ct.file, (f) => { status.textContent = `Loading the reference CT… ${Math.round(f * 100)}%`; }),
@@ -196,7 +206,7 @@ function setMode(m: 'explore' | 'procedure'): void {
   state.mode = m; planeIn3d = m === 'explore';
   scene3d.resetOperative(); state.acted.clear();
   if (m === 'procedure') goStep(state.step, true);
-  else { scene3d.highlight.clear(); scene3d.danger.clear(); scene3d.invalidate(); scene3d.setLabels([], () => 'plain'); for (const s of atlas.structures) scene3d.setVisible(s.id, s.visible !== false); scene3d.frame(['lul', 'lll', 'heart', 'aorta'], [-1, 0.35, 0.25]); }
+  else { scene3d.setPose(undefined, 'left'); scene3d.highlight.clear(); scene3d.danger.clear(); scene3d.invalidate(); scene3d.setLabels([], () => 'plain'); for (const s of atlas.structures) scene3d.setVisible(s.id, s.visible !== false); scene3d.frame(['lul', 'lll', 'heart', 'aorta'], [-1, 0.35, 0.25]); }
   render();
 }
 
@@ -226,6 +236,7 @@ function goStep(n: number, fly = true): void {
   // lymph node stations appear only where the step names them
   const named0 = new Set([...(st.highlight ?? []), ...(st.danger ?? []), ...(st.labels ?? [])]);
   for (const s of atlas.structures) if (s.group === 'nodes' && !named0.has(s.id)) scene3d.setVisible(s.id, false);
+  scene3d.setPose(st.pose, proc.side);
   if (st.action) scene3d.ready(st.action, portOf(st.action.port));
   scene3d.spin(!!st.spin);
   scene3d.highlight = new Set(st.highlight ?? []); scene3d.danger = new Set(st.danger ?? []); scene3d.invalidate(4000);
@@ -264,7 +275,7 @@ function act(): void {
 function replay(): void { goStep(state.step, false); setTimeout(act, 60); }
 
 function key(e: KeyboardEvent): void {
-  if ((e.target as HTMLElement).tagName === 'INPUT') return;
+  if (['INPUT', 'TEXTAREA'].includes((e.target as HTMLElement).tagName)) return;
   if (e.key === 'ArrowRight' && state.mode === 'procedure') { next(); e.preventDefault(); }
   else if (e.key === 'ArrowLeft' && state.mode === 'procedure') { goStep(state.step - 1); e.preventDefault(); }
   else if (e.key === 'ArrowUp') { views[state.plane].scroll(1); e.preventDefault(); }
@@ -410,11 +421,48 @@ function procPanel(): HTMLElement {
     !locked ? structs : null,
     st.pearl && !locked ? h('p', { class: 'pearl' }, st.pearl) : null,
     nav,
+    aiPanel(aiQs.filter((x) => x.op === proc.op)),
     h('details', { class: 'outline' }, h('summary', {}, 'All steps'), dots),
     h('p', { class: 'foot' }, 'Teaching model on one reference CT. Not for planning an operation on a patient.'),
   );
 }
 const pickedChoice = new Map<string, string>();
+
+const KIND: Record<AIQ['kind'], string> = { report: 'Report', preop: 'Pre-op', anatomy: 'Anatomy', approach: 'Approach' };
+/**
+ * The AI read: each question about the reference CT, answered by the trainee first, then compared with NV-Reason-CT's
+ * answer and the atlas key. A research model's output, shown as such.
+ */
+function aiPanel(qs: AIQ[]): HTMLElement | null {
+  if (!qs.length) return null;
+  const order = ['report', 'preop', 'anatomy', 'approach'];
+  qs = [...qs].sort((a, b) => order.indexOf(a.kind) - order.indexOf(b.kind));
+  const list = h('div', { class: 'ai-list' });
+  for (const q of qs) {
+    const open = revealed.has(q.id); const ans = aiAns?.answers[q.id];
+    const ta = h('textarea', { rows: q.kind === 'report' ? 5 : 2, placeholder: 'Your read first…', 'aria-label': 'Your read' }) as HTMLTextAreaElement;
+    ta.value = yourRead.get(q.id) ?? ''; ta.addEventListener('input', () => yourRead.set(q.id, ta.value));
+    const show = () => { const f = focusOf(q.focus); setFocus(f); if (scene3d.items.get(q.focus)?.mesh.visible) scene3d.frame([q.focus], [-1, 0.4, 0.3], 2.2); };
+    const cmp = open ? h('div', { class: 'ai-cmp' },
+      h('div', { class: 'ai-ans' }, h('b', {}, 'NV-Reason-CT'),
+        ans ? h('p', { class: 'txt' }, ans.answer) : h('p', { class: 'txt muted' }, 'Coming soon for subscribers: the AI\'s own read of this scan. Compare with the atlas key below for now.'),
+        ans?.thinking ? h('details', {}, h('summary', {}, 'Its reasoning'), h('p', { class: 'txt' }, ans.thinking)) : null),
+      h('div', { class: 'ai-key' }, h('b', {}, 'Atlas key'), h('p', { class: 'txt' }, q.key))) : null;
+    list.append(h('div', { class: 'aiq' + (open ? ' open' : '') },
+      h('div', { class: 'aiq-head' }, h('span', { class: `kind ${q.kind}` }, KIND[q.kind]), h('button', { class: 'link', onclick: show }, 'Show on CT')),
+      h('p', { class: 'q' }, q.kind === 'report' ? 'Write a structured report of this chest CT.' : q.q),
+      ta,
+      h('button', { class: 'btn ghost small', onclick: () => { if (open) revealed.delete(q.id); else revealed.add(q.id); render(); } }, open ? 'Hide' : 'Compare with the AI'),
+      cmp));
+  }
+  const d = h('details', { class: 'ai', ontoggle: (e: Event) => { aiOpen = (e.target as HTMLDetailsElement).open; } },
+    h('summary', {}, h('span', {}, 'AI read of this CT'), aiAns ? null : h('span', { class: 'soon' }, 'Coming soon · subscribers'), h('i', {}, ` ${qs.length} question${qs.length > 1 ? 's' : ''}`)),
+    h('p', { class: 'ai-note' }, aiAns ? `NV-Reason-CT (NVIDIA research model), run ${aiAns.date}. Not a medical device: its answers can be wrong. Write your read, then compare.`
+      : 'Write your read, then compare it with the atlas key. The AI\'s own read (NV-Reason-CT, an NVIDIA research model) is coming for subscribers.'),
+    list) as HTMLDetailsElement;
+  d.open = aiOpen;
+  return d;
+}
 
 function explorePanel(): HTMLElement {
   const groups = h('div', { class: 'tree' });
@@ -434,6 +482,7 @@ function explorePanel(): HTMLElement {
   return h('div', { class: 'explore' },
     h('div', { class: 'proc-head' }, h('div', { class: 'eyebrow' }, 'Explore'), h('h2', {}, sel ? sel.name : 'Click anything in 3D or on the CT')),
     sel ? h('p', { class: 'body' }, sel.note ?? (sel.schematic ? 'Drawn from landmarks, not segmented from the scan.' : 'Segmented from the reference CT.')) : h('p', { class: 'body' }, 'Every structure is linked: pick it here, in 3D or on the CT, and the other two follow.'),
+    aiPanel(aiQs.filter((x) => x.op === 'general')),
     groups,
     h('p', { class: 'foot' }, `${atlas.source.name}. ${atlas.source.note}`));
 }

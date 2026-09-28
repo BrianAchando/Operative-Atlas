@@ -224,8 +224,8 @@ export class Scene3D {
    * Divide at the staple line: the proximal side stays (clipped), the distal side becomes a separate mesh that moves
    * with the specimen. `staple` lays two staple rows across the cut; `tie` expects ligatures placed by tieOff().
    */
-  divide(id: string, animate = true, style: 'staple' | 'tie' | 'cut' = 'staple'): void {
-    const it = this.items.get(id); const d = it?.meta.division; if (!it || !d || it.distal) return;
+  divide(id: string, animate = true, style: 'staple' | 'tie' | 'cut' = 'staple', over?: { point: Vec3; dir: Vec3; radius: number }): void {
+    const it = this.items.get(id); const d = over ?? it?.meta.division; if (!it || !d || it.distal) return;
     const n = new THREE.Vector3(...d.dir).normalize(); const p = new THREE.Vector3(...d.point);
     const gap = style === 'tie' ? 1.2 : style === 'cut' ? 1.5 : 2.2;   // mm between the two cut faces
     const keep = new THREE.Plane().setFromNormalAndCoplanarPoint(n.clone().negate(), p.clone().addScaledVector(n, -gap / 2));
@@ -465,6 +465,15 @@ export class Scene3D {
         if (!await this.anim(350, (e) => { st.scale.setScalar(Math.max(0.01, e)); st.position.copy(s.c.clone().multiplyScalar(1 - Math.max(0.01, e))); }, token)) return false;
       }
       for (const id of a.remove ?? []) this.fadeOut(id, 600);
+    } else if (a.kind === 'layers') {
+      for (const L of a.layers ?? []) {
+        const it = this.items.get(L.id); if (!it) continue;
+        this.setVisible(L.id, true); this.highlight = new Set([L.id]); this.setLabels([L.id], () => 'hi');
+        if (!await this.wait(700, token)) return false;
+        if (!await this.layer(L, true, token)) return false;
+        if (!await this.wait(350, token)) return false;
+      }
+      this.highlight = new Set();
     } else if (a.kind === 'massage') {
       const id = a.ids?.[0] ?? 'heart'; const it = this.items.get(id);
       if (it) {
@@ -489,6 +498,76 @@ export class Scene3D {
     const sp = ribSpreader(P, out, along, sep); this.extras.add(sp.group);
     const ghost = () => sp.group.traverse((o) => { const m = (o as THREE.Mesh).material as THREE.MeshStandardMaterial | undefined; if (m) { m.transparent = true; m.opacity = 0.28; m.depthWrite = false; } });
     return { ghost, set: (mm) => { sp.setGap(mm); this.invalidate(); }, shift: (k) => { const v = sep.clone().multiplyScalar(k === 0 ? 30 : -30); return [v.x, v.y, v.z]; } };
+  }
+
+  /** one layer of the chest wall: cut across and opened, split, retracted, passed through or spared */
+  private async layer(L: NonNullable<Action['layers']>[number], animate: boolean, token: number): Promise<boolean> {
+    const it = this.items.get(L.id); if (!it) return true;
+    if ((L.fate === 'divide' || L.fate === 'split') && L.point && L.dir) {
+      this.divide(L.id, animate, 'cut', { point: L.point, dir: L.dir, radius: 40 });
+      const open = new THREE.Vector3(...L.dir).normalize().multiplyScalar(L.open ?? (L.fate === 'split' ? 8 : 16));
+      if (it.distal) {
+        const from = it.distal.position.clone();
+        if (animate) { if (!await this.anim(900, (e) => this.shiftDistal(it, from.clone().addScaledVector(open, e)), token)) return false; }
+        else this.shiftDistal(it, from.clone().add(open));
+      }
+    } else if (L.fate === 'retract' && L.offset) {
+      this.retract(L.id, L.offset, -1, animate ? 1000 / this.timeScale : 1);
+      if (animate && !await this.wait(1000, token)) return false;
+    } else if (L.fate === 'through') {
+      this.setOpacity(L.id, Math.min(it.mat.opacity, 0.35));
+    }
+    return true;
+  }
+
+  // ---------------------------------------------------------------- patient position
+  private stage = new THREE.Group();
+  private stageAdded = false;
+  /** lateral decubitus, operated side up: the camera's up turns to that side, and the table, roll and arm rests appear */
+  setPose(pose: 'lateral' | undefined, side: 'left' | 'right' | 'both'): void {
+    if (!this.stageAdded) { this.scene.add(this.stage); this.stageAdded = true; }
+    for (const c of [...this.stage.children]) { this.stage.remove(c); c.traverse((o) => { const m = o as THREE.Mesh; if (m.isMesh) { m.geometry.dispose(); (m.material as THREE.Material).dispose(); } }); }
+    const lat = pose === 'lateral' && side !== 'both';
+    const s = side === 'right' ? 1 : -1;                                   // the side that is up
+    this.camera.up.set(lat ? s : 0, 0, lat ? 0 : 1);
+    const ctl = this.controls as unknown as { _quat: THREE.Quaternion; _quatInverse: THREE.Quaternion };
+    ctl._quat.setFromUnitVectors(this.camera.up, new THREE.Vector3(0, 1, 0)); ctl._quatInverse.copy(ctl._quat).invert();
+    const skin = this.items.get('skin');
+    const ribX = (sd: 'l' | 'r') => { let v = sd === 'l' ? 0 : 0; for (const [id, it] of this.items) if (id.startsWith('rib-') && id.endsWith(`-${sd}`)) v = sd === 'l' ? Math.min(v, it.meta.bbox[0][0]) : Math.max(v, it.meta.bbox[1][0]); return v; };
+    const xl = ribX('l') - 42, xr = ribX('r') + 42;
+    if (skin) { skin.mat.clippingPlanes = lat ? [new THREE.Plane(new THREE.Vector3(1, 0, 0), -xl), new THREE.Plane(new THREE.Vector3(-1, 0, 0), xr)] : null; skin.mat.needsUpdate = true; }
+    this.invalidate(300);
+    if (!lat) return;
+    // the table under the dependent side, broken (flexed) below the costal margin to open the spaces on the upper side
+    const down = -s; const xt = down > 0 ? xr + 6 : xl - 6;                // table surface
+    const mat = (c: number, o = 1) => new THREE.MeshStandardMaterial({ color: c, roughness: 0.7, metalness: 0.15, transparent: o < 1, opacity: o });
+    const zb = -250; const tilt = THREE.MathUtils.degToRad(12);
+    for (const [z0, z1, sign] of [[zb, 380, 1], [-720, zb, -1]] as [number, number, number][]) {
+      const g = new THREE.Group(); g.position.set(xt, 0, zb);
+      const len = Math.abs(z1 - z0); const mid = (z0 + z1) / 2 - zb;
+      const pad = new THREE.Mesh(new THREE.BoxGeometry(70, 540, len), mat(0x38414d)); pad.position.set(down * 35, 0, mid); g.add(pad);
+      const top = new THREE.Mesh(new THREE.BoxGeometry(6, 540, len), mat(0x5b6b80)); top.position.set(down * 2, 0, mid); g.add(top);
+      g.rotation.y = down * sign * tilt; this.stage.add(g);
+    }
+    // axillary roll: under the dependent chest, a hand's breadth below the axilla, keeping weight off the brachial plexus
+    const r3 = this.items.get(`rib-4-${down > 0 ? 'r' : 'l'}`); const za = r3 ? r3.meta.bbox[0][2] - 10 : -80;
+    const roll = new THREE.Mesh(new THREE.CylinderGeometry(32, 32, 300, 28), mat(0x5aa2c8, 0.9)); roll.position.set(xt - down * 30, 10, za); this.stage.add(roll);
+    // arms forward: the dependent arm on an arm board, the upper arm on a rest above it, both shoulders flexed about 90 degrees
+    const skinM = (o: number) => new THREE.MeshStandardMaterial({ color: 0xd9b8a4, roughness: 0.8, transparent: true, opacity: o, depthWrite: false });
+    const hum = (sd: 'l' | 'r') => { const h = this.items.get(`humerus-${sd}`); return h ? new THREE.Vector3(...h.meta.centroid) : new THREE.Vector3(sd === 'l' ? -170 : 170, -10, 40); };
+    const arm = (sh: THREE.Vector3, lift: number) => {
+      const a = sh.clone(); const b = sh.clone().add(new THREE.Vector3(-down * lift, 300, 30)); const c = b.clone().add(new THREE.Vector3(0, 250, 40));
+      for (const [p, q, r] of [[a, b, 34], [b, c, 28]] as [THREE.Vector3, THREE.Vector3, number][]) {
+        const d = q.clone().sub(p); const m = new THREE.Mesh(new THREE.CapsuleGeometry(r, d.length(), 8, 16), skinM(0.3));
+        m.position.copy(p).addScaledVector(d, 0.5); m.quaternion.setFromUnitVectors(new THREE.Vector3(0, 1, 0), d.normalize()); this.stage.add(m);
+      }
+      const board = new THREE.Mesh(new THREE.BoxGeometry(12, 380, 120), mat(0x38414d, 0.7)); board.position.copy(b).add(new THREE.Vector3(down * 40, 110, 20)); this.stage.add(board);
+    };
+    arm(hum(down > 0 ? 'r' : 'l').setX(xt - down * 70), 0);
+    arm(hum(down > 0 ? 'l' : 'r'), 90);
+    // head on a pillow, level with the spine
+    const head = new THREE.Mesh(new THREE.SphereGeometry(1, 24, 18), skinM(0.35)); head.scale.set(75, 95, 110); head.position.set(0, 10, 230); this.stage.add(head);
+    const pillow = new THREE.Mesh(new THREE.BoxGeometry(110, 260, 260), mat(0x4d6e8a, 0.95)); pillow.position.set(xt - down * 55 + (down > 0 ? 0 : 0), 10, 230); this.stage.add(pillow);
   }
 
   /** turn structures (or the divided distal part, e.g. the upper sternum) by `f` of the hinge angle about its axis */
@@ -538,7 +617,8 @@ export class Scene3D {
       const sp = this.spreader(new THREE.Vector3(...port), a);
       if (sp) { sp.set(70); sp.ghost(); for (const [k, id] of (a.ribs ?? []).entries()) { const it = this.items.get(id); if (it) this.retract(id, sp.shift(k), -1, 1); } }
     }
-    if (a.kind === 'saw') { for (const id of a.ids ?? []) { this.divide(id, false, 'cut'); } if (a.hinge) this.turn(a.hinge, 1); }
+    if (a.kind === 'layers') { for (const L of a.layers ?? []) { this.setVisible(L.id, true); void this.layer(L, false, this.seq); } }
+    else if (a.kind === 'saw') { for (const id of a.ids ?? []) { this.divide(id, false, 'cut'); } if (a.hinge) this.turn(a.hinge, 1); }
     else if (a.kind === 'twist') { if (a.hinge) this.turn(a.hinge, 1); }
     else if (a.kind === 'clamp' && port) { this.clampAt(a, new THREE.Vector3(...port))?.setClamp(1); }
     else if (a.kind === 'suture') { for (const s of this.stitches(a)) this.extras.add(pledgetStitch(s.c, s.across, s.n)); }
