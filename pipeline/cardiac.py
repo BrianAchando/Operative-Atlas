@@ -1,4 +1,4 @@
-"""The heart for the cardiac module: mitral and aortic valve replacement and their accesses.
+"""The heart for the cardiac module: mitral, aortic and tricuspid valve surgery and their accesses.
 
 From the CT (TotalSegmentator licensed tasks, run by segment_heart.py): the four chambers and the myocardium
 (heartchambers_highres), the LV outflow tract and the three aortic cusps (aortic_sinuses), the coronaries.
@@ -171,6 +171,7 @@ def build(ctx):
     emit_mesh('can-retro', 'Retrograde cardioplegia cannula (coronary sinus)', 'cardiac', CANNULA,
               tube([W(p) for p in [csos, (csos + LM['ra-incision']) / 2 + RIGHT * 10, LM['ra-incision'] + RIGHT * 40 + ANT * 60]], 1.8), opacity=0.9, visible=False,
               note='Schematic: passed through a purse-string in the right atrium into the coronary sinus.')
+    tricuspid(ctx, RA, RV, mm, LM, DIRS, SC, ra_mm, lv_mm, csos, svc_p, ra_low)
     LM['clamp-ao'] = clamp_c; DIRS['ao-axis'] = np.array([0, 0.25, 1.0]) / np.linalg.norm([0, 0.25, 1.0])
     LM['can-aortic'] = ao_can; LM['cp'] = cp; LM['can-svc'] = svc_p; LM['can-ivc'] = ra_low
     # ---------------------------------------------------------------- the prosthesis: a mechanical bileaflet valve, seated in the annulus
@@ -360,3 +361,98 @@ def aortic_root(ctx, work, mm, LM, DIRS, SC, ra_mm, la_mm, lv_mm):
                   note='5-6 cm in the right 2nd space from the sternal edge; the right internal thoracic vessels ligated or kept, the 3rd costal cartilage divided if more room is needed.')
         LM['ramt'] = pts[1]
     print(f'  aortic root: radius {R:.1f} mm, STJ {hs:.0f} mm above the annulus, prosthesis ~{2 * rp:.0f} mm')
+
+
+def tricuspid(ctx, RA, RV, mm, LM, DIRS, SC, ra_mm, lv_mm, csos, svc_p, ra_low):
+    """The tricuspid valve from the RA-RV junction: annulus, the three leaflets (schematic), Koch's triangle with the AV
+    node at its apex, the right coronary in the AV groove, an incomplete annuloplasty ring, a De Vega suture line, a
+    bioprosthesis, and caval snares."""
+    emit_mesh, W, tube, sphere = ctx['emit_mesh'], ctx['W'], ctx['tube'], ctx['sphere']
+    iface = mm(RV & ndimage.binary_dilation(RA, iterations=2))
+    if len(iface) < 50: print('  tricuspid: no RA-RV interface; skipped'); return
+    c = iface.mean(0); _, _, vt = np.linalg.svd(iface - c, full_matrices=False)
+    n = vt[2] * np.sign(np.dot(vt[2], ra_mm.mean(0) - c))                   # the annular plane's normal, toward the RA
+    s = lv_mm.mean(0) - c; s -= n * np.dot(s, n); s /= np.linalg.norm(s)     # toward the septum (the LV lies beyond it)
+    a_ = ANT - n * np.dot(ANT, n); a_ -= s * np.dot(a_, s); a_ /= np.linalg.norm(a_)
+    v = np.cross(n, s)
+    if np.dot(v, a_) < 0: v = -v                                             # angles increase from the septum toward the front
+    rel = iface - c; ang = np.degrees(np.arctan2(rel @ v, rel @ s)) % 360; rad = np.hypot(rel @ s, rel @ v)
+    ring = []
+    for a0 in range(0, 360, 10):
+        m_ = (ang >= a0) & (ang < a0 + 10)
+        ring.append((a0 + 5, np.percentile(rad[m_], 80) if m_.sum() > 3 else np.nan, np.median(rel[m_] @ n) if m_.sum() > 3 else 0.0))
+    ring = np.array(ring); ok = ~np.isnan(ring[:, 1])
+    ring[:, 1] = np.interp(ring[:, 0], ring[ok, 0], ring[ok, 1], period=360)
+    k5 = np.ones(5) / 5
+    ring[:, 1] = np.convolve(np.r_[ring[-2:, 1], ring[:, 1], ring[:2, 1]], k5, 'valid'); ring[:, 2] = np.convolve(np.r_[ring[-2:, 2], ring[:, 2], ring[:2, 2]], k5, 'valid')
+    R = float(np.clip(np.median(ring[:, 1]), 15, 25)); ring[:, 1] = np.clip(ring[:, 1], R * 0.8, R * 1.2)
+    rr = lambda t: float(np.interp(t % 360, ring[:, 0], ring[:, 1], period=360)); hh = lambda t: float(np.interp(t % 360, ring[:, 0], ring[:, 2], period=360))
+    at = lambda t, r=None, dn=0.0: c + s * np.cos(np.radians(t)) * (rr(t) if r is None else r) + v * np.sin(np.radians(t)) * (rr(t) if r is None else r) + n * (hh(t) + dn)
+    ann = np.array([at(t) for t in range(0, 360, 6)])
+    emit_mesh('tricuspid-annulus', 'Tricuspid annulus', 'cardiac', '#e9dec6', tube([W(p) for p in [*ann, ann[0]]], 1.6), visible=False,
+              note='The RA-RV junction on this scan. In functional TR it dilates mainly along the anterior and posterior leaflets; the septal part is fixed by the fibrous skeleton.')
+    # leaflets by sector (angle 0 = the septum, increasing toward the front): septal, anterior (the largest), posterior
+    AS, AP, PS = 60.0, 200.0, 300.0                                            # commissures
+    coapt = c - n * 10.0
+    def leaflet(t0, t1):
+        ts = np.linspace(t0, t1, max(4, int((t1 - t0) / 6))); Vv, F = [], []; rows = 7
+        for t in ts:
+            a = at(t); b = coapt + (a - coapt) * 0.12
+            for q in range(rows):
+                u_ = q / (rows - 1); Vv.append(a + (b - a) * u_ - n * 3.0 * np.sin(np.pi * u_))
+        for j in range(len(ts) - 1):
+            for q in range(rows - 1):
+                a2, b2 = j * rows + q, (j + 1) * rows + q; F += [[a2, b2, b2 + 1], [a2, b2 + 1, a2 + 1]]
+        return trimesh.Trimesh(np.array(Vv) - ctx['CARINA'], np.array(F), process=True)
+    for id_, nm, t0, t1 in (('tv-septal', 'Septal leaflet (tricuspid)', PS - 360, AS), ('tv-anterior', 'Anterior leaflet (tricuspid)', AS, AP), ('tv-posterior', 'Posterior leaflet (tricuspid)', AP, PS)):
+        emit_mesh(id_, nm, 'cardiac', '#efe3cf', leaflet(t0, t1), visible=False, note='Schematic.')
+    # Koch's triangle: coronary sinus ostium, tendon of Todaro, septal leaflet hinge; the AV node at its apex near the anteroseptal commissure
+    cso = csos if csos is not None else at(-35, dn=6)
+    apex = at(AS - 20, dn=5.0); base = at(-10, dn=3.0)
+    tod = cso + (apex - cso) * 1.0 + n * 3.0
+    emit_mesh('koch', "Koch's triangle", 'cardiac', '#f2d24b', tube([W(p) for p in [cso, apex, base, cso]], 0.9), visible=False,
+              note='Bounded by the coronary sinus ostium, the tendon of Todaro and the septal leaflet hinge. The AV node lies at its apex, near the anteroseptal commissure: no deep bites there.')
+    emit_mesh('tv-avnode', 'AV node and His bundle (apex of Koch\'s triangle)', 'cardiac', '#f2d24b', sphere(W(apex), 3.8), visible=False)
+    emit_mesh('cs-ostium', 'Coronary sinus ostium', 'cardiac', '#5e6a92', sphere(W(cso), 3.2), visible=False)
+    LM['tv-avnode'] = apex; LM['cs-ostium'] = cso
+    # the right coronary in the right AV groove, round the anterior and posterior annulus
+    rca = [at(t, rr(t) + 8, dn=-3) for t in np.linspace(AS + 25, PS - 10, 16)]
+    emit_mesh('rca-groove', 'Right coronary artery (right AV groove)', 'cardiac', '#d0433a', tube([W(p) for p in rca], 1.8), visible=False,
+              note='Schematic: a few millimetres outside the anterior and posterior annulus, closest near the anteroposterior commissure. Deep bites or a downsized rigid ring can kink it.')
+    # an incomplete annuloplasty ring (downsized), open at the AV node; a De Vega double running suture
+    rr_ring = lambda t: rr(t) * 0.82
+    rg = [c + s * np.cos(np.radians(t)) * rr_ring(t) + v * np.sin(np.radians(t)) * rr_ring(t) + n * (hh(t) + 1.2) for t in np.linspace(AS + 10, 360 + 15, 50)]
+    emit_mesh('tv-ring', 'Incomplete annuloplasty ring', 'cardiac', '#cfd6dc', tube([W(p) for p in rg], 2.0), visible=False,
+              note='Schematic: open at the anteroseptal commissure and the AV node; it reshapes and reduces the anterior and posterior annulus.')
+    dv = [trimesh.util.concatenate([tube([W(at(t, rr(t) + o, dn=0.8)) for t in np.linspace(AS, PS, 30)], 0.45, seg=6)]) for o in (-1.2, 1.2)]
+    emit_mesh('tv-devega', 'De Vega suture annuloplasty (double running)', 'cardiac', '#3fa7d6', trimesh.util.concatenate(dv), visible=False,
+              note='Schematic: two parallel running polypropylene sutures from the anteroseptal to the posteroseptal commissure, tied over pledgets to shorten the anterior and posterior annulus.')
+    # a stented bioprosthesis in the tricuspid position: posts at the commissures, none into the outflow tract
+    rp = float(np.clip(R * 0.85, 13.5, 16.0)); base_ = c + n * 1.0; post_h = 16.0; parts = []
+    tor = trimesh.creation.torus(major_radius=rp + 1.5, minor_radius=2.0, major_sections=48, minor_sections=10)
+    T = trimesh.geometry.align_vectors([0, 0, 1], -n); T[:3, 3] = W(base_); tor.apply_transform(T); parts.append(tor)
+    posts = (AS, AP, PS)
+    for t in posts:
+        d_ = s * np.cos(np.radians(t)) + v * np.sin(np.radians(t))
+        parts.append(tube([W(base_ + d_ * rp), W(base_ + d_ * rp * 0.92 - n * post_h)], 1.2, seg=8))
+    for i in range(3):
+        t0 = posts[i]; t1 = posts[(i + 1) % 3] + (360 if i == 2 else 0); ts = np.linspace(t0, t1, 13); Vv, F = [], []; rows = 6
+        for t in ts:
+            f = (t - t0) / (t1 - t0); d_ = s * np.cos(np.radians(t)) + v * np.sin(np.radians(t))
+            a = base_ + d_ * rp * 0.95 - n * (post_h * (1 - np.sin(np.pi * f)) * 0.95 + 1.0); b = base_ - n * post_h * 0.7
+            for q in range(rows):
+                u_ = q / (rows - 1); Vv.append(a + (b - a) * u_ + n * 2.0 * np.sin(np.pi * u_))
+        for j in range(len(ts) - 1):
+            for q in range(rows - 1):
+                a2, b2 = j * rows + q, (j + 1) * rows + q; F += [[a2, b2, b2 + 1], [a2, b2 + 1, a2 + 1]]
+        parts.append(trimesh.Trimesh(np.array(Vv) - ctx['CARINA'], np.array(F), process=True))
+    emit_mesh('tv-prosthesis', f'Stented bioprosthesis, tricuspid (~{round(2 * rp)} mm)', 'cardiac', '#d9dcc8', trimesh.util.concatenate(parts), visible=False,
+              note='Schematic: posts at the commissures, none pointing into the right ventricular outflow tract.')
+    # caval snares
+    sn = [trimesh.creation.torus(major_radius=11, minor_radius=1.2, major_sections=32, minor_sections=8) for _ in range(2)]
+    for m_, p in zip(sn, (svc_p - SUP * 12, ra_low - SUP * 14)):
+        m_.apply_translation(W(p))
+    emit_mesh('snares', 'Caval snares (SVC and IVC)', 'cardiac', '#e8e3a0', trimesh.util.concatenate(sn), visible=False,
+              note='Tapes round both cavae, tightened over the cannulas so that the right atrium can be opened without air entering the venous line.')
+    LM['tv-centre'] = c; DIRS['tv-normal'] = n; DIRS['tv-septal'] = s; SC['tv-radius'] = R
+    print(f'  tricuspid annulus radius {R:.1f} mm; ring ~{2 * R * 0.82:.0f} mm; prosthesis ~{2 * rp:.0f} mm')

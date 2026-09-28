@@ -2413,8 +2413,214 @@ if AVR_OK:
         procs[key] = {'id': key, 'op': 'avr', 'opName': 'Aortic valve replacement', 'side': 'both', 'name': 'Aortic valve replacement', 'approach': appr,
                       'summary': 'Heart Team decision, access, bypass and protection by valve lesion, aortotomy, debridement, sizing against mismatch, annular sutures, prosthesis, de-airing, TOE.',
                       'ports': [], 'steps': steps_, 'sources': AVSRC, 'group': 'Cardiac', 'sequence': sq}
+# ==================================================================================================== cardiac: tricuspid valve surgery
+TV_OK = MVR_OK and has('tricuspid-annulus') and 'tv-centre' in LM
+if TV_OK:
+    TC, TN, TS_ = Lc('tv-centre'), V(LM['tv-normal']), V(LM['tv-septal']); TR_ = LM['tv-dims'][0]
+    TVL = [i for i in ('tricuspid-annulus', 'tv-septal', 'tv-anterior', 'tv-posterior') if has(i)]
+    TV_DANGER = [i for i in ('koch', 'tv-avnode', 'cs-ostium', 'rca-groove', 'cusp-n') if has(i)]
+    TV_CANS = [i for i in ('can-aortic', 'can-svc', 'can-ivc', 'snares', 'can-cp') if has(i)]
+    TV_FAINT = {**FAINT, 'ra': 0.15, 'rv': 0.22, 'lv': 0.15, 'aorta': 0.35, 'myocardium': 0.08}
+    tv_view = clook(TC, TN * 1.0 + V([0.55, 0.35, 0.05]), 170)
+    ev = lambda t: f'<p class="evidence"><b>Evidence:</b> {t}</p>'
+    pm = lambda term: 'https://pubmed.ncbi.nlm.nih.gov/?term=' + term.replace(' ', '+')
+    TVSRC = [
+        {'title': 'Kouchoukos NT, Blackstone EH, Hanley FL, Kirklin JK. Kirklin/Barratt-Boyes Cardiac Surgery, 4th ed. Elsevier 2013: tricuspid valve disease', 'url': pm('Kirklin Barratt-Boyes cardiac surgery tricuspid')},
+        {'title': 'Praz F, Borger MA, et al. 2025 ESC/EACTS Guidelines for the management of valvular heart disease. Eur Heart J 2025', 'url': 'https://www.escardio.org/guidelines/clinical-practice-guidelines/all-esc-practice-guidelines/valvular-heart-disease/'},
+        {'title': '2025 ESC/EACTS valvular heart disease guidelines: practical updates on mitral and tricuspid regurgitation. Eur Heart J Suppl 2026', 'url': 'https://academic.oup.com/eurheartjsupp/article/28/Supplement_4/iv83/8512029'},
+        {'title': 'Otto CM, Nishimura RA, et al. 2020 ACC/AHA guideline for the management of patients with valvular heart disease. Circulation 2021;143:e72-e227', 'url': 'https://pubmed.ncbi.nlm.nih.gov/33332150/'},
+        {'title': 'Gammie JS, et al. Concomitant tricuspid repair in patients with degenerative mitral regurgitation (CTSN). N Engl J Med 2022;386:327-39', 'url': 'https://www.nejm.org/doi/full/10.1056/NEJMoa2115961'},
+        {'title': 'Parolari A, Barili F, Pilozzi A, Pacini D. Ring or suture annuloplasty for tricuspid regurgitation? A meta-analysis review. Ann Thorac Surg 2014;98:2255-63', 'url': 'https://pubmed.ncbi.nlm.nih.gov/25443026/'},
+        {'title': 'Ragnarsson S, et al. Pacemaker implantation following tricuspid valve annuloplasty (SWEDEHEART). JTCVS Open 2023', 'url': 'https://pmc.ncbi.nlm.nih.gov/articles/PMC10775064/'},
+        {'title': 'Caldonazo T, et al. Beating versus arrested heart technique for isolated tricuspid valve surgery: meta-analysis of reconstructed time-to-event data. Innovations 2025', 'url': 'https://pmc.ncbi.nlm.nih.gov/articles/PMC12398632/'},
+        {'title': 'Said SM, et al. Tricuspid valve replacement with mechanical versus biological prostheses: systematic review and meta-analysis. J Cardiothorac Surg 2024', 'url': 'https://link.springer.com/article/10.1186/s13019-024-03014-0'},
+        {'title': 'Sorajja P, et al. Transcatheter repair for patients with tricuspid regurgitation (TRILUMINATE Pivotal). N Engl J Med 2023;388:1833-42', 'url': 'https://www.nejm.org/doi/full/10.1056/NEJMoa2300525'},
+        {'title': 'Hahn RT, et al. Transcatheter valve replacement in severe tricuspid regurgitation (TRISCEND II). N Engl J Med 2025', 'url': 'https://www.nejm.org/doi/full/10.1056/NEJMoa2401918'},
+    ]
+
+    def tv_anat(pre):
+        return {'id': f'{pre}-anatomy', 'phase': 'Anatomy', 'seq': 0, 'title': 'The tricuspid valve and what lies around it',
+                'body': '<p>Three leaflets: the large <b>anterior</b>, the <b>posterior</b>, and the <b>septal</b>, hinged on the septum. In functional regurgitation the annulus dilates along the <b>anterior and posterior</b> leaflets; the <b>septal</b> part is held by the fibrous skeleton and hardly stretches. That is why rings and suture annuloplasties shorten the anterior and posterior annulus.</p>'
+                        '<p>What the sutures can injure:</p><ul>'
+                        '<li><b>The AV node and His bundle</b>, at the apex of <b>Koch\'s triangle</b> (coronary sinus ostium, tendon of Todaro, septal leaflet hinge), close to the <b>anteroseptal commissure</b>. Deep bites here cause heart block.</li>'
+                        '<li><b>The right coronary artery</b>, a few millimetres outside the anterior and posterior annulus in the AV groove.</li>'
+                        '<li><b>The non-coronary sinus</b> of the aortic root, just beyond the anteroseptal commissure.</li></ul>'
+                        + ev('heart block is the commonest serious complication of tricuspid surgery. In a national Swedish registry of 1,502 annuloplasties, 14.2% needed a permanent pacemaker within 30 days, mostly for AV block (Ragnarsson et al., JTCVS Open 2023).'),
+                'view': clook(TC, TN * 0.8 + V([0.6, 0.45, 0.15]), 230), 'spin': True, 'show': [*CH, *TVL, *TV_DANGER], 'hide': HEART_OFF, 'opacity': TV_FAINT,
+                'highlight': ['tricuspid-annulus'], 'danger': TV_DANGER,
+                'labels': ['tv-anterior', 'tv-posterior', 'tv-septal', 'koch', 'tv-avnode', 'cs-ostium', 'rca-groove', 'cusp-n'],
+                'ask': ask('Where is the AV node relative to the tricuspid valve?', "At the apex of Koch's triangle, near the anteroseptal commissure",
+                           'Bounded by the coronary sinus ostium, the tendon of Todaro and the septal leaflet hinge; the node sits at the apex, near the anteroseptal commissure.',
+                           'Near the anteroposterior commissure', 'In the middle of the posterior annulus', 'Beside the right coronary artery'),
+                'ct': ct(R(TC), 'axial')}
+
+    def tv_decide(pre, replace=False):
+        return {'id': f'{pre}-decide', 'phase': 'Decision', 'seq': 1, 'title': 'When to operate on the tricuspid, and how',
+                'body': '<p><b>At left-sided valve surgery</b> (the commonest setting, often after rheumatic mitral disease):</p><ul>'
+                        '<li><b>Severe TR</b>: operate on the tricuspid too. <b>Recommended</b> in both ESC/EACTS 2025 and ACC/AHA 2020 (class I).</li>'
+                        '<li><b>Moderate TR</b>, or <b>milder TR with a dilated annulus</b> (40 mm or more, or 21 mm/m², on echo), or previous right heart failure: annuloplasty is <b>reasonable</b> (ACC/AHA class 2a; ESC should be considered). It stops progression but adds a pacemaker risk, so weigh atrial fibrillation, right atrial size and pulmonary pressure.</li></ul>'
+                        '<p><b>Isolated severe TR</b>: surgery for symptomatic primary TR; for secondary TR, consider it before the RV fails. It is not for advanced biventricular failure or severe pulmonary hypertension. For high-risk patients, <b>transcatheter</b> repair (TEER) or replacement (TTVR) is a class IIa option (ESC 2025).</p>'
+                        '<p><b>Repair or replace.</b> Annuloplasty for a dilated annulus with mobile leaflets. <b>Replace</b> when the leaflets are destroyed or tethered deep into the ventricle, or thickened and retracted (rheumatic, carcinoid, endocarditis, pacing-lead damage), or when a repair has failed.</p>'
+                        + ev('CTSN trial (Gammie et al., NEJM 2022; 401 patients having mitral repair for degenerative MR, with moderate TR or a dilated annulus): adding annuloplasty cut the two-year composite of reoperation, progression or severe TR from 10.2% to 3.9%. It did not change mortality, and it raised the permanent pacemaker rate to 14.1% vs 2.5%. '
+                             'TRILUMINATE (TEER, NEJM 2023) and TRISCEND II (TTVR, NEJM 2025) improved quality of life in severe TR; TTVR needed a new pacemaker in about a quarter of patients.'),
+                'view': clook(TC, V([0.6, 0.7, 0.3]), 300), 'show': [*CH, *TVL], 'hide': HEART_OFF, 'opacity': TV_FAINT, 'labels': ['ra', 'rv', 'tricuspid-annulus'],
+                'ask': ask('Rheumatic mitral stenosis for MVR. Mild TR, but the tricuspid annulus measures 44 mm and there has been right heart failure. What do the guidelines advise?',
+                           'Tricuspid annuloplasty at the same operation is reasonable', 'An annulus of 40 mm or more, or previous right heart failure, makes concomitant annuloplasty reasonable even with less than severe TR: the annulus keeps dilating after the mitral operation, and reoperation for late TR carries high risk.',
+                           'Leave it; mild TR regresses once the mitral valve is fixed', 'Replace the tricuspid valve'),
+                'ct': ct(R(TC), 'axial')}
+
+    def tv_cannulate(pre, seq_):
+        return {'id': f'{pre}-cannulate', 'phase': 'Bypass', 'seq': seq_, 'title': 'Bicaval cannulation and snares',
+                'body': '<p>Heparin. The aortic cannula as usual. <b>Separate SVC and IVC cannulas</b> (the IVC one low on the atrium, near the IVC junction, so the atriotomy is clear), with <b>snares</b> round both cavae. Tightened, they isolate the right atrium, so it can be opened without the venous line taking in air.</p>'
+                        + ev('bicaval cannulation with snares is the standard for any right atrial opening (Kirklin/Barratt-Boyes). With vacuum-assisted drainage, some surgeons open the atrium without snaring.'),
+                'view': clook(V(LM['can-svc']), V([0.8, 0.8, 0.2]), 320), 'show': [*CH], 'hide': HEART_OFF, 'opacity': FAINT,
+                'highlight': TV_CANS, 'labels': ['can-svc', 'can-ivc', 'snares', 'can-aortic'],
+                'action': {'kind': 'reveal', 'label': 'Cannulate and snare', 'port': 'sternotomy', 'ids': TV_CANS},
+                'ct': ct(R(V(LM['can-svc'])), 'axial')}
+
+    def tv_beating(pre, seq_, port='sternotomy', beating_default=False):
+        st = {'id': f'{pre}-heart', 'phase': 'Bypass', 'seq': seq_, 'title': 'Arrested or beating heart?',
+              'body': '<p><b>Arrested</b> (cross-clamp and cardioplegia): a still, bloodless field; the usual choice when the tricuspid follows a mitral or aortic procedure under the same clamp.<br>'
+                      '<b>Beating</b> (on bypass, clamp off, the right heart isolated by the snares): no cardioplegia or ischaemia for the left heart. The rhythm can be <b>watched as each suture is tied</b> near the AV node, and a stitch that causes block can be removed at once. '
+                      'Any left-heart opening (a patent foramen ovale) risks air embolism, so check the septum on TOE first.</p>'
+                      '<p>After a mitral operation the tricuspid is often done <b>after the clamp is off</b>, during reperfusion, which also shortens the ischaemic time.</p>'
+                      + ev('a 2025 meta-analysis of 6 observational studies (767 isolated tricuspid operations; Caldonazo et al., Innovations) found <b>no difference</b> between beating and arrested hearts in permanent pacemaker rate, early or late mortality, or bypass time. The theoretical advantage in conduction safety has not been shown; randomised trials are lacking.'),
+              'view': clook(Lc('clamp-ao'), V([0.3, 1, 0.3]), 280), 'show': [*CH, *TV_CANS], 'hide': HEART_OFF, 'opacity': FAINT, 'labels': ['snares'],
+              'ask': ask('Isolated tricuspid ring annuloplasty on the beating heart. While tying the sutures near the anteroseptal commissure, complete heart block appears. Best move?',
+                         'Cut and remove that suture, and place it more superficially or on the atrial side', 'Watching the rhythm while tying is the point of the beating-heart technique: a block that appears with one stitch often resolves when it is removed.',
+                         'Carry on and put in a pacemaker later', 'Give atropine and continue'),
+              'ct': ct(R(Lc('clamp-ao')), 'axial')}
+        if not beating_default:
+            st['action'] = {'kind': 'clamp', 'label': 'Apply the cross-clamp', 'port': port, 'at': R(Lc('clamp-ao')), 'axis': R(V(LM['ao-axis'])), 'radius': 14, 'jawLen': 50}
+        return st
+
+    def tv_ra(pre, seq_, port='sternotomy'):
+        return {'id': f'{pre}-atriotomy', 'phase': 'Right atrium', 'seq': seq_, 'title': 'Right atriotomy',
+                'body': '<p>Tighten the snares. Open the right atrium obliquely, from the base of the appendage toward the IVC, <b>parallel to the AV groove</b> and well above it (the right coronary), and <b>away from the sinus node</b> at the SVC junction. Stay sutures; a sucker into the coronary sinus if it floods the field.</p>'
+                        + ev('the incision is placed by anatomy: the sinus node lies at the SVC-atrial junction (the crista terminalis), and the right coronary runs in the AV groove below.'),
+                'view': clook(Lc('ra-incision'), V([1, 0.6, 0.2]), 240), 'show': [*CH, *TV_CANS, 'ra-incision'], 'hide': HEART_OFF, 'opacity': {**FAINT, 'ra': 0.5},
+                'highlight': ['ra-incision'], 'action': {'kind': 'dissect', 'tool': 'hook', 'label': 'Open the right atrium', 'port': port, 'path': ext('ra-incision', 15)},
+                'ct': ct(R(Lc('ra-incision')), 'axial')}
+
+    def tv_assess(pre, seq_, replace=False):
+        return {'id': f'{pre}-assess', 'phase': 'Valve', 'seq': seq_, 'title': 'Assess the valve and size the annulus',
+                'body': '<p>Look at the leaflets (thickened, retracted, perforated, tethered), the chordae and the commissures. A <b>saline test</b> (fluid into the RV) shows where it leaks.</p>'
+                        '<p><b>Size the ring</b> by the <b>septal leaflet length</b> (base of the septal leaflet, commissure to commissure) or the <b>anterior leaflet area</b>, with the maker\'s sizers. The septal annulus hardly dilates, so it guides the true size.</p>'
+                        '<p><b>Signs a repair will not last</b>: severe tethering (a coaptation depth of about 8 mm or more on echo, or a large tenting area), a very dilated annulus with a failing RV, or destroyed or rheumatic leaflets. Then consider leaflet augmentation or <b>replacement</b>.</p>'
+                        + ev('tethering depth and annular size predict residual and recurrent TR after annuloplasty in observational echo series; exact thresholds vary between studies.'),
+                'view': tv_view, 'show': [*TVL, *TV_DANGER], 'hide': HEART_OFF, 'opacity': TV_FAINT, 'highlight': ['tricuspid-annulus'], 'danger': TV_DANGER,
+                'labels': ['tv-anterior', 'tv-posterior', 'tv-septal'], 'ct': ct(R(TC), 'axial')}
+
+    def tv_which(pre, seq_):
+        return {'id': f'{pre}-which', 'phase': 'Valve', 'seq': seq_, 'title': 'Which repair: ring, De Vega, Kay, clover',
+                'body': '<p><b>Ring annuloplasty</b> (incomplete or 3D ring, open at the AV node)<br><b>For:</b> fixes the annulus in a normal shape and resists late dilatation; the most durable repair. <b>Against:</b> foreign material; cost; a downsized rigid ring can kink the right coronary or cause stenosis.</p>'
+                        '<p><b>De Vega</b> (double running suture, anteroseptal to posteroseptal commissure)<br><b>For:</b> quick, cheap, no prosthesis: attractive where rings are costly or scarce. <b>Against:</b> the suture can cut through or the annulus re-dilate ("guitar-string" effect): more late recurrence.</p>'
+                        '<p><b>Kay</b> (bicuspidisation: obliterates the posterior leaflet annulus)<br><b>For:</b> simple, for moderate dilatation. <b>Against:</b> less durable than a ring when the annulus is very large.</p>'
+                        '<p><b>Clover</b> (edge-to-edge, the three leaflets stitched at their centres, with a ring)<br>for complex or prolapsing leaflets.</p>'
+                        + ev('meta-analysis of 9 studies (2 randomised; Parolari et al., Ann Thorac Surg 2014): rings protected against early mortality and late recurrence, with freedom from moderate or worse TR at 15 years of about 79% with a ring vs 60% with suture annuloplasty; late survival did not differ.'),
+                'view': tv_view, 'show': [*TVL, 'tv-devega', *TV_DANGER], 'hide': HEART_OFF, 'opacity': TV_FAINT,
+                'highlight': ['tv-devega'], 'labels': ['tv-devega', 'tv-avnode'], 'danger': ['tv-avnode', 'rca-groove'],
+                'ask': ask('A young patient with functional TR (annulus 44 mm) at MVR. What does the evidence favour for durability?',
+                           'Ring annuloplasty', 'Rings reduce late recurrence compared with suture techniques (Parolari 2014). A De Vega is a reasonable fallback where rings are not available.',
+                           'De Vega', 'No tricuspid procedure', 'Replacement'),
+                'ct': ct(R(TC), 'axial')}
+
+    def tv_ring_sutures(pre, seq_, port='sternotomy', view=None):
+        return {'id': f'{pre}-sutures', 'phase': 'Valve', 'seq': seq_, 'title': 'Ring sutures: round the anterior and posterior annulus',
+                'body': '<p>Horizontal mattress sutures of <b>2-0 braided polyester</b> in the annulus, <b>not</b> the leaflet. Start just beyond the <b>anteroseptal commissure</b>, go round the <b>anterior and posterior</b> annulus, and finish on the <b>septal annulus</b> short of the coronary sinus. '
+                        '<b>No sutures at the apex of Koch\'s triangle</b>: the ring\'s gap sits there. Bites posteriorly and anteriorly are firm but not deep (the right coronary lies just outside).</p>'
+                        + ev('the incomplete ring was designed to leave the conduction tissue untouched. Heart block still occurs after annuloplasty; concomitant mitral surgery, ablation and a low-volume centre raised the risk in the Swedish registry (Ragnarsson 2023).'),
+                'view': view or tv_view, 'show': [*TVL, *TV_DANGER], 'hide': HEART_OFF, 'opacity': TV_FAINT, 'highlight': ['tricuspid-annulus'], 'danger': TV_DANGER,
+                'labels': ['tv-avnode', 'koch', 'rca-groove'],
+                'action': {'kind': 'annulus', 'label': 'Place the annular sutures', 'port': port, 'at': R(TC + TN * 1.5), 'axis': R(TN), 'anterior': R(TS_), 'radius': TR_ - 0.5, 'count': 11},
+                'ct': ct(R(TC), 'axial')}
+
+    def tv_seat_ring(pre, seq_, port='sternotomy', view=None):
+        return {'id': f'{pre}-ring', 'phase': 'Valve', 'seq': seq_, 'title': 'Seat and tie the ring; test',
+                'body': '<p>Pass the sutures through the ring, lower it and tie. The ring pulls the dilated anterior and posterior annulus back to size. <b>Saline test</b>: fill the RV; the leaflets should meet along a good line of coaptation.</p>'
+                        + ev('intraoperative TOE after bypass confirms the result: residual TR more than mild, or a gradient, is usually corrected before leaving theatre.'),
+                'view': view or tv_view, 'show': [*TVL, 'tv-ring', 'tv-avnode', 'rca-groove'], 'hide': HEART_OFF, 'opacity': TV_FAINT,
+                'highlight': ['tv-ring'], 'labels': ['tv-ring', 'tv-avnode'],
+                'action': {'kind': 'seat', 'label': 'Seat the ring', 'port': port, 'ids': ['tv-ring'], 'from': R(TN * 40)},
+                'ct': ct(R(TC), 'axial')}
+
+    def tv_excise(pre, seq_, port='sternotomy'):
+        return {'id': f'{pre}-excise', 'phase': 'Valve', 'seq': seq_, 'title': 'Excise the anterior and posterior leaflets; keep the septal',
+                'body': '<p>Excise the <b>anterior and posterior leaflets</b>, leaving a 2–3 mm rim. Keep the <b>septal leaflet</b> (or fold it in): sutures placed <b>through the septal leaflet tissue</b>, rather than the annulus beneath it, stay clear of the AV node. Chordal preservation helps RV function.</p>'
+                        + ev('sparing the septal leaflet and suturing through it is a standard way to avoid the conduction tissue (Kirklin/Barratt-Boyes). Pacemaker rates after replacement remain high in series.'),
+                'view': tv_view, 'show': [*TVL, *TV_DANGER], 'hide': HEART_OFF, 'opacity': TV_FAINT, 'highlight': ['tv-anterior', 'tv-posterior'], 'danger': TV_DANGER,
+                'action': {'kind': 'dissect', 'tool': 'hook', 'label': 'Excise the anterior and posterior leaflets', 'port': port, 'remove': [i for i in ('tv-anterior', 'tv-posterior') if has(i)],
+                           'path': [R(TC + (TS_ * np.cos(np.radians(t)) + V(np.cross(TN, TS_)) * np.sin(np.radians(t))) * (TR_ - 1) + TN) for t in np.linspace(70, 290, 6)]},
+                'ct': ct(R(TC), 'axial')}
+
+    def tv_repl_sutures(pre, seq_, port='sternotomy'):
+        return {'id': f'{pre}-sutures', 'phase': 'Valve', 'seq': seq_, 'title': 'Sutures for replacement: through the septal leaflet at the node',
+                'body': '<p>Pledgeted mattress sutures of 2-0 braided polyester round the annulus. Along the septum, and especially at the apex of Koch\'s triangle, take them <b>through the base of the septal leaflet</b> rather than the annulus. '
+                        'Some surgeons run the line <b>on the atrial side of the coronary sinus</b>, leaving the sinus draining into the ventricle.</p>'
+                        + ev('technique by consensus; no trial compares the suture routes. Paravalvular leak and heart block are the two complications these routes are designed to avoid.'),
+                'view': tv_view, 'show': ['tricuspid-annulus', 'tv-septal', *TV_DANGER], 'hide': [*HEART_OFF, 'tv-anterior', 'tv-posterior'], 'opacity': TV_FAINT, 'highlight': ['tricuspid-annulus'], 'danger': TV_DANGER,
+                'labels': ['tv-avnode', 'cs-ostium'],
+                'action': {'kind': 'annulus', 'label': 'Place the annular sutures', 'port': port, 'at': R(TC + TN * 1.5), 'axis': R(TN), 'anterior': R(TS_), 'radius': TR_ - 0.5, 'count': 14},
+                'ct': ct(R(TC), 'axial')}
+
+    def tv_seat_valve(pre, seq_, port='sternotomy'):
+        return {'id': f'{pre}-seat', 'phase': 'Valve', 'seq': seq_, 'title': 'Seat the prosthesis: tissue or mechanical',
+                'body': '<p>Lower and tie a <b>large</b> prosthesis (the right heart tolerates no gradient). Orient a stented valve so that <b>no post points into the RV outflow tract</b>, and check the leaflets move.</p>'
+                        '<p><b>Tissue or mechanical?</b> In the low-pressure, low-flow right heart, a mechanical valve thromboses more readily, and a tissue valve can later take a <b>valve-in-valve</b> transcatheter valve. A transvenous pacing lead cannot pass a mechanical tricuspid valve, and will be trapped between a tissue valve and the annulus, so <b>place an epicardial lead</b> now if block is likely.</p>'
+                        + ev('meta-analysis of 37 studies (8,316 prostheses; Said et al., J Cardiothorac Surg 2024): no difference in 30-day or long-term survival or reoperation; mechanical valves had about a sixfold higher risk of valve thrombosis.'),
+                'view': tv_view, 'show': ['tricuspid-annulus', 'tv-prosthesis', 'tv-avnode', 'rca-groove'], 'hide': [*HEART_OFF, 'tv-anterior', 'tv-posterior', 'tv-septal'], 'opacity': TV_FAINT,
+                'highlight': ['tv-prosthesis'], 'labels': ['tv-prosthesis'],
+                'action': {'kind': 'seat', 'label': 'Seat the valve', 'port': port, 'ids': ['tv-prosthesis'], 'from': R(TN * 45)},
+                'ask': ask('A 30-year-old woman needs tricuspid replacement for rheumatic disease; her mitral valve was repaired. Which prosthesis does the evidence favour?',
+                           'A bioprosthesis', 'Survival is the same either way, but mechanical tricuspid valves thrombose far more often (about sixfold); a tissue valve also allows later valve-in-valve and avoids warfarin in pregnancy.',
+                           'A mechanical valve for durability', 'A homograft'),
+                'ct': ct(R(TC), 'axial')}
+
+    def tv_close(pre, seq_, beating=False):
+        return {'id': f'{pre}-close', 'phase': 'Wean', 'seq': seq_, 'title': 'Close the atrium, release the snares, wean',
+                'body': '<p>Close the right atrium in two layers of 4-0 polypropylene, de-airing as the last stitches go in, and release the snares. ' + ('' if beating else 'Release the cross-clamp with the root vent on. ') +
+                        'Place <b>atrial and ventricular pacing wires</b>.</p>'
+                        '<p><b>TOE</b>: residual TR, gradient, RV function. The RV that has pumped against regurgitation now pumps against a competent valve (a higher afterload). With pulmonary hypertension, support it: inotropes, inhaled pulmonary vasodilators, and a <b>slow wean</b>.</p>'
+                        '<p>Check the rhythm: heart block after tricuspid surgery may recover over days; persistent block needs a permanent pacemaker.</p>'
+                        + ev('RV dysfunction and pulmonary hypertension are the main predictors of death after tricuspid surgery, which is why guidelines advise operating before RV failure (ESC/EACTS 2025).'),
+                'view': clook(Lc('ra-incision'), V([1, 0.6, 0.2]), 260), 'show': [*CH, 'ra-incision', *TV_CANS], 'hide': HEART_OFF, 'opacity': FAINT,
+                'labels': ['ra-incision', 'snares'],
+                'action': {'kind': 'decannulate', 'label': 'Wean and decannulate', 'port': 'sternotomy', 'ids': [i for i in ('snares', 'can-cp', 'can-ivc', 'can-svc', 'can-aortic') if has(i)]},
+                'ct': ct(R(TC), 'axial')}
+
+    ring = [tv_anat('tr'), tv_decide('tr'), {**mv_sternotomy('tr', 2), 'id': 'tr-sternotomy'}, tv_cannulate('tr', 3), tv_beating('tr', 4), tv_ra('tr', 5), tv_assess('tr', 6), tv_which('tr', 7),
+            tv_ring_sutures('tr', 8), tv_seat_ring('tr', 9), tv_close('tr', 10)]
+    repl = [tv_anat('tx'), tv_decide('tx', replace=True), {**mv_sternotomy('tx', 2), 'id': 'tx-sternotomy'}, tv_cannulate('tx', 3), tv_beating('tx', 4), tv_ra('tx', 5), tv_assess('tx', 6, replace=True),
+            tv_excise('tx', 7), tv_repl_sutures('tx', 8), tv_seat_valve('tx', 9), tv_close('tx', 10)]
+    mics_tv = clook(TC, TN * 0.8 + V([1, 0.3, 0.05]), 180)
+    mi_tv = [tv_anat('tm'), tv_decide('tm'),
+             {'id': 'tm-setup', 'phase': 'Access', 'seq': 2, 'title': 'Right mini-thoracotomy, peripheral cannulation, snares',
+              'body': '<p>Supine, right chest raised about 30°, external pads, TOE. <b>Femoral venous</b> drainage plus an <b>SVC</b> (right internal jugular) cannula, or a single femoral cannula with vacuum; femoral arterial return. '
+                      'A 4–6 cm incision in the <b>right 4th space</b>; CO₂ in the field; snares round both cavae (or occlusion balloons).</p>'
+                      '<p>An attractive route for <b>isolated</b> or <b>redo</b> tricuspid surgery after sternotomy: no re-entry, and it is often done on the <b>beating heart</b> without a clamp.</p>'
+                      + ev('observational series only; outcomes depend on centre experience. For redo isolated tricuspid surgery, avoiding re-sternotomy is the main practical argument.'),
+              'view': clook(Lc('mics'), V([1, 0.6, 0.25]), 380), 'show': ['skin', 'incision-mics'], 'opacity': {'skin': 1.0}, 'hide': HEART_OFF,
+              'highlight': ['incision-mics'], 'labels': ['incision-mics'], 'ct': ct(R(Lc('mics')), 'axial', 'lung')},
+             tv_beating('tm', 3, beating_default=True), tv_ra('tm', 4, port='mics'), tv_assess('tm', 5), tv_ring_sutures('tm', 6, port='mics', view=mics_tv), tv_seat_ring('tm', 7, port='mics', view=mics_tv), tv_close('tm', 8, beating=True)]
+    for key, appr, steps_, sq in (
+            ('tv-ring', 'Ring annuloplasty (sternotomy)', ring, seq(('Anatomy', 'other'), ('Decide', 'other'), ('Sternotomy', 'other'), ('Cannulate', 'artery'), ('Arrest?', 'artery'), ('Atriotomy', 'vein'), ('Assess', 'other'), ('Which repair', 'other'), ('Sutures', 'fissure'), ('Ring', 'bronchus'), ('Close', 'other'))),
+            ('tv-replace', 'Replacement (sternotomy)', repl, seq(('Anatomy', 'other'), ('Decide', 'other'), ('Sternotomy', 'other'), ('Cannulate', 'artery'), ('Arrest?', 'artery'), ('Atriotomy', 'vein'), ('Assess', 'other'), ('Excise', 'fissure'), ('Sutures', 'fissure'), ('Seat', 'bronchus'), ('Close', 'other'))),
+            ('tv-mics', 'Right mini-thoracotomy, beating heart', mi_tv, seq(('Anatomy', 'other'), ('Decide', 'other'), ('Access', 'other'), ('Beating', 'artery'), ('Atriotomy', 'vein'), ('Assess', 'other'), ('Sutures', 'fissure'), ('Ring', 'bronchus'), ('Close', 'other')))):
+        for s in steps_:
+            named = set(s.get('highlight', [])) | set(s.get('danger', [])) | set(s.get('labels', [])) | set(s.get('show', []))
+            off_groups = {'arteries', 'veins', 'airway', 'lul-intra', 'lll-intra', 'rul-intra', 'nodes', 'nerves', 'pleura', 'segments', 'trauma', 'muscles', 'landmarks'}
+            s['hide'] = [*s.get('hide', []), *[q['id'] for q in atlas['structures'] if q['group'] in off_groups and q['id'] not in named],
+                         *[i for i in ('esophagus', 'thymus', 'thyroid') if has(i) and i not in named], *(['sternum'] if s.get('seq', 0) >= 3 else [])]
+            if s['phase'] in ('Valve', 'Anatomy'):
+                s['hide'] = [*s['hide'], 'svc', 'la', *[i for i in (*TV_CANS, 'can-retro') if i not in named], *[f'vert-t{i}' for i in range(1, 13)]]
+            s['opacity'] = {**{f'vert-t{i}': 0.25 for i in range(2, 11)}, **s.get('opacity', {})}
+            for kk in ('highlight', 'danger', 'labels', 'show'):
+                if kk in s: s[kk] = [i for i in s[kk] if has(i) or i == 'skin']
+        procs[key] = {'id': key, 'op': 'tricuspid', 'opName': 'Tricuspid valve surgery', 'side': 'both', 'name': 'Tricuspid valve surgery', 'approach': appr,
+                      'summary': 'Guideline indications, bicaval snares, arrested or beating, assessment and sizing, ring vs suture repair, replacement, conduction and RCA safety.',
+                      'ports': [], 'steps': steps_, 'sources': TVSRC, 'group': 'Cardiac', 'sequence': sq}
 # operations appear in the menu in this order
-ORDER = ['position', 'thoracotomy-l', 'thoracotomy-r', 'vats-ports-l', 'vats-ports-r', 'lul', 'lll', 'rul', 'rml', 'rll', 'pnl', 'pnr', 'seg-lingula', 'seg-lul-updiv', 'seg-s6', 'trachea', 'thymectomy', 'oesophagectomy', 'duct', 'empyema', 'rt', 'clamshell', 'cardio', 'tract', 'hilar', 'mvr', 'avr']
+ORDER = ['position', 'thoracotomy-l', 'thoracotomy-r', 'vats-ports-l', 'vats-ports-r', 'lul', 'lll', 'rul', 'rml', 'rll', 'pnl', 'pnr', 'seg-lingula', 'seg-lul-updiv', 'seg-s6', 'trachea', 'thymectomy', 'oesophagectomy', 'duct', 'empyema', 'rt', 'clamshell', 'cardio', 'tract', 'hilar', 'mvr', 'avr', 'tricuspid']
 procs = dict(sorted(procs.items(), key=lambda kv: (ORDER.index(kv[1]['op']), list(procs).index(kv[0]))))
 for v in procs.values():
     v['group'] = v.get('group') or ('Pneumonectomy' if v['op'].startswith('pn') else 'Segmentectomy' if v['op'].startswith('seg-') else 'Lobectomy')
