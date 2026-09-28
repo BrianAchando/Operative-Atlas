@@ -1457,14 +1457,382 @@ if ACC_OK:
             procs[f'{lobe}-{layout}'] = {**base, 'id': f'{layout}-{lobe}', 'approach': appr, 'name': base['opName'] + ', ' + appr.lower(),
                                          'steps': port_version(bsteps, f'{lobe[:2]}{layout}', base['side'], layout, lobe),
                                          'summary': ('One incision; ' if layout == 'uni' else 'Two ports; ') + base['summary'][0].lower() + base['summary'][1:]}
+# ==================================================================================================== batch 4: thymectomy, oesophagectomy, thoracic duct, empyema
+B4 = {}
+B4_OK = has('thymus') and has('conduit-chest') and 'eso-ivor' in LM and has('thoracic-duct')
+if B4_OK:
+    Lm = lambda k: V(LM[k])
+    LUNGS_ALL = [i for i in ('lul', 'lll', 'fissure', 'rul', 'rml', 'rll', 'fissure-h', 'fissure-r') if has(i)]
+    INTRA = [i for i in S if S[i]['group'].endswith('-intra')]
+    stn = S['sternum']; st_x = stn['centroid'][0]
+    st_top = V([st_x, stn['bbox'][1][1] - 8, stn['bbox'][1][2] - 6]); st_bot = V([st_x, stn['bbox'][1][1] - 22, stn['bbox'][0][2] + 8])
+    st_mid = (st_top + st_bot) / 2
+    LM['sternum-front'] = R(st_mid + V([0, 60, 0]))
+    LM['xiphoid'] = R(st_bot + V([0, 25, -30]))
+    B4SRC = {
+        'thymus': [{'title': 'Wolfe GI, et al. Randomized trial of thymectomy in myasthenia gravis (MGTX). N Engl J Med 2016;375:511-522', 'url': 'https://pubmed.ncbi.nlm.nih.gov/?term=Wolfe+randomized+trial+thymectomy+myasthenia+gravis+2016'},
+                   {'title': 'Detterbeck FC, Parsons AM. Management of stage I and II thymoma. Thorac Surg Clin 2011 (Masaoka-Koga staging)', 'url': 'https://pubmed.ncbi.nlm.nih.gov/?term=Masaoka-Koga+thymoma+staging'},
+                   {'title': 'Suda T. Subxiphoid thymectomy: single-port, dual-port, and robot-assisted. J Vis Surg 2017', 'url': 'https://pubmed.ncbi.nlm.nih.gov/?term=Suda+subxiphoid+thymectomy'}],
+        'eso': [{'title': 'Orringer MB, et al. Two thousand transhiatal esophagectomies. Ann Surg 2007;246:363-374', 'url': 'https://pubmed.ncbi.nlm.nih.gov/?term=Orringer+two+thousand+transhiatal+esophagectomies'},
+                {'title': 'Low DE, et al. International consensus on standardization of data collection for complications associated with esophagectomy (ECCG). Ann Surg 2015', 'url': 'https://pubmed.ncbi.nlm.nih.gov/?term=Esophagectomy+Complications+Consensus+Group+2015'},
+                {'title': 'Hulscher JB, et al. Extended transthoracic resection compared with limited transhiatal resection for adenocarcinoma of the esophagus. N Engl J Med 2002;347:1662-9', 'url': 'https://pubmed.ncbi.nlm.nih.gov/?term=Hulscher+extended+transthoracic+transhiatal+2002'}],
+        'duct': [{'title': 'Patterson GA, et al. Supradiaphragmatic ligation of the thoracic duct in intractable chylous fistula. Ann Thorac Surg 1981;32:44-9', 'url': 'https://pubmed.ncbi.nlm.nih.gov/?term=supradiaphragmatic+ligation+thoracic+duct+chylous'},
+                 {'title': 'Cope C, Kaiser LR. Management of unremitting chylothorax by percutaneous embolization of the thoracic duct. J Vasc Interv Radiol 2002', 'url': 'https://pubmed.ncbi.nlm.nih.gov/?term=Cope+percutaneous+embolization+thoracic+duct'}],
+        'empyema': [{'title': 'Shen KR, et al. The American Association for Thoracic Surgery consensus guidelines for the management of empyema. J Thorac Cardiovasc Surg 2017;153:e129-46', 'url': 'https://pubmed.ncbi.nlm.nih.gov/?term=AATS+consensus+guidelines+management+of+empyema+2017'},
+                    {'title': 'Rahman NM, et al. Intrapleural use of tissue plasminogen activator and DNase in pleural infection (MIST2). N Engl J Med 2011;365:518-26', 'url': 'https://pubmed.ncbi.nlm.nih.gov/?term=MIST2+tissue+plasminogen+activator+DNase+pleural+infection'}],
+    }
+
+    def front(tgt, dist=330, d=(0, 1, 0.25)):
+        d = V(d) / np.linalg.norm(V(d)); return {'eye': R(V(tgt) + d * dist), 'target': R(tgt)}
+
+    # ---------------------------------------------------------------- thymectomy
+    TH = ['thymus', 'lbcv', 'svc', 'aorta', 'heart', 'n-phrenic', 'n-phrenic-r', 'thymic-vein-1', 'thymic-vein-2', 'thyroid']
+    th_c, th_lo, th_hi = Lm('thymus-c'), Lm('thymus-lo'), Lm('thymus-hi')
+    hl, hr = Lm('thymus-horn-l'), Lm('thymus-horn-r')
+    ph_l = V(S['n-phrenic']['centroid']); ph_r = V(S['n-phrenic-r']['centroid']) if has('n-phrenic-r') else th_c + V([45, 0, 0])
+
+    def th_steps(appr):
+        pre = {'sternotomy': 'ts', 'rvats': 'tv', 'subx': 'tx'}[appr]
+        port = {'sternotomy': 'sternum-front', 'rvats': 'uni-4-r', 'subx': 'xiphoid'}[appr]
+        view = (lambda t, dist=300: front(t, dist)) if appr != 'rvats' else (lambda t, dist=300: front(t, dist, (0.9, 0.55, 0.15)))
+        if appr == 'subx': view = lambda t, dist=300: front(t, dist, (0, 0.8, -0.6))
+        entry = {
+            'sternotomy': {'id': f'{pre}-entry', 'phase': 'Entry', 'seq': 1, 'title': 'Median sternotomy',
+                           'body': '<p>Supine, a roll between the shoulders. Midline incision from the <b>sternal notch</b> to below the <b>xiphoid</b>. Divide the interclavicular ligament above and free the xiphoid below; '
+                                   'sweep a finger behind the manubrium and the lower sternum.</p><p>Ask for the lungs to be deflated, then saw <b>exactly in the midline</b>. Wax the marrow, seat the retractor, open slowly.</p>',
+                           'view': front(st_mid, 420, (0.15, 1, 0.2)), 'show': ['sternum', 'cartilages', *TH], 'opacity': {'sternum': 0.95, 'heart': 0.5},
+                           'highlight': ['sternum'], 'danger': ['lbcv'],
+                           'action': {'kind': 'sternotomy', 'label': 'Saw and open the sternum', 'port': port, 'ids': ['sternum'], 'at': R(st_mid), 'axis': [1, 0, 0], 'path': [R(st_top), R(st_bot)], 'radius': 70},
+                           'ct': ct('sternum', 'axial', 'bone')},
+            'rvats': {'id': f'{pre}-entry', 'phase': 'Entry', 'seq': 1, 'title': 'Right VATS: position and ports',
+                      'body': '<p>Supine with the right side <b>raised 30°</b>, right arm down or on an arm rest. Three ports on the right: <b>5th space mid-axillary</b> (camera), <b>3rd space anterior axillary</b> and <b>5th space mid-clavicular</b>. '
+                              'CO2 at <b>6–8 mmHg</b> pushes the mediastinum and lung away.</p><p>Start at the <b>right pericardiophrenic angle</b>, anterior to the right phrenic nerve, and work up.</p>',
+                      'view': view(th_c, 380), 'show': TH, 'opacity': {'heart': 0.5}, 'highlight': ['thymus'], 'danger': ['n-phrenic-r', 'svc'], 'labels': ['svc'],
+                      'ct': ct(R(th_c), 'axial', 'mediastinum')},
+            'subx': {'id': f'{pre}-entry', 'phase': 'Entry', 'seq': 1, 'title': 'Subxiphoid approach',
+                     'body': '<p>Supine, legs apart (the surgeon stands between them). A <b>3 cm incision below the xiphoid</b>; detach the rectus from the xiphoid (or excise it); '
+                             'develop the plane <b>behind the sternum</b> with a finger. Wound protector, CO2 at 8 mmHg, and a sternal lifting hook if needed. Two 5 mm subcostal ports are optional.</p>'
+                             '<p>Both pleurae and both phrenic nerves are seen from the midline: the best view of the <b>left side</b> and of the neck.</p>',
+                     'view': view(th_c, 380), 'show': [*TH, 'sternum'], 'opacity': {'heart': 0.5, 'sternum': 0.3}, 'highlight': ['thymus'], 'danger': ['n-phrenic', 'n-phrenic-r'],
+                     'ct': ct(R(th_c), 'sagittal', 'mediastinum')},
+        }[appr]
+        return [
+            {'id': f'{pre}-anat', 'phase': 'Anatomy', 'seq': 0, 'title': 'The thymus and its boundaries',
+             'body': '<p>In an adult the thymus is a fatty, bilobed organ in the <b>anterior mediastinum</b>, on the pericardium and the great vessels. Its limits: the <b>phrenic nerves</b> laterally, '
+                     'the <b>thyroid</b> above (the two upper horns), the <b>diaphragm</b> below. Its veins drain into the back of the <b>left brachiocephalic (innominate) vein</b>; its arteries come from the internal mammary and inferior thyroid arteries.</p>'
+                     '<p>Indications: <b>thymoma</b> (stage by Masaoka-Koga) and <b>myasthenia gravis</b> (the MGTX trial favoured extended thymectomy in AChR-antibody-positive, non-thymomatous disease). '
+                     'For myasthenia, remove <b>all</b> the anterior mediastinal fat between the phrenic nerves: ectopic thymic tissue lies throughout it.</p>',
+             'view': front(th_c, 380), 'show': [*TH, 'sternum'], 'opacity': {'sternum': 0.15, 'heart': 0.55}, 'spin': True,
+             'highlight': ['thymus'], 'danger': ['n-phrenic', 'n-phrenic-r', 'lbcv'], 'labels': ['thyroid', 'svc', 'aorta', 'thymic-vein-1'],
+             'ask': ask('What are the lateral limits of an extended thymectomy?', 'The two phrenic nerves',
+                        'Everything anterior between the phrenic nerves, from the diaphragm to the thyroid, comes out; a phrenic palsy in a myasthenic is disastrous.', 'The internal mammary arteries', 'The lateral borders of the sternum'),
+             'ct': ct(R(th_c), 'axial', 'mediastinum')},
+            entry,
+            {'id': f'{pre}-lower', 'phase': 'Dissection', 'seq': 2, 'title': 'Lower poles off the pericardium',
+             'body': '<p>Start low: lift the lower poles and the pericardial fat off the pericardium with diathermy and blunt dissection, working up toward the great vessels. '
+                     'Take the pericardiophrenic fat pads with the specimen.</p>',
+             'view': view(th_lo, 300), 'show': TH, 'opacity': {'heart': 0.6}, 'highlight': ['thymus'], 'danger': ['n-phrenic', 'n-phrenic-r'],
+             'action': {'kind': 'dissect', 'tool': 'hook', 'label': 'Lift the lower poles', 'port': port,
+                        'path': [R(th_lo + V([-25, 8, 5])), R(th_lo + V([0, 10, 8])), R(th_lo + V([25, 8, 5])), R(th_c + V([0, 6, -5]))]},
+             'ct': ct(R(th_lo), 'axial', 'mediastinum')},
+            {'id': f'{pre}-phrenic', 'phase': 'Dissection', 'seq': 3, 'title': 'Along each phrenic nerve',
+             'body': '<p>Open the mediastinal pleura <b>1 cm in front of each phrenic nerve</b> and take the fat off it, never the nerve itself: no diathermy on the nerve, no traction on it. '
+                     'On the left the nerve crosses the aortic arch and is easily hidden in fat.</p>',
+             'view': view(th_c, 360), 'show': TH, 'opacity': {'heart': 0.55}, 'highlight': ['thymus'], 'danger': ['n-phrenic', 'n-phrenic-r'], 'labels': ['n-phrenic', 'n-phrenic-r'],
+             'action': {'kind': 'dissect', 'tool': 'hook', 'label': 'Dissect along the nerves', 'port': port,
+                        'path': [R(ph_r + V([-8, 12, -30])), R(ph_r + V([-8, 12, 20])), R(th_c + V([0, 12, 30])), R(ph_l + V([10, 12, 20])), R(ph_l + V([10, 12, -30]))]},
+             'ct': ct('n-phrenic', 'axial', 'mediastinum')},
+            {'id': f'{pre}-veins', 'phase': 'Veins', 'seq': 4, 'title': 'Thymic veins into the innominate vein',
+             'body': '<p>Lift the gland forward off the <b>left brachiocephalic vein</b>. One to three <b>thymic veins</b> enter its back: clip or tie each and divide it. '
+                     'Traction tears them flush with the innominate vein: control that with a finger and a side-biting clamp, not blind clips.</p>',
+             'view': view(V(pt('thymic-vein-1')), 260), 'show': TH, 'opacity': {'heart': 0.55, 'thymus': 0.55},
+             'highlight': ['thymic-vein-1', 'thymic-vein-2'], 'danger': ['lbcv'],
+             'action': {'kind': 'ligate', 'label': 'Tie the thymic veins', 'port': port, 'ids': ['thymic-vein-1', 'thymic-vein-2']},
+             'ask': ask('A thymic vein tears flush with the innominate vein. First move?', 'Finger pressure, then a side-biting clamp and a fine suture',
+                        'Blind clips or diathermy on a torn innominate vein make it bigger.', 'Clip it blindly', 'Ligate the innominate vein'),
+             'ct': ct('thymic-vein-1', 'axial', 'mediastinum')},
+            {'id': f'{pre}-horns', 'phase': 'Dissection', 'seq': 5, 'title': 'The upper horns from the thyroid',
+             'body': '<p>Follow each upper horn into the neck with gentle traction until it narrows to a thin band ending on the thyroid; tie or clip its tip (small inferior thyroid branches). '
+                     'The horns lie on the brachiocephalic veins and the innominate artery.</p>',
+             'view': view((hl + hr) / 2, 280), 'show': TH, 'opacity': {'heart': 0.5}, 'highlight': ['thymus'], 'danger': ['lbcv', 'thyroid'], 'labels': ['thyroid'],
+             'action': {'kind': 'dissect', 'tool': 'hook', 'label': 'Free the upper horns', 'port': port, 'path': [R(hr + V([0, 8, -15])), R(hr + V([0, 8, 0])), R(hl + V([0, 8, 0])), R(hl + V([0, 8, -15]))]},
+             'ct': ct(R((hl + hr) / 2), 'coronal', 'mediastinum')},
+            {'id': f'{pre}-specimen', 'phase': 'Specimen', 'seq': 6, 'title': 'En bloc, then check the fat that is left',
+             'body': '<p>The gland comes out <b>in one piece with its fat</b>, in a bag. Look again at the places where ectopic thymus hides: the <b>aortopulmonary window</b>, the <b>aortocaval groove</b>, '
+                     'the <b>pericardiophrenic fat</b> on both sides and the <b>neck</b>.</p><p>One drain; close the sternum with wires (sternotomy).</p>',
+             'view': front(th_c, 400), 'show': TH, 'opacity': {'heart': 0.6}, 'labels': ['aorta', 'svc', 'n-phrenic', 'n-phrenic-r'],
+             'specimen': {'ids': ['thymus', 'thymic-vein-1', 'thymic-vein-2'], 'offset': [0, 90, 20]}, 'ct': ct(R(th_c), 'axial', 'mediastinum')},
+        ]
+
+    for appr, name in (('sternotomy', 'Median sternotomy'), ('rvats', 'Right VATS'), ('subx', 'Subxiphoid VATS')):
+        B4[f'thymectomy-{appr}'] = ('thymectomy', 'Thymectomy', name, 'both', 'Extended thymectomy: phrenic to phrenic, diaphragm to thyroid, the thymic veins tied.',
+                                    th_steps(appr), seq(('Anatomy', 'other'), ('Entry', 'other'), ('Lower poles', 'other'), ('Phrenics', 'other'), ('Thymic veins', 'vein'), ('Horns', 'other'), ('Specimen', 'other')), 'Mediastinum', 'thymus')
+
+    # ---------------------------------------------------------------- oesophagectomy
+    ESO = ['esophagus', 'aorta', 'azygos', 'trachea', 'br-left-main', 'br-right-main', 'thoracic-duct', 'stomach', 'n-vagus-r', 'n-vagus', 'n-rln', 'heart']
+    gej, eso_top, pyl = Lm('gej'), Lm('eso-top'), Lm('pylorus')
+    mid_eso = (gej + eso_top) / 2
+    az_div = V(S['azygos']['division']['point']) if 'division' in S['azygos'] else mid_eso + V([20, 0, 40])
+    back = lambda t, dist=360: front(t, dist, (0.75, -0.65, 0.15))          # from the right and behind, as through a right thoracotomy
+    abd = lambda t, dist=380: front(t, dist, (-0.1, 1, 0.35))
+
+    def e_anat(pre):
+        return {'id': f'{pre}-anat', 'phase': 'Anatomy', 'seq': 0, 'title': 'The oesophagus and its neighbours',
+                'body': '<p><b>Neck</b>: behind the trachea, the <b>recurrent laryngeal nerves</b> in the grooves either side. <b>Upper chest</b>: behind the trachea, the <b>azygos arch</b> on its right, the aortic arch on its left. '
+                        '<b>Mid chest</b>: behind the left main bronchus and the left atrium. <b>Lower chest</b>: in front of and to the right of the descending aorta, through the hiatus at T10.</p>'
+                        '<p>Behind it on the right: the <b>thoracic duct</b> between the aorta and the azygos, crossing to the left at T4–T6. The <b>vagi</b> form the oesophageal plexus on its wall.</p>',
+                'view': back(mid_eso, 480), 'show': ESO, 'hide': LUNGS_ALL + INTRA, 'opacity': {'heart': 0.35, 'aorta': 0.8, 'stomach': 0.8}, 'spin': True,
+                'highlight': ['esophagus'], 'danger': ['thoracic-duct', 'azygos', 'trachea', 'aorta'], 'labels': ['stomach', 'n-rln', 'n-vagus-r'],
+                'ct': ct(R(mid_eso), 'sagittal', 'mediastinum')}
+
+    lap = lambda pre, seq_: [
+        {'id': f'{pre}-lap', 'phase': 'Abdomen', 'seq': seq_, 'title': 'Abdomen: mobilise the stomach',
+         'body': '<p>Upper midline laparotomy (or laparoscopy). Divide the gastrocolic omentum <b>well away from the right gastroepiploic arcade</b>, which the conduit will live on, then the short gastric vessels up to the left crus. '
+                 'Open the lesser omentum. <b>Kocherise</b> the duodenum so the pylorus reaches the hiatus; a pyloric drainage procedure or none, by unit policy.</p>',
+         'view': abd(pyl, 420), 'show': ['incision-lap', 'stomach', 'liver', 'spleen', 'duodenum', 'pancreas', 'rgea', 'lga', 'aorta', 'esophagus'], 'hide': LUNGS_ALL + INTRA,
+         'opacity': {'liver': 0.25, 'heart': 0.3, 'stomach': 0.9}, 'highlight': ['stomach'], 'danger': ['rgea', 'spleen'], 'labels': ['duodenum', 'liver', 'incision-lap'],
+         'ct': ct(R(pyl), 'axial', 'mediastinum')},
+        {'id': f'{pre}-lga', 'phase': 'Abdomen', 'seq': seq_, 'title': 'Left gastric artery at its origin',
+         'body': '<p>Lift the stomach up; the <b>left gastric pedicle</b> is taut in the lesser sac. Clear the <b>coeliac nodes</b> into the specimen and staple or tie the left gastric artery and vein <b>at their origin</b>. '
+                 'Check the common hepatic and splenic arteries first.</p>',
+         'view': abd(Lm('coeliac'), 300), 'show': ['stomach', 'liver', 'pancreas', 'rgea', 'lga', 'aorta', 'spleen'], 'hide': LUNGS_ALL + INTRA, 'opacity': {'liver': 0.2, 'stomach': 0.45, 'pancreas': 0.5},
+         'highlight': ['lga'], 'danger': ['aorta', 'pancreas'],
+         'action': {'kind': 'staple', 'label': 'Staple the left gastric pedicle', 'port': 'lap', 'ids': ['lga'], 'reload': 'vascular'},
+         'ct': ct('lga', 'axial', 'mediastinum')},
+    ]
+
+    def r_chest(pre, seq_, level_top):
+        return [
+            {**thoracotomy_step(pre, 'right'), 'seq': seq_, 'phase': 'Chest', 'pose': 'lateral', 'title': 'Right thoracotomy (or right VATS)',
+             'body': '<p>Left lateral decubitus. Right posterolateral thoracotomy through the <b>5th space</b> (or four-port VATS / prone thoracoscopy). The right lung is isolated and retracted forward.</p>'},
+            {'id': f'{pre}-azygos', 'phase': 'Chest', 'seq': seq_, 'title': 'Divide the azygos arch',
+             'body': '<p>Open the mediastinal pleura along the front of the azygos arch and behind it. Staple the arch (vascular load): it opens the upper mediastinum and the space for the conduit.</p>',
+             'view': back(az_div, 300), 'show': ESO, 'hide': ['rul', 'rml', 'rll', 'fissure-h', 'fissure-r', *INTRA], 'opacity': {'heart': 0.3},
+             'highlight': ['azygos'], 'danger': ['svc', 'trachea', 'n-vagus-r'], 'labels': ['svc', 'esophagus'],
+             'action': {'kind': 'staple', 'label': 'Staple the azygos arch', 'port': 'thor-r', 'ids': ['azygos'], 'reload': 'vascular'},
+             'ct': ct('azygos', 'axial', 'mediastinum')},
+            {'id': f'{pre}-mobilise', 'phase': 'Chest', 'seq': seq_, 'title': 'Mobilise the oesophagus en bloc',
+             'body': '<p>Open the pleura in front of the <b>aorta</b> and along the <b>pericardium</b>. Take the oesophagus with its <b>periesophageal fat and nodes</b>, including the <b>subcarinal (station 7)</b> packet, from the hiatus to '
+                     + ('above the azygos arch.' if level_top == 'ivor' else 'the thoracic inlet, keeping close to the oesophagus near the trachea to spare the recurrent nerves.') +
+                     '</p><p>Clip the aortic oesophageal branches. Watch the <b>membranous trachea and left main bronchus</b> in front, and the <b>thoracic duct</b> behind.</p>',
+             'view': back(mid_eso, 360), 'show': ESO, 'hide': ['rul', 'rml', 'rll', 'fissure-h', 'fissure-r', *INTRA], 'opacity': {'heart': 0.3},
+             'highlight': ['esophagus'], 'danger': ['thoracic-duct', 'aorta', 'trachea', 'br-left-main'],
+             'action': {'kind': 'dissect', 'tool': 'hook', 'label': 'Mobilise the oesophagus', 'port': 'thor-r',
+                        'path': [R(gej + V([14, -4, 25])), R(mid_eso + V([14, -6, -20])), R(mid_eso + V([14, -6, 25])), R((Lm('eso-ivor') if level_top == 'ivor' else eso_top - V([0, 0, 20])) + V([14, -4, 0]))]},
+             'ct': ct('esophagus', 'axial', 'mediastinum')},
+            {'id': f'{pre}-duct', 'phase': 'Chest', 'seq': seq_, 'title': 'Ligate the thoracic duct (low, above the hiatus)',
+             'body': '<p>Many units ligate the duct routinely: <b>mass-ligate all the tissue between the aorta and the azygos</b> just above the hiatus, on the front of the spine. '
+                     'A missed duct injury declares itself as a milky drain output once feeding starts.</p>',
+             'view': back(Lm('td-ligation'), 260), 'show': ESO, 'hide': ['rul', 'rml', 'rll', 'fissure-h', 'fissure-r', *INTRA], 'opacity': {'heart': 0.3, 'esophagus': 0.5},
+             'highlight': ['thoracic-duct'], 'danger': ['aorta', 'azygos'],
+             'action': {'kind': 'ligate', 'label': 'Mass-ligate the duct', 'port': 'thor-r', 'ids': ['thoracic-duct'], 'keep': True},
+             'ct': ct(R(Lm('td-ligation')), 'axial', 'mediastinum')},
+        ]
+
+    cut_ivor = {'kind': 'staple', 'label': 'Divide the oesophagus', 'port': 'thor-r', 'ids': ['esophagus'], 'reload': 'tissue', 'at': R(Lm('eso-ivor')), 'axis': LM['eso-ivor-axis'], 'radius': 11}
+    cut_neck = {'kind': 'staple', 'label': 'Divide the oesophagus in the neck', 'port': 'neck', 'ids': ['esophagus'], 'reload': 'tissue', 'at': R(Lm('eso-neck')), 'axis': LM['eso-neck-axis'], 'radius': 11}
+    neck = lambda pre, seq_: {'id': f'{pre}-neck', 'phase': 'Neck', 'seq': seq_, 'title': 'Left neck: find the cervical oesophagus',
+                              'body': '<p>Head turned to the right. Incision along the <b>anterior border of the left sternocleidomastoid</b>. Retract the <b>carotid sheath laterally</b>, divide the omohyoid and the middle thyroid vein, '
+                                      'and reach the oesophagus on the prevertebral fascia.</p><p>The <b>left recurrent laryngeal nerve</b> lies in the tracheo-oesophageal groove: no metal retractor against it, finger dissection only.</p>',
+                              'view': front(Lm('neck'), 300, (-0.45, 1, 0.3)), 'show': ['incision-neck', 'esophagus', 'trachea', 'thyroid', 'n-rln', 'lcca', 'aorta'], 'hide': LUNGS_ALL + INTRA,
+                              'highlight': ['esophagus'], 'danger': ['n-rln', 'lcca', 'thyroid'], 'labels': ['incision-neck', 'trachea'],
+                              'ct': ct(R(Lm('eso-neck')), 'axial', 'mediastinum')}
+    conduit = lambda pre, seq_, which: {'id': f'{pre}-conduit', 'phase': 'Conduit', 'seq': seq_, 'title': 'Make the conduit and bring it up',
+                                        'body': '<p>Staple the lesser curvature from below the cardia to make a <b>4–5 cm tube</b> of greater curvature on the <b>right gastroepiploic artery</b>. '
+                                                + ('Pull it up through the hiatus into the right chest, without twisting (staple line to the right).' if which == 'chest' else 'Pass it through the posterior mediastinum (the oesophageal bed) to the neck in a plastic sleeve, without twisting.') +
+                                                '</p><p>Check the colour of the tip: poor perfusion there is what leaks.</p>',
+                                        'view': back(mid_eso, 480) if which == 'chest' else front(mid_eso, 520, (0.3, 1, 0.2)),
+                                        'show': [*ESO, 'rgea'], 'hide': LUNGS_ALL + INTRA + ['esophagus'], 'opacity': {'heart': 0.25, 'stomach': 0.35},
+                                        'highlight': [f'conduit-{which}'], 'danger': ['rgea'],
+                                        'action': {'kind': 'reveal', 'label': 'Bring up the conduit', 'port': 'thor-r' if which == 'chest' else 'neck', 'ids': [f'conduit-{which}']},
+                                        'ct': ct(R(mid_eso), 'coronal', 'mediastinum')}
+    anast = lambda pre, seq_, which: {'id': f'{pre}-anast', 'phase': 'Anastomosis', 'seq': seq_, 'title': 'The anastomosis',
+                                      'body': ('<p><b>Intrathoracic</b>, at or above the azygos level: circular stapler (25–28 mm) with the anvil in the oesophagus and the gun through the conduit, or linear side-to-side. '
+                                               'Close the conduit tip, wrap the anastomosis with omentum. A leak here is a mediastinitis: prevention is everything.</p>'
+                                               if which == 'chest' else
+                                               '<p><b>Cervical</b>: hand-sewn single layer or a linear-stapled side-to-side (Orringer). More leaks than in the chest, but a neck leak usually drains through the wound and heals.</p>')
+                                              + '<p>Nasogastric tube past the anastomosis; feeding jejunostomy by unit policy.</p>',
+                                      'view': back(Lm(f'anast-{which}'), 300) if which == 'chest' else front(Lm('anast-neck'), 280, (-0.4, 1, 0.3)),
+                                      'show': [*ESO, f'conduit-{which}'], 'hide': LUNGS_ALL + INTRA, 'opacity': {'heart': 0.25, 'stomach': 0.3, f'conduit-{which}': 0.85},
+                                      'highlight': [f'anast-{which}'], 'danger': ['trachea', 'n-rln'] if which == 'neck' else ['trachea'],
+                                      'action': {'kind': 'reveal', 'label': 'Make the anastomosis', 'port': 'thor-r' if which == 'chest' else 'neck', 'ids': [f'anast-{which}']},
+                                      'ct': ct(R(Lm(f'anast-{which}')), 'axial', 'mediastinum')}
+    after = lambda pre, seq_: {'id': f'{pre}-after', 'phase': 'After', 'seq': seq_, 'title': 'What goes wrong',
+                               'body': '<p><b>Anastomotic leak</b> and <b>conduit necrosis</b> (fever, arrhythmia, effluent in the drain: contrast study or endoscopy). <b>Chylothorax</b> (milky drain output once fed). '
+                                       '<b>Recurrent laryngeal nerve palsy</b> (hoarseness, aspiration), mostly after neck dissection. Pneumonia above all: early mobilisation, physiotherapy, sitting up.</p>',
+                               'view': front(mid_eso, 560, (0.35, 1, 0.2)), 'show': ESO, 'hide': LUNGS_ALL + INTRA, 'opacity': {'heart': 0.25},
+                               'labels': ['thoracic-duct', 'n-rln'], 'ct': ct(R(mid_eso), 'coronal', 'mediastinum')}
+
+    il = [e_anat('il'), *lap('il', 1), *r_chest('il', 2, 'ivor'),
+          {'id': 'il-divide', 'phase': 'Chest', 'seq': 2, 'title': 'Divide the oesophagus above the azygos',
+           'body': '<p>With the stomach already mobilised from below, divide the oesophagus <b>above the azygos arch</b> (tissue load, or open for a purse-string for the anvil). '
+                   'Pull the specimen with the lesser curvature and its nodes into the chest.</p>',
+           'view': back(Lm('eso-ivor'), 280), 'show': ESO, 'hide': ['rul', 'rml', 'rll', 'fissure-h', 'fissure-r', *INTRA], 'opacity': {'heart': 0.3},
+           'highlight': ['esophagus'], 'danger': ['trachea', 'n-vagus-r'], 'action': cut_ivor, 'ct': ct(R(Lm('eso-ivor')), 'axial', 'mediastinum')},
+          conduit('il', 3, 'chest'), anast('il', 4, 'chest'), after('il', 5)]
+    mk = [e_anat('mk'), *r_chest('mk', 1, 'neck'), *lap('mk', 2), neck('mk', 3),
+          {'id': 'mk-divide', 'phase': 'Neck', 'seq': 3, 'title': 'Divide the oesophagus in the neck',
+           'body': '<p>Encircle the cervical oesophagus with a finger from the neck, meeting the thoracic dissection. Divide it low in the neck and deliver the specimen through the abdomen.</p>',
+           'view': front(Lm('eso-neck'), 280, (-0.45, 1, 0.3)), 'show': ['esophagus', 'trachea', 'thyroid', 'n-rln', 'lcca'], 'hide': LUNGS_ALL + INTRA,
+           'highlight': ['esophagus'], 'danger': ['n-rln', 'trachea'], 'action': cut_neck, 'ct': ct(R(Lm('eso-neck')), 'axial', 'mediastinum')},
+          conduit('mk', 4, 'neck'), anast('mk', 5, 'neck'), after('mk', 6)]
+    trh = [e_anat('th'), *lap('th', 1),
+           {'id': 'th-hiatus', 'phase': 'Hiatus', 'seq': 2, 'title': 'Transhiatal: blunt dissection from below',
+            'body': '<p>Open the hiatus widely (divide the crura forward). Under direct vision, then with the hand flat on the oesophagus, free it from the <b>aorta</b> behind, the <b>pericardium</b> in front and both pleurae, as high as the hand reaches (the carina).</p>'
+                    '<p>Watch the blood pressure: the heart is compressed by the hand.</p>',
+            'view': front(mid_eso, 420, (0.1, 1, -0.45)), 'show': ESO, 'hide': LUNGS_ALL + INTRA, 'opacity': {'heart': 0.25},
+            'highlight': ['esophagus'], 'danger': ['aorta', 'azygos', 'trachea', 'thoracic-duct'],
+            'action': {'kind': 'dissect', 'tool': 'peanut', 'label': 'Free it from below', 'port': 'lap', 'path': [R(gej + V([0, 8, 10])), R(mid_eso + V([0, 10, -30])), R(mid_eso + V([0, 10, 20]))]},
+            'ask': ask('During transhiatal blunt dissection the anaesthetist reports a large air leak. What has happened?', 'A tear in the membranous trachea or left main bronchus',
+                       'The membranous airway lies directly on the oesophagus; advance the tube past the tear and repair it through a right thoracotomy or via the neck.', 'A pneumothorax', 'An azygos tear'),
+            'ct': ct(R(mid_eso), 'sagittal', 'mediastinum')},
+           neck('th', 3),
+           {'id': 'th-above', 'phase': 'Neck', 'seq': 3, 'title': 'Blunt dissection from above, then divide',
+            'body': '<p>From the neck, free the upper oesophagus with a finger to meet the hand from below. Divide it in the neck and draw the specimen down into the abdomen.</p>',
+            'view': front(Lm('eso-neck'), 300, (-0.45, 1, 0.3)), 'show': ['esophagus', 'trachea', 'thyroid', 'n-rln', 'lcca', 'azygos'], 'hide': LUNGS_ALL + INTRA,
+            'highlight': ['esophagus'], 'danger': ['n-rln', 'trachea', 'azygos'], 'action': cut_neck, 'ct': ct(R(Lm('eso-neck')), 'axial', 'mediastinum')},
+           conduit('th', 4, 'neck'), anast('th', 5, 'neck'), after('th', 6)]
+    B4['eso-ivor'] = ('oesophagectomy', 'Oesophagectomy', 'Ivor Lewis', 'right', 'Abdomen, then right chest: anastomosis in the chest above the azygos.', il,
+                      seq(('Anatomy', 'other'), ('Abdomen', 'other'), ('Chest', 'vein'), ('Conduit', 'other'), ('Anastomosis', 'bronchus'), ('After', 'other')), 'Oesophagus', 'eso')
+    B4['eso-mckeown'] = ('oesophagectomy', 'Oesophagectomy', 'McKeown (three-stage)', 'right', 'Right chest, abdomen, then left neck: anastomosis in the neck.', mk,
+                         seq(('Anatomy', 'other'), ('Chest', 'vein'), ('Abdomen', 'other'), ('Neck', 'other'), ('Conduit', 'other'), ('Anastomosis', 'bronchus'), ('After', 'other')), 'Oesophagus', 'eso')
+    B4['eso-transhiatal'] = ('oesophagectomy', 'Oesophagectomy', 'Transhiatal', 'right', 'Abdomen and left neck, no thoracotomy: blunt mediastinal dissection.', trh,
+                             seq(('Anatomy', 'other'), ('Abdomen', 'other'), ('Hiatus', 'other'), ('Neck', 'other'), ('Conduit', 'other'), ('Anastomosis', 'bronchus'), ('After', 'other')), 'Oesophagus', 'eso')
+
+    # ---------------------------------------------------------------- thoracic duct ligation
+    tdl, tdc = Lm('td-ligation'), Lm('td-cross')
+    DUCT = ['thoracic-duct', 'cisterna', 'aorta', 'azygos', 'esophagus', 'lbcv', 'heart']
+    duct = [
+        {'id': 'td-anat', 'phase': 'Anatomy', 'seq': 0, 'title': 'The course of the thoracic duct',
+         'body': '<p>From the <b>cisterna chyli</b> (L1–L2, behind and right of the aorta) through the <b>aortic hiatus</b>, up on the right front of the vertebral bodies <b>between the aorta and the azygos</b>, behind the oesophagus. '
+                 'At <b>T4–T6 it crosses to the left</b> and climbs on the left of the oesophagus to end in the <b>left venous angle</b> (internal jugular and subclavian).</p>'
+                 '<p>So an injury <b>below T5 gives a right chylothorax</b>, above it a left one. Doubled and plexiform ducts are common.</p>',
+         'view': front(V(S['thoracic-duct']['centroid']), 520, (0.55, -0.8, 0.2)), 'show': DUCT, 'hide': LUNGS_ALL + INTRA, 'opacity': {'heart': 0.2, 'aorta': 0.7, 'esophagus': 0.55}, 'spin': True,
+         'highlight': ['thoracic-duct'], 'labels': ['cisterna', 'azygos', 'aorta', 'esophagus', 'lbcv'],
+         'ask': ask('After a left upper lobectomy, a patient has a milky left pleural effusion. At what level is the duct most likely injured?', 'Above T5, where it runs on the left',
+                    'The duct crosses from right to left at T4-T6: upper injuries leak into the left chest, lower ones into the right.', 'At the cisterna chyli', 'Below T8'),
+         'ct': ct(R(tdc), 'axial', 'mediastinum')},
+        {'id': 'td-decide', 'phase': 'Decision', 'seq': 1, 'title': 'Chylothorax: when to operate',
+         'body': '<p>Milky fluid; confirm with <b>triglycerides above 1.24 mmol/L (110 mg/dL)</b> or chylomicrons. Start with drainage, nil by mouth or a fat-free / medium-chain diet, parenteral nutrition, octreotide.</p>'
+                 '<p>Operate (or embolise) for <b>high output</b> (commonly more than 1 L a day, or more than 10 mL/kg/day in a child), failure after about <b>5–7 days</b>, or nutritional and immune depletion. '
+                 '<b>Thoracic duct embolisation</b> by interventional radiology is the alternative where available.</p>'
+                 '<p>Give <b>cream or olive oil</b> 2–4 hours before surgery: the leak turns white and shows itself.</p>',
+         'view': front(tdl, 420, (0.8, -0.5, 0.2)), 'show': DUCT, 'hide': LUNGS_ALL + INTRA, 'opacity': {'heart': 0.2}, 'labels': ['thoracic-duct'], 'ct': ct(R(tdl), 'axial', 'mediastinum')},
+        {'id': 'td-setup', 'phase': 'Setup', 'seq': 2, 'title': 'Right VATS, whichever side the effusion is',
+         'body': '<p>Left lateral decubitus, right VATS (three ports, low). The duct is ligated on the <b>right, just above the diaphragm</b>, where it is a single trunk in most patients, even for a left chylothorax.</p>',
+         'view': {'frame': ['skin'], 'dir': [1, -0.35, 0.15], 'pad': 1.05}, 'pose': 'lateral', 'show': ['skin', *[i for i in ('port-r-posterior-utility', 'port-r-posterior-camera', 'port-r-posterior-posterior') if has(i)]],
+         'labels': [i for i in ('port-r-posterior-utility', 'port-r-posterior-camera', 'port-r-posterior-posterior') if has(i)], 'ct': ct(R(tdl), 'axial', 'lung')},
+        {'id': 'td-ligament', 'phase': 'Exposure', 'seq': 3, 'title': 'Divide the inferior pulmonary ligament, lift the lung',
+         'body': '<p>Retract the right lower lobe up and forward and divide the ligament. Open the pleura over the <b>triangle</b> formed by the <b>aorta</b>, the <b>azygos vein</b> and the <b>vertebral bodies</b>, just above the diaphragm.</p>',
+         'view': back(tdl, 300), 'show': DUCT, 'hide': ['rul', 'rml', 'fissure-h', *INTRA], 'opacity': {'rll': 0.25, 'fissure-r': 0.2, 'heart': 0.2, 'esophagus': 0.5},
+         'highlight': ['ipl-r'], 'danger': ['esophagus', 'azygos'], 'labels': ['aorta', 'azygos'],
+         'action': {'kind': 'dissect', 'tool': 'hook', 'label': 'Divide the ligament', 'port': 'port-r-posterior-posterior', 'remove': ['ipl-r'],
+                    'path': [R(V(S['ipl-r']['bbox'][0]) + V([4, 6, 4])), R(V(S['ipl-r']['centroid']) + V([4, 4, 0])), R(V(S['ipl-r']['bbox'][1]) + V([4, 4, -4]))] if has('ipl-r') else [R(tdl)]},
+         'ct': ct(R(tdl), 'axial', 'mediastinum')},
+        {'id': 'td-ligate', 'phase': 'Duct', 'seq': 4, 'title': 'Mass ligation above the diaphragm',
+         'body': '<p>Pass a right-angle clamp round <b>all the tissue between the aorta and the azygos</b>, on the front of the spine, 2–5 cm above the hiatus. Tie it with non-absorbable ligatures (two) or clip it. '
+                 'You do not need to see the duct itself.</p><p>Watch the <b>intercostal arteries</b> behind, the <b>oesophagus</b> in front, and the azygos on the right.</p>',
+         'view': back(tdl, 240), 'show': DUCT, 'hide': ['rul', 'rml', 'rll', 'fissure-h', 'fissure-r', 'ipl-r', *INTRA], 'opacity': {'heart': 0.2, 'esophagus': 0.45},
+         'highlight': ['thoracic-duct'], 'danger': ['aorta', 'azygos', 'esophagus'],
+         'action': {'kind': 'ligate', 'label': 'Mass-ligate', 'port': 'port-r-posterior-posterior', 'ids': ['thoracic-duct'], 'keep': True},
+         'ct': ct(R(tdl), 'axial', 'mediastinum')},
+        {'id': 'td-check', 'phase': 'Close', 'seq': 5, 'title': 'Check, glue, drain',
+         'body': '<p>Look for any white leak above the ligature (cream helps); clip or oversew it. Fibrin glue and a mechanical or talc <b>pleurodesis</b> by preference. One drain; record the output after feeding restarts.</p>',
+         'view': back(tdl, 300), 'show': DUCT, 'hide': ['rul', 'rml', 'rll', 'fissure-h', 'fissure-r', 'ipl-r', *INTRA], 'opacity': {'heart': 0.2, 'esophagus': 0.45},
+         'labels': ['thoracic-duct'], 'ct': ct(R(tdl), 'axial', 'mediastinum')},
+    ]
+    B4['duct'] = ('duct', 'Thoracic duct ligation', 'Right VATS, supradiaphragmatic', 'right', 'Mass ligation between the aorta and the azygos above the right hemidiaphragm.', duct,
+                  seq(('Anatomy', 'other'), ('Decide', 'other'), ('Setup', 'other'), ('Exposure', 'other'), ('Ligate', 'artery'), ('Check', 'other')), 'Oesophagus', 'duct')
+
+    # ---------------------------------------------------------------- empyema
+    EMP = ['lul', 'lll', 'fissure', 'peel-l', 'empyema-l', 'heart', 'aorta']
+    hil = LM['hilum-l']; emp_c = Lm('empyema')
+    SHR = {'ids': ['lul', 'lll', 'fissure', 'peel-l', 'lul-arteries', 'lul-veins', 'lul-bronchi', 'lll-arteries', 'lll-veins', 'lll-bronchi'], 'pivot': hil, 'scale': 0.82}
+    lat = lambda t, dist=380: front(t, dist, (-1, -0.45, 0.2))
+    stages = {'id': 'em-stages', 'phase': 'Anatomy', 'seq': 0, 'title': 'Empyema: three stages',
+              'body': '<p><b>I, exudative</b> (days): thin fluid, the lung still expands: a chest drain and antibiotics. '
+                      '<b>II, fibrinopurulent</b> (1–2 weeks): fibrin septa and loculations: drain plus intrapleural <b>tPA and DNase</b> (MIST2), or early <b>VATS debridement</b>. '
+                      '<b>III, organising</b> (after 3–6 weeks): a thick <b>peel</b> on the visceral pleura traps the lung: <b>decortication</b>.</p>'
+                      '<p>Here the left lung is shown <b>trapped</b>, smaller than the chest, under its peel, with pus in the posterior costophrenic gutter.</p>',
+              'view': lat(emp_c + V([10, 30, 60]), 460), 'show': EMP, 'shrink': SHR, 'hide': INTRA, 'opacity': {'lul': 0.55, 'lll': 0.55, 'heart': 0.3},
+              'highlight': ['peel-l'], 'danger': [], 'labels': ['empyema-l', 'lll', 'lul'], 'spin': True,
+              'ask': ask('A patient with a parapneumonic effusion has septated fluid on ultrasound and a pleural fluid pH of 7.0. Stage?', 'II, fibrinopurulent',
+                         'Septations and a low pH or glucose mean a complicated effusion or empyema in the fibrinopurulent stage: drain it, and add fibrinolytics or VATS if it does not clear.', 'I, exudative', 'III, organising'),
+              'ct': ct(R(emp_c), 'axial', 'lung')}
+    vats_e = [stages,
+              {'id': 'ev-setup', 'phase': 'Setup', 'seq': 1, 'title': 'Ports over the collection',
+               'body': '<p>Right lateral decubitus. Place the first port where the <b>collection is largest on ultrasound or CT</b> (often low and posterior), by open finger dissection: the lung may be stuck to the wall. '
+                       'Two more ports under vision.</p>',
+               'view': {'frame': ['skin'], 'dir': [-1, -0.35, 0.15], 'pad': 1.05}, 'pose': 'lateral', 'show': ['skin', *[i for i in ('port-posterior-utility', 'port-posterior-camera', 'port-posterior-posterior') if has(i)]],
+               'shrink': SHR, 'labels': [i for i in ('port-posterior-utility', 'port-posterior-camera', 'port-posterior-posterior') if has(i)], 'ct': ct(R(emp_c), 'axial', 'lung')},
+              {'id': 'ev-debride', 'phase': 'Debride', 'seq': 2, 'title': 'Break the loculations, evacuate the pus',
+               'body': '<p>With a sucker, a sponge on a holder and the camera, <b>break every septum</b> so the space becomes one cavity; take the fibrin off the lung and the diaphragm. '
+                       'Send pus and pleura for culture. Irrigate with warm saline.</p>',
+               'view': lat(emp_c, 320), 'show': EMP, 'shrink': SHR, 'hide': INTRA, 'opacity': {'lul': 0.45, 'lll': 0.45, 'heart': 0.3},
+               'highlight': ['empyema-l'], 'danger': ['lll'],
+               'action': {'kind': 'dissect', 'tool': 'peanut', 'label': 'Debride the cavity', 'port': 'port-posterior-camera' if has('port-posterior-camera') else 'thor-l', 'remove': ['empyema-l'],
+                          'path': [R(emp_c + V([-10, 10, 25])), R(emp_c + V([-5, 0, 0])), R(emp_c + V([-10, -10, -20]))]},
+               'ct': ct(R(emp_c), 'axial', 'lung')},
+              {'id': 'ev-peel', 'phase': 'Decorticate', 'seq': 3, 'title': 'Early peel: strip it thoracoscopically',
+               'body': '<p>A young peel strips with a peanut: find the plane between the peel and the visceral pleura, then ask the anaesthetist to <b>inflate</b> the lung as you go: it helps the peel lift. '
+                       'A thick, old peel is a conversion to thoracotomy.</p>',
+               'view': lat(V(pt('lll')), 420), 'show': EMP, 'shrink': SHR, 'hide': INTRA, 'opacity': {'lul': 0.6, 'lll': 0.6, 'heart': 0.3},
+               'highlight': ['peel-l'], 'danger': ['lll', 'lul'],
+               'action': {'kind': 'decorticate', 'label': 'Strip the peel', 'port': 'port-posterior-utility' if has('port-posterior-utility') else 'thor-l', 'ids': ['peel-l'],
+                          'expand': {'ids': SHR['ids'], 'pivot': hil, 'from': SHR['scale']}},
+               'ct': ct(R(emp_c), 'axial', 'lung')},
+              {'id': 'ev-drain', 'phase': 'Close', 'seq': 4, 'title': 'Re-expansion and drains',
+               'body': '<p>The lung should fill the chest. Two large drains, apical and basal-posterior. Air leak from small tears is expected; persistent space or leak means the peel was left.</p>',
+               'view': lat(V(pt('lll')), 460), 'show': ['lul', 'lll', 'fissure', 'heart'], 'hide': INTRA, 'opacity': {'lul': 0.6, 'lll': 0.6}, 'labels': ['lul', 'lll'], 'ct': ct(R(emp_c), 'axial', 'lung')}]
+    open_e = [stages,
+              {**thoracotomy_step('eo', 'left'), 'seq': 1, 'pose': 'lateral', 'shrink': SHR,
+               'body': '<p>Right lateral decubitus. Posterolateral thoracotomy, often through the <b>6th space</b> for a basal cavity; a rib may be resected. The ribs are often crowded by the contracted hemithorax: spread slowly.</p>'},
+              {'id': 'eo-evacuate', 'phase': 'Debride', 'seq': 2, 'title': 'Open the cavity, evacuate',
+               'body': '<p>Enter the cavity through the <b>parietal peel</b>, suck out pus and debris, and send it for culture.</p>',
+               'view': lat(emp_c, 320), 'show': EMP, 'shrink': SHR, 'hide': INTRA, 'opacity': {'lul': 0.45, 'lll': 0.45, 'heart': 0.3},
+               'highlight': ['empyema-l'], 'action': {'kind': 'dissect', 'tool': 'peanut', 'label': 'Evacuate the cavity', 'port': 'thor-l', 'remove': ['empyema-l'],
+                                                        'path': [R(emp_c + V([-10, 10, 25])), R(emp_c), R(emp_c + V([-10, -10, -20]))]},
+               'ct': ct(R(emp_c), 'axial', 'lung')},
+              {'id': 'eo-peel', 'phase': 'Decorticate', 'seq': 3, 'title': 'Decorticate the lung',
+               'body': '<p>Incise the visceral peel with a knife until the <b>glistening visceral pleura</b> bulges into the cut (inflation helps); then separate the peel with a peanut and scissors, lobe by lobe, and in the fissure. '
+                       'Stay <b>on the peel, not in the lung</b>: tears leak air for days.</p>'
+                       '<p>Free the diaphragm too, so it moves. Decorticate the parietal side only as needed for the lung to meet the wall.</p>',
+               'view': lat(V(pt('lll')), 420), 'show': EMP, 'shrink': SHR, 'hide': INTRA, 'opacity': {'lul': 0.6, 'lll': 0.6, 'heart': 0.3},
+               'highlight': ['peel-l'], 'danger': ['lll', 'lul', 'n-phrenic'],
+               'action': {'kind': 'decorticate', 'label': 'Peel off the cortex', 'port': 'thor-l', 'ids': ['peel-l'], 'expand': {'ids': SHR['ids'], 'pivot': hil, 'from': SHR['scale']}},
+               'ask': ask('The lung does not re-expand after decortication and the space persists. Options?', 'Muscle flap or thoracoplasty to fill the space, or an open window (Eloesser) in the frail',
+                          'A residual space re-infects: fill it (serratus or latissimus flap, limited thoracoplasty) or leave it open to drain.', 'A second chest drain only', 'Pleurodesis'),
+               'ct': ct(R(emp_c), 'axial', 'lung')},
+              {'id': 'eo-close', 'phase': 'Close', 'seq': 4, 'title': 'Re-expansion, drains, close',
+               'body': '<p>Two large drains. For the frail patient who cannot stand a decortication, an <b>open thoracostomy window (Eloesser flap)</b> drains a chronic cavity instead.</p>',
+               'view': lat(V(pt('lll')), 460), 'show': ['lul', 'lll', 'fissure', 'heart'], 'hide': INTRA, 'opacity': {'lul': 0.6, 'lll': 0.6}, 'labels': ['lul', 'lll'], 'ct': ct(R(emp_c), 'axial', 'lung')}]
+    B4['emp-vats'] = ('empyema', 'Empyema and decortication', 'VATS debridement', 'left', 'Stage II: break the loculations, evacuate, strip an early peel.', vats_e,
+                      seq(('Stages', 'other'), ('Ports', 'other'), ('Debride', 'other'), ('Peel', 'fissure'), ('Drains', 'other')), 'Pleura', 'empyema')
+    B4['emp-open'] = ('empyema', 'Empyema and decortication', 'Open decortication', 'left', 'Stage III: thoracotomy, evacuate, peel the cortex off the lung.', open_e,
+                      seq(('Stages', 'other'), ('Thoracotomy', 'other'), ('Evacuate', 'other'), ('Decorticate', 'fissure'), ('Close', 'other')), 'Pleura', 'empyema')
+
+    for key, (op_, opName, appr, side, summ, steps_, sq, group, src) in B4.items():
+        for s in steps_:
+            named = set(s.get('highlight', [])) | set(s.get('danger', [])) | set(s.get('labels', [])) | set(s.get('show', []))
+            quiet = [i for i in ('n-phrenic', 'n-vagus', 'n-rln', 'lig-art', 'esophagus', 'ipl', 'ipl-r', 'n-phrenic-r', 'n-vagus-r', 'azygos', *[k for k in S if S[k]['group'] == 'nodes'],
+                                 *[f'vert-t{i}' for i in range(2, 11)]) if i not in named]
+            s['hide'] = [*s.get('hide', []), *[i for i in quiet if has(i)]]
+            if s.get('action', {}).get('kind') != 'thoracotomy':   # ribs from an earlier thoracotomy step out of the way
+                s['hide'] += [k for k in S if k.startswith('rib-') and k not in named]
+            if op_ == 'thymectomy': s['hide'] += [i for i in LUNGS_ALL + INTRA if i not in named]
+            s['opacity'] = {**{f'vert-t{i}': 0.22 for i in range(2, 11)}, **s.get('opacity', {})}
+            for kk in ('highlight', 'danger', 'labels', 'show', 'hide'):
+                if kk in s: s[kk] = [i for i in s[kk] if has(i) or i == 'skin']
+        procs[f'b4-{key}'] = {'id': f'b4-{key}', 'op': op_, 'opName': opName, 'side': side, 'name': opName, 'approach': appr, 'summary': summ,
+                              'ports': [], 'steps': steps_, 'sources': B4SRC[src], 'sequence': sq, 'group': group}
 # operations appear in the menu in this order
-ORDER = ['position', 'thoracotomy-l', 'thoracotomy-r', 'vats-ports-l', 'vats-ports-r', 'lul', 'lll', 'rul', 'rml', 'rll', 'pnl', 'pnr', 'seg-lingula', 'seg-lul-updiv', 'seg-s6', 'rt', 'clamshell', 'cardio', 'tract', 'hilar']
+ORDER = ['position', 'thoracotomy-l', 'thoracotomy-r', 'vats-ports-l', 'vats-ports-r', 'lul', 'lll', 'rul', 'rml', 'rll', 'pnl', 'pnr', 'seg-lingula', 'seg-lul-updiv', 'seg-s6', 'thymectomy', 'oesophagectomy', 'duct', 'empyema', 'rt', 'clamshell', 'cardio', 'tract', 'hilar']
 procs = dict(sorted(procs.items(), key=lambda kv: (ORDER.index(kv[1]['op']), list(procs).index(kv[0]))))
 for v in procs.values():
     v['group'] = v.get('group') or ('Pneumonectomy' if v['op'].startswith('pn') else 'Segmentectomy' if v['op'].startswith('seg-') else 'Lobectomy')
 # every VATS or open setup step: the patient on the side, the surface lines drawn
 for v in procs.values():
-    if v['group'] in ('Trauma', 'Access and positioning'): continue
+    if v['group'] in ('Trauma', 'Access and positioning', 'Mediastinum', 'Oesophagus', 'Pleura'): continue
     k = v['side'][0]
     for s in v['steps']:
         if s['phase'] == 'Setup':

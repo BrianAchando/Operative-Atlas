@@ -4,12 +4,19 @@ export interface Choice { text: string; correct: boolean; why: string }
 
 /** what the surgeon does in a step, played in 3D with the instrument coming through a port */
 export interface Action {
-  kind: 'staple' | 'ligate' | 'dissect' | 'open-fissure' | 'staple-fissure' | 'thoracotomy' | 'saw' | 'clamp' | 'twist' | 'suture' | 'massage' | 'layers';
+  kind: 'staple' | 'ligate' | 'dissect' | 'open-fissure' | 'staple-fissure' | 'thoracotomy' | 'saw' | 'clamp' | 'twist' | 'suture' | 'massage' | 'layers' | 'sternotomy' | 'reveal' | 'decorticate';
+  /** ligate: tie without dividing (mass ligation of the thoracic duct) */
+  keep?: boolean;
+  /** decorticate: the trapped lung re-expands from this scale about `pivot` as the peel comes off */
+  expand?: { ids: string[]; pivot: Vec3; from: number };
   /** layers: the chest wall taken one layer at a time; each divided (cut across `dir` at `point`, the far side opened by `open` mm),
    *  split along its fibres (same, narrower), retracted by `offset`, passed through, or spared */
   layers?: { id: string; label: string; fate: 'divide' | 'split' | 'retract' | 'through' | 'spare'; point?: Vec3; dir?: Vec3; open?: number; offset?: Vec3 }[];
-  /** clamp: where the jaws close, the axis of the vessel (or hilum) they cross, its radius and the jaw length */
+  /** clamp: where the jaws close, the axis of the vessel (or hilum) they cross, its radius and the jaw length.
+   *  staple and saw: a cut at `at` across `axis` instead of the structure's own division (e.g. the oesophagus in the neck, a median sternotomy) */
   at?: Vec3; axis?: Vec3; radius?: number; jawLen?: number;
+  /** saw: the two halves opened this far apart (a median sternotomy retractor) */
+  open?: number;
   /** saw (the chest-wall lid of a clamshell) and twist (the lung about its hilum): structures turned about an axis */
   hinge?: { ids: string[]; pivot: Vec3; axis: Vec3; angle: number };
   /** thoracotomy: the incision to draw and the two ribs either side of the space (upper first) */
@@ -53,11 +60,14 @@ export interface Step {
   opacity?: Record<string, number>;      // e.g. lobes made translucent
   retract?: Retract | Retract[];
   action?: Action;
-  specimen?: { ids: string[]; offset: Vec3 };
+  /** the specimen moved out; `distal` limits which divided structures' far ends go with it (default: all) */
+  specimen?: { ids: string[]; offset: Vec3; distal?: string[] };
   spin?: boolean;                        // slow turntable (anatomy overview)
   ct?: { focus: Vec3 | string; plane: Plane; window?: string };
   /** 'lateral': the patient turned on the other side, operated side up, on the table */
   pose?: 'lateral';
+  /** a trapped lung, drawn smaller about its hilum (empyema before decortication) */
+  shrink?: { ids: string[]; pivot: Vec3; scale: number };
   ask?: { question: string; choices: Choice[] };
   pearl?: string;
   /** the step's place in the approach's sequence strip */

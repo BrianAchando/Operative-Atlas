@@ -44,6 +44,7 @@ CT = np.asanyarray(ct_img.dataobj).astype(np.int16)
 T = np.asanyarray(tot_img.dataobj).astype(np.int16)
 LV = np.asanyarray(lv_img.dataobj)
 AT, AL = tot_img.affine, lv_img.affine
+_present = set(np.unique(T).tolist())
 assert np.allclose(ct_img.affine, AT)
 
 
@@ -659,10 +660,13 @@ if RIGHT_IDS:
         pts = vox_mm(ts(f'vertebrae_{v}')); return pts[np.argmax(pts[:, 0] + pts[:, 1])] + off
     arch_z = R_RMB[2] + 14
     svc_s = slab(svc_mm, arch_z, 3.0)
-    az = [ra_point('T8', RIGHT * 3 + ANT * 3), ra_point('T6', RIGHT * 3 + ANT * 3), ra_point('T5', RIGHT * 4 + ANT * 2 + SUP * 4),
+    az = [ra_point(v, RIGHT * 3 + ANT * 3) for v in ('T12', 'T10') if TS.get(f'vertebrae_{v}') in _present] + \
+         [ra_point('T8', RIGHT * 3 + ANT * 3), ra_point('T6', RIGHT * 3 + ANT * 3), ra_point('T5', RIGHT * 4 + ANT * 2 + SUP * 4),
           R_RMB + RIGHT * 9 - ANT * 10 + SUP * 14, R_RMB + RIGHT * 10 + SUP * 16, svc_s[np.argmin(svc_s[:, 1])] - ANT * 1]
     emit_mesh('azygos', 'Azygos vein (arch)', 'mediastinum', SYSV, tube([W(p_) for p_ in az], 4.5),
               note='Schematic: ascends on the right of the vertebral bodies and arches forward over the right main bronchus into the back of the SVC.')
+    AZ_ARCH = az[-3]; _d = az[-2] - az[-3]; _d /= np.linalg.norm(_d)
+    structures[-1]['division'] = {'point': [round(float(x), 1) for x in W(AZ_ARCH + (az[-2] - az[-3]) * 0.4)], 'dir': [round(float(x), 3) for x in _d], 'radius': 5.0}
     rph = []
     svc_top = svc_mm[:, 2].max()
     for z in (svc_top - 10, arch_z, R_RMB[2] - 10):
@@ -870,6 +874,16 @@ _has = set(np.unique(T).tolist())
 CW_L, CW_R, CWLM = chestwall.build(dict(emit=emit, emit_mesh=emit_mesh, W=W, tube=tube, sphere=sphere, ts=ts, AT=AT, has=lambda n: n in TS and TS[n] in _has,
                                         vox_mm=vox_mm, lung_c=lung_c, lung_cr=lung_cr, rib_z=rib_z, port=port, skin_at=skin_at, skin_mm=skin_mm, CARINA=CARINA))
 TRLM.update(CWLM)
+# ------------------------------------------------------------------ batch 4: thymus, oesophagectomy, thoracic duct, empyema
+import mediastinum  # noqa: E402
+MDIV = {}
+_hp4 = [np.array(rec_of(i)['division']['point']) + CARINA for i in ('pa-left', 'pv-superior', 'pv-inferior', 'br-lul') if 'division' in rec_of(i)]
+MDLM, MD_L, MD_R = mediastinum.build(dict(emit=emit, emit_mesh=emit_mesh, W=W, tube=tube, sphere=sphere, ts=ts, AT=AT, has=lambda n: n in TS and TS[n] in _has,
+                                          vox_mm=vox_mm, CT=CT, T=T, TS=TS, skin_mm=skin_mm, division=MDIV,
+                                          azygos_arch=AZ_ARCH if RIGHT_IDS else CARINA + np.array([15.0, -10, 5]), hilum_l_scanner=np.mean(_hp4, axis=0)))
+for _i, _d in MDIV.items(): rec_of(_i)['division'] = _d
+TRLM.update(MDLM)
+CW_L |= MD_L; CW_R |= MD_R
 for appr, ps in PORTS.items():
     for k, nm, p in ps:
         emit_mesh(f'port-{appr}-{k}', nm, f'ports-{appr}', '#46c2c7', sphere(W(p), 5.5 if k == 'utility' else 3.5), visible=False)
@@ -932,7 +946,7 @@ for appr, ps in PORTS.items():
 for sd, th in THOR.items():
     landmarks[f'thor-{sd[0]}'] = [round(float(x), 1) for x in W(th['centre'])]
 for k, v in TRLM.items():
-    landmarks[k] = [round(float(x), 1) for x in W(v)]
+    landmarks[k] = [round(float(x), 3) for x in v] if k.endswith('-axis') else [round(float(x), 1) for x in W(v)]
 # the left hilum as a pivot (hilar clamp and twist): the centre of its four staple lines, and the axis out into the lung
 _hp = [np.array(rec_of(i)['division']['point']) for i in ('pa-left', 'pv-superior', 'pv-inferior', 'br-lul') if 'division' in rec_of(i)]
 landmarks['hilum-l'] = [round(float(x), 1) for x in np.mean(_hp, axis=0)]
@@ -950,7 +964,8 @@ atlas = {
                {'id': 'rul-intra', 'name': 'Right upper lobe, intrapulmonary'},
                {'id': 'ports-r-anterior', 'name': 'Ports, right anterior approach'}, {'id': 'ports-r-posterior', 'name': 'Ports, right posterior approach'},
                {'id': 'segments', 'name': 'Segments (from bronchial territories)'}, {'id': 'trauma', 'name': 'Trauma (schematic)'}, {'id': 'ports-open-left', 'name': 'Thoracotomy, left'}, {'id': 'ports-open-right', 'name': 'Thoracotomy, right'},
-               {'id': 'muscles', 'name': 'Chest wall muscles (schematic)'}, {'id': 'landmarks', 'name': 'Surface landmarks'}, {'id': 'ports-vats', 'name': 'VATS incisions, uni- and biportal'}],
+               {'id': 'abdomen', 'name': 'Upper abdomen and conduit'}, {'id': 'incisions', 'name': 'Incisions (sternotomy, neck, abdomen)'},
+               {'id': 'muscles', 'name': 'Chest wall muscles (schematic)'}, {'id': 'landmarks', 'name': 'Surface landmarks'}, {'id': 'ports-vats', 'name': 'VATS incisions, uni- and biportal'}, {'id': 'abdomen', 'name': 'Abdomen (oesophagectomy)'}],
     'structures': structures,
     'landmarks': landmarks,
     'source': {'name': 'Reference CT: 3D Slicer sample CTA (CTA-cardio)', 'licence': 'unstated',

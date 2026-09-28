@@ -111,5 +111,26 @@ q('hilar', 'anatomy', 'hilum', 'Describe the arrangement of the left pulmonary a
 q('hilar', 'preop', 'air', 'Is there air in the cardiac chambers, aorta or pulmonary veins?', 'heart',
   'Air in the left heart or coronaries after lung injury is systemic air embolism: clamp or twist the hilum, head down, aspirate the left ventricle and aorta.')
 
+# ---------------------------------------------------------------- batch 4
+q('thymectomy', 'preop', 'mass', 'Is there an anterior mediastinal mass? Describe its size, margins, and any invasion of the pericardium, great vessels or lung.', 'thymus',
+  'Thymoma: a well-defined anterior mediastinal mass; loss of fat planes with the great vessels or pericardium suggests invasion (Masaoka-Koga III).')
+q('thymectomy', 'anatomy', 'innominate', 'Describe the left brachiocephalic (innominate) vein and its relation to the thymus.', 'lbcv',
+  'It crosses behind the upper thymus from left to right to join the SVC; the thymic veins drain into its back.')
+q('thymectomy', 'approach', 'side', 'Is the anterior mediastinal tissue predominantly to the right or the left of the midline?', 'thymus',
+  'Right VATS gives the best view of the SVC and right phrenic; left-sided disease or the aortopulmonary window favours left VATS, subxiphoid or sternotomy.')
+q('oesophagectomy', 'preop', 'tumour', 'Is there oesophageal wall thickening or a mass? Give its level, length and relation to the carina, aorta and left main bronchus.', 'esophagus',
+  'Level decides the operation: upper third (above the carina) favours McKeown with a neck anastomosis; lower third and GE junction suit Ivor Lewis or transhiatal.')
+q('oesophagectomy', 'preop', 'nodes', 'Are there enlarged paraoesophageal, subcarinal, coeliac or left gastric lymph nodes?', 'esophagus',
+  'Coeliac or distant nodes change staging; subcarinal and paraoesophageal nodes come out with a transthoracic en bloc resection.')
+q('oesophagectomy', 'anatomy', 'stomach', 'Describe the stomach and whether it is suitable as a conduit (any mass, previous surgery or hiatus hernia).', 'stomach',
+  'A healthy stomach with an intact right gastroepiploic arcade makes the conduit; if not, colon or jejunum.')
+q('duct', 'preop', 'chyle', 'Is there a pleural effusion, and on which side?', 'thoracic-duct',
+  'A duct injury below T5 gives a right chylothorax, above it a left one; the ligation is still done low on the right.')
+q('duct', 'anatomy', 'retrocrural', 'Describe the space between the descending aorta and the azygos vein just above the diaphragm.', 'thoracic-duct',
+  'The thoracic duct runs here on the front of the vertebral bodies: the target of mass ligation.')
+q('empyema', 'preop', 'collection', 'Is there a pleural collection? Is it loculated, is there pleural thickening or enhancement (split pleura sign), and is the underlying lung collapsed?', 'empyema-l',
+  'Split pleura sign and loculation mean empyema; thick pleura with a trapped lung means stage III and decortication.')
+q('empyema', 'preop', 'lung', 'Is there consolidation, abscess or a bronchopleural fistula in the adjacent lung?', 'lll',
+  'A lung abscess or fistula changes the operation (resection, muscle flap) and the prognosis.')
 (OUT / 'ai_questions.json').write_text(json.dumps({'model': 'nvidia/NV-Reason-CT', 'questions': Q}, indent=1))
 print(len(Q), 'questions;', {k: sum(1 for x in Q if x['op'] == k) for k in dict.fromkeys(x['op'] for x in Q)})
