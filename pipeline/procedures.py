@@ -1944,8 +1944,206 @@ if TR_RES_OK:
     procs['trachea-cervical'] = {'id': 'trachea-cervical', 'op': 'trachea', 'opName': 'Tracheal resection', 'side': 'both', 'name': 'Tracheal resection and reconstruction', 'approach': 'Cervical (collar incision)',
                                  'summary': 'Collar incision, subplatysmal flaps, stricture freed on the wall, resected, end-to-end 4-0 PDS anastomosis.', 'ports': [], 'steps': tr_steps, 'sources': TRSRC, 'group': 'Airway',
                                  'sequence': seq(('Anatomy', 'other'), ('Decide', 'other'), ('Incision', 'other'), ('Layers', 'other'), ('Front', 'other'), ('Around', 'other'), ('Below', 'bronchus'), ('Above', 'bronchus'), ('Tension', 'other'), ('Anastomosis', 'fissure'), ('After', 'other'))}
+# ==================================================================================================== cardiac: mitral valve replacement
+MVR_OK = has('la') and has('mitral-annulus') and 'mv-centre' in LM
+if MVR_OK:
+    Lc = lambda k: V(LM[k])
+    clook = lambda tgt, d, dist=300.0: {'eye': R(V(tgt) + V(d) / np.linalg.norm(d) * dist), 'target': R(tgt)}
+    MC, MN, MU = Lc('mv-centre'), V(LM['mv-normal']), V(LM['mv-anterior']); MR_ = LM['mv-dims'][0]
+    st_b = S['sternum']['bbox']; ST_MID = V([(st_b[0][0] + st_b[1][0]) / 2, (st_b[0][1] + st_b[1][1]) / 2 + 4, (st_b[0][2] + st_b[1][2]) / 2])
+    HEART_OFF = [i for i in ('heart', 'laa', 'lul', 'lll', 'rul', 'rml', 'rll', 'fissure', 'fissure-h', 'fissure-r', 'thymus') if has(i)]
+    VALVE = [i for i in ('mitral-annulus', 'mv-ant-leaflet', 'mv-post-leaflet', 'chordae', 'papillary') if has(i)]
+    DANGER = [i for i in ('circumflex', 'av-node', 'cusp-n', 'cusp-l', 'coronary-sinus') if has(i)]
+    CH = [i for i in ('la', 'lv', 'ra', 'rv', 'myocardium', 'pa-trunk', 'aorta', 'svc') if has(i)]
+    CANS = [i for i in ('can-aortic', 'can-svc', 'can-ivc', 'can-cp') if has(i)]
+    FAINT = {'myocardium': 0.12, 'lv': 0.3, 'rv': 0.2, 'ra': 0.3, 'la': 0.3, 'pa-trunk': 0.4, 'aorta': 0.7}
+    valve_view = clook(MC, MN * 1.0 + V([0.55, 0.35, 0.1]), 190)
+    ext = lambda k, d=18: [R(Lc(k) + V([0, 0, d])), R(Lc(k)), R(Lc(k) - V([0, 0, d]))]
+    MVSRC = [
+        {'title': 'Kouchoukos NT, Blackstone EH, Hanley FL, Kirklin JK. Kirklin/Barratt-Boyes Cardiac Surgery, 4th ed. Elsevier 2013: mitral valve replacement', 'url': 'https://pubmed.ncbi.nlm.nih.gov/?term=Kirklin+Barratt-Boyes+cardiac+surgery+mitral+valve'},
+        {'title': 'Otto CM, Nishimura RA, et al. 2020 ACC/AHA guideline for the management of patients with valvular heart disease. Circulation 2021;143:e72-e227', 'url': 'https://pubmed.ncbi.nlm.nih.gov/33332150/'},
+        {'title': 'Vahanian A, et al. 2021 ESC/EACTS guidelines for the management of valvular heart disease. Eur Heart J 2022;43:561-632', 'url': 'https://pubmed.ncbi.nlm.nih.gov/34453165/'},
+        {'title': 'Guiraudon GM, et al. The superior septal approach to the mitral valve', 'url': 'https://pubmed.ncbi.nlm.nih.gov/?term=Guiraudon+superior+septal+approach+mitral+valve'},
+        {'title': 'Chitwood WR Jr, et al. Minimally invasive video-directed mitral valve surgery; transthoracic aortic cross-clamp', 'url': 'https://pubmed.ncbi.nlm.nih.gov/?term=Chitwood+transthoracic+aortic+crossclamp+minimally+invasive+mitral'},
+    ]
+
+    def mv_anat(pre):
+        return {'id': f'{pre}-anatomy', 'phase': 'Anatomy', 'seq': 0, 'title': 'The mitral valve and what lies around it',
+                'body': '<p>The <b>mitral annulus</b> is D-shaped and saddle-shaped. The <b>anterior leaflet</b> hangs from the fibrous <b>aortomitral curtain</b>, in continuity with the <b>left and non-coronary cusps</b> of the aortic valve; the <b>posterior leaflet</b> takes the rest of the circumference. '
+                        'Chordae run from both leaflets to the <b>anterolateral</b> and <b>posteromedial papillary muscles</b>.</p>'
+                        '<p>Round the posterior annulus, in the AV groove: the <b>circumflex artery</b> (close near the anterolateral commissure, closer in left dominance) and the <b>coronary sinus</b>. '
+                        'At the posteromedial commissure, next to the right trigone: the <b>AV node and His bundle</b>. These are what deep annular sutures injure.</p>',
+                'view': clook(MC, V([0.4, 0.8, 0.45]), 260), 'spin': True, 'show': [*CH, *VALVE, *DANGER, 'cusp-r', 'lvot'], 'hide': HEART_OFF,
+                'opacity': {**FAINT, 'lv': 0.2, 'la': 0.25}, 'highlight': ['mitral-annulus', 'mv-ant-leaflet', 'mv-post-leaflet'], 'danger': DANGER,
+                'labels': ['mv-ant-leaflet', 'mv-post-leaflet', 'papillary', 'circumflex', 'coronary-sinus', 'av-node', 'cusp-n', 'cusp-l'],
+                'ask': ask('A deep suture at the posterior annulus near the anterolateral commissure is most likely to injure…', 'The circumflex artery',
+                           'It runs in the AV groove close to the annulus there, especially in a left-dominant circulation.', 'The AV node', 'The right coronary artery'),
+                'ct': ct(R(MC), 'axial')}
+
+    def mv_decide(pre):
+        return {'id': f'{pre}-decide', 'phase': 'Decision', 'seq': 1, 'title': 'Replace, and by which access',
+                'body': '<p><b>Repair when you can</b> (degenerative MR above all). <b>Replace</b> when repair is unlikely to last: heavily calcified or fibrotic <b>rheumatic</b> valves, extensive leaflet destruction by endocarditis, failed repair. '
+                        'Mechanical valves for the young who can take warfarin reliably (mitral INR target about 2.5–3.5); tissue valves for the older, or where anticoagulation is unsafe or pregnancy is planned.</p>'
+                        '<p><b>Access by scenario:</b></p><ul>'
+                        '<li><b>Median sternotomy, left atriotomy through Sondergaard\'s groove</b> (the default): most patients, any concomitant aortic, tricuspid or coronary surgery.</li>'
+                        '<li><b>Transseptal (right atrium, fossa ovalis)</b>: a small left atrium, concomitant tricuspid surgery, a redo where the groove is scarred. The <b>superior septal</b> extension gives the widest view but divides the sinus node artery (atrial arrhythmias).</li>'
+                        '<li><b>Right mini-thoracotomy</b> with femoral cannulation: isolated mitral surgery, and a redo after sternotomy (no re-entry). Avoid with significant aortic regurgitation, iliofemoral or aortic atheroma, dense right pleural adhesions.</li></ul>',
+                'view': clook(MC, V([0.4, 0.8, 0.45]), 300), 'show': [*CH, *VALVE], 'hide': HEART_OFF, 'opacity': FAINT, 'labels': ['la', 'ra', 'lv'], 'ct': ct(R(MC), 'coronal')}
+
+    def mv_sternotomy(pre, seq_):
+        return {'id': f'{pre}-sternotomy', 'phase': 'Access', 'seq': seq_, 'title': 'Median sternotomy, pericardial cradle',
+                'body': '<p>Median sternotomy; open the pericardium in the midline and <b>hitch it up as a cradle</b>, more on the right, which lifts the right atrium and the interatrial groove toward you.</p>',
+                'view': clook(ST_MID, V([0, 1, 0.3]), 380), 'show': ['sternum', *CH], 'hide': HEART_OFF, 'opacity': {**FAINT, 'sternum': 0.95},
+                'highlight': ['sternum'],
+                'action': {'kind': 'saw', 'label': 'Divide the sternum', 'port': 'sternotomy', 'ids': ['sternum'], 'at': R(ST_MID), 'axis': [1, 0, 0], 'open': 90},
+                'ct': ct(R(ST_MID), 'axial', 'bone')}
+
+    def mv_cannulate(pre, seq_, septal=False):
+        return {'id': f'{pre}-cannulate', 'phase': 'Bypass', 'seq': seq_, 'title': 'Cannulation: aorta and both cavae',
+                'body': '<p>Heparin (about 300–400 U/kg; ACT above 480 s). Two purse-strings on the <b>distal ascending aorta</b> for the arterial cannula. <b>Bicaval venous drainage</b>: the SVC cannulated directly, the IVC low on the right atrium'
+                        + (', with <b>snares round both cavae</b>: the right atrium will be opened.' if septal else '; snares are needed if the right atrium is to be opened.') + '</p>'
+                        '<p>An antegrade cardioplegia and root vent line in the ascending aorta; a <b>retrograde cannula</b> into the coronary sinus if wanted; an <b>LV vent</b> through the right superior pulmonary vein.</p>',
+                'view': clook(V(LM['can-svc']), V([0.5, 0.9, 0.35]), 330), 'show': [*CH], 'hide': HEART_OFF, 'opacity': FAINT,
+                'highlight': CANS, 'labels': [*CANS, 'aorta', 'svc'],
+                'action': {'kind': 'reveal', 'label': 'Place the cannulas', 'port': 'sternotomy', 'ids': CANS},
+                'ct': ct(R(V(LM['can-aortic'])), 'axial')}
+
+    def mv_clamp(pre, seq_, port='sternotomy', text=''):
+        return {'id': f'{pre}-clamp', 'phase': 'Bypass', 'seq': seq_, 'title': 'Cross-clamp and cardioplegia',
+                'body': text or '<p>On full bypass, cool as planned. Cross-clamp the ascending aorta between the arterial cannula and the cardioplegia line; arrest with cold blood cardioplegia <b>antegrade</b>, then <b>retrograde</b> through the coronary sinus, repeated every 15–20 minutes.</p>',
+                'view': clook(Lc('clamp-ao'), V([0.3, 1, 0.3]), 280), 'show': [*CH, *CANS, 'can-retro'], 'hide': HEART_OFF, 'opacity': FAINT,
+                'highlight': ['aorta'], 'labels': ['can-cp', 'can-retro'],
+                'action': {'kind': 'clamp', 'label': 'Apply the cross-clamp', 'port': port, 'at': R(Lc('clamp-ao')), 'axis': R(V(LM['ao-axis'])), 'radius': 14, 'jawLen': 50},
+                'ct': ct(R(Lc('clamp-ao')), 'axial')}
+
+    def mv_la(pre, seq_, port='sternotomy'):
+        return {'id': f'{pre}-atriotomy', 'phase': 'Left atrium', 'seq': seq_, 'title': "Sondergaard's groove and the left atriotomy",
+                'body': "<p>Develop <b>Sondergaard's plane</b>: the fat between the right atrium and the right pulmonary veins, back toward the septum, for 1–2 cm. "
+                        'Open the left atrium there, <b>in front of the right pulmonary veins</b>, extending up behind the SVC and down behind the IVC as needed. A self-retaining atrial retractor lifts the septum toward you.</p>',
+                'view': clook(Lc('la-incision'), V([1, 0.5, 0.2]), 250), 'show': [*CH, *CANS, 'la-incision'], 'hide': HEART_OFF, 'opacity': {**FAINT, 'la': 0.45},
+                'highlight': ['la-incision'], 'danger': ['ra'],
+                'action': {'kind': 'dissect', 'tool': 'hook', 'label': 'Open the left atrium', 'port': port, 'path': ext('la-incision', 16)},
+                'ct': ct(R(Lc('la-incision')), 'axial')}
+
+    def mv_excise(pre, seq_, port='sternotomy', view=None):
+        return {'id': f'{pre}-excise', 'phase': 'Valve', 'seq': seq_, 'title': 'Excise the anterior leaflet; keep the posterior chordae',
+                'body': '<p>Inspect the valve. For replacement, excise the <b>anterior leaflet</b> (detach it 2–3 mm from the annulus, divide its chordae; some reattach anterior chordae to the annulus), '
+                        '<b>preserve the posterior leaflet and its chordae</b>: <b>chordal sparing</b> keeps left ventricular function and guards against rupture of the ventricle.</p>'
+                        '<p>Debride calcium off the annulus carefully: deep debridement posteriorly risks <b>AV groove disruption</b>. Size the annulus with the valve sizers.</p>',
+                'view': view or valve_view, 'show': [*VALVE, *DANGER, 'cusp-r'], 'hide': HEART_OFF, 'opacity': {**FAINT, 'la': 0.12, 'lv': 0.25},
+                'highlight': ['mv-ant-leaflet'], 'danger': DANGER,
+                'action': {'kind': 'dissect', 'tool': 'hook', 'label': 'Excise the anterior leaflet', 'port': port, 'remove': ['mv-ant-leaflet'],
+                           'path': [R(MC + MU * MR_ * 0.95 + V(np.cross(MN, MU)) * MR_ * 0.6 + MN), R(MC + MU * (MR_ - 1) + MN), R(MC + MU * MR_ * 0.95 - V(np.cross(MN, MU)) * MR_ * 0.6 + MN)]},
+                'ct': ct(R(MC), 'axial')}
+
+    def mv_sutures(pre, seq_, port='sternotomy', view=None):
+        return {'id': f'{pre}-sutures', 'phase': 'Valve', 'seq': seq_, 'title': 'Pledgeted annular sutures',
+                'body': '<p><b>2-0 braided polyester, pledgeted horizontal mattress</b> sutures, 12–16 of them, into the annulus (pledgets usually on the atrial side; technique varies with the valve and the surgeon).</p>'
+                        '<p>Bites <b>in the annulus, not beyond it</b>: shallow <b>anteriorly</b> (the aortic cusps lie just below), careful <b>posteriorly</b> (circumflex and coronary sinus), and at the <b>posteromedial commissure</b> (the AV node).</p>',
+                'view': view or valve_view, 'show': [*[i for i in VALVE if i != 'mv-ant-leaflet'], *DANGER], 'hide': [*HEART_OFF, 'mv-ant-leaflet'], 'opacity': {**FAINT, 'la': 0.12, 'lv': 0.25},
+                'highlight': ['mitral-annulus'], 'danger': DANGER,
+                'action': {'kind': 'annulus', 'label': 'Place the annular sutures', 'port': port, 'at': R(MC), 'axis': R(MN), 'anterior': R(MU), 'radius': MR_ - 0.5, 'count': 14},
+                'ct': ct(R(MC), 'axial')}
+
+    def mv_seat(pre, seq_, port='sternotomy', view=None):
+        return {'id': f'{pre}-seat', 'phase': 'Valve', 'seq': seq_, 'title': 'Seat the prosthesis and tie',
+                'body': '<p>Pass the sutures through the sewing ring in order, lower the valve down the sutures onto the annulus and tie. '
+                        'For a bileaflet mechanical valve, the usual orientation is <b>anti-anatomical</b> (hinges perpendicular to the natural commissures).</p>'
+                        '<p>Check that <b>both leaflets open and close fully</b>: nothing trapped (preserved chordae, a long suture tail, pledget).</p>',
+                'view': view or valve_view, 'show': [*[i for i in VALVE if i != 'mv-ant-leaflet'], *DANGER], 'hide': [*HEART_OFF, 'mv-ant-leaflet'], 'opacity': {**FAINT, 'la': 0.12, 'lv': 0.25},
+                'highlight': ['mv-prosthesis'], 'labels': ['mv-prosthesis'],
+                'action': {'kind': 'seat', 'label': 'Seat the valve', 'port': port, 'ids': ['mv-prosthesis'], 'from': R(MN * 45)},
+                'ask': ask('After seating a mechanical mitral valve, the most important check before closing the atrium is…', 'That both leaflets move freely',
+                           'Preserved chordae, suture tails or pledgets can trap a leaflet; fix it now, not after the clamp is off.', 'That the LA appendage is closed', 'That the sutures are cut short'),
+                'ct': ct(R(MC), 'axial')}
+
+    def mv_close(pre, seq_, septal=False, mics=False):
+        return {'id': f'{pre}-close', 'phase': 'Wean', 'seq': seq_, 'title': 'Close the atrium, de-air, clamp off',
+                'body': ('<p>Close the septum and the right atrium (3-0/4-0 polypropylene); release the caval snares.</p>' if septal else '<p>Close the left atriotomy with 3-0/4-0 polypropylene, leaving the LV vent across until the last suture.</p>')
+                        + '<p><b>De-air</b>: fill the heart, head down, vent the aortic root and the LV; release the clamp; rewarm. Consider closing the <b>left atrial appendage</b> if the patient is in AF.</p>'
+                        '<p><b>TOE</b> before leaving theatre: no paravalvular leak, leaflets moving, no LVOT obstruction. Pacing wires, drains.</p>'
+                        + ('<p>Decannulate the femoral vessels and repair them; check the right lung re-expands.</p>' if mics else '')
+                        + '<p>Serious complications: <b>AV groove disruption</b> (catastrophic), circumflex injury, heart block, paravalvular leak, stroke.</p>',
+                'view': clook(MC, V([0.4, 0.8, 0.45]), 300), 'show': [*CH, 'mv-prosthesis'], 'hide': [*HEART_OFF, 'mv-ant-leaflet'], 'opacity': FAINT,
+                'labels': ['mv-prosthesis'], 'ct': ct(R(MC), 'axial')}
+
+    def mv_reperfuse(pre, seq_, mics=False):
+        return {'id': f'{pre}-reperfuse', 'phase': 'Wean', 'seq': seq_, 'title': 'Reperfuse on bypass, or separate early?',
+                'body': '<p>With the clamp off the heart is <b>reperfused while bypass still carries the circulation</b>. How long to rest it before weaning is a judgement, not a fixed rule. '
+                        'A common rule of thumb is about <b>a third of the cross-clamp time</b> (roughly 10 minutes for each 30 of ischaemia).</p>'
+                        '<p><b>Waiting for myocardial recovery</b> (a longer supported reperfusion): it washes out cardioplegia and potassium, restores energy stores, lets the rhythm settle and rewarming finish, and needs fewer inotropes. '
+                        'Worth it after a <b>long clamp</b>, with a <b>poor LV or RV</b>, a hypertrophied ventricle, doubtful protection, or <b>pulmonary hypertension</b> (common in rheumatic mitral stenosis: the RV fails first).</p>'
+                        '<p><b>Separating early</b>: every extra minute of bypass adds haemodilution, platelet damage, inflammation and bleeding. After a <b>short clamp</b>, a good ventricle, sound protection and a stable rhythm, wean as soon as the conditions are met.</p>'
+                        '<p>Before either: temperature 36–37 °C, sinus rhythm or pacing, potassium and haemoglobin corrected, lungs ventilated, <b>de-airing confirmed on TOE</b>, and the valve checked (no paravalvular leak, leaflets moving). '
+                        'The cost of weaning too early is a low-output state and a return to bypass; that is still easy while <b>the cannulas are in and protamine has not been given</b>.</p>',
+                'view': clook(MC, V([0.4, 0.8, 0.45]), 300), 'show': [*CH, 'mv-prosthesis', *([] if mics else CANS)], 'hide': [*HEART_OFF, 'mv-ant-leaflet'], 'opacity': FAINT,
+                'labels': ['lv', 'rv', 'mv-prosthesis'],
+                'ask': ask('After MVR for rheumatic stenosis with severe pulmonary hypertension (clamp time 95 min), the heart is sluggish on first weaning attempt. Best move?',
+                           'Go back to full bypass, rest the heart longer, start RV support (inotrope, pulmonary vasodilator), then wean again',
+                           'The RV is failing against a high pulmonary pressure; more supported reperfusion and RV-directed support usually rescue it. Pushing on off bypass drives the RV into failure.',
+                           'Give protamine and push inotropes off bypass', 'Decannulate and accept the low output'),
+                'ct': ct(R(MC), 'axial')}
+
+    def mv_decannulate(pre, seq_, mics=False):
+        ids = [i for i in (('can-cp',) if mics else ('can-retro', 'can-cp', 'can-ivc', 'can-svc', 'can-aortic')) if has(i)]
+        return {'id': f'{pre}-decannulate', 'phase': 'Wean', 'seq': seq_, 'title': 'Separate, then decannulate in order',
+                'body': '<p>Wean slowly, watching the pressures and the TOE. Then the order that keeps a way back:</p>'
+                        '<ol><li><b>Venous cannula(s) out</b> first' + (' (the femoral venous cannula)' if mics else ' (IVC, then SVC); tie the purse-strings') + '.</li>'
+                        '<li><b>Protamine</b> started slowly (watch for pulmonary hypertension and hypotension); <b>stop the pump suckers</b> once it runs.</li>'
+                        '<li><b>Arterial cannula out last</b>, after part of the protamine and a stable pressure' + (' (repair the femoral artery)' if mics else '') + ': while it is in, blood can be given from the pump and bypass restarted quickly.</li></ol>'
+                        '<p>A fast decannulation saves pump time only if the heart is ready; a return to bypass after full protamine means re-heparinising and re-cannulating a heart that is already struggling.</p>',
+                'view': clook(V(LM['can-svc']), V([0.5, 0.9, 0.35]), 330), 'show': [*CH, 'mv-prosthesis', *ids], 'hide': [*HEART_OFF, 'mv-ant-leaflet'], 'opacity': FAINT,
+                'labels': ids, 'highlight': ids,
+                'action': {'kind': 'decannulate', 'label': 'Clamp off and decannulate', 'port': 'sternotomy', 'ids': ids},
+                'ct': ct(R(MC), 'axial')}
+
+    std = [mv_anat('ms'), mv_decide('ms'), mv_sternotomy('ms', 2), mv_cannulate('ms', 3), mv_clamp('ms', 4), mv_la('ms', 5), mv_excise('ms', 6), mv_sutures('ms', 7), mv_seat('ms', 8), mv_close('ms', 9), mv_reperfuse('ms', 10), mv_decannulate('ms', 11)]
+    sept_view = clook(MC, MN * 0.4 + V([1, 0.4, 0.0]), 200)
+    ts_ = [mv_anat('mt'), mv_decide('mt'), mv_sternotomy('mt', 2), mv_cannulate('mt', 3, septal=True), mv_clamp('mt', 4),
+           {'id': 'mt-ra', 'phase': 'Right atrium', 'seq': 5, 'title': 'Right atriotomy',
+            'body': '<p>Snare both cavae. Open the right atrium obliquely, from the base of the appendage toward the IVC, parallel to the AV groove and <b>away from the sinus node</b> at the SVC junction.</p>',
+            'view': clook(Lc('ra-incision'), V([1, 0.6, 0.2]), 240), 'show': [*CH, *CANS, 'ra-incision'], 'hide': HEART_OFF, 'opacity': {**FAINT, 'ra': 0.5},
+            'highlight': ['ra-incision'], 'action': {'kind': 'dissect', 'tool': 'hook', 'label': 'Open the right atrium', 'port': 'sternotomy', 'path': ext('ra-incision', 15)},
+            'ct': ct(R(Lc('ra-incision')), 'axial')},
+           {'id': 'mt-septum', 'phase': 'Septum', 'seq': 6, 'title': 'Through the fossa ovalis',
+            'body': '<p>Incise the <b>fossa ovalis</b> vertically and extend it up (toward the dome) or down as needed; the mitral valve lies straight behind. Stay off the <b>coronary sinus</b> orifice and Koch\'s triangle below and in front (AV node), and off the aortic root in front of the septum.</p>'
+                    '<p>The <b>superior septal (Guiraudon)</b> extension carries the incision across the roof of the left atrium: widest view, but it divides the sinus node artery.</p>',
+            'view': clook(Lc('septum'), V([1, 0.3, 0.1]), 200), 'show': [*CH, 'septal-incision', 'av-node', 'coronary-sinus'], 'hide': HEART_OFF, 'opacity': {**FAINT, 'ra': 0.15},
+            'highlight': ['septal-incision'], 'danger': ['av-node', 'coronary-sinus'],
+            'action': {'kind': 'dissect', 'tool': 'hook', 'label': 'Open the septum', 'port': 'sternotomy', 'path': ext('septum', 14)},
+            'ct': ct(R(Lc('septum')), 'axial')},
+           mv_excise('mt', 7, view=sept_view), mv_sutures('mt', 8, view=sept_view), mv_seat('mt', 9, view=sept_view), mv_close('mt', 10, septal=True), mv_reperfuse('mt', 11), mv_decannulate('mt', 12)]
+    mics_view = clook(MC, MN * 0.8 + V([1, 0.35, 0.05]), 200)
+    mi = [mv_anat('mm'), mv_decide('mm'),
+          {'id': 'mm-setup', 'phase': 'Access', 'seq': 2, 'title': 'Position, femoral cannulation, the incision',
+           'body': '<p>Supine with the <b>right chest raised about 30°</b>, the right arm by the side. Double-lumen tube (right lung down), external defibrillator pads, TOE.</p>'
+                   '<p><b>Femoral cannulation</b> (open or percutaneous): the venous cannula guided up into the SVC under TOE, the arterial cannula into the femoral artery (check iliofemoral atheroma on CT first). '
+                   'A <b>4–6 cm incision in the right 4th space</b>, in the inframammary fold; a soft-tissue retractor; camera through the incision or a port above it; CO2 flooding the field.</p>',
+           'view': clook(Lc('mics'), V([1, 0.6, 0.25]), 380), 'show': ['skin', 'incision-mics', 'port-chitwood'], 'opacity': {'skin': 1.0}, 'hide': HEART_OFF,
+           'highlight': ['incision-mics'], 'labels': ['incision-mics', 'port-chitwood'], 'ct': ct(R(Lc('mics')), 'axial', 'lung')},
+          mv_clamp('mm', 3, port='chitwood', text='<p>A <b>transthoracic (Chitwood) clamp</b> through a stab in the 3rd space, mid-axillary line, across the ascending aorta behind the pulmonary artery (avoiding the left atrial appendage and the right PA); '
+                                                 'or an endoballoon occlusion. Antegrade cardioplegia through a root needle placed through the incision.</p>'),
+          mv_la('mm', 4, port='mics'), mv_excise('mm', 5, port='mics', view=mics_view), mv_sutures('mm', 6, port='mics', view=mics_view), mv_seat('mm', 7, port='mics', view=mics_view), mv_close('mm', 8, mics=True), mv_reperfuse('mm', 9, mics=True), mv_decannulate('mm', 10, mics=True)]
+    mi[3]['show'] = [*CH, 'port-chitwood', 'can-cp']
+    for key, appr, steps_, sq in (('mvr-std', 'Median sternotomy (Kouchoukos)', std, seq(('Anatomy', 'other'), ('Decide', 'other'), ('Sternotomy', 'other'), ('Cannulate', 'artery'), ('Clamp', 'artery'), ('Atriotomy', 'vein'), ('Excise', 'fissure'), ('Sutures', 'fissure'), ('Seat', 'bronchus'), ('Close', 'other'), ('Reperfuse', 'other'), ('Decannulate', 'artery'))),
+                                  ('mvr-septal', 'Transseptal', ts_, seq(('Anatomy', 'other'), ('Decide', 'other'), ('Sternotomy', 'other'), ('Cannulate', 'artery'), ('Clamp', 'artery'), ('Right atrium', 'vein'), ('Septum', 'vein'), ('Excise', 'fissure'), ('Sutures', 'fissure'), ('Seat', 'bronchus'), ('Close', 'other'), ('Reperfuse', 'other'), ('Decannulate', 'artery'))),
+                                  ('mvr-mics', 'Right mini-thoracotomy', mi, seq(('Anatomy', 'other'), ('Decide', 'other'), ('Access', 'other'), ('Clamp', 'artery'), ('Atriotomy', 'vein'), ('Excise', 'fissure'), ('Sutures', 'fissure'), ('Seat', 'bronchus'), ('Close', 'other'), ('Reperfuse', 'other'), ('Decannulate', 'artery')))):
+        for s in steps_:
+            named = set(s.get('highlight', [])) | set(s.get('danger', [])) | set(s.get('labels', [])) | set(s.get('show', []))
+            # the heart alone: the lung hila, nodes, nerves and pleura out of the way; the sternum once it is open
+            off_groups = {'arteries', 'veins', 'airway', 'lul-intra', 'lll-intra', 'rul-intra', 'nodes', 'nerves', 'pleura', 'segments', 'trauma', 'muscles', 'landmarks'}
+            s['hide'] = [*s.get('hide', []), *[q['id'] for q in atlas['structures'] if q['group'] in off_groups and q['id'] not in named],
+                         *[i for i in ('esophagus', 'thymus', 'thyroid') if has(i) and i not in named], *(['sternum'] if s.get('seq', 0) >= 3 else [])]
+            if s['phase'] in ('Valve', 'Wean', 'Septum'): s['opacity'] = {**{c_: 0.3 for c_ in CANS}, 'can-retro': 0.3, **s.get('opacity', {})}
+            if s['phase'] in ('Valve', 'Septum'): s['hide'] = [*s['hide'], 'svc']
+            s['opacity'] = {**{f'vert-t{i}': 0.25 for i in range(2, 11)}, **s.get('opacity', {})}
+            for kk in ('highlight', 'danger', 'labels', 'show'):
+                if kk in s: s[kk] = [i for i in s[kk] if has(i) or i == 'skin']
+        procs[key] = {'id': key, 'op': 'mvr', 'opName': 'Mitral valve replacement', 'side': 'both', 'name': 'Mitral valve replacement', 'approach': appr,
+                      'summary': 'Access, bypass, left atrium, chordal-sparing excision, pledgeted annular sutures, prosthesis, de-airing.', 'ports': [], 'steps': steps_, 'sources': MVSRC,
+                      'group': 'Cardiac', 'sequence': sq}
 # operations appear in the menu in this order
-ORDER = ['position', 'thoracotomy-l', 'thoracotomy-r', 'vats-ports-l', 'vats-ports-r', 'lul', 'lll', 'rul', 'rml', 'rll', 'pnl', 'pnr', 'seg-lingula', 'seg-lul-updiv', 'seg-s6', 'trachea', 'thymectomy', 'oesophagectomy', 'duct', 'empyema', 'rt', 'clamshell', 'cardio', 'tract', 'hilar']
+ORDER = ['position', 'thoracotomy-l', 'thoracotomy-r', 'vats-ports-l', 'vats-ports-r', 'lul', 'lll', 'rul', 'rml', 'rll', 'pnl', 'pnr', 'seg-lingula', 'seg-lul-updiv', 'seg-s6', 'trachea', 'thymectomy', 'oesophagectomy', 'duct', 'empyema', 'rt', 'clamshell', 'cardio', 'tract', 'hilar', 'mvr']
 procs = dict(sorted(procs.items(), key=lambda kv: (ORDER.index(kv[1]['op']), list(procs).index(kv[0]))))
 for v in procs.values():
     v['group'] = v.get('group') or ('Pneumonectomy' if v['op'].startswith('pn') else 'Segmentectomy' if v['op'].startswith('seg-') else 'Lobectomy')

@@ -502,6 +502,22 @@ export class Scene3D {
       for (const id of a.ids ?? []) this.fadeOut(id, 2200 / this.timeScale);
       const ex = a.expand;
       if (ex) { if (!await this.anim(2600, (e) => this.scaleAbout(ex.ids, ex.pivot, ex.from + (1 - ex.from) * e), token)) return false; }
+    } else if (a.kind === 'annulus') {
+      for (const g of this.annularSutures(a)) {
+        const c0 = g.userData['c'] as THREE.Vector3; const grow = (e: number) => { const k = Math.max(0.01, e); g.scale.setScalar(k); g.position.copy(c0).multiplyScalar(1 - k); };
+        grow(0); this.extras.add(g);
+        if (!await this.anim(220, grow, token)) return false;
+      }
+    } else if (a.kind === 'decannulate') {
+      // the cross-clamp comes off first, then each cannula in the order given (venous before arterial)
+      for (const g of this.extras.children.filter((o) => o.name === 'vclamp')) this.extras.remove(g);
+      for (const id of a.ids ?? []) { this.fadeOut(id, 700 / this.timeScale); if (!await this.wait(900, token)) return false; }
+    } else if (a.kind === 'seat') {
+      for (const id of a.ids ?? []) {
+        const it = this.items.get(id); if (!it) continue;
+        this.setVisible(id, true); const from = new THREE.Vector3(...(a.from ?? [0, 0, 40]));
+        if (!await this.anim(1800, (e) => it.mesh.position.copy(from).multiplyScalar(1 - e), token)) return false;
+      }
     } else if (a.kind === 'anastomose') {
       const st = this.anastomosis(a);
       const run = st[0] as THREE.Mesh; const full = run.geometry.index!.count; run.geometry.setDrawRange(0, 0); this.extras.add(run);
@@ -574,6 +590,30 @@ export class Scene3D {
       g.add(new THREE.Mesh(new THREE.TubeGeometry(new THREE.CatmullRomCurve3([at(phi, 3.6, 0), at(phi, 1.5, 1.8), at(phi, -1.5, 1.8), at(phi, -3.6, 0)]), 16, 0.35, 6), pds));
       const knot = new THREE.Mesh(new THREE.SphereGeometry(0.9, 10, 8), pds); knot.position.copy(at(phi, 0, 2.2)); g.add(knot); g.userData['c'] = at(phi, 0, 1.5);
       out.push(g);
+    }
+    return out;
+  }
+
+  /**
+   * Pledgeted horizontal mattress sutures round a valve annulus (`at`, normal `axis` toward the atrium, `radius`):
+   * each a small felt pledget on the atrial side with its two limbs brought up and fanned out above the valve.
+   */
+  private annularSutures(a: Action): THREE.Object3D[] {
+    const c = new THREE.Vector3(...(a.at ?? [0, 0, 0])); const n = new THREE.Vector3(...(a.axis ?? [0, 0, 1])).normalize(); const r = a.radius ?? 14;
+    const u = new THREE.Vector3(...(a.anterior ?? [0, 1, 0])); u.addScaledVector(n, -u.dot(n)).normalize(); const v = new THREE.Vector3().crossVectors(n, u);
+    const felt = new THREE.MeshStandardMaterial({ color: 0xf4f1ea, roughness: 0.95 }); const braid = new THREE.MeshStandardMaterial({ color: 0x2f7d4f, roughness: 0.5 });
+    const out: THREE.Object3D[] = []; const count = a.count ?? 14;
+    for (let i = 0; i < count; i++) {
+      const t = (i / count) * Math.PI * 2; const g = new THREE.Group();
+      const rad = u.clone().multiplyScalar(Math.cos(t)).addScaledVector(v, Math.sin(t)); const tan = new THREE.Vector3().crossVectors(n, rad);
+      const p = c.clone().addScaledVector(rad, r).addScaledVector(n, 1.2);
+      const pl = new THREE.Mesh(new THREE.BoxGeometry(5, 2.4, 1.0), felt); pl.position.copy(p); pl.quaternion.setFromRotationMatrix(new THREE.Matrix4().makeBasis(tan, rad, n)); g.add(pl);
+      const top = c.clone().addScaledVector(rad, r * 2.2).addScaledVector(n, 45);
+      for (const s of [-1.6, 1.6]) {
+        const a0 = p.clone().addScaledVector(tan, s); const mid = a0.clone().addScaledVector(n, 12).addScaledVector(rad, 3);
+        g.add(new THREE.Mesh(new THREE.TubeGeometry(new THREE.CatmullRomCurve3([a0, mid, top.clone().addScaledVector(tan, s * 2)]), 16, 0.3, 5), braid));
+      }
+      g.userData['c'] = p; out.push(g);
     }
     return out;
   }
@@ -693,7 +733,7 @@ export class Scene3D {
     let jaw = u.clone().negate().addScaledVector(n, u.dot(n)); if (jaw.lengthSq() < 1e-4) jaw = new THREE.Vector3(0, 0, 1).cross(n);
     jaw.normalize();
     const c = vascularClamp(p, jaw, new THREE.Vector3().crossVectors(n, jaw), P, a.radius ?? 10, a.jawLen ?? 60);
-    this.extras.add(c.group); return c;
+    c.group.name = 'vclamp'; this.extras.add(c.group); return c;
   }
 
   /** stitch centres along a wound, with the direction across it */
@@ -725,6 +765,9 @@ export class Scene3D {
     } else if (a.kind === 'reveal') { for (const id of a.ids ?? []) this.setVisible(id, true); }
     else if (a.kind === 'decorticate') { for (const id of a.ids ?? []) this.setVisible(id, false); }
     else if (a.kind === 'anastomose') { for (const st of this.anastomosis(a)) this.extras.add(st); }
+    else if (a.kind === 'annulus') { for (const g of this.annularSutures(a)) this.extras.add(g); }
+    else if (a.kind === 'decannulate') { for (const g of this.extras.children.filter((o) => o.name === 'vclamp')) this.extras.remove(g); for (const id of a.ids ?? []) this.setVisible(id, false); }
+    else if (a.kind === 'seat') { for (const id of a.ids ?? []) { this.setVisible(id, true); const it = this.items.get(id); if (it) it.mesh.position.set(0, 0, 0); } }
     else if (a.kind === 'layers') { for (const L of a.layers ?? []) { this.setVisible(L.id, true); void this.layer(L, false, this.seq); } }
     else if (a.kind === 'saw') { for (const id of a.ids ?? []) { this.divide(id, false, 'cut'); } if (a.hinge) this.turn(a.hinge, 1); }
     else if (a.kind === 'twist') { if (a.hinge) this.turn(a.hinge, 1); }
