@@ -883,6 +883,12 @@ MDLM, MD_L, MD_R = mediastinum.build(dict(emit=emit, emit_mesh=emit_mesh, W=W, t
                                           azygos_arch=AZ_ARCH if RIGHT_IDS else CARINA + np.array([15.0, -10, 5]), hilum_l_scanner=np.mean(_hp4, axis=0)))
 for _i, _d in MDIV.items(): rec_of(_i)['division'] = _d
 TRLM.update(MDLM)
+# ------------------------------------------------------------------ the neck: tracheal resection
+import neck  # noqa: E402
+NKDIR, NKSC = {}, {}
+NKLM = neck.build(dict(emit=emit, emit_mesh=emit_mesh, W=W, tube=tube, sphere=sphere, ts=ts, AT=AT, has=lambda n: n in TS and TS[n] in _has, vox_mm=vox_mm,
+                       skin_mm=skin_mm, CARINA=CARINA, dirs=NKDIR, scalars=NKSC))
+TRLM.update(NKLM)
 CW_L |= MD_L; CW_R |= MD_R
 for appr, ps in PORTS.items():
     for k, nm, p in ps:
@@ -947,6 +953,8 @@ for sd, th in THOR.items():
     landmarks[f'thor-{sd[0]}'] = [round(float(x), 1) for x in W(th['centre'])]
 for k, v in TRLM.items():
     landmarks[k] = [round(float(x), 3) for x in v] if k.endswith('-axis') else [round(float(x), 1) for x in W(v)]
+for k, v in NKDIR.items(): landmarks[k] = [round(float(x), 3) for x in v]
+landmarks['trach-dims'] = [round(NKSC.get('trach-radius', 9.0), 1), round(NKSC.get('stenosis-length', 20.0), 1), 0.0]
 # the left hilum as a pivot (hilar clamp and twist): the centre of its four staple lines, and the axis out into the lung
 _hp = [np.array(rec_of(i)['division']['point']) for i in ('pa-left', 'pv-superior', 'pv-inferior', 'br-lul') if 'division' in rec_of(i)]
 landmarks['hilum-l'] = [round(float(x), 1) for x in np.mean(_hp, axis=0)]
@@ -965,7 +973,7 @@ atlas = {
                {'id': 'ports-r-anterior', 'name': 'Ports, right anterior approach'}, {'id': 'ports-r-posterior', 'name': 'Ports, right posterior approach'},
                {'id': 'segments', 'name': 'Segments (from bronchial territories)'}, {'id': 'trauma', 'name': 'Trauma (schematic)'}, {'id': 'ports-open-left', 'name': 'Thoracotomy, left'}, {'id': 'ports-open-right', 'name': 'Thoracotomy, right'},
                {'id': 'abdomen', 'name': 'Upper abdomen and conduit'}, {'id': 'incisions', 'name': 'Incisions (sternotomy, neck, abdomen)'},
-               {'id': 'muscles', 'name': 'Chest wall muscles (schematic)'}, {'id': 'landmarks', 'name': 'Surface landmarks'}, {'id': 'ports-vats', 'name': 'VATS incisions, uni- and biportal'}, {'id': 'abdomen', 'name': 'Abdomen (oesophagectomy)'}],
+               {'id': 'muscles', 'name': 'Chest wall muscles (schematic)'}, {'id': 'landmarks', 'name': 'Surface landmarks'}, {'id': 'ports-vats', 'name': 'VATS incisions, uni- and biportal'}],
     'structures': structures,
     'landmarks': landmarks,
     'source': {'name': 'Reference CT: 3D Slicer sample CTA (CTA-cardio)', 'licence': 'unstated',

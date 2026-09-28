@@ -502,6 +502,15 @@ export class Scene3D {
       for (const id of a.ids ?? []) this.fadeOut(id, 2200 / this.timeScale);
       const ex = a.expand;
       if (ex) { if (!await this.anim(2600, (e) => this.scaleAbout(ex.ids, ex.pivot, ex.from + (1 - ex.from) * e), token)) return false; }
+    } else if (a.kind === 'anastomose') {
+      const st = this.anastomosis(a);
+      const run = st[0] as THREE.Mesh; const full = run.geometry.index!.count; run.geometry.setDrawRange(0, 0); this.extras.add(run);
+      if (!await this.anim(2200, (e) => { run.geometry.setDrawRange(0, Math.floor(full * e / 3) * 3); }, token)) return false;
+      for (const s of st.slice(1)) {
+        const c0 = s.userData['c'] as THREE.Vector3; const grow = (e: number) => { const k = Math.max(0.01, e); s.scale.setScalar(k); s.position.copy(c0).multiplyScalar(1 - k); };
+        grow(0); this.extras.add(s);
+        if (!await this.anim(260, grow, token)) return false;
+      }
     } else if (a.kind === 'massage') {
       const id = a.ids?.[0] ?? 'heart'; const it = this.items.get(id);
       if (it) {
@@ -542,6 +551,31 @@ export class Scene3D {
     }
     (r as unknown as { setGap?: (m: number) => void })?.setGap?.(Math.max(4, mm));
     this.invalidate(50);
+  }
+
+  /**
+   * An end-to-end airway anastomosis at `at` (axis `axis`, outer radius `radius`): the membranous wall behind with a
+   * running suture, the cartilaginous wall in front with interrupted sutures, knots outside. Returns the stitches in
+   * the order they are placed.
+   */
+  private anastomosis(a: Action): THREE.Object3D[] {
+    const c = new THREE.Vector3(...(a.at ?? [0, 0, 0])); const ax = new THREE.Vector3(...(a.axis ?? [0, 0, 1])).normalize(); const r = a.radius ?? 9;
+    const u = new THREE.Vector3(0, 1, 0).addScaledVector(ax, -ax.y).normalize(); const v = new THREE.Vector3().crossVectors(ax, u);
+    const at = (phi: number, dz: number, dr = 0) => c.clone().addScaledVector(u, Math.cos(phi) * (r + dr)).addScaledVector(v, Math.sin(phi) * (r + dr)).addScaledVector(ax, dz);
+    const pds = new THREE.MeshStandardMaterial({ color: 0x6b3fa0, roughness: 0.4 });
+    const out: THREE.Object3D[] = [];
+    // membranous wall (posterior third): one running suture, over and over
+    const pts: THREE.Vector3[] = []; const n = 9;
+    for (let i = 0; i <= n; i++) { const phi = THREE.MathUtils.degToRad(125 + (110 * i) / n); pts.push(at(phi, 3.2, 0.3), at(phi + 0.06, 0, 1.8), at(phi + 0.12, -3.2, 0.3)); }
+    const run = new THREE.Mesh(new THREE.TubeGeometry(new THREE.CatmullRomCurve3(pts), 160, 0.35, 6), pds); run.name = 'running'; out.push(run);
+    // cartilaginous wall: interrupted sutures around a ring either side, knots outside
+    for (let deg = -105; deg <= 105; deg += 21) {
+      const phi = THREE.MathUtils.degToRad(deg); const g = new THREE.Group();
+      g.add(new THREE.Mesh(new THREE.TubeGeometry(new THREE.CatmullRomCurve3([at(phi, 3.6, 0), at(phi, 1.5, 1.8), at(phi, -1.5, 1.8), at(phi, -3.6, 0)]), 16, 0.35, 6), pds));
+      const knot = new THREE.Mesh(new THREE.SphereGeometry(0.9, 10, 8), pds); knot.position.copy(at(phi, 0, 2.2)); g.add(knot); g.userData['c'] = at(phi, 0, 1.5);
+      out.push(g);
+    }
+    return out;
   }
 
   /** one layer of the chest wall: cut across and opened, split, retracted, passed through or spared */
@@ -690,6 +724,7 @@ export class Scene3D {
       if (it && a.at && a.axis) { this.divide(it.meta.id, false, 'cut', { point: a.at, dir: a.axis, radius: 30 }); const w = a.radius ?? 70; this.openSternum(it, new THREE.Vector3(...a.axis).normalize(), w / 2); this.sternalRetractor(a)?.setGap(20 + w); }
     } else if (a.kind === 'reveal') { for (const id of a.ids ?? []) this.setVisible(id, true); }
     else if (a.kind === 'decorticate') { for (const id of a.ids ?? []) this.setVisible(id, false); }
+    else if (a.kind === 'anastomose') { for (const st of this.anastomosis(a)) this.extras.add(st); }
     else if (a.kind === 'layers') { for (const L of a.layers ?? []) { this.setVisible(L.id, true); void this.layer(L, false, this.seq); } }
     else if (a.kind === 'saw') { for (const id of a.ids ?? []) { this.divide(id, false, 'cut'); } if (a.hinge) this.turn(a.hinge, 1); }
     else if (a.kind === 'twist') { if (a.hinge) this.turn(a.hinge, 1); }

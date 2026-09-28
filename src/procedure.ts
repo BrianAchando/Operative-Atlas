@@ -4,7 +4,7 @@ export interface Choice { text: string; correct: boolean; why: string }
 
 /** what the surgeon does in a step, played in 3D with the instrument coming through a port */
 export interface Action {
-  kind: 'staple' | 'ligate' | 'dissect' | 'open-fissure' | 'staple-fissure' | 'thoracotomy' | 'saw' | 'clamp' | 'twist' | 'suture' | 'massage' | 'layers' | 'sternotomy' | 'reveal' | 'decorticate';
+  kind: 'staple' | 'ligate' | 'dissect' | 'open-fissure' | 'staple-fissure' | 'thoracotomy' | 'saw' | 'clamp' | 'twist' | 'suture' | 'massage' | 'layers' | 'sternotomy' | 'reveal' | 'decorticate' | 'anastomose';
   /** ligate: tie without dividing (mass ligation of the thoracic duct) */
   keep?: boolean;
   /** decorticate: the trapped lung re-expands from this scale about `pivot` as the peel comes off */

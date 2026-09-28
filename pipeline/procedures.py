@@ -1825,8 +1825,127 @@ if B4_OK:
                 if kk in s: s[kk] = [i for i in s[kk] if has(i) or i == 'skin']
         procs[f'b4-{key}'] = {'id': f'b4-{key}', 'op': op_, 'opName': opName, 'side': side, 'name': opName, 'approach': appr, 'summary': summ,
                               'ports': [], 'steps': steps_, 'sources': B4SRC[src], 'sequence': sq, 'group': group}
+# ==================================================================================================== airway: cervical tracheal resection
+TR_RES_OK = has('trach-steno') and 'cut-up' in LM
+if TR_RES_OK:
+    Ln = lambda k: V(LM[k])
+    tlook = lambda tgt, d, dist=300.0: {'eye': R(V(tgt) + V(d) / np.linalg.norm(d) * dist), 'target': R(tgt)}
+    r_tr, L_st = LM['trach-dims'][0], LM['trach-dims'][1]
+    AX = V(LM['trach-axis'])
+    STEN, CU, CL, CRI = Ln('stenosis'), Ln('cut-up'), Ln('cut-lo'), Ln('cricoid')
+    NECK_OFF = [i for i in ('lul', 'lll', 'rul', 'rml', 'rll', 'fissure', 'fissure-h', 'fissure-r', 'trachea', 'br-left-main', 'br-right-main', 'heart', 'laa') if has(i)]
+    AIR = [i for i in ('trach-prox', 'trach-dist', 'trach-steno', 'cricoid', 'thyroid-cart') if has(i)]
+    NERV = [i for i in ('n-rln-neck-l', 'n-rln-neck-r', 'n-sln-ext-l', 'n-sln-ext-r') if has(i)]
+    ant = V([0, 1, 0.15]); obl_r = V([0.9, 0.45, 0.2]); obl_l = V([-0.9, 0.45, 0.2])
+    ring_path = lambda c, r, n=7: [R(c + V([np.sin(t) * (r + 2), np.cos(t) * (r + 2), 0])) for t in np.linspace(-1.9, 1.9, n)]
+    TRSRC = [
+        {'title': 'Auchincloss HG, Wright CD. Complications after tracheal resection and reconstruction: prevention and treatment. J Thorac Dis 2016; and Tracheal stenosis: resection and reconstruction. Ann Cardiothorac Surg 2018;7(2):306-308', 'url': 'https://www.annalscts.com/article/view/16464/16676'},
+        {'title': 'Grillo HC. Surgery of the Trachea and Bronchi. BC Decker, 2004', 'url': 'https://pubmed.ncbi.nlm.nih.gov/?term=Grillo+tracheal+resection+reconstruction+postintubation'},
+        {'title': 'Tracheal resection and anastomosis in postintubation tracheal stenosis: a systematic review. Eur J Cardiothorac Surg 2024', 'url': 'https://pubmed.ncbi.nlm.nih.gov/39254596/'},
+        {'title': 'Tracheal Resection. StatPearls, NCBI Bookshelf', 'url': 'https://www.ncbi.nlm.nih.gov/books/NBK563234/'},
+        {'title': 'Tracheal sleeve resection with suprahyoid and infrahyoid release. Iowa Head and Neck Protocols', 'url': 'https://iowaprotocols.medicine.uiowa.edu/protocols/tracheal-sleeve-resection-suprahyoid-and-infrahyoid-release'},
+    ]
+    DIST_UP = {'ids': ['trach-dist'], 'offset': R(AX * L_st), 'opacity': 1.0}
+    tr_steps = [
+        {'id': 'tr-anatomy', 'phase': 'Anatomy', 'seq': 0, 'title': 'The cervical trachea and its nerves',
+         'body': '<p>About 11 cm long in an adult, 18–22 C-shaped rings; roughly half lies in the neck with the neck extended. The <b>thyroid isthmus</b> crosses rings 2–4; the <b>innominate artery</b> crosses the front low in the neck.</p>'
+                 '<p>Blood supply is <b>segmental and lateral</b> (mostly the inferior thyroid artery): free the trachea circumferentially only for about <b>1 cm beyond each cut</b>.</p>'
+                 '<p>The <b>recurrent laryngeal nerves</b> run up in the <b>tracheo-oesophageal grooves</b> and enter the larynx behind the cricothyroid joints; the right loops under the subclavian and runs more obliquely. '
+                 'The <b>external branch of the superior laryngeal nerve</b> runs with the superior thyroid artery near the upper pole down to cricothyroid; the <b>internal branch</b> pierces the thyrohyoid membrane.</p>',
+         'view': tlook(STEN + V([0, 0, 15]), obl_r, 260), 'spin': True, 'show': [*AIR, *NERV, 'n-sln-int-l', 'n-sln-int-r', 'trach-vessels', 'thyroid', 'esophagus', 'lcca', 'rcca', 'bct'],
+         'hide': NECK_OFF, 'opacity': {'thyroid': 0.35, 'esophagus': 0.6},
+         'highlight': ['trach-steno'], 'danger': NERV, 'labels': ['cricoid', 'thyroid', 'bct', 'n-rln-neck-l', 'n-rln-neck-r', 'n-sln-ext-r', 'trach-vessels'],
+         'ask': ask('How do you protect the recurrent laryngeal nerves during tracheal resection?', 'Keep the dissection on the tracheal wall; do not look for the nerves',
+                    'They run in the tracheo-oesophageal grooves just beside the trachea; staying on the wall (especially laterally and behind) keeps them out of harm. Searching for them in scar injures them.',
+                    'Identify and sling both nerves first', 'Divide the lateral pedicles widely'),
+         'ct': ct(R(STEN), 'axial')},
+        {'id': 'tr-decide', 'phase': 'Decision', 'seq': 1, 'title': 'Before you resect',
+         'body': '<p><b>Rigid and flexible bronchoscopy</b>: the length of the stricture, its distance below the cords and the cricoid, the state of the mucosa; CT for length and extrinsic disease. Dilate to buy time if needed.</p>'
+                 '<p>Operate when the inflammation has settled, the patient is <b>off steroids</b> and off the ventilator, and any tracheostomy can be closed at the same time. '
+                 'Up to about <b>half the adult trachea (4–5 cm)</b> can be resected with mobilisation and release; less in children. Subglottic disease involving the cricoid needs a <b>cricotracheal (Pearson) resection</b> instead.</p>',
+         'view': tlook(STEN, obl_l, 240), 'show': AIR, 'hide': NECK_OFF, 'highlight': ['trach-steno'], 'labels': ['trach-steno', 'cricoid'],
+         'ask': ask('Roughly how much adult trachea can be resected with primary anastomosis?', 'About half (4–5 cm), with mobilisation and release manoeuvres',
+                    'Beyond that, tension rises steeply and dehiscence and restenosis follow.', 'Up to three quarters', 'No more than 1 cm'),
+         'ct': ct(R(STEN), 'coronal')},
+        {'id': 'tr-incision', 'phase': 'Access', 'seq': 2, 'title': 'Position and collar incision',
+         'body': '<p>Supine, a <b>shoulder roll</b>, the neck extended, the head on a ring. Anaesthesia: a small tube passed through or above the stricture (after dilatation if needed), or spontaneous ventilation.</p>'
+                 '<p>A <b>low collar incision</b> two fingerbreadths above the sternal notch; include an old stoma. A partial upper sternal split is added only for low lesions.</p>',
+         'view': tlook(Ln('collar'), V([0, 1, 0.35]), 330), 'show': ['skin', 'incision-collar', 'sternum'], 'opacity': {'skin': 1.0}, 'hide': NECK_OFF,
+         'highlight': ['incision-collar'], 'labels': ['incision-collar'], 'ct': ct(R(Ln('collar')), 'sagittal', 'bone')},
+        {'id': 'tr-flaps', 'phase': 'Access', 'seq': 3, 'title': 'Subplatysmal flaps; straps apart; isthmus divided',
+         'body': '<p>Raise <b>subplatysmal flaps</b> up to the thyroid cartilage and down to the notch (the anterior jugular veins stay down on the straps). Separate the <b>strap muscles in the midline</b> and retract them laterally. '
+                 '<b>Divide the thyroid isthmus</b> and oversew it; roll the lobes off the front of the trachea.</p>',
+         'view': tlook(STEN + V([0, 0, 15]), ant, 280), 'show': ['platysma', 'straps-l', 'straps-r', 'thyroid', *AIR, 'incision-collar'], 'hide': NECK_OFF,
+         'labels': ['platysma', 'straps-l', 'straps-r', 'thyroid'], 'danger': [],
+         'action': {'kind': 'layers', 'label': 'Open the layers', 'port': 'neck-front', 'layers': [
+             {'id': 'platysma', 'label': 'Platysma: flaps raised', 'fate': 'divide', 'point': R(Ln('collar')), 'dir': [0, 0, 1], 'open': 30},
+             {'id': 'straps-l', 'label': 'Left strap muscles: retracted', 'fate': 'retract', 'offset': [-16, 0, 0]},
+             {'id': 'straps-r', 'label': 'Right strap muscles: retracted', 'fate': 'retract', 'offset': [16, 0, 0]},
+             {'id': 'thyroid', 'label': 'Thyroid isthmus: divided', 'fate': 'divide', 'point': R(V([STEN[0], V(S['thyroid']['centroid'])[1], V(S['thyroid']['centroid'])[2]])), 'dir': [1, 0, 0], 'open': 14}]},
+         'ct': ct(R(STEN), 'axial')},
+        {'id': 'tr-front', 'phase': 'Trachea', 'seq': 4, 'title': 'The front of the trachea, and the stricture',
+         'body': '<p>Clear the <b>anterior wall</b> from the cricoid down past the stricture: this plane is avascular. Find the stricture from outside (scarred, narrowed; a needle through the wall seen with the bronchoscope marks its limits exactly).</p>'
+                 '<p>Low in the field the <b>innominate artery</b> crosses in front: keep off it.</p>',
+         'view': tlook(STEN + V([0, 0, 10]), ant, 220), 'show': [*AIR, 'bct', 'thyroid'], 'hide': NECK_OFF, 'opacity': {'thyroid': 0.3},
+         'highlight': ['trach-steno'], 'danger': ['bct'],
+         'action': {'kind': 'dissect', 'tool': 'peanut', 'label': 'Clear the front', 'port': 'neck-front',
+                    'path': [R(CRI + V([0, r_tr + 3, -6])), R(CU + V([0, r_tr + 3, 0])), R(STEN + V([0, r_tr + 2, 0])), R(CL + V([0, r_tr + 3, -8]))]},
+         'ct': ct(R(STEN), 'sagittal')},
+        {'id': 'tr-around', 'phase': 'Trachea', 'seq': 5, 'title': 'Circumferential dissection, on the wall',
+         'body': '<p>Encircle the trachea <b>only at the stricture</b>, staying <b>on the tracheal wall</b> laterally and behind (the plane between trachea and oesophagus). '
+                 'Do not look for the recurrent nerves: they lie in the grooves just outside this plane. Preserve the lateral vessels beyond the segment.</p>',
+         'view': tlook(STEN, obl_r, 200), 'show': [*AIR, *NERV[:2], 'trach-vessels', 'esophagus'], 'hide': NECK_OFF, 'opacity': {'esophagus': 0.6},
+         'highlight': ['trach-steno'], 'danger': [*NERV[:2], 'esophagus', 'trach-vessels'],
+         'action': {'kind': 'dissect', 'tool': 'peanut', 'label': 'Encircle the segment', 'port': 'neck-front', 'path': ring_path(STEN, r_tr)},
+         'ct': ct(R(STEN), 'axial')},
+        {'id': 'tr-lower', 'phase': 'Resection', 'seq': 6, 'title': 'Divide below; cross-field ventilation',
+         'body': '<p>Place <b>lateral stay sutures</b> (2-0) through the full wall a ring below the stricture. Divide the trachea just below it; pass a sterile <b>armoured tube into the distal trachea</b> across the field and ventilate through it.</p>',
+         'view': tlook(CL, ant + V([0.3, 0, 0.2]), 220), 'show': [*AIR, 'stay-sutures', *NERV[:2]], 'hide': NECK_OFF,
+         'highlight': ['trach-steno'], 'danger': NERV[:2],
+         'action': {'kind': 'dissect', 'tool': 'hook', 'label': 'Divide below the stricture', 'port': 'neck-front', 'path': ring_path(CL, r_tr), 'show': ['ett-crossfield']},
+         'ct': ct(R(CL), 'axial')},
+        {'id': 'tr-upper', 'phase': 'Resection', 'seq': 7, 'title': 'Divide above; the segment out',
+         'body': '<p>Stay sutures above, then divide at healthy airway above the stricture (bevel it if the stricture is higher in front). Send the margins. The oral tube is pulled back above the field.</p>',
+         'view': tlook(CU, ant + V([0.3, 0, 0.1]), 230), 'show': [*AIR, 'stay-sutures', 'ett-crossfield', *NERV[:2]], 'hide': NECK_OFF,
+         'highlight': ['trach-steno'], 'danger': NERV[:2],
+         'action': {'kind': 'dissect', 'tool': 'hook', 'label': 'Divide above; remove it', 'port': 'neck-front', 'path': ring_path(CU, r_tr), 'remove': ['trach-steno']},
+         'ct': ct(R(CU), 'axial')},
+        {'id': 'tr-tension', 'phase': 'Release', 'seq': 8, 'title': 'Test the tension; release if needed',
+         'body': '<p>Flex the neck and draw the ends together on the <b>crossed stay sutures</b>: they should meet without strain. Mobilise the <b>front of the distal trachea</b> into the mediastinum by finger (pretracheal plane, avascular).</p>'
+                 '<p>If the ends will not meet: a <b>suprahyoid laryngeal release</b> (Montgomery) gives 1–2 cm; a thyrohyoid release risks the <b>internal branch of the superior laryngeal nerve</b> (aspiration). Low lesions: hilar and pericardial release through the chest.</p>',
+         'view': tlook((CU + CL) / 2, obl_r, 240), 'retract': DIST_UP, 'show': [*AIR, 'stay-sutures', 'ett-crossfield', *NERV], 'hide': NECK_OFF,
+         'highlight': ['trach-dist', 'trach-prox'], 'danger': ['n-sln-ext-l', 'n-sln-ext-r'], 'labels': ['n-sln-ext-r'],
+         'ct': ct(R(CU), 'sagittal')},
+        {'id': 'tr-anast', 'phase': 'Anastomosis', 'seq': 9, 'title': 'The anastomosis: 4-0 PDS',
+         'body': '<p><b>Membranous wall first</b>, behind: a running 4-0 PDS (or interrupted), bites about <b>3–4 mm from the edge and 3–4 mm apart</b>. '
+                 '<b>Cartilaginous wall</b> in front: interrupted 4-0 PDS (or 4-0 Vicryl), each round a ring on both sides, <b>all placed before any is tied</b>, knots outside the lumen.</p>'
+                 '<p>Take the cross-field tube out and <b>advance the oral tube past the anastomosis</b>. Flex the neck, cross and hold the stay sutures, then tie the anterior sutures (from the sides to the front). '
+                 'Leak test under saline to 20–30 cmH2O. Cover with the strap muscles or thyroid; put tissue between the suture line and the innominate artery if they touch.</p>',
+         'view': tlook(CU, ant + V([0.4, 0, 0.1]), 200), 'retract': DIST_UP, 'show': [*AIR, 'ett-oral', 'stay-sutures', *NERV[:2]], 'hide': [*NECK_OFF, 'ett-crossfield'], 'opacity': {'ett-oral': 0.5},
+         'highlight': ['trach-prox', 'trach-dist'], 'danger': NERV[:2],
+         'action': {'kind': 'anastomose', 'label': 'Sew the anastomosis', 'port': 'neck-front', 'at': R(CU - AX * 0.5), 'axis': R(AX), 'radius': r_tr},
+         'ask': ask('When are the anterior (cartilaginous) sutures tied?', 'After all are placed, the neck flexed and the stay sutures crossed',
+                    'Placing every suture first keeps the view open; flexion and the stay sutures take the tension off while they are tied.', 'One by one as each is placed', 'Before the membranous wall'),
+         'ct': ct(R(CU), 'axial')},
+        {'id': 'tr-after', 'phase': 'After', 'seq': 10, 'title': 'Guardian stitch, extubation, bronchoscopy',
+         'body': '<p>A heavy <b>guardian (chin-to-chest) suture</b> keeps the neck flexed for about 7 days. <b>Extubate in theatre</b> where possible. Bronchoscopy before discharge (around day 7).</p>'
+                 '<p>Watch for: <b>stridor</b> (oedema: steroids, racemic adrenaline, a small tube; dehiscence must be excluded), <b>air or wound infection</b> (a leak), <b>voice change or aspiration</b> (nerve injury). '
+                 'In large series about <b>95% have a good airway</b>; restenosis around 4–5%, and dehiscence is the complication that kills.</p>',
+         'view': tlook(CU, ant, 260), 'retract': DIST_UP, 'show': [*AIR, *NERV[:2]], 'hide': [*NECK_OFF, 'ett-crossfield', 'ett-oral'], 'labels': ['trach-prox', 'trach-dist'], 'ct': ct(R(CU), 'sagittal')},
+    ]
+    for s in tr_steps:
+        if s.get('seq', 0) >= 4:   # flaps and straps already turned back: out of the way
+            s['hide'] = [*s.get('hide', []), 'platysma', 'straps-l', 'straps-r']; s['opacity'] = {'thyroid': 0.3, **s.get('opacity', {})}
+        named = set(s.get('highlight', [])) | set(s.get('danger', [])) | set(s.get('labels', [])) | set(s.get('show', []))
+        s['hide'] = [*s.get('hide', []), *[i for i in ('n-phrenic', 'n-vagus', 'n-rln', 'n-phrenic-r', 'n-vagus-r', 'azygos', 'lig-art', 'lul-arteries', 'lul-veins', 'lul-bronchi', 'rul-arteries', 'rul-veins', 'rul-bronchi') if has(i) and i not in named]]
+        s['opacity'] = {**{f'vert-t{i}': 0.25 for i in range(2, 11)}, 'aorta': 0.5, **s.get('opacity', {})}
+        for kk in ('highlight', 'danger', 'labels', 'show'):
+            if kk in s: s[kk] = [i for i in s[kk] if has(i)]
+    procs['trachea-cervical'] = {'id': 'trachea-cervical', 'op': 'trachea', 'opName': 'Tracheal resection', 'side': 'both', 'name': 'Tracheal resection and reconstruction', 'approach': 'Cervical (collar incision)',
+                                 'summary': 'Collar incision, subplatysmal flaps, stricture freed on the wall, resected, end-to-end 4-0 PDS anastomosis.', 'ports': [], 'steps': tr_steps, 'sources': TRSRC, 'group': 'Airway',
+                                 'sequence': seq(('Anatomy', 'other'), ('Decide', 'other'), ('Incision', 'other'), ('Layers', 'other'), ('Front', 'other'), ('Around', 'other'), ('Below', 'bronchus'), ('Above', 'bronchus'), ('Tension', 'other'), ('Anastomosis', 'fissure'), ('After', 'other'))}
 # operations appear in the menu in this order
-ORDER = ['position', 'thoracotomy-l', 'thoracotomy-r', 'vats-ports-l', 'vats-ports-r', 'lul', 'lll', 'rul', 'rml', 'rll', 'pnl', 'pnr', 'seg-lingula', 'seg-lul-updiv', 'seg-s6', 'thymectomy', 'oesophagectomy', 'duct', 'empyema', 'rt', 'clamshell', 'cardio', 'tract', 'hilar']
+ORDER = ['position', 'thoracotomy-l', 'thoracotomy-r', 'vats-ports-l', 'vats-ports-r', 'lul', 'lll', 'rul', 'rml', 'rll', 'pnl', 'pnr', 'seg-lingula', 'seg-lul-updiv', 'seg-s6', 'trachea', 'thymectomy', 'oesophagectomy', 'duct', 'empyema', 'rt', 'clamshell', 'cardio', 'tract', 'hilar']
 procs = dict(sorted(procs.items(), key=lambda kv: (ORDER.index(kv[1]['op']), list(procs).index(kv[0]))))
 for v in procs.values():
     v['group'] = v.get('group') or ('Pneumonectomy' if v['op'].startswith('pn') else 'Segmentectomy' if v['op'].startswith('seg-') else 'Lobectomy')
