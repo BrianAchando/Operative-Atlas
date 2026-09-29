@@ -4169,6 +4169,466 @@ if TX_OK:
             procs[key] = {'id': key, 'op': 'ppe', 'opName': 'Post-pneumonectomy empyema and BPF', 'side': 'right', 'name': 'Post-pneumonectomy empyema and bronchopleural fistula', 'approach': appr,
                           'summary': 'The infected post-pneumonectomy space and a stump fistula: protect the other lung, drain, then open window and Clagett closure, or stump re-closure with a muscle flap.',
                           'ports': [], 'steps': steps_, 'sources': PPE_SRC, 'sequence': sq, 'group': 'Pleura'}
+# ==================================================================================================== vascular: AAA, aorto-iliac occlusive disease, thoracic aortic aneurysm
+VASC_OK = has('aaa-infra') and has('cia-l') and 'bifurcation' in LM
+if VASC_OK:
+    ev = lambda t: f'<p class="evidence"><b>Evidence:</b> {t}</p>'
+    pm = lambda term: 'https://pubmed.ncbi.nlm.nih.gov/?term=' + term.replace(' ', '+')
+    chain = lambda *xs: '<div class="chain">' + '<i>→</i>'.join(f'<span class="hot">{x[1:]}</span>' if x.startswith('!') else f'<span>{x}</span>' for x in xs) + '</div>'
+    tl = lambda tgt, d, dist=300: {'eye': R(V(tgt) + V(d) / np.linalg.norm(V(d)) * dist), 'target': R(tgt)}
+    Pv = lambda k: V(LM[k]) if k in LM else V(S[k]['centroid'])
+    hv = lambda xs: [i for i in xs if has(i)]
+    BELOW = '<p class="evidence"><b>Note:</b> the reference CT ends at the 4th lumbar vertebra; the iliac and femoral vessels and the groins are drawn to typical adult dimensions below it.</p>'
+    VESS = hv(['aorta', 'coeliac', 'sma', 'renal-a-l', 'renal-a-r', 'ima', 'renal-v-l', 'ivc-infra', 'ivc', 'kidney-l', 'kidney-r',
+               *[f'{v}-{s}' for v in ('cia', 'eia', 'iia', 'cfa', 'sfa', 'pfa', 'civ') for s in ('l', 'r')]])
+    VPATH = [s_['id'] for s_ in atlas['structures'] if s_['group'] == 'vascular' and s_['id'] not in VESS] + hv(['incision-laparotomy', 'incision-flank-l', 'incision-groin-l', 'incision-groin-r', 'incision-axillary-r'])
+    V_OFF = [i for i in S if S[i]['group'] in ('lungs', 'nodes', 'nerves', 'airway', 'arteries', 'veins', 'pleura', 'segments', 'lul-intra', 'lll-intra', 'rul-intra', 'trauma', 'cardiac', 'pathology')
+             or S[i]['group'].startswith('ports')] + hv(['lul', 'lll', 'rul', 'rml', 'rll', 'fissure', 'fissure-h', 'fissure-r', 'esophagus', 'thymus', 'thyroid', 'stomach', 'duodenum', 'pancreas', 'spleen', 'liver', 'conduit-chest', 'conduit-neck', 'lga', 'rgea', 'thoracic-duct', 'cisterna', 'azygos'])
+    ABD = Pv('aaa'); front = lambda t, dist=380, d=(0.1, 1, 0.3): tl(t, d, dist)
+    AB_OP = {'aorta': 0.55, 'kidney-l': 0.5, 'kidney-r': 0.5, 'ivc-infra': 0.6, 'ivc': 0.6, **{f'vert-{x}': 0.25 for x in ('t10', 't11', 't12')}}
+    AAA_SRC = [
+        {'title': 'Wanhainen A, et al. European Society for Vascular Surgery (ESVS) 2024 clinical practice guidelines on the management of abdominal aorto-iliac artery aneurysms. Eur J Vasc Endovasc Surg 2024;67:192-331', 'url': 'https://www.sciencedirect.com/science/article/pii/S1078588423008894'},
+        {'title': 'Oderich GS, et al. Reporting standards for endovascular aortic repair of aneurysms involving the renal-mesenteric arteries (SVS). J Vasc Surg 2021;73(1 Suppl):4S-52S', 'url': 'https://www.sciencedirect.com/science/article/pii/S0741521420314178'},
+        {'title': 'Lederle FA, et al. Rupture rate of large abdominal aortic aneurysms in patients refusing or unfit for elective repair. JAMA 2002;287:2968-72', 'url': 'https://pure.johnshopkins.edu/en/publications/rupture-rate-of-large-abdominal-aortic-aneurysms-in-patients-refu-6/'},
+        {'title': 'Powell JT, et al. Final 12-year follow-up of surgery versus surveillance in the UK Small Aneurysm Trial. Br J Surg 2007;94:702-8', 'url': 'https://academic.oup.com/bjs/article/94/6/702/6142549'},
+        {'title': 'Lederle FA, et al. Immediate repair compared with surveillance of small abdominal aortic aneurysms (ADAM). N Engl J Med 2002;346:1437-44', 'url': 'https://www.acc.org/latest-in-cardiology/clinical-trials/2010/02/22/19/20/adam'},
+        {'title': 'Patel R, et al. Endovascular versus open repair of abdominal aortic aneurysm in 15 years\' follow-up of the UK EVAR trial 1. Lancet 2016;388:2366-74', 'url': 'https://www.ncbi.nlm.nih.gov/books/NBK476568/'},
+        {'title': 'Lederle FA, et al. Open versus endovascular repair of abdominal aortic aneurysm (OVER long-term). N Engl J Med 2019;380:2126-35', 'url': 'https://www.tctmd.com/news/over-trial-long-term-mortality-similar-after-endovascular-and-open-aaa-repair'},
+        {'title': 'De Bruin JL, et al. Long-term outcome of open or endovascular repair of abdominal aortic aneurysm (DREAM). N Engl J Med 2010;362:1881-9', 'url': 'https://www.acc.org/latest-in-cardiology/clinical-trials/2010/05/25/16/28/dream'},
+        {'title': 'IMPROVE trial investigators. Comparative clinical effectiveness and cost effectiveness of endovascular strategy v open repair for ruptured AAA: three year results. BMJ 2017;359:j4859', 'url': 'https://evtoday.com/news/three-year-improve-results-compare-treatment-strategies-for-ruptured-aaa'},
+        {'title': 'Jongkind V, et al. Juxtarenal aortic aneurysm repair: a systematic review. J Vasc Surg 2010;52:760-7', 'url': 'https://www.ncbi.nlm.nih.gov/books/NBK80665/'},
+        {'title': 'Sicard GA, et al. Transabdominal versus retroperitoneal incision for abdominal aortic surgery: report of a prospective randomized trial. J Vasc Surg 1995;21:174-83', 'url': 'https://www.sciencedirect.com/science/article/pii/S0741521495702601'},
+        {'title': 'Ashton HA, et al. The Multicentre Aneurysm Screening Study (MASS). Lancet 2002;360:1531-9; 13-year results, Br J Surg 2012;99:1649-56', 'url': 'https://pmc.ncbi.nlm.nih.gov/articles/PMC3569614/'},
+        {'title': 'Nair R, Abdool-Carrim ATO, Chetty R, Robbs JV. Arterial aneurysms in patients infected with human immunodeficiency virus. J Vasc Surg 1999;29:600-7', 'url': 'https://www.sciencedirect.com/science/article/pii/S0741521499703046'},
+        {'title': 'Wu L. Abdominal aortic aneurysm in Africa (editorial). J West Afr Coll Surg 2022', 'url': 'https://pmc.ncbi.nlm.nih.gov/articles/PMC9067627/'},
+    ]
+    AIOD_SRC = [
+        {'title': 'Norgren L, et al. Inter-Society Consensus for the Management of Peripheral Arterial Disease (TASC II). J Vasc Surg 2007;45(Suppl S):S5-67', 'url': 'https://radcalculator.com/calc/tasc-ii'},
+        {'title': 'Nordanstig J, et al. ESVS 2024 clinical practice guidelines on the management of asymptomatic lower limb peripheral arterial disease and intermittent claudication. Eur J Vasc Endovasc Surg 2024;67:9-96', 'url': 'https://www.sciencedirect.com/science/article/pii/S1078588423007414'},
+        {'title': 'Conte MS, et al. Global vascular guidelines on the management of chronic limb-threatening ischemia. J Vasc Surg 2019;69(6S):3S-125S', 'url': 'https://angiolsurgery.org/library/recommendations/2019/recommendations_chronic_limb-threatening_ischemia_2019.pdf'},
+        {'title': 'de Vries SO, Hunink MG. Results of aortic bifurcation grafts for aortoiliac occlusive disease: a meta-analysis. J Vasc Surg 1997;26:558-69', 'url': 'https://www.ncbi.nlm.nih.gov/books/NBK66938/'},
+        {'title': 'Management of extensive aorto-iliac disease: a systematic review and meta-analysis of 9,319 patients. Cardiovasc Intervent Radiol 2021', 'url': 'https://link.springer.com/article/10.1007/s00270-021-02785-6'},
+        {'title': 'Mwipatayi BP, et al. A comparison of covered vs bare expandable stents for the treatment of aortoiliac occlusive disease (COBEST). J Vasc Surg 2011;54:1561-70; 5-year results J Vasc Surg 2016;64:83-94', 'url': 'https://www.sciencedirect.com/science/article/pii/S0741521411015862'},
+        {'title': 'Taeymans K, et al. Three-year outcome of the covered endovascular reconstruction of the aortic bifurcation technique for aortoiliac occlusive disease. J Vasc Surg 2018;67:1438-47', 'url': 'https://www.sciencedirect.com/science/article/abs/pii/S0741521417322978'},
+        {'title': 'Martin D, Katz SG. Axillofemoral bypass for aortoiliac occlusive disease. Am J Surg 2000;180:100-3', 'url': 'https://www.sciencedirect.com/science/article/abs/pii/S0002961000004268'},
+        {'title': 'Robbs JV, Paruk N. Management of HIV vasculopathy: a South African experience. Eur J Vasc Endovasc Surg 2010;39(Suppl 1):S25-31', 'url': 'https://www.sciencedirect.com/science/article/pii/S1078588410000055'},
+        {'title': 'Van Marle J, Mistry PP, Botes K. HIV-occlusive vascular disease. S Afr J Surg', 'url': 'https://www.ajol.info/index.php/sajs/article/view/50473'},
+        {'title': 'Genga E, Oyoo O, Adebajo A. Vasculitis in Africa. Curr Rheumatol Rep 2018;20:4', 'url': 'https://link.springer.com/article/10.1007/s11926-018-0711-y'},
+        {'title': 'Leriche R, Morel A. The syndrome of thrombotic obliteration of the aortic bifurcation. Ann Surg 1948;127:193-206', 'url': 'https://www.ccjm.org/content/88/9/482'},
+    ]
+    TAA_SRC = [
+        {'title': 'Isselbacher EM, et al. 2022 ACC/AHA guideline for the diagnosis and management of aortic disease. Circulation 2022;146:e334-e482', 'url': 'https://www.acc.org/latest-in-cardiology/ten-points-to-remember/2022/11/01/12/21/2022-guideline-on-aortic-disease-2-gl-ad'},
+        {'title': 'Czerny M, et al. 2024 EACTS/STS guidelines for diagnosing and treating acute and chronic syndromes of the aortic organ. Eur J Cardiothorac Surg 2024;65:ezad426', 'url': 'https://academic.oup.com/ejcts/article/65/2/ezad426/7614462'},
+        {'title': 'Coady MA, et al. What is the appropriate size criterion for resection of thoracic aortic aneurysms? J Thorac Cardiovasc Surg 1997;113:476-91', 'url': 'https://www.sciencedirect.com/science/article/pii/S002252239770360X'},
+        {'title': 'Coselli JS, et al. Cerebrospinal fluid drainage reduces paraplegia after thoracoabdominal aortic aneurysm repair: a randomized clinical trial. J Vasc Surg 2002;35:631-9', 'url': 'https://www.sciencedirect.com/science/article/pii/S0741521402791477'},
+        {'title': 'Coselli JS, et al. Outcomes of 3309 thoracoabdominal aortic aneurysm repairs. J Thorac Cardiovasc Surg 2016;151:1323-38', 'url': 'https://vascsurg.me/wp-content/uploads/2016/05/open-taaa-repair-coselli.pdf'},
+        {'title': 'Fairman RM, et al. Pivotal results of the Medtronic Vascular Talent thoracic stent graft system: the VALOR trial. J Vasc Surg 2008;48:546-54', 'url': 'https://www.sciencedirect.com/science/article/pii/S0741521408005119'},
+        {'title': 'Cheng D, et al. Endovascular aortic repair versus open surgical repair for descending thoracic aortic disease: a systematic review and meta-analysis. J Am Coll Cardiol 2010;55:986-1001', 'url': 'https://www.ncbi.nlm.nih.gov/books/NBK79689/'},
+        {'title': 'Matsumura JS, et al. The Society for Vascular Surgery practice guidelines: management of the left subclavian artery with thoracic endovascular aortic repair. J Vasc Surg 2009;50:1155-8', 'url': 'https://www.sciencedirect.com/science/article/pii/S0741521409018230'},
+        {'title': 'Spinal cord injury after open and endovascular repair of descending thoracic and thoracoabdominal aortic aneurysms: a meta-analysis. Ann Cardiothorac Surg 2023;12:409-17', 'url': 'https://www.annalscts.com/article/view/17051/html'},
+        {'title': 'Frederick JR, Woo YJ. Thoracoabdominal aortic aneurysm (Crawford/Safi classification). Ann Cardiothorac Surg 2012;1:277-85', 'url': 'https://www.annalscts.com/article/view/1070/html'},
+        {'title': 'Yan TD, et al. Consensus on hypothermia in aortic arch surgery. Ann Cardiothorac Surg 2013;2:163-8', 'url': 'https://pmc.ncbi.nlm.nih.gov/articles/PMC3741830/'},
+        {'title': 'Syphilitic aortitis (review). Interact CardioVasc Thorac Surg 2012;14:223', 'url': 'https://academic.oup.com/icvts/article/14/2/223/646377'},
+    ]
+
+    def vstep(id_, phase, title, body, view, show=(), hide=(), highlight=(), danger=(), labels=(), opacity=None, action=None, quiz=None, lead=None, after=False, ctp=None, spin=False):
+        s = {'id': id_, 'phase': phase, 'title': title, 'body': body, 'view': view, 'show': list(show), 'hide': list(hide), 'highlight': list(highlight),
+             'danger': list(danger), 'labels': list(labels), 'opacity': opacity or {}, 'ct': ct(R(ctp if ctp is not None else view['target']), 'axial')}
+        if action: s['action'] = action
+        if quiz: s['ask'] = quiz
+        if lead: s['lead'] = lead
+        if after: s['askAfter'] = True
+        if spin: s['spin'] = True
+        return s
+
+    def build_v(groups):
+        out, sq_ = [], []
+        for i, (lab, kind, sts) in enumerate(groups):
+            sq_.append({'label': lab, 'kind': kind})
+            for s in sts:
+                if s is None: continue
+                out.append({**s, 'seq': i})
+        return out, sq_
+
+    def finish(key, op_, opName, appr, summ, steps_, sq, src, side='both'):
+        for s in steps_:
+            named = set(s.get('highlight', [])) | set(s.get('danger', [])) | set(s.get('labels', [])) | set(s.get('show', []))
+            s['hide'] = [*s.get('hide', []), *[i for i in V_OFF if i not in named], *[i for i in VPATH if i not in named],
+                         *[k for k in S if k.startswith('rib-') and k not in named]]
+            s['opacity'] = {**{f'vert-t{i}': 0.22 for i in range(2, 13)}, **s.get('opacity', {})}
+            for kk in ('highlight', 'danger', 'labels', 'show', 'hide'):
+                if kk in s: s[kk] = [i for i in s[kk] if has(i) or i == 'skin']
+        procs[key] = {'id': key, 'op': op_, 'opName': opName, 'side': side, 'name': opName, 'approach': appr, 'summary': summ,
+                      'ports': [], 'steps': steps_, 'sources': src, 'sequence': sq, 'group': 'Vascular'}
+
+    # ================================================================================================ abdominal aortic aneurysm
+    RUP = ('<table class="mini"><tr><th>Diameter</th><th>1-year risk of (probable) rupture, untreated</th></tr>'
+           '<tr><td>5.5–5.9 cm</td><td>9.4%</td></tr><tr><td>6.0–6.9 cm</td><td>10.2% (19.1% at 6.5–6.9)</td></tr><tr><td>7.0 cm or more</td><td>32.5%</td></tr></table>')
+    NECK = ('<table class="mini"><tr><th>Type (SVS 2021)</th><th>Where the aneurysm starts</th><th>Proximal clamp and repair</th></tr>'
+            '<tr><td><b>Infrarenal</b></td><td>a healthy neck of 10–15 mm or more below the lowest renal artery</td><td>infrarenal clamp; EVAR usually possible</td></tr>'
+            '<tr><td>Short neck</td><td>neck 4–10 mm</td><td>often suprarenal clamp; EVAR marginal</td></tr>'
+            '<tr><td><b>Juxtarenal</b></td><td>at the renal arteries (neck 4 mm or less), not involving them</td><td>suprarenal clamp, anastomosis at the renal origins; or fenestrated EVAR</td></tr>'
+            '<tr><td><b>Pararenal / paravisceral</b> ("suprarenal")</td><td>involving the renal arteries, up to (pararenal) or including (paravisceral) the SMA</td><td>supracoeliac clamp, renal and visceral reconstruction; or fenestrated/branched EVAR</td></tr>'
+            '<tr><td>Thoracoabdominal extent IV</td><td>up to the coeliac axis or diaphragmatic hiatus</td><td>thoracoabdominal repair</td></tr></table>')
+    aaa_patho = vstep('aaa-patho', 'Pathophysiology', 'Pathophysiology: abdominal aortic aneurysm',
+        '<p><b>What fails is the media.</b> Elastin is broken down (matrix metalloproteinases from macrophages and smooth muscle cells), smooth muscle cells die, and chronic inflammation involves the adventitia. The infrarenal aorta has the fewest vasa vasorum and the least elastin: most aneurysms start there. Risk factors: <b>age, male sex, smoking</b> (the strongest modifiable), family history, hypertension; diabetes is, oddly, protective.</p>'
+        + chain('Elastin degradation, loss of smooth muscle', 'Dilatation', 'Wall tension rises with radius (Laplace: T = P × r)', '!More dilatation, faster growth', '!Rupture')
+        + '<p>An aneurysm is a diameter of <b>3.0 cm or more</b>. Growth accelerates as it enlarges; rupture risk climbs steeply above 5.5 cm:</p>' + RUP
+        + '<p><b>Repair thresholds</b>: 5.5 cm in men, 5.0 cm in women (smaller aortas rupture at smaller diameters), rapid growth (about 1 cm a year, confirmed), or symptoms (tenderness, back pain). Below that, <b>surveillance</b>: early repair of 4.0–5.5 cm aneurysms did not improve survival.</p>'
+        '<p><b>The neck</b> decides the operation:</p>' + NECK
+        + '<p><b>In Africa</b> aortic aneurysms present younger and more often from <b>infection or HIV-associated vasculitis</b> (saccular, at atypical sites, sometimes multiple); many present ruptured. Always consider an infective (mycotic) aneurysm: fever, raised inflammatory markers, a saccular or lobulated shape, periaortic gas or fluid.</p>'
+        + ev('rupture rates: Lederle et al., JAMA 2002 (198 patients refusing or unfit for repair). Small aneurysms: UK Small Aneurysm Trial 12-year follow-up (Powell et al., Br J Surg 2007: no survival difference, HR 0.90) and ADAM (NEJM 2002: RR 1.21). Thresholds and surveillance: ESVS 2024 (Wanhainen et al.). Anatomical definitions: SVS reporting standards (Oderich et al., J Vasc Surg 2021). HIV-associated aneurysms: Nair et al. (J Vasc Surg 1999; mean age 30, often multiple, atypical sites). African AAA: Wu, J West Afr Coll Surg 2022.'),
+        front(ABD), show=[*VESS, 'aaa-infra'], highlight=['aaa-infra'], labels=['aaa-infra', 'renal-a-l', 'renal-v-l', 'sma', 'ima', 'cia-r'], opacity={**AB_OP, 'aaa-infra': 0.6},
+        quiz=ask('Why does an aneurysm grow faster as it gets bigger?', 'Wall tension rises with the radius (Laplace\'s law), so the larger the aneurysm, the greater the stress on an already weakened wall',
+                 'T = P × r: at the same blood pressure a 6 cm aneurysm carries twice the wall tension of a 3 cm aorta. That is why growth and rupture risk accelerate with size.', 'Blood flow slows', 'Thrombus lining the sac weakens it', 'Blood pressure rises with size'),
+        after=True, spin=True)
+    aaa_anat = vstep('aaa-anatomy', 'Anatomy', 'The infrarenal aorta and its neighbours',
+        '<p>From above down on the front of the aorta: the <b>coeliac trunk</b> (T12/L1), the <b>SMA</b> about 1 cm lower, the <b>renal arteries</b> (L1/L2, the right passing behind the IVC), the <b>left renal vein</b> crossing in front of the aorta just below the SMA (the upper limit of the infrarenal neck), the <b>IMA</b> from the left front at L3, and the bifurcation at L4.</p>'
+        '<p>What to protect: the <b>left renal vein</b> above the neck (and a retroaortic or circumaortic variant, which tears when clamping); the <b>duodenum</b> (3rd and 4th parts) over the aneurysm; the <b>IVC</b> to the right and the <b>iliac veins</b> behind the iliac arteries (the left common iliac vein runs behind the right common iliac artery): encircling the iliac arteries tears them; the <b>ureters</b> crossing the iliac bifurcations; the <b>superior hypogastric plexus</b> on the left of the aorta and over the left common iliac (dissect on the right to preserve ejaculation); the <b>lumbar arteries</b> behind, which back-bleed into the opened sac.</p>'
+        + BELOW,
+        front(ABD, 340), show=VESS, highlight=['renal-v-l'], danger=hv(['renal-v-l', 'ivc-infra', 'civ-l', 'civ-r']), labels=['coeliac', 'sma', 'renal-a-l', 'renal-a-r', 'renal-v-l', 'ima', 'ivc-infra', 'civ-l'], opacity=AB_OP,
+        quiz=ask('Which vein lies behind the right common iliac artery and is torn by careless encircling of that artery?', 'The left common iliac vein (near the confluence of the IVC)',
+                 'The iliac veins lie behind and slightly to the right of the arteries; the left common iliac vein crosses behind the right common iliac artery to reach the IVC. Clamp the iliacs without encircling them.', 'The left renal vein', 'The inferior mesenteric vein', 'The gonadal vein'),
+        spin=True)
+    LAP = hv(['incision-laparotomy'])
+    lap_step = lambda pre: vstep(f'{pre}-lap', 'Access', 'Midline laparotomy; expose the aorta',
+        '<p>Supine, arms out; an epidural or good analgesia; arterial line, central line, cell salvage, warming; prophylactic antibiotics. Prepare from nipples to knees (the groins in the field).</p>'
+        '<p><b>Midline laparotomy</b> from the xiphoid to the pubis. Lift the transverse colon up, the small bowel to the right in a bag; incise the <b>posterior peritoneum</b> to the right of the duodenojejunal flexure, mobilise the <b>4th part of the duodenum</b> to the right (divide the ligament of Treitz and the inferior mesenteric vein if needed), and open the peritoneum down over the aneurysm to the bifurcation, staying to the <b>right</b> of the IMA and the hypogastric plexus.</p>',
+        front(ABD, 520, (0.05, 1, 0.45)), show=['skin', *LAP, *VESS], highlight=LAP, labels=LAP, opacity={**AB_OP, 'skin': 0.35},
+        action={'kind': 'reveal', 'label': 'Open the abdomen', 'port': 'laparotomy', 'ids': LAP} if LAP else None)
+    def neck_step(pre, sac_id, level='infra'):
+        tgt = Pv('evar-neck')
+        body = {'infra': '<p>Find the <b>left renal vein</b> crossing the neck and retract it upward; dissect the neck below it on both sides down to the vertebral body, enough for a clamp front-to-back (no need to encircle). Identify the <b>renal arteries</b> above.</p>',
+                'juxta': '<p>The aneurysm reaches the renal arteries: the clamp must go <b>above</b> them. Mobilise the <b>left renal vein</b>; if it prevents access, <b>divide it close to the IVC</b>, keeping its gonadal, adrenal and lumbar tributaries (they drain the kidney afterwards). Expose the aorta between the renal arteries and the SMA, taking care of the SMA origin and the renal ostia.</p>',
+                'supra': '<p>Through the left retroperitoneum: sweep the <b>left kidney</b> (or leave it posterior), the colon and the spleen forward; divide the <b>left crus of the diaphragm</b> to reach the supracoeliac aorta. The left renal artery is the landmark: follow it to the aorta. Expose the coeliac, SMA and both renal origins.</p>'}[level]
+        return vstep(f'{pre}-neck', 'Exposure', 'Expose the neck' + (' and the renal vein' if level != 'supra' else ' and the visceral aorta'), body,
+                     front(tgt, 260, (0.2, 1, 0.5)), show=[*VESS, sac_id], highlight=hv(['renal-v-l']) if level != 'supra' else hv(['coeliac', 'sma']),
+                     danger=hv(['renal-v-l', 'renal-a-l', 'renal-a-r', 'sma']), labels=hv(['renal-v-l', 'renal-a-l', 'renal-a-r', 'sma', 'coeliac']), opacity={**AB_OP, sac_id: 0.55})
+    iliac_step = lambda pre, sac_id: vstep(f'{pre}-iliacs', 'Exposure', 'Control the iliac arteries (do not encircle them)',
+        '<p>Open the peritoneum over both <b>common iliac arteries</b>, see the <b>ureters</b> crossing their bifurcations, and prepare clamp sites on healthy artery. <b>Do not encircle</b> the iliac arteries: the iliac veins are stuck behind them. If the iliacs are aneurysmal too, go to the external and internal iliac arteries.</p>'
+        + BELOW, front(Pv('bifurcation'), 300, (0.1, 1, 0.4)), show=[*VESS, sac_id], highlight=hv(['cia-l', 'cia-r']), danger=hv(['civ-l', 'civ-r', 'ivc-infra']), labels=hv(['cia-l', 'cia-r', 'civ-l', 'civ-r', 'iia-l']), opacity={**AB_OP, sac_id: 0.5})
+    def clamp_step(pre, level, sac_id):
+        z = {'infra': Pv('evar-neck'), 'juxta': (Pv('sma') + Pv('renal-l')) / 2, 'supra': Pv('coeliac') + V([0, 0, 14])}[level]
+        txt = {'infra': 'the <b>infrarenal neck</b>, below the renal arteries',
+               'juxta': 'the aorta <b>between the renal arteries and the SMA</b> (suprarenal), or above the SMA if there is no room; the renal arteries are now ischaemic: note the time',
+               'supra': 'the <b>supracoeliac</b> aorta at the hiatus: the liver, bowel and kidneys are all ischaemic; work fast, and <b>perfuse the kidneys with cold crystalloid</b>'}[level]
+        return vstep(f'{pre}-clamp', 'Clamp', 'Heparin, clamp distally, then proximally',
+            f'<p>Heparin (about 70–100 U/kg). Clamp the <b>iliac arteries first</b> (so that debris from the sac goes nowhere), then {txt}. Tell the anaesthetist before clamping: afterload rises; before releasing, fluid and vasoconstrictor ready.</p>'
+            + (ev('ESVS 2024: consider cold renal perfusion when the suprarenal clamp time is expected to exceed about 25 minutes. In a systematic review of 1,256 open juxtarenal repairs (Jongkind et al., J Vasc Surg 2010), 30-day mortality was 2.9% and 3.3% needed new dialysis.') if level != 'infra' else ''),
+            front(z, 240, (0.2, 1, 0.5)), show=[*VESS, sac_id], highlight=['aorta'], danger=hv(['renal-a-l', 'renal-a-r', 'sma', 'renal-v-l']), labels=hv(['renal-a-l', 'sma', 'renal-v-l']), opacity={**AB_OP, sac_id: 0.45},
+            action={'kind': 'clamp', 'label': 'Clamp the aorta', 'port': 'laparotomy' if level != 'supra' else 'flank-l', 'at': R(z), 'axis': [0, 0.3, 1], 'radius': 13, 'jawLen': 60})
+    open_sac = lambda pre, sac_id: vstep(f'{pre}-sac', 'Sac', 'Open the sac, clear the thrombus, stop the back-bleeding',
+        '<p>Open the aneurysm longitudinally on its right anterior surface (away from the IMA), T-ing the incision at the neck and at the bifurcation. Scoop out the laminated <b>thrombus</b>. <b>Oversew the lumbar arteries</b> from inside with figure-of-eight 2-0 or 3-0 sutures; back-bleeding from the <b>IMA</b>: if it bleeds briskly (good collaterals) oversew its origin from inside; if the flow is poor and the colon may depend on it, keep a button for reimplantation.</p>'
+        + ev('ESVS 2024: routine IMA reimplantation is not recommended; consider it when pelvic and colonic perfusion is doubtful (both internal iliacs diseased or excluded, previous colectomy, poor back-bleeding). Colonic ischaemia after open repair presents with bloody diarrhoea, acidosis or distension: sigmoidoscopy early.'),
+        front(ABD, 260, (0.3, 1, 0.3)), show=[*VESS, sac_id], highlight=[sac_id], danger=hv(['ima']), labels=hv([sac_id, 'ima']), opacity={**AB_OP, sac_id: 0.35},
+        action={'kind': 'dissect', 'tool': 'hook', 'label': 'Open the sac', 'port': 'laparotomy', 'path': [R(Pv('evar-neck') + V([0, 25, -10])), R(ABD + V([0, 30, 0])), R(Pv('bifurcation') + V([0, 25, 15]))]})
+    def graft_step(pre, graft, level):
+        body = {'infra': '<p><b>Proximal anastomosis</b> first: a straight <b>Dacron tube</b> (or bifurcated if the iliacs are aneurysmal), running 3-0 polypropylene, full thickness of the neck with generous bites (buttressing with felt strips if the wall is poor). Test it by releasing the clamp briefly with the graft clamped.</p>'
+                        '<p><b>Distal anastomosis</b> to the bifurcation (tube) or to the iliac arteries (bifurcated), flushing before the last sutures (release the iliac clamps briefly, then the aortic) to wash out air and debris.</p>',
+                'juxta': '<p><b>Proximal anastomosis at the level of the renal arteries</b>, the back wall sewn from inside, the suture line just below the renal ostia (so neither is narrowed). Then <b>move the clamp below the renal arteries onto the graft</b> as soon as the proximal suture line is done: renal ischaemia ends. The rest as for an infrarenal repair.</p>',
+                'supra': '<p><b>Bevelled proximal anastomosis</b>: the graft cut obliquely so that its suture line incorporates the <b>coeliac, SMA and right renal origins</b> as one patch (a Carrel patch), sewn with 3-0 polypropylene. The <b>left renal artery</b> is reimplanted as a button or bypassed with a side-arm. Move the clamp down onto the graft below the visceral origins in sequence: the viscera, then each kidney.</p>'}[level]
+        return vstep(f'{pre}-graft', 'Graft', 'Sew in the graft', body, front(ABD, 280, (0.2, 1, 0.35)),
+                     show=[*VESS, graft], highlight=[graft], danger=hv(['renal-a-l', 'renal-a-r', 'sma']), labels=hv([graft, 'renal-a-l', 'renal-a-r', 'sma']), opacity=AB_OP,
+                     action={'kind': 'reveal', 'label': 'Sew in the graft', 'port': 'laparotomy' if level != 'supra' else 'flank-l', 'ids': [graft]},
+                     quiz=ask('Before tying the distal anastomosis, why flush the graft?', 'To wash out air, thrombus and debris that would otherwise embolise to the legs or pelvis',
+                              'Brief release of the iliac, then aortic clamps flushes the graft; debris left in it embolises to the feet ("trash foot") or the pelvis.', 'To test the proximal anastomosis only', 'It is not needed', 'To reduce heparin effect'))
+    close_aaa = lambda pre, graft, extra='': vstep(f'{pre}-close', 'Close', 'Release, close the sac over the graft, check the colon and the feet',
+        '<p>Release the clamps <b>one leg at a time</b>, slowly, with the anaesthetist (declamping hypotension). Protamine if needed. <b>Close the sac over the graft</b> and then the posterior peritoneum, so the graft never touches the duodenum (aortoenteric fistula). Look at the <b>sigmoid colon</b> (pink, peristalsing, a mesenteric pulse) and the <b>feet</b> (pulses, colour) before closing.</p>' + extra,
+        front(ABD, 340, (0.1, 1, 0.35)), show=[*VESS, graft], highlight=[], danger=[], labels=[graft], opacity=AB_OP,
+        quiz=ask('Why close the aneurysm sac and peritoneum over the graft?', 'To keep the graft away from the duodenum and prevent an aortoenteric fistula',
+                 'Direct contact between the graft suture line and the duodenum can erode into the bowel months or years later: a catastrophic bleed.', 'To stop back-bleeding', 'To help the graft endothelialise', 'For cosmetic reasons'))
+    # --------------------------------------------------------------------- infrarenal open
+    c_inf = vstep('ai-case', 'Case', 'Case: a 6.2 cm infrarenal aneurysm in a fit 64-year-old',
+        '<p><b>Read the case above.</b> The steps that follow are his operation.</p>'
+        '<p><b>Decision</b>: a 6.2 cm aneurysm (1-year rupture risk about 10%) in a fit man: <b>repair</b>. Open or EVAR? EVAR has lower early mortality, but the benefit is lost over the years, it needs <b>lifelong imaging surveillance</b> and more reinterventions, and late rupture occurs. For a fit 64-year-old with a long life expectancy and limited access to CT surveillance, <b>open repair</b> is a sound choice; EVAR is equally valid where surveillance is reliable.</p>'
+        + ev('EVAR-1 (Lancet 2016; mean follow-up 12.7 years): EVAR lower total and aneurysm-related mortality in the first 6 months, but after 8 years higher aneurysm-related mortality (mainly from sac rupture) and more reinterventions. OVER (NEJM 2019) and DREAM (NEJM 2010): long-term survival similar. ESVS 2024: EVAR remains the preferred modality in most patients, weighing durability, life expectancy, and patient preference.'),
+        front(ABD), show=[*VESS, 'aaa-infra'], highlight=['aaa-infra'], labels=['aaa-infra', 'renal-v-l'], opacity={**AB_OP, 'aaa-infra': 0.6},
+        lead='<p>A <b>64-year-old man</b>, a retired teacher from Nakuru, hypertensive, ex-smoker. An abdominal pulsation felt at a medical check; ultrasound, then CT angiography: a <b>6.2 cm infrarenal aneurysm</b>, neck 25 mm long and 22 mm wide, iliacs 14 mm, no iliac aneurysm. Creatinine normal; echo EF 60%; he walks 3 km a day. He lives 4 hours from the nearest CT scanner.</p>',
+        quiz=ask('What is the main long-term drawback of EVAR compared with open repair?', 'The need for lifelong imaging surveillance and reinterventions, with a risk of late rupture',
+                 'EVAR excludes the sac without removing it; endoleaks and migration can re-pressurise it. EVAR-1 showed more reinterventions and higher late aneurysm mortality after 8 years.', 'Higher 30-day mortality', 'Longer hospital stay', 'More blood loss'))
+    inf_steps, inf_sq = build_v([('Patho', 'other', [aaa_patho]), ('Anatomy', 'other', [aaa_anat]), ('Case', 'other', [c_inf]), ('Laparotomy', 'other', [lap_step('ai')]),
+                                 ('Neck', 'other', [neck_step('ai', 'aaa-infra')]), ('Iliacs', 'artery', [iliac_step('ai', 'aaa-infra')]), ('Clamp', 'artery', [clamp_step('ai', 'infra', 'aaa-infra')]),
+                                 ('Sac', 'artery', [open_sac('ai', 'aaa-infra')]), ('Graft', 'artery', [graft_step('ai', 'graft-tube', 'infra')]), ('Close', 'other', [close_aaa('ai', 'graft-tube')])])
+    for s in inf_steps:
+        s['id'] = s['id'].replace('aaa-', 'ai-', 1) if s['id'].startswith('aaa-') else s['id']
+    finish('aaa-infra', 'aaa', 'Abdominal aortic aneurysm', 'Infrarenal, open repair', 'Transperitoneal open repair of an infrarenal aneurysm: neck, iliacs, clamps, sac, tube graft, closure.', inf_steps, inf_sq, AAA_SRC)
+    # --------------------------------------------------------------------- juxtarenal open
+    c_jx = vstep('aj-case', 'Case', 'Case: a juxtarenal aneurysm with no neck',
+        '<p><b>No infrarenal neck</b> (under 4 mm): a standard EVAR cannot seal. The options are <b>open repair with a suprarenal clamp</b>, or a <b>fenestrated</b> stent graft (FEVAR, custom-made or off-the-shelf, where available). At standard surgical risk, either is reasonable; chimney grafts are for emergencies or bailout.</p>'
+        '<p><b>Protect the kidneys</b>: preoperative hydration, avoid nephrotoxins, keep suprarenal clamp time short, cold renal perfusion if it will exceed about 25 minutes.</p>'
+        + ev('ESVS 2024: for complex AAA at standard risk, open or endovascular repair based on fitness, anatomy and preference; fenestrated/branched EVAR first line at high surgical risk; parallel (chimney) grafts only in emergencies or as bailout. Jongkind et al. (J Vasc Surg 2010; 1,256 open juxtarenal repairs): 30-day mortality 2.9%, new dialysis 3.3%.'),
+        front(ABD), show=[*VESS, 'aaa-juxta'], highlight=['aaa-juxta'], labels=['aaa-juxta', 'renal-a-l', 'renal-a-r', 'renal-v-l'], opacity={**AB_OP, 'aaa-juxta': 0.6},
+        lead='<p>A <b>70-year-old man</b> with a <b>6.0 cm</b> aneurysm on CT; the sac begins <b>2 mm below the renal arteries</b>; the renal arteries and SMA are free of disease; eGFR 68. Fit (climbs two flights), no previous abdominal surgery. Fenestrated devices are not available in-country.</p>',
+        quiz=ask('Where must the proximal clamp go for this juxtarenal aneurysm?', 'Above the renal arteries (between the renals and the SMA, or above the SMA)',
+                 'There is no healthy infrarenal aorta to clamp; the anastomosis is made at the level of the renal ostia, then the clamp is moved onto the graft below them to restore renal flow.', 'Infrarenal, as usual', 'On the iliac arteries only', 'Supracoeliac is always required'))
+    jx_steps, jx_sq = build_v([('Patho', 'other', [{**aaa_patho, 'id': 'aj-patho', 'show': [*VESS, 'aaa-juxta'], 'highlight': ['aaa-juxta'], 'labels': ['aaa-juxta', 'renal-a-l', 'renal-v-l', 'sma'], 'opacity': {**AB_OP, 'aaa-juxta': 0.6}}]),
+                               ('Anatomy', 'other', [{**aaa_anat, 'id': 'aj-anatomy'}]), ('Case', 'other', [c_jx]), ('Laparotomy', 'other', [lap_step('aj')]),
+                               ('Renal vein', 'vein', [neck_step('aj', 'aaa-juxta', 'juxta')]), ('Iliacs', 'artery', [iliac_step('aj', 'aaa-juxta')]), ('Clamp', 'artery', [clamp_step('aj', 'juxta', 'aaa-juxta')]),
+                               ('Sac', 'artery', [open_sac('aj', 'aaa-juxta')]), ('Graft', 'artery', [graft_step('aj', 'graft-juxta', 'juxta')]),
+                               ('Close', 'other', [close_aaa('aj', 'graft-juxta', '<p>If the left renal vein was divided, check the kidney\'s colour; reconstruction may be considered if its collaterals were sacrificed.</p>')])])
+    finish('aaa-juxta', 'aaa', 'Abdominal aortic aneurysm', 'Juxtarenal, open (suprarenal clamp)', 'No infrarenal neck: renal vein, suprarenal clamp, anastomosis at the renal arteries, clamp moved down.', jx_steps, jx_sq, AAA_SRC)
+    # --------------------------------------------------------------------- suprarenal (pararenal/paravisceral), left retroperitoneal
+    FL = hv(['incision-flank-l'])
+    c_sp = vstep('as-case', 'Case', 'Case: a pararenal aneurysm through the left flank',
+        '<p><b>The renal arteries arise from the aneurysm</b>: the proximal anastomosis must be above them, incorporating the visceral and renal origins. The <b>left retroperitoneal</b> approach gives the best access to the aorta above the renal arteries and up to the hiatus, and avoids a hostile abdomen (her previous laparotomy).</p>'
+        '<p>Alternatives: fenestrated or branched EVAR at high risk, where available.</p>'
+        + ev('Sicard et al. (J Vasc Surg 1995, randomised, 145 patients): the retroperitoneal approach had less ileus and shorter ICU stay; Cambria et al. (1990, 113 patients) found no important difference. ESVS 2024: the approach is chosen on patient factors and surgeon preference. Jongkind et al. 2010: renal dysfunction after complex open repair was common (median 18%).'),
+        front(ABD + V([0, 0, 30])), show=[*VESS, 'aaa-supra'], highlight=['aaa-supra'], labels=['aaa-supra', 'renal-a-l', 'renal-a-r', 'sma', 'coeliac'], opacity={**AB_OP, 'aaa-supra': 0.6},
+        lead='<p>A <b>66-year-old woman</b>, hypertensive, a previous laparotomy for a perforated duodenal ulcer. CT angiography: a <b>6.5 cm</b> aneurysm that <b>involves both renal artery origins</b> and reaches 1 cm below the SMA; the coeliac and SMA origins are healthy; eGFR 55.</p>',
+        quiz=ask('Why the left flank (retroperitoneal) approach here?', 'It exposes the aorta above the renal arteries up to the hiatus and avoids her scarred abdomen',
+                 'The left retroperitoneal route gives direct access to the para- and supravisceral aorta (dividing the left crus) and stays out of the peritoneal cavity; the right renal artery is harder to reach from this side.', 'It gives better access to the right iliac artery', 'It is quicker for infrarenal aneurysms', 'It avoids the need for a suprarenal clamp'))
+    flank = vstep('as-flank', 'Access', 'Left flank incision; the retroperitoneal plane',
+        '<p>Right side down, the left shoulder rotated back about 60°, the pelvis flatter (the "corkscrew" position), the table broken at the flank. Incision from the tip of the <b>11th rib</b> posteriorly, obliquely to the lateral edge of the rectus sheath below the umbilicus; resect or enter the bed of the 11th rib. Divide the abdominal muscles; stay <b>outside the peritoneum</b>, sweeping it, the colon and the spleen forward. Take the <b>left kidney forward</b> with them (exposing the posterior aorta and the left renal artery) or leave it in place.</p>',
+        tl(Pv('flank-l') if 'flank-l' in LM else ABD, (-1, 0.3, 0.3), 460), show=['skin', *FL, *VESS, 'aaa-supra'], highlight=FL, labels=FL, opacity={**AB_OP, 'skin': 0.35, 'aaa-supra': 0.4},
+        action={'kind': 'reveal', 'label': 'Open the flank', 'port': 'flank-l', 'ids': FL} if FL else None)
+    renal_cool = vstep('as-renal', 'Kidneys', 'Cold renal perfusion; reimplant the left renal',
+        '<p>With the supracoeliac clamp on and the sac opened, place <b>balloon perfusion catheters</b> into both renal ostia and infuse <b>cold crystalloid</b> (about 4 °C, commonly Ringer\'s lactate with mannitol, per unit protocol) intermittently; visceral ischaemia time is the other clock: keep it short.</p>'
+        '<p>After the bevelled proximal suture line, the <b>left renal artery</b> goes onto a side-arm or as a button reimplanted into the graft; restore flow to the viscera and right kidney first by moving the clamp down onto the graft.</p>'
+        + ev('ESVS 2024 (Rec 125): consider cold renal perfusion when suprarenal clamp time exceeds about 25 minutes. The perfusate temperature and composition vary by centre.'),
+        front(Pv('renal-l'), 220, (-0.4, 1, 0.4)), show=[*VESS, 'graft-supra'], highlight=hv(['renal-a-l', 'renal-a-r']), danger=hv(['sma', 'coeliac']), labels=hv(['renal-a-l', 'renal-a-r', 'sma', 'graft-supra']), opacity=AB_OP)
+    sp_steps, sp_sq = build_v([('Patho', 'other', [{**aaa_patho, 'id': 'as-patho', 'show': [*VESS, 'aaa-supra'], 'highlight': ['aaa-supra'], 'labels': ['aaa-supra', 'renal-a-l', 'renal-a-r', 'sma'], 'opacity': {**AB_OP, 'aaa-supra': 0.6}}]),
+                               ('Anatomy', 'other', [{**aaa_anat, 'id': 'as-anatomy'}]), ('Case', 'other', [c_sp]), ('Flank', 'other', [flank]),
+                               ('Visceral aorta', 'artery', [neck_step('as', 'aaa-supra', 'supra')]), ('Clamp', 'artery', [clamp_step('as', 'supra', 'aaa-supra')]),
+                               ('Sac', 'artery', [{**open_sac('as', 'aaa-supra'), 'action': {**open_sac('as', 'aaa-supra')['action'], 'port': 'flank-l'}}]),
+                               ('Graft', 'artery', [graft_step('as', 'graft-supra', 'supra')]), ('Kidneys', 'artery', [renal_cool]),
+                               ('Close', 'other', [close_aaa('as', 'graft-supra', '<p>Check both kidneys (colour, a pulse in each renal artery) and the bowel; urine output and lactate overnight.</p>')])])
+    finish('aaa-supra', 'aaa', 'Abdominal aortic aneurysm', 'Suprarenal (pararenal), left retroperitoneal', 'Left flank approach, supracoeliac clamp, bevelled visceral patch, left renal reimplant, cold renal perfusion.', sp_steps, sp_sq, AAA_SRC)
+    # --------------------------------------------------------------------- EVAR
+    c_ev = vstep('ae-case', 'Case', 'Case: EVAR in a man with COPD',
+        '<p><b>Anatomy suits EVAR</b>: a neck of at least 10–15 mm, not too angled or conical, of a diameter the device can seal (usually 18–32 mm), and iliac access vessels wide enough for the sheath (about 7 mm or more for most devices). <b>His lungs</b> make a laparotomy and a long aortic clamp riskier: EVAR avoids both.</p>'
+        '<p><b>The contract</b>: lifelong surveillance (CT or duplex) for endoleaks and migration, and a greater chance of a secondary procedure.</p>'
+        + ev('EVAR-1 (Lancet 2016): lower early mortality with EVAR, lost over time; more reinterventions. ESVS 2024: EVAR is the preferred modality in most patients with suitable anatomy; for a ruptured AAA, EVAR is the first option when anatomy allows (Class I). IMPROVE (BMJ 2014 and 2017): 30-day mortality 35.4% vs 37.4% for an endovascular strategy vs open repair in rupture, with better 3-year survival (48% vs 56% mortality) and quality of life.'),
+        front(ABD), show=[*VESS, 'aaa-infra'], highlight=['aaa-infra'], labels=['aaa-infra', 'renal-a-l', 'cia-l', 'cia-r'], opacity={**AB_OP, 'aaa-infra': 0.6},
+        lead='<p>A <b>77-year-old man</b>, COPD (FEV1 45%), ischaemic heart disease with a stent 3 years ago. A <b>5.9 cm</b> infrarenal aneurysm; neck <b>24 mm long</b>, 23 mm wide, angle 35°; common iliacs 13 mm and not aneurysmal; external iliacs 8 mm. Lives in Nairobi near a hospital with CT.</p>',
+        quiz=ask('Which anatomical feature is essential for a standard EVAR?', 'A healthy infrarenal neck long enough for a seal (usually at least 10–15 mm), not too angled or conical',
+                 'The stent graft seals by radial force against normal aorta below the renal arteries; a short, wide, angled or thrombus-lined neck causes type I endoleak and failure.', 'A small aneurysm sac', 'A patent IMA', 'Calcified iliac arteries'))
+    ev_access = vstep('ae-access', 'Access', 'Femoral access; mark the renal arteries',
+        '<p>Ultrasound-guided puncture of both <b>common femoral arteries</b> (over the femoral head), <b>preclosure</b> sutures placed (or a surgical cut-down in calcified or small arteries). Heparin. A stiff wire to the thoracic aorta; an angiogram with a marker catheter, the image angled to open the neck, to <b>mark the lowest renal artery</b>.</p>' + BELOW,
+        front(Pv('cfa-r'), 360, (0.15, 1, 0.2)), show=[*VESS, 'aaa-infra', *hv(['incision-groin-l', 'incision-groin-r'])], highlight=hv(['cfa-l', 'cfa-r']), labels=hv(['cfa-r', 'cfa-l', 'eia-r']), opacity={**AB_OP, 'aaa-infra': 0.5})
+    ev_deploy = vstep('ae-deploy', 'Deploy', 'Deploy the main body below the lowest renal; cannulate the gate; the limbs',
+        '<p>Introduce the <b>main body</b> through one groin, align its top marker just below the lowest renal artery, and deploy (suprarenal fixation, where the device has it, sits across the renal arteries without covering them). <b>Cannulate the contralateral gate</b> from the other groin, confirm you are inside the graft, and deploy the <b>contralateral limb</b>, then the ipsilateral limb, landing both in the common iliac arteries above the internal iliac origins. Balloon the seal zones and junctions.</p>',
+        front(ABD, 300, (0.15, 1, 0.3)), show=[*VESS, 'aaa-infra', 'evar-graft'], highlight=['evar-graft'], danger=hv(['renal-a-l', 'renal-a-r', 'iia-l', 'iia-r']), labels=hv(['evar-graft', 'renal-a-l', 'iia-r']), opacity={**AB_OP, 'aaa-infra': 0.35},
+        action={'kind': 'reveal', 'label': 'Deploy the stent graft', 'port': 'groin-r', 'ids': ['evar-graft']},
+        quiz=ask('The completion angiogram shows contrast filling the sac from around the top of the graft. What is it, and what now?', 'A type I (proximal seal) endoleak: treat it now (balloon, proximal cuff or anchors)',
+                 'Type I and III endoleaks pressurise the sac and must be fixed; a type II (from lumbars or IMA) is usually observed.', 'A type II endoleak: observe', 'Normal: it will thrombose', 'Convert to open repair immediately'))
+    ev_end = vstep('ae-surv', 'After', 'Completion angiogram, closure, lifelong surveillance',
+        '<p>Completion angiogram: both renal arteries patent, no <b>type I</b> (seal) or <b>type III</b> (junction) endoleak, both internal iliacs perfused. Close the arteries. <b>Surveillance</b>: CT angiography (or contrast ultrasound) at about 30 days, then by protocol, lifelong: sac growth means an endoleak until proven otherwise.</p>'
+        '<table class="mini"><tr><th>Endoleak</th><th>Source</th><th>Action</th></tr><tr><td>I</td><td>seal zone (proximal a, distal b)</td><td>treat</td></tr><tr><td>II</td><td>lumbar arteries or IMA back-filling</td><td>observe; treat if the sac grows</td></tr>'
+        '<tr><td>III</td><td>junction or fabric tear</td><td>treat</td></tr><tr><td>IV</td><td>graft porosity</td><td>resolves</td></tr><tr><td>V</td><td>endotension (growth without visible leak)</td><td>investigate</td></tr></table>',
+        front(ABD, 340), show=[*VESS, 'aaa-infra', 'evar-graft'], labels=['evar-graft'], opacity={**AB_OP, 'aaa-infra': 0.35})
+    ev_steps, ev_sq = build_v([('Patho', 'other', [{**aaa_patho, 'id': 'ae-patho'}]), ('Anatomy', 'other', [{**aaa_anat, 'id': 'ae-anatomy'}]), ('Case', 'other', [c_ev]),
+                               ('Access', 'other', [ev_access]), ('Deploy', 'artery', [ev_deploy]), ('After', 'other', [ev_end])])
+    finish('aaa-evar', 'aaa', 'Abdominal aortic aneurysm', 'Infrarenal, EVAR', 'Femoral access, marking the renal arteries, main body, gate, limbs, completion angiogram, surveillance.', ev_steps, ev_sq, AAA_SRC)
+
+    # ================================================================================================ aorto-iliac occlusive disease
+    TASC = ('<table class="mini"><tr><th>TASC II</th><th>Aorto-iliac lesions (summary)</th><th>Usual first choice</th></tr>'
+            '<tr><td>A</td><td>CIA stenoses; a short (≤3 cm) EIA stenosis</td><td>endovascular</td></tr>'
+            '<tr><td>B</td><td>short infrarenal aortic stenosis; unilateral CIA occlusion; EIA stenoses 3–10 cm; unilateral EIA occlusion sparing the internal iliac and CFA</td><td>endovascular</td></tr>'
+            '<tr><td>C</td><td>bilateral CIA occlusions; bilateral EIA stenoses 3–10 cm; EIA disease into the CFA; heavily calcified EIA occlusion</td><td>open in fit patients; endovascular increasingly</td></tr>'
+            '<tr><td>D</td><td><b>infrarenal aorto-iliac occlusion</b>; diffuse disease of the aorta and both iliacs; unilateral CIA + EIA occlusion; bilateral EIA occlusions</td><td>open (aortobifemoral); CERAB in experienced hands</td></tr></table>')
+    aiod_patho = vstep('ao-patho', 'Pathophysiology', 'Pathophysiology: aorto-iliac occlusive disease',
+        '<p><b>Atherosclerosis at the aortic bifurcation</b>, where flow divides and shear stress is low: plaque, then stenosis, then thrombosis of the distal aorta and iliac arteries, often in smokers in their 40s–60s. <b>Collaterals</b> (lumbar to iliolumbar and circumflex iliac; internal thoracic to inferior epigastric; SMA to IMA through the arc of Riolan) keep the legs alive.</p>'
+        + chain('Plaque at the bifurcation', 'Stenosis', 'Thrombosis: occluded distal aorta and iliacs', 'Collaterals', 'Claudication (buttock, thigh, calf)')
+        + chain('Collaterals insufficient', '!Rest pain, ulcers, gangrene (chronic limb-threatening ischaemia)')
+        + '<p><b>Leriche syndrome</b>: buttock and thigh claudication, absent femoral pulses, erectile dysfunction. <b>Ankle–brachial index</b>: 0.90 or less is peripheral arterial disease; 1.40 or more means non-compressible (calcified) arteries.</p>'
+        + TASC
+        + '<p><b>In Africa</b> think also of <b>HIV-associated vasculopathy</b> (young patients, acute thrombosis or occlusions, often presenting late with critical ischaemia) and <b>Takayasu arteritis</b> (young women, aorta and its branches; control inflammation before surgery).</p>'
+        '<p><b>Treatment</b>: for everyone, best medical therapy: stop smoking (varenicline), antiplatelet, statin, blood pressure and diabetes control; supervised exercise for claudication. Revascularise <b>chronic limb-threatening ischaemia</b>, and claudication that still limits life after exercise and medical therapy, by shared decision. Treat the inflow (aorto-iliac) before the outflow.</p>'
+        + ev('TASC II (Norgren et al., J Vasc Surg 2007). ESVS 2024 claudication guideline (Nordanstig et al.): ABI thresholds, smoking cessation, individualised revascularisation for claudication. Global Vascular Guidelines 2019 for CLTI (Conte et al.): endovascular-first for moderate-to-severe aorto-iliac disease; open reconstruction for extensive disease in average-risk patients. HIV vasculopathy: Robbs and Paruk (Eur J Vasc Endovasc Surg 2010; 226 patients, mean age 36) and Van Marle et al. (S Afr J Surg; over 90% presented with Fontaine III/IV, primary amputation 32%). Takayasu in Africa: Genga, Oyoo and Adebajo (Curr Rheumatol Rep 2018).'),
+        front(Pv('bifurcation'), 420, (0.1, 1, 0.3)), show=[*VESS, 'aiod-occlusion', 'aiod-collaterals'], highlight=['aiod-occlusion'], labels=['aiod-occlusion', 'aiod-collaterals', 'ima', 'cfa-l'], opacity=AB_OP,
+        quiz=ask('A 50-year-old smoker has buttock claudication, absent femoral pulses and erectile dysfunction. Where is the disease?', 'The distal aorta and both iliac arteries (Leriche syndrome)',
+                 'Buttock claudication and absent femoral pulses place the obstruction above the groins; erectile dysfunction reflects poor internal iliac flow.', 'The superficial femoral arteries', 'The popliteal arteries', 'The tibial arteries'),
+        after=True, spin=True)
+    aiod_anat = vstep('ao-anatomy', 'Anatomy', 'The aortic bifurcation, iliacs and femoral arteries',
+        '<p>The aorta divides at <b>L4</b> (the level of the iliac crests) into the <b>common iliac arteries</b>, each dividing over the sacroiliac joint into the <b>internal iliac</b> (pelvis, buttock) and the <b>external iliac</b>, which becomes the <b>common femoral artery</b> under the inguinal ligament at the mid-inguinal point and divides 3–5 cm lower into the <b>superficial femoral</b> and <b>profunda femoris</b>. The profunda is the key collateral to the leg when the SFA is occluded.</p>'
+        '<p>Protect: the <b>ureters</b> (crossing the iliac bifurcations: graft tunnels pass behind them), the <b>iliac veins</b> behind the arteries, the <b>hypogastric plexus</b> (sexual function), the <b>IMA</b>, and in the groin the <b>femoral vein</b> medially and the femoral nerve laterally.</p>' + BELOW,
+        front(Pv('bifurcation'), 440, (0.1, 1, 0.25)), show=VESS, highlight=hv(['cfa-l', 'cfa-r', 'pfa-l', 'pfa-r']), danger=hv(['civ-l', 'civ-r']), labels=hv(['cia-l', 'eia-l', 'iia-l', 'cfa-l', 'sfa-l', 'pfa-l', 'civ-r']), opacity=AB_OP, spin=True)
+    GR = hv(['incision-groin-l', 'incision-groin-r'])
+    groins = lambda pre: vstep(f'{pre}-groins', 'Groins', 'Expose both femoral bifurcations',
+        '<p>Vertical incisions over the femoral pulses (or where they should be: the mid-inguinal point). Expose the <b>common femoral artery</b> from the inguinal ligament down, and control the <b>SFA</b> and the <b>profunda</b> (its first branches too). Tie the lymphatics (lymph leaks and infection are the groin\'s complications). Feel the CFA for plaque: an endarterectomy or <b>profundaplasty</b> may be needed where the graft is sewn.</p>' + BELOW,
+        front(Pv('cfa-r'), 300, (0.1, 1, 0.3)), show=['skin', *GR, *VESS, 'aiod-occlusion'], highlight=hv(['cfa-l', 'cfa-r']), danger=[], labels=hv(['cfa-r', 'sfa-r', 'pfa-r', 'incision-groin-r']), opacity={**AB_OP, 'skin': 0.3},
+        action={'kind': 'reveal', 'label': 'Open the groins', 'port': 'groin-r', 'ids': GR} if GR else None)
+    c_abf = vstep('ab-case', 'Case', 'Case: Leriche syndrome with rest pain',
+        '<p><b>TASC II D</b> (infrarenal aorto-iliac occlusion) with <b>chronic limb-threatening ischaemia</b> in a fit patient: <b>aortobifemoral bypass</b>, the most durable reconstruction. Endovascular reconstruction (CERAB) is an alternative in expert centres.</p>'
+        '<p><b>Before surgery</b>: stop smoking, statin and antiplatelet, check the coronaries and the renal function; confirm the femoral run-off (profunda patent) on CT angiography. Test for HIV.</p>'
+        + ev('de Vries and Hunink (J Vasc Surg 1997, meta-analysis): aortic bifurcation graft 5-year limb patency 91% for claudication and 87.5% for critical ischaemia; operative mortality 4.4%, systemic morbidity 12.1%. A 2021 meta-analysis of extensive aorto-iliac disease (Cardiovasc Intervent Radiol; 9,319 patients): open repair 5-year primary patency 88% vs 71% for standard endovascular treatment, with higher 30-day mortality (3% vs 0.8%).'),
+        front(Pv('bifurcation'), 420, (0.1, 1, 0.3)), show=[*VESS, 'aiod-occlusion', 'aiod-collaterals'], highlight=['aiod-occlusion'], labels=['aiod-occlusion', 'cfa-l', 'cfa-r'], opacity=AB_OP,
+        lead='<p>A <b>54-year-old man</b>, a matatu owner who smokes 20 a day. Two years of buttock and thigh claudication at 100 m, now <b>rest pain</b> in the right foot at night and erectile dysfunction. <b>No femoral pulses.</b> ABI 0.38 right, 0.52 left. CT angiography: the <b>aorta occluded from just below the IMA</b>, both common iliacs occluded, the external iliacs reconstituting; common femoral and profunda arteries patent; SFA patent. HIV-negative; creatinine normal; echo normal.</p>',
+        quiz=ask('What is the most durable reconstruction for this fit patient with a TASC II D aorto-iliac occlusion?', 'Aortobifemoral bypass',
+                 'Five-year limb patency is about 90% (de Vries and Hunink, 1997); endovascular results for TASC D are improving (CERAB) but standard stenting is less durable (about 71% at 5 years).', 'Bilateral iliac angioplasty without stents', 'Axillobifemoral bypass', 'Lumbar sympathectomy'))
+    abf_lap = vstep('ab-aorta', 'Aorta', 'Laparotomy; the infrarenal aorta below the left renal vein',
+        '<p>Midline laparotomy (or left retroperitoneal). Expose the infrarenal aorta <b>just below the left renal vein</b>, where it is usually soft enough to clamp: the occlusion often reaches the IMA, and above it the aorta is patent.</p>'
+        '<p><b>End-to-end</b> anastomosis (divide the aorta, oversew the distal stump) is better haemodynamically and lies flatter behind the duodenum; <b>end-to-side</b> keeps flow to the IMA and internal iliacs when the external iliacs are occluded (pelvic and colonic perfusion).</p>',
+        front(Pv('abf-prox'), 300, (0.15, 1, 0.4)), show=['skin', *LAP, *VESS, 'aiod-occlusion'], highlight=['aorta'], danger=hv(['renal-v-l', 'renal-a-l']), labels=hv(['renal-v-l', 'aiod-occlusion', 'ima']), opacity={**AB_OP, 'skin': 0.2},
+        action={'kind': 'clamp', 'label': 'Clamp the infrarenal aorta', 'port': 'laparotomy', 'at': R(Pv('abf-prox')), 'axis': [0, 0.3, 1], 'radius': 12, 'jawLen': 55})
+    abf_tunnel = vstep('ab-tunnel', 'Tunnels', 'Retroperitoneal tunnels to the groins, behind the ureters',
+        '<p>From the groin and the aorta, a finger (then a tunnelling instrument) creates a tunnel on the front of the iliac arteries, <b>behind the ureter</b>, under the inguinal ligament, to meet in the groin. A graft limb placed in front of the ureter can compress it (hydronephrosis).</p>',
+        front(Pv('cia-l'), 340, (0.1, 1, 0.3)), show=[*VESS, 'aiod-occlusion', 'graft-abf'], highlight=['graft-abf'], danger=hv(['civ-l', 'civ-r']), labels=hv(['graft-abf', 'cia-l']), opacity={**AB_OP, 'graft-abf': 0.6},
+        quiz=ask('Why must the limbs of an aortobifemoral graft pass behind the ureters?', 'A graft in front of the ureter can compress it and cause hydronephrosis',
+                 'Tunnel along the front of the iliac arteries, under (behind) the ureter; the ureter then lies in front of the graft.', 'To shorten the graft', 'To avoid the iliac veins', 'To prevent infection'))
+    abf_graft = vstep('ab-graft', 'Graft', 'Proximal anastomosis, then the femoral anastomoses',
+        '<p>Heparin; clamp. A <b>bifurcated Dacron graft</b> (commonly 16 × 8 mm or 14 × 7 mm, matched to the aorta), the body kept <b>short</b> so the bifurcation sits low and the limbs do not kink. Proximal anastomosis (3-0 polypropylene), pass the limbs through the tunnels, then each <b>femoral anastomosis</b> end-to-side onto the CFA (5-0 polypropylene), extended onto the profunda (profundaplasty) if the SFA is occluded or the profunda origin narrowed. Flush before completing each.</p>',
+        front(Pv('bifurcation'), 420, (0.1, 1, 0.3)), show=[*VESS, 'aiod-occlusion', 'graft-abf'], highlight=['graft-abf'], labels=hv(['graft-abf', 'pfa-l', 'cfa-r']), opacity=AB_OP,
+        action={'kind': 'reveal', 'label': 'Sew in the graft', 'port': 'laparotomy', 'ids': ['graft-abf']})
+    abf_close = vstep('ab-close', 'Close', 'Release one limb at a time; check the feet and the colon',
+        '<p>Release each limb slowly (declamping hypotension). Feel for pulses in the grafts and at the feet (Doppler signals), look at the sigmoid colon. Close the retroperitoneum over the graft (away from the duodenum), then the groins in layers without dead space.</p>'
+        '<p><b>Early complications</b>: bleeding, limb thrombosis, distal embolism (trash foot), colonic ischaemia, groin infection or lymph leak. <b>Late</b>: anastomotic false aneurysm at the groin, graft infection, limb occlusion from outflow disease.</p>',
+        front(Pv('bifurcation'), 420, (0.1, 1, 0.3)), show=[*VESS, 'aiod-occlusion', 'graft-abf'], labels=['graft-abf'], opacity=AB_OP)
+    abf_steps, abf_sq = build_v([('Patho', 'other', [aiod_patho]), ('Anatomy', 'other', [aiod_anat]), ('Case', 'other', [c_abf]), ('Groins', 'artery', [groins('ab')]),
+                                 ('Aorta', 'artery', [abf_lap]), ('Tunnels', 'other', [abf_tunnel]), ('Graft', 'artery', [abf_graft]), ('Close', 'other', [abf_close])])
+    finish('aiod-abf', 'aiod', 'Aorto-iliac occlusive disease', 'Aortobifemoral bypass', 'Both groins, the infrarenal aorta, retroperitoneal tunnels behind the ureters, bifurcated graft, femoral anastomoses.', abf_steps, abf_sq, AIOD_SRC)
+    # --------------------------------------------------------------------- axillobifemoral
+    AX = hv(['incision-axillary-r'])
+    c_ax = vstep('ax-case', 'Case', 'Case: critical ischaemia with a hostile abdomen and poor lungs',
+        '<p>An aortic operation is too risky (her lungs, the frozen abdomen): an <b>extra-anatomic</b> bypass from the <b>axillary artery</b> avoids the abdomen and the aortic clamp. Choose the side with the better arm pressure (and no subclavian stenosis). Less durable than an aortobifemoral graft.</p>'
+        + ev('Martin and Katz (Am J Surg 2000): primary patency 86%, 72% and 63% at 1, 3 and 5 years; 30-day mortality 4.9%. Contemporary series report better 5-year patency with externally supported (ringed) grafts; patient selection makes comparison with aortobifemoral bypass unfair.'),
+        front(Pv('bifurcation') + V([0, 0, 120]), 700, (0.3, 1, 0.3)), show=[*VESS, 'aiod-occlusion'], highlight=['aiod-occlusion'], labels=['aiod-occlusion'], opacity=AB_OP,
+        lead='<p>A <b>71-year-old woman</b>, rest pain and a heel ulcer on the right, ABI 0.3 both sides; aorto-iliac occlusion on CT. <b>Severe COPD</b> on home oxygen; <b>three previous laparotomies</b> and a colostomy. Brachial pressures equal on both arms; no subclavian stenosis on CT.</p>',
+        quiz=ask('Before an axillobifemoral bypass, what must be checked in the donor arm?', 'Equal arm pressures and no subclavian or axillary stenosis on the chosen side',
+                 'A stenosed donor artery starves the graft and the arm; a pressure difference over about 20 mmHg suggests subclavian stenosis.', 'The ABI of the arm', 'The radial pulse only', 'Nothing: any arm will do'))
+    ax_exp = vstep('ax-axilla', 'Axilla', 'Expose the first part of the axillary artery',
+        '<p>A horizontal incision 2 cm below the middle third of the clavicle. Split the <b>pectoralis major</b> in the line of its fibres, divide the clavipectoral fascia (and the <b>pectoralis minor</b> if needed); the axillary vein lies in front and below, the <b>brachial plexus</b> cords above and behind. Control the artery medial to pectoralis minor.</p>'
+        '<p>The anastomosis goes on the <b>first part</b> of the artery, the graft running along the artery for a few centimetres before turning down (so arm abduction does not tear it off).</p>',
+        tl(Pv('axillary-r') if 'axillary-r' in LM else Pv('bifurcation'), (0.5, 1, 0.3), 260), show=['skin', *AX, 'aorta'], highlight=AX, labels=AX, opacity={'skin': 0.35},
+        action={'kind': 'reveal', 'label': 'Open the axilla', 'port': 'axillary-r', 'ids': AX} if AX else None)
+    ax_tunnel = vstep('ax-tunnel', 'Tunnel', 'Subcutaneous tunnel down the mid-axillary line; the cross-over',
+        '<p>A long tunneller, through one or two counter-incisions, <b>subcutaneously in the mid-axillary line</b> (not over the costal margin, where it kinks), down to the right groin. A ringed (externally supported) PTFE graft, 8 mm. Then a <b>femorofemoral</b> limb in a suprapubic subcutaneous tunnel to the left groin.</p>',
+        tl(Pv('bifurcation') + V([60, 0, 160]), (0.8, 0.8, 0.2), 760), show=['skin', *AX, *GR, 'aorta', *VESS, 'graft-axbf'], highlight=['graft-axbf'], labels=['graft-axbf'], opacity={**AB_OP, 'skin': 0.25},
+        action={'kind': 'reveal', 'label': 'Tunnel and sew the graft', 'port': 'axillary-r', 'ids': ['graft-axbf']})
+    ax_steps, ax_sq = build_v([('Patho', 'other', [{**aiod_patho, 'id': 'ax-patho'}]), ('Anatomy', 'other', [{**aiod_anat, 'id': 'ax-anatomy'}]), ('Case', 'other', [c_ax]),
+                               ('Groins', 'artery', [groins('ax')]), ('Axilla', 'artery', [ax_exp]), ('Graft', 'artery', [ax_tunnel]),
+                               ('Close', 'other', [vstep('ax-close', 'Close', 'Release, check the flow, close',
+                                    '<p>Complete the femoral anastomoses, flush, release. A graft pulse along the chest wall and at both groins; Doppler signals at the feet. The patient must not lie on the graft side or wear tight belts over it.</p>',
+                                    tl(Pv('bifurcation') + V([60, 0, 160]), (0.8, 0.8, 0.2), 760), show=['skin', 'aorta', *VESS, 'graft-axbf'], labels=['graft-axbf'], opacity={**AB_OP, 'skin': 0.25})])])
+    finish('aiod-axbf', 'aiod', 'Aorto-iliac occlusive disease', 'Axillobifemoral bypass (extra-anatomic)', 'For the high-risk patient: axillary artery, subcutaneous tunnel, femoral anastomoses and a femorofemoral cross-over.', ax_steps, ax_sq, AIOD_SRC)
+    # --------------------------------------------------------------------- endovascular: kissing stents
+    c_en = vstep('ae2-case', 'Case', 'Case: bilateral common iliac occlusions and disabling claudication',
+        '<p><b>TASC II C</b> (bilateral common iliac occlusions) with <b>lifestyle-limiting claudication</b> after 6 months of supervised walking and best medical therapy. <b>Endovascular first</b>: <b>kissing stents</b> at the bifurcation (covered balloon-expandable stents do better in occlusions and complex lesions), or a CERAB reconstruction. Open surgery stays available if it fails.</p>'
+        + ev('COBEST (J Vasc Surg 2011 and 2016): covered stents gave better freedom from restenosis than bare stents, especially in TASC C/D lesions (5-year patency 74.7% vs 62.5%). CERAB (Taeymans et al., J Vasc Surg 2018; 89% TASC D): 3-year primary patency 82%. ESVS 2024: primary stenting for iliac occlusions; covered stents may be considered for TASC C/D.'),
+        front(Pv('bifurcation'), 380, (0.1, 1, 0.3)), show=[*VESS, 'aiod-occlusion'], highlight=['aiod-occlusion'], labels=['aiod-occlusion', 'cia-l', 'cia-r'], opacity=AB_OP,
+        lead='<p>A <b>61-year-old man</b>, ex-smoker (stopped a year ago), diabetic. <b>Buttock and calf claudication at 80 m</b> despite 6 months of supervised exercise, statin and aspirin; he is a farmer and cannot work. ABI 0.62 and 0.58. CT: <b>both common iliac arteries occluded</b> (5 cm each), the aorta above and the external iliacs below healthy; not heavily calcified.</p>',
+        quiz=ask('Why treat this claudicant at all, and why endovascular first?', 'Symptoms still limit his life after exercise and best medical therapy; for iliac occlusions, stenting is effective and less invasive, with surgery in reserve',
+                 'Revascularisation for claudication is individualised after conservative therapy fails; for common iliac occlusions (TASC B–C), primary stenting has good patency and low morbidity.', 'All claudicants need surgery', 'To prevent amputation, which is likely within a year', 'Because exercise is harmful'))
+    en_access = vstep('ae2-access', 'Access', 'Bilateral femoral access; cross the occlusions',
+        '<p>Ultrasound-guided retrograde puncture of both CFAs; sheaths; heparin. Cross each occlusion with a hydrophilic wire and catheter, preferably <b>intraluminally</b>; if subintimal, <b>re-enter</b> the true lumen in the aorta below the renal arteries (a re-entry device, or a brachial approach from above). Confirm the true lumen with contrast before dilating.</p>' + BELOW,
+        front(Pv('bifurcation'), 360, (0.1, 1, 0.3)), show=[*VESS, 'aiod-occlusion', *GR], highlight=hv(['cfa-l', 'cfa-r']), labels=hv(['cfa-l', 'cfa-r', 'aiod-occlusion']), opacity=AB_OP)
+    en_stent = vstep('ae2-stents', 'Stents', 'Kissing stents: deploy together, inflate together',
+        '<p>Predilate. Position two <b>balloon-expandable (covered) stents</b> side by side, their tops level just above the bifurcation (the "new carina"), and <b>inflate them simultaneously</b> so neither crushes the other. Extend with further stents distally if needed, stopping short of the internal iliac origins where possible. Completion angiogram: no residual stenosis, no dissection, no rupture (have a covered stent and an occlusion balloon ready).</p>',
+        front(Pv('bifurcation'), 280, (0.1, 1, 0.3)), show=[*VESS, 'stents-kissing'], highlight=['stents-kissing'], danger=hv(['iia-l', 'iia-r']), labels=hv(['stents-kissing', 'cia-l', 'iia-r']), opacity=AB_OP,
+        action={'kind': 'reveal', 'label': 'Deploy the stents', 'port': 'groin-r', 'ids': ['stents-kissing']},
+        quiz=ask('During iliac stenting the patient suddenly has back pain and hypotension. Most likely cause and first move?', 'Iliac rupture: inflate a balloon at the site to control bleeding, then place a covered stent',
+                 'Rupture is rare but lethal; always have an occlusion balloon and covered stents on the shelf.', 'Vasovagal: give atropine', 'Contrast reaction: give steroids', 'Embolism: give heparin'))
+    en_steps, en_sq = build_v([('Patho', 'other', [{**aiod_patho, 'id': 'ae2-patho'}]), ('Anatomy', 'other', [{**aiod_anat, 'id': 'ae2-anatomy'}]), ('Case', 'other', [c_en]),
+                               ('Access', 'other', [en_access]), ('Stents', 'artery', [en_stent]),
+                               ('After', 'other', [vstep('ae2-after', 'After', 'Closure, antiplatelet, surveillance',
+                                    '<p>Closure devices or manual pressure. Dual antiplatelet therapy for a period, then single; statin; stay off tobacco. Walking resumes the next day; duplex surveillance of the stents. Recurrence is treated endovascularly again, or by aortobifemoral bypass.</p>',
+                                    front(Pv('bifurcation'), 340, (0.1, 1, 0.3)), show=[*VESS, 'stents-kissing'], labels=['stents-kissing'], opacity=AB_OP)])])
+    finish('aiod-endo', 'aiod', 'Aorto-iliac occlusive disease', 'Endovascular: kissing stents', 'Bilateral femoral access, crossing and re-entry, simultaneous covered stents at the bifurcation.', en_steps, en_sq, AIOD_SRC)
+
+    # ================================================================================================ thoracic aortic aneurysm
+    TD = Pv('taa-desc'); lat_l = lambda t, dist=420: tl(t, (-1, -0.2, 0.25), dist)
+    T_SHOW = hv(['aorta', 'heart', 'lsca', 'lcca', 'bct', 'esophagus', 'adamkiewicz', *[f'vert-t{i}' for i in range(4, 13)]])
+    taa_patho = vstep('ta-patho', 'Pathophysiology', 'Pathophysiology: thoracic aortic aneurysm',
+        '<p><b>Medial degeneration</b> (loss of smooth muscle cells, fragmented elastic fibres, pooled proteoglycans) weakens the wall. Causes: <b>heritable</b> (Marfan syndrome, Loeys-Dietz, familial, bicuspid aortic valve), <b>degenerative/atherosclerotic</b> (the descending aorta in older smokers with hypertension), and <b>inflammatory or infective</b>: <b>syphilitic aortitis</b> (ascending and arch; obliterative endarteritis of the vasa vasorum) and <b>Takayasu arteritis</b> (young women), both seen in Africa.</p>'
+        + chain('Medial degeneration', 'Dilatation', 'Laplace: tension rises with radius', '!Dissection or rupture')
+        + '<p><b>Hinge points</b>: the risk of rupture or dissection jumps at about <b>6.0 cm in the ascending</b> and <b>7.0 cm in the descending</b> aorta, so repair is advised before them: <b>ascending 5.5 cm</b> (5.0 cm in Marfan, or with risk features, or in experienced teams), <b>descending 5.5 cm</b> for TEVAR with suitable anatomy (ESC 2024; ACC/AHA 2022 uses 6.0 cm for descending and thoracoabdominal), <b>thoracoabdominal 6.0 cm</b>, or growth of 0.5 cm in a year (0.3 cm a year for 2 years).</p>'
+        '<p><b>Crawford extent</b> of thoracoabdominal aneurysm: I (left subclavian to above the renals), II (left subclavian to the bifurcation: the largest, highest spinal risk), III (distal thoracic to the bifurcation), IV (below the diaphragm), V (distal thoracic to above the renals, Safi).</p>'
+        '<p><b>The spinal cord</b> depends on the anterior spinal artery, fed at the lower thoracic level mainly by the <b>artery of Adamkiewicz</b> (usually from a left intercostal artery at T9–T12). Covering or clamping that segment risks <b>paraplegia</b>: protect the cord with perfusion pressure (MAP), CSF drainage and, in open repair, distal perfusion and intercostal reattachment.</p>'
+        + ev('natural history: Coady et al. (J Thorac Cardiovasc Surg 1997): hinge points 6.0 cm ascending, 7.0 cm descending; median size at rupture or dissection 6.0 and 7.2 cm. Thresholds: 2022 ACC/AHA guideline (Isselbacher et al.) and 2024 EACTS/STS guideline (Czerny et al.). Crawford/Safi extents: Frederick and Woo, Ann Cardiothorac Surg 2012. Syphilitic aortitis: ascending 50%, arch 35%, descending 15% (ICVTS 2012).'),
+        lat_l(TD, 460), show=[*T_SHOW, 'taa-desc'], highlight=['taa-desc'], danger=hv(['adamkiewicz']), labels=hv(['taa-desc', 'lsca', 'adamkiewicz', 'esophagus']), opacity={'heart': 0.35, 'aorta': 0.6, 'taa-desc': 0.6, 'esophagus': 0.5},
+        quiz=ask('At which diameter does the risk of rupture or dissection of the descending thoracic aorta rise sharply ("hinge point")?', 'About 7.0 cm',
+                 'Coady et al. found hinge points at 6.0 cm (ascending) and 7.0 cm (descending); guidelines advise repair of the descending aorta at 5.5 cm, before that point.', '4.0 cm', '5.0 cm', '9.0 cm'),
+        after=True, spin=True)
+    taa_anat = vstep('ta-anatomy', 'Anatomy', 'The descending thoracic aorta and what lies around it',
+        '<p>From the left subclavian artery (zone 3) down to the hiatus at T12. On its left: the <b>vagus</b> and, at the arch, the <b>left recurrent laryngeal nerve</b> hooking round the ligamentum arteriosum; medially the <b>oesophagus</b> (and the thoracic duct behind); the <b>intercostal arteries</b> leave its back in pairs; the <b>hemiazygos</b> veins cross behind. The <b>artery of Adamkiewicz</b> usually arises between T9 and T12 on the left.</p>'
+        '<p>Aortic zones for TEVAR (Ishimaru): 0 ascending to the innominate; 1 to the left carotid; 2 to the left subclavian; 3 the proximal descending; 4 the rest of the descending.</p>',
+        lat_l(TD, 400), show=[*T_SHOW, 'taa-desc'], highlight=['aorta'], danger=hv(['esophagus', 'adamkiewicz', 'lsca']), labels=hv(['lsca', 'lcca', 'esophagus', 'adamkiewicz', 'taa-desc']), opacity={'heart': 0.35, 'taa-desc': 0.35, 'esophagus': 0.6}, spin=True)
+    c_to = vstep('to-case', 'Case', 'Case: a descending aneurysm in Marfan syndrome',
+        '<p><b>Marfan syndrome</b> with a 5.8 cm descending aneurysm: <b>open repair</b>. TEVAR is not advised in heritable aortopathies (the stent graft\'s radial force on fragile tissue, progressive dilatation of the landing zones, retrograde dissection) except as a bridge or in emergencies.</p>'
+        '<p><b>Plan</b>: left thoracotomy, <b>left heart bypass</b> (distal aortic perfusion), <b>CSF drainage</b>, reattachment of critical intercostals, mild hypothermia.</p>'
+        + ev('2022 ACC/AHA: TEVAR is preferred for descending aneurysms with suitable anatomy in the absence of Marfan, Loeys-Dietz or vascular Ehlers-Danlos syndrome. Coselli et al. (J Vasc Surg 2002, randomised, extent I/II): CSF drainage reduced paraplegia or paraparesis from 13.0% to 2.6%.'),
+        lat_l(TD, 460), show=[*T_SHOW, 'taa-desc'], highlight=['taa-desc'], labels=['taa-desc'], opacity={'heart': 0.35, 'taa-desc': 0.6, 'esophagus': 0.5},
+        lead='<p>A <b>34-year-old woman</b> with <b>Marfan syndrome</b>, a valve-sparing root replacement 6 years ago. CT: the descending thoracic aorta has grown from 4.9 to <b>5.8 cm</b> in 18 months, from 4 cm beyond the left subclavian to T10. FEV1 85%; creatinine normal.</p>',
+        quiz=ask('Why open repair rather than TEVAR in this patient?', 'Marfan syndrome: stent grafts in heritable aortopathy risk landing-zone dilatation, endoleak and retrograde dissection',
+                 'Guidelines reserve TEVAR in Marfan and related syndromes for emergencies or as a bridge; open repair is durable.', 'The aneurysm is too small for TEVAR', 'TEVAR causes more paraplegia in young patients', 'Her lung function'))
+    TH = hv(['incision-l'])
+    to_thor = vstep('to-thor', 'Access', 'CSF drain, double-lumen tube, left thoracotomy',
+        '<p>Before induction: a <b>lumbar CSF drain</b> (L3–L4), keeping the pressure at 10–15 mmHg or less during and after the repair. A double-lumen tube (left lung deflated), arterial lines in the right arm and a leg (for distal pressure), motor evoked potentials where available. Right lateral decubitus, hips rotated back (femoral access).</p>'
+        '<p><b>Left posterolateral thoracotomy</b> through the <b>5th or 6th space</b> (a second, lower space or rib section for a long aneurysm).</p>',
+        lat_l(TD, 480), show=['skin', *TH, *T_SHOW, 'taa-desc', 'csf-drain'], highlight=[*TH, 'csf-drain'], labels=hv(['csf-drain', *TH]), opacity={'skin': 0.3, 'taa-desc': 0.5},
+        action={'kind': 'reveal', 'label': 'Place the drain; open the chest', 'port': 'thor-l', 'ids': hv(['csf-drain'])})
+    to_lhb = vstep('to-lhb', 'Bypass', 'Left heart bypass; sequential clamping',
+        '<p><b>Left heart bypass</b>: drain oxygenated blood from the <b>left inferior pulmonary vein</b> (or LA appendage) and return it by a centrifugal pump to the <b>distal aorta or a femoral artery</b>, with low-dose heparin. The kidneys, gut and the cord below the clamps are perfused while the aneurysm is repaired, and the heart is unloaded when the aorta is clamped.</p>'
+        '<p>Clamp proximally (between the left carotid and subclavian, or distal to the subclavian if there is a neck), and distally in the mid-descending aorta. Keep the proximal MAP 80–100 mmHg and the distal pressure above about 60 mmHg.</p>'
+        + ev('Coselli et al. (Ann Cardiothorac Surg 2023) protection bundle: CSF pressure below 15 mmHg during clamping, left heart bypass, reattachment of T7/8 to L1/2 intercostals, MAP 80–100 mmHg, spinal perfusion pressure at least 60 mmHg, haemoglobin at least 10 g/dL, mild hypothermia 32–34 °C.'),
+        lat_l(TD, 380), show=[*T_SHOW, 'taa-desc'], highlight=['aorta'], danger=hv(['lsca', 'esophagus']), labels=hv(['lsca', 'taa-desc']), opacity={'heart': 0.35, 'taa-desc': 0.45},
+        action={'kind': 'clamp', 'label': 'Clamp proximally', 'port': 'thor-l', 'at': R(Pv('taa-prox')), 'axis': [0, 0.2, 1], 'radius': 14, 'jawLen': 60})
+    to_graft = vstep('to-graft', 'Graft', 'Open the aneurysm, reattach intercostals, sew in the graft',
+        '<p>Open the aneurysm longitudinally, oversew back-bleeding upper intercostals, and <b>reattach the critical lower intercostals</b> (T8–T12, especially large, back-bleeding pairs) to the graft as an island or with a small side graft. <b>Proximal anastomosis</b> with 3-0 or 4-0 polypropylene (felt strip if fragile, as in Marfan), then move the clamp down; then the <b>distal anastomosis</b>. Flush, de-air, release slowly.</p>',
+        lat_l(TD, 340), show=[*T_SHOW, 'graft-taa'], highlight=['graft-taa'], danger=hv(['adamkiewicz', 'esophagus']), labels=hv(['graft-taa', 'adamkiewicz']), opacity={'heart': 0.35},
+        action={'kind': 'reveal', 'label': 'Sew in the graft', 'port': 'thor-l', 'ids': ['graft-taa']},
+        quiz=ask('After an extensive descending repair the patient wakes with weak legs. First moves?', 'Raise the MAP (above about 90 mmHg), drain CSF to below 10 mmHg, correct anaemia and hypoxia',
+                 'Delayed spinal cord ischaemia often recovers if spinal perfusion pressure (MAP minus CSF pressure) is restored quickly.', 'Wait and reassess in 24 hours', 'Give steroids only', 'Lower the blood pressure to protect the anastomoses'))
+    to_steps, to_sq = build_v([('Patho', 'other', [taa_patho]), ('Anatomy', 'other', [taa_anat]), ('Case', 'other', [c_to]), ('Access', 'other', [to_thor]),
+                               ('Bypass', 'artery', [to_lhb]), ('Graft', 'artery', [to_graft]),
+                               ('After', 'other', [vstep('to-after', 'After', 'Spinal cord watch; the drain',
+                                    '<p>Hourly leg checks for 48–72 hours; MAP targets, CSF drainage by protocol (watch for headache and for blood in the CSF: subdural haematoma), then clamp and remove the drain. Other complications: bleeding, renal failure, left recurrent laryngeal nerve palsy (hoarseness), chylothorax, pneumonia.</p>',
+                                    lat_l(TD, 420), show=[*T_SHOW, 'graft-taa', 'csf-drain'], labels=hv(['graft-taa', 'csf-drain']), opacity={'heart': 0.35})])])
+    finish('taa-open', 'taa', 'Thoracic aortic aneurysm', 'Descending, open (left heart bypass)', 'Left thoracotomy, CSF drainage, left heart bypass, intercostal reattachment, interposition graft.', to_steps, to_sq, TAA_SRC, side='left')
+    # --------------------------------------------------------------------- TEVAR
+    c_tv = vstep('tv2-case', 'Case', 'Case: a degenerative descending aneurysm in an older man',
+        '<p><b>TEVAR</b>: a 6.4 cm degenerative aneurysm in a 71-year-old with COPD, with <b>landing zones of at least 20 mm</b> of healthy aorta at both ends and iliac access that takes the sheath. The proximal landing needs coverage of the <b>left subclavian artery</b> (zone 2): <b>revascularise it first</b> (carotid-subclavian bypass or transposition), which lowers stroke, arm ischaemia and spinal cord risk.</p>'
+        + ev('VALOR (J Vasc Surg 2008): 30-day mortality 2.1% with TEVAR vs 7.9% with open repair (historical controls), paraplegia 1.5% and stroke 3.6% after TEVAR. Cheng et al. (JACC 2010, 5,888 patients): TEVAR lower 30-day mortality (OR 0.44) and paraplegia (OR 0.42), no long-term survival difference. SVS 2009 (Matsumura et al.): routine revascularisation before elective TEVAR that covers the left subclavian (weak recommendation); strongly recommended with a LIMA graft or dominant left vertebral. Spinal cord injury meta-analysis (Ann Cardiothorac Surg 2023; 61,962 patients): descending aneurysms 2.0% after TEVAR and after open repair.'),
+        lat_l(TD, 460), show=[*T_SHOW, 'taa-desc'], highlight=['taa-desc'], labels=hv(['taa-desc', 'lsca']), opacity={'heart': 0.35, 'taa-desc': 0.6, 'esophagus': 0.5},
+        lead='<p>A <b>71-year-old man</b>, smoker, COPD (FEV1 48%), hypertension. CT: a <b>6.4 cm</b> fusiform aneurysm of the mid-descending aorta, starting <b>12 mm</b> beyond the left subclavian origin, ending 4 cm above the coeliac trunk. External iliac arteries 8 mm. A dominant left vertebral artery.</p>',
+        quiz=ask('The landing zone requires covering his left subclavian, and his left vertebral is dominant. What should be done?', 'Revascularise the left subclavian (carotid-subclavian bypass or transposition) before or at the TEVAR',
+                 'Covering the subclavian with a dominant left vertebral risks posterior-circulation stroke, arm ischaemia and spinal cord ischaemia; revascularisation is strongly recommended in this setting.', 'Cover it without revascularisation', 'Abandon TEVAR', 'Embolise the vertebral artery'))
+    tv_deploy = vstep('tv2-deploy', 'Deploy', 'Access, angiography, deploy, completion',
+        '<p>A CSF drain if the coverage is long (over about 20 cm), the previous abdominal aorta has been repaired, or the subclavian and hypogastric supply is compromised. Femoral access (percutaneous with preclosure, or a cut-down; an iliac conduit if the vessels are small). A pigtail from the other groin or the left arm; an angiogram in the left anterior oblique projection to open the arch.</p>'
+        '<p>Advance the stent graft over a stiff wire, place its covered edge at the planned zone, lower the blood pressure (systolic about 90–100 mmHg or rapid pacing) and <b>deploy</b>; balloon the seal zones only if needed. Completion angiogram: no type I endoleak, the carotids patent.</p>',
+        lat_l(TD, 380), show=[*T_SHOW, 'taa-desc', 'tevar-graft'], highlight=['tevar-graft'], danger=hv(['lsca', 'lcca', 'adamkiewicz']), labels=hv(['tevar-graft', 'lsca']), opacity={'heart': 0.35, 'taa-desc': 0.3},
+        action={'kind': 'reveal', 'label': 'Deploy the stent graft', 'port': 'thor-l', 'ids': ['tevar-graft']})
+    tv_steps, tv_sq = build_v([('Patho', 'other', [{**taa_patho, 'id': 'tv2-patho'}]), ('Anatomy', 'other', [{**taa_anat, 'id': 'tv2-anatomy'}]), ('Case', 'other', [c_tv]),
+                               ('Deploy', 'artery', [tv_deploy]),
+                               ('After', 'other', [vstep('tv2-after', 'After', 'Neurology checks; surveillance',
+                                    '<p>Leg and arm checks, MAP above 80–90 mmHg for the first days, drain management. <b>Surveillance</b> imaging at about 1 month, then yearly: endoleak, migration, sac growth, retrograde dissection.</p>',
+                                    lat_l(TD, 420), show=[*T_SHOW, 'taa-desc', 'tevar-graft'], labels=['tevar-graft'], opacity={'heart': 0.35, 'taa-desc': 0.3})])])
+    finish('taa-tevar', 'taa', 'Thoracic aortic aneurysm', 'Descending, TEVAR', 'Landing zones, left subclavian management, spinal cord protection, deployment, surveillance.', tv_steps, tv_sq, TAA_SRC, side='left')
+    # --------------------------------------------------------------------- ascending aneurysm with hemiarch (syphilitic aortitis)
+    if has('taa-asc'):
+        TA = Pv('taa-asc'); fr = lambda t, dist=360: tl(t, (0.25, 1, 0.35), dist)
+        A_SHOW = hv(['aorta', 'heart', 'bct', 'lcca', 'lsca', 'svc', 'pa-trunk', 'lbcv'])
+        asc_patho = {**taa_patho, 'id': 'tas-patho', 'view': fr(TA, 380), 'show': [*A_SHOW, 'taa-asc'], 'highlight': ['taa-asc'], 'labels': hv(['taa-asc', 'bct', 'svc']), 'danger': [], 'opacity': {'heart': 0.4, 'taa-asc': 0.6}}
+        asc_anat = vstep('tas-anatomy', 'Anatomy', 'The ascending aorta and the arch',
+            '<p>The ascending aorta runs from the sinotubular junction to the <b>innominate artery</b>, inside the pericardium, with the <b>SVC</b> and right atrium on its right, the <b>pulmonary trunk</b> in front and to the left, the right pulmonary artery behind. The <b>left brachiocephalic vein</b> crosses in front of the arch branches. A <b>hemiarch</b> repair replaces the underside of the arch (the lesser curve) without reimplanting the head vessels.</p>',
+            fr(TA, 340), show=[*A_SHOW, 'taa-asc'], highlight=['taa-asc'], danger=hv(['svc', 'lbcv', 'pa-trunk']), labels=hv(['bct', 'lcca', 'lsca', 'svc', 'lbcv', 'pa-trunk']), opacity={'heart': 0.4, 'taa-asc': 0.45}, spin=True)
+        c_as = vstep('tas-case', 'Case', 'Case: syphilitic aortitis with an ascending aneurysm',
+            '<p><b>A 5.6 cm ascending aneurysm</b> reaching the arch, symptomatic (chest pain), from <b>syphilitic aortitis</b>: <b>replace the ascending aorta and the hemiarch</b> under hypothermic circulatory arrest with antegrade cerebral perfusion. Treat the syphilis (intravenous penicillin), check the <b>coronary ostia</b> (ostial stenosis is typical) and the aortic valve (regurgitation from root dilatation).</p>'
+            + ev('2022 ACC/AHA: ascending repair at 5.5 cm or more, or when symptomatic; hemiarch replacement when the aneurysm extends into the arch. Syphilitic aortitis involves the ascending aorta in about half and the arch in a third; untreated, symptomatic disease has a high mortality (ICVTS 2012). Hypothermia classification (Yan et al. 2013): moderate 20.1–28 °C, used with antegrade cerebral perfusion.'),
+            fr(TA, 380), show=[*A_SHOW, 'taa-asc'], highlight=['taa-asc'], labels=['taa-asc'], opacity={'heart': 0.4, 'taa-asc': 0.6},
+            lead='<p>A <b>52-year-old man</b>, 3 months of central chest pain and a hoarse voice. CT: a <b>5.6 cm</b> ascending aneurysm with wall calcification, extending to the proximal arch; aortic root 3.9 cm; mild aortic regurgitation. <b>TPHA positive, VDRL 1:32</b>. Coronary angiography: a 70% ostial stenosis of the left main.</p>',
+            quiz=ask('Which coronary lesion is characteristic of syphilitic aortitis?', 'Ostial stenosis of the coronary arteries',
+                     'Aortitis thickens the intima at the root, narrowing the ostia; it needs to be addressed at surgery (endarterectomy, patch or bypass).', 'Mid-LAD plaque', 'Coronary aneurysms', 'Coronary spasm'))
+        as_cpb = vstep('tas-cpb', 'Bypass', 'Sternotomy; axillary cannulation; cool',
+            '<p>Median sternotomy. Arterial cannulation of the <b>right axillary artery</b> (through an 8 mm graft sewn end-to-side), which later provides <b>antegrade cerebral perfusion</b>; venous drainage from the right atrium; an LV vent. Cool on bypass to <b>moderate hypothermia</b> (about 24–28 °C). Cross-clamp below the innominate; cardioplegia (antegrade, or into the ostia if there is aortic regurgitation).</p>',
+            fr(TA, 360), show=['sternum', *A_SHOW, 'taa-asc'], highlight=['taa-asc'], danger=hv(['bct', 'lbcv']), labels=hv(['bct', 'svc', 'taa-asc']), opacity={'heart': 0.4, 'taa-asc': 0.45, 'sternum': 0.4},
+            action={'kind': 'clamp', 'label': 'Cross-clamp', 'port': 'sternotomy', 'at': R(TA + V([0, 0, 25])), 'axis': [0, 0.3, 1], 'radius': 16, 'jawLen': 60})
+        as_graft = vstep('tas-graft', 'Graft', 'Proximal anastomosis; circulatory arrest and the hemiarch',
+            '<p>Excise the aneurysm; <b>proximal anastomosis</b> to the sinotubular junction (4-0 polypropylene, felt if needed). At target temperature, stop the pump, clamp the innominate, and perfuse the brain <b>antegrade</b> through the axillary graft (about 10 mL/kg/min, right radial pressure 40–60 mmHg). Remove the clamp, bevel the <b>open distal anastomosis</b> along the underside of the arch. Restart perfusion through the graft, de-air, clamp the graft, rewarm; complete the proximal work.</p>',
+            fr(TA, 320), show=[*A_SHOW, 'graft-asc'], highlight=['graft-asc'], danger=hv(['bct', 'lcca', 'lsca']), labels=hv(['graft-asc', 'bct']), opacity={'heart': 0.4},
+            action={'kind': 'reveal', 'label': 'Sew in the graft', 'port': 'sternotomy', 'ids': ['graft-asc']})
+        as_steps, as_sq = build_v([('Patho', 'other', [asc_patho]), ('Anatomy', 'other', [asc_anat]), ('Case', 'other', [c_as]), ('Bypass', 'artery', [as_cpb]), ('Graft', 'artery', [as_graft]),
+                                   ('After', 'other', [vstep('tas-after', 'After', 'Rewarm, wean, and treat the syphilis',
+                                        '<p>Rewarm slowly (no more than 10 °C gradient, not above 37 °C), wean, protamine, haemostasis (coagulopathy after circulatory arrest: platelets, fibrinogen). Neurological assessment on waking. <b>Penicillin</b> for tertiary syphilis (14 days intravenously for cardiovascular syphilis, per local protocol), and follow-up imaging of the remaining arch and descending aorta.</p>',
+                                        fr(TA, 360), show=[*A_SHOW, 'graft-asc'], labels=['graft-asc'], opacity={'heart': 0.4})])])
+        finish('taa-asc', 'taa', 'Thoracic aortic aneurysm', 'Ascending and hemiarch (circulatory arrest)', 'Sternotomy, axillary cannulation, moderate hypothermia, antegrade cerebral perfusion, open distal hemiarch anastomosis.', as_steps, as_sq, TAA_SRC)
+    # the case vignette of the infrarenal case (its lead is on c_inf); patho and case steps shared by several approaches get unique ids
+    for key in ('aaa-infra', 'aaa-juxta', 'aaa-supra', 'aaa-evar', 'aiod-abf', 'aiod-axbf', 'aiod-endo', 'taa-open', 'taa-tevar', 'taa-asc'):
+        if key in procs:
+            seen = set()
+            for s in procs[key]['steps']:
+                if s['id'] in seen: s['id'] = s['id'] + '-2'
+                seen.add(s['id'])
 # ==================================================================================================== the operative field in open-heart steps
 # after the chest is open: the drapes and their sternotomy window, the split sternum held open, the pericardial cradle
 FIELD = [i for i in ('drape-sternotomy', 'pericardium-open') if has(i)]
@@ -4183,7 +4643,7 @@ if FIELD:
             if inside: s_['hide'] = [*s_['hide'], 'pericardium-open']
             else: s_['opacity'] = {**s_.get('opacity', {}), 'pericardium-open': 0.55}
 # operations appear in the menu in this order
-ORDER = ['position', 'thoracotomy-l', 'thoracotomy-r', 'vats-ports-l', 'vats-ports-r', 'lul', 'lll', 'rul', 'rml', 'rll', 'pnl', 'pnr', 'seg-lingula', 'seg-lul-updiv', 'seg-s6', 'trachea', 'thymectomy', 'oesophagectomy', 'duct', 'empyema', 'ppe', 'rt', 'clamshell', 'cardio', 'tract', 'hilar', 'mvr', 'avr', 'root', 'tricuspid', 'cabg']
+ORDER = ['position', 'thoracotomy-l', 'thoracotomy-r', 'vats-ports-l', 'vats-ports-r', 'lul', 'lll', 'rul', 'rml', 'rll', 'pnl', 'pnr', 'seg-lingula', 'seg-lul-updiv', 'seg-s6', 'trachea', 'thymectomy', 'oesophagectomy', 'duct', 'empyema', 'ppe', 'rt', 'clamshell', 'cardio', 'tract', 'hilar', 'mvr', 'avr', 'root', 'tricuspid', 'cabg', 'aiod', 'aaa', 'taa']
 procs = dict(sorted(procs.items(), key=lambda kv: (ORDER.index(kv[1]['op']), list(procs).index(kv[0]))))
 for v in procs.values():
     v['group'] = v.get('group') or ('Pneumonectomy' if v['op'].startswith('pn') else 'Segmentectomy' if v['op'].startswith('seg-') else 'Lobectomy')

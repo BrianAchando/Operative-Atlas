@@ -31,6 +31,14 @@ export function tissueOf(m: Meta): Tissue {
   if (id.startsWith('jet-')) return 'plain';
   if (has(id, 'tumour-', 'asp-ball', 'thymoma', 'eso-tumour-', 'laa-thrombus')) return 'organ';
   if (id === 'flap-lat') return 'muscle';
+  // vascular module
+  if (has(id, 'graft-tube', 'graft-juxta', 'graft-supra', 'graft-abf', 'graft-axbf', 'graft-taa', 'graft-asc')) return 'fabric';
+  if (has(id, 'evar-graft', 'tevar-graft', 'stents-kissing')) return 'metal';
+  if (id === 'aiod-occlusion') return 'calcium';
+  if (id === 'csf-drain') return 'plastic';
+  if (id.startsWith('kidney-')) return 'organ';
+  if (has(id, 'renal-v-', 'ivc-infra', 'civ-')) return 'vein';
+  if (has(id, 'coeliac', 'sma', 'ima', 'renal-a-', 'cia-', 'eia-', 'iia-', 'cfa-', 'sfa-', 'pfa-', 'adamkiewicz', 'aiod-collaterals', 'aaa-', 'taa-')) return 'artery';
   if (id === 'bronchial-stump') return 'cartilage';
   if (has(id, 'asp-cavity', 'asp-pleura', 'tb-cavities', 'cle-', 'cpam-', 'ppe-', 'bpf')) return 'plain';
   if (has(id, 'av-prosthesis', 'tv-prosthesis', 'mv-ant-leaflet', 'mv-post-leaflet', 'tv-septal', 'tv-anterior', 'tv-posterior', 'av-cusp-', 'chordae',
