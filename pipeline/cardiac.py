@@ -164,7 +164,7 @@ def build(ctx):
     ra_low = ra_mm[ra_mm[:, 2] < np.percentile(ra_mm[:, 2], 12)].mean(0)
     cans = [('can-aortic', 'Aortic cannula', [ao_can + ANT * 2, ao_can + ANT * 30 + SUP * 20, ao_can + ANT * 90 + SUP * 40], 3.2),
             ('can-svc', 'SVC cannula', [svc_p, svc_p + RIGHT * 18 + ANT * 20, svc_p + RIGHT * 30 + ANT * 90 + SUP * 20], 3.6),
-            ('can-ivc', 'IVC cannula', [ra_low, ra_low + RIGHT * 22 + ANT * 20, ra_low + RIGHT * 40 + ANT * 90 - SUP * 10], 4.0),
+            ('can-ivc', 'IVC cannula (tip in the IVC)', [ra_low - SUP * 20, ra_low, ra_low + RIGHT * 22 + ANT * 20, ra_low + RIGHT * 40 + ANT * 90 - SUP * 10], 4.0),
             ('can-cp', 'Antegrade cardioplegia needle (aortic root)', [cp + ANT * 1, cp + ANT * 25 + SUP * 10, cp + ANT * 80 + SUP * 25], 1.6)]
     for id_, name, pts, r in cans:
         emit_mesh(id_, name, 'cardiac', CANNULA, tube([W(p) for p in pts], r), opacity=0.9, visible=False, note='Schematic.')
@@ -692,6 +692,15 @@ def coronary_tree(ctx, H, mm, LM, DIRS, SC, A):
     svg_pda = _smooth(np.array([pa2, pa2 + ANT * 12 + RIGHT * 8, via2, via3, tp + (tp - hc) / np.linalg.norm(tp - hc) * 6, tp]), 2)
     emit_mesh('graft-svg-om', 'Saphenous vein graft: aorta to OM1', 'cardiac', '#7d5a8c', tube([W(p) for p in svg_om], 2.2), visible=False,
               note='Reversed long saphenous vein; the course round the left side of the heart is judged with the heart full.')
+    emit_mesh('graft-radial-om', 'Radial artery graft: aorta to OM1', 'cardiac', '#b8453a', tube([W(p) for p in svg_om], 1.5), visible=False,
+              note='The radial artery (non-dominant arm), proximal end on the aorta; for a target with a severe stenosis.')
+    # MIDCAB: a short left anterior thoracotomy over the LAD, 4th or 5th space
+    if ctx.get('port') is not None:
+        mid = np.array([ctx['port'](4, a, 'left') for a in np.linspace(78, 45, 5)])
+        cr = mid.mean(0); mid[:, 1] += 2.5
+        emit_mesh('incision-midcab', 'Left anterior mini-thoracotomy (MIDCAB, 4th space)', 'incisions', '#d0433a', tube([W(p) for p in mid], 1.8), visible=False,
+                  note='6-8 cm in the 4th (or 5th) space, from near the sternal edge laterally; the LIMA is taken down under direct vision or thoracoscopically.')
+        LM['midcab'] = mid[2]
     emit_mesh('graft-svg-pda', 'Saphenous vein graft: aorta to PDA', 'cardiac', '#7d5a8c', tube([W(p) for p in svg_pda], 2.2), visible=False,
               note='Reversed long saphenous vein round the acute margin to the inferior wall.')
     # off-pump stabiliser on the LAD target: two pads either side, on an arm from the sternal retractor

@@ -834,6 +834,9 @@ sources = [
     {'title': 'Hansen HJ, Petersen RH. Video-assisted thoracoscopic lobectomy using a standardized three-port anterior approach: the Copenhagen experience. Ann Cardiothorac Surg 2012;1(1):70-76', 'url': 'https://doi.org/10.3978/j.issn.2225-319X.2012.04.15'},
     {'title': 'McElnay P, Casali G, Batchelor T, West D. Adopting a standardized anterior approach significantly increases VATS lobectomy rates. Eur J Cardiothorac Surg 2014;46(1):100', 'url': 'https://academic.oup.com/ejcts/article/46/1/100/394433'},
     {'title': 'Rusch VW, et al. The IASLC lung cancer staging project: a proposal for a new international lymph node map. J Thorac Oncol 2009', 'url': 'https://pubmed.ncbi.nlm.nih.gov/19357537'},
+    {'title': 'Lim E, et al. Video-assisted thoracoscopic versus open lobectomy in patients with early-stage lung cancer (VIOLET): a randomised controlled trial. Lancet Oncol 2022', 'url': 'https://pubmed.ncbi.nlm.nih.gov/?term=VIOLET+video-assisted+thoracoscopic+versus+open+lobectomy+Lim+2022'},
+    {'title': 'Saji H, et al. Segmentectomy versus lobectomy in small-sized peripheral non-small-cell lung cancer (JCOG0802/WJOG4607L). Lancet 2022;399:1607-17', 'url': 'https://pubmed.ncbi.nlm.nih.gov/?term=JCOG0802+segmentectomy+versus+lobectomy+Saji+2022'},
+    {'title': 'Altorki N, et al. Lobar or sublobar resection for peripheral stage IA non-small-cell lung cancer (CALGB 140503). N Engl J Med 2023;388:489-98', 'url': 'https://pubmed.ncbi.nlm.nih.gov/?term=CALGB+140503+lobar+or+sublobar+resection+Altorki+2023'},
     {'title': 'Wasserthal J, et al. TotalSegmentator. Radiol Artif Intell 2023', 'url': 'https://doi.org/10.1148/ryai.230024'},
 ]
 # every operative step: the intrapulmonary trees and the spine recede so the hilar structures read clearly
@@ -1965,6 +1968,11 @@ if MVR_OK:
         {'title': 'Vahanian A, et al. 2021 ESC/EACTS guidelines for the management of valvular heart disease. Eur Heart J 2022;43:561-632', 'url': 'https://pubmed.ncbi.nlm.nih.gov/34453165/'},
         {'title': 'Guiraudon GM, et al. The superior septal approach to the mitral valve', 'url': 'https://pubmed.ncbi.nlm.nih.gov/?term=Guiraudon+superior+septal+approach+mitral+valve'},
         {'title': 'Chitwood WR Jr, et al. Minimally invasive video-directed mitral valve surgery; transthoracic aortic cross-clamp', 'url': 'https://pubmed.ncbi.nlm.nih.gov/?term=Chitwood+transthoracic+aortic+crossclamp+minimally+invasive+mitral'},
+        {'title': 'Praz F, Borger MA, et al. 2025 ESC/EACTS Guidelines for the management of valvular heart disease. Eur Heart J 2025', 'url': 'https://www.escardio.org/guidelines/clinical-practice-guidelines/all-esc-practice-guidelines/valvular-heart-disease/'},
+        {'title': 'Englberger L, et al. Importance of implant technique on risk of major paravalvular leak after St. Jude mechanical valve replacement (AVERT). Eur J Cardiothorac Surg 2005;28:838-43', 'url': 'https://academic.oup.com/ejcts/article/28/6/838/377180'},
+        {'title': 'Svenarud P, et al. Effect of CO2 insufflation on the number and behavior of air microemboli in open-heart surgery: a randomized clinical trial. Circulation 2004', 'url': 'https://pubmed.ncbi.nlm.nih.gov/?term=Svenarud+carbon+dioxide+insufflation+microemboli+randomized+Circulation+2004'},
+        {'title': 'Martens S, et al. Carbon dioxide field flooding reduces neurologic impairment after open heart surgery. Ann Thorac Surg 2008', 'url': 'https://pubmed.ncbi.nlm.nih.gov/?term=Martens+carbon+dioxide+field+flooding+neurologic+impairment+open+heart+2008'},
+        {'title': 'Hahn RT, et al. Guidelines for performing a comprehensive transesophageal echocardiographic examination (ASE/SCA). J Am Soc Echocardiogr 2013', 'url': 'https://pubmed.ncbi.nlm.nih.gov/?term=Hahn+guidelines+comprehensive+transesophageal+echocardiographic+examination+2013'},
     ]
 
     def mv_anat(pre):
@@ -2000,11 +2008,11 @@ if MVR_OK:
 
     def mv_cannulate(pre, seq_, septal=False):
         return {'id': f'{pre}-cannulate', 'phase': 'Bypass', 'seq': seq_, 'title': 'Cannulation: aorta and both cavae',
-                'body': '<p>Heparin (about 300–400 U/kg; ACT above 480 s). Two purse-strings on the <b>distal ascending aorta</b> for the arterial cannula. <b>Bicaval venous drainage</b>: the SVC cannulated directly, the IVC low on the right atrium'
+                'body': '<p>Heparin (about 300–400 U/kg; ACT above 480 s). Two purse-strings on the <b>distal ascending aorta</b> for the arterial cannula. <b>Bicaval venous drainage: two separate cannulas</b>: an angled <b>SVC cannula</b> directly into the SVC (or through the appendage), and an <b>IVC cannula</b> through a purse-string low on the right atrium, its tip passed into the IVC'
                         + (', with <b>snares round both cavae</b>: the right atrium will be opened.' if septal else '; snares are needed if the right atrium is to be opened.') + '</p>'
                         '<p>An antegrade cardioplegia and root vent line in the ascending aorta; a <b>retrograde cannula</b> into the coronary sinus if wanted; an <b>LV vent</b> through the right superior pulmonary vein.</p>',
-                'view': clook(V(LM['can-svc']), V([0.5, 0.9, 0.35]), 330), 'show': [*CH], 'hide': HEART_OFF, 'opacity': FAINT,
-                'highlight': CANS, 'labels': [*CANS, 'aorta', 'svc'],
+                'view': clook((V(LM['can-svc']) + V(LM['can-ivc'])) / 2, V([0.75, 0.75, 0.1]), 360), 'show': [*CH, *[i for i in ('ivc', 'snares') if has(i)]], 'hide': HEART_OFF, 'opacity': {**FAINT, 'ivc': 0.6},
+                'highlight': CANS, 'labels': ['can-svc', 'can-ivc', 'can-aortic', 'can-cp', 'svc', 'ivc'],
                 'action': {'kind': 'reveal', 'label': 'Place the cannulas', 'port': 'sternotomy', 'ids': CANS},
                 'ct': ct(R(V(LM['can-aortic'])), 'axial')}
 
@@ -2235,12 +2243,12 @@ if AVR_OK:
                 'ct': ct(R(AC), 'coronal')}
 
     def av_cannulate(pre, seq_):
-        return {'id': f'{pre}-cannulate', 'phase': 'Bypass', 'seq': seq_, 'title': 'Cannulation: aorta, one venous cannula, LV vent',
-                'body': '<p>Heparin (ACT above 480 s). Arterial cannula in the <b>distal ascending aorta</b>, high enough to leave room for the clamp and an aortotomy below it. For isolated AVR the right atrium is not opened, so a single <b>two-stage cannula</b> (appendage to IVC) drains both cavae.</p>'
+        return {'id': f'{pre}-cannulate', 'phase': 'Bypass', 'seq': seq_, 'title': 'Cannulation: aorta, two-stage venous cannula (RA to IVC), LV vent',
+                'body': '<p>Heparin (ACT above 480 s). Arterial cannula in the <b>distal ascending aorta</b>, high enough to leave room for the clamp and an aortotomy below it. For isolated AVR the right atrium is not opened, so venous drainage is by a single <b>two-stage (cavoatrial) cannula</b>: in through a purse-string on the <b>right atrial appendage</b>, its tip passed down into the <b>IVC</b>. The tip drains the IVC, the side holes (the second stage) sit in the right atrium and drain the SVC return. It cannot be snared, so it is not used when the right atrium must be opened (mitral, tricuspid, septal defects: use two caval cannulas).</p>'
                         '<p>Root cardioplegia and vent line; a <b>retrograde</b> cannula in the coronary sinus; an <b>LV vent through the right superior pulmonary vein</b>, placed <b>before the heart slows</b> if there is aortic regurgitation, so the ventricle never distends.</p>'
                         + ev('this is standard practice (Kirklin/Barratt-Boyes). A regurgitant valve lets cardioplegia and bypass return fill the arrested LV; distension damages the myocardium, which is why the vent goes in early.'),
-                'view': clook(V(LM['can-aortic']), V([0.4, 0.9, 0.35]), 330), 'show': CH, 'hide': HEART_OFF, 'opacity': FAINT,
-                'highlight': AV_CANS, 'labels': [*AV_CANS, 'aorta'],
+                'view': clook((V(LM['can-aortic']) + V(LM['can-ivc'])) / 2, V([0.6, 0.85, 0.2]), 380), 'show': [*CH, *[i for i in ('ivc',) if has(i)]], 'hide': HEART_OFF, 'opacity': {**FAINT, 'ivc': 0.6},
+                'highlight': AV_CANS, 'labels': [*AV_CANS, 'aorta', 'ivc'],
                 'action': {'kind': 'reveal', 'label': 'Place the cannulas', 'port': 'sternotomy', 'ids': AV_CANS},
                 'ct': ct(R(V(LM['can-aortic'])), 'axial')}
 
@@ -2473,8 +2481,8 @@ if TV_OK:
         return {'id': f'{pre}-cannulate', 'phase': 'Bypass', 'seq': seq_, 'title': 'Bicaval cannulation and snares',
                 'body': '<p>Heparin. The aortic cannula as usual. <b>Separate SVC and IVC cannulas</b> (the IVC one low on the atrium, near the IVC junction, so the atriotomy is clear), with <b>snares</b> round both cavae. Tightened, they isolate the right atrium, so it can be opened without the venous line taking in air.</p>'
                         + ev('bicaval cannulation with snares is the standard for any right atrial opening (Kirklin/Barratt-Boyes). With vacuum-assisted drainage, some surgeons open the atrium without snaring.'),
-                'view': clook(V(LM['can-svc']), V([0.8, 0.8, 0.2]), 320), 'show': [*CH], 'hide': HEART_OFF, 'opacity': FAINT,
-                'highlight': TV_CANS, 'labels': ['can-svc', 'can-ivc', 'snares', 'can-aortic'],
+                'view': clook((V(LM['can-svc']) + V(LM['can-ivc'])) / 2, V([0.8, 0.7, 0.1]), 360), 'show': [*CH, *[i for i in ('ivc',) if has(i)]], 'hide': HEART_OFF, 'opacity': {**FAINT, 'ivc': 0.6},
+                'highlight': TV_CANS, 'labels': ['can-svc', 'can-ivc', 'snares', 'can-aortic', 'ivc'],
                 'action': {'kind': 'reveal', 'label': 'Cannulate and snare', 'port': 'sternotomy', 'ids': TV_CANS},
                 'ct': ct(R(V(LM['can-svc'])), 'axial')}
 
@@ -2816,6 +2824,8 @@ if CABG_OK:
         {'title': 'Zenati MA, et al. Randomized trial of endoscopic or open vein-graft harvesting (REGROUP). N Engl J Med 2019', 'url': 'https://www.nejm.org/doi/full/10.1056/NEJMoa1812390'},
         {'title': 'No-touch vein grafts in coronary artery bypass surgery: a registry-based randomized clinical trial (SWEDEGRAFT). Eur Heart J 2025;46:1720', 'url': 'https://academic.oup.com/eurheartj/article/46/18/1720/8023883'},
         {'title': 'Graft patency of no-touch versus conventionally harvested saphenous vein conduits: meta-analysis of 7 randomized trials. 2025', 'url': 'https://www.sciencedirect.com/science/article/pii/S2666273625000555'},
+        {'title': 'Maron DJ, et al. Initial invasive or conservative strategy for stable coronary disease (ISCHEMIA). N Engl J Med 2020;382:1395-407', 'url': 'https://www.nejm.org/doi/full/10.1056/NEJMoa1915922'},
+        {'title': 'Blazek S, et al. Comparison of bare-metal stenting with minimally invasive bypass surgery for stenosis of the LAD: 10-year follow-up of a randomized trial. JACC Cardiovasc Interv 2013;6:20-6', 'url': 'https://www.jacc.org/doi/10.1016/j.jcin.2012.09.008'},
         {'title': 'Lamy A, et al. Five-year outcomes after off-pump or on-pump coronary-artery bypass grafting (CORONARY). N Engl J Med 2016;375:2359-68', 'url': 'https://www.acc.org/Latest-in-Cardiology/Clinical-Trials/2014/06/08/17/13/CORONARY'},
         {'title': 'Shroyer AL, et al. Five-year outcomes after on-pump and off-pump coronary-artery bypass (ROOBY-FS). N Engl J Med 2017;377:623-32; Quin JA, et al. Ten-year outcomes. JAMA Surg 2022', 'url': 'https://www.tctmd.com/news/rooby-fs-10-year-data-affirm-pump-cabg-default-strategy'},
     ]
@@ -2889,8 +2899,8 @@ if CABG_OK:
     pda_ev = 'grafting the PDA rather than a diseased distal RCA avoids the crux, where disease is common; the choice follows the angiogram and palpation, not trials.'
 
     def cb_cannulate(pre, seq_):
-        return {**av_cannulate(pre, seq_), 'title': 'Cannulate, arrest', 'show': [*SURF, *TREE, *LES], 'hide': CB_OFF, 'opacity': SOLID,
-                'body': '<p>Heparin. Arterial cannula in the distal ascending aorta, a two-stage venous cannula, antegrade cardioplegia and root vent, and a retrograde cannula. Palpate or scan the aorta (epiaortic ultrasound) for calcium before cannulating or clamping.</p>'
+        return {**av_cannulate(pre, seq_), 'title': 'Cannulate (aorta; two-stage venous RA to IVC), arrest', 'show': [*SURF, *TREE, *LES, *[i for i in ('ivc',) if has(i)]], 'hide': CB_OFF, 'opacity': {**SOLID, 'ivc': 0.6},
+                'body': '<p>Heparin (about 300–400 U/kg; ACT above 480 s). Arterial cannula in the distal ascending aorta. Venous drainage by one <b>two-stage cannula</b>: through the <b>right atrial appendage</b>, tip in the <b>IVC</b>, side holes in the atrium (the heart is not opened, so separate caval cannulas are not needed). Antegrade cardioplegia and root vent, and a retrograde cannula in the coronary sinus. Palpate or scan the aorta (epiaortic ultrasound) for calcium before cannulating or clamping.</p>'
                         '<p>Cross-clamp and arrest: <b>antegrade and retrograde</b> cardioplegia (retrograde reaches beyond the blocked arteries); after each distal anastomosis, give cardioplegia down the new graft too.</p>'
                         + ev('epiaortic scanning finds atheroma missed by palpation and changes the cannulation or clamp site in some patients; stroke after CABG is mostly embolic from the aorta.')}
 
@@ -2921,42 +2931,116 @@ if CABG_OK:
                            'Accept it: flows improve after weaning', 'Add a vein graft to the LAD later if needed'),
                 'ct': ct(R(HC_), 'axial')}
 
-    onp = [cb_anat('co'), cb_decide('co'), {**mv_sternotomy('co', 2), 'id': 'co-sternotomy'}, cb_lima('co', 3), cb_veins('co', 4), cb_cannulate('co', 5),
+    def cb_case(pre, title, vignette, lesions, quiz):
+        return {'id': f'{pre}-case', 'phase': 'Case', 'seq': 0, 'title': title,
+                'body': vignette, 'view': clook(HC_, V([-0.3, 1, 0.2]), 260), 'spin': True, 'show': [*SURF, *TREE, *lesions], 'hide': CB_OFF, 'opacity': SOLID,
+                'danger': lesions, 'labels': lesions, 'ask': quiz, 'ct': ct(R(HC_), 'axial')}
+
+    # ----------------------------------------------------------------------------- single-vessel: isolated proximal LAD, MIDCAB
+    one = [cb_case('c1', 'Case: isolated proximal LAD disease',
+                   '<p>A 62-year-old man, <b>angina (CCS III) despite full medical therapy</b>; stress imaging shows a large anterior ischaemic area. Angiogram: a long, calcified <b>90% ostial–proximal LAD</b> stenosis involving the diagonal origin; circumflex and RCA normal; EF 55%. '
+                   'The interventional team judge it unfavourable for PCI.</p>'
+                   + ev('in stable coronary disease, revascularisation relieves angina, but ISCHEMIA (NEJM 2020, over 5,000 patients with moderate or severe ischaemia) found no reduction in death or MI with an initial invasive strategy. For isolated proximal LAD disease, the randomised Leipzig trial (Blazek et al., JACC Cardiovasc Interv 2013; 220 patients, 10 years) found MIDCAB and stenting similar for death and MI, with far fewer repeat revascularisations after MIDCAB (11% vs 34%).'),
+                   ['lesion-lad'],
+                   ask('What is the main aim of revascularising this man?', 'Relieving angina that persists despite medical therapy',
+                       'In stable single-vessel disease, trials have not shown a survival benefit; the indication is symptoms despite optimal medical therapy (and here an anatomy unfavourable for PCI).',
+                       'Improving survival', 'Preventing a future myocardial infarction')),
+           {'id': 'c1-access', 'phase': 'Access', 'seq': 1, 'title': 'MIDCAB: left anterior mini-thoracotomy',
+            'body': '<p>Double-lumen tube, <b>left lung deflated</b>, the left chest raised about 30°, external defibrillator pads. A 6–8 cm incision in the <b>left 4th (or 5th) space</b> from near the sternal edge laterally, positioned over the LAD target (check on the angiogram or CT).</p>'
+                    '<p>No sternotomy, no bypass: the operation is <b>off-pump</b>, and the only graft is the <b>LIMA to the LAD</b>.</p>'
+                    + ev('MIDCAB avoids sternotomy and cardiopulmonary bypass; its results depend on centre experience, and conversion to sternotomy must always be possible.'),
+            'view': clook(Lc('midcab') if 'midcab' in LM else HC_, V([-0.45, 1, 0.3]), 330), 'show': ['skin', 'incision-midcab'], 'opacity': {'skin': 1.0}, 'hide': CB_OFF,
+            'highlight': ['incision-midcab'], 'labels': ['incision-midcab'], 'ct': ct(R(Lc('midcab') if 'midcab' in LM else HC_), 'axial', 'lung')},
+           {**cb_lima('c1', 2), 'body': '<p>A special retractor lifts the upper ribs. The <b>LIMA</b> is harvested under direct vision (or thoracoscopically) from as high as possible down to the incision, pedicled or skeletonised, with clips on each branch. Heparin before dividing it.</p>'
+                    + ev('a long LIMA is essential here: the target must be reached without tension through a small incision, and the pedicle cannot be brought round other structures as at sternotomy.')},
+           {'id': 'c1-stabilise', 'phase': 'Graft', 'seq': 3, 'title': 'Open the pericardium over the LAD; stabilise',
+            'body': '<p>Open the pericardium over the LAD, stitch its edges up to lift the heart. Find the target beyond the lesion (and beyond the diagonal); place the <b>stabiliser</b>, a proximal silicone snare or an intracoronary shunt, and a CO₂ blower.</p>'
+                    + ev('ischaemic preconditioning (a brief trial occlusion) before the arteriotomy is practised by some surgeons; its benefit is not proven in trials.'),
+            'view': look(TL, V([0.35, 1.3, 0.35]), 190), 'show': [*SURF, *TREE, 'lesion-lad', 'target-lad', 'stabilizer', 'lima-insitu'], 'hide': CB_OFF, 'opacity': SOLID,
+            'highlight': ['stabilizer', 'target-lad'], 'labels': ['stabilizer', 'target-lad'],
+            'action': {'kind': 'reveal', 'label': 'Place the stabiliser', 'port': 'sternotomy', 'ids': ['stabilizer']}, 'ct': ct(R(TL), 'axial')},
+           {**cb_distal('c1', 4, 'lad', 'graft-lima', 'LIMA to LAD, off-pump', lad_body, lad_ev, V([0.35, 1.3, 0.35]), offpump=True), 'show': [*SURF, *TREE, 'lesion-lad', 'graft-lima', 'target-lad', 'stabilizer']},
+           {'id': 'c1-check', 'phase': 'Wean', 'seq': 5, 'title': 'Check the graft, close',
+            'body': '<p><b>Transit-time flow</b> on the LIMA (a good mean flow and a PI below about 5), TOE for anterior wall motion. Protamine. A chest drain, the lung re-expanded, the ribs approximated, a local anaesthetic block for pain.</p>'
+                    + ev('TTFM thresholds come from observational series; a poor reading on the only graft calls for revision before closing.'),
+            'view': look(TL, V([0.35, 1.3, 0.35]), 220), 'show': [*SURF, *TREE, 'graft-lima', 'target-lad'], 'hide': CB_OFF, 'opacity': SOLID, 'labels': ['graft-lima'],
+            'ask': ask('The LIMA reads mean flow 5 mL/min, PI 12. What next?', 'Look for a kink, twist or anastomotic problem and revise the graft now',
+                       'On a single graft, a technical failure means an anterior infarct; fix it before closing.', 'Accept: flow improves later', 'Give nitrates and close'),
+            'ct': ct(R(TL), 'axial')}]
+
+    # ----------------------------------------------------------------------------- two-vessel: LAD and OM, diabetic; LIMA + radial
+    two = [cb_case('c2', 'Case: two-vessel disease (LAD and OM) with diabetes',
+                   '<p>A 55-year-old woman with <b>type 2 diabetes</b>, exertional angina. Angiogram: <b>90% proximal LAD</b> and <b>85% OM1</b>; the RCA is normal; EF 50%. Good radial pulses; a normal ulnar collateral test on the left (non-dominant) arm.</p>'
+                   + ev('FREEDOM (NEJM 2012) randomised patients with diabetes and multivessel disease (two or more vessels in at least two territories) to CABG or drug-eluting stents: CABG reduced the 5-year rate of death, MI or stroke, with more strokes after surgery.'),
+                   ['lesion-lad', 'lesion-om'],
+                   ask('For this diabetic patient with two-vessel disease involving the proximal LAD, which strategy has trial evidence of fewer deaths and MIs?', 'CABG',
+                       'FREEDOM included diabetics with two- or three-vessel disease; CABG reduced death and MI at 5 years compared with drug-eluting stents (with more strokes).',
+                       'PCI with drug-eluting stents', 'Medical therapy only')),
+           {**cb_decide('c2'), 'seq': 1},
+           {**mv_sternotomy('c2', 2), 'id': 'c2-sternotomy'}, cb_lima('c2', 3),
+           {**cb_veins('c2', 4), 'title': 'Harvest the radial artery (for the OM)',
+            'body': '<p><b>Radial artery</b> from the <b>non-dominant arm</b>, after confirming ulnar collateral flow (modified Allen test, oximetry or Doppler with the radial compressed). Harvest it as a pedicle with its veins, from the elbow crease to the wrist, avoiding the lateral antebrachial cutaneous and superficial radial nerves. '
+                    'Topical and systemic vasodilators against spasm. Use it only for a target with a <b>severe</b> stenosis (here OM1 85%): competitive flow closes it.</p>'
+                    + ev('RADIAL (NEJM 2018; 6 trials, 1,036 patients): radial artery grafts had fewer adverse cardiac events (HR 0.67) and occlusions (HR 0.44) than saphenous vein at about 5 years; the 2021 ACC/AHA/SCAI guideline prefers the radial to vein for the second most important target (class IIa).')},
+           cb_cannulate('c2', 5),
+           {**cb_distal('c2', 6, 'om', 'graft-radial-om', 'Distal: radial artery to OM1', om_body.replace('the reversed vein end-to-side with running <b>7-0 polypropylene</b>', 'the radial artery end-to-side with running <b>8-0 polypropylene</b>'), 'arterial grafts are sewn with finer suture; the radial must not be stretched or twisted, and its spasm is prevented with vasodilators.', V([0, 0, -0.3])),
+            'show': [*SURF, *TREE, 'lesion-lad', 'lesion-om', 'graft-radial-om', 'target-om']},
+           {**cb_distal('c2', 7, 'lad', 'graft-lima', 'Distal: LIMA to LAD', lad_body, lad_ev, V([0.35, 1.3, 0.35])), 'show': [*SURF, *TREE, 'lesion-lad', 'lesion-om', 'graft-lima', 'graft-radial-om', 'target-lad']},
+           {**cb_proximal('c2', 8), 'show': [*SURF, *TREE, 'graft-lima', 'graft-radial-om', 'prox-om'], 'highlight': ['prox-om'], 'labels': ['prox-om', 'graft-radial-om'],
+            'action': {'kind': 'reveal', 'label': 'Sew the proximal anastomosis', 'port': 'sternotomy', 'ids': ['prox-om']}},
+           {**cb_flow('c2', 9), 'show': [*SURF, *TREE, 'graft-lima', 'graft-radial-om', 'prox-om', *[i for i in ('can-cp', 'can-2stage', 'can-aortic') if has(i)]], 'labels': ['graft-lima', 'graft-radial-om']}]
+
+    # ----------------------------------------------------------------------------- three-vessel: on-pump and off-pump
+    case3 = lambda pre: cb_case(pre, 'Case: three-vessel disease with impaired LV',
+                                '<p>A 64-year-old man, diabetic, breathless and with angina; <b>EF 30%</b> with viable myocardium on imaging. Angiogram: <b>proximal LAD</b>, <b>OM1</b> and <b>mid-RCA</b> severe stenoses (a right-dominant system).</p>'
+                                + ev('STICHES (NEJM 2016): in ischaemic cardiomyopathy with EF 35% or less, CABG plus medical therapy reduced death from any cause at 10 years compared with medical therapy alone (59% vs 66%).'),
+                                ['lesion-lad', 'lesion-om', 'lesion-rca'],
+                                ask('EF 30%, three-vessel disease, suitable targets. Compared with medical therapy alone, CABG…', 'reduces death at 10 years (STICHES)',
+                                    'STICH, extended to 10 years (STICHES), showed lower all-cause and cardiovascular mortality with CABG in ischaemic cardiomyopathy.',
+                                    'has no effect on survival', 'is contraindicated below EF 35%'))
+    onp = [case3('co'), {**cb_decide('co'), 'seq': 1}, {**mv_sternotomy('co', 2), 'id': 'co-sternotomy'}, cb_lima('co', 3), cb_veins('co', 4), cb_cannulate('co', 5),
            cb_distal('co', 6, 'om', 'graft-svg-om', 'Distal: vein to OM1', om_body, om_ev, V([0, 0, -0.3])),
            cb_distal('co', 7, 'pda', 'graft-svg-pda', 'Distal: vein to the PDA', pda_body, pda_ev, V([0, 0, -0.5])),
            cb_distal('co', 8, 'lad', 'graft-lima', 'Distal: LIMA to LAD (last, on-pump)', lad_body, lad_ev, V([0.35, 1.3, 0.35])),
            cb_proximal('co', 9), cb_flow('co', 10)]
-    offp = [cb_anat('cf'), cb_decide('cf', offpump=True), {**mv_sternotomy('cf', 2), 'id': 'cf-sternotomy'}, cb_lima('cf', 3), cb_veins('cf', 4),
+    offp = [case3('cf'), {**cb_decide('cf', offpump=True), 'seq': 1}, {**mv_sternotomy('cf', 2), 'id': 'cf-sternotomy'}, cb_lima('cf', 3), cb_veins('cf', 4),
             {'id': 'cf-position', 'phase': 'Bypass', 'seq': 5, 'title': 'Off-pump: heparin, positioning, stabiliser',
              'body': '<p>Heparin (a lower dose than for bypass, often about 150–200 U/kg, per unit practice). Keep the patient <b>warm</b>, the blood pressure up and the heart filled. <b>Deep pericardial stitches</b> (and head-down tilt) lift and rotate the heart without compressing it; an <b>apical suction</b> device helps for the lateral and inferior walls.</p>'
                      '<p>Graft the <b>LAD first</b> with the LIMA: the anterior wall is then reperfused before the heart is lifted for the other targets. Keep a perfusionist and pump ready: convert if the heart will not tolerate positioning.</p>'
                      + ev('conversion from off-pump to on-pump during surgery is associated with worse outcomes in registry data, which is why haemodynamic instability should prompt an early, controlled conversion rather than a late, emergency one.'),
-             'view': look(TL, V([0, 0.3, 0.3]), 220), 'show': [*SURF, *TREE, *LES, 'stabilizer'], 'hide': CB_OFF, 'opacity': SOLID, 'highlight': ['stabilizer'], 'labels': ['stabilizer'],
+             'view': look(TL, V([0.35, 1.3, 0.35]), 220), 'show': [*SURF, *TREE, *LES, 'stabilizer'], 'hide': CB_OFF, 'opacity': SOLID, 'highlight': ['stabilizer'], 'labels': ['stabilizer'],
              'action': {'kind': 'reveal', 'label': 'Place the stabiliser', 'port': 'sternotomy', 'ids': ['stabilizer']}, 'ct': ct(R(TL), 'axial')},
             cb_distal('cf', 6, 'lad', 'graft-lima', 'Distal: LIMA to LAD (first, off-pump)', lad_body, lad_ev, V([0.35, 1.3, 0.35]), offpump=True),
             cb_distal('cf', 7, 'om', 'graft-svg-om', 'Distal: vein to OM1', om_body, om_ev, V([0, 0, -0.3]), offpump=True),
             cb_distal('cf', 8, 'pda', 'graft-svg-pda', 'Distal: vein to the PDA', pda_body, pda_ev, V([0, 0, -0.5]), offpump=True),
             cb_proximal('cf', 9, offpump=True), cb_flow('cf', 10, offpump=True)]
+    SCEN = {'cabg-1v': ['lesion-lad'], 'cabg-2v': ['lesion-lad', 'lesion-om'], 'cabg-onpump': LES, 'cabg-offpump': LES}
     for key, appr, steps_, sq in (
-            ('cabg-onpump', 'On-pump, arrested heart', onp, seq(('Anatomy', 'other'), ('Decide', 'other'), ('Sternotomy', 'other'), ('LIMA', 'artery'), ('Conduits', 'vein'), ('Arrest', 'artery'), ('OM', 'vein'), ('PDA', 'vein'), ('LIMA-LAD', 'artery'), ('Proximals', 'artery'), ('Check', 'other'))),
-            ('cabg-offpump', 'Off-pump (OPCAB)', offp, seq(('Anatomy', 'other'), ('Decide', 'other'), ('Sternotomy', 'other'), ('LIMA', 'artery'), ('Conduits', 'vein'), ('Position', 'other'), ('LIMA-LAD', 'artery'), ('OM', 'vein'), ('PDA', 'vein'), ('Proximals', 'artery'), ('Check', 'other')))):
+            ('cabg-1v', 'Single-vessel: LAD by MIDCAB (off-pump)', one, seq(('Case', 'other'), ('Access', 'other'), ('LIMA', 'artery'), ('Stabilise', 'other'), ('LIMA-LAD', 'artery'), ('Check', 'other'))),
+            ('cabg-2v', 'Two-vessel: LAD + OM (LIMA + radial)', two, seq(('Case', 'other'), ('Decide', 'other'), ('Sternotomy', 'other'), ('LIMA', 'artery'), ('Radial', 'artery'), ('Arrest', 'artery'), ('Radial-OM', 'artery'), ('LIMA-LAD', 'artery'), ('Proximal', 'artery'), ('Check', 'other'))),
+            ('cabg-onpump', 'Three-vessel, on-pump', onp, seq(('Case', 'other'), ('Decide', 'other'), ('Sternotomy', 'other'), ('LIMA', 'artery'), ('Conduits', 'vein'), ('Arrest', 'artery'), ('OM', 'vein'), ('PDA', 'vein'), ('LIMA-LAD', 'artery'), ('Proximals', 'artery'), ('Check', 'other'))),
+            ('cabg-offpump', 'Three-vessel, off-pump (OPCAB)', offp, seq(('Case', 'other'), ('Decide', 'other'), ('Sternotomy', 'other'), ('LIMA', 'artery'), ('Conduits', 'vein'), ('Position', 'other'), ('LIMA-LAD', 'artery'), ('OM', 'vein'), ('PDA', 'vein'), ('Proximals', 'artery'), ('Check', 'other')))):
+        keep_les = set(SCEN[key])
         for s in steps_:
+            for kk in ('show', 'danger', 'labels', 'highlight'):
+                if kk in s: s[kk] = [i for i in s[kk] if not (i.startswith('lesion-') and i not in keep_les)]
             named = set(s.get('highlight', [])) | set(s.get('danger', [])) | set(s.get('labels', [])) | set(s.get('show', []))
             off_groups = {'arteries', 'veins', 'airway', 'lul-intra', 'lll-intra', 'rul-intra', 'nodes', 'nerves', 'pleura', 'segments', 'trauma', 'muscles', 'landmarks'}
             s['hide'] = [*s.get('hide', []), *[q['id'] for q in atlas['structures'] if q['group'] in off_groups and q['id'] not in named],
-                         *[i for i in ('esophagus', 'thymus', 'thyroid') if has(i) and i not in named], *(['sternum'] if s.get('seq', 0) >= 3 else [])]
+                         *[i for i in ('esophagus', 'thymus', 'thyroid') if has(i) and i not in named], *(['sternum'] if s.get('seq', 0) >= 3 else []),
+                         *[i for i in ('lesion-lad', 'lesion-om', 'lesion-rca') if i not in keep_les]]
             s['opacity'] = {**{f'vert-t{i}': 0.25 for i in range(2, 11)}, **s.get('opacity', {})}
             for kk in ('highlight', 'danger', 'labels', 'show'):
                 if kk in s: s[kk] = [i for i in s[kk] if has(i) or i == 'skin']
         procs[key] = {'id': key, 'op': 'cabg', 'opName': 'Coronary artery bypass grafting', 'side': 'both', 'name': 'Coronary artery bypass grafting', 'approach': appr,
-                      'summary': 'Indications, LIMA and radial or vein conduits, distal anastomoses (OM, PDA, LAD), proximal anastomoses, flow checks; on-pump and off-pump.',
+                      'summary': 'Case-based: single-vessel MIDCAB, two-vessel LIMA + radial, three-vessel on- and off-pump; conduits, anastomoses, flow checks.',
                       'ports': [], 'steps': steps_, 'sources': CBSRC, 'group': 'Cardiac', 'sequence': sq}
 # ==================================================================================================== the operative field in open-heart steps
 # after the chest is open: the drapes and their sternotomy window, the split sternum held open, the pericardial cradle
 FIELD = [i for i in ('drape-sternotomy', 'pericardium-open') if has(i)]
 if FIELD:
     for key, v in procs.items():
-        if v.get('group') != 'Cardiac' or key in ('mvr-mics', 'tv-mics', 'avr-ramt'): continue
+        if v.get('group') != 'Cardiac' or key in ('mvr-mics', 'tv-mics', 'avr-ramt', 'cabg-1v'): continue
         for s_ in v['steps']:
             if s_.get('seq', 0) < 3 or s_['phase'] in ('Decision', 'Anatomy'): continue
             s_['hide'] = [i for i in s_.get('hide', []) if i not in ('sternum', *FIELD)]

@@ -394,7 +394,7 @@ function procPanel(): HTMLElement {
   if (st.ask) {
     ask = h('div', { class: 'ask' + (answered ? ' done' : '') }, h('div', { class: 'q' }, st.ask.question));
     const list = h('div', { class: 'choices' });
-    st.ask.choices.forEach((c) => {
+    shuffled(st.id, st.ask.choices).forEach((c) => {
       const picked = answered && pickedChoice.get(st.id) === c.text;
       list.append(h('button', { class: 'choice' + (answered ? (c.correct ? ' right' : picked ? ' wrong' : ' dim') : ''), disabled: answered, onclick: () => { pickedChoice.set(st.id, c.text); state.answered.add(st.id); render(); } }, c.text));
     });
@@ -428,12 +428,27 @@ function procPanel(): HTMLElement {
     !locked ? structs : null,
     st.pearl && !locked ? h('p', { class: 'pearl' }, st.pearl) : null,
     nav,
+    reading(proc, state.step === proc.steps.length - 1),
     aiPanel(aiQs.filter((x) => x.op === proc.op)),
     h('details', { class: 'outline' }, h('summary', {}, 'All steps'), dots),
     h('p', { class: 'foot' }, 'Teaching model on one reference CT. Not for planning an operation on a patient.', ...(texCredits ? [' ', h('a', { href: 'data/textures/ATTRIBUTION.md', target: '_blank', rel: 'noopener' }, 'Texture credits')] : [])),
   );
 }
 const pickedChoice = new Map<string, string>();
+/** answer options in a random order, fixed per step for this visit (the data lists the right answer first) */
+const SEED = Math.floor(Math.random() * 2 ** 31);
+function shuffled<T>(key: string, xs: T[]): T[] {
+  let h = SEED ^ 2166136261; for (let i = 0; i < key.length; i++) h = Math.imul(h ^ key.charCodeAt(i), 16777619);
+  const rnd = () => { h = Math.imul(h ^ (h >>> 15), 2246822507); h = Math.imul(h ^ (h >>> 13), 3266489909); h ^= h >>> 16; return (h >>> 0) / 4294967296; };
+  const a = xs.slice(); for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(rnd() * (i + 1)); [a[i], a[j]] = [a[j]!, a[i]!]; }
+  return a;
+}
+/** the evidence behind the operation: papers and guidelines to read further */
+function reading(proc: { sources?: { title: string; url: string }[] }, open: boolean): HTMLElement | null {
+  const src = proc.sources ?? []; if (!src.length) return null;
+  return h('details', { class: 'reading', ...(open ? { open: true } : {}) }, h('summary', {}, `Further reading · ${src.length}`),
+    h('ol', {}, ...src.map((x) => h('li', {}, h('a', { href: x.url, target: '_blank', rel: 'noopener' }, x.title)))));
+}
 
 const KIND: Record<AIQ['kind'], string> = { report: 'Report', preop: 'Pre-op', anatomy: 'Anatomy', approach: 'Approach' };
 /**
