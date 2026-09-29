@@ -94,13 +94,13 @@ def main() -> None:
                             'mean': [round(float(x), 4) for x in a.reshape(-1, 3).mean(0)], 'tile': TILE_MM.get(folder.name, 30)}
         cf = folder / 'credits.json'
         if cf.exists():
-            cr = json.loads(cf.read_text()); man[folder.name]['credit'] = '; '.join(f"{c['title'][5:]} ({c['author']}, {c['licence']})" for c in cr)
+            cr = json.loads(cf.read_text(encoding='utf-8')); man[folder.name]['credit'] = '; '.join(f"{c['title'][5:]} ({c['author']}, {c['licence']})" for c in cr)
             credits_md += [f"- **{folder.name}**: " + '; '.join(f"[{c['title'][5:]}]({c['page']}), {c['author']}, {c['licence']}" for c in cr)]
         else:
             credits_md += [f'- **{folder.name}**: own photographs']
         print(f'  {folder.name}: done')
-    (OUT / 'manifest.json').write_text(json.dumps(man, indent=1))
-    (OUT / 'ATTRIBUTION.md').write_text('\n'.join(credits_md) + '\n')
+    (OUT / 'manifest.json').write_text(json.dumps(man, indent=1), encoding='utf-8')
+    (OUT / 'ATTRIBUTION.md').write_text('\n'.join(credits_md) + '\n', encoding='utf-8')
     print(f'  {len(man)} tissue textures -> {OUT}')
 
 

@@ -22,6 +22,7 @@ import json
 import re
 import shutil
 import time
+import urllib.error
 import urllib.parse
 import urllib.request
 from pathlib import Path
@@ -29,7 +30,10 @@ from pathlib import Path
 HERE = Path(__file__).resolve().parent
 PHOTOS = HERE / 'photos'; CAND = PHOTOS / '_candidates'
 API = 'https://commons.wikimedia.org/w/api.php'
-UA = 'OperativeAtlas/0.1 (surgical teaching atlas; texture sourcing) python-urllib'
+# Wikimedia asks for an identifying User-Agent with a contact, standard thumbnail widths, and a gentle request rate
+UA = 'OperativeAtlas/0.1 (https://github.com/BrianAchando/Operative-Atlas; surgical teaching atlas) python-urllib'
+THUMB = 1280                                                   # one of Wikimedia's standard thumbnail widths
+PAUSE = 3.0                                                    # seconds between requests
 OK_LICENCES = re.compile(r'^(public domain|pd|cc0|cc[ -]by(-sa)?[ -]?[0-9.]*)', re.I)
 QUERIES = {
     'myocardium': ['open heart surgery', 'coronary artery bypass surgery', 'beating heart surgery', 'heart surgery epicardium'],
@@ -51,8 +55,22 @@ QUERIES = {
 
 def api(params: dict) -> dict:
     q = urllib.parse.urlencode({**params, 'format': 'json'})
-    req = urllib.request.Request(f'{API}?{q}', headers={'User-Agent': UA})
-    with urllib.request.urlopen(req, timeout=60) as r: return json.loads(r.read())
+    return json.loads(get(f'{API}?{q}'))
+
+
+def get(url: str, tries: int = 6) -> bytes:
+    """GET with backoff: on 429 or 503 wait (Retry-After if given, else doubling from 30 s) and try again"""
+    wait = 30.0
+    for k in range(tries):
+        try:
+            req = urllib.request.Request(url, headers={'User-Agent': UA})
+            with urllib.request.urlopen(req, timeout=120) as r: data = r.read()
+            time.sleep(PAUSE); return data
+        except urllib.error.HTTPError as e:
+            if e.code not in (429, 503) or k == tries - 1: raise
+            ra = e.headers.get('Retry-After'); w = float(ra) if ra and ra.isdigit() else wait
+            print(f'    rate-limited; waiting {w:.0f} s'); time.sleep(w); wait = min(wait * 2, 300)
+    raise RuntimeError('unreachable')
 
 
 def strip(s: str) -> str: return html.unescape(re.sub(r'<[^>]+>', '', s or '')).strip()
@@ -60,7 +78,7 @@ def strip(s: str) -> str: return html.unescape(re.sub(r'<[^>]+>', '', s or '')).
 
 def search(term: str, n: int = 25) -> list[dict]:
     d = api({'action': 'query', 'generator': 'search', 'gsrsearch': f'{term} filetype:bitmap', 'gsrnamespace': 6, 'gsrlimit': n,
-             'prop': 'imageinfo', 'iiprop': 'url|size|mime|extmetadata', 'iiurlwidth': 1600,
+             'prop': 'imageinfo', 'iiprop': 'url|size|mime|extmetadata', 'iiurlwidth': THUMB,
              'iiextmetadatafilter': 'LicenseShortName|Artist|Credit|ImageDescription'})
     out = []
     for p in (d.get('query', {}).get('pages', {}) or {}).values():
@@ -76,24 +94,27 @@ def search(term: str, n: int = 25) -> list[dict]:
 def fetch_candidates(per_tissue: int) -> None:
     CAND.mkdir(parents=True, exist_ok=True); sheet = []
     for tissue, terms in QUERIES.items():
+        d = CAND / tissue; prev = d / 'credits.json'
+        if prev.exists():                                                  # resume: keep a tissue already fully downloaded
+            found = json.loads(prev.read_text(encoding='utf-8'))
+            if found and all((CAND / r['file']).is_file() for r in found if 'file' in r) and all('file' in r for r in found):
+                print(f'  {tissue}: {len(found)} candidates (already downloaded)'); sheet.append((tissue, found)); continue
         seen, found = set(), []
         for t in terms:
             try: res = search(t)
             except Exception as e: print(f'  {tissue}: search "{t}" failed: {e}'); continue  # noqa: BLE001
             for r in res:
                 if r['title'] not in seen: seen.add(r['title']); found.append(r)
-            time.sleep(0.5)
-        found = found[:per_tissue]; d = CAND / tissue; d.mkdir(exist_ok=True)
+        found = found[:per_tissue]; d.mkdir(exist_ok=True)
+        for old in d.glob('*.jpg'): old.unlink()                           # a fresh search: old numbering no longer applies
         for i, r in enumerate(found, 1):
             f = d / f'{i}.jpg'
             if not f.exists():
                 try:
-                    req = urllib.request.Request(r['url'], headers={'User-Agent': UA})
-                    with urllib.request.urlopen(req, timeout=120) as resp: f.write_bytes(resp.read())
-                    time.sleep(0.5)
+                    f.write_bytes(get(r['url']))
                 except Exception as e: print(f'  {tissue} {i}: download failed: {e}'); continue  # noqa: BLE001
             r['file'] = f'{tissue}/{i}.jpg'
-        (d / 'credits.json').write_text(json.dumps(found, indent=1))
+        (d / 'credits.json').write_text(json.dumps(found, indent=1), encoding='utf-8')
         print(f'  {tissue}: {len(found)} candidates')
         sheet.append((tissue, found))
     rows = []
@@ -107,7 +128,7 @@ def fetch_candidates(per_tissue: int) -> None:
                                      'figure{margin:0;width:260px}img{width:260px;height:200px;object-fit:cover;border-radius:6px}a{color:#7cc}</style>'
                                      '<h1>Tissue photo candidates</h1><p>Pick close-ups that show only the tissue. Then run: '
                                      '<code>python pipeline/fetch_photos.py --keep myocardium=3 fat=1,4 ...</code> (a crop may follow a number: 3:x/y/size as fractions)</p>'
-                                     + ''.join(rows))
+                                     + ''.join(rows), encoding='utf-8')
     print(f'  contact sheet: {CAND / "index.html"}')
 
 
@@ -115,7 +136,7 @@ def keep(specs: list[str]) -> None:
     from PIL import Image
     for spec in specs:
         tissue, picks = spec.split('=', 1)
-        src = CAND / tissue; credits = json.loads((src / 'credits.json').read_text())
+        src = CAND / tissue; credits = json.loads((src / 'credits.json').read_text(encoding='utf-8'))
         dst = PHOTOS / tissue
         if dst.exists(): shutil.rmtree(dst)
         dst.mkdir(parents=True); kept = []
@@ -127,7 +148,7 @@ def keep(specs: list[str]) -> None:
                 except ValueError: raise SystemExit('crop as x/y/size, e.g. 2:0.35/0.2/0.4')
                 w, h = im.size; side = int(s * min(w, h)); im = im.crop((int(x * w), int(y * h), int(x * w) + side, int(y * h) + side))
             im.save(dst / f'{num}.jpg', quality=95); kept.append(r)
-        (dst / 'credits.json').write_text(json.dumps(kept, indent=1))
+        (dst / 'credits.json').write_text(json.dumps(kept, indent=1), encoding='utf-8')
         print(f'  {tissue}: kept {len(kept)}')
 
 

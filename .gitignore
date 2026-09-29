@@ -10,3 +10,6 @@ sample
 *.nrrd
 *.nii.gz
 *.zip
+
+# texture sourcing: downloaded candidates stay local (pipeline/fetch_photos.py)
+pipeline/photos/_candidates/
