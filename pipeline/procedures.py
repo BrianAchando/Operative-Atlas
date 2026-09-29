@@ -4333,7 +4333,9 @@ if VASC_OK:
                     add('kissing-wires'); s['highlight'] = [*s.get('highlight', []), 'kissing-wires']; s['labels'] = [*s.get('labels', []), 'kissing-wires']
                     s['action'] = {'kind': 'reveal', 'label': 'Cross the occlusions', 'port': 'laparotomy', 'ids': ['kissing-wires']}
                     s['view'] = front((Pv('cfa-r') + Pv('cfa-l')) / 2 * 0.55 + Pv('bifurcation') * 0.45, 700, (0.1, 1, 0.25))
-                if sid.endswith('-stents'): add('kissing-wires')
+                if sid.endswith('-stents'): add('kissing-wires'); s['opacity'] = {**s.get('opacity', {}), 'kissing-wires': 0.7}
+                if sid.endswith(('-access', '-stents', '-after')):
+                    s['opacity'] = {**s.get('opacity', {}), 'aorta': 0.35, **{f'{v}-{x}': 0.35 for v in ('cia', 'eia', 'cfa') for x in 'lr'}}
             if key == 'taa-tevar' and sid.endswith('-deploy'):
                 add('tevar-wire'); s['labels'] = [*s.get('labels', []), 'tevar-wire']
                 if act.get('ids'): act['ids'] = ['tevar-wire', *act['ids']]
@@ -4563,9 +4565,12 @@ if VASC_OK:
         '<p>Protect: the <b>ureters</b> (crossing the iliac bifurcations: graft tunnels pass behind them), the <b>iliac veins</b> behind the arteries, the <b>hypogastric plexus</b> (sexual function), the <b>IMA</b>, and in the groin the <b>femoral vein</b> medially and the femoral nerve laterally.</p>' + BELOW,
         front(Pv('bifurcation'), 440, (0.1, 1, 0.25)), show=VESS, highlight=hv(['cfa-l', 'cfa-r', 'pfa-l', 'pfa-r']), danger=hv(['civ-l', 'civ-r']), labels=hv(['cia-l', 'eia-l', 'iia-l', 'cfa-l', 'sfa-l', 'pfa-l', 'civ-r']), opacity=AB_OP, spin=True)
     GR = hv(['incision-groin-l', 'incision-groin-r'])
+    GRX = hv(['fv-l', 'fv-r', 'inguinal-lig-l', 'inguinal-lig-r'])
+    URE = hv(['ureter-l', 'ureter-r'])
+    OBL = lambda t, dist=430: front(t, dist, (-0.45, 1, 0.3))                     # front-left oblique: the graft limbs stand off the front of the iliacs
     groins = lambda pre: vstep(f'{pre}-groins', 'Groins', 'Expose both femoral bifurcations',
         '<p>Vertical incisions over the femoral pulses (or where they should be: the mid-inguinal point). Expose the <b>common femoral artery</b> from the inguinal ligament down, and control the <b>SFA</b> and the <b>profunda</b> (its first branches too). Tie the lymphatics (lymph leaks and infection are the groin\'s complications). Feel the CFA for plaque: an endarterectomy or <b>profundaplasty</b> may be needed where the graft is sewn.</p>' + BELOW,
-        front(Pv('cfa-r'), 300, (0.1, 1, 0.3)), show=['skin', *GR, *VESS, 'aiod-occlusion'], highlight=hv(['cfa-l', 'cfa-r']), danger=[], labels=hv(['cfa-r', 'sfa-r', 'pfa-r', 'incision-groin-r']), opacity={**AB_OP, 'skin': 0.3},
+        front(Pv('cfa-r'), 300, (0.1, 1, 0.3)), show=['skin', *GR, *VESS, *GRX, 'aiod-occlusion'], highlight=hv(['cfa-l', 'cfa-r']), danger=hv(['fv-r', 'fv-l']), labels=hv(['cfa-r', 'sfa-r', 'pfa-r', 'fv-r', 'inguinal-lig-r', 'incision-groin-r']), opacity={**AB_OP, 'skin': 0.3},
         action={'kind': 'reveal', 'label': 'Open the groins', 'port': 'groin-r', 'ids': GR} if GR else None)
     c_abf = vstep('ab-case', 'Case', 'Case: Leriche syndrome with rest pain',
         '<p><b>TASC II D</b> (infrarenal aorto-iliac occlusion) with <b>chronic limb-threatening ischaemia</b> in a fit patient: <b>aortobifemoral bypass</b>, the most durable reconstruction. Endovascular reconstruction (CERAB) is an alternative in expert centres.</p>'
@@ -4582,22 +4587,27 @@ if VASC_OK:
         action={'kind': 'clamp', 'label': 'Clamp the infrarenal aorta', 'port': 'laparotomy', 'at': R(Pv('abf-prox')), 'axis': [0, 0.3, 1], 'radius': 12, 'jawLen': 55})
     abf_tunnel = vstep('ab-tunnel', 'Tunnels', 'Retroperitoneal tunnels to the groins, behind the ureters',
         '<p>From the groin and the aorta, a finger (then a tunnelling instrument) creates a tunnel on the front of the iliac arteries, <b>behind the ureter</b>, under the inguinal ligament, to meet in the groin. A graft limb placed in front of the ureter can compress it (hydronephrosis).</p>',
-        front(Pv('cia-l'), 340, (0.1, 1, 0.3)), show=[*VESS, 'aiod-occlusion', 'graft-abf'], highlight=['graft-abf'], danger=hv(['civ-l', 'civ-r']), labels=hv(['graft-abf', 'cia-l']), opacity={**AB_OP, 'graft-abf': 0.6},
+        OBL(Pv('ureter-l') if 'ureter-l' in LM else Pv('cia-l'), 300), show=[*VESS, *GRX, *URE, 'aiod-occlusion', 'graft-abf'], highlight=['graft-abf'], danger=hv(['ureter-l', 'ureter-r', 'civ-l', 'civ-r']), labels=hv(['graft-abf', 'ureter-l', 'cia-l', 'inguinal-lig-l']), opacity={**AB_OP, 'graft-abf': 0.6},
         quiz=ask('Why must the limbs of an aortobifemoral graft pass behind the ureters?', 'A graft in front of the ureter can compress it and cause hydronephrosis',
                  'Tunnel along the front of the iliac arteries, under (behind) the ureter; the ureter then lies in front of the graft.', 'To shorten the graft', 'To avoid the iliac veins', 'To prevent infection'))
     abf_graft = vstep('ab-graft', 'Graft', 'Proximal anastomosis, then the femoral anastomoses',
         '<p>Heparin; clamp. A <b>bifurcated Dacron graft</b> (commonly 16 × 8 mm or 14 × 7 mm, matched to the aorta), the body kept <b>short</b> so the bifurcation sits low and the limbs do not kink. Proximal anastomosis (3-0 polypropylene), pass the limbs through the tunnels, then each <b>femoral anastomosis</b> end-to-side onto the CFA (5-0 polypropylene), extended onto the profunda (profundaplasty) if the SFA is occluded or the profunda origin narrowed. Flush before completing each.</p>',
-        front(Pv('bifurcation'), 420, (0.1, 1, 0.3)), show=[*VESS, 'aiod-occlusion', 'graft-abf'], highlight=['graft-abf'], labels=hv(['graft-abf', 'pfa-l', 'cfa-r']), opacity=AB_OP,
+        OBL(Pv('bifurcation') - V([0, 0, 60]), 560), show=[*VESS, *GRX, *URE, 'aiod-occlusion', 'graft-abf'], highlight=['graft-abf'], danger=URE, labels=hv(['graft-abf', 'aiod-occlusion', 'ureter-l', 'pfa-l', 'cfa-r']), opacity=AB_OP,
         action={'kind': 'reveal', 'label': 'Sew in the graft', 'port': 'laparotomy', 'ids': ['graft-abf']})
     abf_close = vstep('ab-close', 'Close', 'Release one limb at a time; check the feet and the colon',
         '<p>Release each limb slowly (declamping hypotension). Feel for pulses in the grafts and at the feet (Doppler signals), look at the sigmoid colon. Close the retroperitoneum over the graft (away from the duodenum), then the groins in layers without dead space.</p>'
         '<p><b>Early complications</b>: bleeding, limb thrombosis, distal embolism (trash foot), colonic ischaemia, groin infection or lymph leak. <b>Late</b>: anastomotic false aneurysm at the groin, graft infection, limb occlusion from outflow disease.</p>',
-        front(Pv('bifurcation'), 420, (0.1, 1, 0.3)), show=[*VESS, 'aiod-occlusion', 'graft-abf'], labels=['graft-abf'], opacity=AB_OP)
+        front(Pv('bifurcation') - V([0, 0, 60]), 560, (0.1, 1, 0.3)), show=[*VESS, *GRX, *URE, 'aiod-occlusion', 'graft-abf'], labels=hv(['graft-abf', 'aiod-occlusion', 'ureter-r']), opacity=AB_OP)
     abf_steps, abf_sq = build_v([('Patho', 'other', [aiod_patho]), ('Anatomy', 'other', [aiod_anat]), ('Case', 'other', [c_abf]), ('Groins', 'artery', [groins('ab')]),
                                  ('Aorta', 'artery', [abf_lap]), ('Tunnels', 'other', [abf_tunnel]), ('Graft', 'artery', [abf_graft]), ('Close', 'other', [abf_close])])
     finish('aiod-abf', 'aiod', 'Aorto-iliac occlusive disease', 'Aortobifemoral bypass', 'Both groins, the infrarenal aorta, retroperitoneal tunnels behind the ureters, bifurcated graft, femoral anastomoses.', abf_steps, abf_sq, AIOD_SRC)
     # --------------------------------------------------------------------- axillobifemoral
     AX = hv(['incision-axillary-r'])
+    AXA = hv(['axillary-a-r', 'sca-r', 'bct'])
+    RIBR = hv([f'rib-{n}-r' for n in range(1, 11)])
+    AXV = lambda: tl((Pv('axillary-r') + Pv('cfa-r')) / 2 + V([10, 0, 0]), (0.55, 1, 0.12), 1050)
+    AXSHOW = ['skin', *AX, *GR, *GRX, *AXA, *RIBR, 'aorta', *VESS, 'aiod-occlusion']
+    AXOP = {**AB_OP, 'skin': 0.15, **{r: 0.45 for r in RIBR}}
     c_ax = vstep('ax-case', 'Case', 'Case: critical ischaemia with a hostile abdomen and poor lungs',
         '<p>An aortic operation is too risky (her lungs, the frozen abdomen): an <b>extra-anatomic</b> bypass from the <b>axillary artery</b> avoids the abdomen and the aortic clamp. Choose the side with the better arm pressure (and no subclavian stenosis). Less durable than an aortobifemoral graft.</p>'
         + ev('Martin and Katz (Am J Surg 2000): primary patency 86%, 72% and 63% at 1, 3 and 5 years; 30-day mortality 4.9%. Contemporary series report better 5-year patency with externally supported (ringed) grafts; patient selection makes comparison with aortobifemoral bypass unfair.'),
@@ -4608,17 +4618,17 @@ if VASC_OK:
     ax_exp = vstep('ax-axilla', 'Axilla', 'Expose the first part of the axillary artery',
         '<p>A horizontal incision 2 cm below the middle third of the clavicle. Split the <b>pectoralis major</b> in the line of its fibres, divide the clavipectoral fascia (and the <b>pectoralis minor</b> if needed); the axillary vein lies in front and below, the <b>brachial plexus</b> cords above and behind. Control the artery medial to pectoralis minor.</p>'
         '<p>The anastomosis goes on the <b>first part</b> of the artery, the graft running along the artery for a few centimetres before turning down (so arm abduction does not tear it off).</p>',
-        tl(Pv('axillary-r') if 'axillary-r' in LM else Pv('bifurcation'), (0.5, 1, 0.3), 260), show=['skin', *AX, 'aorta'], highlight=AX, labels=AX, opacity={'skin': 0.35},
+        tl(Pv('axillary-r'), (0.35, 1, 0.45), 240), show=['skin', *AX, *AXA, *hv(['clavicle-r', 'rib-1-r', 'rib-2-r', 'rib-3-r'])], hide=['heart', 'aorta'], highlight=hv(['axillary-a-r']), labels=hv(['axillary-a-r', 'sca-r', 'clavicle-r', *AX]), opacity={'skin': 0.3},
         action={'kind': 'reveal', 'label': 'Open the axilla', 'port': 'axillary-r', 'ids': AX} if AX else None)
     ax_tunnel = vstep('ax-tunnel', 'Tunnel', 'Subcutaneous tunnel down the mid-axillary line; the cross-over',
         '<p>A long tunneller, through one or two counter-incisions, <b>subcutaneously in the mid-axillary line</b> (not over the costal margin, where it kinks), down to the right groin. A ringed (externally supported) PTFE graft, 8 mm. Then a <b>femorofemoral</b> limb in a suprapubic subcutaneous tunnel to the left groin.</p>',
-        tl(Pv('bifurcation') + V([60, 0, 160]), (0.8, 0.8, 0.2), 760), show=['skin', *AX, *GR, 'aorta', *VESS, 'graft-axbf'], highlight=['graft-axbf'], labels=['graft-axbf'], opacity={**AB_OP, 'skin': 0.25},
-        action={'kind': 'reveal', 'label': 'Tunnel and sew the graft', 'port': 'axillary-r', 'ids': ['graft-axbf']})
+        AXV(), show=[*AXSHOW, 'graft-axbf', 'anast-axbf'], hide=['heart'], highlight=['graft-axbf'], labels=hv(['graft-axbf', 'anast-axbf', 'axillary-a-r', 'rib-6-r', 'aiod-occlusion', 'inguinal-lig-r']), opacity=AXOP,
+        action={'kind': 'reveal', 'label': 'Tunnel and sew the graft', 'port': 'axillary-r', 'ids': hv(['graft-axbf', 'anast-axbf'])})
     ax_steps, ax_sq = build_v([('Patho', 'other', [{**aiod_patho, 'id': 'ax-patho'}]), ('Anatomy', 'other', [{**aiod_anat, 'id': 'ax-anatomy'}]), ('Case', 'other', [c_ax]),
                                ('Groins', 'artery', [groins('ax')]), ('Axilla', 'artery', [ax_exp]), ('Graft', 'artery', [ax_tunnel]),
                                ('Close', 'other', [vstep('ax-close', 'Close', 'Release, check the flow, close',
                                     '<p>Complete the femoral anastomoses, flush, release. A graft pulse along the chest wall and at both groins; Doppler signals at the feet. The patient must not lie on the graft side or wear tight belts over it.</p>',
-                                    tl(Pv('bifurcation') + V([60, 0, 160]), (0.8, 0.8, 0.2), 760), show=['skin', 'aorta', *VESS, 'graft-axbf'], labels=['graft-axbf'], opacity={**AB_OP, 'skin': 0.25})])])
+                                    AXV(), show=[*AXSHOW, 'graft-axbf', 'anast-axbf'], hide=['heart'], labels=hv(['graft-axbf', 'axillary-a-r', 'aiod-occlusion']), opacity=AXOP)])])
     finish('aiod-axbf', 'aiod', 'Aorto-iliac occlusive disease', 'Axillobifemoral bypass (extra-anatomic)', 'For the high-risk patient: axillary artery, subcutaneous tunnel, femoral anastomoses and a femorofemoral cross-over.', ax_steps, ax_sq, AIOD_SRC)
     # --------------------------------------------------------------------- endovascular: kissing stents
     c_en = vstep('ae2-case', 'Case', 'Case: bilateral common iliac occlusions and disabling claudication',
@@ -4633,15 +4643,15 @@ if VASC_OK:
         front(Pv('bifurcation'), 360, (0.1, 1, 0.3)), show=[*VESS, 'aiod-occlusion', *GR], highlight=hv(['cfa-l', 'cfa-r']), labels=hv(['cfa-l', 'cfa-r', 'aiod-occlusion']), opacity=AB_OP)
     en_stent = vstep('ae2-stents', 'Stents', 'Kissing stents: deploy together, inflate together',
         '<p>Predilate. Position two <b>balloon-expandable (covered) stents</b> side by side, their tops level just above the bifurcation (the "new carina"), and <b>inflate them simultaneously</b> so neither crushes the other. Extend with further stents distally if needed, stopping short of the internal iliac origins where possible. Completion angiogram: no residual stenosis, no dissection, no rupture (have a covered stent and an occlusion balloon ready).</p>',
-        front(Pv('bifurcation'), 280, (0.1, 1, 0.3)), show=[*VESS, 'stents-kissing'], highlight=['stents-kissing'], danger=hv(['iia-l', 'iia-r']), labels=hv(['stents-kissing', 'cia-l', 'iia-r']), opacity=AB_OP,
-        action={'kind': 'reveal', 'label': 'Deploy the stents', 'port': 'groin-r', 'ids': ['stents-kissing']},
+        front(Pv('bifurcation') - V([0, 0, 20]), 230, (0.1, 1, 0.3)), show=[*VESS, 'stents-kissing', 'kissing-balloons'], highlight=['stents-kissing'], danger=hv(['iia-l', 'iia-r']), labels=hv(['stents-kissing', 'kissing-balloons', 'cia-l', 'iia-r']), opacity=AB_OP,
+        action={'kind': 'reveal', 'label': 'Inflate both balloons together', 'port': 'groin-r', 'ids': hv(['kissing-balloons', 'stents-kissing'])},
         quiz=ask('During iliac stenting the patient suddenly has back pain and hypotension. Most likely cause and first move?', 'Iliac rupture: inflate a balloon at the site to control bleeding, then place a covered stent',
                  'Rupture is rare but lethal; always have an occlusion balloon and covered stents on the shelf.', 'Vasovagal: give atropine', 'Contrast reaction: give steroids', 'Embolism: give heparin'))
     en_steps, en_sq = build_v([('Patho', 'other', [{**aiod_patho, 'id': 'ae2-patho'}]), ('Anatomy', 'other', [{**aiod_anat, 'id': 'ae2-anatomy'}]), ('Case', 'other', [c_en]),
                                ('Access', 'other', [en_access]), ('Stents', 'artery', [en_stent]),
                                ('After', 'other', [vstep('ae2-after', 'After', 'Closure, antiplatelet, surveillance',
                                     '<p>Closure devices or manual pressure. Dual antiplatelet therapy for a period, then single; statin; stay off tobacco. Walking resumes the next day; duplex surveillance of the stents. Recurrence is treated endovascularly again, or by aortobifemoral bypass.</p>',
-                                    front(Pv('bifurcation'), 340, (0.1, 1, 0.3)), show=[*VESS, 'stents-kissing'], labels=['stents-kissing'], opacity=AB_OP)])])
+                                    front(Pv('bifurcation') - V([0, 0, 20]), 260, (0.1, 1, 0.3)), show=[*VESS, 'stents-kissing'], labels=hv(['stents-kissing', 'cia-l', 'cia-r']), opacity=AB_OP)])])
     finish('aiod-endo', 'aiod', 'Aorto-iliac occlusive disease', 'Endovascular: kissing stents', 'Bilateral femoral access, crossing and re-entry, simultaneous covered stents at the bifurcation.', en_steps, en_sq, AIOD_SRC)
 
     # ================================================================================================ thoracic aortic aneurysm

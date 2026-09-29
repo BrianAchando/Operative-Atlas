@@ -38,9 +38,32 @@ def _resample(P, step=3.0):
     t = np.arange(0, d[-1] + 1e-6, step); return np.array([np.interp(t, d, P[:, k]) for k in range(3)]).T
 
 
+def _cr(P, step=1.5):
+    """Catmull-Rom through control points (mm), sampled about every `step` mm"""
+    P = np.asarray(P, float); out = []
+    for i in range(len(P) - 1):
+        p0, p1, p2, p3 = P[max(i - 1, 0)], P[i], P[i + 1], P[min(i + 2, len(P) - 1)]
+        n = max(2, int(np.linalg.norm(p2 - p1) / step))
+        for t in np.linspace(0, 1, n, endpoint=False):
+            out.append(0.5 * ((2 * p1) + (-p0 + p2) * t + (2 * p0 - 5 * p1 + 4 * p2 - p3) * t * t + (-p0 + 3 * p1 - 3 * p2 + p3) * t ** 3))
+    out.append(P[-1]); return np.array(out)
+
+
+def _frames(Q):
+    T = np.gradient(Q, axis=0); T /= np.linalg.norm(T, axis=1, keepdims=True) + 1e-9
+    ref = np.array([0, 0, 1.0]) if abs(T[0][2]) < 0.9 else np.array([1.0, 0, 0])
+    u = np.cross(T[0], ref); u /= np.linalg.norm(u); U, Vv = [], []
+    for t in T:
+        u = u - t * np.dot(u, t); u /= np.linalg.norm(u) + 1e-9; U.append(u); Vv.append(np.cross(t, u))
+    return T, np.array(U), np.array(Vv)
+
+
 def build(ctx):
     ts, vox_mm, emit, emit_mesh, W, tube, sphere, C = ctx['ts'], ctx['vox_mm'], ctx['emit'], ctx['emit_mesh'], ctx['W'], ctx['tube'], ctx['sphere'], ctx['CARINA']
     AT = ctx['AT']; LM = {}
+    def ring(p, d, r, rr=1.2):
+        t_ = trimesh.creation.torus(major_radius=r, minor_radius=rr, major_sections=40, minor_sections=8)
+        T_ = trimesh.geometry.align_vectors([0, 0, 1], d / np.linalg.norm(d)); T_[:3, 3] = W(p); t_.apply_transform(T_); return t_
     ao = ts('aorta')
     if not ao.any(): return LM
     print('== vascular')
@@ -151,7 +174,21 @@ def build(ctx):
         LM[f'groin-{sd}'] = g
         # iliac veins
         iv0 = np.array([LM['ivc'][0], LM['ivc'][1], zlo - 12]) if 'ivc' in LM else bif + RIGHT * 20
-        emit_mesh(f'civ-{sd}', f'Common iliac vein, {nm} (schematic)', 'vascular', VEIN, tube([W(iv0), W(cia_end - ANT * 10 + lat * 4), W(eia_end - ANT * 6 + lat * 12)], 5.5), opacity=0.85, visible=False)
+        emit_mesh(f'civ-{sd}', f'Common and external iliac veins, {nm} (schematic)', 'vascular', VEIN, tube([W(iv0), W(cia_end - ANT * 10 - lat * 2), W(eia_end - ANT * 5 - lat * 10)], 5.5), opacity=0.85, visible=False,
+                  note='Behind and then medial to the arteries; the left common iliac vein crosses behind the right common iliac artery.')
+        emit_mesh(f'fv-{sd}', f'Common femoral vein, {nm} (schematic)', 'vascular', VEIN, tube([W(eia_end - ANT * 5 - lat * 10), W(cfa_end - lat * 11 - ANT * 2), W(cfa_end - SUP * 60 - lat * 12)], 5.0), opacity=0.85, visible=False,
+                  note='Medial to the femoral artery in the femoral sheath (nerve, artery, vein, empty space, lymphatics: NAVEL from lateral to medial).')
+        asis = eia_end + lat * 60 + SUP * 40 + ANT * 22; tub = eia_end - lat * 38 - SUP * 12 + ANT * 22
+        emit_mesh(f'inguinal-lig-{sd}', f'Inguinal ligament, {nm} (schematic)', 'vascular', '#d9cfae', tube([W(asis), W((asis + tub) / 2 + ANT * 2 - SUP * 6), W(tub)], 1.6), visible=False,
+                  note='From the anterior superior iliac spine to the pubic tubercle; the external iliac artery becomes the common femoral artery beneath it, at the mid-inguinal point.')
+        LM[f'asis-{sd}'] = asis
+    for sd, s_ in (('l', -1), ('r', 1)):
+        if sd not in kid: continue
+        lat = RIGHT * s_; h = kid[sd][0]; q = il[sd]['cia']
+        up = [h + ANT * 6 - lat * 4, h - SUP * 40 + ANT * 4 - lat * 8, (h + q) / 2 + ANT * 6 - lat * 4, q + ANT * 16 + SUP * 12, q + ANT * 14 - SUP * 14, q - SUP * 50 - ANT * 10 - lat * 6]
+        emit_mesh(f'ureter-{sd}', f'Ureter, {"left" if sd == "l" else "right"} (schematic)', 'vascular', '#e8d27a', tube([W(p) for p in up], 2.2), visible=False,
+                  note='Down on the psoas, crossing in front of the iliac bifurcation into the pelvis. The limbs of an aortobifemoral graft are tunnelled BEHIND it.')
+        LM[f'ureter-{sd}'] = q + ANT * 15
     # ---------------------------------------------------------------- aneurysms (fusiform) on the abdominal aorta
     def sac(z_top, z_bot, rmax, name, id_, note):
         zs = np.linspace(z_top, z_bot, 40); P = [at_z(z) for z in zs[:-4]] + [bif + SUP * (6 - 6 * i / 3) for i in range(4)]
@@ -211,40 +248,107 @@ def build(ctx):
     emit_mesh('evar-graft', 'Bifurcated stent graft (EVAR)', 'vascular', STENT, trimesh.util.concatenate([*ev, *rings]), opacity=0.8, visible=False,
               note='Schematic: sealing in the infrarenal neck (at least 10-15 mm of healthy, parallel aorta) and in both common iliac arteries; the sac is excluded, not removed.')
     LM['evar-neck'] = at_z(zr - 8)
-    # aortobifemoral: end-to-side high on the infrarenal aorta, limbs through retroperitoneal tunnels to the femorals
-    top = at_z(zr - 12); bb = at_z(zr - 40) + ANT * 16
-    abf = [tube([W(top + ANT * r_at(zr - 12) * 0.9), W(top + ANT * 16 - SUP * 12), W(bb)], 7.0, seg=20)]
-    for sd, s in (('l', -1), ('r', 1)):
-        lat = RIGHT * s
-        abf.append(tube([W(bb), W(bb + lat * 20 - SUP * 30 + ANT * 4), W(il[sd]['cia'] + ANT * 18 + lat * 6), W(il[sd]['eia'] + ANT * 8), W(il[sd]['cfa_mid'] + ANT * 6)], 4.5, seg=16))
-    emit_mesh('graft-abf', 'Aortobifemoral bypass graft (bifurcated Dacron)', 'vascular', GRAFT, trimesh.util.concatenate(abf), visible=False,
-              note='Proximal anastomosis just below the renal arteries (end-to-end or end-to-side), limbs tunnelled behind the peritoneum and under the inguinal ligaments along the iliac arteries, anterior to them, to the common femoral arteries.')
+    # aortobifemoral: end-to-side on the front of the infrarenal aorta just below the renal vein, a short body, limbs tunnelled on the front of
+    # the iliac arteries (behind the ureters), under the inguinal ligaments, end-to-side onto the front of each common femoral artery
+    def crimped(P, r, seg=20, pitch=3.0):
+        Q = _cr(P); parts = [tube([W(p) for p in P], r, seg=seg)]
+        T_, _, _ = _frames(Q); d = np.r_[0, np.cumsum(np.linalg.norm(np.diff(Q, axis=0), axis=1))]
+        for L in np.arange(pitch, d[-1] - pitch, pitch):
+            k = int(np.searchsorted(d, L)); t_ = trimesh.creation.torus(major_radius=r, minor_radius=0.45, major_sections=max(seg, 16), minor_sections=5)
+            M = trimesh.geometry.align_vectors([0, 0, 1], T_[k]); M[:3, 3] = W(Q[k]); t_.apply_transform(M); parts.append(t_)
+        return trimesh.util.concatenate(parts)
+    top = at_z(zr - 12); ra = r_at(zr - 12)
+    hood = top + ANT * (ra + 1.5)                                                                     # on the front wall of the aorta
+    bb = at_z(zr - 58) + ANT * (r_at(zr - 58) + 14)                                                  # the graft bifurcation, in front of the occluded aorta
+    body = [hood - SUP * 2, hood + ANT * 5 - SUP * 12, top + ANT * (ra + 11) - SUP * 28, bb]
+    abf = [crimped(body, 7.5)]
+    for sd, s_ in (('l', -1), ('r', 1)):
+        lat = RIGHT * s_; q = il[sd]; cdir = (q['cfa'] - q['eia']) / np.linalg.norm(q['cfa'] - q['eia'])
+        limb = [bb, bb + lat * 14 - SUP * 18 + ANT * 2, (bif + q['cia']) / 2 + ANT * 13 + lat * 3, q['cia'] + ANT * 11 + lat * 4,
+                (q['cia'] + q['eia']) / 2 + ANT * 20 + lat * 3, q['eia'] + ANT * 12, q['eia'] + cdir * 10 + ANT * 8, q['cfa_mid'] + ANT * 4.5]
+        abf.append(crimped(limb, 4.0, seg=16))
+        LM[f'abf-fem-{sd}'] = q['cfa_mid']
+    emit_mesh('graft-abf', 'Aortobifemoral bypass graft (bifurcated, crimped Dacron)', 'vascular', GRAFT, trimesh.util.concatenate(abf), visible=False,
+              note='End-to-side on the front of the infrarenal aorta below the left renal vein; a short body; each limb in a retroperitoneal tunnel on the front of the iliac arteries, behind the ureter, under the inguinal ligament, end-to-side onto the common femoral artery.')
     LM['abf-prox'] = top
-    # kissing stents (endovascular reconstruction of the bifurcation)
-    ks_ = []
-    for sd in il:
-        ks_.append(tube([W(at_z(zlo + 20) + RIGHT * (3 if sd == 'r' else -3)), W(bif + RIGHT * (3 if sd == 'r' else -3)), W((bif + il[sd]['cia']) / 2), W(il[sd]['cia'])], 4.2, seg=14))
-    emit_mesh('stents-kissing', 'Kissing stents at the aortic bifurcation', 'vascular', STENT, trimesh.util.concatenate(ks_), opacity=0.85, visible=False,
-              note='Two balloon-expandable (often covered) stents deployed side by side from the distal aorta into both common iliac arteries, inflated together.')
-    # axillobifemoral: right axillary artery, down the lateral chest wall under the skin, to the right groin, cross-over to the left
-    skin = ctx.get('skin_mm'); sca = ts('subclavian_artery_right')
-    if skin is not None and sca.any():
-        ax0 = vox_mm(sca); ax = ax0[np.argmax(ax0[:, 0])]                                            # the lateral end of the subclavian: the first part of the axillary
-        ax = ax + RIGHT * 22 - SUP * 6
-        pts = [ax]
-        for z in np.linspace(ax[2] - 40, zlo, 8):
-            sl = skin[np.abs(skin[:, 2] - z) < 4]
-            if not len(sl): continue
-            q = sl[np.argmax(sl[:, 0] + sl[:, 1] * 0.3)]                                              # the right anterolateral surface
-            pts.append(q - (q - np.array([D[:, 0].mean(), D[:, 1].mean(), q[2]])) / np.linalg.norm(q - np.array([D[:, 0].mean(), D[:, 1].mean(), q[2]])) * 10)
-        pts += [il['r']['cfa_mid'] + ANT * 20 + RIGHT * 14, il['r']['cfa_mid'] + ANT * 6]
-        axbf = [tube([W(p) for p in pts], 4.0, seg=16),
-                tube([W(il['r']['cfa_mid'] + ANT * 18), W((il['r']['cfa_mid'] + il['l']['cfa_mid']) / 2 + ANT * 30 + SUP * 25), W(il['l']['cfa_mid'] + ANT * 6)], 3.8, seg=16)]
-        emit_mesh('graft-axbf', 'Axillobifemoral bypass (ringed PTFE), with a femorofemoral cross-over', 'vascular', GRAFT, trimesh.util.concatenate(axbf), visible=False,
-                  note='Extra-anatomic: from the first part of the axillary artery, tunnelled subcutaneously down the mid-axillary line to the groin, with a suprapubic femorofemoral limb.')
-        emit_mesh('incision-axillary-r', 'Infraclavicular incision (right axillary artery)', 'incisions', '#d0433a',
-                  tube([W(ax + ANT * 26 - RIGHT * 30 + SUP * 4), W(ax + ANT * 28 + SUP * 2), W(ax + ANT * 26 + RIGHT * 25)], 1.8), visible=False)
+    # kissing stents: two balloon-expandable stents side by side from the distal aorta into both common iliacs, their tops level (the new carina)
+    def lattice(P, r, cell=6.0, zig=10, strut=0.35):
+        Q = _cr(P, 1.0); T_, U_, V_ = _frames(Q); d = np.r_[0, np.cumsum(np.linalg.norm(np.diff(Q, axis=0), axis=1))]
+        at = lambda L: int(min(np.searchsorted(d, L), len(Q) - 1))
+        pt = lambda L, a: (lambda k: Q[k] + (U_[k] * np.cos(a) + V_[k] * np.sin(a)) * r)(at(L))
+        segs = []; rows = np.arange(0, d[-1] + 1e-6, cell / 2)
+        for m, L in enumerate(rows):
+            for n in range(zig):
+                a0 = 2 * np.pi * n / zig; a1 = 2 * np.pi * (n + 0.5) / zig; a2 = 2 * np.pi * (n + 1) / zig
+                if m + 1 < len(rows):
+                    up = rows[m + 1]
+                    if m % 2 == 0: segs += [(pt(L, a0), pt(up, a1)), (pt(up, a1), pt(L, a2))]
+                    else: segs += [(pt(L, a1), pt(up, a0 if n else 0)), (pt(L, a1), pt(up, a2))]
+        cyl = []
+        for a, b in segs:
+            L = np.linalg.norm(b - a)
+            if L < 0.2: continue
+            c = trimesh.creation.cylinder(radius=strut, height=L, sections=5)
+            M = trimesh.geometry.align_vectors([0, 0, 1], (b - a) / L); M[:3, 3] = W((a + b) / 2); c.apply_transform(M); cyl.append(c)
+        return trimesh.util.concatenate(cyl)
+    ks_, kb = [], []
+    for sd, s_ in (('l', -1), ('r', 1)):
+        q = il[sd]; off = RIGHT * s_ * 4.2
+        P = [at_z(zlo + 14) + off, at_z(zlo + 4) + off, bif + off * 1.2, (bif + q['cia']) / 2, q['cia'] + SUP * 10]
+        ks_.append(lattice(P, 4.0)); ks_.append(tube([W(p) for p in P], 3.85, seg=18))            # struts over a thin PTFE cover (covered stent)
+        kb.append(tube([W(P[0] + SUP * 5)] + [W(p) for p in P] + [W(q['cia'] + SUP * 4)], 4.3, seg=20))
+    emit_mesh('stents-kissing', 'Kissing stents at the aortic bifurcation (covered, balloon-expandable)', 'vascular', STENT, trimesh.util.concatenate(ks_), visible=False,
+              note='Two balloon-expandable covered stents side by side from the distal aorta into both common iliac arteries, their tops level about 1 cm above the old bifurcation (the new carina), inflated together.')
+    emit_mesh('kissing-balloons', 'Two balloons inflated together (kissing inflation)', 'vascular', '#6fa8dc', trimesh.util.concatenate(kb), opacity=0.45, visible=False,
+              note='Simultaneous inflation so that neither stent crushes the other at the carina.')
+    LM['kiss-top'] = at_z(zlo + 14)
+    # axillobifemoral: end-to-side on the first part of the right axillary artery, along it for a few cm, then down the mid-axillary line
+    # under the skin of the chest and flank (outside the ribs), in front of the iliac crest, to the right common femoral; a suprapubic
+    # femorofemoral limb to the left
+    sca = ts('subclavian_artery_right')
+    if sca.any():
+        emit('sca-r', 'Subclavian artery, right', 'vascular', ART, sca, AT, faces=2500, visible=False)
+        s0 = vox_mm(sca); e = s0[np.argmax(s0[:, 0])]                                                 # the lateral end of the subclavian (outer border of the first rib)
+        axa = [e, e + RIGHT * 22 - SUP * 6 + ANT * 2, e + RIGHT * 45 - SUP * 16, e + RIGHT * 70 - SUP * 32 - ANT * 4]
+        emit_mesh('axillary-a-r', 'Axillary artery, right (first part medial to pectoralis minor)', 'vascular', ART, tube([W(p) for p in axa], 3.6), visible=False,
+                  note='Schematic continuation of the subclavian from the outer border of the first rib; its first part, behind the clavipectoral fascia, takes the graft.')
+        ax = e + RIGHT * 24 - SUP * 7 + ANT * 2
         LM['axillary-r'] = ax
+        rib = {}
+        for n in range(3, 12):
+            m = ts(f'rib_right_{n}')
+            if m.any():
+                q = vox_mm(m); rib[n] = q
+        wall = np.concatenate(list(rib.values())) if rib else None
+        def chest_wall(z):
+            sl = wall[np.abs(wall[:, 2] - z) < 4]
+            if not len(sl): return None
+            q = sl[np.argmax(sl[:, 0])]; return q + RIGHT * 11 + ANT * 4                               # just outside the ribs: the subcutaneous plane
+        pts = [ax - RIGHT * 4, ax + RIGHT * 14 - SUP * 2 + ANT * 6, ax + RIGHT * 30 - SUP * 18 + ANT * 8]
+        zc = [z for z in np.linspace(ax[2] - 45, zlo + 5, 9)]
+        for z in zc:
+            q = chest_wall(z) if wall is not None else None
+            if q is not None and (not len(pts) or q[2] < pts[-1][2] - 5): pts.append(q)
+        last = pts[-1]; qr = il['r']; asis = LM['asis-r']
+        pts += [np.array([last[0] - 6, last[1] + 12, (last[2] + asis[2]) / 2]), asis + SUP * 18 - RIGHT * 16 + ANT * 6, qr['eia'] + ANT * 24 + RIGHT * 10, qr['cfa_mid'] + ANT * 14, qr['cfa_mid'] + ANT * 4.5]
+        pts = [p for k_, p in enumerate(pts) if k_ == 0 or np.linalg.norm(p - pts[k_ - 1]) > 4]
+        cross = [qr['cfa_mid'] + ANT * 4.5, qr['cfa_mid'] + ANT * 16 - RIGHT * 6 + SUP * 6, (qr['cfa_mid'] + il['l']['cfa_mid']) / 2 + ANT * 34 + SUP * 22,
+                 il['l']['cfa_mid'] + ANT * 16 + RIGHT * 6 + SUP * 6, il['l']['cfa_mid'] + ANT * 4.5]
+        def ringed(P, r):
+            Q = _cr(P); T_, _, _ = _frames(Q); d = np.r_[0, np.cumsum(np.linalg.norm(np.diff(Q, axis=0), axis=1))]; parts = [tube([W(p) for p in P], r, seg=16)]
+            for L in np.arange(8, d[-1] - 8, 8.0):
+                k = int(np.searchsorted(d, L)); t_ = trimesh.creation.torus(major_radius=r + 0.3, minor_radius=0.6, major_sections=18, minor_sections=5)
+                M = trimesh.geometry.align_vectors([0, 0, 1], T_[k]); M[:3, 3] = W(Q[k]); t_.apply_transform(M); parts.append(t_)
+            return trimesh.util.concatenate(parts)
+        emit_mesh('graft-axbf', 'Axillobifemoral bypass (8 mm ringed PTFE), with a femorofemoral cross-over', 'vascular', GRAFT, trimesh.util.concatenate([ringed(pts, 4.0), ringed(cross, 4.0)]), visible=False,
+                  note='Extra-anatomic: end-to-side on the first part of the axillary artery, running along it before turning down, subcutaneous in the mid-axillary line outside the ribs, in front of the iliac crest to the right groin; a suprapubic subcutaneous femorofemoral limb to the left groin.')
+        axr = [ring(ax + ANT * 0.5, ANT * 0.3 - SUP * 1.0, 4.6)]
+        for sd in il: axr.append(ring(il[sd]['cfa_mid'] + ANT * 4.8, ANT + SUP * 0.5, 4.8))
+        emit_mesh('anast-axbf', 'Suture lines: axillary and both femoral anastomoses', 'vascular', '#3fa7d6', trimesh.util.concatenate(axr), visible=False)
+        emit_mesh('incision-axillary-r', 'Infraclavicular incision (right axillary artery)', 'incisions', '#d0433a',
+                  tube([W(ax + ANT * 30 - RIGHT * 28 + SUP * 12), W(ax + ANT * 32 + SUP * 10), W(ax + ANT * 30 + RIGHT * 28 + SUP * 6)], 1.8), visible=False)
+        LM['axbf-mid'] = pts[len(pts) // 2]
+    skin = ctx.get('skin_mm')
     # ---------------------------------------------------------------- incisions: midline laparotomy, left flank (retroperitoneal)
     if skin is not None:
         mid_x = float(D[:, 0].mean()) + 30                                                         # the body's midline (the aorta lies to the left of it)
@@ -366,17 +470,14 @@ def build(ctx):
     emit_mesh('lumbar-arteries', 'Lumbar arteries (back-bleeding into the opened sac)', 'vascular', ART, trimesh.util.concatenate(lum), visible=False,
               note='Paired from the back of the aorta; after the sac is opened they are oversewn from inside with figure-of-eight sutures.')
     # suture lines (anastomoses)
-    def ring(p, d, r, rr=1.2):
-        t_ = trimesh.creation.torus(major_radius=r, minor_radius=rr, major_sections=40, minor_sections=8)
-        T_ = trimesh.geometry.align_vectors([0, 0, 1], d / np.linalg.norm(d)); T_[:3, 3] = W(p); t_.apply_transform(T_); return t_
     dvec = lambda z: at_z(z + 3) - at_z(z - 3)
     emit_mesh('anast-aaa', 'Suture lines: proximal (neck) and distal (bifurcation) anastomoses', 'vascular', '#3fa7d6',
               trimesh.util.concatenate([ring(at_z(zr - 16), dvec(zr - 16), 10.0), ring(at_z(zlo + 2), dvec(zlo + 2), 10.0)]), visible=False,
               note='Running 3-0 polypropylene, the back wall first from inside the sac, taking the full thickness of the aorta (and a strip of felt if it is friable).')
     emit_mesh('anast-juxta', 'Suture line at the renal arteries', 'vascular', '#3fa7d6', ring(at_z(zr + 1), dvec(zr + 1), 10.0), visible=False)
     emit_mesh('anast-supra', 'Bevelled proximal suture line (visceral patch)', 'vascular', '#3fa7d6', ring(at_z(z_sma - 3), dvec(z_sma - 3) + ANT * 3, 11.0), visible=False)
-    ab = [ring(top + ANT * (r_at(zr - 12) * 0.9 + 1), ANT + SUP * 0.3, 7.5)]
-    for sd in il: ab.append(ring(il[sd]['cfa_mid'] + ANT * 6, ANT + SUP * 0.2, 5.0))
+    ab = [ring(hood + ANT * 0.5 - SUP * 4, ANT + SUP * 0.6, 8.5)]
+    for sd in il: ab.append(ring(il[sd]['cfa_mid'] + ANT * 4.8, ANT + SUP * 0.5, 4.8))
     emit_mesh('anast-abf', 'Suture lines: aortic (end-to-side) and both femoral anastomoses', 'vascular', '#3fa7d6', trimesh.util.concatenate(ab), visible=False)
     emit_mesh('anast-taa', 'Suture lines: proximal and distal thoracic anastomoses', 'vascular', '#3fa7d6',
               trimesh.util.concatenate([ring(at_z(z_hi + 6), dvec(z_hi + 6), float(np.median(base)) + 2), ring(at_z(z_lo - 6), dvec(z_lo - 6), float(np.median(base)) + 2)]), visible=False)
@@ -396,7 +497,8 @@ def build(ctx):
     tw = up_path('r', float(D[:, 2].max()) - 5) + [Dtop + SUP * 10 + ANT * 10]
     emit_mesh('tevar-wire', 'Stiff guidewire and sheath (right femoral) to the arch', 'vascular', '#9aa6b2',
               trimesh.util.concatenate([tube([W(p) for p in tw], 0.7, seg=8), tube([W(p) for p in tw[:4]], 3.6, seg=12)]), visible=False)
-    kw = [tube([W(p + RIGHT * (1.2 if sd == 'r' else -1.2)) for p in up_path(sd, zlo + 70)], 0.6, seg=8) for sd in il]
-    emit_mesh('kissing-wires', 'Guidewires crossing both iliac occlusions (from both groins)', 'vascular', '#9aa6b2', trimesh.util.concatenate(kw), visible=False)
+    kw = [tube([W(p + RIGHT * (1.2 if sd == 'r' else -1.2)) for p in up_path(sd, zlo + 70)], 0.9, seg=8) for sd in il]
+    kw += [tube([W(p) for p in up_path(sd, zlo + 70)[:3]], 2.6, seg=12) for sd in il]                  # 7F sheaths in both femorals
+    emit_mesh('kissing-wires', 'Sheaths in both femorals; guidewires crossing both iliac occlusions', 'vascular', '#9aa6b2', trimesh.util.concatenate(kw), visible=False)
     LM['aaa-neck'] = at_z(zr - 16); LM['aaa-bottom'] = at_z(zlo + 2)
     return LM
