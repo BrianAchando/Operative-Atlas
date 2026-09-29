@@ -162,7 +162,7 @@ def build(ctx):
         emit_mesh(id_, name, 'vascular', '#c96a5a', _lathe_path(C, P, prof), opacity=0.6, visible=False, note=note)
         return P, prof
     zr = z_ren_lo
-    sac(zr - 18, zlo, 30.0, 'Infrarenal abdominal aortic aneurysm (6 cm)', 'aaa-infra',
+    SAC_I = sac(zr - 18, zlo, 30.0, 'Infrarenal abdominal aortic aneurysm (6 cm)', 'aaa-infra',
         'Schematic: a fusiform aneurysm starting 1.5-2 cm below the lowest renal artery (a good neck), to the bifurcation.')
     sac(zr - 2, zlo, 30.0, 'Juxtarenal aneurysm (no infrarenal neck)', 'aaa-juxta',
         'Schematic: the aneurysm begins at the renal arteries without involving them; there is no room for an infrarenal clamp.')
@@ -309,4 +309,94 @@ def build(ctx):
                   note='Schematic: a supracoronary ascending aneurysm with a normal root and sinotubular junction, ending at the innominate artery.')
         emit_mesh('graft-asc', 'Ascending aorta and hemiarch graft (Dacron)', 'vascular', GRAFT, tube([W(p) for p in A_[1:]], float(np.median(Ar)) + 1.5, seg=24), visible=False)
         LM['taa-asc'] = A_[len(A_) // 2]
+
+    # ================================================================ for depicting the operations
+    # the native aorta with the diseased segment taken out, so that a sac, graft or stent graft is not drawn around a normal aorta
+    kz = lambda z: int(round((z - AT[2, 3]) / AT[2, 2]))
+    def cut(id_, name, drop):
+        m = ao.copy(); drop(m)
+        emit(id_, name, 'vascular', '#d0433a', m, AT, faces=9000, visible=False, note='The aorta from the CT, the diseased segment removed (it is drawn separately).')
+    def below(z):
+        def f(m):
+            k = kz(z)
+            if AT[2, 2] > 0: m[..., :max(k, 0)] = False
+            else: m[..., k:] = False
+        return f
+    cut('aorta-cut-infra', 'Aorta above the infrarenal neck', below(zr - 16))
+    cut('aorta-cut-juxta', 'Aorta above the renal arteries', below(zr - 1))
+    cut('aorta-cut-supra', 'Aorta above the visceral segment', below(z_sma - 5))
+    ij = np.argwhere(ao); xyz = ij @ AT[:3, :3].T + AT[:3, 3]
+    def near_line(Q, rad, zmin, zmax):
+        sel = (xyz[:, 2] >= zmin) & (xyz[:, 2] <= zmax)
+        idx = np.where(sel)[0]
+        Qz = Q[np.argsort(Q[:, 2])]
+        cx = np.interp(xyz[idx, 2], Qz[:, 2], Qz[:, 0]); cy = np.interp(xyz[idx, 2], Qz[:, 2], Qz[:, 1])
+        close = np.hypot(xyz[idx, 0] - cx, xyz[idx, 1] - cy) < rad
+        return ij[idx[close]]
+    def drop_vox(v):
+        def f(m):
+            m[v[:, 0], v[:, 1], v[:, 2]] = False
+        return f
+    cut('aorta-cut-desc', 'Aorta with the aneurysmal descending segment removed', drop_vox(near_line(D, 28.0, z_lo + 2, z_hi - 2)))
+    if len(asc) > 5:
+        A0 = np.array([c[0] for c in asc])
+        cut('aorta-cut-asc', 'Aorta with the ascending segment removed', drop_vox(near_line(A0, 26.0, A0[:, 2].min() + 3, A0[:, 2].max() - 3)))
+    # the infrarenal sac opened, its laminated thrombus, and the lumbar arteries that back-bleed into it
+    Ps, prof = SAC_I
+    Tn = np.gradient(Ps, axis=0); Tn /= np.linalg.norm(Tn, axis=1, keepdims=True) + 1e-9
+    def lathe_sector(P, radii, a0, a1, secs=28):
+        V, F = [], []
+        for i in range(len(P)):
+            t_ = Tn[i]; u = ANT - t_ * np.dot(ANT, t_); u /= np.linalg.norm(u) + 1e-9; v = np.cross(t_, u)
+            for a in np.linspace(a0, a1, secs): V.append(P[i] + (u * np.cos(a) + v * np.sin(a)) * radii[i])
+        for i in range(len(P) - 1):
+            for j in range(secs - 1):
+                a, b = i * secs + j, i * secs + j + 1
+                F += [[a, a + secs, b + secs], [a, b + secs, b], [a, b + secs, a + secs], [a, b, b + secs]]    # both sides
+        return trimesh.Trimesh(np.array(V) - C, np.array(F), process=True)
+    emit_mesh('aaa-sac-open', 'Aneurysm sac, opened longitudinally', 'vascular', '#c96a5a', lathe_sector(Ps, prof, np.radians(55), np.radians(305)), opacity=0.75, visible=False,
+              note='The front of the sac opened (to the right of the IMA), the thrombus scooped out; the walls fall back and later close over the graft.')
+    emit_mesh('aaa-thrombus', 'Laminated mural thrombus in the sac', 'vascular', '#7d3a2c', _lathe_path(C, Ps, np.maximum(prof * 0.84, [r_at(min(max(z, zlo), zr)) + 1.0 for z in Ps[:, 2]])), opacity=0.9, visible=False,
+              note='Layers of old thrombus line most aneurysms, leaving a channel of normal calibre: the sac is far larger than the lumen seen on angiography.')
+    lum = []
+    for z in np.linspace(zr - 30, zlo + 12, 3):
+        o = at_z(z)
+        for s_ in (-1, 1):
+            lum.append(tube([W(o - ANT * r_at(z) * 0.8 + RIGHT * s_ * 4), W(o - ANT * 18 + RIGHT * s_ * 14), W(o - ANT * 26 + RIGHT * s_ * 30)], 1.4))
+    emit_mesh('lumbar-arteries', 'Lumbar arteries (back-bleeding into the opened sac)', 'vascular', ART, trimesh.util.concatenate(lum), visible=False,
+              note='Paired from the back of the aorta; after the sac is opened they are oversewn from inside with figure-of-eight sutures.')
+    # suture lines (anastomoses)
+    def ring(p, d, r, rr=1.2):
+        t_ = trimesh.creation.torus(major_radius=r, minor_radius=rr, major_sections=40, minor_sections=8)
+        T_ = trimesh.geometry.align_vectors([0, 0, 1], d / np.linalg.norm(d)); T_[:3, 3] = W(p); t_.apply_transform(T_); return t_
+    dvec = lambda z: at_z(z + 3) - at_z(z - 3)
+    emit_mesh('anast-aaa', 'Suture lines: proximal (neck) and distal (bifurcation) anastomoses', 'vascular', '#3fa7d6',
+              trimesh.util.concatenate([ring(at_z(zr - 16), dvec(zr - 16), 10.0), ring(at_z(zlo + 2), dvec(zlo + 2), 10.0)]), visible=False,
+              note='Running 3-0 polypropylene, the back wall first from inside the sac, taking the full thickness of the aorta (and a strip of felt if it is friable).')
+    emit_mesh('anast-juxta', 'Suture line at the renal arteries', 'vascular', '#3fa7d6', ring(at_z(zr + 1), dvec(zr + 1), 10.0), visible=False)
+    emit_mesh('anast-supra', 'Bevelled proximal suture line (visceral patch)', 'vascular', '#3fa7d6', ring(at_z(z_sma - 3), dvec(z_sma - 3) + ANT * 3, 11.0), visible=False)
+    ab = [ring(top + ANT * (r_at(zr - 12) * 0.9 + 1), ANT + SUP * 0.3, 7.5)]
+    for sd in il: ab.append(ring(il[sd]['cfa_mid'] + ANT * 6, ANT + SUP * 0.2, 5.0))
+    emit_mesh('anast-abf', 'Suture lines: aortic (end-to-side) and both femoral anastomoses', 'vascular', '#3fa7d6', trimesh.util.concatenate(ab), visible=False)
+    emit_mesh('anast-taa', 'Suture lines: proximal and distal thoracic anastomoses', 'vascular', '#3fa7d6',
+              trimesh.util.concatenate([ring(at_z(z_hi + 6), dvec(z_hi + 6), float(np.median(base)) + 2), ring(at_z(z_lo - 6), dvec(z_lo - 6), float(np.median(base)) + 2)]), visible=False)
+    # guidewires and sheaths: from both groins, up the iliacs into the aorta
+    def up_path(sd, z_end):
+        q = il[sd]; P_ = [LM[f'groin-{sd}'] - SUP * 10, q['cfa_mid'], q['eia'], q['cia'], (bif + q['cia']) / 2, bif]
+        P_ += [at_z(z) for z in np.linspace(zlo + 5, z_end, 12)]
+        return P_
+    wires = []
+    for sd in il:
+        P_ = up_path(sd, z_coel + 40)
+        wires.append(tube([W(p + RIGHT * (1.5 if sd == 'r' else -1.5)) for p in P_], 0.6, seg=8))
+        wires.append(tube([W(p) for p in P_[:4]], 3.2, seg=12))                                     # the sheath in the femoral and iliac
+    emit_mesh('evar-wires', 'Stiff guidewires and sheaths (both femoral arteries)', 'vascular', '#9aa6b2', trimesh.util.concatenate(wires), visible=False,
+              note='Percutaneous (pre-closure sutures) or open femoral access; stiff wires up to the thoracic aorta; the main body travels up the ipsilateral side, the contralateral limb through a gate cannulated from the other groin.')
+    Dtop = D[np.argmax(D[:, 2])]
+    tw = up_path('r', float(D[:, 2].max()) - 5) + [Dtop + SUP * 10 + ANT * 10]
+    emit_mesh('tevar-wire', 'Stiff guidewire and sheath (right femoral) to the arch', 'vascular', '#9aa6b2',
+              trimesh.util.concatenate([tube([W(p) for p in tw], 0.7, seg=8), tube([W(p) for p in tw[:4]], 3.6, seg=12)]), visible=False)
+    kw = [tube([W(p + RIGHT * (1.2 if sd == 'r' else -1.2)) for p in up_path(sd, zlo + 70)], 0.6, seg=8) for sd in il]
+    emit_mesh('kissing-wires', 'Guidewires crossing both iliac occlusions (from both groins)', 'vascular', '#9aa6b2', trimesh.util.concatenate(kw), visible=False)
+    LM['aaa-neck'] = at_z(zr - 16); LM['aaa-bottom'] = at_z(zlo + 2)
     return LM

@@ -4250,7 +4250,126 @@ if VASC_OK:
                 out.append({**s, 'seq': i})
         return out, sq_
 
+    # ------------------------------------------------------------------------------------------ depicting the operations, and the reference tables
+    CUTS = [({'aaa-infra', 'graft-tube', 'evar-graft', 'aaa-sac-open', 'aaa-thrombus', 'anast-aaa'}, 'aorta-cut-infra'),
+            ({'aaa-juxta', 'graft-juxta', 'anast-juxta'}, 'aorta-cut-juxta'),
+            ({'aaa-supra', 'graft-supra', 'anast-supra'}, 'aorta-cut-supra'),
+            ({'taa-desc', 'graft-taa', 'tevar-graft', 'anast-taa'}, 'aorta-cut-desc'),
+            ({'taa-asc', 'graft-asc'}, 'aorta-cut-asc')]
+    SAC_OF = {'aaa-infra': 'aaa-infra', 'aaa-juxta': 'aaa-juxta', 'aaa-supra': 'aaa-supra'}
+    ANAST_OF = {'aaa-infra': 'anast-aaa', 'aaa-juxta': 'anast-juxta', 'aaa-supra': 'anast-supra', 'aiod-abf': 'anast-abf', 'taa-open': 'anast-taa'}
+    SIZES = ('<p><b>Normal sizes and when to act.</b> An aneurysm is a permanent dilatation to at least <b>1.5 times</b> the expected normal diameter.</p>'
+             '<table class="mini"><tr><th>Artery</th><th>Normal adult (typical)</th><th>Aneurysmal</th><th>Usual threshold to repair</th></tr>'
+             '<tr><td>Ascending aorta</td><td>about 2.2–3.6 cm</td><td>dilated above 22 mm/m² (ESC)</td><td>5.5 cm; 5.0 cm with risk factors, bicuspid root phenotype or Marfan; 4.5 cm if the aortic valve is being operated on</td></tr>'
+             '<tr><td>Descending thoracic</td><td>about 2.0–3.0 cm</td><td>dilated above 16 mm/m² (ESC)</td><td>TEVAR at 5.5 cm with suitable anatomy (ESC 2024); 6.0 cm (ACC/AHA 2022)</td></tr>'
+             '<tr><td>Infrarenal aorta</td><td>about 1.5 cm (women), 1.7 cm (men) over 50</td><td>3.0 cm or more</td><td>5.5 cm (men), 5.0 cm (women); growth of about 1 cm a year; symptoms</td></tr>'
+             '<tr><td>Common iliac</td><td>about 1 cm</td><td>about 1.8–2.0 cm and more (definitions vary)</td><td>4.0 cm (ESVS 2024, raised from 3.5 cm)</td></tr>'
+             '<tr><td>Popliteal</td><td>about 0.5–0.9 cm</td><td>over 1.5 cm or 1.5 × normal</td><td>2.0 cm, or smaller with thrombus and embolism or poor run-off (SVS 2022)</td></tr></table>'
+             + ev('definition of aneurysm as 1.5 × normal: SVS/ISCVS reporting standards (Johnston et al., J Vasc Surg 1991); normal infrarenal diameters (AAFP 2006). Thoracic indexing and thresholds: ESC 2024 (Mazzolai et al.) and ACC/AHA 2022 (Isselbacher et al.). Iliac threshold: ESVS 2024 (Recommendation 135). Popliteal: SVS 2022 (Farber et al.). Normal ranges for the iliac and popliteal arteries are typical values, not guideline cut-offs.'))
+    RUTH = ('<p><b>Grading the ischaemia</b> (chronic):</p>'
+            '<table class="mini"><tr><th>Fontaine</th><th>Rutherford (category)</th><th>Clinical picture</th><th>Objective (Rutherford)</th></tr>'
+            '<tr><td>I</td><td>0</td><td>asymptomatic</td><td>normal treadmill test</td></tr>'
+            '<tr><td>IIa (over 200 m)</td><td>1 mild</td><td>claudication</td><td>completes treadmill; ankle pressure after exercise over 50 mmHg but at least 20 mmHg below resting</td></tr>'
+            '<tr><td>IIb (under 200 m)</td><td>2 moderate, 3 severe</td><td>claudication</td><td>category 3: cannot complete treadmill; ankle pressure after exercise under 50 mmHg</td></tr>'
+            '<tr><td>III</td><td>4</td><td>ischaemic rest pain</td><td>resting ankle pressure under 40 mmHg, toe pressure under 30 mmHg</td></tr>'
+            '<tr><td>IV</td><td>5 minor, 6 major tissue loss</td><td>ulcer, gangrene</td><td>resting ankle pressure under 60 mmHg, toe pressure under 40 mmHg</td></tr></table>'
+            '<p>Rutherford 4–6 is <b>chronic limb-threatening ischaemia (CLTI)</b>. <b>Acute</b> limb ischaemia has its own Rutherford grading: I viable; IIa marginally threatened (no or minimal sensory loss, no weakness); IIb immediately threatened (sensory loss beyond the toes, rest pain, mild or moderate weakness); III irreversible (anaesthetic, paralysed, no venous Doppler signal).</p>'
+            '<p><b>Ankle-brachial index</b>: 0.90 or less is PAD; 1.40 or more is non-compressible (calcified, common in diabetes and renal failure): use toe pressures.</p>'
+            '<p><b>Best medical therapy is for everyone with PAD</b>, and the first treatment for claudication:</p><ul>'
+            '<li><b>Stop smoking</b>: counselling at every visit, with varenicline (or bupropion, nicotine replacement).</li>'
+            '<li><b>Antithrombotic</b>: a single antiplatelet (aspirin or clopidogrel); consider low-dose rivaroxaban 2.5 mg twice daily with aspirin in symptomatic PAD and after revascularisation if bleeding risk is low.</li>'
+            '<li><b>High-intensity statin</b>: LDL under 1.4 mmol/L (55 mg/dL) and at least a 50% fall (ESVS 2024).</li>'
+            '<li><b>Blood pressure</b> under 130/80 mmHg (ACE inhibitor or ARB); <b>diabetes</b> control (SGLT2 inhibitors, GLP-1 agonists); foot care.</li>'
+            '<li><b>Supervised exercise</b>: 30–45 minutes of walking to near-maximal pain, at least 3 times a week, for at least 12 weeks.</li></ul>'
+            '<p><b>When to revascularise</b>: <b>claudication</b> only when it stays lifestyle-limiting despite best medical therapy and exercise, decided with the patient (never for asymptomatic disease); <b>CLTI</b> (rest pain, ulcer, gangrene): prompt assessment for revascularisation to save the limb; <b>acute ischaemia</b> IIa urgently, IIb as an emergency, III amputation.</p>'
+            + ev('Rutherford 1997 standards (J Vasc Surg 1997;26:517-38) and Fontaine, as tabulated in current reviews. ACC/AHA 2024 PAD guideline (Gornik et al.): single antiplatelet, rivaroxaban 2.5 mg twice daily plus aspirin, high-intensity statin, BP under 130/80, supervised exercise at least 3 times a week for 12 weeks; revascularisation for claudication only if lifestyle-limiting despite therapy. ESVS 2024 (Nordanstig et al.): LDL under 1.4 mmol/L; varenicline first-line; individualised decisions. COMPASS (Lancet 2018) and VOYAGER PAD (NEJM 2020) for low-dose rivaroxaban.'))
+    opt = lambda name, choose, avoid, pat, risk: (f'<div class="opt"><p><b>{name}</b></p><ul><li><b>Choose for:</b> {choose}</li><li><b>Avoid when:</b> {avoid}</li>'
+                                                   f'<li><b>Patency at 5 years:</b> {pat}</li><li><b>Main risks:</b> {risk}</li></ul></div>')
+    WHICH = (opt('Aortobifemoral bypass', 'a fit patient with extensive bilateral aorto-iliac disease or aortic occlusion (TASC C/D); failed endovascular treatment',
+                 'unfit for general anaesthesia and laparotomy; a hostile abdomen; (relative) retroperitoneal fibrosis, horseshoe kidney, severe cardiac disease',
+                 'about 86–91% per limb', 'operative mortality about 4% in older series; sexual dysfunction; graft infection; aortoenteric fistula')
+             + opt('Axillobifemoral bypass', 'bilateral aorto-iliac occlusion in a patient unfit for laparotomy; a hostile abdomen (several laparotomies, a stoma, radiation); an infected aortic graft or aortoenteric fistula after the graft is removed',
+                   '<b>inflow disease</b> in the subclavian or axillary artery (compare both arm pressures, image the arch branches, use the arm with the higher pressure); a fit claudicant (poorer patency)',
+                   'about 50–75% (63% primary in one series)', 'graft thrombosis; disruption of the axillary anastomosis with arm strain; infection along the tunnel')
+             + opt('Femorofemoral cross-over', '<b>unilateral</b> iliac occlusion with a healthy donor iliac (or one stented first); high risk or hostile abdomen; failed iliac stenting',
+                   'untreated disease in the donor iliac; bilateral disease; (relative) marked obesity', 'about 70% primary, 85% secondary', 'groin infection; steal from the donor leg (rare)')
+             + opt('Endovascular (kissing stents, CERAB)', 'most TASC A–C lesions, and increasingly D in experienced centres',
+                   'heavy calcified occlusion into the common femoral (hybrid: femoral endarterectomy plus stent); occlusion up to the renal arteries; no access',
+                   'covered stents about 75% (COBEST); CERAB 82% at 3 years', 'access complications; stent occlusion; reintervention')
+             + ev('de Vries and Hunink (J Vasc Surg 1997): aortic bifurcation grafts, 5-year limb patency 91% (claudication) and 87.5% (CLI), mortality 4.4%. Martin and Katz (Am J Surg 2000): axillofemoral primary patency 63% at 5 years. Park et al. (Vasc Specialist Int 2017): femorofemoral 70% primary, 85% secondary at 5 years; donor-iliac disease was treated first when present. COBEST (J Vasc Surg 2016); CERAB (Taeymans, J Vasc Surg 2018). Indications and contraindications: StatPearls/Medscape reviews of each operation.'))
+
+    def depict(key, steps_):
+        """show the operation: take out the native aortic segment the lesion replaces; thrombus, lumbar arteries, the opened
+        sac, suture lines and wires where they belong; add the reference tables and the bypass choice"""
+        for s in steps_:
+            sid = s['id']; sh = s.setdefault('show', [])
+            def add(*xs):
+                for x in xs:
+                    if has(x) and x not in sh: sh.append(x)
+            act = s.get('action') or {}
+            if key in SAC_OF and sid.endswith('-sac'):
+                if key == 'aaa-infra':
+                    add('aaa-thrombus', 'lumbar-arteries'); s['labels'] = [*s.get('labels', []), 'aaa-thrombus', 'lumbar-arteries']
+                    act.update({'label': 'Open the sac and clear the thrombus', 'remove': ['aaa-thrombus']}); s['action'] = act
+                    s['danger'] = [*s.get('danger', []), 'lumbar-arteries']
+            if key in SAC_OF and sid.endswith('-graft'):
+                an = ANAST_OF[key]; add(an)
+                if key == 'aaa-infra':
+                    s['show'] = [i for i in sh if i != 'aaa-infra']; add('aaa-sac-open', 'lumbar-arteries'); s['opacity'] = {**s.get('opacity', {}), 'aaa-sac-open': 0.55}
+                else:
+                    add(SAC_OF[key]); s['opacity'] = {**s.get('opacity', {}), SAC_OF[key]: 0.2}
+                if act.get('ids'): act['ids'] = [*act['ids'], an]
+                s['labels'] = [*s.get('labels', []), an]
+            if key in SAC_OF and sid.endswith('-close'):
+                add(SAC_OF[key], ANAST_OF[key]); s['opacity'] = {**s.get('opacity', {}), SAC_OF[key]: 0.25}
+            if key == 'aaa-evar':
+                if sid.endswith('-access'):
+                    add('evar-wires'); s['highlight'] = [*s.get('highlight', []), 'evar-wires']; s['labels'] = [*s.get('labels', []), 'evar-wires']
+                    s['action'] = {'kind': 'reveal', 'label': 'Pass the wires and sheaths', 'port': 'laparotomy', 'ids': ['evar-wires']}
+                    s['view'] = front((Pv('cfa-r') + Pv('cfa-l')) / 2 * 0.5 + Pv('evar-neck') * 0.5, 820, (0.1, 1, 0.25))
+                if sid.endswith('-deploy'): add('evar-wires'); s['opacity'] = {**s.get('opacity', {}), 'evar-wires': 0.6}
+            if key == 'aiod-endo':
+                if sid.endswith('-access'):
+                    add('kissing-wires'); s['highlight'] = [*s.get('highlight', []), 'kissing-wires']; s['labels'] = [*s.get('labels', []), 'kissing-wires']
+                    s['action'] = {'kind': 'reveal', 'label': 'Cross the occlusions', 'port': 'laparotomy', 'ids': ['kissing-wires']}
+                    s['view'] = front((Pv('cfa-r') + Pv('cfa-l')) / 2 * 0.55 + Pv('bifurcation') * 0.45, 700, (0.1, 1, 0.25))
+                if sid.endswith('-stents'): add('kissing-wires')
+            if key == 'taa-tevar' and sid.endswith('-deploy'):
+                add('tevar-wire'); s['labels'] = [*s.get('labels', []), 'tevar-wire']
+                if act.get('ids'): act['ids'] = ['tevar-wire', *act['ids']]
+            if key in ('aiod-abf', 'taa-open') and sid.endswith('-graft') and act.get('ids'):
+                an = ANAST_OF[key]; add(an); act['ids'] = [*act['ids'], an]; s['labels'] = [*s.get('labels', []), an]
+            if key in ('aiod-abf', 'taa-open') and sid.endswith(('-close', '-after')): add(ANAST_OF[key])
+            # the native aorta without the segment that the lesion or its replacement occupies
+            shown = set(s['show'])
+            for ids, cut_ in CUTS:
+                if shown & ids and has(cut_):
+                    for kk in ('show', 'highlight', 'labels', 'danger'):
+                        if kk in s: s[kk] = [cut_ if i == 'aorta' else i for i in s[kk]]
+                    if cut_ not in s['show']: s['show'].append(cut_)
+                    op_ = s.get('opacity', {})
+                    if 'aorta' in op_: op_[cut_] = op_.pop('aorta')
+                    s['hide'] = [*s.get('hide', []), 'aorta']
+                    if (s.get('action') or {}).get('kind') == 'clamp' and 'ids' in s['action']: s['action']['ids'] = [cut_ if i == 'aorta' else i for i in s['action']['ids']]
+                    break
+            # reference tables
+            if s['phase'] == 'Pathophysiology':
+                if key.startswith('aaa') or key.startswith('taa'):
+                    if SIZES not in s['body']: s['body'] = s['body'] + SIZES
+                if key.startswith('aiod') and RUTH not in s['body']: s['body'] = s['body'] + RUTH
+        if key.startswith('aiod'):
+            i = next((j for j, s in enumerate(steps_) if s['phase'] == 'Case'), None)
+            if i is not None:
+                c = steps_[i]
+                steps_.insert(i + 1, {'id': c['id'].replace('-case', '-which'), 'phase': 'Decision', 'seq': c['seq'], 'title': 'Which reconstruction? Aortobifemoral, axillobifemoral, femorofemoral or endovascular',
+                                      'body': '<p>The choice rests on <b>the extent of disease</b> (unilateral or bilateral, how far up the aorta, the common femorals), <b>the patient</b> (fitness for laparotomy, the abdomen, life expectancy, infection) and <b>the inflow</b> for an extra-anatomic graft.</p>' + WHICH,
+                                      'view': c['view'], 'show': list(c.get('show', [])), 'hide': list(c.get('hide', [])), 'opacity': dict(c.get('opacity', {})),
+                                      'labels': [i for i in ('aiod-occlusion', 'cia-l', 'cia-r', 'cfa-l', 'cfa-r') if has(i)], 'ct': c.get('ct'),
+                                      'ask': ask('A 70-year-old with a right common iliac occlusion, a normal left iliac on CT, and severe COPD has rest pain in the right foot. Stenting has failed. Which bypass?', 'Femorofemoral cross-over from the left groin',
+                                                 'Unilateral disease with a healthy donor iliac is the classic indication; it avoids a laparotomy and has better patency than an axillofemoral graft.', 'Aortobifemoral bypass', 'Axillobifemoral bypass', 'Primary amputation')})
+
     def finish(key, op_, opName, appr, summ, steps_, sq, src, side='both'):
+        depict(key, steps_)
         for s in steps_:
             named = set(s.get('highlight', [])) | set(s.get('danger', [])) | set(s.get('labels', [])) | set(s.get('show', []))
             s['hide'] = [*s.get('hide', []), *[i for i in V_OFF if i not in named], *[i for i in VPATH if i not in named],

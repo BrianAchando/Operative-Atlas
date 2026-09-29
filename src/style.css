@@ -97,7 +97,11 @@ button:focus-visible, input:focus-visible, summary:focus-visible, label.btn:focu
 .body .grade { font: 500 10.5px var(--mono); padding: 1px 5px; border-radius: 3px; margin-left: 4px; vertical-align: 1px; }
 .body .grade.proven { background: #1f4d3a; color: #bff0d6; }
 .body .grade.inferred { background: #4d3f1f; color: #f5deaa; }
-.body table.mini { border-collapse: collapse; font-size: 12.5px; margin: 6px 0 12px; width: 100%; }
+.body table.mini { border-collapse: collapse; font-size: 12px; margin: 6px 0 12px; width: 100%; table-layout: fixed; }
+.body table.mini td, .body table.mini th { overflow-wrap: anywhere; hyphens: auto; }
+.body .opt { border: 1px solid var(--line-2); border-radius: 6px; padding: 8px 10px; margin: 0 0 8px; }
+.body .opt p { margin: 0 0 4px; }
+.body .opt ul { margin: 0; padding-left: 18px; }
 .body table.mini th, .body table.mini td { border: 1px solid var(--line-2); padding: 4px 6px; text-align: left; vertical-align: top; }
 .body table.mini th { color: var(--text); background: var(--raised); }
 .veil-note { color: var(--muted); font-size: 12px; margin: 2px 0 8px; }
