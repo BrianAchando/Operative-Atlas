@@ -2785,7 +2785,86 @@ if ROOT_OK:
                          + ev('blood-pressure control after the Ross is recommended in expert consensus (EACTS 2025) to limit early autograft dilatation; its exact targets have not been tested in trials.')}]
         procs['root-ross'] = {'steps': ross, 'appr': 'Ross (pulmonary autograft)',
                               'sq': seq(('Anatomy', 'other'), ('Decide', 'other'), ('Sternotomy', 'other'), ('Cannulate', 'artery'), ('Clamp', 'artery'), ('Excise', 'fissure'), ('Harvest', 'vein'), ('Implant', 'bronchus'), ('Buttons', 'artery'), ('Distal', 'artery'), ('Homograft', 'vein'), ('Wean', 'artery'))}
-    for key in [k for k in ('root-bentall', 'root-ross') if k in procs and 'appr' in procs[k]]:
+    if has('david-graft'):
+        DAV_CUSPS = [i for i in ('av-cusp-r', 'av-cusp-l', 'av-cusp-n') if has(i)]
+        dview = clook(AC, AN * 0.55 + V([0.15, 1.0, 0.0]), 130)
+        RTSRC.extend([
+            {'title': 'David TE, Feindel CM. An aortic valve-sparing operation for patients with aortic incompetence and aneurysm of the ascending aorta. J Thorac Cardiovasc Surg 1992;103:617-22', 'url': pm('David Feindel aortic valve-sparing operation 1992')},
+            {'title': 'David TE, et al. Aortic valve sparing operations: outcomes at 20 years. Ann Cardiothorac Surg 2013;2:24-9', 'url': 'https://www.annalscts.com/article/view/1396/html'},
+            {'title': 'Mastrobuoni S, et al. Valve-sparing aortic root replacement using the reimplantation (David) technique: systematic review and meta-analysis. Ann Cardiothorac Surg 2023;12:131-9', 'url': 'https://www.annalscts.com/article/view/17025/html'},
+            {'title': 'Zhou T, et al. Reimplantation versus remodeling in valve-sparing surgery for aortic root aneurysms: a meta-analysis. J Thorac Dis 2020', 'url': 'https://jtd.amegroups.org/article/view/43518/html'},
+            {'title': 'Schäfers HJ, et al. Cusp height in aortic valves. J Thorac Cardiovasc Surg 2013;146:269-74', 'url': 'https://pubmed.ncbi.nlm.nih.gov/22853942/'},
+        ])
+        david = [
+            {**rt_anat('rd'), 'title': 'The functional aortic annulus', 'show': [*CH, 'root-aneurysm', *ROOT, *AV_DANGER], 'hide': [*HEART_OFF, 'av-calcium'],
+             'body': '<p>The valve works as a unit with its root: the <b>ventriculo-aortic junction</b> (the base), the <b>sinuses</b>, and the <b>sinotubular junction</b>. Together they are the <b>functional aortic annulus</b>. '
+                     'In a root aneurysm with thin, normal cusps, the cusps leak only because the STJ and the base have dilated and pulled the commissures apart (<b>type I</b> regurgitation in El Khoury\'s classification). '
+                     'Restore the root\'s size and shape, and the cusps meet again: <b>keep the valve</b>.</p>'
+                     + ev('the functional classification of AR (type I dilatation, type II prolapse, type III restriction) guides repair; valve-sparing works best for type I with pliable cusps.'),
+             'ask': ask('Root aneurysm 5.3 cm, moderate central AR, thin mobile cusps without calcium. Why does the valve leak?', 'The dilated root (STJ and base) pulls the commissures apart, so the cusps no longer meet',
+                        'This is type I (functional annulus dilatation) regurgitation: the cusps are normal, which is exactly the case for keeping them.', 'The cusps are torn', 'The cusps are calcified and restricted')},
+            {'id': 'rd-decide', 'phase': 'Decision', 'seq': 1, 'title': 'Who is right for a valve-sparing root?',
+             'body': '<p><b>Good candidates</b>: a root aneurysm with <b>normal or near-normal cusps</b>: young patients, <b>Marfan</b> and other heritable aortopathies, some <b>bicuspid</b> valves in experienced hands, and type A dissection with a normal valve. '
+                     '<b>Not suitable</b>: calcified, thickened, retracted or badly fenestrated cusps; then a Bentall or Ross.</p>'
+                     '<p><b>Reimplantation (David)</b> puts the whole valve inside a graft and fixes the base, so it also treats a dilated annulus. <b>Remodelling (Yacoub)</b> replaces the sinuses with a scalloped graft but leaves the base free (often with an external ring).</p>'
+                     + ev('in David\'s 20-year series (374 patients), survival was 69% at 20 years and 97% were free of reoperation at 10 years. A 2023 meta-analysis of reimplantation (44 studies, 7,878 patients) found early mortality 1.6% and 91% freedom from reoperation at 10 years, with no difference between bicuspid and tricuspid valves. '
+                          'A meta-analysis of 14 cohort studies (1,672 patients) found lower late mortality and reoperation after reimplantation than after remodelling (retrospective data). No valve means no anticoagulation and very low rates of valve-related events.'),
+             'view': clook(RT_, V([0.3, 0.9, 0.4]), 300), 'show': [*CH, 'root-aneurysm'], 'hide': HEART_OFF, 'opacity': AV_FAINT, 'labels': ['root-aneurysm'],
+             'ask': ask('A 28-year-old with Marfan syndrome, root 5.0 cm, mild AR, normal cusps. Which operation keeps his own valve and also stabilises the annulus?',
+                        'Valve-sparing reimplantation (David)', 'Reimplantation fixes the base inside the graft as well as replacing the sinuses; with normal cusps it avoids a prosthesis and anticoagulation.',
+                        'Mechanical Bentall', 'Ross procedure', 'Remodelling without annuloplasty'),
+             'ct': ct(R(AC), 'coronal')},
+            {**mv_sternotomy('rd', 2), 'id': 'rd-sternotomy'}, rt_cannulate('rd', 3), {**av_clamp('rd', 4), 'id': 'rd-clamp'},
+            {'id': 'rd-dissect', 'phase': 'Root', 'seq': 5, 'title': 'Free the root down to the base; excise the sinuses',
+             'body': '<p>Transect the aorta above the STJ; inspect the cusps (thin, mobile, no fenestration or calcium: go on). Free the root <b>outside</b> down to the level of the <b>ventriculo-aortic junction</b>: off the RVOT and the roof of the left atrium, as far as the muscle beneath the right cusp allows. '
+                     'Excise the sinus walls leaving a <b>4–5 mm rim</b> along the cusp attachments and <b>buttons</b> round the coronaries. Keep the cusps untouched.</p>'
+                     + ev('the depth of the external dissection sets how low the graft can go; the right coronary sinus is limited by the muscular septum, which is why the graft lies higher there.'),
+             'view': dview, 'show': [*DAV_CUSPS, 'aortic-annulus', 'stj', 'root-aneurysm', *BTN, *AV_DANGER], 'hide': [*HEART_OFF, 'aorta', 'av-calcium'], 'opacity': AV_FAINT,
+             'highlight': ['root-aneurysm', *BTN], 'danger': ['ostium-l', 'ostium-r', 'his-bundle'], 'labels': [*BTN, *DAV_CUSPS],
+             'action': {'kind': 'dissect', 'tool': 'hook', 'label': 'Excise the sinuses, keep the cusps', 'port': 'sternotomy', 'remove': ['root-aneurysm'],
+                        'path': [R(AC + (AE * np.cos(t) + V(np.cross(AN, AE)) * np.sin(t)) * (AR_ + 8) + AN * 18) for t in np.linspace(0, 2 * np.pi, 7)]},
+             'ct': ct(R(AC), 'coronal')},
+            {'id': 'rd-subannular', 'phase': 'Root', 'seq': 6, 'title': 'Subannular sutures in one horizontal plane',
+             'body': '<p>Twelve or so <b>horizontal mattress</b> sutures (2-0 polyester, often pledgeted), passed from <b>inside the LVOT to the outside</b>, just below the nadirs of the cusps, all in <b>one horizontal plane</b>. '
+                     'Under the <b>right–non-coronary commissure</b> (membranous septum, His bundle) keep them shallow, or through the fibrous tissue; under the right cusp they sit higher, on the muscular septum.</p>'
+                     + ev('a single horizontal plane at the base is what fixes the ventriculo-aortic junction and prevents later annular dilatation, the main reason for late failure of valve-sparing repair.'),
+             'view': dview, 'show': [*DAV_CUSPS, 'aortic-annulus', 'his-bundle', 'david-subannular', *BTN], 'hide': [*HEART_OFF, 'aorta', 'av-calcium', 'root-aneurysm'], 'opacity': AV_FAINT,
+             'highlight': ['david-subannular'], 'danger': ['his-bundle'], 'labels': ['david-subannular', 'his-bundle'],
+             'action': {'kind': 'reveal', 'label': 'Place the subannular sutures', 'port': 'sternotomy', 'ids': ['david-subannular']},
+             'ct': ct(R(AC), 'coronal')},
+            {'id': 'rd-graft', 'phase': 'Root', 'seq': 7, 'title': 'Size the graft; lower it over the valve; tie',
+             'body': '<p><b>Size</b> the graft to the valve, not to the aneurysm: several methods are used (the cusp height, the span between commissures, or the annulus plus a few millimetres); commonly 26–32 mm. Too large leaves the cusps without coaptation; too small crowds them.</p>'
+                     '<p>Pass the subannular sutures through the base of the graft, lower it over the valve and tie them over the graft: the valve now sits <b>inside</b> the tube.</p>'
+                     + ev('no trial compares sizing methods; surgeons follow their method consistently. Residual AR after reimplantation is most often due to a mismatch between graft size and cusp size, or to unrecognised cusp prolapse.'),
+             'view': dview, 'show': [*DAV_CUSPS, 'david-subannular', 'david-graft', *BTN], 'hide': [*HEART_OFF, 'aorta', 'av-calcium', 'root-aneurysm'], 'opacity': AV_FAINT,
+             'highlight': ['david-graft'], 'labels': ['david-graft'],
+             'action': {'kind': 'seat', 'label': 'Lower the graft over the valve', 'port': 'sternotomy', 'ids': ['david-graft'], 'from': R(AN * 55)},
+             'ct': ct(R(AC), 'coronal')},
+            {'id': 'rd-reimplant', 'phase': 'Root', 'seq': 8, 'title': 'Resuspend the commissures; sew the valve inside the graft',
+             'body': '<p>Pull each <b>commissure</b> up vertically inside the graft and fix it with a pledgeted suture at a height that lets the cusps meet. Then sew the <b>rim of sinus wall</b> to the inside of the graft with running <b>4-0 polypropylene</b>, following each cusp\'s scalloped attachment from nadir to commissure.</p>'
+                     + ev('commissural height and symmetry determine coaptation; asymmetric resuspension is a common cause of residual regurgitation.'),
+             'view': dview, 'show': [*DAV_CUSPS, 'david-subannular', 'david-graft', 'david-commissures', *BTN], 'hide': [*HEART_OFF, 'aorta', 'av-calcium', 'root-aneurysm'], 'opacity': {**AV_FAINT, 'david-graft': 0.35},
+             'highlight': ['david-commissures'], 'labels': ['david-commissures'],
+             'action': {'kind': 'reveal', 'label': 'Resuspend the commissures', 'port': 'sternotomy', 'ids': ['david-commissures']},
+             'ct': ct(R(AC), 'coronal')},
+            {'id': 'rd-check', 'phase': 'Root', 'seq': 9, 'title': 'Check the cusps: effective height and prolapse',
+             'body': '<p>Look at the valve from above. The free margins should meet at the same level, well above the base. Measure the <b>effective height</b> (from the base of the cusp to its free margin at the centre) with a calliper: a common target is <b>about 9 mm</b>. '
+                     'A cusp lying lower than the others is <b>prolapsing</b>: correct it by <b>central plication</b> of its free margin (a fine polypropylene suture), then re-check. A saline test into the graft (clamped above) shows central coaptation.</p>'
+                     + ev('effective height as a target (about 9–10 mm) and the importance of the geometric (cusp) height come from the Homburg group (Schäfers et al.) and are widely used in valve repair; they are expert practice rather than trial-based thresholds.'),
+             'view': dview, 'show': [*DAV_CUSPS, 'david-graft', 'david-commissures', *BTN], 'hide': [*HEART_OFF, 'aorta', 'av-calcium', 'root-aneurysm'], 'opacity': {**AV_FAINT, 'david-graft': 0.3},
+             'labels': DAV_CUSPS,
+             'ask': ask('After reimplantation, one cusp\'s free margin sits 3 mm lower than the other two, and the effective height is 6 mm. What next?', 'Central plication of the prolapsing cusp, then re-measure',
+                        'A low-lying cusp is prolapsing; shortening its free margin (central plication) restores coaptation. Leaving it means residual AR and early failure.', 'Accept it: it will settle', 'Convert to a Bentall immediately'),
+             'ct': ct(R(AC), 'coronal')},
+            {**rt_buttons('rd', 10, into='david-graft'), 'body': rt_buttons('rd', 10)['body'].replace('Cut a hole in the graft (cautery) opposite each ostium.', 'Cut holes in the graft opposite each coronary ostium (the valve is already inside).')},
+            {**rt_distal('rd', 11, into='david-graft'), 'title': 'Distal anastomosis; TOE of the repaired valve',
+             'body': '<p>Join the graft to the ascending aorta (running 4-0 polypropylene). After bypass, <b>TOE</b>: no more than <b>trivial</b> AR, coaptation well <b>above the base</b> of the root, no cusp prolapse, normal gradients, and regional wall motion (buttons). '
+                     'More than mild AR at this point: go back and repair, or replace the valve.</p>'
+                     + ev('residual AR more than mild on intraoperative TOE predicts late failure of valve-sparing repair in large series; that is why it is corrected before leaving theatre.')},
+        ]
+        procs['root-david'] = {'steps': david, 'appr': 'Valve-sparing reimplantation (David)',
+                               'sq': seq(('Anatomy', 'other'), ('Decide', 'other'), ('Sternotomy', 'other'), ('Cannulate', 'artery'), ('Clamp', 'artery'), ('Dissect', 'fissure'), ('Sutures', 'fissure'), ('Graft', 'bronchus'), ('Reimplant', 'bronchus'), ('Check', 'other'), ('Buttons', 'artery'), ('Distal', 'artery'))}
+    for key in [k for k in ('root-bentall', 'root-ross', 'root-david') if k in procs and 'appr' in procs[k]]:
         steps_, appr, sq = procs[key]['steps'], procs[key]['appr'], procs[key]['sq']
         for s in steps_:
             named = set(s.get('highlight', [])) | set(s.get('danger', [])) | set(s.get('labels', [])) | set(s.get('show', []))

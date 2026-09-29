@@ -301,7 +301,8 @@ def aortic_root(ctx, work, mm, LM, DIRS, SC, ra_mm, la_mm, lv_mm):
     emit_mesh('aortotomy', 'Aortotomy (oblique, into the non-coronary sinus)', 'cardiac', '#d0433a', tube([W(p) for p in line], 1.4), visible=False,
               note='Oblique ("hockey-stick"): across the front of the aorta 1-1.5 cm above the right coronary, then down into the non-coronary sinus toward its nadir. Stay above the right coronary ostium.')
     for i, q in enumerate(line): LM[f'aot-{i}'] = q
-    LM['aortotomy'] = line[2]; LM['av-centre'] = c; DIRS['av-axis'] = n; DIRS['av-e1'] = e1; SC['av-radius'] = R
+    LM['aortotomy'] = line[2]; LM['av-centre'] = c; DIRS['av-axis'] = n; DIRS['av-e1'] = e1; SC['av-radius'] = R; SC['av-stj'] = hs
+    for i, (a_, b_) in enumerate(pairs): LM[f'comm-{i}'] = at(com[frozenset((a_, b_))], R * 1.08, hc)
     # a stented bioprosthesis: sewing ring, three posts aligned with the native commissures, three leaflets
     rp = float(np.clip(R * 0.95, 9.5, 13.5)); base = c + n * 1.5; post_h = hs * 0.8
     parts = []
@@ -525,6 +526,32 @@ def root_repl(ctx, mm, H, LM, DIRS, SC):
     T = trimesh.geometry.align_vectors([0, 0, 1], n); T[:3, 3] = W(dist); rd.apply_transform(T)
     emit_mesh('root-distal', 'Distal anastomosis (graft to ascending aorta)', 'cardiac', '#3fa7d6', rd, visible=False)
     LM['root-distal'] = dist; LM['root-top'] = c + n * 30
+    # ---------------------------------------------------------------- David reimplantation: the valve kept, inside a polyester graft
+    hs = SC.get('av-stj', 18.0); dr = R + 4.0; dbase = -5.0
+    dv, df = _lathe(c, n, e1, [(h, dr) for h in np.linspace(dbase, gtop, 26)], 36)
+    parts = [mk(dv, df)]
+    for h in np.linspace(dbase + 3, gtop - 3, 15):
+        rg = trimesh.creation.torus(major_radius=dr + 0.3, minor_radius=0.5, major_sections=36, minor_sections=6)
+        T = trimesh.geometry.align_vectors([0, 0, 1], n); T[:3, 3] = W(c + n * h); rg.apply_transform(T); parts.append(rg)
+    emit_mesh('david-graft', f'Reimplantation graft (~{round(2 * dr)} mm), the native valve inside', 'cardiac', '#f1f1ea', trimesh.util.concatenate(parts), opacity=0.55, visible=False,
+              note='Schematic: a straight or Valsalva-shaped polyester graft, its base below the valve at the ventriculo-aortic junction; the valve is sewn inside it.')
+    e2 = np.cross(n, e1); ring = []
+    for t in np.linspace(0, 2 * np.pi, 13)[:-1]:
+        d = e1 * np.cos(t) + e2 * np.sin(t); q = c + n * dbase + d * (R - 1.0); o = c + n * dbase + d * (dr + 1.5)
+        ring.append(tube([W(q), W(o)], 0.45, seg=6)); ring.append(sphere(W(o), 1.3))
+    ring.append(tube([W(c + n * dbase + (e1 * np.cos(t) + e2 * np.sin(t)) * (dr + 1.5)) for t in np.linspace(0, 2 * np.pi, 49)], 0.6, seg=6))
+    emit_mesh('david-subannular', 'Subannular sutures (horizontal mattress, inside out)', 'cardiac', '#3fa7d6', trimesh.util.concatenate(ring), visible=False,
+              note='A single horizontal plane just below the nadirs of the cusps, passed from inside the LVOT out through the base of the graft; shallow (or through the fibrous tissue) under the membranous septum.')
+    posts = []
+    for k in range(3):
+        if f'comm-{k}' not in LM: continue
+        q = LM[f'comm-{k}']; d = (q - c) - n * np.dot(q - c, n); d /= np.linalg.norm(d)
+        top = c + n * (hs * 0.95) + d * (dr - 0.4)
+        posts.append(tube([W(q), W(top)], 0.9, seg=8)); posts.append(sphere(W(top), 1.6))
+    if posts:
+        emit_mesh('david-commissures', 'Commissures resuspended inside the graft', 'cardiac', '#3fa7d6', trimesh.util.concatenate(posts), visible=False,
+                  note='Each commissure pulled up vertically and fixed to the graft, at a height that lets the cusps coapt well above the annulus.')
+    LM['david-base'] = c + n * dbase
     # ---------------------------------------------------------------- the pulmonary root: the RV-PA junction
     RV, PA = H == 5, H == 7
     if RV.sum() < 50 or PA.sum() < 50: print('  root: no pulmonary artery; Ross skipped'); return
