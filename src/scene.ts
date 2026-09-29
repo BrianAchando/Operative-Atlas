@@ -224,7 +224,7 @@ export class Scene3D {
       const cut = CUTAWAY(m.id);
       const kind = tissueOf(m);
       if (!lung) applyTissue(mat, kind, mainAxis(geo), (rim ? '-rim' : '') + (cut ? '-cut' : ''), m.schematic && kind === 'plain' ? undefined : texs[kind]);
-      if (cut) withCutaway(mat);
+      if (cut) withCutaway(mat, m.id.startsWith('drape-'));
       if (m.group === 'lungs' && m.id !== 'fissure') lungShader(mat);
       if (m.group === 'lungs' || m.id === 'heart' || m.id === 'skin') rimShader(mat);
       withAlphaGamma(mat);

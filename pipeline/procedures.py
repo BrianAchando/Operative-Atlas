@@ -2794,6 +2794,163 @@ if ROOT_OK:
         procs[key] = {'id': key, 'op': 'root', 'opName': 'Aortic root replacement', 'side': 'both', 'name': 'Aortic root replacement', 'approach': appr,
                       'summary': 'Thresholds, choice of root operation, excision with coronary buttons, composite graft or pulmonary autograft, button reimplantation, distal anastomosis, homograft.',
                       'ports': [], 'steps': steps_, 'sources': RTSRC, 'group': 'Cardiac', 'sequence': sq}
+# ==================================================================================================== cardiac: coronary artery bypass grafting
+CABG_OK = MVR_OK and has('cor-lad') and 'target-lad' in LM
+if CABG_OK:
+    TL, TO, TP = Lc('target-lad'), Lc('target-om'), Lc('target-pda')
+    HC_ = V(np.mean([V(LM['mv-centre']), V(LM['tv-centre'])], 0)) if 'tv-centre' in LM else V(LM['mv-centre'])
+    TREE = [i for i in ('cor-lm', 'cor-lad', 'cor-d1', 'cor-d2', 'cor-lcx', 'cor-om1', 'cor-om2', 'cor-rca', 'cor-am', 'cor-pda') if has(i)]
+    LES = [i for i in ('lesion-lad', 'lesion-om', 'lesion-rca') if has(i)]
+    SURF = [i for i in ('myocardium', 'rv', 'ra', 'la', 'aorta', 'pa-trunk', 'svc', 'laa') if has(i)]
+    SOLID = {'myocardium': 0.93, 'rv': 0.9, 'ra': 0.85, 'la': 0.85, 'aorta': 0.9, 'pa-trunk': 0.9, 'laa': 0.9}
+    CB_OFF = [i for i in (*HEART_OFF, 'lv', 'circumflex', 'coronaries', 'rca-groove', 'coronary-sinus', 'lvot', 'cusp-r', 'cusp-l', 'cusp-n') if has(i)]
+    look = lambda tgt, extra=V([0, 0, 0]), dist=190: clook(tgt, (V(tgt) - HC_) / np.linalg.norm(V(tgt) - HC_) + extra, dist)
+    outn = lambda tgt: R((V(tgt) - HC_) / np.linalg.norm(V(tgt) - HC_))
+    CBSRC = [
+        {'title': 'Lawton JS, Tamis-Holland JE, et al. 2021 ACC/AHA/SCAI guideline for coronary artery revascularization. J Am Coll Cardiol 2022;79:e21-e129', 'url': 'https://pubmed.ncbi.nlm.nih.gov/34882435/'},
+        {'title': 'Kouchoukos NT, Blackstone EH, Hanley FL, Kirklin JK. Kirklin/Barratt-Boyes Cardiac Surgery, 4th ed. Elsevier 2013: coronary artery bypass', 'url': pm('Kirklin Barratt-Boyes coronary artery bypass')},
+        {'title': 'Farkouh ME, et al. Strategies for multivessel revascularization in patients with diabetes (FREEDOM). N Engl J Med 2012;367:2375-84', 'url': pm('FREEDOM trial Farkouh multivessel revascularization diabetes 2012')},
+        {'title': 'Velazquez EJ, et al. Coronary-artery bypass surgery in patients with ischemic cardiomyopathy (STICHES, 10 years). N Engl J Med 2016;374:1511-20', 'url': pm('Velazquez STICHES ischemic cardiomyopathy 2016')},
+        {'title': 'Taggart DP, et al. Bilateral versus single internal-thoracic-artery grafts at 10 years (ART). N Engl J Med 2019;380:437-46', 'url': 'https://www.nejm.org/doi/full/10.1056/NEJMoa1808783'},
+        {'title': 'Gaudino M, et al. Radial-artery or saphenous-vein grafts in coronary-artery bypass surgery (RADIAL). N Engl J Med 2018;378:2069-77', 'url': 'https://www.acc.org/latest-in-cardiology/journal-scans/2018/04/30/14/44/radial-artery-or-saphenous-vein-grafts-in-cabg'},
+        {'title': 'Zenati MA, et al. Randomized trial of endoscopic or open vein-graft harvesting (REGROUP). N Engl J Med 2019', 'url': 'https://www.nejm.org/doi/full/10.1056/NEJMoa1812390'},
+        {'title': 'No-touch vein grafts in coronary artery bypass surgery: a registry-based randomized clinical trial (SWEDEGRAFT). Eur Heart J 2025;46:1720', 'url': 'https://academic.oup.com/eurheartj/article/46/18/1720/8023883'},
+        {'title': 'Graft patency of no-touch versus conventionally harvested saphenous vein conduits: meta-analysis of 7 randomized trials. 2025', 'url': 'https://www.sciencedirect.com/science/article/pii/S2666273625000555'},
+        {'title': 'Lamy A, et al. Five-year outcomes after off-pump or on-pump coronary-artery bypass grafting (CORONARY). N Engl J Med 2016;375:2359-68', 'url': 'https://www.acc.org/Latest-in-Cardiology/Clinical-Trials/2014/06/08/17/13/CORONARY'},
+        {'title': 'Shroyer AL, et al. Five-year outcomes after on-pump and off-pump coronary-artery bypass (ROOBY-FS). N Engl J Med 2017;377:623-32; Quin JA, et al. Ten-year outcomes. JAMA Surg 2022', 'url': 'https://www.tctmd.com/news/rooby-fs-10-year-data-affirm-pump-cabg-default-strategy'},
+    ]
+
+    def cb_anat(pre):
+        return {'id': f'{pre}-anatomy', 'phase': 'Anatomy', 'seq': 0, 'title': 'The coronary tree and the targets',
+                'body': '<p>The <b>left main</b> runs behind the pulmonary trunk and divides into the <b>LAD</b> (in the anterior interventricular groove, giving <b>diagonals</b> over the LV and septal perforators into the septum) and the <b>circumflex</b> (in the left AV groove, giving <b>obtuse marginals</b> over the lateral wall). '
+                        'The <b>right coronary</b> runs in the right AV groove, gives the <b>acute marginal</b> over the RV and, in a <b>right-dominant</b> heart (about 85%), the <b>PDA</b> down the posterior groove from the crux.</p>'
+                        '<p>This case: <b>three-vessel disease</b>: proximal LAD, OM1 and mid-RCA stenoses. <b>Targets</b> are chosen beyond the disease, on a vessel of good calibre (1.5 mm or more) that is soft to the touch.</p>'
+                        + ev('the coronary course here follows the grooves of this heart; only the proximal left system is from the CT segmentation, the rest is schematic. Dominance proportions are from angiographic series.'),
+                'view': clook(HC_, V([-0.3, 1, 0.2]), 260), 'spin': True, 'show': [*SURF, *TREE, *LES], 'hide': CB_OFF, 'opacity': SOLID,
+                'highlight': TREE[:0], 'danger': LES, 'labels': ['cor-lad', 'cor-d1', 'cor-lcx', 'cor-om1', 'cor-rca', 'cor-pda', 'cor-am', *LES],
+                'ask': ask('In a right-dominant circulation, which artery gives the posterior descending artery?', 'The right coronary artery',
+                           'Dominance is defined by which artery gives the PDA; the RCA does in about 85% (the circumflex in left dominance).', 'The circumflex', 'The LAD'),
+                'ct': ct(R(HC_), 'axial')}
+
+    def cb_decide(pre, offpump=False):
+        return {'id': f'{pre}-decide', 'phase': 'Decision', 'seq': 1, 'title': 'Why surgery, which conduits' + (', and why off-pump' if offpump else ''),
+                'body': '<p><b>Surgery over PCI</b> (Heart Team, ACC/AHA/SCAI 2021): <b>left main</b> disease (CABG class I; PCI class IIa if anatomy is of low or intermediate complexity); '
+                        '<b>diabetes with three-vessel disease</b> (CABG class I); <b>three-vessel disease with a normal EF</b> (CABG class IIb for survival). With <b>ischaemic cardiomyopathy</b>, CABG improves long-term survival (STICHES).</p>'
+                        '<p><b>Conduits</b>: the <b>LIMA to the LAD</b> is the foundation. For the second most important target, a <b>radial artery</b> is preferred to vein (ACC/AHA/SCAI class IIa). Saphenous vein for the rest.</p>'
+                        + ('<p><b>Off-pump</b> avoids bypass and aortic manipulation; it fits a heavily calcified aorta (a no-touch aorta), and it needs experience with the stabiliser and heart positioning.</p>' if offpump else '')
+                        + ev('FREEDOM (NEJM 2012): in diabetes with multivessel disease, CABG reduced death, MI and stroke at 5 years compared with drug-eluting stents. STICHES (NEJM 2016): CABG reduced 10-year death in ischaemic cardiomyopathy (EF 35% or less). '
+                             'RADIAL (NEJM 2018, 6 trials, 1,036 patients): radial artery grafts had fewer adverse cardiac events (HR 0.67) and graft occlusions (HR 0.44) than vein at 5 years, with no difference in death. '
+                             'ART (NEJM 2019): bilateral ITA grafts did not reduce 10-year death on intention to treat (many crossovers; radial artery used in some single-ITA patients), and sternal wound complications were more frequent.'
+                             + (' CORONARY (NEJM 2016, 4,752 patients): off-pump and on-pump had the same 5-year composite (23.1% vs 23.6%). ROOBY-FS (NEJM 2017): off-pump had higher 5-year mortality in VA surgeons\' hands; at 10 years (JAMA Surg 2022) the difference was no longer significant.' if offpump else '')),
+                'view': clook(HC_, V([-0.3, 1, 0.3]), 280), 'show': [*SURF, *TREE, *LES], 'hide': CB_OFF, 'opacity': SOLID, 'labels': LES,
+                'ask': ask('A 58-year-old with diabetes and three-vessel disease, EF 50%. What do the guidelines recommend?', 'CABG (class I)',
+                           'In diabetes with multivessel disease, CABG reduced death, MI and stroke compared with PCI in FREEDOM; the 2021 guideline gives surgery class I.',
+                           'PCI with drug-eluting stents', 'Medical therapy alone'),
+                'ct': ct(R(HC_), 'axial')}
+
+    def cb_lima(pre, seq_):
+        return {'id': f'{pre}-lima', 'phase': 'Conduits', 'seq': seq_, 'title': 'Harvest the LIMA',
+                'body': '<p>A retractor lifts the left sternal half. Open the left pleura if needed. Harvest the <b>left internal mammary artery</b> from its origin under the subclavian vein to its bifurcation at the 6th space: as a <b>pedicle</b> (with its veins, fat and muscle) or <b>skeletonised</b> (the artery alone, with low-energy diathermy and clips on each branch).</p>'
+                        '<p>Heparin before dividing it distally; check the free flow; spray papaverine to prevent spasm; keep it long enough to reach the LAD without tension.</p>'
+                        + ev('skeletonisation gives a longer conduit and preserves sternal blood supply (fewer sternal wound problems with bilateral ITA). In a post hoc analysis of ART, skeletonised grafts were associated with more adverse events in some analyses, so the choice remains debated and experience-dependent.'),
+                'view': clook(Lc('clamp-ao') if 'clamp-ao' in LM else HC_, V([-0.6, 1, 0.3]), 330), 'show': [*SURF, 'lima-insitu', *TREE], 'hide': CB_OFF, 'opacity': SOLID,
+                'highlight': ['lima-insitu'], 'labels': ['lima-insitu'],
+                'action': {'kind': 'reveal', 'label': 'Harvest the LIMA', 'port': 'sternotomy', 'ids': ['lima-insitu']},
+                'ct': ct(R(HC_), 'axial')}
+
+    def cb_veins(pre, seq_):
+        return {'id': f'{pre}-conduits', 'phase': 'Conduits', 'seq': seq_, 'title': 'Radial artery or long saphenous vein',
+                'body': '<p><b>Radial artery</b> (non-dominant arm): check the ulnar collateral circulation first (Allen test, or pulse oximetry or Doppler with the radial compressed). Harvest as a pedicle, avoid spasm (topical vasodilators). Best to a target with a <b>severe</b> stenosis: competitive flow closes it.</p>'
+                        '<p><b>Long saphenous vein</b>: open, bridging or endoscopic harvest; "<b>no-touch</b>" harvest keeps a cuff of fat round the vein. Handle it gently, distend it at low pressure, and <b>reverse</b> it (valves).</p>'
+                        + ev('REGROUP (NEJM 2019, 1,150 patients): endoscopic and open vein harvest had similar major cardiac events at about 3 years, with fewer leg wound infections endoscopically. '
+                             'No-touch harvest: a 2025 meta-analysis of 7 trials (3,334 patients) found fewer vein graft occlusions at about a year (RR 0.57) but more leg wound problems (RR 2.3); SWEDEGRAFT (Eur Heart J 2025, 902 patients) found no reduction in graft failure at 2 years, and more leg complications.'),
+                'view': clook(HC_, V([-0.3, 1, 0.3]), 280), 'show': [*SURF, *TREE, *LES, 'lima-insitu'], 'hide': CB_OFF, 'opacity': SOLID, 'labels': LES,
+                'ask': ask('The OM1 has only a 60% stenosis. Which conduit is at risk of closing from competitive flow?', 'A radial artery graft',
+                           'Arterial grafts, the radial above all, need a severe proximal stenosis; with competitive native flow they string down or occlude. Vein is more forgiving here.',
+                           'A saphenous vein graft', 'Neither'),
+                'ct': ct(R(HC_), 'axial')}
+
+    def cb_distal(pre, seq_, key, graft, title, body, e, view_extra=V([0, 0, 0]), port='sternotomy', offpump=False):
+        tgt = Lc(f'target-{key}')
+        return {'id': f'{pre}-{key}', 'phase': 'Graft', 'seq': seq_, 'title': title,
+                'body': body + (('<p><b>Off-pump</b>: the stabiliser holds the target still; an intracoronary shunt or a silicone snare proximally keeps the field bloodless; a CO₂ blower clears the view. Warn the anaesthetist before lifting the heart.</p>') if offpump else '') + ev(e),
+                'view': look(tgt, view_extra, 170), 'show': [*SURF, *TREE, *LES, graft, f'target-{key}', *(['stabilizer'] if offpump and key == 'lad' else [])], 'hide': CB_OFF, 'opacity': SOLID,
+                'highlight': [graft, f'target-{key}'], 'labels': [graft, f'target-{key}'],
+                'action': {'kind': 'anastomose', 'label': 'Sew the distal anastomosis', 'port': port, 'at': R(tgt), 'axis': outn(tgt), 'radius': 2.4, 'show': [graft]},
+                'ct': ct(R(tgt), 'axial')}
+
+    lad_body = ('<p>Bring the LIMA pedicle down lateral to the pulmonary artery, with no tension or twist and enough length for the heart to fill. On the <b>mid LAD</b> beyond the disease (after the second diagonal here): a 4–5 mm arteriotomy on the vessel\'s anterior surface; '
+                'an end-to-side anastomosis with running <b>8-0 polypropylene</b>, heel and toe first; tack the pedicle to the epicardium on each side.</p>')
+    lad_ev = 'LIMA to LAD gives the best long-term patency and survival of any graft and is the basis of the class I recommendation to use it; its patency is above 90% at 10 years in large series.'
+    om_body = ('<p>Lift the apex (on-pump: with the heart empty; off-pump: an apical suction device and deep pericardial stitches) to expose the <b>lateral wall</b>. On <b>OM1</b> beyond the stenosis: arteriotomy, then the reversed vein end-to-side with running <b>7-0 polypropylene</b>, heel then toe.</p>'
+               '<p>Judge the vein\'s length with the heart <b>filled</b>: too long kinks, too short tears.</p>')
+    om_ev = 'the order of grafting (lateral and inferior wall first, LIMA to LAD last on-pump so it is not torn when the heart is lifted) is standard practice (Kirklin/Barratt-Boyes).'
+    pda_body = ('<p>Lift the heart up and toward the head to expose the <b>inferior wall</b>. The <b>PDA</b> beyond the crux, or the distal RCA before the crux if it is large and soft: the vein end-to-side with running 7-0 polypropylene.</p>')
+    pda_ev = 'grafting the PDA rather than a diseased distal RCA avoids the crux, where disease is common; the choice follows the angiogram and palpation, not trials.'
+
+    def cb_cannulate(pre, seq_):
+        return {**av_cannulate(pre, seq_), 'title': 'Cannulate, arrest', 'show': [*SURF, *TREE, *LES], 'hide': CB_OFF, 'opacity': SOLID,
+                'body': '<p>Heparin. Arterial cannula in the distal ascending aorta, a two-stage venous cannula, antegrade cardioplegia and root vent, and a retrograde cannula. Palpate or scan the aorta (epiaortic ultrasound) for calcium before cannulating or clamping.</p>'
+                        '<p>Cross-clamp and arrest: <b>antegrade and retrograde</b> cardioplegia (retrograde reaches beyond the blocked arteries); after each distal anastomosis, give cardioplegia down the new graft too.</p>'
+                        + ev('epiaortic scanning finds atheroma missed by palpation and changes the cannulation or clamp site in some patients; stroke after CABG is mostly embolic from the aorta.')}
+
+    def cb_proximal(pre, seq_, offpump=False):
+        ids = [i for i in ('prox-om', 'prox-pda', 'graft-svg-om', 'graft-svg-pda') if has(i)]
+        return {'id': f'{pre}-proximal', 'phase': 'Graft', 'seq': seq_, 'title': 'Proximal anastomoses on the aorta',
+                'body': ('<p>Either during the single cross-clamp (no second clamp on the aorta), or after release with a <b>side-biting clamp</b>. ' if not offpump else
+                         '<p>With a <b>side-biting clamp</b> at low blood pressure (systolic about 90 mmHg), or a <b>clampless</b> sealing device; with a porcelain aorta, no aortic touch at all: take the vein or radial off the LIMA (a composite "Y" or "T" graft). ')
+                        + 'A 4–5 mm aortotomy with a punch; the vein end-to-side with running 6-0 polypropylene; lay out the grafts so they neither kink nor stretch when the heart fills.</p>'
+                        + ev('partial aortic clamping is a source of emboli; single-clamp and clampless techniques aim to reduce stroke; the comparative evidence is observational.'),
+                'view': clook(Lc('prox-om') if 'prox-om' in LM else HC_, V([0.3, 1, 0.3]), 230), 'show': [*SURF, *TREE, 'graft-lima', *ids], 'hide': CB_OFF, 'opacity': SOLID,
+                'highlight': [i for i in ids if i.startswith('prox')], 'labels': ids,
+                'action': {'kind': 'reveal', 'label': 'Sew the proximal anastomoses', 'port': 'sternotomy', 'ids': ids},
+                'ct': ct(R(Lc('prox-om') if 'prox-om' in LM else HC_), 'axial')}
+
+    def cb_flow(pre, seq_, offpump=False):
+        ids = [i for i in ('can-cp', 'can-2stage', 'can-aortic') if has(i)] if not offpump else []
+        return {'id': f'{pre}-flow', 'phase': 'Wean', 'seq': seq_, 'title': 'Check every graft, then close',
+                'body': '<p>' + ('De-air, release the clamp, reperfuse and wean. ' if not offpump else 'Reverse heparin with protamine once all grafts are checked. ') +
+                        '<b>Transit-time flow measurement</b> on each graft: mean flow, <b>pulsatility index</b> and diastolic filling. A low flow with a high PI means a technical problem until proved otherwise: look, and redo it now. TOE for new wall-motion abnormalities.</p>'
+                        '<p>Before closing: the LIMA pedicle lies without tension; the veins do not kink when the lungs inflate; a drain in each opened pleura.</p>'
+                        + ev('the commonly used TTFM thresholds (for example PI below 5 and a mean flow above about 15–20 mL/min for a left-sided graft) come from observational series; in them, abnormal readings predict early graft failure, and correcting grafts intraoperatively is associated with better outcomes.'),
+                'view': clook(HC_, V([-0.3, 1, 0.3]), 280), 'show': [*SURF, *TREE, 'graft-lima', 'graft-svg-om', 'graft-svg-pda', 'prox-om', 'prox-pda', *ids], 'hide': CB_OFF, 'opacity': SOLID,
+                'labels': ['graft-lima', 'graft-svg-om', 'graft-svg-pda'],
+                **({'action': {'kind': 'decannulate', 'label': 'Wean and decannulate', 'port': 'sternotomy', 'ids': ids}} if ids else {}),
+                'ask': ask('After the LIMA–LAD, TTFM shows mean flow 6 mL/min and PI 9. Next?', 'Inspect the anastomosis and the pedicle; revise the graft now',
+                           'Low flow with a high PI points to a technical problem (kink, twist, anastomotic narrowing). Fixing it before leaving theatre is far safer than finding it after an infarct.',
+                           'Accept it: flows improve after weaning', 'Add a vein graft to the LAD later if needed'),
+                'ct': ct(R(HC_), 'axial')}
+
+    onp = [cb_anat('co'), cb_decide('co'), {**mv_sternotomy('co', 2), 'id': 'co-sternotomy'}, cb_lima('co', 3), cb_veins('co', 4), cb_cannulate('co', 5),
+           cb_distal('co', 6, 'om', 'graft-svg-om', 'Distal: vein to OM1', om_body, om_ev, V([0, 0, -0.3])),
+           cb_distal('co', 7, 'pda', 'graft-svg-pda', 'Distal: vein to the PDA', pda_body, pda_ev, V([0, 0, -0.5])),
+           cb_distal('co', 8, 'lad', 'graft-lima', 'Distal: LIMA to LAD (last, on-pump)', lad_body, lad_ev, V([0.35, 1.3, 0.35])),
+           cb_proximal('co', 9), cb_flow('co', 10)]
+    offp = [cb_anat('cf'), cb_decide('cf', offpump=True), {**mv_sternotomy('cf', 2), 'id': 'cf-sternotomy'}, cb_lima('cf', 3), cb_veins('cf', 4),
+            {'id': 'cf-position', 'phase': 'Bypass', 'seq': 5, 'title': 'Off-pump: heparin, positioning, stabiliser',
+             'body': '<p>Heparin (a lower dose than for bypass, often about 150–200 U/kg, per unit practice). Keep the patient <b>warm</b>, the blood pressure up and the heart filled. <b>Deep pericardial stitches</b> (and head-down tilt) lift and rotate the heart without compressing it; an <b>apical suction</b> device helps for the lateral and inferior walls.</p>'
+                     '<p>Graft the <b>LAD first</b> with the LIMA: the anterior wall is then reperfused before the heart is lifted for the other targets. Keep a perfusionist and pump ready: convert if the heart will not tolerate positioning.</p>'
+                     + ev('conversion from off-pump to on-pump during surgery is associated with worse outcomes in registry data, which is why haemodynamic instability should prompt an early, controlled conversion rather than a late, emergency one.'),
+             'view': look(TL, V([0, 0.3, 0.3]), 220), 'show': [*SURF, *TREE, *LES, 'stabilizer'], 'hide': CB_OFF, 'opacity': SOLID, 'highlight': ['stabilizer'], 'labels': ['stabilizer'],
+             'action': {'kind': 'reveal', 'label': 'Place the stabiliser', 'port': 'sternotomy', 'ids': ['stabilizer']}, 'ct': ct(R(TL), 'axial')},
+            cb_distal('cf', 6, 'lad', 'graft-lima', 'Distal: LIMA to LAD (first, off-pump)', lad_body, lad_ev, V([0.35, 1.3, 0.35]), offpump=True),
+            cb_distal('cf', 7, 'om', 'graft-svg-om', 'Distal: vein to OM1', om_body, om_ev, V([0, 0, -0.3]), offpump=True),
+            cb_distal('cf', 8, 'pda', 'graft-svg-pda', 'Distal: vein to the PDA', pda_body, pda_ev, V([0, 0, -0.5]), offpump=True),
+            cb_proximal('cf', 9, offpump=True), cb_flow('cf', 10, offpump=True)]
+    for key, appr, steps_, sq in (
+            ('cabg-onpump', 'On-pump, arrested heart', onp, seq(('Anatomy', 'other'), ('Decide', 'other'), ('Sternotomy', 'other'), ('LIMA', 'artery'), ('Conduits', 'vein'), ('Arrest', 'artery'), ('OM', 'vein'), ('PDA', 'vein'), ('LIMA-LAD', 'artery'), ('Proximals', 'artery'), ('Check', 'other'))),
+            ('cabg-offpump', 'Off-pump (OPCAB)', offp, seq(('Anatomy', 'other'), ('Decide', 'other'), ('Sternotomy', 'other'), ('LIMA', 'artery'), ('Conduits', 'vein'), ('Position', 'other'), ('LIMA-LAD', 'artery'), ('OM', 'vein'), ('PDA', 'vein'), ('Proximals', 'artery'), ('Check', 'other')))):
+        for s in steps_:
+            named = set(s.get('highlight', [])) | set(s.get('danger', [])) | set(s.get('labels', [])) | set(s.get('show', []))
+            off_groups = {'arteries', 'veins', 'airway', 'lul-intra', 'lll-intra', 'rul-intra', 'nodes', 'nerves', 'pleura', 'segments', 'trauma', 'muscles', 'landmarks'}
+            s['hide'] = [*s.get('hide', []), *[q['id'] for q in atlas['structures'] if q['group'] in off_groups and q['id'] not in named],
+                         *[i for i in ('esophagus', 'thymus', 'thyroid') if has(i) and i not in named], *(['sternum'] if s.get('seq', 0) >= 3 else [])]
+            s['opacity'] = {**{f'vert-t{i}': 0.25 for i in range(2, 11)}, **s.get('opacity', {})}
+            for kk in ('highlight', 'danger', 'labels', 'show'):
+                if kk in s: s[kk] = [i for i in s[kk] if has(i) or i == 'skin']
+        procs[key] = {'id': key, 'op': 'cabg', 'opName': 'Coronary artery bypass grafting', 'side': 'both', 'name': 'Coronary artery bypass grafting', 'approach': appr,
+                      'summary': 'Indications, LIMA and radial or vein conduits, distal anastomoses (OM, PDA, LAD), proximal anastomoses, flow checks; on-pump and off-pump.',
+                      'ports': [], 'steps': steps_, 'sources': CBSRC, 'group': 'Cardiac', 'sequence': sq}
 # ==================================================================================================== the operative field in open-heart steps
 # after the chest is open: the drapes and their sternotomy window, the split sternum held open, the pericardial cradle
 FIELD = [i for i in ('drape-sternotomy', 'pericardium-open') if has(i)]
@@ -2808,7 +2965,7 @@ if FIELD:
             if inside: s_['hide'] = [*s_['hide'], 'pericardium-open']
             else: s_['opacity'] = {**s_.get('opacity', {}), 'pericardium-open': 0.55}
 # operations appear in the menu in this order
-ORDER = ['position', 'thoracotomy-l', 'thoracotomy-r', 'vats-ports-l', 'vats-ports-r', 'lul', 'lll', 'rul', 'rml', 'rll', 'pnl', 'pnr', 'seg-lingula', 'seg-lul-updiv', 'seg-s6', 'trachea', 'thymectomy', 'oesophagectomy', 'duct', 'empyema', 'rt', 'clamshell', 'cardio', 'tract', 'hilar', 'mvr', 'avr', 'root', 'tricuspid']
+ORDER = ['position', 'thoracotomy-l', 'thoracotomy-r', 'vats-ports-l', 'vats-ports-r', 'lul', 'lll', 'rul', 'rml', 'rll', 'pnl', 'pnr', 'seg-lingula', 'seg-lul-updiv', 'seg-s6', 'trachea', 'thymectomy', 'oesophagectomy', 'duct', 'empyema', 'rt', 'clamshell', 'cardio', 'tract', 'hilar', 'mvr', 'avr', 'root', 'tricuspid', 'cabg']
 procs = dict(sorted(procs.items(), key=lambda kv: (ORDER.index(kv[1]['op']), list(procs).index(kv[0]))))
 for v in procs.values():
     v['group'] = v.get('group') or ('Pneumonectomy' if v['op'].startswith('pn') else 'Segmentectomy' if v['op'].startswith('seg-') else 'Lobectomy')

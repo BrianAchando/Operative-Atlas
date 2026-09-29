@@ -210,7 +210,7 @@ export const CUTAWAY = (id: string) => id.startsWith('drape-') || ['pericardium-
 export const cutaway = { on: { value: 0 }, target: { value: new THREE.Vector3() }, eye: { value: new THREE.Vector3() }, radius: { value: 85 } };
 
 /** discard fragments of this material inside a cylinder from the camera to the target, in front of the target */
-export function withCutaway(mat: THREE.Material): void {
+export function withCutaway(mat: THREE.Material, frontOnly = false): void {
   const prev = mat.onBeforeCompile;
   mat.onBeforeCompile = (sh, r) => {
     prev?.call(mat, sh, r);
@@ -223,7 +223,8 @@ if (uCutOn > 0.5) {
   vec3 cd = normalize(uCutE - uCutT); vec3 rel = vCutW - uCutT; float along = dot(rel, cd);
   float perp = length(rel - cd * along);
   float edge = uCutR * (0.92 + 0.08 * sin(atan(rel.y, rel.x) * 7.0 + rel.z * 0.05));
-  if (along > 10.0 && perp < edge) discard;
+  if (along > ${frontOnly ? '2.0' : '-8.0'} && perp < edge) discard;
+${frontOnly ? '  if (dot(cd, vec3(0.0, 1.0, 0.0)) < 0.5) discard;   /* drapes: only from the surgeon side */' : ''}
 }`);
   };
 }

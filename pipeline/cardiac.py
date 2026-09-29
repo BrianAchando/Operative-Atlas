@@ -1,4 +1,4 @@
-"""The heart for the cardiac module: mitral, aortic and tricuspid valve surgery, aortic root replacement (Bentall, Ross), and their accesses.
+"""The heart for the cardiac module: mitral, aortic and tricuspid valve surgery, aortic root replacement (Bentall, Ross), coronary bypass, and their accesses.
 
 From the CT (TotalSegmentator licensed tasks, run by segment_heart.py): the four chambers and the myocardium
 (heartchambers_highres), the LV outflow tract and the three aortic cusps (aortic_sinuses), the coronaries.
@@ -75,6 +75,7 @@ def build(ctx):
     LM['mv-centre'] = c; DIRS['mv-normal'] = n; DIRS['mv-anterior'] = u; SC['mv-radius'] = R
     # ---------------------------------------------------------------- leaflets (closed), papillary muscles, chordae
     apex = lv_mm[np.argmax((lv_mm - c) @ -n)]
+    SC['_ann'] = ann; SC['_apex'] = apex
     coapt = lambda t, r: c + v * (np.sin(t) * r * 0.82) - u * (0.28 * R) - n * 9.0          # the coaptation line, a third of the way from the back
     def leaflet(sel):
         V, F = [], []; rows = 7; cols = [i for i in range(len(ring)) if sel(ring[i, 0])]
@@ -198,6 +199,7 @@ def build(ctx):
     if (work / 'sinuses.nii.gz').exists():
         aortic_root(ctx, work, mm, LM, DIRS, SC, ra_mm, la_mm, lv_mm)
         root_repl(ctx, mm, H, LM, DIRS, SC)
+        coronary_tree(ctx, H, mm, LM, DIRS, SC, A)
     print(f'  annulus radius {R:.1f} mm; prosthesis ~{2 * rp:.0f} mm')
     return LM, DIRS, SC
 
@@ -455,6 +457,7 @@ def tricuspid(ctx, RA, RV, mm, LM, DIRS, SC, ra_mm, lv_mm, csos, svc_p, ra_low):
         m_.apply_translation(W(p))
     emit_mesh('snares', 'Caval snares (SVC and IVC)', 'cardiac', '#e8e3a0', trimesh.util.concatenate(sn), visible=False,
               note='Tapes round both cavae, tightened over the cannulas so that the right atrium can be opened without air entering the venous line.')
+    SC['_rca'] = rca
     LM['tv-centre'] = c; DIRS['tv-normal'] = n; DIRS['tv-septal'] = s; SC['tv-radius'] = R
     print(f'  tricuspid annulus radius {R:.1f} mm; ring ~{2 * R * 0.82:.0f} mm; prosthesis ~{2 * rp:.0f} mm')
 
@@ -556,3 +559,147 @@ def root_repl(ctx, mm, H, LM, DIRS, SC):
               note='A cryopreserved pulmonary homograft sewn to the RVOT below and the PA trunk above.')
     LM['autograft-ao'] = c + n * 10
     print(f'  root: graft ~{2 * gr:.0f} mm; pulmonary root radius {pr:.1f} mm')
+
+
+def _surf_path(pts, S, out_c, lift=1.6):
+    """snap a path to the epicardial surface (nearest surface point), lifted a little outward from the heart centre"""
+    from scipy.spatial import cKDTree
+    t = cKDTree(S); res = []
+    for p in pts:
+        q = S[t.query(p)[1]]; d = q - out_c; res.append(q + d / (np.linalg.norm(d) + 1e-6) * lift)
+    return np.array(res)
+
+
+def _smooth(P, k=2):
+    P = np.array(P, float)
+    for _ in range(k): P[1:-1] = (P[:-2] + 2 * P[1:-1] + P[2:]) / 4
+    return P
+
+
+def coronary_tree(ctx, H, mm, LM, DIRS, SC, A):
+    """The coronary tree for CABG: left main, LAD with diagonals, circumflex with obtuse marginals, right coronary with an
+    acute marginal and the PDA (right dominant). The LAD and PDA follow the interventricular grooves, found on the
+    epicardium where the LV and RV territories meet; the circumflex and right coronary follow the AV grooves (the
+    mitral and tricuspid annuli). The proximal left system is anchored on the segmented coronaries; the rest is
+    schematic. Also: three typical lesions, the distal targets, conduits (LIMA, saphenous vein grafts), proximal
+    anastomoses on the aorta, and an off-pump stabiliser."""
+    emit_mesh, W, tube, sphere = ctx['emit_mesh'], ctx['W'], ctx['tube'], ctx['sphere']
+    need = ('ostium-l', 'ostium-r', 'mv-centre')
+    if any(k not in LM for k in need) or '_ann' not in SC or '_rca' not in SC: print('  coronary tree: missing landmarks; skipped'); return
+    sp = np.abs(np.diag(A)[:3])
+    LVc, RVc, MY = H == 3, H == 5, H == 1
+    V = LVc | RVc | MY
+    V = ndimage.binary_closing(V, iterations=2)
+    S_mask = V & ~ndimage.binary_erosion(V)
+    S = mm(S_mask)
+    dLV = ndimage.distance_transform_edt(~LVc, sampling=sp)[S_mask]; dRV = ndimage.distance_transform_edt(~RVc, sampling=sp)[S_mask]
+    hc = mm(V).mean(0)
+    mvc, mvn = LM['mv-centre'], DIRS['mv-normal']; apex = SC['_apex']; L = float(np.linalg.norm(apex - mvc))
+    tpar = lambda p: float(np.dot(np.asarray(p) - mvc, -mvn) / L)
+    ts = (S - mvc) @ -mvn / L
+    # the interventricular grooves: where the LV and RV lie equally deep beneath the epicardium
+    sep = np.abs(dLV - dRV) < 3.0
+    g = S[sep]; gt = ts[sep]
+    front = (g - hc) @ ANT > 0
+    def groove(sel, t0, t1):
+        pts = g[sel]; tt = gt[sel]; line = []
+        for a in np.linspace(t0, t1, 14):
+            m = np.abs(tt - a) < 0.05
+            if m.sum() > 3: line.append(np.median(pts[m], 0))
+        return np.array(line)
+    aivg = groove(front, 0.12, 1.0); pivg = groove(~front, 0.12, 0.85)
+    if len(aivg) < 5 or len(pivg) < 4: print('  coronary tree: grooves not found; skipped'); return
+    aivg = _surf_path(_smooth(aivg), S, hc); pivg = _surf_path(_smooth(pivg), S, hc)
+    ol, orr = LM['ostium-l'], LM['ostium-r']
+    # left main: from the ostium toward the top of the anterior groove, behind the pulmonary trunk; bifurcates after ~12 mm
+    lm_dir = aivg[0] - ol; B = ol + lm_dir / np.linalg.norm(lm_dir) * min(12.0, 0.4 * np.linalg.norm(lm_dir))
+    lad = np.array([ol, B, *aivg, apex + (apex - hc) / np.linalg.norm(apex - hc) * 2 - mvn * 4])
+    lad = _smooth(lad, 1)
+    # the circumflex: into the left AV groove (the lateral and posterior mitral annulus, 7 mm out, a little toward the LA)
+    ann = SC['_ann']; ring_c = ann.mean(0)
+    out = lambda p: p + (p - ring_c) / np.linalg.norm(p - ring_c) * 7 + mvn * 2
+    k0 = int(np.argmin(np.linalg.norm(ann - B, axis=1))); lat = np.cross(mvn, ANT)                  # toward the patient's left? check sign below
+    if np.dot(lat, -RIGHT) < 0: lat = -lat
+    step = 1 if np.dot(ann[(k0 + 1) % len(ann)] - ann[k0], lat) > 0 else -1                           # go round toward the left, then back
+    lcx_ring = [out(ann[(k0 + step * i) % len(ann)]) for i in range(1, int(len(ann) * 0.42))]
+    lcx = _smooth(np.array([ol, B, *lcx_ring]), 2)
+    # the right coronary: from its ostium into the right AV groove, round to the crux, then the PDA down the posterior groove
+    rca_g = np.array(SC['_rca'])
+    if np.linalg.norm(rca_g[0] - orr) > np.linalg.norm(rca_g[-1] - orr): rca_g = rca_g[::-1]
+    crux = rca_g[-1]; pd = pivg if np.linalg.norm(pivg[0] - crux) < np.linalg.norm(pivg[-1] - crux) else pivg[::-1]
+    rca = _smooth(np.array([orr, orr + (rca_g[0] - orr) * 0.5, *rca_g]), 2)
+    pda = _smooth(np.array([crux, *pd]), 1)
+    # branches: diagonals and obtuse marginals toward the apex over the LV free wall, an acute marginal over the RV
+    lv_s = S[(dLV < dRV - 4)]; rv_s = S[(dRV < dLV - 4)]
+    def branch(start, pool, t_end, away):
+        t0 = tpar(start); cand = pool[np.abs((pool - mvc) @ -mvn / L - t_end) < 0.05]
+        if len(cand) < 5: return None
+        score = (cand - start) @ away - 0.02 * np.linalg.norm(cand - start, axis=1) ** 1.0
+        end = cand[np.argmax(score)]
+        mids = [start + (end - start) * f for f in (0.33, 0.66)]
+        return _smooth(np.array([start, *_surf_path(mids, S, hc), _surf_path([end], S, hc)[0]]), 1)
+    left = -RIGHT
+    idx = lambda P, f: P[int(f * (len(P) - 1))]
+    d1 = branch(idx(lad, 0.22), lv_s, 0.55, left + ANT * 0.2); d2 = branch(idx(lad, 0.42), lv_s, 0.75, left)
+    om1 = branch(idx(lcx, 0.45), lv_s, 0.65, -mvn + left * 0.3); om2 = branch(idx(lcx, 0.7), lv_s, 0.7, -mvn - ANT * 0.3)
+    am = branch(idx(rca, 0.55), rv_s, 0.7, -mvn + RIGHT * 0.2)
+    cor = [('cor-lm', 'Left main coronary artery', np.array([ol, B]), 2.1), ('cor-lad', 'Left anterior descending (LAD)', lad, 1.6),
+           ('cor-lcx', 'Circumflex (LCx)', lcx, 1.5), ('cor-rca', 'Right coronary artery (RCA)', rca, 1.7), ('cor-pda', 'Posterior descending (PDA)', pda, 1.2)]
+    for id_, nm, P, r in cor:
+        emit_mesh(id_, nm, 'cardiac', '#c0392b', tube([W(p) for p in P], r), visible=False, note='Epicardial course schematic along the grooves of this heart; proximal left system from the CT.')
+    for id_, nm, P in (('cor-d1', 'First diagonal (D1)', d1), ('cor-d2', 'Second diagonal (D2)', d2), ('cor-om1', 'First obtuse marginal (OM1)', om1),
+                       ('cor-om2', 'Second obtuse marginal (OM2)', om2), ('cor-am', 'Acute marginal', am)):
+        if P is not None: emit_mesh(id_, nm, 'cardiac', '#c0392b', tube([W(p) for p in P], 1.0), visible=False, note='Schematic branch.')
+    # lesions (a typical three-vessel pattern) and distal targets
+    def lesion(P, f, r, id_, nm):
+        p = idx(P, f); q = idx(P, min(1.0, f + 0.03)); d = (q - p) / (np.linalg.norm(q - p) + 1e-6)
+        tor = trimesh.creation.torus(major_radius=r, minor_radius=r * 0.55, major_sections=24, minor_sections=8)
+        T = trimesh.geometry.align_vectors([0, 0, 1], d); T[:3, 3] = W(p); tor.apply_transform(T)
+        emit_mesh(id_, nm, 'cardiac', '#f1e3b0', tor, visible=False, note='Schematic plaque: a severe (70% or more) stenosis.')
+        LM[id_] = p
+    lesion(lad, 0.12, 2.0, 'lesion-lad', 'Proximal LAD stenosis')
+    if om1 is not None: lesion(om1, 0.15, 1.4, 'lesion-om', 'OM1 stenosis')
+    lesion(rca, 0.45, 2.1, 'lesion-rca', 'Mid RCA stenosis')
+    tg = {'lad': idx(lad, 0.62), 'om': idx(om1, 0.5) if om1 is not None else idx(lcx, 0.6), 'pda': idx(pda, 0.35)}
+    for k, p in tg.items():
+        LM[f'target-{k}'] = p
+        emit_mesh(f'target-{k}', f'Distal anastomosis site ({k.upper()})', 'cardiac', '#3fa7d6', sphere(W(p), 2.6), visible=False)
+    # conduits: in-situ LIMA behind the chest wall; LIMA to LAD; vein grafts from the ascending aorta to OM and PDA
+    st = ctx.get('sternum_mm')
+    if st is None or not len(st): return
+    lb = st[:, 0].min() - 12; back = np.percentile(st[:, 1], 10) - 4
+    zs = np.linspace(st[:, 2].max() + 20, st[:, 2].min() + 25, 9)
+    lima_in = np.array([[lb - (4 if i == 0 else 0), back, z] for i, z in enumerate(zs)])
+    emit_mesh('lima-insitu', 'Left internal mammary (thoracic) artery, in situ', 'cardiac', '#c0392b', tube([W(p) for p in lima_in], 1.3), visible=False,
+              note='About 1-2 cm from the sternal edge, on the back of the chest wall, with its two veins; harvested from the subclavian origin to the bifurcation at the 6th space.')
+    T_ = tg['lad']; mid = (lima_in[3] + T_) / 2 + ANT * 12 - RIGHT * 8
+    lima_g = _smooth(np.array([*lima_in[:3], lima_in[3] * 0.6 + mid * 0.4, mid, T_ + ANT * 6 - RIGHT * 3, T_]), 2)
+    emit_mesh('graft-lima', 'LIMA to LAD graft (pedicle)', 'cardiac', '#c0392b', tube([W(p) for p in lima_g], 1.6), visible=False,
+              note='The in-situ LIMA, divided distally and brought down, lateral to the pulmonary artery, to the LAD. The best-proven graft.')
+    ao = ctx['aorta_mm']; zc = float(np.percentile(ao[:, 2], 55))
+    s_ = ao[(np.abs(ao[:, 2] - zc) < 6) & (ao[:, 1] > np.percentile(ao[:, 1], 70))]
+    pa1 = s_[np.argmax(s_ @ (ANT + RIGHT * 0.4))] if len(s_) else LM['cp'] - SUP * 10
+    pa2 = pa1 - SUP * 9 + RIGHT * 3
+    for id_, p in (('prox-om', pa1), ('prox-pda', pa2)):
+        rg = trimesh.creation.torus(major_radius=3.0, minor_radius=0.8, major_sections=24, minor_sections=8)
+        T = trimesh.geometry.align_vectors([0, 0, 1], ANT); T[:3, 3] = W(p); rg.apply_transform(T)
+        emit_mesh(id_, 'Proximal anastomosis on the ascending aorta', 'cardiac', '#3fa7d6', rg, visible=False)
+        LM[id_] = p
+    # vein to OM: leftward over the pulmonary trunk, round the left side of the heart
+    to = tg['om']; via = hc + (to - hc) * 1.35 + ANT * 12 + SUP * 20
+    svg_om = _smooth(np.array([pa1, pa1 + ANT * 12 - RIGHT * 10 + SUP * 6, (pa1 + via) / 2 + ANT * 18, via, to + (to - hc) / np.linalg.norm(to - hc) * 6, to]), 2)
+    tp = tg['pda']; via2 = orr + RIGHT * 28 + ANT * 14 - SUP * 10; via3 = hc + (tp - hc) * 1.3 + RIGHT * 10
+    svg_pda = _smooth(np.array([pa2, pa2 + ANT * 12 + RIGHT * 8, via2, via3, tp + (tp - hc) / np.linalg.norm(tp - hc) * 6, tp]), 2)
+    emit_mesh('graft-svg-om', 'Saphenous vein graft: aorta to OM1', 'cardiac', '#7d5a8c', tube([W(p) for p in svg_om], 2.2), visible=False,
+              note='Reversed long saphenous vein; the course round the left side of the heart is judged with the heart full.')
+    emit_mesh('graft-svg-pda', 'Saphenous vein graft: aorta to PDA', 'cardiac', '#7d5a8c', tube([W(p) for p in svg_pda], 2.2), visible=False,
+              note='Reversed long saphenous vein round the acute margin to the inferior wall.')
+    # off-pump stabiliser on the LAD target: two pads either side, on an arm from the sternal retractor
+    tgt = tg['lad']; d = idx(lad, 0.66) - idx(lad, 0.58); d /= np.linalg.norm(d); o = np.cross(d, tgt - hc); o /= np.linalg.norm(o)
+    nrm = (tgt - hc) / np.linalg.norm(tgt - hc)
+    pads = [tube([W(tgt + o * s * 6 - d * 9 + nrm * 1.5), W(tgt + o * s * 6 + d * 9 + nrm * 1.5)], 1.6) for s in (-1, 1)]
+    arm = tube([W(tgt + nrm * 4), W(tgt + nrm * 25 + ANT * 20), W(tgt + nrm * 60 + ANT * 70 + RIGHT * 30)], 1.5)
+    emit_mesh('stabilizer', 'Off-pump stabiliser (suction pads on the target)', 'cardiac', '#b8c2cc', trimesh.util.concatenate([*pads, arm]), visible=False,
+              note='Immobilises a few centimetres of epicardium around the target; an intracoronary shunt or snare keeps the field dry.')
+    DIRS['lad-dir'] = d; LM['cor-lad-mid'] = idx(lad, 0.5)
+    print(f'  coronary tree: LAD {len(lad)} pts, PDA {len(pda)} pts, branches ' + ', '.join(k for k, v in (('D1', d1), ('D2', d2), ('OM1', om1), ('OM2', om2), ('AM', am)) if v is not None))
