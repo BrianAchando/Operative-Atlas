@@ -88,6 +88,18 @@ button:focus-visible, input:focus-visible, summary:focus-visible, label.btn:focu
 .body p.evidence { font-size: 12.5px; color: #9fb0bd; border-left: 2px solid #4a6a80; padding: 4px 0 4px 10px; margin-top: 12px; }
 .body p.evidence b { color: #c9d4dc; }
 .body.veiled { display: none; }
+.body.lead { border-left: 3px solid var(--work); background: var(--raised); padding: 10px 12px; border-radius: 0 8px 8px 0; margin: 0 0 12px; }
+.body.lead p:last-child { margin-bottom: 0; }
+.body .chain { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 2px; margin: 6px 0 12px; font-size: 12.5px; }
+.body .chain span { padding: 3px 8px; border-radius: 4px; background: var(--raised); border: 1px solid var(--line-2); color: var(--text); }
+.body .chain span.hot { border-color: var(--danger); }
+.body .chain i { font-style: normal; color: var(--muted); padding: 0 2px; }
+.body .grade { font: 500 10.5px var(--mono); padding: 1px 5px; border-radius: 3px; margin-left: 4px; vertical-align: 1px; }
+.body .grade.proven { background: #1f4d3a; color: #bff0d6; }
+.body .grade.inferred { background: #4d3f1f; color: #f5deaa; }
+.body table.mini { border-collapse: collapse; font-size: 12.5px; margin: 6px 0 12px; width: 100%; }
+.body table.mini th, .body table.mini td { border: 1px solid var(--line-2); padding: 4px 6px; text-align: left; vertical-align: top; }
+.body table.mini th { color: var(--text); background: var(--raised); }
 .veil-note { color: var(--muted); font-size: 12px; margin: 2px 0 8px; }
 .ask { border: 1px solid var(--line-2); border-radius: 8px; padding: 12px; margin: 0 0 14px; background: var(--raised); }
 .ask.nudge { animation: nudge 0.4s; border-color: var(--work); }

@@ -24,6 +24,11 @@ export function tissueOf(m: Meta): Tissue {
   if (has(id, 'stay-sutures', 'tv-devega')) return 'suture';
   if (id === 'mv-prosthesis') return 'metal';
   if (has(id, 'cvg', 'tv-ring')) return 'fabric';
+  // valve pathology (case scenarios): before the chamber rules, since 'laa-thrombus' starts with 'la'
+  if (id === 'rh-mv-calcium') return 'calcium';
+  if (has(id, 'rh-mv', 'rh-chordae', 'mv-ant-prolapse', 'chordae-long', 'av-rheum')) return 'valve';
+  if (has(id, 'laa-thrombus', 'mv-vegetation', 'av-vegetation', 'root-abscess')) return 'organ';
+  if (id.startsWith('jet-')) return 'plain';
   if (has(id, 'av-prosthesis', 'tv-prosthesis', 'mv-ant-leaflet', 'mv-post-leaflet', 'tv-septal', 'tv-anterior', 'tv-posterior', 'av-cusp-', 'chordae',
     'mitral-annulus', 'tricuspid-annulus', 'aortic-annulus', 'stj')) return 'valve';
   if (id === 'av-calcium') return 'calcium';

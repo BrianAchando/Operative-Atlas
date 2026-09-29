@@ -200,6 +200,8 @@ def build(ctx):
         aortic_root(ctx, work, mm, LM, DIRS, SC, ra_mm, la_mm, lv_mm)
         root_repl(ctx, mm, H, LM, DIRS, SC)
         coronary_tree(ctx, H, mm, LM, DIRS, SC, A)
+    import pathology                                                        # valve pathology for the case scenarios
+    pathology.build({**ctx, 'la_c': la_mm.mean(0)}, LM, DIRS, SC)
     print(f'  annulus radius {R:.1f} mm; prosthesis ~{2 * rp:.0f} mm')
     return LM, DIRS, SC
 

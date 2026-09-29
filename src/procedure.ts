@@ -53,6 +53,10 @@ export interface Step {
   /** the phase shown above the title: Anatomy, Setup, Fissure, Artery, Bronchus, Vein, Close */
   phase: string;
   body: string;                          // HTML, short paragraphs
+  /** HTML shown above the question and never veiled: a case vignette the question depends on */
+  lead?: string;
+  /** the question comes after the body (a reading step), and does not veil it */
+  askAfter?: boolean;
   view: { eye: Vec3; target: Vec3 } | { frame: string[]; dir: Vec3; pad?: number };
   highlight?: string[];
   danger?: string[];

@@ -401,7 +401,8 @@ function procPanel(): HTMLElement {
     ask.append(list);
     if (answered) { const c = st.ask.choices.find((x) => x.text === pickedChoice.get(st.id))!; const right = st.ask.choices.find((x) => x.correct)!; ask.append(h('p', { class: 'why ' + (c.correct ? 'ok' : 'no') }, h('b', {}, c.correct ? 'Yes. ' : `Not quite: ${right.text}. `), right.why)); }
   }
-  const locked = !!st.ask && !answered;
+  const after = !!st.askAfter;                       // a check at the end of a reading step: the text is never veiled
+  const locked = !!st.ask && !answered && !after;
   const needAct = !!st.action && !state.acted.has(st.id);
   const body = h('div', { class: 'body' + (locked ? ' veiled' : '') });
   body.innerHTML = st.body;
@@ -421,9 +422,11 @@ function procPanel(): HTMLElement {
   return h('div', { class: 'proc' },
     proc.sequence?.length ? strip : null,
     h('div', { class: 'proc-head' }, h('div', { class: 'eyebrow' }, `${proc.approach} · step ${state.step + 1} of ${proc.steps.length} · ${st.phase}`), h('h2', {}, st.title)),
-    ask,
+    st.lead ? (() => { const d = h('div', { class: 'body lead' }); d.innerHTML = st.lead!; return d; })() : null,
+    after ? null : ask,
     locked ? h('p', { class: 'veil-note' }, 'Answer to reveal the step.') : null,
     body,
+    after ? ask : null,
     !locked && (st.highlight?.length || st.danger?.length) ? h('div', { class: 'legend' }, h('span', { class: 'k hi' }, 'Working on'), h('span', { class: 'k danger' }, 'Protect')) : null,
     !locked ? structs : null,
     st.pearl && !locked ? h('p', { class: 'pearl' }, st.pearl) : null,

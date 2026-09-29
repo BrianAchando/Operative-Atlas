@@ -1954,7 +1954,7 @@ if MVR_OK:
     clook = lambda tgt, d, dist=300.0: {'eye': R(V(tgt) + V(d) / np.linalg.norm(d) * dist), 'target': R(tgt)}
     MC, MN, MU = Lc('mv-centre'), V(LM['mv-normal']), V(LM['mv-anterior']); MR_ = LM['mv-dims'][0]
     st_b = S['sternum']['bbox']; ST_MID = V([(st_b[0][0] + st_b[1][0]) / 2, (st_b[0][1] + st_b[1][1]) / 2 + 4, (st_b[0][2] + st_b[1][2]) / 2])
-    HEART_OFF = [i for i in ('heart', 'laa', 'lul', 'lll', 'rul', 'rml', 'rll', 'fissure', 'fissure-h', 'fissure-r', 'thymus') if has(i)]
+    HEART_OFF = [i for i in ('heart', 'laa', 'lul', 'lll', 'rul', 'rml', 'rll', 'fissure', 'fissure-h', 'fissure-r', 'thymus', 'azygos', 'hemiazygos') if has(i)]
     VALVE = [i for i in ('mitral-annulus', 'mv-ant-leaflet', 'mv-post-leaflet', 'chordae', 'papillary') if has(i)]
     DANGER = [i for i in ('circumflex', 'av-node', 'cusp-n', 'cusp-l', 'coronary-sinus') if has(i)]
     CH = [i for i in ('la', 'lv', 'ra', 'rv', 'myocardium', 'pa-trunk', 'aorta', 'svc') if has(i)]
@@ -2161,23 +2161,309 @@ if MVR_OK:
                                                  'or an endoballoon occlusion. Antegrade cardioplegia through a root needle placed through the incision.</p>'),
           mv_la('mm', 4, port='mics'), mv_excise('mm', 5, port='mics', view=mics_view), mv_sutures('mm', 6, port='mics', view=mics_view), mv_seat('mm', 7, port='mics', view=mics_view), mv_close('mm', 8, mics=True), mv_reperfuse('mm', 9, mics=True), mv_decannulate('mm', 10, mics=True)]
     mi[3]['show'] = [*CH, 'port-chitwood', 'can-cp']
-    for key, appr, steps_, sq in (('mvr-std', 'Median sternotomy (Kouchoukos)', std, seq(('Anatomy', 'other'), ('Decide', 'other'), ('Sternotomy', 'other'), ('Cannulate', 'artery'), ('Clamp', 'artery'), ('Atriotomy', 'vein'), ('Excise', 'fissure'), ('Sutures', 'fissure'), ('Seat', 'bronchus'), ('Close', 'other'), ('Reperfuse', 'other'), ('Decannulate', 'artery'))),
-                                  ('mvr-septal', 'Transseptal', ts_, seq(('Anatomy', 'other'), ('Decide', 'other'), ('Sternotomy', 'other'), ('Cannulate', 'artery'), ('Clamp', 'artery'), ('Right atrium', 'vein'), ('Septum', 'vein'), ('Excise', 'fissure'), ('Sutures', 'fissure'), ('Seat', 'bronchus'), ('Close', 'other'), ('Reperfuse', 'other'), ('Decannulate', 'artery'))),
-                                  ('mvr-mics', 'Right mini-thoracotomy', mi, seq(('Anatomy', 'other'), ('Decide', 'other'), ('Access', 'other'), ('Clamp', 'artery'), ('Atriotomy', 'vein'), ('Excise', 'fissure'), ('Sutures', 'fissure'), ('Seat', 'bronchus'), ('Close', 'other'), ('Reperfuse', 'other'), ('Decannulate', 'artery')))):
+    # ------------------------------------------------------------------------------------------ case-based MVR
+    # each approach is a patient: pathophysiology, anatomy, the case (vignette and decision), then the operation
+    ev = lambda t: f'<p class="evidence"><b>Evidence:</b> {t}</p>'
+    pm = lambda term: 'https://pubmed.ncbi.nlm.nih.gov/?term=' + term.replace(' ', '+')
+    PROVEN, INFERRED = '<span class="grade proven">shown in human rheumatic tissue</span>', '<span class="grade inferred">inferred</span>'
+    chain = lambda *xs: '<div class="chain">' + '<i>→</i>'.join(f'<span class="hot">{x[1:]}</span>' if x.startswith('!') else f'<span>{x}</span>' for x in xs) + '</div>'
+    MV_SIDE = clook(MC - MN * 6, MN * 0.35 + V(np.cross(MN, MU)) * 0.95 + MU * 0.15 + V([0, 0.3, 0]), 135)
+    PATHO_OP = {'myocardium': 0.0, 'la': 0.12, 'lv': 0.12, 'ra': 0.1, 'rv': 0.14, 'aorta': 0.14, 'pa-trunk': 0.3, 'laa': 0.3}
+    PATHO_HIDE = ['myocardium', 'svc', *CANS]
+    CHP = [i for i in CH if i not in ('svc', 'myocardium')]
+    RH_MV = [i for i in ('rh-mv', 'rh-mv-edge', 'rh-mv-calcium', 'rh-chordae', 'papillary', 'mitral-annulus') if has(i)]
+    NORMAL_MV = ['mv-ant-leaflet', 'mv-post-leaflet', 'chordae']
+    RHD_SRC = [
+        {'title': 'Carapetis JR, Beaton A, Cunningham MW, et al. Acute rheumatic fever and rheumatic heart disease. Nat Rev Dis Primers 2016;2:15084', 'url': 'https://www.nature.com/articles/nrdp201584'},
+        {'title': 'Marijon E, Mirabel M, Celermajer DS, Jouven X. Rheumatic heart disease. Lancet 2012;379:953-64', 'url': pm('Marijon Mirabel Celermajer Jouven rheumatic heart disease Lancet 2012')},
+        {'title': 'Kumar RK, Antunes MJ, Beaton A, et al. Contemporary diagnosis and management of rheumatic heart disease: implications for closing the gap. AHA scientific statement. Circulation 2020;142:e337-e357', 'url': 'https://www.ahajournals.org/doi/10.1161/CIR.0000000000000921'},
+        {'title': 'Cunningham MW. Pathogenesis of group A streptococcal infections. Clin Microbiol Rev 2000;13:470-511', 'url': pm('Cunningham Pathogenesis of group A streptococcal infections Clin Microbiol Rev 2000')},
+        {'title': 'Guilherme L, et al. Human heart-infiltrating T-cell clones from rheumatic heart disease patients recognize both streptococcal and cardiac proteins. Circulation 1995;92:415-20', 'url': pm('Guilherme heart-infiltrating T-cell clones rheumatic heart disease Circulation 1995')},
+        {'title': 'Chandrashekhar Y, Westaby S, Narula J. Mitral stenosis. Lancet 2009;374:1271-83', 'url': 'https://pubmed.ncbi.nlm.nih.gov/19747723/'},
+        {'title': 'Zühlke L, et al. Clinical outcomes in 3343 children and adults with rheumatic heart disease from 14 low- and middle-income countries: two-year follow-up of the Global RHD Registry (REMEDY). Circulation 2016;134:1456-66', 'url': 'https://www.ahajournals.org/doi/10.1161/circulationaha.116.024769'},
+        {'title': 'Beaton A, et al. Secondary antibiotic prophylaxis for latent rheumatic heart disease (GOAL). N Engl J Med 2022;386:230-40', 'url': 'https://www.nejm.org/doi/full/10.1056/NEJMoa2102074'},
+        {'title': 'Connolly SJ, Karthikeyan G, Ntsekhe M, et al. Rivaroxaban in rheumatic heart disease-associated atrial fibrillation (INVICTUS). N Engl J Med 2022;387:978-88', 'url': 'https://www.nejm.org/doi/full/10.1056/NEJMoa2209051'},
+        {'title': 'Wilkins GT, Weyman AE, Abascal VM, Block PC, Palacios IF. Percutaneous balloon dilatation of the mitral valve: an analysis of echocardiographic variables related to outcome. Br Heart J 1988;60:299-308', 'url': pm('Wilkins Weyman Abascal Block Palacios percutaneous balloon dilatation mitral valve 1988')},
+        {'title': 'Nunes MCP, et al. The echo score revisited: impact of incorporating commissural morphology and leaflet displacement. Circulation 2014;129:886-95', 'url': 'https://www.ahajournals.org/doi/10.1161/CIRCULATIONAHA.113.001252'},
+        {'title': 'Whitlock RP, et al. Left atrial appendage occlusion during cardiac surgery to prevent stroke (LAAOS III). N Engl J Med 2021;384:2081-91', 'url': 'https://www.nejm.org/doi/full/10.1056/NEJMoa2101897'},
+        {'title': 'Van Gelder IC, et al. 2024 ESC Guidelines for the management of atrial fibrillation (with EACTS). Eur Heart J 2024', 'url': 'https://pubmed.ncbi.nlm.nih.gov/39210723/'},
+        {'title': 'Jiang Y, et al. Clinical outcomes following surgical mitral valve repair or replacement in patients with rheumatic heart disease: a meta-analysis. Ann Transl Med 2021', 'url': 'https://pmc.ncbi.nlm.nih.gov/articles/PMC7940942/'},
+        {'title': 'De Backer J, et al. 2025 ESC Guidelines for the management of cardiovascular disease and pregnancy. Eur Heart J 2025;46:4462', 'url': 'https://pubmed.ncbi.nlm.nih.gov/40878294/'},
+        {'title': 'van Hagen IM, et al. Pregnancy in women with a mechanical heart valve: data of the ESC Registry of Pregnancy and Cardiac disease (ROPAC). Circulation 2015;132:132-42', 'url': 'https://www.ahajournals.org/doi/10.1161/circulationaha.115.015242'},
+        {'title': 'Delgado V, et al. 2023 ESC Guidelines for the management of endocarditis. Eur Heart J 2023;44:3948-4042', 'url': 'https://academic.oup.com/eurheartj/article/44/39/3948/7243107'},
+        {'title': 'Kang DH, et al. Early surgery versus conventional treatment for infective endocarditis (EASE). N Engl J Med 2012;366:2466-73', 'url': 'https://www.nejm.org/doi/full/10.1056/NEJMoa1112843'},
+        {'title': 'Noubiap JJ, Nkeck JR, Kwondom BS, Nyaga UF. Epidemiology of infective endocarditis in Africa: a systematic review and meta-analysis. Lancet Glob Health 2022;10:e77-e86', 'url': 'https://www.thelancet.com/journals/langlo/article/PIIS2214-109X(21)00400-9/fulltext'},
+        {'title': 'Dreyfus GD, Corbi PJ, Chan KMJ, Bahrami T. Secondary tricuspid regurgitation or dilatation: which should be the criteria for surgical repair? Ann Thorac Surg 2005;79:127-32', 'url': pm('Dreyfus secondary tricuspid regurgitation or dilatation criteria surgical repair 2005')},
+        {'title': 'Akowuah EF, et al. Minithoracotomy vs conventional sternotomy for mitral valve repair: a randomized clinical trial (UK Mini Mitral). JAMA 2023', 'url': 'https://www.journalslibrary.nihr.ac.uk/hta/PKOT2391'},
+    ]
+    RHD_EPI = ('<p><b>In Kenya and sub-Saharan Africa</b> most mitral stenosis, and most aortic regurgitation in the young, is <b>rheumatic</b>. Patients present in their 20s and 30s, often late, with atrial fibrillation, pulmonary hypertension or in pregnancy. '
+               'In the REMEDY registry (14 low- and middle-income countries, median age 28 years) about 17% had died within two years.</p>')
+    RHD_PRIMER = ('<p><b>From sore throat to scarred valve.</b></p><ol>'
+                  f'<li><b>Group A streptococcal</b> pharyngitis (skin infection may also contribute) in a susceptible child.</li>'
+                  f'<li><b>Molecular mimicry</b>: antibodies and T cells raised against the streptococcal M protein and its carbohydrate (GlcNAc) cross-react with cardiac myosin and with laminin on the valve {PROVEN}.</li>'
+                  f'<li>The valve endothelium is activated (VCAM-1), T cells home into the valve along the closure line and drive a <b>valvulitis</b> (Th1/Th17) {PROVEN}. This is acute rheumatic fever with carditis.</li>'
+                  f'<li>Each <b>recurrence</b> re-injures the valve. Over years, valve interstitial cells lay down scar (TGF-β-driven fibrosis) and calcium: the commissures fuse, the leaflets thicken, the chordae shorten and fuse {INFERRED} (much of this signalling is from calcific aortic valve disease).</li></ol>'
+                  '<table class="mini"><tr><th></th><th>Acute carditis</th><th>Chronic rheumatic heart disease</th></tr>'
+                  '<tr><td>Lesion</td><td>Mitral <b>regurgitation</b>: annular dilatation, elongated chordae, anterior leaflet prolapse (Carpentier I, II)</td><td>Mitral <b>stenosis</b> (often with regurgitation): commissural fusion, thick leaflets, fused short chordae (Carpentier IIIa)</td></tr>'
+                  '<tr><td>The valve…</td><td>cannot close</td><td>cannot open</td></tr>'
+                  '<tr><td>Reversible?</td><td>partly, if carditis settles and recurrences are prevented</td><td>no: scar and calcium, treated mechanically (balloon or surgery)</td></tr></table>')
+
+    def mv_patho_ms(pre, tr=False, preg=False):
+        return {'id': f'{pre}-patho', 'phase': 'Pathophysiology', 'title': 'Pathophysiology: rheumatic mitral stenosis' + (' and functional TR' if tr else ''),
+                'body': RHD_EPI + RHD_PRIMER
+                        + '<p><b>The haemodynamics.</b> A normal mitral orifice is 4–6 cm²; stenosis becomes clinically significant at <b>1.5 cm² or less</b>. The LV is protected (it is under-filled); the load falls on everything behind the valve:</p>'
+                        + chain('Small orifice', 'LA→LV gradient', 'LA pressure ↑, LA dilates', '!Atrial fibrillation', '!LA appendage thrombus → stroke')
+                        + chain('LA pressure ↑', 'Pulmonary venous pressure ↑ (breathless, oedema)', 'Pulmonary hypertension', 'RV pressure overload', '!RV dilates → TR → right heart failure')
+                        + '<p><b>Why a fast heart rate decompensates MS.</b> The gradient depends on flow and on the time available for the LA to empty: diastole. Tachycardia (AF with a fast ventricular rate, exercise, fever, anaemia, <b>pregnancy</b>) shortens diastole, so the gradient and LA pressure climb and pulmonary oedema follows. Hence rate control (a β-blocker) and why MS often declares itself in pregnancy. '
+                        'AF also removes the atrial kick and adds stasis: rheumatic AF carries a high embolic risk, and it is treated with <b>warfarin</b>, not a direct oral anticoagulant.</p>'
+                        + ('<p><b>Functional tricuspid regurgitation.</b> Pulmonary hypertension dilates the RV; the tricuspid annulus stretches along its anterior and posterior segments (the septal segment is fixed), the leaflets are pulled apart, and TR appears on an anatomically normal valve. It may persist or progress after the mitral valve is fixed. '
+                           'Rheumatic (organic) tricuspid disease also occurs, in perhaps 10–15% of advanced cases.</p>' if tr else '')
+                        + ev('the immunology (mimicry, valvular endothelial activation, T-cell infiltration) rests on studies of human rheumatic valves and valve-derived T-cell clones (Guilherme et al., Circulation 1995; Cunningham, Clin Microbiol Rev 2000); the later fibrocalcific steps are largely extrapolated from calcific aortic valve disease. '
+                             'Clinical picture: Carapetis et al., Nat Rev Dis Primers 2016; Chandrashekhar, Westaby and Narula, Lancet 2009. '
+                             'Prevention works: in GOAL (NEJM 2022; 818 Ugandan children with latent RHD) monthly benzathine penicillin cut progression over 2 years from 8.3% to 0.8%. '
+                             'INVICTUS (NEJM 2022; 4,531 patients with rheumatic AF) found more vascular deaths and ischaemic strokes with rivaroxaban than with a vitamin K antagonist; ESC/EACTS 2025 advise against DOACs in AF with rheumatic MS and a valve area of 2.0 cm² or less.'),
+                'view': MV_SIDE, 'spin': True,
+                'show': [*CHP, *RH_MV, 'jet-ms', 'laa', 'laa-thrombus', *(['tricuspid-annulus', 'tv-anterior', 'tv-posterior', 'tv-septal'] if tr else [])],
+                'hide': [i for i in HEART_OFF if i != 'laa'] + NORMAL_MV + PATHO_HIDE, 'opacity': {**FAINT, **PATHO_OP}, 'askAfter': True,
+                'highlight': ['rh-mv', 'rh-mv-edge'], 'danger': ['laa-thrombus', 'jet-ms'],
+                'labels': ['rh-mv', 'rh-mv-edge', 'rh-mv-calcium', 'rh-chordae', 'jet-ms', 'laa-thrombus', 'pa-trunk', 'rv', *(['tricuspid-annulus'] if tr else [])],
+                'ask': ask('A 26-year-old woman with moderate rheumatic MS, comfortable at rest, goes into AF at 150 beats per minute and within hours is in pulmonary oedema. Why?',
+                           'The short diastole leaves too little time to empty the LA through the narrow valve, so the gradient and LA pressure rise',
+                           'In MS the transmitral gradient rises steeply with heart rate. Slowing the rate (and cardioversion, with anticoagulation) often relieves the oedema before anything is done to the valve.',
+                           'The LV has failed', 'The valve has suddenly narrowed further', 'AF has caused acute mitral regurgitation'),
+                'ct': ct(R(MC), 'axial')}
+
+    def mv_patho_mr(pre):
+        return {'id': f'{pre}-patho', 'phase': 'Pathophysiology', 'title': 'Pathophysiology: rheumatic mitral regurgitation',
+                'body': RHD_EPI + RHD_PRIMER
+                        + '<p><b>How carditis makes the valve leak.</b> Rheumatic carditis is a pancarditis: the leaflets are oedematous and friable, the <b>chordae elongate</b> so the <b>anterior leaflet prolapses</b> (Carpentier II), the inflamed ventricle and atrium dilate and <b>stretch the annulus</b> (Carpentier I), and displaced papillary muscles tether the leaflets. '
+                        'The jet points <b>away from the prolapsing leaflet</b>: posteriorly. With time, fibrosis retracts the posterior leaflet and the lesion becomes restrictive (IIIa), often with some stenosis.</p>'
+                        + chain('Regurgitant volume into the LA', 'LA and LV volume overload', 'LV dilates (eccentric hypertrophy)', '!Contractility falls while the EF still looks normal', '!Irreversible LV dysfunction')
+                        + chain('LA pressure ↑', 'Pulmonary congestion', 'Pulmonary hypertension', 'AF')
+                        + '<p><b>Why the EF misleads.</b> In MR the LV empties partly into the low-pressure LA, so the ejection fraction overstates how well the muscle works. Guidelines therefore operate in symptomatic severe MR, and in asymptomatic patients once the <b>EF falls to 60% or less</b> or the <b>LV end-systolic diameter reaches 40 mm</b>, before damage is permanent.</p>'
+                        '<p><b>Repair or replace?</b> Repair keeps the native valve and avoids warfarin, which matters for young women and where INR monitoring is hard, but rheumatic repair is less durable than repair of degenerative valves: the fibrotic process goes on, and recurrences re-injure the valve, so <b>penicillin prophylaxis continues after surgery</b>.</p>'
+                        + ev('mechanisms from human pathology and the Carpentier functional classification; see Carapetis et al., Nat Rev Dis Primers 2016. Intervention thresholds from the ACC/AHA 2020 and ESC/EACTS 2021/2025 guidelines. '
+                             'A meta-analysis of 16 retrospective studies (Jiang et al., Ann Transl Med 2021; 8,659 patients) found lower early mortality (OR 0.58) and better long-term survival with repair than replacement for rheumatic mitral disease, but about twice the risk of reoperation (HR 1.96); the studies are observational and repaired valves were selected. The AHA 2020 statement notes repair is feasible in most patients in expert hands, while many endemic-region centres favour replacement to avoid redo surgery.'),
+                'view': MV_SIDE, 'spin': True,
+                'show': [*CHP, 'mv-ant-prolapse', 'mv-post-leaflet', 'chordae-long', 'papillary', 'mitral-annulus', 'jet-mr'],
+                'hide': [*HEART_OFF, 'mv-ant-leaflet', 'chordae', *PATHO_HIDE], 'opacity': {**FAINT, **PATHO_OP}, 'askAfter': True,
+                'highlight': ['mv-ant-prolapse', 'chordae-long'], 'danger': ['jet-mr'],
+                'labels': ['mv-ant-prolapse', 'mv-post-leaflet', 'chordae-long', 'jet-mr', 'mitral-annulus'],
+                'ask': ask('A 16-year-old has severe rheumatic MR, mild breathlessness, EF 62% and LV end-systolic diameter 43 mm. Why not wait until the EF falls?',
+                           'In MR the EF overstates LV function; an end-systolic diameter of 40 mm or more already signals damage, and waiting risks permanent dysfunction',
+                           'Because the LV unloads into the low-pressure LA, a "normal" EF can hide falling contractility. Guidelines use EF ≤60% or LVESD ≥40 mm as triggers for surgery.',
+                           'The EF is normal, so surgery can safely wait', 'Surgery is only for mitral stenosis', 'Medical therapy reverses chronic rheumatic MR'),
+                'ct': ct(R(MC), 'axial')}
+
+    def mv_patho_ie(pre):
+        return {'id': f'{pre}-patho', 'phase': 'Pathophysiology', 'title': 'Pathophysiology: endocarditis on a rheumatic valve',
+                'body': '<p><b>Why rheumatic valves get infected.</b> Rheumatic heart disease is the commonest substrate for endocarditis in African adults. A regurgitant jet and a scarred valve damage the endothelium on the <b>low-pressure side</b> (the atrial face of the mitral leaflets); platelets and fibrin settle there (a sterile thrombus). '
+                        'A transient bacteraemia (dental sepsis, skin infection, an intravenous line, injecting) seeds it, and the organisms multiply inside the growing <b>vegetation</b>, shielded from white cells and antibiotics. This is why bactericidal antibiotics are given intravenously for weeks.</p>'
+                        '<p>What the infection does:</p>'
+                        + chain('Vegetation', '!Destruction: leaflet perforation, chordal rupture', 'Acute severe MR', '!Pulmonary oedema, shock')
+                        + chain('Vegetation', '!Embolism: brain, spleen, kidneys, limbs', 'Risk highest with mobile vegetations ≥10 mm on the anterior mitral leaflet')
+                        + chain('Vegetation', 'Local spread: annular abscess (commoner at the aortic valve)', '!Uncontrolled infection')
+                        + '<p>An <b>acute</b> leak gives the LA no time to dilate: the pressure rises at once and the lungs flood, unlike the slow volume overload of chronic MR.</p>'
+                        + ev('in a meta-analysis of 42 African studies (Noubiap et al., Lancet Glob Health 2022), rheumatic heart disease was the underlying condition in 52% of adults; staphylococci (41%) and streptococci (34%) dominated; only about half of blood cultures were positive (often after antibiotics); in-hospital mortality was 23%. '
+                             'Surgical indications and timing: ESC 2023 endocarditis guidelines (Delgado et al.).'),
+                'view': clook(MC, MN * 1.0 + V(np.cross(MN, MU)) * 0.35 + V([0, 0.35, 0]), 125), 'spin': True,
+                'show': [*CHP, *VALVE, 'mv-vegetation', 'jet-mr'], 'hide': [*HEART_OFF, *PATHO_HIDE], 'opacity': {**FAINT, **PATHO_OP}, 'askAfter': True,
+                'highlight': ['mv-vegetation'], 'danger': ['jet-mr'], 'labels': ['mv-vegetation', 'mv-ant-leaflet', 'mv-post-leaflet', 'jet-mr'],
+                'ask': ask('Which vegetation carries the highest risk of embolism?', 'A mobile vegetation of 10 mm or more on the anterior mitral leaflet',
+                           'Size (≥10 mm), mobility and the mitral (especially anterior leaflet) position predict embolism; the risk is highest in the first days to weeks of treatment, which is the case for early surgery.',
+                           'A small, sessile vegetation on the aortic valve', 'Any vegetation after two weeks of antibiotics', 'A vegetation on the tricuspid valve'),
+                'ct': ct(R(MC), 'axial')}
+
+    def mv_case(pre, title, lead, body, quiz, show=None, hide=None, labels=None, view=None):
+        return {'id': f'{pre}-case', 'phase': 'Case', 'title': title, 'lead': lead, 'body': body,
+                'view': view or clook(MC, V([0.4, 0.8, 0.45]), 260), 'show': show or [*CH, *VALVE], 'hide': hide or HEART_OFF, 'opacity': {**FAINT, 'la': 0.25, 'lv': 0.25},
+                'labels': labels or ['la', 'lv'], 'ask': quiz, 'ct': ct(R(MC), 'axial')}
+
+    def mv_laa(pre):
+        L = V(LM['laa-thrombus']) if 'laa-thrombus' in LM else Lc('la-incision')
+        return {'id': f'{pre}-laa', 'phase': 'Left atrium', 'title': 'Remove the thrombus; close the appendage',
+                'body': '<p>Before touching the valve, look into the <b>appendage</b>. Lift the thrombus out whole with a spoon or forceps, without fragmenting it; wash and suck out the appendage and the LA. Keep the aortic cross-clamp on until the atrium is cleared.</p>'
+                        '<p>Close the appendage from inside: a double layer of running 4-0 or 5-0 polypropylene across its orifice (or excise it and close, or an external clip). Check for a residual stump: a leak into an incompletely closed appendage is itself a source of emboli.</p>'
+                        '<p>With AF, add a <b>surgical ablation</b> (a left atrial lesion set or a full Cox-Maze) where the equipment and experience exist; in a very large rheumatic LA sinus rhythm is less often restored.</p>'
+                        + ev('LAAOS III (NEJM 2021; 4,770 patients with AF having cardiac surgery): closing the appendage reduced ischaemic stroke or systemic embolism (4.8% vs 7.0% over 3.8 years), on top of continued anticoagulation. The 2024 ESC AF guideline recommends appendage closure at cardiac surgery in AF (class I) and concomitant surgical ablation at mitral surgery (class I). Warfarin continues after surgery.'),
+                'view': clook(L, MN * 1.0 + V([0.55, 0.35, 0.1]), 190), 'show': [*CH, 'laa', 'laa-thrombus', *CANS], 'hide': [i for i in HEART_OFF if i != 'laa'], 'opacity': {**FAINT, 'la': 0.3, 'laa': 0.35},
+                'highlight': ['laa-thrombus'], 'danger': ['laa-thrombus'], 'labels': ['laa', 'laa-thrombus'],
+                'action': {'kind': 'dissect', 'tool': 'hook', 'label': 'Remove the thrombus', 'port': 'sternotomy', 'remove': ['laa-thrombus'], 'path': [R(L + V([0, 0, 8])), R(L), R(L - V([0, 0, 8]))]},
+                'ask': ask('Why is the appendage closed even though the patient will stay on warfarin?', 'Closure adds protection against stroke on top of anticoagulation',
+                           'In LAAOS III most patients stayed on anticoagulation, and closure still cut stroke and systemic embolism by about a third.', 'It is not: warfarin makes closure unnecessary', 'To shorten bypass time'),
+                'ct': ct(R(L), 'axial')}
+
+    def mv_inspect(pre):
+        return {'id': f'{pre}-inspect', 'phase': 'Valve', 'title': 'Valve analysis: repair or replace?',
+                'body': '<p>Analyse the valve systematically before deciding (Carpentier): the <b>annulus</b> (dilated?), each <b>leaflet</b> segment (pliable, thickened, retracted, calcified?), the <b>commissures</b> (fused?), the <b>chordae</b> (elongated, ruptured, fused?) and the papillary muscles. Test with saline under pressure.</p>'
+                        '<p><b>Rheumatic repair</b>, when the tissue allows: commissurotomy, thinning (peeling) of thickened leaflets, fenestration of fused chordae, <b>augmenting a retracted leaflet with a pericardial patch</b>, chordal shortening, transfer or artificial chordae for prolapse, and a <b>complete ring</b> annuloplasty. '
+                        '<b>Replace</b> when the leaflets are thick, retracted and calcified, the subvalvular apparatus is fused, or a durable repair is unlikely: a failed repair in a young patient means another sternotomy.</p>'
+                        + ev('repair versus replacement in rheumatic disease has no randomised trial; observational data and meta-analysis favour repair for survival with more reoperations (Jiang et al., 2021). Intraoperative TOE after repair (residual MR, gradient, systolic anterior motion) is standard.'),
+                'view': valve_view, 'show': [*VALVE, *DANGER, 'mv-ant-prolapse', 'chordae-long'], 'hide': [*HEART_OFF, 'mv-ant-leaflet', 'chordae'], 'opacity': {**FAINT, 'la': 0.12, 'lv': 0.25},
+                'highlight': ['mv-ant-prolapse', 'mv-post-leaflet'], 'labels': ['mv-ant-prolapse', 'mv-post-leaflet', 'chordae-long', 'mitral-annulus'],
+                'ask': ask('The anterior leaflet prolapses on long chordae, but the posterior leaflet is thick, retracted and calcified with fused chordae. The most likely durable option in this 17-year-old?',
+                           'Replacement: a retracted, calcified posterior leaflet leaves no coaptation surface a repair can rely on',
+                           'Prolapse alone can be repaired, but repair needs a pliable posterior leaflet to coapt against. Patch augmentation is possible in selected cases; in a heavily diseased valve, replacement is more durable.',
+                           'A ring annuloplasty alone', 'Close the chest and treat medically', 'Balloon commissurotomy after surgery'),
+                'ct': ct(R(MC), 'axial')}
+
+    def mv_debride(pre):
+        return {'id': f'{pre}-debride', 'phase': 'Valve', 'title': 'Radical debridement of the infected valve',
+                'body': '<p>Remove the vegetation <b>whole</b>, without fragmenting it into the LV, and send it for culture, Gram stain, histology and (if cultures were negative) <b>16S PCR</b>. Excise all infected and necrotic tissue back to healthy tissue; inspect the annulus for an abscess. Irrigate; change gloves and instruments before implanting.</p>'
+                        '<p>A limited lesion (a perforation, one ruptured chord) in a young patient may be <b>repaired</b> (autologous pericardial patch, chordal repair). With extensive destruction, or a rheumatic valve that would not repair anyway, replace it. A posterior annular abscess is debrided and the defect closed with a pericardial patch before the sutures go in.</p>'
+                        + ev('ESC 2023: mitral repair is preferred when a durable result is likely, especially in the young; mechanical and biological prostheses have similar reinfection risk, so the choice follows age and anticoagulation, not the infection.'),
+                'view': valve_view, 'show': [*VALVE, *DANGER, 'mv-vegetation'], 'hide': HEART_OFF, 'opacity': {**FAINT, 'la': 0.12, 'lv': 0.25},
+                'highlight': ['mv-vegetation'], 'danger': DANGER, 'labels': ['mv-vegetation', 'mv-ant-leaflet'],
+                'action': {'kind': 'dissect', 'tool': 'hook', 'label': 'Excise the vegetation', 'port': 'sternotomy', 'remove': ['mv-vegetation'],
+                           'path': [R(V(LM['mv-vegetation']) + MN * 3 + V([0, 0, 6])), R(V(LM['mv-vegetation']) + MN * 2), R(V(LM['mv-vegetation']) + MN * 3 - V([0, 0, 6]))]} if 'mv-vegetation' in LM else None,
+                'ask': ask('Cultures were negative after antibiotics given at a clinic. What gives the best chance of identifying the organism now?', 'Culture, histology and 16S PCR of the excised valve and vegetation',
+                           'Molecular diagnosis on valve tissue identifies the organism in many culture-negative cases, and it guides the length and choice of antibiotics.', 'Repeat blood cultures on bypass', 'Swab the pericardium'),
+                'ct': ct(R(MC), 'axial')}
+
+    def mv_tv(pre):
+        TC = Lc('tv-centre') if 'tv-centre' in LM else Lc('septum')
+        return {'id': f'{pre}-tv', 'phase': 'Tricuspid', 'title': 'Tricuspid annuloplasty (after the mitral)',
+                'body': '<p>With the mitral prosthesis in, close the septum. The tricuspid ring can then go in with the <b>cross-clamp off and the heart beating</b> (caval snares still tight), which shortens ischaemic time and shows at once if a suture has caught the conduction tissue.</p>'
+                        '<p>An <b>incomplete ring</b> sized to the anterior leaflet, the sutures along the anterior and posterior annulus; leave the septal annulus near <b>Koch\'s triangle</b> (AV node) without sutures, or stay very shallow. A De Vega suture annuloplasty is the cheaper alternative. (The <b>Tricuspid</b> module covers this step by step.)</p>'
+                        + ev('ESC/EACTS 2025 and ACC/AHA 2020: repair severe TR at left-sided surgery (class I); consider it for milder TR with a dilated annulus (≥40 mm or 21 mm/m² on echo). Dreyfus et al. (Ann Thorac Surg 2005) showed that annuloplasty guided by annular dilatation rather than TR grade improved function over years.'),
+                'view': clook(TC, (V(LM['tv-normal']) if 'tv-normal' in LM else V([1, 0, 0])) * 1.0 + V([0.55, 0.35, 0.05]), 170), 'show': [*CH, *[i for i in ('tricuspid-annulus', 'tv-anterior', 'tv-posterior', 'tv-septal', 'tv-ring', 'koch', 'tv-avnode', 'snares') if has(i)], 'mv-prosthesis'],
+                'hide': [*HEART_OFF, 'mv-ant-leaflet', 'svc'], 'opacity': {**FAINT, 'ra': 0.15, 'rv': 0.22, 'lv': 0.15, 'myocardium': 0.08},
+                'highlight': ['tv-ring'], 'danger': ['tv-avnode', 'koch'], 'labels': ['tv-ring', 'tricuspid-annulus', 'tv-avnode'],
+                'action': {'kind': 'reveal', 'label': 'Place the ring', 'port': 'sternotomy', 'ids': ['tv-ring']},
+                'ct': ct(R(TC), 'axial')}
+
+    def build_case(steps_by_group):
+        """[(label, kind, [steps])] -> (steps with seq set, sequence)"""
+        out, sq_ = [], []
+        for i, (lab, kind, sts) in enumerate(steps_by_group):
+            sq_.append({'label': lab, 'kind': kind})
+            for s in sts:
+                if s is None: continue
+                s = {**s, 'seq': i}
+                if s.get('action') is None: s.pop('action', None)
+                out.append(s)
+        return out, sq_
+
+    def ids_(pre, xs):
+        """re-prefix step ids so that each case has unique ids"""
+        return [{**x, 'id': f'{pre}-{x["id"].split("-", 1)[1]}'} for x in xs]
+
+    MS_ACCESS = '<p><b>Access</b>: median sternotomy and a left atriotomy (the default; any concomitant surgery). Transseptal for a small LA, tricuspid surgery or a redo; a right mini-thoracotomy for isolated mitral surgery in selected patients.</p>'
+    # ------------------------------------------------ 1. rheumatic MS with AF and an appendage thrombus
+    c1 = mv_case('mc', 'Case: rheumatic mitral stenosis, AF and an appendage thrombus',
+                 '<p>A <b>32-year-old woman</b> from western Kenya, NYHA III, on monthly benzathine penicillin since a teenage episode of rheumatic fever. <b>Atrial fibrillation</b>, rate controlled. '
+                 'Echo: <b>MVA 0.9 cm²</b> (planimetry), mean gradient 14 mmHg at 90/min, <b>Wilkins score 11</b> (thick, calcified commissures, fused chordae), mild MR; PA systolic pressure 60 mmHg; aortic and tricuspid valves normal. TOE: a <b>thrombus in the left atrial appendage</b>. She has two children and does not plan more; the INR clinic is at the county hospital.</p>',
+                 '<p><b>Why not a balloon?</b> Percutaneous mitral commissurotomy (PMC) is the first choice for symptomatic MS with favourable anatomy. Here there are three reasons against it: an <b>LA thrombus</b> (a contraindication: the catheter crosses the LA), <b>unfavourable morphology</b> (Wilkins over 8, commissural calcium) and a poor predicted result. So: <b>surgery</b>.</p>'
+                 '<p><b>Which operation?</b> Heavily calcified, fused rheumatic valves rarely repair durably: <b>replacement</b>, with removal of the thrombus, <b>closure of the appendage</b> and, where available, <b>surgical ablation</b> of the AF.</p>'
+                 '<p><b>Which valve?</b> At 32 with reliable INR access: a <b>mechanical</b> valve (mitral INR target about 3.0, range 2.5–3.5). She needs warfarin for rheumatic AF anyway, so a tissue valve would not spare her anticoagulation, and it would degenerate early (sooner after rheumatic disease) and need a redo.</p>'
+                 + MS_ACCESS
+                 + ev('Wilkins score (Br Heart J 1988): leaflet mobility, thickening, calcification and subvalvular disease, each 1–4; 8 or less favours PMC; commissural calcium is the strongest single predictor of a poor result (Nunes et al., Circulation 2014). ESC/EACTS 2025 list LA thrombus, more than mild MR, severe or bicommissural calcification and severe concomitant aortic or tricuspid disease as contraindications to PMC.'),
+                 ask('What makes surgery, not a balloon, the right choice here?', 'The left atrial appendage thrombus together with a calcified, unfavourable valve (Wilkins 11)',
+                     'An LA thrombus contraindicates PMC, and the morphology predicts a poor balloon result. A tissue valve would not spare her warfarin, as rheumatic AF needs it anyway.',
+                     'Her age', 'The pulmonary pressure of 60 mmHg', 'Atrial fibrillation alone'),
+                 show=[*CH, *RH_MV, 'laa', 'laa-thrombus'], hide=[i for i in HEART_OFF if i != 'laa'] + NORMAL_MV, labels=['laa-thrombus', 'rh-mv', 'rh-mv-calcium'], view=clook(MC, MN * 1.0 + V([0.45, 0.35, 0.1]), 150))
+    ms_steps, ms_sq = build_case([
+        ('Patho', 'other', [mv_patho_ms('ms')]), ('Anatomy', 'other', [mv_anat('ms')]), ('Case', 'other', [{**c1, 'id': 'ms-case'}]),
+        ('Sternotomy', 'other', [mv_sternotomy('ms', 0)]), ('Cannulate', 'artery', [mv_cannulate('ms', 0)]), ('Clamp', 'artery', [mv_clamp('ms', 0)]), ('Atriotomy', 'vein', [mv_la('ms', 0)]),
+        ('Appendage', 'vein', [mv_laa('ms')]), ('Excise', 'fissure', [mv_excise('ms', 0)]), ('Sutures', 'fissure', [mv_sutures('ms', 0)]), ('Seat', 'bronchus', [mv_seat('ms', 0)]),
+        ('Close', 'other', [mv_close('ms', 0)]), ('Reperfuse', 'other', [mv_reperfuse('ms', 0)]), ('Decannulate', 'artery', [mv_decannulate('ms', 0)])])
+    # rheumatic excision: the whole funnel is often thick and fused
+    for s in ms_steps:
+        if s['id'] == 'ms-excise':
+            s['body'] += ('<p><b>In this rheumatic valve</b> the leaflets are fused into a thick funnel. Split the fused commissures to see the subvalvular apparatus; keep the posterior leaflet and its chordae only if they are pliable (a thick, fused posterior apparatus can obstruct the prosthesis or trap a disc: excise it and, if you wish, resuspend a few chordae). '
+                          'Remove calcium from the annulus piece by piece, catching every fragment.</p>')
+    # ------------------------------------------------ 2. MS with severe functional TR: transseptal, mitral + tricuspid
+    c2 = mv_case('mt', 'Case: mitral stenosis with pulmonary hypertension and severe TR',
+                 '<p>A <b>38-year-old man</b> with rheumatic MS: MVA 1.0 cm², Wilkins 10, moderate MR. <b>PA systolic pressure 75 mmHg</b>, a dilated RV, <b>severe functional TR</b> with a tricuspid annulus of 44 mm; ankle oedema and a large liver. Sinus rhythm; LA 52 mm; no thrombus.</p>',
+                 '<p><b>Mitral</b>: unfavourable for PMC (calcium, more than mild MR): replace. <b>Tricuspid</b>: severe TR at left-sided surgery is repaired at the same operation. Pulmonary pressure usually falls after the mitral valve is fixed, but the dilated annulus does not shrink back, and untreated TR often progresses.</p>'
+                 '<p><b>Access</b>: the <b>transseptal</b> route suits two-valve surgery from the right side: bicaval cannulation with snares, one right atriotomy, the mitral through the septum and the tricuspid in the same field.</p>'
+                 + ev('ESC/EACTS 2025 and ACC/AHA 2020: tricuspid repair for severe TR at left-sided valve surgery (class I); for less than severe TR with annular dilatation it should be considered. The rheumatic tricuspid valve can be organic (thickened, fused) too: look at it, not only the echo.'),
+                 ask('Why repair the tricuspid now, when pulmonary pressure may fall after MVR?', 'The dilated annulus does not recover, and TR left at left-sided surgery often progresses; a redo for TR carries high risk',
+                     'Functional TR is an annular problem; lowering the afterload helps but does not reverse annular dilatation. Isolated tricuspid reoperation later carries a high mortality.',
+                     'It is not needed: TR always resolves', 'Only organic TR is repaired', 'Because the transseptal route requires it'),
+                 show=[*CH, *RH_MV, *[i for i in ('tricuspid-annulus', 'tv-anterior', 'tv-posterior', 'tv-septal') if has(i)]], hide=HEART_OFF + NORMAL_MV, labels=['rh-mv', 'tricuspid-annulus', 'rv'])
+    ts_steps, ts_sq = build_case([
+        ('Patho', 'other', [mv_patho_ms('mt', tr=True)]), ('Anatomy', 'other', [mv_anat('mt')]), ('Case', 'other', [{**c2, 'id': 'mt-case'}]),
+        ('Sternotomy', 'other', [mv_sternotomy('mt', 0)]), ('Cannulate', 'artery', [mv_cannulate('mt', 0, septal=True)]), ('Clamp', 'artery', [mv_clamp('mt', 0)]),
+        ('Right atrium', 'vein', [ts_[5]]), ('Septum', 'vein', [ts_[6]]), ('Excise', 'fissure', [mv_excise('mt', 0, view=sept_view)]), ('Sutures', 'fissure', [mv_sutures('mt', 0, view=sept_view)]),
+        ('Seat', 'bronchus', [mv_seat('mt', 0, view=sept_view)]), ('Tricuspid', 'vein', [mv_tv('mt') if has('tv-ring') else None]),
+        ('Close', 'other', [mv_close('mt', 0, septal=True)]), ('Reperfuse', 'other', [mv_reperfuse('mt', 0)]), ('Decannulate', 'artery', [mv_decannulate('mt', 0)])])
+    # ------------------------------------------------ 3. adolescent rheumatic MR: repair or replace
+    c3 = mv_case('mr', 'Case: a teenager with severe rheumatic mitral regurgitation',
+                 '<p>A <b>17-year-old girl</b>, two admissions with acute rheumatic fever, now NYHA II–III. Echo: <b>severe MR</b> with a posteriorly directed jet from <b>anterior leaflet prolapse</b>; the <b>posterior leaflet is thick and restricted</b>; LV end-diastolic diameter 64 mm, <b>end-systolic 43 mm</b>, EF 60%. Mitral valve area normal. No active carditis (ESR, CRP normal). She lives 80 km from the nearest INR clinic and hopes to have children.</p>',
+                 '<p><b>Operate now</b>: symptoms, and an LV end-systolic diameter over 40 mm.</p>'
+                 '<p><b>Repair first, if the valve allows</b>: in a young woman, repair avoids warfarin (teratogenic, and hard to monitor far from a clinic) and keeps the native valve for pregnancy. Its weakness in rheumatic disease is durability.</p>'
+                 '<p><b>If it must be replaced</b>, the choice is hard. A <b>mechanical</b> valve lasts but needs warfarin: a high-risk pregnancy (valve thrombosis, embryopathy, bleeding). A <b>tissue</b> valve avoids warfarin and is favoured for women planning pregnancy, but in a 17-year-old it may fail within about 10 years and needs a redo (mitral valve-in-valve is possible later). Decide with her and her family, before theatre.</p>'
+                 + MS_ACCESS
+                 + ev('ESC 2025 pregnancy guideline: when valve replacement is needed in a woman contemplating pregnancy, a bioprosthesis is recommended (class I, upgraded from IIa). Pregnancy with a mechanical valve is high risk (modified WHO class III); in the ESC ROPAC registry only about 58% of such pregnancies were free of serious adverse events (van Hagen et al., Circulation 2015). Continue secondary prophylaxis after surgery (AHA 2020 statement).'),
+                 ask('The valve is unrepairable. For this 17-year-old who wants children and lives far from an INR clinic, which valve do current guidelines favour?',
+                     'A bioprosthesis, accepting a likely reoperation, after a shared decision',
+                     'The ESC 2025 pregnancy guideline recommends a bioprosthesis in women contemplating pregnancy; poor access to INR monitoring adds to the case. The cost is early degeneration and a redo, which she must understand.',
+                     'A mechanical valve: durability matters most', 'No valve: continue medical therapy until after pregnancy', 'A Ross-type pulmonary autograft in the mitral position'),
+                 show=[*CH, 'mv-ant-prolapse', 'mv-post-leaflet', 'chordae-long', 'papillary', 'jet-mr'], hide=[*HEART_OFF, 'mv-ant-leaflet', 'chordae'], labels=['mv-ant-prolapse', 'jet-mr'])
+    mr_steps, mr_sq = build_case([
+        ('Patho', 'other', [mv_patho_mr('mr')]), ('Anatomy', 'other', [mv_anat('mr')]), ('Case', 'other', [{**c3, 'id': 'mr-case'}]),
+        ('Sternotomy', 'other', [mv_sternotomy('mr', 0)]), ('Cannulate', 'artery', [mv_cannulate('mr', 0)]), ('Clamp', 'artery', [mv_clamp('mr', 0)]), ('Atriotomy', 'vein', [mv_la('mr', 0)]),
+        ('Analyse', 'other', [mv_inspect('mr')]), ('Excise', 'fissure', [mv_excise('mr', 0)]), ('Sutures', 'fissure', [mv_sutures('mr', 0)]), ('Seat', 'bronchus', [mv_seat('mr', 0)]),
+        ('Close', 'other', [mv_close('mr', 0)]), ('Reperfuse', 'other', [mv_reperfuse('mr', 0)]), ('Decannulate', 'artery', [mv_decannulate('mr', 0)])])
+    for s in mr_steps:
+        if s['id'] == 'mr-seat':
+            s['body'] = s['body'].replace('For a bileaflet mechanical valve, the usual orientation is <b>anti-anatomical</b> (hinges perpendicular to the natural commissures).',
+                                          'For a <b>bioprosthesis</b> (this patient), orient the struts so that none sits in the LV outflow tract. For a bileaflet mechanical valve, the usual orientation is <b>anti-anatomical</b>.')
+    # ------------------------------------------------ 4. endocarditis on a rheumatic mitral valve
+    c4 = mv_case('me', 'Case: endocarditis on a rheumatic mitral valve',
+                 '<p>A <b>24-year-old man</b> with known rheumatic MR, three weeks of fever after a dental abscess. Two blood cultures grow <i>Streptococcus</i>. Today: sudden <b>left arm weakness</b>; CT head: a small ischaemic infarct, <b>no haemorrhage</b>. TOE: a <b>14 mm mobile vegetation</b> on the anterior leaflet, a leaflet perforation, <b>severe MR</b>; breathless on minimal exertion.</p>',
+                 '<p><b>Indications</b> (ESC 2023): severe MR with heart failure; a vegetation of 10 mm or more <b>after an embolic event</b>. Both point to <b>urgent</b> surgery, within days, on antibiotics.</p>'
+                 '<p><b>The stroke</b>: after a transient ischaemic attack or an ischaemic stroke <b>without haemorrhage or coma</b>, surgery should not be delayed when it is indicated for heart failure, uncontrolled infection or a high embolic risk. After an intracranial <b>haemorrhage</b>, surgery is generally deferred (often about 4 weeks) unless the patient is unstable.</p>'
+                 + ev('EASE (NEJM 2012; 76 patients with left-sided endocarditis, severe valve disease and vegetations over 10 mm): surgery within 48 hours reduced in-hospital death or embolism at 6 weeks from 23% to 3%, mainly by preventing embolism. ESC 2023 endocarditis guidelines (Delgado et al.) define emergency (within 24 h), urgent (3–5 days) and non-urgent timing.'),
+                 ask('Small ischaemic stroke without haemorrhage, a 14 mm mobile vegetation, severe MR with heart failure. When should he have surgery?',
+                     'Urgently, within days, without waiting for the stroke to recover',
+                     'A non-haemorrhagic stroke without coma is not a reason to delay when surgery is indicated; waiting risks a second embolus and worsening heart failure (EASE; ESC 2023).',
+                     'After 6 weeks of antibiotics', 'After 4 weeks, to let the stroke settle', 'Only if a second embolus occurs'),
+                 show=[*CH, *VALVE, 'mv-vegetation', 'jet-mr'], labels=['mv-vegetation', 'jet-mr'], view=clook(MC, MN * 0.9 + V(np.cross(MN, MU)) * 0.5 + V([0, 0.4, 0]), 170))
+    ie_steps, ie_sq = build_case([
+        ('Patho', 'other', [mv_patho_ie('me')]), ('Anatomy', 'other', [mv_anat('me')]), ('Case', 'other', [{**c4, 'id': 'me-case'}]),
+        ('Sternotomy', 'other', [mv_sternotomy('me', 0)]), ('Cannulate', 'artery', [mv_cannulate('me', 0)]), ('Clamp', 'artery', [mv_clamp('me', 0)]), ('Atriotomy', 'vein', [mv_la('me', 0)]),
+        ('Debride', 'fissure', [mv_debride('me')]), ('Excise', 'fissure', [mv_excise('me', 0)]), ('Sutures', 'fissure', [mv_sutures('me', 0)]), ('Seat', 'bronchus', [mv_seat('me', 0)]),
+        ('Close', 'other', [mv_close('me', 0)]), ('Reperfuse', 'other', [mv_reperfuse('me', 0)]), ('Decannulate', 'artery', [mv_decannulate('me', 0)])])
+    for s in ie_steps:
+        if s['id'] in ('me-excise', 'me-sutures', 'me-seat', 'me-close'):
+            s['hide'] = [*s.get('hide', []), 'mv-vegetation']
+    # ------------------------------------------------ 5. restenosis after balloon commissurotomy: right mini-thoracotomy
+    c5 = mv_case('mm', 'Case: restenosis after balloon commissurotomy',
+                 '<p>A <b>41-year-old teacher</b>, balloon mitral commissurotomy 9 years ago, now breathless again. Echo: <b>MVA 1.0 cm²</b>, mean gradient 11 mmHg, <b>bicommissural calcium</b>, Wilkins 10, mild MR; <b>sinus rhythm</b>, no LA thrombus; aortic and tricuspid valves normal. CT: good femoral and iliac vessels, no aortic atheroma. She wants to return to work quickly.</p>',
+                 '<p><b>A second balloon?</b> Repeat PMC works for restenosis caused by commissural refusion when the anatomy is still favourable. Bicommissural calcium makes a good result unlikely, so: <b>surgery</b>.</p>'
+                 '<p><b>Access</b>: isolated mitral disease, no aortic regurgitation, good femoral vessels and no pleural adhesions: a <b>right mini-thoracotomy</b> is reasonable in a centre that does it regularly. A sternotomy would be equally correct.</p>'
+                 + ev('UK Mini Mitral (Akowuah et al., JAMA 2023; 330 patients, degenerative MR repair): the minithoracotomy did not improve physical function at 12 weeks over sternotomy, but was as safe, with a shorter stay and faster early recovery. Evidence for rheumatic valves is observational, from experienced centres.'),
+                 ask('What makes a second balloon commissurotomy unlikely to succeed here?', 'Calcium in both commissures',
+                     'Balloon commissurotomy works by splitting fused commissures; calcified commissures do not split cleanly, and the balloon then tears the leaflets (severe MR).',
+                     'The 9-year interval', 'Sinus rhythm', 'Her age'),
+                 show=[*CH, *RH_MV], hide=HEART_OFF + NORMAL_MV, labels=['rh-mv', 'rh-mv-calcium'], view=clook(MC, MN * 1.0 + V([0.45, 0.35, 0.1]), 150))
+    mi_steps, mi_sq = build_case([
+        ('Patho', 'other', [mv_patho_ms('mm')]), ('Anatomy', 'other', [mv_anat('mm')]), ('Case', 'other', [{**c5, 'id': 'mm-case'}]),
+        ('Access', 'other', [mi[2]]), ('Clamp', 'artery', [mi[3]]), ('Atriotomy', 'vein', [mi[4]]), ('Excise', 'fissure', [mi[5]]), ('Sutures', 'fissure', [mi[6]]),
+        ('Seat', 'bronchus', [mi[7]]), ('Close', 'other', [mi[8]]), ('Reperfuse', 'other', [mi[9]]), ('Decannulate', 'artery', [mi[10]])])
+    MV_CASES = (('mvr-std', 'Rheumatic MS, AF, LA thrombus (sternotomy)', ms_steps, ms_sq),
+                ('mvr-septal', 'MS with severe TR (transseptal + tricuspid)', ts_steps, ts_sq),
+                ('mvr-repair', 'Teenager with rheumatic MR: repair or replace', mr_steps, mr_sq),
+                ('mvr-ie', 'Endocarditis on a rheumatic valve', ie_steps, ie_sq),
+                ('mvr-mics', 'Restenosis after balloon (right mini-thoracotomy)', mi_steps, mi_sq))
+    for key, appr, steps_, sq in MV_CASES:
         for s in steps_:
             named = set(s.get('highlight', [])) | set(s.get('danger', [])) | set(s.get('labels', [])) | set(s.get('show', []))
             # the heart alone: the lung hila, nodes, nerves and pleura out of the way; the sternum once it is open
             off_groups = {'arteries', 'veins', 'airway', 'lul-intra', 'lll-intra', 'rul-intra', 'nodes', 'nerves', 'pleura', 'segments', 'trauma', 'muscles', 'landmarks'}
             s['hide'] = [*s.get('hide', []), *[q['id'] for q in atlas['structures'] if q['group'] in off_groups and q['id'] not in named],
-                         *[i for i in ('esophagus', 'thymus', 'thyroid') if has(i) and i not in named], *(['sternum'] if s.get('seq', 0) >= 3 else [])]
-            if s['phase'] in ('Valve', 'Wean', 'Septum'): s['opacity'] = {**{c_: 0.3 for c_ in CANS}, 'can-retro': 0.3, **s.get('opacity', {})}
+                         *[i for i in ('esophagus', 'thymus', 'thyroid') if has(i) and i not in named], *(['sternum'] if s['phase'] not in ('Pathophysiology', 'Anatomy', 'Case') and not s['id'].endswith(('-sternotomy', '-setup')) else []),
+                         *[i for i in ('rh-mv', 'rh-mv-edge', 'rh-mv-calcium', 'rh-chordae', 'jet-ms', 'jet-mr', 'mv-ant-prolapse', 'chordae-long', 'laa-thrombus', 'mv-vegetation') if i not in named]]
+            if s['phase'] in ('Valve', 'Wean', 'Septum', 'Tricuspid'): s['opacity'] = {**{c_: 0.3 for c_ in CANS}, 'can-retro': 0.3, **s.get('opacity', {})}
             if s['phase'] in ('Valve', 'Septum'): s['hide'] = [*s['hide'], 'svc']
             s['opacity'] = {**{f'vert-t{i}': 0.25 for i in range(2, 11)}, **s.get('opacity', {})}
             for kk in ('highlight', 'danger', 'labels', 'show'):
                 if kk in s: s[kk] = [i for i in s[kk] if has(i) or i == 'skin']
         procs[key] = {'id': key, 'op': 'mvr', 'opName': 'Mitral valve replacement', 'side': 'both', 'name': 'Mitral valve replacement', 'approach': appr,
-                      'summary': 'Access, bypass, left atrium, chordal-sparing excision, pledgeted annular sutures, prosthesis, de-airing.', 'ports': [], 'steps': steps_, 'sources': MVSRC,
-                      'group': 'Cardiac', 'sequence': sq}
+                      'summary': 'Case-based: pathophysiology, anatomy, the patient and the decision, then the operation (access, bypass, left atrium, excision, sutures, prosthesis, de-airing).',
+                      'ports': [], 'steps': steps_, 'sources': [*RHD_SRC, *MVSRC], 'group': 'Cardiac', 'sequence': sq}
 # ==================================================================================================== cardiac: aortic valve replacement
 AVR_OK = MVR_OK and has('aortic-annulus') and 'av-centre' in LM
 if AVR_OK:
@@ -2401,17 +2687,215 @@ if AVR_OK:
           av_sutures('ar', 7, port='ramt', view=ramt_view), av_seat('ar', 8, port='ramt', view=ramt_view), av_close('ar', 9, mini=True), av_wean('ar', 10, mini=True)]
     rm[3]['show'] = [*CH, 'can-aortic', 'can-cp', 'can-lvvent']
     rm[3]['body'] = rm[3]['body'].replace('<p>On full bypass, clamp', '<p>Femoral venous and aortic cannulation are already in. On full bypass, clamp (through the incision, or a flexible clamp)')
-    for key, appr, steps_, sq in (
-            ('avr-std', 'Median sternotomy (Kouchoukos)', std, seq(('Anatomy', 'other'), ('Decide', 'other'), ('Sternotomy', 'other'), ('Cannulate', 'artery'), ('Clamp', 'artery'), ('Aortotomy', 'artery'), ('Excise', 'fissure'), ('Size', 'other'), ('Sutures', 'fissure'), ('Seat', 'bronchus'), ('Close', 'other'), ('Wean', 'artery'))),
-            ('avr-hemi', 'Upper hemisternotomy', hemi, seq(('Anatomy', 'other'), ('Decide', 'other'), ('Hemisternotomy', 'other'), ('Cannulate', 'artery'), ('Clamp', 'artery'), ('Aortotomy', 'artery'), ('Excise', 'fissure'), ('Size', 'other'), ('Sutures', 'fissure'), ('Seat', 'bronchus'), ('Close', 'other'), ('Wean', 'artery'))),
-            ('avr-ramt', 'Right anterior mini-thoracotomy', rm, seq(('Anatomy', 'other'), ('Decide', 'other'), ('Access', 'other'), ('Clamp', 'artery'), ('Aortotomy', 'artery'), ('Excise', 'fissure'), ('Size', 'other'), ('Sutures', 'fissure'), ('Seat', 'bronchus'), ('Close', 'other'), ('Wean', 'artery')))):
+    # ------------------------------------------------------------------------------------------ case-based AVR
+    AV_SIDE = clook(AC - AN * 8, V(np.cross(AN, AE)) * 0.9 + AN * 0.25 + V([0, 0.45, 0]), 140)
+    RH_AV = [i for i in ('av-rheum', 'av-rheum-edge', 'aortic-annulus', 'stj') if has(i)]
+    CALC_AV = [i for i in ('av-cusp-r', 'av-cusp-l', 'av-cusp-n', 'av-calcium', 'aortic-annulus', 'stj') if has(i)]
+    AV_SRC = [
+        {'title': 'Afifi A, Hosny H, Yacoub M. Rheumatic aortic valve disease: when and who to repair? Ann Cardiothorac Surg 2019;8:383-9', 'url': pm('Afifi Hosny Yacoub rheumatic aortic valve disease when and who to repair')},
+        {'title': 'Best evidence topic: in young patients with rheumatic aortic regurgitation, is a Ross operation associated with more autograft failure? Interact CardioVasc Thorac Surg 2010;10:600', 'url': 'https://academic.oup.com/icvts/article/10/4/600/659372'},
+        {'title': 'Mentias A, et al. Transcatheter versus surgical aortic valve replacement in patients with rheumatic aortic stenosis. J Am Coll Cardiol 2021;77:1703-13', 'url': 'https://pubmed.ncbi.nlm.nih.gov/33832596/'},
+        {'title': 'Ross J Jr, Braunwald E. Aortic stenosis. Circulation 1968;38(1 Suppl):61-7', 'url': pm('Ross Braunwald aortic stenosis Circulation 1968')},
+        {'title': 'Rossebø AB, et al. Intensive lipid lowering with simvastatin and ezetimibe in aortic stenosis (SEAS). N Engl J Med 2008;359:1343-56', 'url': pm('Rossebo SEAS simvastatin ezetimibe aortic stenosis 2008')},
+        {'title': 'Surgical implications of the 2023 ESC endocarditis guidelines endorsed by EACTS: bridging guidelines and practice. Eur J Cardiothorac Surg 2025;67:ezaf225', 'url': 'https://academic.oup.com/ejcts/article/67/7/ezaf225/8185406'},
+        {'title': 'Ribeiro HB, et al. Predictive factors, management, and clinical outcomes of coronary obstruction following TAVI. J Am Coll Cardiol 2013;62:1552-62', 'url': pm('Ribeiro coronary obstruction transcatheter aortic valve implantation predictive factors 2013')},
+    ]
+
+    def av_patho_rh(pre, multi=False):
+        return {'id': f'{pre}-patho', 'phase': 'Pathophysiology', 'title': 'Pathophysiology: rheumatic ' + ('multivalve disease' if multi else 'aortic regurgitation'),
+                'body': RHD_EPI
+                        + ('' if multi else RHD_PRIMER)
+                        + '<p><b>The pattern of rheumatic valve disease.</b> The <b>mitral</b> valve is involved, alone or with others, in about 85%; mitral plus aortic disease in roughly a fifth; <b>isolated aortic</b> disease is uncommon (under 5%) and is then nearly always <b>regurgitation</b>. Rheumatic aortic <b>stenosis</b> comes late, as fusion and calcium accumulate, and almost never without regurgitation or mitral disease. '
+                        'One explanation (a hypothesis) is load: the mitral valve closes against full LV systolic pressure every beat, the aortic cusps against the lower diastolic pressure.</p>'
+                        '<p><b>The rheumatic aortic valve</b>: fibrosis <b>retracts</b> the cusps so they no longer meet in the centre (a central leak), the free edges thicken and roll, and the commissures fuse. Contrast degenerative calcific stenosis, where calcium in the cusp bodies stiffens a valve whose commissures are open.</p>'
+                        + chain('Regurgitant volume back into the LV', 'LV volume and pressure overload', 'Eccentric hypertrophy, dilatation (years compensated)', '!End-systolic size ↑, EF ↓', '!Irreversible LV dysfunction')
+                        + chain('Low aortic diastolic pressure', 'Wide pulse pressure', '!Less coronary perfusion (diastole)', 'Angina, breathlessness')
+                        + ('<p><b>Two lesions mask each other.</b> Mitral stenosis under-fills the LV, so aortic regurgitation seems milder and an aortic gradient is lower than the stenosis deserves (low flow). After the mitral valve is opened, the aortic lesion can be unmasked. Assess each valve on its own (valve area, regurgitant volume, LV size), and inspect them at surgery.</p>' if multi else '')
+                        + '<p><b>Acute</b> aortic regurgitation (endocarditis, dissection) is different: a normal-sized LV cannot take the sudden volume, the diastolic pressure rises steeply, and pulmonary oedema and shock follow.</p>'
+                        + ev('distribution of rheumatic valve involvement: Kumar et al., AHA scientific statement 2020; Afifi, Hosny and Yacoub, Ann Cardiothorac Surg 2019. Haemodynamics and intervention thresholds: ACC/AHA 2020, ESC/EACTS 2021 and 2025 guidelines.'),
+                'view': AV_SIDE, 'spin': True,
+                'show': [*CHP, *RH_AV, 'jet-ar', 'lvot', *(RH_MV if multi else []), *(['jet-ms'] if multi else [])],
+                'hide': [*HEART_OFF, *CUSPS, *(NORMAL_MV if multi else []), *PATHO_HIDE], 'opacity': {**AV_FAINT, **PATHO_OP}, 'askAfter': True,
+                'highlight': ['av-rheum', 'av-rheum-edge'], 'danger': ['jet-ar'],
+                'labels': ['av-rheum', 'av-rheum-edge', 'jet-ar', 'lv', *(['rh-mv', 'jet-ms'] if multi else [])],
+                'ask': (ask('Rheumatic MS and moderate aortic stenosis on echo (mean aortic gradient 25 mmHg). Why might the aortic stenosis be worse than it looks?',
+                            'The narrow mitral valve limits LV filling and output, so the aortic gradient is low for the degree of stenosis',
+                            'Gradients depend on flow. With low forward flow, a severe aortic stenosis can produce a modest gradient; valve area and direct inspection matter.',
+                            'Aortic gradients are always overestimated', 'MS increases aortic flow', 'It cannot be: rheumatic aortic disease is always pure regurgitation') if multi else
+                        ask('Chronic severe AR: which finding shows the LV is beginning to fail and surgery should not wait?', 'LV end-systolic diameter over 50 mm (or 25 mm/m²) or an EF of 50% or less',
+                            'The end-systolic size tracks contractility. Guidelines (class I) operate at these thresholds even without symptoms, because beyond them LV function may not recover.',
+                            'A wide pulse pressure', 'A diastolic murmur', 'An end-diastolic diameter of 60 mm alone')),
+                'ct': ct(R(AC), 'coronal')}
+
+    def av_patho_calc(pre, bicuspid=False):
+        return {'id': f'{pre}-patho', 'phase': 'Pathophysiology', 'title': 'Pathophysiology: calcific aortic stenosis' + (' (bicuspid valve)' if bicuspid else ''),
+                'body': '<p><b>How the valve calcifies.</b> Years of mechanical stress injure the endothelium on the aortic side of the cusps; lipids (LDL, lipoprotein(a)) enter and oxidise; macrophages and T cells follow; and the valve interstitial cells switch to a <b>bone-forming</b> programme (RUNX2), laying calcium nodules in the cusp bodies. The commissures stay open; the cusps become stiff. '
+                        + ('A <b>bicuspid</b> valve (about 1–2% of people) carries more stress on its two cusps and calcifies a decade or two earlier, and it comes with a weaker ascending aorta (aortopathy).</p>' if bicuspid else 'It is a disease of later life, sharing risk factors with atherosclerosis.</p>')
+                        + chain('Aortic valve area ↓', 'LV pressure overload', 'Concentric hypertrophy', '!O₂ demand ↑, coronary reserve ↓ → angina')
+                        + chain('Fixed outflow', 'Exercise vasodilatation', '!Pressure falls → exertional syncope')
+                        + chain('Stiff, thick LV', 'Filling depends on the atrial kick', '!Diastolic, then systolic failure → breathlessness')
+                        + '<p><b>Once symptoms appear, the clock runs fast</b>: without valve replacement, average survival is a few years (shortest after heart failure). No drug slows the valve: lipid lowering did not change progression in trials. So the treatment of severe symptomatic AS is mechanical: <b>SAVR or TAVI</b>.</p>'
+                        '<p>Severe AS: aortic valve area under 1.0 cm², mean gradient 40 mmHg or more, peak velocity 4 m/s or more (with low-flow variants that need extra testing).</p>'
+                        + ev('natural history: Ross and Braunwald, Circulation 1968 (angina, syncope, heart failure as the turning points). SEAS (NEJM 2008): simvastatin plus ezetimibe did not reduce aortic valve events. Mechanisms from human valve studies of calcific aortic valve disease.'),
+                'view': AV_SIDE, 'spin': True, 'show': [*CHP, *CALC_AV, 'lvot'], 'hide': [*HEART_OFF, *PATHO_HIDE], 'opacity': {**AV_FAINT, **PATHO_OP}, 'askAfter': True,
+                'highlight': ['av-calcium'], 'labels': ['av-calcium', 'av-cusp-n', 'lv', 'aorta'],
+                'ask': ask('Why does exertional syncope occur in severe aortic stenosis?', 'Exercise dilates peripheral vessels, but the narrowed valve cannot increase output to match, so pressure falls',
+                           'Cardiac output is fixed by the valve; vasodilatation drops the blood pressure and cerebral perfusion. Arrhythmia can also contribute.',
+                           'Mitral regurgitation develops on exercise', 'The coronary arteries go into spasm', 'Blood pools in the LA'),
+                'ct': ct(R(AC), 'coronal')}
+
+    def av_patho_ie(pre):
+        return {'id': f'{pre}-patho', 'phase': 'Pathophysiology', 'title': 'Pathophysiology: aortic endocarditis and root abscess',
+                'body': '<p>On the aortic valve the vegetation sits on the <b>ventricular</b> face of the cusps (the low-pressure side of the regurgitant jet). The infection perforates or tears the cusps (<b>acute severe AR</b>), and it can burrow into the <b>annulus</b>: a <b>paravalvular abscess</b>, typically in the aortomitral curtain and under the non-coronary sinus, next to the His bundle.</p>'
+                        + chain('Vegetation', '!Cusp perforation → acute severe AR', 'Sudden volume load on a normal-sized LV', '!Pulmonary oedema, shock')
+                        + chain('Annular extension', 'Abscess, false aneurysm', '!Fistula (to the RA, LA, RV)', '!Heart block (the His bundle lies just below)')
+                        + '<p><b>New PR prolongation or heart block</b> in aortic endocarditis means the infection has reached the conduction tissue: an abscess until proved otherwise, and an indication for urgent surgery (uncontrolled infection). <i>Staphylococcus aureus</i> is the commonest cause of destructive, abscess-forming disease.</p>'
+                        + ev('ESC 2023 endocarditis guidelines (Delgado et al.): locally uncontrolled infection (abscess, false aneurysm, fistula, enlarging vegetation) is an indication for urgent surgery. African data: Noubiap et al., Lancet Glob Health 2022.'),
+                'view': AV_SIDE, 'spin': True, 'show': [*CHP, *CUSPS, 'aortic-annulus', 'av-vegetation', 'root-abscess', 'jet-ar', 'his-bundle', 'mv-ant-leaflet'], 'hide': [*HEART_OFF, 'av-calcium', *PATHO_HIDE],
+                'opacity': {**AV_FAINT, **PATHO_OP, 'root-abscess': 0.85, **{c_: 0.45 for c_ in CUSPS}}, 'askAfter': True,
+                'highlight': ['av-vegetation'], 'danger': ['root-abscess', 'his-bundle', 'jet-ar'], 'labels': ['av-vegetation', 'root-abscess', 'his-bundle', 'jet-ar', 'mv-ant-leaflet'],
+                'ask': ask('A patient with aortic endocarditis develops a PR interval of 280 ms, then complete heart block. What does it mean?', 'The infection has extended into the annulus near the His bundle: a paravalvular abscess',
+                           'The conduction tissue lies just below the commissure between the right and non-coronary cusps; heart block signals annular extension and calls for urgent surgery.',
+                           'Drug toxicity from the antibiotics', 'A vegetation on the mitral valve', 'Nothing specific: heart block is common in fever'),
+                'ct': ct(R(AC), 'coronal')}
+
+    def av_case(pre, title, lead, body, quiz, show=None, hide=None, labels=None, view=None):
+        return {'id': f'{pre}-case', 'phase': 'Case', 'title': title, 'lead': lead, 'body': body,
+                'view': view or AV_SIDE, 'show': show or [*CH, *ROOT], 'hide': hide or HEART_OFF, 'opacity': {**AV_FAINT, 'lv': 0.2, 'aorta': 0.2},
+                'labels': labels or ['aorta', 'lv'], 'ask': quiz, 'ct': ct(R(AC), 'coronal')}
+
+    AV_EXC = [i for i in ('av-rheum', 'av-rheum-edge', 'jet-ar', 'av-vegetation', 'root-abscess', 'rh-mv', 'rh-mv-edge', 'rh-mv-calcium', 'rh-chordae', 'jet-ms') if has(i)]
+    # ------------------------------------------------ 1. young man with rheumatic aortic regurgitation
+    a1 = av_case('as', 'Case: a young man with rheumatic aortic regurgitation',
+                 '<p>A <b>22-year-old</b> matatu driver, breathless on climbing stairs for 6 months. On benzathine penicillin since age 14. Collapsing pulse, BP 140/40. Echo: <b>severe AR</b> (central jet from retracted, thickened cusps), LV end-diastolic 72 mm, <b>end-systolic 54 mm</b>, <b>EF 48%</b>; the mitral valve is thickened with mild MR and no stenosis; tricuspid normal. Coronary angiography not needed at his age.</p>',
+                 '<p><b>Operate</b>: he is symptomatic, and the LV is already failing (end-systolic diameter over 50 mm, EF 50% or less). Each alone is a class I indication.</p>'
+                 '<p><b>The options.</b> <b>Repair</b>: rarely durable in rheumatic AR (retracted, fibrotic cusps; the disease goes on). <b>Ross</b>: attractive in the young (no warfarin, growth, near-normal survival in non-rheumatic series), but in rheumatic patients, particularly the young and those with mitral disease, the autograft fails more often. '
+                 '<b>Tissue valve</b>: degenerates fast in a 22-year-old. <b>Mechanical AVR</b> with warfarin (aortic INR target about 2.5): the usual choice, with an INR plan agreed before surgery.</p>'
+                 + ev('ESC/EACTS 2021 and 2025: surgery for symptomatic severe AR, and for asymptomatic severe AR with LVESD over 50 mm, LVESDi over 25 mm/m² or LVEF 50% or less (class I). A best-evidence review (Interact CardioVasc Thorac Surg 2010) found poorer autograft durability after the Ross in young rheumatic patients, more so with mitral disease. Rheumatic aortic repair: Afifi, Hosny and Yacoub, Ann Cardiothorac Surg 2019.'),
+                 ask('Which valve suits this 22-year-old man with rheumatic AR and some mitral involvement, who can attend an INR clinic?', 'A mechanical aortic valve',
+                     'Durable, and the Ross is less reliable in young rheumatic patients with mitral involvement. A tissue valve would fail early. Warfarin is manageable with a reliable INR plan.',
+                     'A Ross operation', 'A bioprosthesis', 'Aortic valve repair'),
+                 show=[*CH, *RH_AV, 'jet-ar'], hide=[*HEART_OFF, *CUSPS], labels=['av-rheum', 'jet-ar', 'lv'])
+    std_c, std_sq = build_case([
+        ('Patho', 'other', [av_patho_rh('as')]), ('Anatomy', 'other', [av_anat('as')]), ('Case', 'other', [a1]),
+        ('Sternotomy', 'other', [std[2]]), ('Cannulate', 'artery', [av_cannulate('as', 0)]), ('Clamp', 'artery', [av_clamp('as', 0)]), ('Aortotomy', 'artery', [av_aortotomy('as', 0)]),
+        ('Excise', 'fissure', [av_excise('as', 0)]), ('Size', 'other', [av_size('as', 0)]), ('Sutures', 'fissure', [av_sutures('as', 0)]), ('Seat', 'bronchus', [av_seat('as', 0)]),
+        ('Close', 'other', [av_close('as', 0)]), ('Wean', 'artery', [av_wean('as', 0)])])
+    for s in std_c:
+        if s['id'] == 'as-excise':
+            s['body'] += '<p><b>In this rheumatic valve</b> the cusps are thick, retracted and fused at one commissure, with little calcium: excision is easier than in calcific AS, but check the anterior mitral leaflet through the valve and the aortomitral curtain.</p>'
+        if s['id'] == 'as-seat':
+            s['body'] = s['body'].replace('Seat the valve', 'Seat the valve', 1) + '<p>This patient has a <b>mechanical</b> bileaflet valve: check that both leaflets open and close fully and that no suture tail or pledget can catch them.</p>'
+    # ------------------------------------------------ 2. double valve: rheumatic mixed aortic disease and mitral stenosis
+    a2 = av_case('ad', 'Case: rheumatic mitral stenosis with mixed aortic disease',
+                 '<p>A <b>35-year-old woman</b>, NYHA III, in AF. Echo: <b>mitral stenosis</b> (MVA 1.1 cm², thick, calcified commissures) and <b>mixed aortic disease</b>: moderate-to-severe AR and aortic valve area 1.0 cm² with a mean gradient of only 28 mmHg. PA pressure 55 mmHg; mild functional TR, annulus 36 mm.</p>',
+                 '<p><b>Both valves</b>: the mitral is unfavourable for a balloon, and the aortic valve is significantly diseased (a balloon would leave it). Low flow through the stenotic mitral makes the aortic gradient understate the stenosis. <b>Double valve replacement</b>, with the appendage closed and AF ablation where possible.</p>'
+                 '<p><b>The order at surgery</b>: open the aorta and <b>excise the aortic valve first</b> (it opens the view of the mitral through the LA and lets you see the aortomitral curtain), then replace the <b>mitral</b>, then implant the <b>aortic</b> prosthesis: an aortic valve already in place would block access to the anterior mitral annulus, and mitral sutures pulled against it could distort it.</p>'
+                 '<p><b>Valves</b>: she needs warfarin for AF anyway, so two mechanical valves are usual; a tissue option would mean two redos at a young age.</p>'
+                 + ev('technique: Kirklin/Barratt-Boyes Cardiac Surgery. The AHA 2020 statement notes that in endemic regions double-valve surgery is common and replacement is usually preferred to limit redo operations.'),
+                 ask('In a double valve replacement, in which order are the valves dealt with?', 'Excise the aortic valve, replace the mitral, then implant the aortic prosthesis',
+                     'The mitral annulus, especially anteriorly, is reached best with the aortic valve out and no aortic prosthesis in the way; the aortic prosthesis goes in last.',
+                     'Implant the aortic prosthesis, then the mitral', 'Mitral first, before opening the aorta at all', 'Either order; it makes no difference'),
+                 show=[*CH, *RH_AV, *RH_MV, 'jet-ar', 'jet-ms'], hide=[*HEART_OFF, *CUSPS, *NORMAL_MV], labels=['av-rheum', 'rh-mv', 'jet-ar', 'jet-ms'])
+    dv_close = {**av_close('ad', 0), 'title': 'Close the left atrium, then the aorta; de-air'}
+    dv_close['body'] = '<p>Close the <b>left atriotomy</b> first (LV vent across the mitral prosthesis until the last suture), then the <b>aortotomy</b>.</p>' + dv_close['body']
+    dv_c, dv_sq = build_case([
+        ('Patho', 'other', [av_patho_rh('ad', multi=True)]), ('Anatomy', 'other', [av_anat('ad')]), ('Case', 'other', [a2]),
+        ('Sternotomy', 'other', [{**mv_sternotomy('ad', 0)}]), ('Cannulate', 'artery', [mv_cannulate('ad', 0)]), ('Clamp', 'artery', [av_clamp('ad', 0)]),
+        ('Aortotomy', 'artery', [av_aortotomy('ad', 0)]), ('Excise AV', 'fissure', [av_excise('ad', 0)]),
+        ('Atriotomy', 'vein', [mv_la('ad', 0)]), ('Excise MV', 'fissure', [{**mv_excise('ad', 0), 'id': 'ad-mv-excise'}]), ('MV sutures', 'fissure', [{**mv_sutures('ad', 0), 'id': 'ad-mv-sutures'}]),
+        ('MV seat', 'bronchus', [{**mv_seat('ad', 0), 'id': 'ad-mv-seat'}]), ('AV size', 'other', [av_size('ad', 0)]), ('AV sutures', 'fissure', [av_sutures('ad', 0)]), ('AV seat', 'bronchus', [av_seat('ad', 0)]),
+        ('Close', 'other', [dv_close]), ('Wean', 'artery', [av_wean('ad', 0)])])
+    for s in dv_c:
+        if s['id'].startswith('ad-mv-') or s['id'] == 'ad-atriotomy': s['_mv'] = True
+        if s['id'] in ('ad-av-seat', 'ad-seat', 'ad-close', 'ad-wean'): s['show'] = [*s.get('show', []), 'mv-prosthesis']
+    # ------------------------------------------------ 3. older patient, calcific AS, TAVI unsuitable: SAVR by upper hemisternotomy
+    a3 = av_case('ah', 'Case: an older patient with calcific aortic stenosis',
+                 '<p>A <b>74-year-old woman</b>, retired nurse, exertional chest tightness and a presyncopal episode. Echo: <b>tricuspid calcific AS</b>, AVA 0.7 cm², mean gradient 48 mmHg, EF 60%; no other valve disease. Coronary angiography: no significant disease. '
+                 'CT: annulus 20 mm, <b>left main ostium 8 mm above the annulus</b> with shallow sinuses; <b>small, calcified iliofemoral arteries</b> (4.5 mm). Surgical risk low (STS 2.4%).</p>',
+                 '<p><b>The default at 74</b> with tricuspid AS and suitable anatomy is <b>TAVI</b> (ESC/EACTS 2025, class I from 70 years). But her anatomy is <b>not</b> suitable: a low left main with shallow sinuses risks <b>coronary obstruction</b> by the displaced native cusp, and the femoral route is poor. The Heart Team recommends <b>SAVR</b>, which also allows the largest valve for a small annulus (avoiding mismatch).</p>'
+                 '<p><b>Valve</b>: a <b>bioprosthesis</b> at 74 (no warfarin; valve-in-valve possible later). <b>Access</b>: upper hemisternotomy, since the operation is isolated AVR.</p>'
+                 + ev('ESC/EACTS 2025: TAVI (class I) at 70 or over with tricuspid AS and suitable anatomy; SAVR (class I) under 70 at low risk. PARTNER 3 and Evolut Low Risk (NEJM 2019) enrolled patients with suitable anatomy only. Coronary obstruction after TAVI is rare but often fatal; low coronary height (under about 10–12 mm) and shallow sinuses are the main CT predictors (Ribeiro et al., JACC 2013).'),
+                 ask('At 74 with severe tricuspid AS, what makes SAVR preferable to TAVI for this patient?', 'Anatomy: a low left main ostium with shallow sinuses (coronary obstruction risk) and poor femoral access',
+                     'Age favours TAVI, but the Heart Team decides on anatomy too; when TAVI anatomy is hostile and surgical risk is low, SAVR is the safer choice.',
+                     'Her age alone', 'The aortic valve area of 0.7 cm²', 'Chest tightness'),
+                 show=[*CH, *CALC_AV, 'ostium-l', 'ostium-r'], hide=HEART_OFF, labels=['av-calcium', 'ostium-l', 'aortic-annulus'], view=root_view)
+    hemi_c, hemi_sq = build_case([
+        ('Patho', 'other', [av_patho_calc('ah')]), ('Anatomy', 'other', [av_anat('ah')]), ('Case', 'other', [a3]),
+        ('Hemisternotomy', 'other', [hemi[2]]), ('Cannulate', 'artery', [hemi[3]]), ('Clamp', 'artery', [hemi[4]]), ('Aortotomy', 'artery', [hemi[5]]), ('Excise', 'fissure', [hemi[6]]),
+        ('Size', 'other', [hemi[7]]), ('Sutures', 'fissure', [hemi[8]]), ('Seat', 'bronchus', [hemi[9]]), ('Close', 'other', [hemi[10]]), ('Wean', 'artery', [hemi[11]])])
+    # ------------------------------------------------ 4. bicuspid calcific AS under 70: right anterior mini-thoracotomy
+    a4 = av_case('ar', 'Case: bicuspid aortic stenosis at 64',
+                 '<p>A <b>64-year-old</b> businessman, breathless on exertion. Echo: <b>bicuspid</b> valve (fused right and left cusps with a raphe), heavily calcified; AVA 0.8 cm², mean gradient 55 mmHg, EF 58%. Ascending aorta <b>42 mm</b>. Coronaries normal. '
+                 'CT: the ascending aorta lies mostly to the <b>right of the sternum</b>, close behind it. He wants to be back at work quickly and dislikes the idea of warfarin.</p>',
+                 '<p><b>SAVR</b>: he is under 70 at low risk (class I), and his valve is <b>bicuspid</b>, the anatomy TAVI trials excluded. <b>The aorta</b> is 42 mm: below the threshold for replacing it at AVR (45 mm or more with a bicuspid valve), so it is left and followed.</p>'
+                 '<p><b>Valve</b>: between 60 and 65 the choice is individual; he chooses a <b>bioprosthesis</b>, accepting a likely valve-in-valve later. <b>Access</b>: CT meets the criteria for a <b>right anterior mini-thoracotomy</b>.</p>'
+                 + ev('ESC/EACTS 2025: SAVR recommended under 70 at low risk; TAVI may be considered in bicuspid stenosis only at increased surgical risk (class IIb, new). ACC/AHA 2022 aortic guideline: replacing the ascending aorta at AVR is reasonable at 4.5 cm or more with a bicuspid valve.'),
+                 ask('Why is SAVR, rather than TAVI, the standard for this 64-year-old?', 'He is under 70 at low surgical risk, and the valve is bicuspid',
+                     'Both favour surgery: ESC/EACTS 2025 recommend SAVR under 70 at low risk, and bicuspid valves were excluded from the low-risk TAVI trials.',
+                     'TAVI is contraindicated after 60', 'His ascending aorta needs replacing', 'Bioprostheses cannot be implanted by TAVI'),
+                 show=[*CH, *CALC_AV], hide=HEART_OFF, labels=['av-calcium', 'aorta'])
+    ramt_c, ramt_sq = build_case([
+        ('Patho', 'other', [av_patho_calc('ar', bicuspid=True)]), ('Anatomy', 'other', [av_anat('ar')]), ('Case', 'other', [a4]),
+        ('Access', 'other', [rm[2]]), ('Clamp', 'artery', [rm[3]]), ('Aortotomy', 'artery', [rm[4]]), ('Excise', 'fissure', [rm[5]]), ('Size', 'other', [rm[6]]),
+        ('Sutures', 'fissure', [rm[7]]), ('Seat', 'bronchus', [rm[8]]), ('Close', 'other', [rm[9]]), ('Wean', 'artery', [rm[10]])])
+    # ------------------------------------------------ 5. aortic endocarditis with a root abscess
+    a5 = av_case('ai', 'Case: aortic endocarditis with a root abscess',
+                 '<p>A <b>30-year-old man</b> with known mild rheumatic AR, admitted with fever and rigors; three blood cultures grow <i>Staphylococcus aureus</i> despite 7 days of cloxacillin. The PR interval has lengthened from 180 to <b>300 ms</b>. TOE: a 12 mm vegetation on the non-coronary cusp, a cusp perforation with <b>severe AR</b>, and an <b>echolucent cavity in the aortomitral curtain</b>. He is breathless but not in shock.</p>',
+                 '<p><b>Indications</b> (ESC 2023): <b>uncontrolled infection</b> (a paravalvular abscess; persistent bacteraemia on appropriate antibiotics) and severe AR with heart failure: <b>urgent surgery</b>, within days.</p>'
+                 '<p><b>The operation</b>: radical debridement of all infected tissue, closure of the abscess cavity (autologous or bovine pericardium), then valve replacement; if the root is destroyed, <b>root replacement</b> (homograft, or a composite graft or stentless root: see the <b>Root</b> module). Pacing wires: heart block may be permanent.</p>'
+                 + ev('ESC 2023: urgent surgery for locally uncontrolled infection (abscess, false aneurysm, fistula, enlarging vegetation) and for persistent positive cultures despite appropriate antibiotics. No prosthesis type (mechanical, biological, homograft) has been shown to reduce reinfection; complete debridement matters more than the choice of substitute.'),
+                 ask('What makes this an urgent operation rather than completing 6 weeks of antibiotics first?', 'Uncontrolled infection: a paravalvular abscess and persistent bacteraemia, with severe AR',
+                     'Abscess and persistent bacteraemia do not resolve on antibiotics alone; waiting risks fistula, complete heart block, embolism and death.',
+                     'The vegetation size alone', 'His young age', 'The PR interval alone'),
+                 show=[*CH, *CUSPS, 'aortic-annulus', 'av-vegetation', 'root-abscess', 'jet-ar', 'his-bundle'], hide=[*HEART_OFF, 'av-calcium'], labels=['av-vegetation', 'root-abscess', 'his-bundle'])
+    RA_ = V(LM['root-abscess']) if 'root-abscess' in LM else AC
+    ai_debride = {'id': 'ai-debride', 'phase': 'Valve', 'title': 'Radical debridement of the abscess',
+                  'body': '<p>With the cusps out, find the abscess: here in the <b>aortomitral curtain</b> under the non-coronary and left sinuses. Unroof it, then <b>debride to healthy, bleeding tissue</b>, removing all necrotic and infected material; send it for culture, histology and PCR. Irrigate (dilute povidone-iodine or saline); change gloves and instruments.</p>'
+                          '<p>Respect what lies close: the <b>His bundle</b> below the right/non-coronary commissure, the <b>anterior mitral leaflet</b> below the curtain, the left main ostium above. Incomplete debridement is the main cause of recurrent infection and paravalvular leak.</p>'
+                          + ev('surgical principles from the ESC 2023 guideline and the 2025 EJCTS review of its surgical implications: complete debridement first; the reconstruction is chosen after the extent of destruction is seen.'),
+                  'view': open_view, 'show': [*ROOT, 'root-abscess', 'his-bundle', 'mv-ant-leaflet', 'ostium-l', 'ostium-r'], 'hide': [*HEART_OFF, *CUSPS],
+                  'opacity': {**AV_FAINT, 'root-abscess': 0.9}, 'highlight': ['root-abscess'], 'danger': ['his-bundle', 'mv-ant-leaflet', 'ostium-l'],
+                  'labels': ['root-abscess', 'his-bundle', 'mv-ant-leaflet', 'ostium-l'],
+                  'action': {'kind': 'dissect', 'tool': 'hook', 'label': 'Debride the abscess', 'port': 'sternotomy', 'remove': ['root-abscess'],
+                             'path': [R(RA_ + AN * 4 + AE * 4), R(RA_), R(RA_ + AN * 4 - AE * 4)]},
+                  'ask': ask('What is the commonest cause of recurrent infection after surgery for aortic root abscess?', 'Incomplete debridement',
+                             'Residual infected tissue seeds the new prosthesis; the extent of debridement, not the choice of valve, determines reinfection.', 'Choosing a mechanical valve', 'Using pledgets', 'Short cross-clamp time'),
+                  'ct': ct(R(RA_), 'coronal')}
+    ai_patch = {'id': 'ai-patch', 'phase': 'Valve', 'title': 'Close the cavity; patch or replace the root',
+                'body': '<p>A <b>localised</b> cavity: close it with a patch of glutaraldehyde-fixed autologous or bovine <b>pericardium</b>, sewn to healthy tissue with running 4-0 polypropylene, so that the new valve sits on the patch and healthy annulus rather than in infected space. Then size and implant the valve as usual, with pledgeted sutures in sound tissue.</p>'
+                        '<p><b>Extensive</b> destruction (circumferential abscess, aorto-ventricular discontinuity, fistula): replace the <b>root</b> (an aortic homograft, whose anterior mitral leaflet can patch the curtain, or a composite valved graft or stentless root) with coronary buttons. The <b>Root</b> module shows these steps.</p>'
+                        + ev('a homograft offers no proven advantage against reinfection over prosthetic roots (ESC 2023); it is chosen for its handling of destroyed tissue where available. Complete heart block after surgery for abscess often needs a permanent pacemaker; epicardial leads may be placed at the operation.'),
+                'view': open_view, 'show': [*ROOT, 'his-bundle', 'mv-ant-leaflet', 'ostium-l', 'ostium-r'], 'hide': [*HEART_OFF, *CUSPS, 'root-abscess'],
+                'opacity': AV_FAINT, 'highlight': ['aortic-annulus'], 'danger': ['his-bundle'], 'labels': ['aortic-annulus', 'his-bundle', 'mv-ant-leaflet'],
+                'ct': ct(R(AC), 'coronal')}
+    ai_c, ai_sq = build_case([
+        ('Patho', 'other', [av_patho_ie('ai')]), ('Anatomy', 'other', [av_anat('ai')]), ('Case', 'other', [a5]),
+        ('Sternotomy', 'other', [{**std[2], 'id': 'ai-sternotomy'}]), ('Cannulate', 'artery', [av_cannulate('ai', 0)]), ('Clamp', 'artery', [av_clamp('ai', 0)]), ('Aortotomy', 'artery', [av_aortotomy('ai', 0)]),
+        ('Excise', 'fissure', [av_excise('ai', 0)]), ('Debride', 'fissure', [ai_debride]), ('Patch', 'other', [ai_patch]), ('Size', 'other', [av_size('ai', 0)]),
+        ('Sutures', 'fissure', [av_sutures('ai', 0)]), ('Seat', 'bronchus', [av_seat('ai', 0)]), ('Close', 'other', [av_close('ai', 0)]), ('Wean', 'artery', [av_wean('ai', 0)])])
+    for s in ai_c:
+        if s['id'] == 'ai-excise':
+            s['show'] = [*s.get('show', []), 'av-vegetation', 'root-abscess']; s['labels'] = [*s.get('labels', []), 'av-vegetation']
+            s['body'] += '<p><b>Here</b>: lift the vegetation out whole with the non-coronary cusp and send both for culture; do not let fragments fall into the LV.</p>'
+        if s['id'] == 'ai-wean':
+            s['body'] += '<p><b>This patient</b>: atrioventricular pacing through epicardial wires from the start; if heart block persists, a permanent system once the infection is controlled.</p>'
+    AV_CASES = (('avr-std', 'Young man with rheumatic AR (sternotomy)', std_c, std_sq),
+                ('avr-dvr', 'Double valve: MS with mixed aortic disease', dv_c, dv_sq),
+                ('avr-hemi', 'Older patient, calcific AS, TAVI unsuitable (hemisternotomy)', hemi_c, hemi_sq),
+                ('avr-ramt', 'Bicuspid AS at 64 (right anterior mini-thoracotomy)', ramt_c, ramt_sq),
+                ('avr-ie', 'Endocarditis with root abscess', ai_c, ai_sq))
+    for key, appr, steps_, sq in AV_CASES:
         for s in steps_:
+            mvstep = s.pop('_mv', False)
             named = set(s.get('highlight', [])) | set(s.get('danger', [])) | set(s.get('labels', [])) | set(s.get('show', []))
             off_groups = {'arteries', 'veins', 'airway', 'lul-intra', 'lll-intra', 'rul-intra', 'nodes', 'nerves', 'pleura', 'segments', 'trauma', 'muscles', 'landmarks'}
+            opened = s['phase'] not in ('Pathophysiology', 'Anatomy', 'Case') and not s['id'].endswith(('-sternotomy', '-access'))
             s['hide'] = [*s.get('hide', []), *[q['id'] for q in atlas['structures'] if q['group'] in off_groups and q['id'] not in named],
-                         *[i for i in ('esophagus', 'thymus', 'thyroid') if has(i) and i not in named], *(['sternum'] if s.get('seq', 0) >= 3 else [])]
+                         *[i for i in ('esophagus', 'thymus', 'thyroid') if has(i) and i not in named], *(['sternum'] if opened else []),
+                         *[i for i in AV_EXC if i not in named]]
             if s['phase'] in ('Valve', 'Wean', 'Aorta'): s['opacity'] = {**{c_: 0.3 for c_ in AV_CANS}, **s.get('opacity', {})}
-            if s['phase'] in ('Valve', 'Anatomy'):
+            if s['phase'] in ('Valve', 'Anatomy') and not mvstep:
                 s['hide'] = [*s['hide'], 'svc', 'pa-trunk', 'ra', 'rv', 'la', 'myocardium', *[i for i in (*AV_CANS, 'can-svc', 'can-ivc', 'can-ostial') if i not in named]]
                 s['opacity'] = {**s.get('opacity', {}), 'lv': 0.12, 'aorta': 0.12, 'lvot': 0.2}
                 s['hide'] = [*s['hide'], 'esophagus', *[f'vert-t{i}' for i in range(1, 13)]]
@@ -2419,8 +2903,8 @@ if AVR_OK:
             for kk in ('highlight', 'danger', 'labels', 'show'):
                 if kk in s: s[kk] = [i for i in s[kk] if has(i) or i == 'skin']
         procs[key] = {'id': key, 'op': 'avr', 'opName': 'Aortic valve replacement', 'side': 'both', 'name': 'Aortic valve replacement', 'approach': appr,
-                      'summary': 'Heart Team decision, access, bypass and protection by valve lesion, aortotomy, debridement, sizing against mismatch, annular sutures, prosthesis, de-airing, TOE.',
-                      'ports': [], 'steps': steps_, 'sources': AVSRC, 'group': 'Cardiac', 'sequence': sq}
+                      'summary': 'Case-based: pathophysiology, anatomy, the patient and the Heart Team decision, then the operation (access, bypass and protection, aortotomy, debridement, sizing, sutures, prosthesis, de-airing, TOE).',
+                      'ports': [], 'steps': steps_, 'sources': [*RHD_SRC[:3], *AV_SRC, *[x for x in RHD_SRC if 'endocarditis' in x['title'].lower() or 'EASE' in x['title']], *AVSRC], 'group': 'Cardiac', 'sequence': sq}
 # ==================================================================================================== cardiac: tricuspid valve surgery
 TV_OK = MVR_OK and has('tricuspid-annulus') and 'tv-centre' in LM
 if TV_OK:
@@ -3011,8 +3495,9 @@ if CABG_OK:
                 'ct': ct(R(HC_), 'axial')}
 
     def cb_case(pre, title, vignette, lesions, quiz):
-        return {'id': f'{pre}-case', 'phase': 'Case', 'seq': 0, 'title': title,
-                'body': vignette, 'view': clook(HC_, V([-0.3, 1, 0.2]), 260), 'spin': True, 'show': [*SURF, *TREE, *lesions], 'hide': CB_OFF, 'opacity': SOLID,
+        k_ = vignette.find('<p class="evidence">'); lead_, rest_ = (vignette[:k_], vignette[k_:]) if k_ >= 0 else (vignette, '')
+        return {'id': f'{pre}-case', 'phase': 'Case', 'seq': 0, 'title': title, 'lead': lead_,
+                'body': rest_ or '<p>Read the case above; the steps that follow are this patient\'s operation.</p>', 'view': clook(HC_, V([-0.3, 1, 0.2]), 260), 'spin': True, 'show': [*SURF, *TREE, *lesions], 'hide': CB_OFF, 'opacity': SOLID,
                 'danger': lesions, 'labels': lesions, 'ask': quiz, 'ct': ct(R(HC_), 'axial')}
 
     # ----------------------------------------------------------------------------- single-vessel: isolated proximal LAD, MIDCAB
@@ -3121,9 +3606,9 @@ if FIELD:
     for key, v in procs.items():
         if v.get('group') != 'Cardiac' or key in ('mvr-mics', 'tv-mics', 'avr-ramt', 'cabg-1v'): continue
         for s_ in v['steps']:
-            if s_.get('seq', 0) < 3 or s_['phase'] in ('Decision', 'Anatomy'): continue
+            if s_.get('seq', 0) < 3 or s_['phase'] in ('Decision', 'Anatomy', 'Pathophysiology', 'Case') or s_['id'].endswith(('-sternotomy', '-access', '-setup', '-laa')): continue
             s_['hide'] = [i for i in s_.get('hide', []) if i not in ('sternum', *FIELD)]
-            inside = s_['phase'] in ('Valve', 'Root', 'Septum', 'Pulmonary root')   # looking inside the heart: the pericardium would show through
+            inside = s_['phase'] in ('Valve', 'Root', 'Septum', 'Pulmonary root', 'Tricuspid')   # looking inside the heart: the pericardium would show through
             s_['show'] = [*s_.get('show', []), 'sternum', *[i for i in FIELD if not (inside and i == 'pericardium-open')]]
             if inside: s_['hide'] = [*s_['hide'], 'pericardium-open']
             else: s_['opacity'] = {**s_.get('opacity', {}), 'pericardium-open': 0.55}

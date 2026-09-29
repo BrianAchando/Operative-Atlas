@@ -898,7 +898,8 @@ TRLM.update(NKLM)
 # ------------------------------------------------------------------ the heart: mitral valve replacement (needs work/heart.nii.gz from segment_heart.py)
 import cardiac  # noqa: E402
 CDLM, CDDIR, CDSC = cardiac.build(dict(emit=emit, emit_mesh=emit_mesh, W=W, tube=tube, sphere=sphere, work=Path(WORK), aorta_mm=aorta_mm,
-                                       bct_mm=vox_mm(ts('brachiocephalic_trunk')), svc_mm=vox_mm(ts('superior_vena_cava')), port=port, lung_cr=lung_cr, CARINA=CARINA, sternum_mm=st_mm))
+                                       bct_mm=vox_mm(ts('brachiocephalic_trunk')), svc_mm=vox_mm(ts('superior_vena_cava')), port=port, lung_cr=lung_cr, CARINA=CARINA, sternum_mm=st_mm,
+                                       laa_mm=vox_mm(ts('atrial_appendage_left'))))
 TRLM.update(CDLM)
 # ------------------------------------------------------------------ the operative field: drapes, opened pericardium
 import field  # noqa: E402
