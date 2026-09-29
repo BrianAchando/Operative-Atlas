@@ -7,7 +7,7 @@ import * as THREE from 'three';
  * cartilage rings, a woven graft), micro-relief as a bump on the normal, and wet or matte highlights.
  */
 export type Tissue = 'muscle' | 'myocardium' | 'artery' | 'pulm-artery' | 'vein' | 'bone' | 'cartilage' | 'fat' | 'skin' | 'organ' | 'liver'
-  | 'valve' | 'nerve' | 'node' | 'metal' | 'fabric' | 'suture' | 'plastic' | 'calcium' | 'plain';
+  | 'valve' | 'nerve' | 'node' | 'metal' | 'fabric' | 'suture' | 'plastic' | 'calcium' | 'drape' | 'pericardium' | 'plain';
 
 interface Meta { id: string; group: string; schematic?: boolean }
 
@@ -15,6 +15,8 @@ const has = (id: string, ...xs: string[]) => xs.some((x) => id === x || id.start
 
 export function tissueOf(m: Meta): Tissue {
   const id = m.id, g = m.group;
+  if (id.startsWith('drape-')) return 'drape';
+  if (id === 'pericardium-open') return 'pericardium';
   if (has(id, 'incision', 'port-', 'uni-', 'bi-', 'line-', 'lm-', 'hemi-cut', 'aortotomy', 'pa-harvest', 'root-distal', 'pericardiotomy', 'tract-', 'wound-', 'koch', 'av-node', 'tv-avnode', 'his-bundle',
     'la-incision', 'septal-incision', 'ra-incision', 'cs-ostium', 'ipl', 'isp-', 'fissure', 'peel-', 'empyema-', 'trach-steno')) return 'plain';
   if (g.startsWith('ports') || g === 'landmarks' || g === 'incisions' || g === 'pleura') return 'plain';
@@ -67,6 +69,8 @@ const LOOK: Record<Tissue, Look> = {
   fabric: { rough: 0.8, clear: 0.0, clearRough: 0.6, sheen: 0.8, sheenColor: '#ffffff', pat: 6, freq: 2.2, bump: 0.6, mottle: 0.04 },
   suture: { rough: 0.25, clear: 0.8, clearRough: 0.05, pat: 0, freq: 0, bump: 0, mottle: 0 },
   plastic: { rough: 0.15, clear: 1.0, clearRough: 0.03, env: 0.8, pat: 0, freq: 0, bump: 0, mottle: 0.02 },
+  drape: { rough: 0.95, clear: 0.0, clearRough: 0.8, sheen: 0.25, sheenColor: '#6f95a8', env: 0.12, pat: 7, freq: 0.06, bump: 0.5, mottle: 0.12 },
+  pericardium: { rough: 0.3, clear: 0.95, clearRough: 0.06, sheen: 0.4, sheenColor: '#fff6e0', pat: 1, freq: 0.9, bump: 0.2, mottle: 0.1 },
   plain: { rough: 0.5, clear: 0.0, clearRough: 0.4, pat: 0, freq: 0, bump: 0, mottle: 0 },
 };
 
@@ -110,27 +114,41 @@ vec2 tsPattern(vec3 p) {
   return vec2(h, c);
 }`;
 
-export function applyTissue(mat: THREE.MeshPhysicalMaterial, kind: Tissue, fibre: THREE.Vector3, keySuffix = ''): void {
+/** a photographed tissue texture (pipeline/textures.py): albedo and normal map, their mean colour, the tile size in mm */
+export interface TissueTex { albedo: THREE.Texture; normal: THREE.Texture; mean: THREE.Color; tile: number }
+
+const TEXCODE = `
+uniform sampler2D uTAlb; uniform sampler2D uTNrm; uniform float uTTile; uniform vec3 uTMean;
+varying vec3 vObjN;
+vec3 tsTriW(vec3 n) { vec3 w = pow(abs(n), vec3(4.0)); return w / (w.x + w.y + w.z); }`;
+
+export function applyTissue(mat: THREE.MeshPhysicalMaterial, kind: Tissue, fibre: THREE.Vector3, keySuffix = '', tex?: TissueTex): void {
   const L = LOOK[kind];
   mat.roughness = L.rough; mat.clearcoat = L.clear; mat.clearcoatRoughness = L.clearRough; mat.metalness = L.metal ?? 0;
   mat.envMapIntensity = L.env ?? 0.45;
   if (L.sheen) { mat.sheen = L.sheen; mat.sheenRoughness = 0.5; mat.sheenColor = new THREE.Color(L.sheenColor ?? '#ffffff'); }
   if (kind === 'metal') mat.color.set('#3a3d42');
   if (kind === 'fabric') mat.color.set('#efeee6');
-  if (L.pat === 0 && L.mottle === 0) return;
+  if (L.pat === 0 && L.mottle === 0 && !tex) return;
   const accent = new THREE.Color(L.accent ?? '#000000');
   const prev = mat.onBeforeCompile;
   mat.onBeforeCompile = (sh, r) => {
     prev?.call(mat, sh, r);
     sh.uniforms['uFib'] = { value: fibre.clone().normalize() };
-    sh.defines = { ...(sh.defines ?? {}), TS_PAT: L.pat, TS_FREQ: L.freq.toFixed(3) };
-    sh.vertexShader = sh.vertexShader.replace('#include <common>', '#include <common>\nvarying vec3 vObj;')
-      .replace('#include <begin_vertex>', '#include <begin_vertex>\nvObj = position;');
-    sh.fragmentShader = sh.fragmentShader.replace('#include <common>', '#include <common>\n' + NOISE)
+    sh.defines = { ...(sh.defines ?? {}), TS_PAT: L.pat, TS_FREQ: L.freq.toFixed(3), ...(tex ? { TS_TEX: 1 } : {}) };
+    if (tex) { sh.uniforms['uTAlb'] = { value: tex.albedo }; sh.uniforms['uTNrm'] = { value: tex.normal }; sh.uniforms['uTTile'] = { value: tex.tile }; sh.uniforms['uTMean'] = { value: tex.mean }; }
+    sh.vertexShader = sh.vertexShader.replace('#include <common>', '#include <common>\nvarying vec3 vObj;' + (tex ? '\nvarying vec3 vObjN;' : ''))
+      .replace('#include <begin_vertex>', '#include <begin_vertex>\nvObj = position;' + (tex ? '\nvObjN = objectNormal;' : ''));
+    sh.fragmentShader = sh.fragmentShader.replace('#include <common>', '#include <common>\n' + NOISE + (tex ? TEXCODE : ''))
       .replace('#include <color_fragment>', `#include <color_fragment>
 vec2 tsP = tsPattern(vObj);
 float tsM = tsF(vObj * 0.09);
 diffuseColor.rgb *= (1.0 - ${L.mottle.toFixed(3)}) + ${(2 * L.mottle).toFixed(3)} * tsM;
+#ifdef TS_TEX
+{ vec3 nO = normalize(vObjN); vec3 tw = tsTriW(nO); vec3 q = vObj / uTTile;
+  vec3 ca = texture2D(uTAlb, q.yz).rgb * tw.x + texture2D(uTAlb, q.xz).rgb * tw.y + texture2D(uTAlb, q.xy).rgb * tw.z;
+  diffuseColor.rgb *= clamp(ca / max(uTMean, vec3(0.04)), 0.0, 2.5); }
+#endif
 diffuseColor.rgb = mix(diffuseColor.rgb, vec3(${accent.r.toFixed(3)}, ${accent.g.toFixed(3)}, ${accent.b.toFixed(3)}), ${L.accent ? '0.55' : '0.0'} * tsP.y);
 #if TS_PAT == 1
 diffuseColor.rgb *= 0.9 + 0.12 * tsP.y;
@@ -144,6 +162,16 @@ diffuseColor.rgb = mix(diffuseColor.rgb, diffuseColor.rgb * vec3(0.93, 0.8, 0.8)
       .replace('#include <roughnessmap_fragment>', `#include <roughnessmap_fragment>
 roughnessFactor = clamp(roughnessFactor * (0.75 + 0.5 * tsF(vObj * 0.35 + 11.0)), 0.04, 1.0);`)
       .replace('#include <normal_fragment_maps>', `#include <normal_fragment_maps>
+#ifdef TS_TEX
+{ vec3 nO = normalize(vObjN); vec3 tw = tsTriW(nO); vec3 q = vObj / uTTile;
+  vec3 tx = texture2D(uTNrm, q.yz).xyz * 2.0 - 1.0; vec3 ty = texture2D(uTNrm, q.xz).xyz * 2.0 - 1.0; vec3 tz = texture2D(uTNrm, q.xy).xyz * 2.0 - 1.0;
+  tx = vec3(tx.xy + nO.zy, abs(tx.z) * nO.x); ty = vec3(ty.xy + nO.xz, abs(ty.z) * nO.y); tz = vec3(tz.xy + nO.xy, abs(tz.z) * nO.z);
+  vec3 nV = normalize((viewMatrix * vec4(normalize(tx.zyx * tw.x + ty.xzy * tw.y + tz.xyz * tw.z), 0.0)).xyz);
+  #ifdef DOUBLE_SIDED
+  nV *= faceDirection;
+  #endif
+  normal = normalize(mix(normal, nV, 0.85)); }
+#endif
 {
   float tsh = tsPattern(vObj).x;
   vec3 dpx = dFdx(-vViewPosition), dpy = dFdy(-vViewPosition);
@@ -153,7 +181,7 @@ roughnessFactor = clamp(roughnessFactor * (0.75 + 0.5 * tsF(vObj * 0.35 + 11.0))
   normal = normalize(abs(det) * normal - grad * ${(L.bump * 1.2).toFixed(3)});
 }`);
   };
-  const key = `tissue-${kind}${keySuffix}`;
+  const key = `tissue-${kind}${keySuffix}${tex ? '-tex' : ''}`;
   mat.customProgramCacheKey = () => key;
 }
 
@@ -175,4 +203,27 @@ export function mainAxis(geo: THREE.BufferGeometry): THREE.Vector3 {
     v.normalize();
   }
   return v;
+}
+
+/** structures the surgeon's-eye cutaway may open: what lies between the camera and the field */
+export const CUTAWAY = (id: string) => id.startsWith('drape-') || ['pericardium-open', 'sternum', 'skin', 'cartilages'].includes(id);
+export const cutaway = { on: { value: 0 }, target: { value: new THREE.Vector3() }, eye: { value: new THREE.Vector3() }, radius: { value: 85 } };
+
+/** discard fragments of this material inside a cylinder from the camera to the target, in front of the target */
+export function withCutaway(mat: THREE.Material): void {
+  const prev = mat.onBeforeCompile;
+  mat.onBeforeCompile = (sh, r) => {
+    prev?.call(mat, sh, r);
+    sh.uniforms['uCutOn'] = cutaway.on; sh.uniforms['uCutT'] = cutaway.target; sh.uniforms['uCutE'] = cutaway.eye; sh.uniforms['uCutR'] = cutaway.radius;
+    sh.vertexShader = sh.vertexShader.replace('#include <common>', '#include <common>\nvarying vec3 vCutW;')
+      .replace('#include <project_vertex>', '#include <project_vertex>\nvCutW = (modelMatrix * vec4(transformed, 1.0)).xyz;');
+    sh.fragmentShader = sh.fragmentShader.replace('#include <common>', '#include <common>\nvarying vec3 vCutW;\nuniform float uCutOn; uniform vec3 uCutT; uniform vec3 uCutE; uniform float uCutR;')
+      .replace('#include <clipping_planes_fragment>', `#include <clipping_planes_fragment>
+if (uCutOn > 0.5) {
+  vec3 cd = normalize(uCutE - uCutT); vec3 rel = vCutW - uCutT; float along = dot(rel, cd);
+  float perp = length(rel - cd * along);
+  float edge = uCutR * (0.92 + 0.08 * sin(atan(rel.y, rel.x) * 7.0 + rel.z * 0.05));
+  if (along > 10.0 && perp < edge) discard;
+}`);
+  };
 }

@@ -104,10 +104,16 @@ structures: list[dict] = []
 labels_out: dict[str, np.ndarray] = {}      # id -> mask on the lv grid or the total grid (resampled later)
 
 
+# surface detail: face budget multiplier for CT-derived anatomy (ATLAS_DETAIL=1 restores the old, lighter meshes)
+import os  # noqa: E402
+DETAIL = float(os.environ.get('ATLAS_DETAIL', '2.5'))
+
+
 def emit(id_, name, group, colour, mask, aff, faces=8000, opacity=1.0, visible=True, division=None, note=None, sigma=None, label=True):
     if mask is None or not mask.any():
         print('  skip', id_); return
     sig = sigma if sigma is not None else (0.6 if mask.sum() < 20000 else 1.0)
+    if faces >= 3000 and id_ != 'skin': faces = int(min(60000, faces * DETAIL))   # finer surfaces for the real anatomy
     mesh = meshing.mesh_from_mask(mask, shifted(aff), faces, sigma=sig, taubin_iterations=25)
     if mesh is None:
         print('  skip (no surface)', id_); return
@@ -551,7 +557,7 @@ def tube(points, radius, seg=14) -> trimesh.Trimesh:
 
 
 def sphere(c, r) -> trimesh.Trimesh:
-    s = trimesh.creation.icosphere(subdivisions=2, radius=r); s.apply_translation(c); return s
+    s = trimesh.creation.icosphere(subdivisions=3, radius=r); s.apply_translation(c); return s
 
 
 def vox_mm(mask, aff=AT):
@@ -894,6 +900,10 @@ import cardiac  # noqa: E402
 CDLM, CDDIR, CDSC = cardiac.build(dict(emit=emit, emit_mesh=emit_mesh, W=W, tube=tube, sphere=sphere, work=Path(WORK), aorta_mm=aorta_mm,
                                        bct_mm=vox_mm(ts('brachiocephalic_trunk')), svc_mm=vox_mm(ts('superior_vena_cava')), port=port, lung_cr=lung_cr, CARINA=CARINA, sternum_mm=st_mm))
 TRLM.update(CDLM)
+# ------------------------------------------------------------------ the operative field: drapes, opened pericardium
+import field  # noqa: E402
+TRLM.update(field.build(dict(emit_mesh=emit_mesh, meshing=meshing, W=W, sternum_mm=st_mm, body=body_ds, body_aff=shifted(a2),
+                             heart=ts('heart'), heart_aff=AT, heart_aff_shifted=shifted(AT), CARINA=CARINA)))
 CW_L |= MD_L; CW_R |= MD_R
 for appr, ps in PORTS.items():
     for k, nm, p in ps:
@@ -982,7 +992,7 @@ atlas = {
                {'id': 'ports-r-anterior', 'name': 'Ports, right anterior approach'}, {'id': 'ports-r-posterior', 'name': 'Ports, right posterior approach'},
                {'id': 'segments', 'name': 'Segments (from bronchial territories)'}, {'id': 'trauma', 'name': 'Trauma (schematic)'}, {'id': 'ports-open-left', 'name': 'Thoracotomy, left'}, {'id': 'ports-open-right', 'name': 'Thoracotomy, right'},
                {'id': 'abdomen', 'name': 'Upper abdomen and conduit'}, {'id': 'incisions', 'name': 'Incisions (sternotomy, neck, abdomen)'},
-               {'id': 'cardiac', 'name': 'Heart: chambers, valves, cannulas'}, {'id': 'muscles', 'name': 'Chest wall muscles (schematic)'}, {'id': 'landmarks', 'name': 'Surface landmarks'}, {'id': 'ports-vats', 'name': 'VATS incisions, uni- and biportal'}],
+               {'id': 'cardiac', 'name': 'Heart: chambers, valves, cannulas'}, {'id': 'muscles', 'name': 'Chest wall muscles (schematic)'}, {'id': 'landmarks', 'name': 'Surface landmarks'}, {'id': 'ports-vats', 'name': 'VATS incisions, uni- and biportal'}, {'id': 'field', 'name': 'Operative field (drapes, pericardium)'}],
     'structures': structures,
     'landmarks': landmarks,
     'source': {'name': 'Reference CT: 3D Slicer sample CTA (CTA-cardio)', 'licence': 'unstated',

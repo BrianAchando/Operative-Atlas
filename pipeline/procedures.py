@@ -2794,6 +2794,19 @@ if ROOT_OK:
         procs[key] = {'id': key, 'op': 'root', 'opName': 'Aortic root replacement', 'side': 'both', 'name': 'Aortic root replacement', 'approach': appr,
                       'summary': 'Thresholds, choice of root operation, excision with coronary buttons, composite graft or pulmonary autograft, button reimplantation, distal anastomosis, homograft.',
                       'ports': [], 'steps': steps_, 'sources': RTSRC, 'group': 'Cardiac', 'sequence': sq}
+# ==================================================================================================== the operative field in open-heart steps
+# after the chest is open: the drapes and their sternotomy window, the split sternum held open, the pericardial cradle
+FIELD = [i for i in ('drape-sternotomy', 'pericardium-open') if has(i)]
+if FIELD:
+    for key, v in procs.items():
+        if v.get('group') != 'Cardiac' or key in ('mvr-mics', 'tv-mics', 'avr-ramt'): continue
+        for s_ in v['steps']:
+            if s_.get('seq', 0) < 3 or s_['phase'] in ('Decision', 'Anatomy'): continue
+            s_['hide'] = [i for i in s_.get('hide', []) if i not in ('sternum', *FIELD)]
+            inside = s_['phase'] in ('Valve', 'Root', 'Septum', 'Pulmonary root')   # looking inside the heart: the pericardium would show through
+            s_['show'] = [*s_.get('show', []), 'sternum', *[i for i in FIELD if not (inside and i == 'pericardium-open')]]
+            if inside: s_['hide'] = [*s_['hide'], 'pericardium-open']
+            else: s_['opacity'] = {**s_.get('opacity', {}), 'pericardium-open': 0.55}
 # operations appear in the menu in this order
 ORDER = ['position', 'thoracotomy-l', 'thoracotomy-r', 'vats-ports-l', 'vats-ports-r', 'lul', 'lll', 'rul', 'rml', 'rll', 'pnl', 'pnr', 'seg-lingula', 'seg-lul-updiv', 'seg-s6', 'trachea', 'thymectomy', 'oesophagectomy', 'duct', 'empyema', 'rt', 'clamshell', 'cardio', 'tract', 'hilar', 'mvr', 'avr', 'root', 'tricuspid']
 procs = dict(sorted(procs.items(), key=lambda kv: (ORDER.index(kv[1]['op']), list(procs).index(kv[0]))))

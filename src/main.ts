@@ -58,6 +58,9 @@ let aiOpen = false;
 let procedures: Record<string, Procedure> = {};
 let refVol: Volume; let upVol: Volume | null = null;
 let scene3d: Scene3D;
+/** photographed tissue textures carry credits (CC BY / BY-SA): link them when present */
+let texCredits = false;
+fetch('data/textures/ATTRIBUTION.md', { method: 'HEAD' }).then((r) => { texCredits = r.ok && !(r.headers.get('content-type') ?? '').includes('text/html'); }).catch(() => undefined);
 const views: Record<Plane, CTView> = {} as Record<Plane, CTView>;
 const labelOf = new Map<string, number>();           // structure id -> label id
 const idOfLabel = new Map<number, string>();
@@ -89,6 +92,7 @@ async function boot(): Promise<void> {
 
   // ---- 3D
   scene3d = new Scene3D($('#view3d'));
+  if (import.meta.env.DEV) (window as unknown as { __s: Scene3D }).__s = scene3d;
   (window as unknown as { hilum: unknown }).hilum = { get scene() { return scene3d; }, views };
   status.textContent = 'Loading the 3D anatomy…';
   await scene3d.load(DATA, atlas.structures, (f) => { status.textContent = `Loading the 3D anatomy… ${Math.round(f * 100)}%`; });
@@ -426,7 +430,7 @@ function procPanel(): HTMLElement {
     nav,
     aiPanel(aiQs.filter((x) => x.op === proc.op)),
     h('details', { class: 'outline' }, h('summary', {}, 'All steps'), dots),
-    h('p', { class: 'foot' }, 'Teaching model on one reference CT. Not for planning an operation on a patient.'),
+    h('p', { class: 'foot' }, 'Teaching model on one reference CT. Not for planning an operation on a patient.', ...(texCredits ? [' ', h('a', { href: 'data/textures/ATTRIBUTION.md', target: '_blank', rel: 'noopener' }, 'Texture credits')] : [])),
   );
 }
 const pickedChoice = new Map<string, string>();

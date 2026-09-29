@@ -6,7 +6,7 @@ import { MeshoptDecoder } from 'three/addons/libs/meshopt_decoder.module.js';
 import { EffectComposer } from 'three/addons/postprocessing/EffectComposer.js';
 import { OutputPass } from 'three/addons/postprocessing/OutputPass.js';
 import { N8AOPass } from 'n8ao';
-import { tissueOf, applyTissue, mainAxis } from './tissue.ts';
+import { tissueOf, applyTissue, mainAxis, CUTAWAY, cutaway, withCutaway, type TissueTex } from './tissue.ts';
 import type { Vec3 } from './ctview.ts';
 import { stapler, peanut, hook, tie, knotPusher, stapleRun, ribSpreader, vascularClamp, pledgetStitch, needleDriver, sawBlade, RELOAD } from './instruments.ts';
 import type { Action } from './procedure.ts';
@@ -184,6 +184,18 @@ export class Scene3D {
   async load(base: string, metas: StructureMeta[], onProgress: (f: number) => void): Promise<void> {
     const loader = new GLTFLoader(); loader.setMeshoptDecoder(MeshoptDecoder);
     let done = 0;
+    // photographed tissue textures, if the pipeline made any (pipeline/textures.py); the procedural surfaces otherwise
+    const texs: Record<string, TissueTex> = {};
+    try {
+      const man = await (await fetch(base + 'textures/manifest.json')).json() as Record<string, { albedo: string; normal: string; mean: [number, number, number]; tile: number }>;
+      const tl = new THREE.TextureLoader();
+      await Promise.all(Object.entries(man).map(async ([k, e]) => {
+        const [a, n] = await Promise.all([tl.loadAsync(base + e.albedo), tl.loadAsync(base + e.normal)]);
+        for (const t of [a, n]) { t.wrapS = t.wrapT = THREE.RepeatWrapping; t.anisotropy = 4; }
+        a.colorSpace = THREE.SRGBColorSpace;
+        texs[k] = { albedo: a, normal: n, mean: new THREE.Color().setRGB(...e.mean, THREE.SRGBColorSpace), tile: e.tile };
+      }));
+    } catch { /* no textures yet */ }
     await Promise.all(metas.map(async (m) => {
       const gltf = await loader.loadAsync(base + m.file);
       let geo: THREE.BufferGeometry | null = null;
@@ -209,14 +221,17 @@ export class Scene3D {
       if (m.schematic) mat.roughness = 0.55;
       const lung = m.group === 'lungs' || m.group === 'segments';
       const rim = m.group === 'lungs' || m.id === 'heart' || m.id === 'skin';
-      if (!lung) applyTissue(mat, tissueOf(m), mainAxis(geo), rim ? '-rim' : '');
+      const cut = CUTAWAY(m.id);
+      const kind = tissueOf(m);
+      if (!lung) applyTissue(mat, kind, mainAxis(geo), (rim ? '-rim' : '') + (cut ? '-cut' : ''), m.schematic && kind === 'plain' ? undefined : texs[kind]);
+      if (cut) withCutaway(mat);
       if (m.group === 'lungs' && m.id !== 'fissure') lungShader(mat);
       if (m.group === 'lungs' || m.id === 'heart' || m.id === 'skin') rimShader(mat);
       withAlphaGamma(mat);
       // lungs and skin: front faces only, so a camera inside them (a retracted lobe, the chest wall) sees through
       if (m.group === 'lungs' || m.id === 'skin') mat.side = THREE.FrontSide;
       const mesh = new THREE.Mesh(geo, mat); mesh.name = m.id; mesh.userData['id'] = m.id; mesh.renderOrder = m.opacity < 1 ? 5 : 0;
-      const solid = tissueOf(m) !== 'plain' && m.id !== 'skin' && !lung; mesh.castShadow = solid; mesh.receiveShadow = solid || lung;
+      const solid = tissueOf(m) !== 'plain' && !CUTAWAY(m.id) && !lung; mesh.castShadow = solid; mesh.receiveShadow = solid || lung;
       mesh.visible = m.visible !== false;
       this.scene.add(mesh);
       this.items.set(m.id, { meta: m, mesh, mat, home: new THREE.Vector3() });
@@ -248,6 +263,12 @@ export class Scene3D {
     this.dirty = true;
     for (const m of [it.mat, it.distal?.material as THREE.MeshPhysicalMaterial | undefined]) if (m) { m.opacity = op; m.transparent = op < 1; m.depthWrite = op >= 0.6; m.needsUpdate = true; }
     it.mesh.renderOrder = op < 1 ? 5 : 0;
+  }
+  /** development aid: what a ray from the camera through a screen point (NDC) hits */
+  debugHits(x = 0, y = 0): string[] {
+    const rc = new THREE.Raycaster(); rc.setFromCamera(new THREE.Vector2(x, y), this.camera);
+    const objs: THREE.Object3D[] = []; for (const it of this.items.values()) { if (it.mesh.visible) objs.push(it.mesh); if (it.distal?.visible) objs.push(it.distal); }
+    return rc.intersectObjects(objs, false).slice(0, 8).map((h) => `${h.object.userData['id'] ?? h.object.name}:${h.distance.toFixed(0)}`);
   }
   setFocus(p: Vec3): void { this.marker.position.set(...p); this.invalidate(); }
 
@@ -807,7 +828,7 @@ export class Scene3D {
     else if (a.kind === 'decannulate') { for (const g of this.extras.children.filter((o) => o.name === 'vclamp')) this.extras.remove(g); for (const id of a.ids ?? []) this.setVisible(id, false); }
     else if (a.kind === 'seat') { for (const id of a.ids ?? []) { this.setVisible(id, true); const it = this.items.get(id); if (it) it.mesh.position.set(0, 0, 0); } }
     else if (a.kind === 'layers') { for (const L of a.layers ?? []) { this.setVisible(L.id, true); void this.layer(L, false, this.seq); } }
-    else if (a.kind === 'saw') { for (const id of a.ids ?? []) { this.divide(id, false, 'cut'); } if (a.hinge) this.turn(a.hinge, 1); }
+    else if (a.kind === 'saw') { for (const id of a.ids ?? []) { this.divide(id, false, 'cut', over); if (a.open) this.openHalves(id, a, a.open); } if (a.hinge) this.turn(a.hinge, 1); }
     else if (a.kind === 'twist') { if (a.hinge) this.turn(a.hinge, 1); }
     else if (a.kind === 'clamp' && port) { this.clampAt(a, new THREE.Vector3(...port))?.setClamp(1); }
     else if (a.kind === 'suture') { for (const s of this.stitches(a)) this.extras.add(pledgetStitch(s.c, s.across, s.n)); }
@@ -888,6 +909,9 @@ export class Scene3D {
       if (it.distal) (it.distal.material as THREE.MeshPhysicalMaterial).emissive.setRGB(em, em, em);
     }
     this.syncPlane();
+    // the surgeon's-eye cutaway is on while the operative field (drapes) is shown
+    cutaway.on.value = this.items.get('drape-sternotomy')?.mesh.visible ? 1 : 0;
+    cutaway.target.value.copy(this.controls.target); cutaway.eye.value.copy(this.camera.position);
     if (this.hd) this.composer.render(); else this.renderer.render(this.scene, this.camera);
     this.placeLabels();
   }
