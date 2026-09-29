@@ -3599,6 +3599,576 @@ if CABG_OK:
         procs[key] = {'id': key, 'op': 'cabg', 'opName': 'Coronary artery bypass grafting', 'side': 'both', 'name': 'Coronary artery bypass grafting', 'approach': appr,
                       'summary': 'Case-based: single-vessel MIDCAB, two-vessel LIMA + radial, three-vessel on- and off-pump; conduits, anastomoses, flow checks.',
                       'ports': [], 'steps': steps_, 'sources': CBSRC, 'group': 'Cardiac', 'sequence': sq}
+# ==================================================================================================== thoracic case scenarios
+# each operation opens with the disease (pathophysiology), then its anatomy, then a patient (the case and the decision), then
+# the operation: lung cancer and its staging, post-TB lung and aspergilloma, congenital lobar emphysema and CPAM, myasthenia
+# gravis and thymoma, oesophageal cancer, empyema; and a new operation for post-pneumonectomy empyema and bronchopleural fistula
+TX_OK = has('tumour-rul') and has('tumour-lul')
+if TX_OK:
+    ev = lambda t: f'<p class="evidence"><b>Evidence:</b> {t}</p>'
+    pm = lambda term: 'https://pubmed.ncbi.nlm.nih.gov/?term=' + term.replace(' ', '+')
+    chain = lambda *xs: '<div class="chain">' + '<i>→</i>'.join(f'<span class="hot">{x[1:]}</span>' if x.startswith('!') else f'<span>{x}</span>' for x in xs) + '</div>'
+    tl = lambda tgt, d, dist=300: {'eye': R(V(tgt) + V(d) / np.linalg.norm(V(d)) * dist), 'target': R(tgt)}
+    Pt = lambda k: V(LM[k]) if k in LM else V(S[k]['centroid'])
+    PATH_IDS = [s_['id'] for s_ in atlas['structures'] if s_['group'] == 'pathology']
+    LOBE_IDS = [i for i in ('lul', 'lll', 'rul', 'rml', 'rll', 'fissure', 'fissure-h', 'fissure-r') if has(i)]
+    NODES = [i for i in S if S[i]['group'] == 'nodes']
+    LATD = {'left': (-1, -0.25, 0.25), 'right': (1, -0.25, 0.25)}
+
+    def add_case(key, patho, case, sources=()):
+        """insert a pathophysiology step at the start and a case step after the anatomy; renumber the sequence strip"""
+        if key not in procs: return
+        p = procs[key]; st = p['steps']
+        a = min((s['seq'] for s in st if s['phase'] in ('Anatomy',) and s.get('seq') is not None), default=-1)
+        for s in st:
+            if s.get('seq') is not None: s['seq'] = s['seq'] + (1 if s['seq'] <= a else 2)
+        last_anat = max((i for i, s in enumerate(st) if s['phase'] == 'Anatomy'), default=-1)
+        pat = {**patho, 'id': f'{key}-patho', 'seq': 0, 'askAfter': True}
+        cas = {**case, 'id': f'{key}-case', 'seq': a + 2}
+        p['steps'] = [pat, *st[:last_anat + 1], cas, *st[last_anat + 1:]]
+        sq = list(p.get('sequence') or [])
+        sq.insert(0, {'label': 'Patho', 'kind': 'other'}); sq.insert(a + 2, {'label': 'Case', 'kind': 'other'})
+        p['sequence'] = sq
+        p['sources'] = [*sources, *[x for x in p.get('sources', []) if x not in sources]]
+        for s in p['steps']:
+            named = set(s.get('highlight', [])) | set(s.get('danger', [])) | set(s.get('labels', [])) | set(s.get('show', []))
+            s['hide'] = [*s.get('hide', []), *[i for i in PATH_IDS if i not in named]]
+            if s['phase'] in ('Pathophysiology', 'Case'):          # the disease, uncluttered: no intrapulmonary branches, faint spine
+                s['hide'] += [i for i in S if (S[i]['group'].endswith('-intra') or S[i]['group'] == 'segments') and i not in named]
+                s['opacity'] = {**{f'vert-t{i}': 0.18 for i in range(1, 13)}, **s.get('opacity', {})}
+            for kk in ('highlight', 'danger', 'labels', 'show', 'hide'):
+                if kk in s: s[kk] = [i for i in s[kk] if has(i) or i == 'skin']
+
+    def case(title, lead, body, quiz, view, show, hide=(), labels=(), opacity=None, danger=()):
+        return {'phase': 'Case', 'title': title, 'lead': lead, 'body': body, 'ask': quiz, 'view': view, 'show': list(show), 'hide': list(hide),
+                'labels': list(labels), 'danger': list(danger), 'opacity': opacity or {}, 'ct': ct(R(view['target']), 'axial', 'lung')}
+
+    # ------------------------------------------------------------------------------------------ sources
+    LC_SRC = [
+        {'title': 'Rami-Porta R, et al. The IASLC Lung Cancer Staging Project: proposals for revision of the TNM stage groups in the forthcoming (ninth) edition of the TNM classification for lung cancer. J Thorac Oncol 2024;19:1007-27', 'url': 'https://www.jto.org/article/S1556-0864(24)00079-0/fulltext'},
+        {'title': 'Klug M, et al. The ninth edition of TNM staging for lung cancer: what radiologists need to know. RadioGraphics 2024;44:e240057', 'url': 'https://pubs.rsna.org/doi/10.1148/rg.240057'},
+        {'title': 'Brunelli A, Kim AW, Berger KI, et al. Physiologic evaluation of the patient with lung cancer being considered for resectional surgery. ACCP guidelines. Chest 2013;143(5 Suppl):e166S-e190S', 'url': 'https://journal.chestnet.org/article/S0012-3692(13)60294-9/fulltext'},
+        {'title': 'De Leyn P, et al. Revised ESTS guidelines for preoperative mediastinal lymph node staging for non-small-cell lung cancer. Eur J Cardiothorac Surg 2014;45:787-98', 'url': pm('De Leyn revised ESTS guidelines preoperative mediastinal lymph node staging 2014')},
+        {'title': 'Saji H, et al. Segmentectomy versus lobectomy in small-sized peripheral non-small-cell lung cancer (JCOG0802/WJOG4607L). Lancet 2022;399:1607-17', 'url': 'https://www.thelancet.com/journals/lancet/article/PIIS0140-6736(21)02333-3/abstract'},
+        {'title': 'Altorki N, et al. Lobar or sublobar resection for peripheral stage IA non-small-cell lung cancer (CALGB 140503). N Engl J Med 2023;388:489-98', 'url': 'https://www.nejm.org/doi/full/10.1056/NEJMoa2212083'},
+        {'title': 'Lim E, et al. Video-assisted thoracoscopic versus open lobectomy in patients with early-stage lung cancer: the VIOLET RCT. Health Technol Assess 2022;26(48)', 'url': 'https://www.ncbi.nlm.nih.gov/books/NBK587651/'},
+        {'title': 'Tsuboi M, et al. Overall survival with osimertinib in resected EGFR-mutated NSCLC (ADAURA). N Engl J Med 2023;389:137-47', 'url': 'https://www.nejm.org/doi/full/10.1056/NEJMoa2304594'},
+        {'title': 'Forde PM, et al. Neoadjuvant nivolumab plus chemotherapy in resectable lung cancer (CheckMate 816). N Engl J Med 2022;386:1973-85', 'url': 'https://www.nejm.org/doi/full/10.1056/NEJMoa2202170'},
+        {'title': 'Daniels J, et al. Lung cancer at Korle-Bu Teaching Hospital, Ghana. ecancermedicalscience 2025', 'url': 'https://pmc.ncbi.nlm.nih.gov/articles/PMC12221260'},
+    ]
+    TB_SRC = [
+        {'title': 'Denning DW, et al. Chronic pulmonary aspergillosis: rationale and clinical guidelines for diagnosis and management (ESCMID/ERS). Eur Respir J 2016;47:45-68', 'url': 'https://publications.ersnet.org/content/erj/47/1/45'},
+        {'title': 'Akbari JG, et al. Clinical profile and surgical outcome for pulmonary aspergilloma: a single center experience. Ann Thorac Surg 2005;80:1067-72', 'url': 'https://www.sciencedirect.com/science/article/abs/pii/S0003497505005382'},
+        {'title': 'Kim YT, et al. Surgical treatment of pulmonary aspergilloma. Ann Thorac Surg 2005;79:294-8', 'url': 'https://www.sciencedirect.com/science/article/abs/pii/S0003497504011920'},
+        {'title': 'Panda A, Bhalla AS, Goyal A. Bronchial artery embolization in hemoptysis: a systematic review. Diagn Interv Radiol 2017;23:307-17', 'url': 'https://dirjournal.org/articles/bronchial-artery-embolization-in-hemoptysis-a-systematic-review/dir.2017.16454'},
+        {'title': 'Migliori GB, et al. Clinical standards for the assessment, management and rehabilitation of post-TB lung disease. Int J Tuberc Lung Dis 2021;25:797-813', 'url': 'https://scienceportal.msf.org/api/assets/7348/download/13290'},
+        {'title': 'Ivanova O, et al. Lung function testing and prediction equations in adult population with a history of tuberculosis: a systematic review and meta-analysis. Eur Respir Rev 2023;32:220221', 'url': 'https://publications.ersnet.org/content/errev/32/168/220221'},
+        {'title': 'Kim YT, et al. Pneumonectomy for tuberculous destroyed lung. Eur J Cardiothorac Surg 2003;23:833-9', 'url': 'https://academic.oup.com/ejcts/article/23/5/833/407385'},
+    ]
+    CONG_SRC = [
+        {'title': 'Mukhtar S, Sharma S, Trovela DA. Congenital lobar emphysema. StatPearls 2024', 'url': 'https://www.ncbi.nlm.nih.gov/books/NBK560602/'},
+        {'title': 'Congenital lobar emphysema: anaesthetic considerations. OpenAnesthesia 2025', 'url': 'https://www.openanesthesia.org/keywords/congenital-lobar-emphysema/'},
+        {'title': 'Crombleholme TM, et al. Cystic adenomatoid malformation volume ratio predicts outcome in prenatally diagnosed CCAM. J Pediatr Surg 2002;37:331-8', 'url': 'https://www.sciencedirect.com/science/article/abs/pii/S0022346802749269'},
+        {'title': 'Congenital pulmonary airway malformation. StatPearls', 'url': 'https://www.statpearls.com/point-of-care/20208'},
+        {'title': 'Dehner LP, et al. Congenital pulmonary airway malformations with a reconsideration and current classification. Pediatr Dev Pathol 2023', 'url': 'https://dx.doi.org/10.1177/10935266221146823'},
+    ]
+    MG_SRC = [
+        {'title': 'Gilhus NE. Myasthenia gravis. N Engl J Med 2016;375:2570-81', 'url': 'https://www.nejm.org/doi/abs/10.1056/NEJMra1602678'},
+        {'title': 'Gilhus NE, et al. Myasthenia gravis. Nat Rev Dis Primers 2019;5:30', 'url': 'https://www.nature.com/articles/s41572-019-0079-y'},
+        {'title': 'Wolfe GI, et al. Long-term effect of thymectomy plus prednisone versus prednisone alone in myasthenia gravis: 2-year extension of the MGTX trial. Lancet Neurol 2019;18:259-68', 'url': 'https://www.sciencedirect.com/science/article/abs/pii/S1474442218303922'},
+        {'title': 'Narayanaswami P, et al. International consensus guidance for management of myasthenia gravis: 2020 update. Neurology 2021;96:114-22', 'url': 'https://ern-euro-nmd.eu/publication/international-consensus-guidance-for-management-of-myasthenia-gravis-2020-update/'},
+        {'title': 'Sanders DB, et al. International consensus guidance for management of myasthenia gravis. Neurology 2016;87:419-25', 'url': 'https://www.neurology.org/doi/10.1212/WNL.0000000000002790'},
+        {'title': 'Leuzzi G, et al. Prediction of postoperative myasthenic crisis after thymectomy. Eur J Cardiothorac Surg 2014;45:e76', 'url': 'https://academic.oup.com/ejcts/article/45/4/e76/362404'},
+        {'title': 'Detterbeck FC, et al. The Masaoka-Koga stage classification for thymic malignancies. J Thorac Oncol 2011;6(7 Suppl 3):S1710-6', 'url': 'https://www.iccr-cancer.org/datasets/docs/iccr-thymic-stage/'},
+        {'title': 'College of American Pathologists. Protocol for thymic epithelial tumours (AJCC/UICC 9th edition TNM), v5.0', 'url': 'https://documents.cap.org/protocols/Thymus_5.0.0.0.REL.CAPCP.pdf'},
+        {'title': 'Friedant AJ, et al. Minimally invasive versus open thymectomy for thymic malignancies: systematic review and meta-analysis. J Thorac Oncol 2016;11:30-8', 'url': 'https://www.sciencedirect.com/science/article/pii/S1556086415000106'},
+        {'title': 'Lee Y, et al. Minimally invasive vs open thymectomy for myasthenia gravis: meta-analysis. Surg Endosc 2023;37:3321-39', 'url': 'https://link.springer.com/article/10.1007/s00464-022-09757-y'},
+    ]
+    ESO_SRC = [
+        {'title': 'Middleton DRS, et al. Alcohol consumption and oesophageal squamous cell cancer risk in east Africa (ESCCAPE). Lancet Glob Health 2022;10:e236-45', 'url': 'https://pure.qub.ac.uk/en/publications/alcohol-consumption-and-oesophageal-squamous-cell-cancer-risk-in-'},
+        {'title': 'Middleton DRS, et al. Hot beverages and oesophageal cancer risk in western Kenya: findings from the ESCCAPE case-control study. Int J Cancer 2019;144:2669-76', 'url': 'https://pure.qub.ac.uk/en/publications/hot-beverages-and-oesophageal-cancer-risk-in-western-kenya-findin'},
+        {'title': 'Oesophageal cancer in young patients, Bomet District (Tenwek), Kenya. Lancet 2002;360:462-3', 'url': 'https://www.thelancet.com/journals/lancet/article/PIIS0140-6736(02)09639-3/abstract'},
+        {'title': 'Rice TW, Patil DT, Blackstone EH. 8th edition AJCC/UICC staging of cancers of the esophagus and esophagogastric junction. Ann Cardiothorac Surg 2017;6:119-30', 'url': 'https://www.annalscts.com/article/view/14237/pdf'},
+        {'title': 'van Hagen P, et al. Preoperative chemoradiotherapy for esophageal or junctional cancer (CROSS). N Engl J Med 2012;366:2074-84', 'url': 'https://www.nejm.org/doi/full/10.1056/NEJMoa1112088'},
+        {'title': 'Shapiro J, et al. Neoadjuvant chemoradiotherapy plus surgery versus surgery alone for oesophageal cancer (CROSS long-term). Lancet Oncol 2015;16:1090-8', 'url': 'https://www.sciencedirect.com/science/article/abs/pii/S1470204515000406'},
+        {'title': 'Hoeppner J, et al. Perioperative chemotherapy or preoperative chemoradiotherapy in esophageal cancer (ESOPEC). N Engl J Med 2025', 'url': 'https://www.nejm.org/doi/abs/10.1056/NEJMoa2409408'},
+        {'title': 'Kelly RJ, et al. Adjuvant nivolumab in resected esophageal or gastroesophageal junction cancer (CheckMate 577). N Engl J Med 2021;384:1191-203', 'url': 'https://www.nejm.org/doi/full/10.1056/NEJMoa2032125'},
+        {'title': 'Biere SS, et al. Minimally invasive versus open oesophagectomy (TIME). Lancet 2012;379:1887-92', 'url': pm('Biere minimally invasive versus open oesophagectomy TIME Lancet 2012')},
+        {'title': 'Mariette C, et al. Hybrid minimally invasive esophagectomy for esophageal cancer (MIRO). N Engl J Med 2019;380:152-62', 'url': 'https://www.nejm.org/doi/full/10.1056/NEJMoa1805101'},
+        {'title': 'Stahl M, et al. Chemoradiation with and without surgery in locally advanced squamous cell carcinoma of the esophagus. J Clin Oncol 2005;23:2310-7', 'url': pm('Stahl chemoradiation with and without surgery squamous esophagus 2005')},
+        {'title': 'Homs MY, et al. Single-dose brachytherapy versus metal stent placement for the palliation of dysphagia (SIREC). Lancet 2004;364:1497-504', 'url': pm('Homs single-dose brachytherapy versus metal stent SIREC 2004')},
+    ]
+    EMP_SRC = [
+        {'title': 'Roberts ME, Rahman NM, Maskell NA, et al. British Thoracic Society guideline for pleural disease. Thorax 2023;78:1143-56', 'url': 'https://www.brit-thoracic.org.uk/about-us/news/2023/british-thoracic-society-publishes-a-guideline-and-clinical-statement-on-pleural-disease/'},
+        {'title': 'Davies HE, Davies RJO, Davies CWH. Management of pleural infection in adults: BTS pleural disease guideline 2010. Thorax 2010;65(Suppl 2):ii41-53', 'url': pm('Davies management of pleural infection in adults BTS 2010')},
+        {'title': 'Maskell NA, et al. U.K. controlled trial of intrapleural streptokinase for pleural infection (MIST1). N Engl J Med 2005;352:865-74', 'url': pm('Maskell intrapleural streptokinase pleural infection MIST1 2005')},
+        {'title': 'Rahman NM, et al. A clinical score (RAPID) to identify those at risk for poor outcome at presentation in patients with pleural infection. Chest 2014;145:848-55', 'url': 'https://discovery.ucl.ac.uk/id/eprint/1430484/'},
+        {'title': 'Corcoran JP, et al. Prospective validation of the RAPID clinical risk prediction score (PILOT). Eur Respir J 2020;56:2000130', 'url': 'https://publications.ersnet.org/content/erj/56/5/2000130'},
+        {'title': 'Pan H, et al. VATS versus open thoracotomy decortication for empyema: a meta-analysis. J Thorac Dis 2017;9:2006-14', 'url': 'https://jtd.amegroups.org/article/view/14673/11890'},
+        {'title': 'Mwesige M, et al. Management and outcomes of thoracic empyema at Mulago National Referral Hospital, Uganda. BMC Pulm Med 2025', 'url': 'https://bmcpulmmed.biomedcentral.com/articles/10.1186/s12890-025-03861-0'},
+        {'title': 'Vorster MJ, et al. Tuberculous pleural effusions: advances and controversies. J Thorac Dis 2015;7:981-91', 'url': 'https://jtd.amegroups.org/article/view/4221/4848'},
+    ]
+    PPE_SRC = [
+        {'title': 'Deschamps C, et al. Empyema and bronchopleural fistula after pneumonectomy: factors affecting incidence. Ann Thorac Surg 2001;72:243-8', 'url': 'https://www.annalsthoracicsurgery.org/article/S0003-4975(01)02681-9/fulltext'},
+        {'title': 'Wali A, Billè A. Complications of thoracic surgery: post-pneumonectomy bronchopleural fistula. Shanghai Chest 2021;5:3', 'url': 'https://shc.amegroups.org/article/view/5883/html'},
+        {'title': 'Lois M, Noppen M. Bronchopleural fistulas: an overview of the problem with special focus on endoscopic management. Chest 2005;128:3955-65', 'url': 'https://www.sciencedirect.com/science/article/abs/pii/S0012369215496400'},
+        {'title': 'Gritsiuta AI, Stovall A, Petrov RV. Surgical strategies in the management of postoperative bronchopleural fistula: a narrative review. AME Surg J 2025;5:10', 'url': 'https://asj.amegroups.org/article/view/99260/html'},
+        {'title': 'Clagett OT, Geraci JE. A procedure for the management of postpneumonectomy empyema. J Thorac Cardiovasc Surg 1963;45:141-5', 'url': pm('Clagett Geraci procedure management postpneumonectomy empyema 1963')},
+        {'title': 'Pairolero PC, et al. Postpneumonectomy empyema: the role of intrathoracic muscle transposition. J Thorac Cardiovasc Surg 1990;99:958-68', 'url': pm('Pairolero postpneumonectomy empyema intrathoracic muscle transposition 1990')},
+        {'title': 'Zaheer S, et al. Postpneumonectomy empyema: results after the Clagett procedure. Ann Thorac Surg 2006;82:279-87', 'url': pm('Zaheer postpneumonectomy empyema Clagett procedure 2006')},
+        {'title': 'Schneiter D, et al. Accelerated treatment of postpneumonectomy empyema: a binational long-term study. J Thorac Cardiovasc Surg 2008;136:179-85', 'url': 'https://www.sciencedirect.com/science/article/pii/S0022522308004236'},
+        {'title': 'Di Maio M, et al. A meta-analysis of the impact of bronchial stump coverage on the risk of bronchopleural fistula after pneumonectomy. Eur J Cardiothorac Surg 2015;48:196-200', 'url': 'https://academic.oup.com/ejcts/article/48/2/196/445759'},
+        {'title': 'Symbas PN, et al. Modified Eloesser flap. Ann Thorac Surg 1971;12:69-78', 'url': pm('Symbas Eloesser flap 1971')},
+    ]
+
+    # ------------------------------------------------------------------------------------------ lung cancer
+    TNM = ('<table class="mini"><tr><th>T</th><th>Tumour (9th edition keeps the 8th-edition T)</th></tr>'
+           '<tr><td>T1</td><td>≤3 cm, surrounded by lung (T1a ≤1, T1b >1–2, T1c >2–3 cm)</td></tr>'
+           '<tr><td>T2</td><td>>3–5 cm (T2a >3–4, T2b >4–5), or main bronchus (not carina), visceral pleura, collapse to the hilum</td></tr>'
+           '<tr><td>T3</td><td>>5–7 cm, or chest wall, phrenic nerve, parietal pericardium, a separate nodule in the same lobe</td></tr>'
+           '<tr><td>T4</td><td>>7 cm, or mediastinum, heart, great vessels, trachea, carina, oesophagus, diaphragm, vertebra, a nodule in another ipsilateral lobe</td></tr>'
+           '<tr><th>N</th><th>Nodes</th></tr>'
+           '<tr><td>N1</td><td>ipsilateral hilar or intrapulmonary (stations 10–14)</td></tr>'
+           '<tr><td>N2a / N2b</td><td>ipsilateral mediastinal or subcarinal: <b>one station</b> (N2a) or <b>several stations</b> (N2b), new in the 9th edition</td></tr>'
+           '<tr><td>N3</td><td>contralateral mediastinal or hilar, or any scalene or supraclavicular</td></tr>'
+           '<tr><th>M</th><th>Metastasis</th></tr>'
+           '<tr><td>M1a–c</td><td>M1a pleural or pericardial spread, contralateral nodules; M1b one extrathoracic metastasis; <b>M1c1</b> several in one organ system, <b>M1c2</b> several organ systems (new)</td></tr></table>')
+
+    def lc_patho(side, lobe, focus=''):
+        tum = f'tumour-{lobe}' if has(f'tumour-{lobe}') else f'tumour-central-{side[0]}'
+        return {'phase': 'Pathophysiology', 'title': 'Pathophysiology and staging: lung cancer',
+                'body': '<p><b>In Kenya and across Africa</b> lung cancer usually presents late: in series from Ghana and West Africa three-quarters or more are stage III–IV at diagnosis. A cough, weight loss and a shadow are often treated first as <b>tuberculosis</b>, frequently without bacteriological confirmation; a smear- or GeneXpert-negative "TB" that does not improve needs a CT and a tissue diagnosis.</p>'
+                        '<p><b>How it arises.</b> Carcinogens (tobacco above all; also biomass smoke, occupational exposures, radon) cause accumulating mutations in the airway epithelium. <b>Adenocarcinoma</b> (commonest, peripheral, and in never-smokers often driven by <b>EGFR</b> or <b>ALK</b> alterations) and <b>squamous cell carcinoma</b> (central, smokers) make up most non-small-cell cancer. Small-cell cancer is rarely surgical.</p>'
+                        '<p><b>How it spreads</b> decides the stage and the operation:</p>'
+                        + chain('Primary tumour (T: size, invasion)', 'Intrapulmonary and hilar nodes (N1)', '!Mediastinal nodes (N2)', '!Contralateral or supraclavicular (N3)')
+                        + chain('Primary tumour', '!Blood: brain, bone, adrenal, liver (M1)')
+                        + TNM
+                        + '<p><b>Before an operation</b>: CT and <b>PET-CT</b>; <b>invasive mediastinal staging</b> (EBUS/EUS needle aspiration, or mediastinoscopy) when the tumour is central, over 3 cm, or the nodes are enlarged or PET-positive; brain imaging for stage II and above. Then fitness: FEV1 and DLCO, and the <b>predicted postoperative</b> values (ppo = preoperative value × segments remaining / 19; by lobe: RUL 3, RML 2, RLL 5, LUL 5 with the lingula, LLL 4).</p>'
+                        + focus
+                        + ev('9th-edition TNM from the IASLC (Rami-Porta et al., J Thorac Oncol 2024): N2 split into N2a (single station) and N2b (multiple stations); M1c into M1c1 and M1c2; T1N1 moves to stage IIA, T1N2a is IIB. ACCP 2013 physiological evaluation (Brunelli et al.): ppoFEV1 and ppoDLCO both over 60% is low risk; 30–60% needs a stair climb (over 22 m) or shuttle walk (over 400 m); under 30%, or a poor walk test, needs CPET (VO2max over 20 mL/kg/min low risk, under 10 high risk). ESTS 2014 guideline for invasive mediastinal staging (De Leyn et al.).'),
+                'view': tl(Pt(tum), LATD[side], 320), 'spin': True,
+                'show': [*LOBE_IDS, tum, *NODES, 'trachea'], 'hide': [], 'opacity': {**{i: 0.28 for i in LOBE_IDS}},
+                'highlight': [tum], 'labels': [tum, *[n for n in NODES if n.endswith(side[0]) or n in ('ln-7', 'ln-5', 'ln-6', 'ln-4r')][:6]],
+                'ask': ask('Under the 9th edition, a 2.6 cm tumour (T1c) with metastasis in a single mediastinal station (subcarinal, station 7) and no distant spread is stage…', 'IIB (T1 N2a)',
+                           'The 9th edition splits N2: a single station (N2a) with a T1 tumour is IIB; several stations (N2b) make it IIIA. Many single-station N2 patients are now treated with neoadjuvant chemo-immunotherapy and surgery.',
+                           'IIIA', 'IIIB', 'IV'),
+                'ct': ct(R(Pt(tum)), 'axial', 'lung')}
+
+    def lc_case(side, lobe, which):
+        tum = f'tumour-{lobe}'
+        v = tl(Pt(tum), LATD[side], 300)
+        show = [*LOBE_IDS, tum, *NODES]; op_ = {i: 0.3 for i in LOBE_IDS}
+        C_ = {
+            'lul': case('Case: an EGFR-positive adenocarcinoma in a never-smoker',
+                        '<p>A <b>58-year-old woman</b>, never a smoker, cooked over a wood fire for 30 years. Six months of cough; given anti-TB treatment twice at a health centre without a positive sputum test. CT: a <b>3.4 cm</b> mass in the left upper lobe, no enlarged nodes; biopsy: <b>adenocarcinoma, EGFR exon 19 deletion</b>. PET: no nodal or distant uptake. EBUS: stations 4L, 7 and 10L negative. FEV1 78%, DLCO 72% predicted.</p>',
+                        '<p><b>Stage</b>: T2a (3–4 cm) N0 M0 = <b>IB</b>. <b>Why EBUS with a negative PET?</b> A tumour over 3 cm (or central, or cN1) carries enough risk of occult N2 to justify invasive staging. '
+                        '<b>Fitness</b>: the left upper lobe (with the lingula) has 5 of the 19 segments: ppoFEV1 = 78 × 14/19 ≈ 57%, ppoDLCO = 72 × 14/19 ≈ 53%; both are in the 30–60% band, and she climbs three flights (over 22 m) without stopping: fit for lobectomy.</p>'
+                        '<p><b>Plan</b>: VATS left upper lobectomy with systematic nodal dissection, then adjuvant <b>osimertinib</b> for the EGFR mutation.</p>'
+                        + ev('VIOLET (HTA 2022; 503 patients): VATS lobectomy gave better physical function at 5 weeks and fewer in-hospital complications than open lobectomy, with no loss of nodal upstaging. ADAURA (NEJM 2023): adjuvant osimertinib after resection of EGFR-mutant stage IB–IIIA disease improved 5-year overall survival (88% vs 78%, HR 0.49).'),
+                        ask('Why did she need EBUS when the PET showed no nodal uptake?', 'A tumour over 3 cm carries a significant risk of occult mediastinal nodes; guidelines advise invasive staging for tumours over 3 cm, central tumours or cN1',
+                            'PET misses small nodal deposits. ESTS 2014 recommends invasive staging for central tumours, tumours over 3 cm, or suspected N1 even when PET is negative.',
+                            'EBUS is required before every lobectomy', 'To confirm the EGFR mutation', 'Because she had been treated for TB'),
+                        v, show, labels=[tum, 'ln-5', 'ln-6', 'ln-7', 'ln-10l'], opacity=op_),
+            'lll': case('Case: a squamous carcinoma with a hilar node',
+                        '<p>A <b>66-year-old man</b>, smoker (45 pack-years). A <b>4.6 cm</b> squamous cell carcinoma in the left lower lobe; PET: uptake in an <b>interlobar node (station 11L)</b>, mediastinum clear; EBUS of stations 4L and 7 negative; no distant disease. FEV1 70%, DLCO 64%.</p>',
+                        '<p><b>Stage</b>: T2b (4–5 cm) N1 M0 = <b>IIB</b>. Resectable by lobectomy (a sleeve if the node is fused to the lower lobe bronchus origin).</p>'
+                        '<p><b>Sequence</b>: for stage II–IIIA disease, <b>neoadjuvant chemo-immunotherapy</b> (platinum doublet plus nivolumab, three cycles) before surgery is now an evidence-based option where available; otherwise surgery then adjuvant chemotherapy.</p>'
+                        + ev('CheckMate 816 (NEJM 2022; 358 patients, stage IB–IIIA): three cycles of nivolumab plus chemotherapy before surgery gave a pathological complete response in 24% vs 2.2% with chemotherapy alone, and longer event-free survival (median 31.6 vs 20.8 months).'),
+                        ask('What stage is a 4.6 cm tumour with an interlobar (station 11) node and a negative mediastinum?', 'IIB (T2b N1 M0)',
+                            'T2b is over 4 up to 5 cm; station 11 is N1 (intrapulmonary/hilar). T2 N1 is stage IIB.', 'IIA', 'IIIA', 'IB'),
+                        v, show, labels=[tum, 'ln-11l', 'ln-10l', 'ln-7'], opacity=op_),
+            'rul': case('Case: a small peripheral adenocarcinoma: segment or lobe?',
+                        '<p>A <b>54-year-old woman</b>. An incidental <b>1.8 cm</b> part-solid nodule in the right upper lobe (consolidation-to-tumour ratio 0.8), growing over 6 months; PET: mild uptake, nodes clear. It lies <b>across the plane between the apical (S1) and anterior (S3) segments</b>, 12 mm from it. FEV1 92%.</p>',
+                        '<p><b>Stage</b>: cT1b N0 = <b>IA2</b>. For a peripheral tumour of 2 cm or less with confirmed node-negative disease, an anatomical <b>segmentectomy</b> is now equivalent or better than lobectomy for survival. But it needs a <b>margin</b> at least as wide as the tumour (2 cm, or the tumour diameter). Straddling the S1/S3 plane, a single segment would not give that margin: a bisegmentectomy or, as here, a <b>lobectomy</b>.</p>'
+                        + ev('JCOG0802/WJOG4607L (Lancet 2022; tumours ≤2 cm, C/T ratio >0.5): 5-year overall survival 94.3% after segmentectomy vs 91.1% after lobectomy (HR 0.66), with more local recurrence (10.5% vs 5.4%). CALGB 140503 (NEJM 2023; ≤2 cm, node-negative on frozen section): sublobar resection was non-inferior for disease-free survival (63.6% vs 64.1%).'),
+                        ask('Which trial showed better overall survival with segmentectomy than lobectomy for peripheral tumours of 2 cm or less?', 'JCOG0802/WJOG4607L',
+                            '5-year OS 94.3% vs 91.1%, attributed to preserved lung function and fewer deaths from other causes, despite more local recurrence.', 'CALGB 140503', 'VIOLET', 'ADAURA'),
+                        v, show, labels=[tum, 'ln-4r', 'ln-10r', 'ln-7'], opacity=op_),
+            'rml': case('Case: is he fit? Predicting lung function',
+                        '<p>A <b>71-year-old man</b>, ex-smoker with COPD, a <b>2.6 cm</b> adenocarcinoma in the middle lobe, cT1c N0 (EBUS negative). <b>FEV1 55%</b>, <b>DLCO 50%</b> predicted. He walks 2 km a day.</p>',
+                        '<p><b>Predicted postoperative values</b>: the middle lobe has <b>2</b> of the 19 segments. ppoFEV1 = 55 × (19 − 2)/19 ≈ <b>49%</b>; ppoDLCO = 50 × 17/19 ≈ <b>45%</b>. Both lie between 30 and 60%: a <b>low-technology exercise test</b> decides. He climbs 25 m of stairs without stopping: <b>proceed</b> (middle lobectomy, VATS).</p>'
+                        + ev('ACCP 2013: ppoFEV1 and ppoDLCO >60% low risk; either 30–60%: stair climb >22 m or shuttle walk >400 m is satisfactory, otherwise CPET; either <30%: CPET, with VO2max <10 mL/kg/min (or <35% predicted) high risk.'),
+                        ask('FEV1 55% and DLCO 50%; a middle lobectomy removes 2 of 19 segments. What next?', 'Both ppo values are 30–60%: do a stair climb or shuttle walk test',
+                            'ppoFEV1 ≈ 49% and ppoDLCO ≈ 45%. In the 30–60% band, a simple exercise test (stairs >22 m, shuttle >400 m) separates those who can proceed from those who need CPET.',
+                            'Operate: both are over 40%', 'He is inoperable: DLCO is under 60%', 'Go straight to pneumonectomy work-up'),
+                        v, show, labels=[tum, 'rml', 'ln-10r'], opacity=op_),
+            'rll': case('Case: single-station N2 disease',
+                        '<p>A <b>60-year-old man</b>, smoker. A <b>5.8 cm</b> squamous carcinoma in the right lower lobe; PET: uptake in the <b>subcarinal node (station 7)</b> only; EBUS: station 7 positive, 4R and 4L negative; brain MRI clear. FEV1 80%.</p>',
+                        '<p><b>Stage</b>: T3 (5–7 cm) <b>N2a</b> (one mediastinal station) M0 = <b>IIIA</b>. N2 disease is treated with <b>multimodality</b> therapy: neoadjuvant chemo-immunotherapy, then restaging and lobectomy with nodal dissection if the disease responds and a lobectomy suffices; or definitive chemoradiotherapy followed by durvalumab. Multi-station (N2b) or bulky N2 favours the non-surgical route. The <b>Tumour Board</b> decides.</p>'
+                        + ev('9th-edition staging (IASLC 2024): T3 N2a is IIIA; T3 N2b is IIIB. CheckMate 816: neoadjuvant nivolumab plus chemotherapy improved pCR (24% vs 2.2%) and event-free survival in resectable IB–IIIA disease; about two-thirds of patients were stage IIIA.'),
+                        ask('What distinguishes N2a from N2b in the 9th edition?', 'The number of mediastinal stations involved: one (N2a) or several (N2b)',
+                            'The count is by station, not by the number of nodes, and it carries prognostic weight: T3 N2a is IIIA, T3 N2b IIIB.',
+                            'Node size over 1 cm', 'Ipsilateral versus contralateral nodes', 'PET uptake intensity'),
+                        v, show, labels=[tum, 'ln-7', 'ln-4r', 'ln-9r'], opacity=op_, danger=['ln-7']),
+        }
+        return C_[lobe]
+
+    def seg_case(lobe, segname):
+        tum = f'tumour-{lobe}'
+        return case(f'Case: a small peripheral tumour: {segname}',
+                    f'<p>A <b>63-year-old woman</b> with a <b>1.6 cm</b> solid-predominant adenocarcinoma in the {segname}, well inside the segment (margin to the intersegmental plane over 2 cm). PET: nodes clear; <b>FEV1 62%</b> (COPD).</p>',
+                    '<p><b>Stage</b>: cT1b N0 = IA2. An anatomical <b>segmentectomy</b> with sampling of hilar and mediastinal nodes (frozen section: if a node is positive, convert to lobectomy). It saves lung she needs, and in JCOG0802 it gave better overall survival than lobectomy.</p>'
+                    '<p>The margin must be at least 2 cm or the tumour\'s diameter; the intersegmental plane is found by inflation–deflation or indocyanine green after the segmental artery is divided.</p>'
+                    + ev('JCOG0802 (Lancet 2022): 5-year OS 94.3% segmentectomy vs 91.1% lobectomy; local recurrence 10.5% vs 5.4%. CALGB 140503 (NEJM 2023): sublobar resection non-inferior for DFS and OS; FEV1 about 2 percentage points better at 6 months.'),
+                    ask('During segmentectomy the frozen section of a hilar node (station 12) is positive. What now?', 'Convert to lobectomy with systematic nodal dissection',
+                        'Both trials required node-negative disease; N1 disease needs a lobectomy (and adjuvant or perioperative systemic therapy).', 'Continue the segmentectomy', 'Close and refer for radiotherapy'),
+                    tl(Pt(tum), LATD['left'], 280), [*LOBE_IDS, tum, *NODES], labels=[tum, 'ln-10l', 'ln-11l'], opacity={i: 0.3 for i in LOBE_IDS})
+
+    # ------------------------------------------------------------------------------------------ post-TB lung, aspergilloma
+    def tb_patho(destroyed=False):
+        tgt = Pt('aspergilloma') if not destroyed and 'aspergilloma' in LM else Pt('lul')
+        return {'phase': 'Pathophysiology', 'title': 'Pathophysiology: post-tuberculous lung ' + ('destruction' if destroyed else 'and aspergilloma'),
+                'body': '<p><b>Cured is not healed.</b> Up to half of people who complete TB treatment are left with lung damage (post-TB lung disease): cavities, bronchiectasis, fibrosis and pleural thickening, with obstruction, restriction or both.</p>'
+                        + chain('Caseous necrosis in the upper lobe', 'Liquefaction, discharged through a bronchus', 'Cavity', 'Healing by fibrosis: thick wall, traction bronchiectasis')
+                        + chain('Cavity + bronchial and non-bronchial systemic arteries hypertrophy', '!Haemoptysis (from the systemic circulation, at systemic pressure)')
+                        + chain('Cavity colonised by <i>Aspergillus</i>', 'Fungal ball (aspergilloma)', '!Erosion of the vascular wall → haemoptysis', 'Chronic cavitary aspergillosis if it progresses')
+                        + ('<p><b>The destroyed lung</b>: a whole lung reduced to cavities, bronchiectasis and fibrosis, contracted, with the pleura fused to the chest wall. It is a reservoir of infection (TB, non-tuberculous mycobacteria, <i>Aspergillus</i>, bacteria), a source of recurrent haemoptysis, and it contributes no gas exchange, often only shunt.</p>' if destroyed else '')
+                        + '<p><b>Simple aspergilloma</b>: a single cavity with a fungal ball, few symptoms, no progression over 3 months. <b>Chronic cavitary pulmonary aspergillosis</b>: one or more cavities that enlarge or multiply over months, with symptoms and a positive <i>Aspergillus</i> IgG; treated with long-term oral azoles. Surgery is for simple aspergilloma, and for complex disease with haemoptysis once medically optimised.</p>'
+                        '<p><b>Massive haemoptysis</b> kills by asphyxia, not blood loss. First: lie the patient <b>bleeding side down</b>, secure the airway (a large tube, selective intubation of the good side or a bronchial blocker), then <b>bronchial artery embolisation</b> as a bridge; operate once the bleeding has settled and the patient is optimised.</p>'
+                        + ev('post-TB lung disease: Migliori et al. clinical standards (Int J Tuberc Lung Dis 2021): up to 50% have problems after treatment; a meta-analysis (Ivanova et al., Eur Respir Rev 2023; 14,621 people) found mean FEV1 77% predicted with obstruction in 22% and restriction in 23%. ESCMID/ERS guideline (Denning et al., Eur Respir J 2016): excise simple aspergilloma if technically possible. Bronchial artery embolisation stops haemoptysis in 70–99%, but it recurs in 10–57% (Panda et al., 2017).'),
+                'view': tl(tgt, (1, 0.6, 0.45) if not destroyed else LATD['left'], 260), 'spin': True,
+                'show': [*LOBE_IDS, *(['asp-cavity', 'asp-ball', 'asp-pleura'] if not destroyed else ['tb-cavities-l'])], 'opacity': {i: 0.25 for i in LOBE_IDS},
+                'highlight': ['asp-ball'] if not destroyed else ['tb-cavities-l'], 'labels': ['asp-cavity', 'asp-ball', 'asp-pleura'] if not destroyed else ['tb-cavities-l', 'lul', 'lll'],
+                'ask': ask('Where does the blood come from in haemoptysis from a post-TB cavity?', 'Hypertrophied bronchial and non-bronchial systemic arteries, at systemic pressure',
+                           'That is why it can be massive, and why bronchial (and intercostal, phrenic) artery embolisation controls it; the pulmonary artery is the source in a minority (Rasmussen aneurysm).',
+                           'The pulmonary veins', 'The fungal ball itself', 'Capillaries in the cavity wall only'),
+                'ct': ct(R(tgt), 'axial', 'lung')}
+
+    asp_case = case('Case: aspergilloma with haemoptysis',
+                    '<p>A <b>42-year-old man</b>, treated for pulmonary TB 8 years ago (cured). Three episodes of haemoptysis in 2 months, the last about 300 mL, controlled by <b>bronchial artery embolisation</b> 10 days ago. CT: a <b>thick-walled right apical cavity with a mobile fungal ball</b> (air crescent), the rest of the lung nearly normal; <i>Aspergillus</i> IgG positive. FEV1 72%. Sputum smear and GeneXpert negative.</p>',
+                    '<p><b>Simple aspergilloma</b> in a fit patient with recurrent haemoptysis: <b>resection</b> (right upper lobectomy). Embolisation bought time; bleeding recurs in a large proportion. Exclude active TB first.</p>'
+                    '<p><b>Why open</b> (or experienced VATS only): dense, vascular apical adhesions; an <b>extrapleural</b> plane may be needed; bleeding from the chest wall collaterals; the cavity must not be entered (spillage). An antifungal (voriconazole) around surgery is reasonable if spillage is likely. Plan a <b>muscle flap</b> (serratus or intercostal) if a residual space is expected.</p>'
+                    + ev('surgical series: Akbari et al. (Mayo, 2005): no deaths or major complications after resection of simple aspergilloma vs 4.3% mortality and 26% major complications for complex disease; Kim et al. (Korea, 2005): mortality 1.1%, morbidity 27%. ESCMID/ERS 2016: excise simple aspergilloma if technically possible.'),
+                    ask('After successful bronchial artery embolisation, why operate on this simple aspergilloma?', 'Haemoptysis often recurs after embolisation, and resection of a simple aspergilloma is curative with low risk',
+                        'Recurrence after embolisation ranges from 10% to over 50%; a simple aspergilloma in a fit patient is best removed, electively, once bleeding has settled.', 'Embolisation is curative; surgery is not needed', 'To obtain tissue for TB culture only', 'Only if itraconazole fails for 2 years'),
+                    tl(Pt('aspergilloma') if 'aspergilloma' in LM else Pt('rul'), (1, 0.6, 0.45), 240), [*LOBE_IDS, 'asp-cavity', 'asp-ball', 'asp-pleura'],
+                    labels=['asp-cavity', 'asp-ball'], opacity={i: 0.25 for i in LOBE_IDS})
+    destroyed_case = case('Case: a TB-destroyed left lung',
+                          '<p>A <b>29-year-old woman</b>, treated twice for TB (the second time for multidrug-resistant TB, now culture-negative after treatment). Recurrent haemoptysis and purulent sputum; CT: the <b>left lung destroyed</b> (cavities, bronchiectasis, volume loss, pleural thickening), the right lung clear. Perfusion scan: left lung 8% of total. FEV1 1.4 L (48%).</p>',
+                          '<p><b>Pneumonectomy</b> removes a lung that adds almost nothing to gas exchange (ppoFEV1 ≈ 1.4 × 0.92 ≈ 1.3 L) and is the source of her symptoms. It is still a high-risk operation: dense adhesions (extrapleural dissection), bleeding, and the highest risk of <b>bronchopleural fistula</b> and <b>empyema</b> of any pneumonectomy (benign, infected, often malnourished). Plan: nutrition first, culture conversion, a short bronchial stump <b>covered with a flap</b>.</p>'
+                          + ev('Kim et al. (Eur J Cardiothorac Surg 2003; 94 pneumonectomies for TB-destroyed lung): mortality 1.1%, bronchopleural fistula 7.5%, empyema 15.9%; low FEV1, positive sputum after surgery and aspergilloma predicted fistula.'),
+                          ask('Why does a perfusion scan matter before this pneumonectomy?', 'It shows how little the destroyed lung contributes, so the predicted postoperative function is close to the current function',
+                              'ppoFEV1 is calculated from the fraction of perfusion to the lung left behind; here 92% of perfusion goes to the right lung.', 'To look for pulmonary emboli', 'To locate the bleeding vessel', 'It is not needed'),
+                          tl(Pt('lul'), LATD['left'], 360), [*LOBE_IDS, 'tb-cavities-l'], labels=['tb-cavities-l'], opacity={i: 0.25 for i in LOBE_IDS})
+
+    # ------------------------------------------------------------------------------------------ congenital: CLE vs CPAM
+    def cong_patho(which):
+        tgt = Pt('lul') if which == 'cle' else Pt('lll')
+        return {'phase': 'Pathophysiology', 'title': 'Pathophysiology: congenital lobar emphysema versus CPAM',
+                'body': '<table class="mini"><tr><th></th><th>Congenital lobar emphysema (CLE)</th><th>Congenital pulmonary airway malformation (CPAM)</th></tr>'
+                        '<tr><td>What it is</td><td>A normal-structured lobe that <b>over-distends</b>: deficient bronchial cartilage (or compression) makes a <b>ball valve</b>; air enters, cannot leave</td><td>A <b>hamartomatous</b> lesion of cysts and abnormal airways, usually one lobe; blood supply from the pulmonary artery</td></tr>'
+                        '<tr><td>Where</td><td>Left upper lobe (about 43%), middle lobe (32%), right upper (21%); lower lobes rare</td><td>Any lobe; lower lobes often</td></tr>'
+                        '<tr><td>When</td><td>Neonatal respiratory distress; half at birth, most by 6 months</td><td>Most found on antenatal ultrasound; some present with infection later</td></tr>'
+                        '<tr><td>Imaging</td><td>A hyperlucent lobe <b>with vascular markings</b>, the other lobes compressed, the mediastinum shifted</td><td>Air-filled cysts of varying size; solid in microcystic types</td></tr>'
+                        '<tr><td>Risks</td><td>Progressive compression, tension physiology</td><td>Infection; hydrops in the fetus (CVR over 1.6); malignancy (mucinous adenocarcinoma with type 1; type 4 now regarded as cystic pleuropulmonary blastoma)</td></tr></table>'
+                        + chain('Deficient bronchial cartilage', 'Airway collapses in expiration (ball valve)', 'Air trapping, lobe over-distends', '!Compresses the other lobes, shifts the mediastinum', '!Respiratory distress, falling venous return')
+                        + '<p><b>The trap</b>: CLE looks like a tension pneumothorax. A chest drain into an emphysematous lobe makes a large air leak and can kill; look for lung markings in the lucent area before inserting one.</p>'
+                        '<p><b>Anaesthesia for CLE</b>: avoid nitrous oxide (it expands the lobe) and high positive-pressure ventilation before the chest is open (spontaneous breathing or gentle ventilation); the surgeon scrubbed at induction, ready to open the chest and deliver the lobe.</p>'
+                        '<p><b>Stocker types of CPAM</b>: 0 (acinar dysplasia, lethal), 1 (large cysts over 2 cm, 50–70%), 2 (small cysts, associated anomalies), 3 (solid-appearing, alveolar), 4 (peripheral cysts; now considered cystic pleuropulmonary blastoma).</p>'
+                        + ev('CLE: StatPearls 2024 (lobe distribution, presentation, pneumothorax pitfall) and OpenAnesthesia 2025 (anaesthetic management). CPAM: CPAM volume ratio over 1.6 predicted hydrops in 75% (Crombleholme et al., J Pediatr Surg 2002); resection of asymptomatic lesions at 6–12 months versus surveillance remains debated (StatPearls). Pathology update: Dehner et al., Pediatr Dev Pathol 2023.'),
+                'view': tl(tgt, LATD['left'], 330), 'spin': True,
+                'show': [*LOBE_IDS, 'cle-lul' if which == 'cle' else 'cpam-lll'], 'hide': ['lul'] if which == 'cle' else [], 'opacity': {i: 0.25 for i in LOBE_IDS},
+                'highlight': ['cle-lul' if which == 'cle' else 'cpam-lll'], 'labels': ['cle-lul' if which == 'cle' else 'cpam-lll', 'lll' if which == 'cle' else 'lul'],
+                'ask': ask('A 3-week-old with tachypnoea has a hyperlucent left upper zone and mediastinal shift. Vascular markings are visible in the lucent area. What must you avoid?', 'Inserting a chest drain for a presumed pneumothorax',
+                           'Vascular markings mean over-distended lung, not free air: this is CLE. A drain would enter the lobe and cause a large air leak. The treatment is lobectomy.',
+                           'A CT scan', 'Oxygen', 'Surgical consultation'),
+                'ct': ct(R(tgt), 'axial', 'lung')}
+
+    cle_case = case('Case: a neonate with congenital lobar emphysema',
+                    '<p>A <b>5-week-old boy</b>, increasing tachypnoea and feeding difficulty; SpO₂ 90% in air. Chest X-ray: a <b>hyperlucent left upper zone</b> with faint vascular markings, the left lower lobe compressed, the mediastinum pushed to the right. CT: an over-distended left upper lobe; no mass or vascular sling compressing the bronchus.</p>',
+                    '<p>Symptomatic CLE: <b>left upper lobectomy</b> (in a neonate by thoracotomy through the 4th or 5th space, or thoracoscopy in experienced hands). Mild, stable cases can be observed.</p>'
+                    '<p><b>In theatre</b>: gentle or spontaneous ventilation until the chest is open; no nitrous oxide. Once the chest is open the lobe <b>herniates</b> out of the incision and the child improves at once. Then the hilum as in the adult: the lingular and upper lobe arteries, the superior pulmonary vein, the upper lobe bronchus.</p>'
+                    '<p><i>The model shows an adult chest; the neonatal anatomy is the same in arrangement, much smaller in scale.</i></p>'
+                    + ev('StatPearls 2024: lobectomy for symptomatic CLE; conservative follow-up for mild cases. OpenAnesthesia 2025: avoid N₂O, minimise positive pressure, surgeon ready at induction.'),
+                    ask('At induction the child desaturates and becomes hypotensive with bag ventilation. Best immediate action?', 'Open the chest quickly and let the lobe decompress out of the wound',
+                        'Positive pressure inflates the trapped lobe further (tension physiology). Opening the chest decompresses it at once; this is why the surgeon is scrubbed at induction.', 'Increase the ventilation pressure', 'Give nitrous oxide', 'Insert a chest drain'),
+                    tl(Pt('lul'), LATD['left'], 330), [*LOBE_IDS, 'cle-lul'], hide=['lul'], labels=['cle-lul', 'lll'], opacity={i: 0.25 for i in LOBE_IDS})
+    cpam_case = case('Case: an infected CPAM in a child',
+                     '<p>A <b>6-year-old girl</b>, three admissions for "left lower lobe pneumonia" in a year. Antenatal scans were not done. CT after treatment: <b>multiple air-filled cysts up to 3 cm</b> in the left lower lobe, the cyst walls thick; the arterial supply from the pulmonary artery (no systemic feeder).</p>',
+                     '<p>A symptomatic, recurrently infected <b>type 1 CPAM</b>: <b>left lower lobectomy</b> once the infection has settled (a segmentectomy only if the lesion is small and clearly confined). Complete excision matters: type 1 lesions carry a risk of mucinous adenocarcinoma, especially if incompletely removed. Check the CT for a systemic artery (a hybrid lesion with sequestration): an unseen feeder from the aorta in the inferior ligament bleeds.</p>'
+                     + ev('StatPearls (CPAM): resection is indicated for symptomatic lesions; for asymptomatic ones, elective resection at 6–12 months versus surveillance is debated. Malignancy association: Dehner et al., Pediatr Dev Pathol 2023.'),
+                     ask('Before dividing the inferior pulmonary ligament in a lower lobe cystic lesion, what must the CT be checked for?', 'A systemic arterial feeder from the aorta (a hybrid lesion or sequestration)',
+                         'Sequestrations and hybrid lesions are supplied from the aorta, often through the inferior ligament; an unrecognised feeder retracts into the abdomen when cut.', 'A pulmonary vein anomaly', 'An enlarged subcarinal node', 'A pericardial cyst'),
+                     tl(Pt('lll'), LATD['left'], 330), [*LOBE_IDS, 'cpam-lll'], labels=['cpam-lll', 'lll'], opacity={i: 0.3 for i in LOBE_IDS})
+
+    # ------------------------------------------------------------------------------------------ myasthenia gravis and thymoma
+    TH_C = Pt('thymoma') if 'thymoma' in LM else Pt('thymus')
+    th_view = tl(TH_C, (0, 1, 0.25), 300)
+    TH_SHOW = ['thymus', 'thymoma', 'lbcv', 'svc', 'aorta', 'heart', 'n-phrenic', 'n-phrenic-r', 'pa-trunk']
+    mg_patho = {'phase': 'Pathophysiology', 'title': 'Pathophysiology: myasthenia gravis and the thymus',
+                'body': '<p><b>An antibody attack on the neuromuscular junction.</b> In about 85% of generalised myasthenia, IgG1/IgG3 antibodies against the <b>acetylcholine receptor (AChR)</b> bind the endplate, fix <b>complement</b> and destroy the postsynaptic folds; fewer receptors means a smaller endplate potential, which fails with repeated firing: <b>fatigable weakness</b>. Other subtypes: anti-MuSK (IgG4, no complement; the thymus is normal), anti-LRP4, and seronegative.</p>'
+                        + chain('Thymus: myoid cells express AChR', 'Germinal centres: autoreactive B cells (thymic follicular hyperplasia)', 'Anti-AChR antibodies', '!Complement destroys the endplate', 'Fatigable weakness: eyes, bulbar, limbs, breathing')
+                        + '<p><b>Why remove the thymus</b>: in early-onset AChR-positive disease, about 70% of thymuses show germinal-centre hyperplasia, a factory for the antibodies. Removing it (all of it, including ectopic thymic fat) lowers the drive. <b>Thymoma</b> occurs in about 10–20% of patients with myasthenia, and roughly 20–25% of thymoma patients have myasthenia: every thymoma is removed.</p>'
+                        '<p><b>Crisis</b>: respiratory or bulbar failure (MGFA class V: intubation). Triggers: infection, surgery, certain drugs (aminoglycosides, fluoroquinolones, magnesium, some anaesthetic agents), steroid initiation. A falling vital capacity warns before the gases change.</p>'
+                        '<p><b>MGFA classes</b>: I ocular only; II mild, III moderate, IV severe generalised (a: limb and axial, b: oropharyngeal and respiratory); V intubated.</p>'
+                        + ev('mechanisms and subtypes: Gilhus, NEJM 2016 and Nat Rev Dis Primers 2019; Fichtner et al., Front Immunol 2020 (germinal centres in about 70% of early-onset AChR MG). MG in thymoma: Lucchi et al., Eur J Cardiothorac Surg 2009.'),
+                'view': th_view, 'spin': True, 'show': TH_SHOW, 'hide': [], 'opacity': {'heart': 0.35, 'aorta': 0.5, 'thymus': 0.8},
+                'highlight': ['thymus'], 'labels': ['thymus', 'thymoma', 'lbcv', 'n-phrenic', 'n-phrenic-r'],
+                'ask': ask('Why is thymectomy not recommended for anti-MuSK myasthenia?', 'The thymus is usually normal in MuSK disease, and the antibodies (IgG4) are not driven by thymic germinal centres',
+                           'Thymic hyperplasia is a feature of AChR-positive, early-onset disease; guidance (2020) finds no evidence of benefit in MuSK MG.', 'MuSK patients are too weak for surgery', 'It is recommended for all subtypes', 'The thymus is always malignant in MuSK MG'),
+                'ct': ct(R(TH_C), 'axial')}
+    th_cases = {
+        'sternotomy': case('Case: myasthenia gravis with a thymoma',
+                           '<p>A <b>47-year-old man</b>: ptosis, diplopia, then dysarthria and difficulty swallowing over 4 months; <b>AChR antibodies positive</b>. CT: a <b>5 cm</b> smooth, lobulated anterior mediastinal mass, abutting but with a fat plane to the pericardium and left brachiocephalic vein. On pyridostigmine; vital capacity 2.6 L.</p>',
+                           '<p><b>Resect the thymoma with the whole thymus and surrounding fat</b> (extended thymectomy), en bloc and without breaching the capsule: complete (R0) resection is the strongest prognostic factor. A median sternotomy gives the safest R0 resection for a 5 cm tumour, with the phrenic nerves in view and the option to take pericardium, lung or the innominate vein if invaded (send frozen sections).</p>'
+                           '<p><b>Prepare the myasthenia first</b>: bulbar weakness is a risk for postoperative crisis, so give <b>IVIG or plasma exchange</b> before surgery; avoid long-acting relaxants.</p>'
+                           '<p><b>Staging</b>: Masaoka-Koga (I encapsulated; IIa microscopic, IIb macroscopic capsular invasion into fat; III neighbouring organs; IVa pleural or pericardial, IVb distant) and the 9th-edition TNM (T1a ≤5 cm and T1b >5 cm confined to thymus or fat; T2 pericardium, lung or phrenic; T3 innominate vein, SVC, chest wall; T4 aorta, pulmonary artery, myocardium, trachea, oesophagus).</p>'
+                           + ev('International consensus (Sanders et al., Neurology 2016): IVIG or plasma exchange before surgery in patients with significant bulbar dysfunction. Leuzzi et al. (2014): postoperative crisis in 12.4%; generalised, bulbar-predominant disease raised the risk. Staging: Masaoka-Koga (Detterbeck et al., J Thorac Oncol 2011) and the 9th-edition TNM (CAP protocol).'),
+                           ask('Before thymectomy, this patient with bulbar weakness should receive…', 'IVIG or plasma exchange to optimise him and reduce the risk of postoperative crisis',
+                               'Bulbar and respiratory weakness predict crisis; preoperative immunomodulation is recommended. Operate when stable.', 'A high loading dose of steroids the day before', 'Nothing: surgery improves the myasthenia', 'Neostigmine infusion only'),
+                           th_view, TH_SHOW, labels=['thymoma', 'lbcv', 'n-phrenic', 'n-phrenic-r'], opacity={'heart': 0.4, 'aorta': 0.5}, danger=['n-phrenic', 'n-phrenic-r', 'lbcv']),
+        'rvats': case('Case: generalised AChR-positive myasthenia, no thymoma',
+                      '<p>A <b>28-year-old teacher</b>, generalised myasthenia for 14 months (MGFA IIa: ptosis, arm and leg fatigue, no bulbar symptoms), <b>AChR antibodies positive</b>; CT: normal-sized thymus, no thymoma. On pyridostigmine and prednisolone 30 mg; weakness recurs when the steroid is tapered.</p>',
+                      '<p><b>Thymectomy</b>: early in the disease, for AChR-positive generalised non-thymomatous myasthenia in adults up to about 50 (MGTX included 18 to 65). The aim is less steroid, fewer relapses and admissions, and a chance of remission; benefit accrues over months to years. A minimally invasive <b>extended</b> thymectomy (right VATS, subxiphoid or robotic) removes the whole thymus and the fat from phrenic to phrenic, from the thyroid to the diaphragm.</p>'
+                      + ev('MGTX (Wolfe et al., NEJM 2016; 126 patients): at 3 years, thymectomy lowered the time-weighted QMG score (6.15 vs 8.99), the prednisone requirement (44 vs 60 mg alternate days) and admissions for exacerbation (9% vs 37%). The benefit persisted at 5 years (Lancet Neurol 2019). 2020 international guidance: thymectomy should be considered early for AChR-positive generalised MG aged 18–50; minimally invasive thymectomy has a good safety record in experienced centres. Meta-analysis (Lee et al., Surg Endosc 2023): no difference in remission between minimally invasive and open thymectomy.'),
+                      ask('In MGTX, which outcome improved with thymectomy plus prednisone versus prednisone alone?', 'Clinical score, prednisone dose and admissions for exacerbation, all at 3 years',
+                          'QMG 6.15 vs 8.99; alternate-day prednisone 44 vs 60 mg; hospitalisation 9% vs 37%. The effect lasted to 5 years.', 'Only the antibody titre', 'Mortality', 'Nothing: the trial was negative'),
+                      th_view, TH_SHOW, hide=['thymoma'], labels=['thymus', 'n-phrenic-r', 'svc'], opacity={'heart': 0.4, 'aorta': 0.5}),
+        'subx': case('Case: a young woman with bulbar myasthenia',
+                     '<p>A <b>19-year-old student</b>, 8 months of generalised myasthenia with <b>nasal speech and choking on fluids</b> (MGFA IIIb), AChR antibodies positive; CT: thymic hyperplasia. Vital capacity 2.1 L (55% predicted).</p>',
+                     '<p><b>Thymectomy is indicated</b> (young, AChR-positive, generalised). <b>Not yet</b>: bulbar weakness and a reduced vital capacity mean a high risk of postoperative crisis. Optimise first: <b>plasma exchange or IVIG</b>, pyridostigmine adjusted, infections treated, then operate when stable. A <b>subxiphoid</b> approach avoids an intercostal incision and gives a symmetric view of both phrenic nerves and both cervical horns.</p>'
+                     + ev('International consensus (2016): IVIG or plasma exchange before surgery with significant bulbar dysfunction. Leuzzi et al. (Eur J Cardiothorac Surg 2014; 177 patients): postoperative crisis in 12.4%, higher with Osserman IIB and III–IV disease.'),
+                     ask('Which feature most raises her risk of myasthenic crisis after thymectomy?', 'Bulbar weakness with a reduced vital capacity',
+                         'Bulbar-predominant, more severe disease predicts crisis; optimise with IVIG or plasma exchange, and extubate only when strength allows.', 'Her young age', 'Thymic hyperplasia on CT', 'Being AChR-positive'),
+                     th_view, TH_SHOW, hide=['thymoma'], labels=['thymus', 'n-phrenic', 'n-phrenic-r'], opacity={'heart': 0.4, 'aorta': 0.5}),
+    }
+
+    # ------------------------------------------------------------------------------------------ oesophageal cancer
+    ESO_T = {'mid': 'eso-tumour-mid', 'low': 'eso-tumour-low'}
+    def eso_patho(level):
+        tum = ESO_T[level]; tgt = Pt(tum) if tum in LM else Pt('esophagus')
+        return {'phase': 'Pathophysiology', 'title': 'Pathophysiology and staging: oesophageal cancer',
+                'body': '<p><b>East Africa carries one of the world\'s highest rates of oesophageal squamous cell carcinoma</b>, along a corridor from Ethiopia and Kenya to Malawi. About nine in ten cases here are <b>squamous</b>, and patients are young: in Bomet (Tenwek) 11% were 30 or younger. Risk factors studied in Kenya: <b>very hot tea</b>, alcohol (especially home-brewed spirits), tobacco, household smoke, and poor oral health. In high-income countries <b>adenocarcinoma</b> of the lower third and junction (from reflux and Barrett\'s oesophagus) predominates.</p>'
+                        + chain('Chronic thermal and chemical injury to the squamous mucosa', 'Dysplasia', 'Invasive squamous carcinoma', 'Circumferential growth', '!Progressive dysphagia (solids, then liquids), weight loss')
+                        + chain('No serosa: early spread', 'Lymphatics along the length of the oesophagus (neck to coeliac)', '!Airway (mid third): tracheo-oesophageal fistula')
+                        + '<table class="mini"><tr><th>T (AJCC 8th)</th><th></th></tr>'
+                        '<tr><td>T1a / T1b</td><td>lamina propria or muscularis mucosae / submucosa</td></tr><tr><td>T2</td><td>muscularis propria</td></tr><tr><td>T3</td><td>adventitia</td></tr>'
+                        '<tr><td>T4a / T4b</td><td>pleura, pericardium, azygos, diaphragm, peritoneum (resectable) / aorta, vertebra, trachea (unresectable)</td></tr>'
+                        '<tr><th>N</th><th>by number of nodes: N1 1–2, N2 3–6, N3 7 or more</th></tr></table>'
+                        '<p>Separate clinical, pathological and post-neoadjuvant (yp) stage groups; squamous and adenocarcinoma are grouped differently. <b>Work-up</b>: endoscopy and biopsy, CT chest and abdomen, PET-CT for curative candidates, EUS for T and N, <b>bronchoscopy</b> for tumours at or above the carina, staging laparoscopy for junctional adenocarcinoma.</p>'
+                        '<p><b>Most patients here present with advanced disease</b>: palliation of dysphagia (a self-expanding metal stent works fastest; brachytherapy lasts longer) is the commonest intervention.</p>'
+                        + ev('ESCCAPE Kenya/Tanzania/Malawi (Middleton et al., Lancet Glob Health 2022): alcohol accounted for 65% of cases in Kenyan men; very hot drinks OR 3.7 in western Kenya (Int J Cancer 2019). Young patients: Lancet 2002 (Bomet). Staging: Rice et al., Ann Cardiothorac Surg 2017. SIREC (Lancet 2004): stents relieved dysphagia faster, brachytherapy gave more dysphagia-free days (115 vs 82) with fewer complications.'),
+                'view': tl(tgt, (0.9, -0.5, 0.2), 300), 'spin': True,
+                'show': ['esophagus', tum, 'trachea', 'aorta', 'azygos', 'heart', 'br-left-main', 'br-right-main', 'thoracic-duct'], 'hide': [*LOBE_IDS], 'opacity': {'heart': 0.25, 'aorta': 0.5, 'esophagus': 0.6},
+                'highlight': [tum], 'labels': [tum, 'trachea', 'aorta', 'azygos'],
+                'ask': ask('A squamous carcinoma of the middle third lies at the level of the carina. Which test must precede resection?', 'Bronchoscopy, to exclude invasion of the trachea or left main bronchus (T4b)',
+                           'Mid-third tumours sit against the membranous trachea and left main bronchus; airway invasion makes the tumour unresectable and changes the plan.', 'Colonoscopy', 'A barium enema', 'Bone marrow biopsy'),
+                'ct': ct(R(tgt), 'axial')}
+    eso_cases = {
+        'ivor': case('Case: lower-third squamous carcinoma after chemoradiotherapy',
+                     '<p>A <b>52-year-old farmer</b> from Bomet, 3 months of dysphagia to solids, 6 kg weight loss. Endoscopy: a lower-third ulcerated tumour at 36–40 cm, biopsy <b>squamous cell carcinoma</b>; CT/EUS: <b>cT3 N1</b>; no distant disease; bronchoscopy normal. After <b>CROSS</b> chemoradiotherapy (carboplatin/paclitaxel with 41.4 Gy), restaging shows a good response. Fit, BMI 19.</p>',
+                     '<p><b>Oesophagectomy</b> after neoadjuvant chemoradiotherapy: Ivor Lewis (abdomen, then right thoracotomy or thoracoscopy, anastomosis in the chest) suits a lower-third tumour with a good proximal margin. Nutrition before surgery (a feeding jejunostomy is often placed). Minimally invasive or hybrid access lowers pulmonary complications.</p>'
+                     '<p><b>If there is residual disease</b> in the specimen, adjuvant nivolumab is an option.</p>'
+                     + ev('CROSS (NEJM 2012; Lancet Oncol 2015): chemoradiotherapy then surgery improved R0 resection (92% vs 69%) and survival; pCR 49% in squamous vs 23% in adenocarcinoma; median OS for squamous 81.6 vs 21.1 months. TIME (Lancet 2012): minimally invasive oesophagectomy cut 2-week pulmonary infection (9% vs 29%). MIRO (NEJM 2019): hybrid access halved major complications (36% vs 64%). CheckMate 577 (NEJM 2021): adjuvant nivolumab doubled DFS (22.4 vs 11.0 months) with residual disease after CRT.'),
+                     ask('In CROSS, which histology responded best to chemoradiotherapy?', 'Squamous cell carcinoma (pCR 49% vs 23% in adenocarcinoma)',
+                         'Squamous tumours are more radiosensitive; the survival gain was largest in squamous carcinoma (median OS 81.6 vs 21.1 months).', 'Adenocarcinoma', 'Both equally', 'Neither: CROSS was negative'),
+                     tl(Pt(ESO_T['low']) if ESO_T['low'] in LM else Pt('esophagus'), (0.9, -0.5, 0.2), 300), ['esophagus', ESO_T['low'], 'aorta', 'azygos', 'heart', 'trachea'], hide=LOBE_IDS, labels=[ESO_T['low'], 'azygos', 'aorta'], opacity={'heart': 0.25, 'aorta': 0.5, 'esophagus': 0.6}),
+        'mckeown': case('Case: a young man with mid-oesophageal squamous carcinoma',
+                        '<p>A <b>27-year-old man</b> from western Kenya, dysphagia for 4 months. Endoscopy: a tumour at <b>25–30 cm</b> (mid third, at the carina), squamous; CT/EUS cT3 N1; <b>bronchoscopy: no airway invasion</b>; PET: no distant disease. Good performance status.</p>',
+                        '<p><b>Mid-third tumours</b> need a long proximal margin: a <b>McKeown</b> (three-stage) oesophagectomy with a <b>neck anastomosis</b>, after neoadjuvant chemoradiotherapy (CROSS). The thoracic dissection is close to the membranous trachea and the left main bronchus: injury there is a disaster.</p>'
+                        '<p><b>Definitive chemoradiotherapy</b> is an alternative for squamous carcinoma: surgery adds local control but not clearly survival, at higher treatment mortality; it suits patients who respond clinically, the frail, or those declining surgery, with salvage surgery for residual disease.</p>'
+                        + ev('Stahl et al. (J Clin Oncol 2005; 172 patients, squamous): adding surgery after chemoradiotherapy improved 2-year local control (64% vs 41%) but not overall survival (40% vs 35%); treatment mortality 12.8% vs 3.5%. CROSS long-term (Lancet Oncol 2015).'),
+                        ask('Why a neck anastomosis (McKeown) for this tumour?', 'A mid-third tumour needs a long proximal margin that a chest anastomosis may not give',
+                            'Taking the oesophagus into the neck gives a longer margin above the tumour and a complete thoracic lymphadenectomy; a cervical leak is also easier to manage than an intrathoracic one.', 'It is always required for squamous carcinoma', 'Because the stomach is too short', 'To avoid the abdomen'),
+                        tl(Pt(ESO_T['mid']) if ESO_T['mid'] in LM else Pt('esophagus'), (0.9, -0.5, 0.2), 300), ['esophagus', ESO_T['mid'], 'trachea', 'br-left-main', 'br-right-main', 'aorta', 'azygos', 'heart'], hide=LOBE_IDS,
+                        labels=[ESO_T['mid'], 'br-left-main', 'trachea', 'azygos'], opacity={'heart': 0.25, 'aorta': 0.5, 'esophagus': 0.6}, danger=['trachea', 'br-left-main']),
+        'transhiatal': case('Case: junctional adenocarcinoma in a patient with poor lung function',
+                            '<p>A <b>68-year-old man</b>, long-standing reflux, dysphagia; endoscopy: an <b>adenocarcinoma at the gastro-oesophageal junction</b> (Siewert type I–II) on Barrett\'s mucosa; staging laparoscopy negative; cT3 N1. COPD with <b>FEV1 45%</b>.</p>',
+                            '<p><b>Neoadjuvant therapy</b> first: for adenocarcinoma, perioperative <b>FLOT</b> chemotherapy now outperforms CROSS. Then a <b>transhiatal</b> oesophagectomy (abdomen and neck, no thoracotomy) spares his lungs; the price is a less complete mediastinal lymphadenectomy.</p>'
+                            + ev('ESOPEC (NEJM 2025; 438 patients with adenocarcinoma): perioperative FLOT improved 3-year overall survival over CROSS (57.4% vs 50.7%; HR 0.70). Hulscher et al. (NEJM 2002) and 5-year follow-up (Omloo, Ann Surg 2007): no significant overall survival difference between transhiatal and extended transthoracic resection (34% vs 36%), with fewer pulmonary complications after transhiatal resection.'),
+                            ask('For resectable oesophageal adenocarcinoma, which neoadjuvant strategy did ESOPEC favour?', 'Perioperative FLOT chemotherapy over CROSS chemoradiotherapy',
+                                '3-year OS 57.4% vs 50.7% (HR 0.70). For squamous carcinoma, CROSS-type chemoradiotherapy remains standard.', 'CROSS over FLOT', 'Surgery alone', 'Definitive chemoradiotherapy'),
+                            tl(Pt(ESO_T['low']) if ESO_T['low'] in LM else Pt('esophagus'), (0.9, -0.5, 0.2), 300), ['esophagus', ESO_T['low'], 'aorta', 'heart', 'trachea'], hide=LOBE_IDS, labels=[ESO_T['low'], 'aorta'], opacity={'heart': 0.25, 'aorta': 0.5, 'esophagus': 0.6}),
+    }
+
+    # ------------------------------------------------------------------------------------------ empyema
+    EMPV = tl(Pt('empyema') if 'empyema' in LM else Pt('lll'), (-1, -0.45, 0.2), 400)
+    emp_patho = {'phase': 'Pathophysiology', 'title': 'Pathophysiology: parapneumonic effusion to empyema',
+                 'body': '<p><b>From pneumonia to peel.</b> Inflammation next to the pleura makes the pleural capillaries leak: a sterile <b>exudate</b>. If bacteria cross, neutrophils and bacteria consume glucose and produce lactate and CO₂ (pH falls, LDH rises), fibrin is laid down and the fluid <b>loculates</b>. Fibroblasts then organise the fibrin into a <b>peel</b> that traps the lung.</p>'
+                         + chain('I exudative (days): free-flowing, sterile', 'II fibrinopurulent (1–2 weeks): infected, pH and glucose fall, septations', 'III organising (3–6 weeks): fibrous peel, trapped lung')
+                         + '<p><b>Drain when</b>: pus, organisms on Gram stain or culture, <b>pH 7.2 or less</b>, or (if pH unavailable) glucose under 3.3 mmol/L; loculation on ultrasound supports it. A pH of 7.2–7.4 is intermediate (LDH over 900 IU/L supports drainage).</p>'
+                         '<p><b>Treatment follows the stage</b>: antibiotics and a small-bore drain; intrapleural <b>tPA plus DNase</b> for a residual collection; <b>surgery</b> (VATS debridement, or decortication) when sepsis and collection persist, or the lung is trapped. <b>Tuberculous</b> empyema is chronic from the start, with a thick peel, often a trapped lung, and needs TB treatment before and after decortication.</p>'
+                         '<p><b>Risk at presentation: the RAPID score</b> (renal: urea; age; purulence; infection source; dietary: albumin) sorts patients into low, medium and high risk of death at 3 months (about 2%, 9% and 29%).</p>'
+                         + ev('BTS 2023 guideline (Roberts et al., Thorax 2023): small-bore drains, tPA 10 mg + DNase 5 mg twice daily for 3 days for residual collections, not streptokinase or either drug alone; VATS preferred when surgery is needed. MIST1 (NEJM 2005): streptokinase gave no benefit. MIST2 (NEJM 2011): tPA+DNase improved drainage and cut surgical referral (4% vs 16%). RAPID validated in PILOT (Eur Respir J 2020). Uganda (Mwesige et al., BMC Pulm Med 2025; 200 adults): 6.5% of empyemas were tuberculous; in-hospital mortality 10.5%.'),
+                 'view': EMPV, 'spin': True, 'show': ['lul', 'lll', 'fissure', 'peel-l', 'empyema-l', 'heart', 'aorta'], 'hide': [], 'opacity': {'lul': 0.5, 'lll': 0.5, 'heart': 0.3},
+                 'highlight': ['empyema-l', 'peel-l'], 'labels': ['empyema-l', 'peel-l'],
+                 'ask': ask('After 5 days of a small-bore drain and antibiotics a loculated collection remains and the patient is still febrile. Next step?', 'Intrapleural tPA plus DNase, or surgical referral (VATS) if unsuitable or it fails',
+                            'MIST2: the combination (not either drug alone, nor streptokinase) improves drainage and reduces surgery; persistent sepsis despite drainage is the trigger for surgery.', 'Intrapleural streptokinase', 'Continue and wait 2 more weeks', 'Intrapleural DNase alone'),
+                 'ct': ct(R(EMPV['target']), 'axial', 'lung')}
+    emp_cases = {
+        'vats': case('Case: a fibrinopurulent empyema that did not drain',
+                     '<p>A <b>38-year-old man</b>, 10 days of community-acquired pneumonia; febrile, CRP 280. Ultrasound: a <b>septated</b> left effusion; pleural fluid <b>pH 7.0</b>, glucose 1.8 mmol/L, turbid; <i>Streptococcus</i> on culture. A 12F drain and 5 days of antibiotics, then <b>tPA/DNase</b> for 3 days: a posterior basal collection persists and he is still febrile. HIV-negative; GeneXpert on the fluid negative. RAPID score 2 (low risk).</p>',
+                     '<p><b>Stage II (fibrinopurulent)</b> not controlled by drainage and fibrinolytics: <b>VATS debridement</b>, breaking the loculations, evacuating the pus and stripping the early peel so the lung re-expands.</p>'
+                     + ev('VATS vs open decortication meta-analysis (Pan et al., J Thorac Dis 2017; 918 patients, retrospective): lower mortality (4.1% vs 6.2%) and morbidity, shorter stay, no difference in relapse. BTS 2023: prefer VATS when surgery is needed.'),
+                     ask('What finding on pleural fluid most clearly mandated chest drainage here?', 'pH 7.0 (with positive culture and turbid fluid)',
+                         'A pleural pH of 7.2 or less indicates complicated parapneumonic effusion or empyema; culture positivity and pus are independent indications.', 'Protein over 30 g/L', 'A lymphocytic effusion', 'Fluid volume over 1 L'),
+                     EMPV, ['lul', 'lll', 'fissure', 'peel-l', 'empyema-l'], labels=['empyema-l'], opacity={'lul': 0.5, 'lll': 0.5}),
+        'open': case('Case: a chronic tuberculous empyema with a trapped lung',
+                     '<p>A <b>24-year-old woman</b>, HIV-positive (on ART, CD4 380), 3 months of cough and weight loss; a left pleural collection drained 6 weeks ago grew nothing on routine culture, but <b>GeneXpert: <i>M. tuberculosis</i>, rifampicin-sensitive</b>. On TB treatment for 5 weeks. CT: a thick, enhancing pleural peel, a residual posterior collection, <b>the left lung trapped</b>, ribs crowded.</p>',
+                     '<p><b>Stage III (organising)</b>, tuberculous: continue TB treatment, and <b>decortication</b> through a thoracotomy (a thick, old peel rarely comes off thoracoscopically) once she is on treatment and nutritionally supported. The goal: free the lung so it fills the chest and the space is gone.</p>'
+                     '<p>If the lung is destroyed underneath, decortication will not re-expand it: plan for space-filling (muscle flap, limited thoracoplasty) or an open window.</p>'
+                     + ev('TB pleural disease and empyema: Vorster et al., J Thorac Dis 2015. BTS 2023 guideline on pleural infection. In a Ugandan series of 200 empyemas, most were treated by chest tube alone; 10 had decortication (Mwesige et al., 2025).'),
+                     ask('Why continue TB treatment before and after decortication?', 'Surgery removes the peel and the space, but only drugs treat the mycobacterial infection',
+                         'Operating on a patient already established on effective TB treatment lowers the risk of bronchopleural fistula and recurrent infection; treatment completes the course afterwards.', 'It is not needed after decortication', 'Only for MDR-TB', 'To prevent bleeding'),
+                     EMPV, ['lul', 'lll', 'fissure', 'peel-l', 'empyema-l'], labels=['peel-l', 'empyema-l'], opacity={'lul': 0.5, 'lll': 0.5}),
+    }
+
+    # ------------------------------------------------------------------------------------------ attach the cases
+    for k in ('anterior', 'posterior', 'uni', 'bi'):
+        add_case(f'lul-{k}', lc_patho('left', 'lul'), lc_case('left', 'lul', k), LC_SRC)
+        add_case(f'rul-{k}', lc_patho('right', 'rul'), lc_case('right', 'rul', k), LC_SRC)
+        add_case(f'rml-{k}', lc_patho('right', 'rml'), lc_case('right', 'rml', k), LC_SRC)
+    add_case('rml-fissure', lc_patho('right', 'rml'), lc_case('right', 'rml', 'f'), LC_SRC)
+    add_case('rml-open', lc_patho('right', 'rml'), lc_case('right', 'rml', 'o'), LC_SRC)
+    for k in ('fissure', 'hilum', 'uni', 'bi'):
+        add_case(f'lll-{k}', lc_patho('left', 'lll'), lc_case('left', 'lll', k), LC_SRC)
+        add_case(f'rll-{k}', lc_patho('right', 'rll'), lc_case('right', 'rll', k), LC_SRC)
+    add_case('rll-open', lc_patho('right', 'rll'), lc_case('right', 'rll', 'o'), LC_SRC)
+    add_case('rul-open', tb_patho(), asp_case, TB_SRC)
+    add_case('lul-open', cong_patho('cle'), cle_case, CONG_SRC)
+    add_case('lll-open', cong_patho('cpam'), cpam_case, CONG_SRC)
+    for k, nm in (('lingula', 'lingula'), ('lul-updiv', 'upper division of the left upper lobe'), ('s6', 'superior segment (S6) of the left lower lobe')):
+        add_case(f'seg-{k}', lc_patho('left', 'lll' if k == 's6' else 'lul'), seg_case('lll' if k == 's6' else 'lul', nm), LC_SRC)
+    add_case('pnl-open', tb_patho(destroyed=True), destroyed_case, TB_SRC)
+    for sd, key in (('left', 'pnl-vats'), ('right', 'pnr-vats'), ('right', 'pnr-open')):
+        tumc = f'tumour-central-{sd[0]}'
+        add_case(key, lc_patho(sd, 'x' + sd[0]),
+                 case('Case: a central squamous carcinoma needing pneumonectomy',
+                      f'<p>A <b>63-year-old man</b>, smoker, haemoptysis. Bronchoscopy: a squamous carcinoma at the origin of the {"left upper and lower lobe bronchi, extending into the left main bronchus" if sd == "left" else "right upper lobe bronchus, extending to the bronchus intermedius and the right main bronchus"}; CT: a 5 cm hilar mass encasing the {"left" if sd == "left" else "right"} pulmonary artery. EBUS: 4{"L" if sd == "left" else "R"} and 7 negative, 10{sd[0].upper()} positive (N1). PET: no distant disease. FEV1 2.4 L (82%), DLCO 75%; perfusion to the {sd} lung 45%.</p>',
+                      '<p><b>Stage</b>: T3 (5 cm) N1 = IIIA. A sleeve lobectomy cannot clear the artery and both lobar bronchi: <b>pneumonectomy</b>. ppoFEV1 = 2.4 × 0.55 ≈ 1.3 L (≈45%): exercise testing and CPET before committing. Neoadjuvant chemo-immunotherapy is an option. '
+                      + ('<b>Right pneumonectomy</b> carries the highest mortality of any lung resection and the highest risk of <b>bronchopleural fistula</b> (a poorly covered stump with a single bronchial artery): keep the stump short and <b>cover it</b> (intercostal muscle, pericardial fat, pleura), avoid fluid overload (post-pneumonectomy pulmonary oedema). See the <b>post-pneumonectomy empyema and BPF</b> module.' if sd == 'right' else 'The left main bronchus retracts under the aortic arch after division: keep the stump short, flush with the carina, before it disappears.')
+                      + '</p>' + ev('BPF after pneumonectomy: 0–6.3% after left and 1.1–22.9% after right pneumonectomy across series (Wali and Billè, Shanghai Chest 2021); Deschamps et al. (Mayo, 713 pneumonectomies): empyema 7.5%, fistula 4.5%.'),
+                      ask('Why is bronchopleural fistula commoner after right than left pneumonectomy?', 'The right main bronchial stump has little mediastinal cover and usually a single bronchial artery',
+                          'The left stump retracts under the aortic arch into the mediastinum and usually has two bronchial arteries; the exposed, less well perfused right stump breaks down more often.', 'The right bronchus is narrower', 'The left lung is smaller', 'It is not: left is commoner'),
+                      tl(Pt(tumc), LATD[sd], 320), [*LOBE_IDS, tumc, *NODES], labels=[tumc, f'ln-10{sd[0]}', 'ln-7'], opacity={i: 0.3 for i in LOBE_IDS}), LC_SRC)
+        procs[key]['steps'][0]['show'] = [*LOBE_IDS, tumc, *NODES, 'trachea']; procs[key]['steps'][0]['highlight'] = [tumc]
+        procs[key]['steps'][0]['labels'] = [tumc]; procs[key]['steps'][0]['view'] = tl(Pt(tumc), LATD[sd], 320)
+    for k in ('sternotomy', 'rvats', 'subx'):
+        add_case(f'b4-thymectomy-{k}', mg_patho, th_cases[k], MG_SRC)
+    for k, lvl in (('ivor', 'low'), ('mckeown', 'mid'), ('transhiatal', 'low')):
+        add_case(f'b4-eso-{k}', eso_patho(lvl), eso_cases[k], ESO_SRC)
+    add_case('b4-emp-vats', emp_patho, emp_cases['vats'], EMP_SRC)
+    add_case('b4-emp-open', emp_patho, emp_cases['open'], EMP_SRC)
+    # the thymoma is shown only where the case has one; lung-cancer patho for a central tumour points at it
+    for k in ('b4-thymectomy-rvats', 'b4-thymectomy-subx'):
+        if k in procs:
+            for s in procs[k]['steps']:
+                s['show'] = [i for i in s.get('show', []) if i != 'thymoma']; s['labels'] = [i for i in s.get('labels', []) if i != 'thymoma']
+                s['hide'] = [*s.get('hide', []), 'thymoma']
+
+    # ------------------------------------------------------------------------------------------ new: post-pneumonectomy empyema and bronchopleural fistula
+    if has('ppe-fluid') and has('bronchial-stump'):
+        STUMP, BPF_ = Pt('bronchial-stump'), Pt('bpf')
+        PPE_OFF = [i for i in ('rul', 'rml', 'rll', 'fissure-h', 'fissure-r', 'ipl-r', 'br-right-main', 'lesion-rca') if has(i)]
+        PPE_OFF += [i for i in S if S[i]['group'] in ('airway', 'arteries', 'veins', 'rul-intra', 'segments') and S[i]['centroid'][0] > 12]
+        PPE_OFF += [i for i in S if S[i]['group'] in ('rul-intra',)]
+        PPE_SHOW = ['ppe-fluid', 'ppe-air', 'bronchial-stump', 'bpf', 'trachea', 'br-left-main', 'heart', 'aorta', 'svc', 'azygos', 'esophagus', 'lul', 'lll', 'fissure']
+        pv = tl(STUMP, (1, 0.1, 0.35), 280)
+        side_v = tl(Pt('ppe-level') if 'ppe-level' in LM else STUMP, (1, -0.2, 0.25), 420)
+        W_ = Pt('eloesser') if 'eloesser' in LM else Pt('ppe-level')
+        ppe_patho = {'id': 'ppe-patho', 'phase': 'Pathophysiology', 'seq': 0, 'askAfter': True, 'title': 'Pathophysiology: the post-pneumonectomy space, empyema and fistula',
+                     'body': '<p><b>The empty hemithorax.</b> After pneumonectomy the space fills with serous fluid over days to weeks, while the mediastinum shifts across, the diaphragm rises and the ribs crowd in. The fluid is an ideal culture medium: seeded at operation, from the blood, or through a <b>bronchopleural fistula (BPF)</b>, it becomes <b>post-pneumonectomy empyema (PPE)</b>, reported in 2–16%.</p>'
+                             + chain('Stump ischaemia (stripped bronchial arteries), tension, a long stump, residual tumour, radiation, infection', '!Stump dehiscence: BPF', 'Air enters the space; fluid drains into the airway', '!Aspiration into the only lung: pneumonia, ARDS, death')
+                             + chain('Infected fluid in a rigid space', 'Sepsis', '!Erodes the stump from outside: late BPF')
+                             + '<p><b>Early BPF</b> (first days to about 2 weeks) is usually technical; <b>late BPF</b> follows infection or ischaemia and can appear months later. <b>Right</b> pneumonectomy is worst: the right stump lies uncovered in the pleural space, usually on a single bronchial artery, while the left retracts under the aortic arch and has two.</p>'
+                             '<p><b>Signs</b>: fever, <b>coughing up large volumes of serous or brownish fluid</b> (the pleural fluid), a <b>falling fluid level</b> or a new air-fluid level on the X-ray, subcutaneous emphysema, contralateral aspiration pneumonia.</p>'
+                             '<p><b>First move</b>: sit up or lie <b>operated side down</b> (so the fluid cannot run into the good lung), then a chest drain into the space, antibiotics, and bronchoscopy.</p>'
+                             + ev('incidence: Deschamps et al. (Mayo, 713 pneumonectomies, Ann Thorac Surg 2001): empyema 7.5%, BPF 4.5%; BPF 0–6.3% after left vs 1.1–22.9% after right pneumonectomy, mortality 18–71% (Wali and Billè, 2021; Gritsiuta et al., 2025). Anatomy of right-sided risk: Wali and Billè 2021.'),
+                     'view': side_v, 'spin': True, 'show': PPE_SHOW, 'hide': PPE_OFF, 'opacity': {'heart': 0.35, 'lul': 0.45, 'lll': 0.45, 'aorta': 0.6},
+                     'highlight': ['bpf'], 'danger': ['ppe-fluid'], 'labels': ['ppe-fluid', 'ppe-air', 'bronchial-stump', 'bpf', 'lul'],
+                     'ask': ask('Ten days after right pneumonectomy, a patient suddenly coughs up 300 mL of thin brown fluid and becomes breathless. How should he be positioned?', 'Operated (right) side down, or sitting up, so the space fluid cannot flood the left lung',
+                                'This is a bronchopleural fistula: the pneumonectomy space is draining into the airway. Positioning protects the remaining lung until a drain is in.', 'Left side down', 'Flat and supine', 'Head down'),
+                     'ct': ct(R(STUMP), 'axial', 'lung')}
+        ppe_anat = {'id': 'ppe-anatomy', 'phase': 'Anatomy', 'seq': 1, 'title': 'The right stump and its neighbours',
+                    'body': '<p>The right main bronchial stump sits at the <b>carina</b>, behind the <b>SVC</b> and the stump of the right pulmonary artery, under the <b>azygos arch</b>, with the <b>oesophagus</b> behind and medial. Re-exposing it through the infected space means dense, friable tissue; the <b>transsternal, transpericardial</b> route reaches the carina through clean tissue, between the SVC and the aorta, when the pleural route is hostile.</p>'
+                            '<p>The space itself is bounded by the mediastinum, the raised diaphragm and the chest wall; its lowest point laterally (about the 6th–8th ribs) is where an open window drains it.</p>',
+                    'view': pv, 'spin': True, 'show': PPE_SHOW, 'hide': PPE_OFF, 'opacity': {'heart': 0.35, 'lul': 0.35, 'lll': 0.35, 'ppe-fluid': 0.35, 'aorta': 0.6},
+                    'highlight': ['bronchial-stump'], 'danger': ['svc', 'azygos', 'esophagus', 'aorta'], 'labels': ['bronchial-stump', 'trachea', 'svc', 'azygos', 'esophagus', 'aorta'],
+                    'ct': ct(R(STUMP), 'axial')}
+        ppe_case = {'id': 'ppe-case', 'phase': 'Case', 'seq': 2, 'title': 'Case: fever and a falling fluid level after right pneumonectomy',
+                    'lead': '<p>A <b>61-year-old man</b>, <b>right pneumonectomy</b> 11 days ago for a central squamous carcinoma after neoadjuvant chemotherapy; the stump was stapled and not covered. Now: fever 38.9 °C, WCC 21, and he coughs up <b>thin brown fluid</b>. X-ray: the fluid level in the right hemithorax has <b>fallen by 4 cm</b> since yesterday; a patchy shadow in the left lower zone. Bronchoscopy: a <b>5 mm dehiscence</b> at the stump; the pleural fluid is turbid.</p>',
+                    'body': '<p><b>Early BPF with post-pneumonectomy empyema</b>. Immediate: operated side down, a <b>chest drain</b> into the space, broad-spectrum antibiotics, ICU. Then two paths:</p>'
+                            '<ul><li><b>Fit, early fistula, clean enough</b>: <b>re-operate early</b>: debride the space, re-amputate and close the stump, <b>cover it with a vascularised flap</b> (latissimus, serratus, intercostal muscle or omentum), then sterilise and close the space (Clagett-type fill, or repeated debridement with negative pressure and closure).</li>'
+                            '<li><b>Unfit, or late, established infection</b>: <b>open window thoracostomy</b> (Eloesser) to drain the space for weeks, dressing changes, then a later closure (Clagett) once the cavity is clean, with or without muscle transposition.</li></ul>'
+                            '<p>Small fistulas (under 3–5 mm) in unfit patients can sometimes be closed endoscopically (glue, occluder devices, stents), usually as a bridge.</p>'
+                            + ev('Clagett and Geraci (1963): open window drainage then filling the cavity with antibiotic solution and closing it; Zaheer et al. (Mayo 2006): success 81% after the first attempt. Pairolero et al. (JTCVS 1990): muscle transposition to close the fistula and fill the space, success 84%. Accelerated treatment (Schneiter et al., JTCVS 2008; 75 patients, 59% with BPF): repeated debridement, negative pressure and antibiotic-filled closure healed 97% with 4% 90-day mortality. Stump coverage (Di Maio et al., meta-analysis 2015): coverage was selective in most series; the one trial, in diabetics, favoured coverage.'),
+                    'ask': ask('What is the first priority when this patient starts coughing up space fluid?', 'Protect the left lung: position operated side down and drain the space',
+                               'Death in BPF comes from aspiration of the infected space fluid into the remaining lung; positioning and a chest drain stop it, before bronchoscopy or definitive surgery.',
+                               'Urgent bronchoscopic glue', 'CT scan first', 'Start a diuretic'),
+                    'view': side_v, 'show': PPE_SHOW, 'hide': PPE_OFF, 'opacity': {'heart': 0.35, 'lul': 0.45, 'lll': 0.45, 'aorta': 0.6},
+                    'labels': ['ppe-fluid', 'bpf', 'lll'], 'danger': ['lll', 'lul'], 'ct': ct(R(STUMP), 'axial', 'lung')}
+        ppe_drain = {'id': 'ppe-drain', 'phase': 'Drain', 'seq': 3, 'title': 'Position, drain the space, bronchoscopy',
+                     'body': '<p>Sit him up, <b>operated side down</b>. A large-bore drain into the space in the mid-axillary line, above the diaphragm (which has risen: check the level on ultrasound), connected to an underwater seal <b>without suction</b> (suction pulls the mediastinum across). Send the fluid for culture, including TB.</p>'
+                             '<p><b>Bronchoscopy</b>: the size and site of the defect, and the viability of the stump; clear aspirated secretions from the left lung.</p>',
+                     'view': side_v, 'show': PPE_SHOW, 'hide': PPE_OFF, 'opacity': {'heart': 0.35, 'lul': 0.4, 'lll': 0.4, 'aorta': 0.6}, 'highlight': ['ppe-fluid'], 'labels': ['ppe-fluid', 'ppe-air'],
+                     'action': {'kind': 'dissect', 'tool': 'hook', 'label': 'Drain the space', 'port': 'thor-r', 'remove': ['ppe-fluid'],
+                                'path': [R(Pt('ppe-level') + V([30, 0, 20])), R(Pt('ppe-level') + V([10, 0, 0])), R(Pt('ppe-level') + V([30, 0, -20]))]},
+                     'ct': ct(R(Pt('ppe-level')), 'axial', 'lung')}
+        win_steps = [ppe_patho, ppe_anat, ppe_case, ppe_drain,
+                     {'id': 'ppe-window', 'phase': 'Window', 'seq': 4, 'title': 'Open window thoracostomy (Eloesser)',
+                      'body': '<p>Over the <b>lowest part of the cavity</b>, laterally (confirm with CT or a needle), make a U-shaped or inverted-U skin flap with its base at the dependent edge. Resect <b>segments of two ribs</b> (about 8–10 cm each) under the flap, open the thickened parietal pleura, and <b>suture the skin to the pleura</b> all round so the window lines itself and stays open.</p>'
+                              '<p>The cavity now drains by gravity and can be packed and inspected; the mediastinum is already fixed, so an open chest is tolerated.</p>',
+                      'view': tl(W_, (1, 0.1, 0.2), 320), 'show': [*PPE_SHOW, 'eloesser', *[f'rib-{i}-r' for i in range(5, 10) if has(f'rib-{i}-r')]], 'hide': PPE_OFF,
+                      'opacity': {'heart': 0.3, 'lul': 0.3, 'lll': 0.3, 'ppe-fluid': 0.4}, 'highlight': ['eloesser'], 'labels': ['eloesser', 'ppe-fluid'],
+                      'action': {'kind': 'reveal', 'label': 'Open the window', 'port': 'thor-r', 'ids': ['eloesser']},
+                      'ask': ask('Where should the open window be placed?', 'Over the most dependent part of the cavity, laterally',
+                                 'Gravity drainage needs the lowest point; too high and pus pools below it.', 'Anteriorly in the 2nd space', 'Over the stump', 'Posteriorly at the apex'),
+                      'ct': ct(R(W_), 'axial', 'lung')},
+                     {'id': 'ppe-pack', 'phase': 'Window', 'seq': 5, 'title': 'Debride, pack or apply negative pressure',
+                      'body': '<p>Debride the fibrin and necrotic tissue; irrigate. Pack with gauze soaked in dilute povidone-iodine or antibiotic solution, changed daily or every 2 days, or apply <b>negative-pressure therapy</b> (a sponge in the cavity) if there is <b>no open fistula</b> or it has been closed and covered. The fistula often closes as the space granulates; if not, it is closed and covered with muscle later.</p>'
+                              + ev('accelerated treatment (Schneiter et al., JTCVS 2008): repeated debridement in theatre every 48 hours, povidone-iodine packing and negative pressure, then closure with the cavity filled with antibiotic solution: 97% healed, chest closed within 8 days in 95%.'),
+                      'view': tl(W_, (1, 0.1, 0.2), 300), 'show': [*PPE_SHOW, 'eloesser'], 'hide': [*PPE_OFF, 'ppe-fluid'], 'opacity': {'heart': 0.3, 'lul': 0.3, 'lll': 0.3},
+                      'highlight': ['ppe-air'], 'labels': ['eloesser', 'bpf'], 'ct': ct(R(W_), 'axial', 'lung')},
+                     {'id': 'ppe-clagett', 'phase': 'Close', 'seq': 6, 'title': 'Clagett closure: fill the clean cavity and close',
+                      'body': '<p>When the cavity is clean and granulating, and the fistula closed (weeks to months later, typically 6–8 weeks), <b>fill the space with antibiotic solution</b> (for example DAB: neomycin, polymyxin B and gentamicin per litre), and close the window in layers, watertight. The sterile fluid then obliterates slowly, like a normal post-pneumonectomy space.</p>'
+                              '<p>A persistent fistula must first be closed and <b>covered with muscle</b> (latissimus or serratus through the window), or the Clagett fails.</p>'
+                              + ev('Clagett and Geraci (JTCVS 1963); success 81% at first attempt and 88% after a second (Zaheer et al., Ann Thorac Surg 2006).'),
+                      'view': tl(W_, (1, 0.1, 0.2), 340), 'show': [*PPE_SHOW, 'eloesser'], 'hide': [*PPE_OFF, 'ppe-fluid', 'bpf'], 'opacity': {'heart': 0.3, 'lul': 0.3, 'lll': 0.3},
+                      'labels': ['eloesser'], 'ct': ct(R(W_), 'axial', 'lung')}]
+        FLAP_ = Pt('bronchial-stump')
+        flap_steps = [{**ppe_patho, 'id': 'pf-patho'}, {**ppe_anat, 'id': 'pf-anatomy'}, {**ppe_case, 'id': 'pf-case'}, {**ppe_drain, 'id': 'pf-drain'},
+                      {'id': 'pf-rethor', 'phase': 'Space', 'seq': 4, 'title': 'Re-thoracotomy: evacuate and debride the space',
+                       'body': '<p>Through the old incision (or a fresh one through the rib bed), evacuate the infected fluid and fibrin; debride the parietal pleura; irrigate generously. Send tissue for culture. The mediastinum is fixed and the heart lies close under the fibrin: take care over the pericardium and the SVC.</p>',
+                       'view': side_v, 'show': PPE_SHOW, 'hide': PPE_OFF, 'opacity': {'heart': 0.35, 'lul': 0.35, 'lll': 0.35, 'aorta': 0.6}, 'highlight': ['ppe-fluid'], 'labels': ['ppe-fluid'],
+                       'action': {'kind': 'dissect', 'tool': 'peanut', 'label': 'Evacuate and debride', 'port': 'thor-r', 'remove': ['ppe-fluid'],
+                                  'path': [R(Pt('ppe-level') + V([25, 10, 15])), R(Pt('ppe-level')), R(Pt('ppe-level') + V([25, -10, -15]))]},
+                       'ct': ct(R(Pt('ppe-level')), 'axial', 'lung')},
+                      {'id': 'pf-stump', 'phase': 'Stump', 'seq': 5, 'title': 'Re-amputate and close the stump',
+                       'body': '<p>Free the stump from the fibrin without stripping its remaining blood supply. Trim back to healthy, bleeding cartilage, <b>flush with the carina</b>, and close it again: interrupted absorbable (or polypropylene) sutures, membranous to cartilaginous wall, or a stapler if there is length. Test under saline at 25–30 cmH₂O.</p>'
+                               '<p>If the pleural field is too hostile, the stump can be reached and re-amputated <b>transsternally and transpericardially</b>, between the SVC and the aorta, in clean tissue.</p>',
+                       'view': pv, 'show': PPE_SHOW, 'hide': [*PPE_OFF, 'ppe-fluid'], 'opacity': {'heart': 0.3, 'lul': 0.3, 'lll': 0.3, 'aorta': 0.6},
+                       'highlight': ['bronchial-stump'], 'danger': ['svc', 'azygos', 'esophagus'], 'labels': ['bronchial-stump', 'bpf', 'svc', 'azygos'],
+                       'action': {'kind': 'dissect', 'tool': 'hook', 'label': 'Close the stump', 'port': 'thor-r', 'remove': ['bpf'],
+                                  'path': [R(STUMP + V([0, 8, 6])), R(STUMP), R(STUMP + V([0, -8, -6]))]},
+                       'ask': ask('Why must a re-closed stump in an infected field be covered?', 'A sutured stump in an infected space breaks down again unless a vascularised flap brings blood supply and seals it',
+                                  'Muscle (latissimus, serratus, intercostal), omentum or pericardial fat buttresses the closure and helps clear infection; it is the key step in Pairolero\'s approach.', 'Cover is optional', 'To prevent bleeding', 'To lengthen the stump'),
+                       'ct': ct(R(STUMP), 'axial')},
+                      {'id': 'pf-flap', 'phase': 'Flap', 'seq': 6, 'title': 'Latissimus dorsi flap onto the stump',
+                       'body': '<p>Raise the <b>latissimus dorsi</b> on its <b>thoracodorsal</b> pedicle (it was divided at the first thoracotomy? then use serratus anterior, or an intercostal muscle, or omentum through the diaphragm). Bring it into the chest through a window made by resecting a 5–6 cm segment of the 2nd or 3rd rib, and <b>suture it over the closed stump</b> so it seals and supplies it; the bulk fills part of the space.</p>',
+                       'view': tl(FLAP_, (1, -0.3, 0.3), 320), 'show': [*PPE_SHOW, 'flap-lat'], 'hide': [*PPE_OFF, 'ppe-fluid', 'bpf'], 'opacity': {'heart': 0.3, 'lul': 0.3, 'lll': 0.3, 'aorta': 0.6},
+                       'highlight': ['flap-lat'], 'labels': ['flap-lat', 'bronchial-stump'],
+                       'action': {'kind': 'reveal', 'label': 'Transpose the flap', 'port': 'thor-r', 'ids': ['flap-lat']},
+                       'ct': ct(R(FLAP_), 'axial')},
+                      {'id': 'pf-close', 'phase': 'Close', 'seq': 7, 'title': 'Fill the space and close; or open window',
+                       'body': '<p>If the space is clean after debridement: fill it with antibiotic solution and close (a Clagett-type closure), or use the accelerated approach (repeat debridement every 48 hours with negative pressure, then antibiotic-filled closure). If it is not clean: leave an <b>open window</b> and close later.</p>'
+                               + ev('Pairolero et al. (JTCVS 1990): muscle transposition closed the fistula and controlled the empyema in 84%. Schneiter et al. (JTCVS 2008): accelerated treatment healed 97%.'),
+                       'view': side_v, 'show': [*PPE_SHOW, 'flap-lat'], 'hide': [*PPE_OFF, 'ppe-fluid', 'bpf'], 'opacity': {'heart': 0.35, 'lul': 0.35, 'lll': 0.35, 'aorta': 0.6},
+                       'labels': ['flap-lat', 'ppe-air'], 'ct': ct(R(STUMP), 'axial', 'lung')}]
+        for key, appr, steps_, sq in (('ppe-window', 'Open window, then Clagett closure', win_steps, seq(('Patho', 'other'), ('Anatomy', 'other'), ('Case', 'other'), ('Drain', 'other'), ('Window', 'other'), ('Pack', 'other'), ('Clagett', 'other'))),
+                                      ('ppe-flap', 'Stump closure with a muscle flap', flap_steps, seq(('Patho', 'other'), ('Anatomy', 'other'), ('Case', 'other'), ('Drain', 'other'), ('Debride', 'other'), ('Stump', 'bronchus'), ('Flap', 'other'), ('Close', 'other')))):
+            for s in steps_:
+                if s['id'] == 'pf-flap':
+                    s['body'] = s['body'].replace(' (it was divided at the first thoracotomy? then use serratus anterior, or an intercostal muscle, or omentum through the diaphragm)',
+                                                  ' (if it was divided at the first thoracotomy, use serratus anterior, an intercostal muscle, or omentum through the diaphragm instead)')
+                named = set(s.get('highlight', [])) | set(s.get('danger', [])) | set(s.get('labels', [])) | set(s.get('show', []))
+                s['hide'] = [*s.get('hide', []), *[i for i in PATH_IDS if i not in named], *[k for k in S if S[k]['group'] == 'nodes' and k not in named],
+                             *[i for i in ('n-phrenic', 'n-vagus', 'n-rln', 'n-phrenic-r', 'n-vagus-r', 'thymus', 'thyroid') if has(i) and i not in named]]
+                s['opacity'] = {**{f'vert-t{i}': 0.22 for i in range(2, 11)}, **s.get('opacity', {})}
+                for kk in ('highlight', 'danger', 'labels', 'show', 'hide'):
+                    if kk in s: s[kk] = [i for i in s[kk] if has(i) or i == 'skin']
+            procs[key] = {'id': key, 'op': 'ppe', 'opName': 'Post-pneumonectomy empyema and BPF', 'side': 'right', 'name': 'Post-pneumonectomy empyema and bronchopleural fistula', 'approach': appr,
+                          'summary': 'The infected post-pneumonectomy space and a stump fistula: protect the other lung, drain, then open window and Clagett closure, or stump re-closure with a muscle flap.',
+                          'ports': [], 'steps': steps_, 'sources': PPE_SRC, 'sequence': sq, 'group': 'Pleura'}
 # ==================================================================================================== the operative field in open-heart steps
 # after the chest is open: the drapes and their sternotomy window, the split sternum held open, the pericardial cradle
 FIELD = [i for i in ('drape-sternotomy', 'pericardium-open') if has(i)]
@@ -3613,7 +4183,7 @@ if FIELD:
             if inside: s_['hide'] = [*s_['hide'], 'pericardium-open']
             else: s_['opacity'] = {**s_.get('opacity', {}), 'pericardium-open': 0.55}
 # operations appear in the menu in this order
-ORDER = ['position', 'thoracotomy-l', 'thoracotomy-r', 'vats-ports-l', 'vats-ports-r', 'lul', 'lll', 'rul', 'rml', 'rll', 'pnl', 'pnr', 'seg-lingula', 'seg-lul-updiv', 'seg-s6', 'trachea', 'thymectomy', 'oesophagectomy', 'duct', 'empyema', 'rt', 'clamshell', 'cardio', 'tract', 'hilar', 'mvr', 'avr', 'root', 'tricuspid', 'cabg']
+ORDER = ['position', 'thoracotomy-l', 'thoracotomy-r', 'vats-ports-l', 'vats-ports-r', 'lul', 'lll', 'rul', 'rml', 'rll', 'pnl', 'pnr', 'seg-lingula', 'seg-lul-updiv', 'seg-s6', 'trachea', 'thymectomy', 'oesophagectomy', 'duct', 'empyema', 'ppe', 'rt', 'clamshell', 'cardio', 'tract', 'hilar', 'mvr', 'avr', 'root', 'tricuspid', 'cabg']
 procs = dict(sorted(procs.items(), key=lambda kv: (ORDER.index(kv[1]['op']), list(procs).index(kv[0]))))
 for v in procs.values():
     v['group'] = v.get('group') or ('Pneumonectomy' if v['op'].startswith('pn') else 'Segmentectomy' if v['op'].startswith('seg-') else 'Lobectomy')

@@ -29,6 +29,10 @@ export function tissueOf(m: Meta): Tissue {
   if (has(id, 'rh-mv', 'rh-chordae', 'mv-ant-prolapse', 'chordae-long', 'av-rheum')) return 'valve';
   if (has(id, 'laa-thrombus', 'mv-vegetation', 'av-vegetation', 'root-abscess')) return 'organ';
   if (id.startsWith('jet-')) return 'plain';
+  if (has(id, 'tumour-', 'asp-ball', 'thymoma', 'eso-tumour-', 'laa-thrombus')) return 'organ';
+  if (id === 'flap-lat') return 'muscle';
+  if (id === 'bronchial-stump') return 'cartilage';
+  if (has(id, 'asp-cavity', 'asp-pleura', 'tb-cavities', 'cle-', 'cpam-', 'ppe-', 'bpf')) return 'plain';
   if (has(id, 'av-prosthesis', 'tv-prosthesis', 'mv-ant-leaflet', 'mv-post-leaflet', 'tv-septal', 'tv-anterior', 'tv-posterior', 'av-cusp-', 'chordae',
     'mitral-annulus', 'tricuspid-annulus', 'aortic-annulus', 'stj')) return 'valve';
   if (id === 'av-calcium') return 'calcium';

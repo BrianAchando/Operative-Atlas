@@ -901,6 +901,10 @@ CDLM, CDDIR, CDSC = cardiac.build(dict(emit=emit, emit_mesh=emit_mesh, W=W, tube
                                        bct_mm=vox_mm(ts('brachiocephalic_trunk')), svc_mm=vox_mm(ts('superior_vena_cava')), port=port, lung_cr=lung_cr, CARINA=CARINA, sternum_mm=st_mm,
                                        laa_mm=vox_mm(ts('atrial_appendage_left'))))
 TRLM.update(CDLM)
+# ------------------------------------------------------------------ thoracic pathology for the case scenarios (tumours, aspergilloma, CLE/CPAM, thymoma, oesophageal tumours, post-pneumonectomy space)
+import pathology_thx  # noqa: E402
+TRLM.update(pathology_thx.build(dict(emit=emit, emit_mesh=emit_mesh, W=W, tube=tube, sphere=sphere, ts=ts, AT=AT, vox_mm=vox_mm, CARINA=CARINA, port=port,
+                                     sternum_mm=st_mm, rmb=globals().get('R_RMB'), lmb=lmb_mm.mean(0) if len(lmb_mm) else None)))
 # ------------------------------------------------------------------ the operative field: drapes, opened pericardium
 import field  # noqa: E402
 TRLM.update(field.build(dict(emit_mesh=emit_mesh, meshing=meshing, W=W, sternum_mm=st_mm, body=body_ds, body_aff=shifted(a2),
@@ -986,7 +990,7 @@ atlas = {
     'groups': [{'id': 'lungs', 'name': 'Lungs and fissure', 'open': True}, {'id': 'arteries', 'name': 'Pulmonary arteries', 'open': True},
                {'id': 'veins', 'name': 'Pulmonary veins', 'open': True}, {'id': 'airway', 'name': 'Airway', 'open': True},
                {'id': 'nerves', 'name': 'Nerves (schematic)', 'open': True}, {'id': 'pleura', 'name': 'Pleura and ligament (schematic)'}, {'id': 'nodes', 'name': 'Lymph node stations (schematic)'},
-               {'id': 'mediastinum', 'name': 'Heart, great vessels, oesophagus'}, {'id': 'lul-intra', 'name': 'Upper lobe, intrapulmonary'},
+               {'id': 'mediastinum', 'name': 'Heart, great vessels, oesophagus'}, {'id': 'pathology', 'name': 'Pathology (case scenarios)'}, {'id': 'lul-intra', 'name': 'Upper lobe, intrapulmonary'},
                {'id': 'lll-intra', 'name': 'Lower lobe, intrapulmonary'}, {'id': 'chest-wall', 'name': 'Chest wall and spine'},
                {'id': 'ports-anterior', 'name': 'Ports, anterior approach'}, {'id': 'ports-posterior', 'name': 'Ports, posterior approach'},
                {'id': 'rul-intra', 'name': 'Right upper lobe, intrapulmonary'},
