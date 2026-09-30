@@ -3618,7 +3618,7 @@ if TX_OK:
     def add_case(key, patho, case, sources=()):
         """insert a pathophysiology step at the start and a case step after the anatomy; renumber the sequence strip"""
         if key not in procs: return
-        p = procs[key]; st = p['steps']
+        p = procs[key]; st = [dict(s_) for s_ in p['steps']]          # steps can be shared between approaches: renumber copies
         a = min((s['seq'] for s in st if s['phase'] in ('Anatomy',) and s.get('seq') is not None), default=-1)
         for s in st:
             if s.get('seq') is not None: s['seq'] = s['seq'] + (1 if s['seq'] <= a else 2)
@@ -4771,8 +4771,11 @@ if FIELD:
             s_['show'] = [*s_.get('show', []), 'sternum', *[i for i in FIELD if not (inside and i == 'pericardium-open')]]
             if inside: s_['hide'] = [*s_['hide'], 'pericardium-open']
             else: s_['opacity'] = {**s_.get('opacity', {}), 'pericardium-open': 0.55}
+# consent and ICU steps in every operation, and the CTICU protocol hub
+import postop
+postop.apply(procs, ask, has)
 # operations appear in the menu in this order
-ORDER = ['position', 'thoracotomy-l', 'thoracotomy-r', 'vats-ports-l', 'vats-ports-r', 'lul', 'lll', 'rul', 'rml', 'rll', 'pnl', 'pnr', 'seg-lingula', 'seg-lul-updiv', 'seg-s6', 'trachea', 'thymectomy', 'oesophagectomy', 'duct', 'empyema', 'ppe', 'rt', 'clamshell', 'cardio', 'tract', 'hilar', 'mvr', 'avr', 'root', 'tricuspid', 'cabg', 'aiod', 'aaa', 'taa']
+ORDER = ['position', 'thoracotomy-l', 'thoracotomy-r', 'vats-ports-l', 'vats-ports-r', 'lul', 'lll', 'rul', 'rml', 'rll', 'pnl', 'pnr', 'seg-lingula', 'seg-lul-updiv', 'seg-s6', 'trachea', 'thymectomy', 'oesophagectomy', 'duct', 'empyema', 'ppe', 'rt', 'clamshell', 'cardio', 'tract', 'hilar', 'mvr', 'avr', 'root', 'tricuspid', 'cabg', 'aiod', 'aaa', 'taa', 'cticu']
 procs = dict(sorted(procs.items(), key=lambda kv: (ORDER.index(kv[1]['op']), list(procs).index(kv[0]))))
 for v in procs.values():
     v['group'] = v.get('group') or ('Pneumonectomy' if v['op'].startswith('pn') else 'Segmentectomy' if v['op'].startswith('seg-') else 'Lobectomy')

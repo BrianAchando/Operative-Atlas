@@ -213,3 +213,19 @@ details.reading ol { margin: 8px 0 4px; padding-left: 20px; font-size: 12.5px; l
 details.reading li { margin: 0 0 6px; }
 details.reading a { color: #c9d4dc; text-decoration: none; border-bottom: 1px dotted #4a6a80; }
 details.reading a:hover { color: #fff; border-bottom-color: #9fd6d8; }
+
+/* ---------------------------------------------------------------- consent, ICU and the CTICU protocol */
+.body h4 { font: 500 11px var(--mono); text-transform: uppercase; letter-spacing: 0.08em; color: var(--work); margin: 14px 0 4px; }
+.body ul { margin: 2px 0 10px; padding-left: 18px; }
+.body li { margin: 3px 0; }
+.body .tag { font: 500 10px var(--mono); padding: 1px 5px; border-radius: 3px; letter-spacing: 0.03em; text-transform: uppercase; white-space: nowrap; vertical-align: 1px; }
+.body .tag.knh { background: #173a2a; color: #7fd6a4; }
+.body .tag.gl { background: #1c2d3c; color: #a9c3d8; }
+.body .tag.prop { background: #3d3117; color: #f0c66e; }
+.body .box { border: 1px solid var(--line-2); border-radius: 6px; padding: 8px 10px; margin: 10px 0; }
+.body .box h4 { margin-top: 0; }
+.body .box.red { border-color: #7a2d33; background: var(--danger-bg); }
+.body .box.red h4 { color: var(--danger); }
+.body .box.amber { border-color: #5b4a22; background: rgba(240, 198, 110, 0.06); }
+.body .box.amber h4 { color: #f0c66e; }
+.body a.link { font-size: inherit; }

@@ -111,6 +111,14 @@ async function boot(): Promise<void> {
   if (hash.get('step')) state.step = Number(hash.get('step'));
   setFocus(atlas.landmarks['carina'] ?? [0, 0, 0]);
   if (state.mode === 'procedure') goStep(state.step); else setMode('explore');
+  // links inside step text (#approach=…&step=…) jump within the app
+  window.addEventListener('hashchange', () => {
+    const q = new URLSearchParams(location.hash.slice(1)); const a = q.get('approach');
+    if (!a || !procedures[a]) return;
+    const n = Number(q.get('step') ?? 0);
+    if (a !== state.approach) { state.approach = a; state.answered.clear(); state.acted.clear(); }
+    if (state.mode !== 'procedure') { state.step = n; setMode('procedure'); } else goStep(n, true);
+  });
 }
 
 /** the CT plane drawn in 3D: on while exploring, off during the operation unless the reader turns it on */
