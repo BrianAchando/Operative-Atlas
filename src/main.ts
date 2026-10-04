@@ -114,6 +114,12 @@ async function boot(): Promise<void> {
   await scene3d.load(DATA, atlas.structures, (f) => { status.textContent = `Loading the 3D anatomy… ${Math.round(f * 100)}%`; }, first);
   scene3d.planeSource = () => { const v = views[state.plane]; return { canvas: v.canvas, corners: v.corners, version: v.version, visible: planeIn3d && (state.source === 'reference' || !!upVol?.shift.some((x) => x !== 0)) }; };
   scene3d.onPick = (id, p) => { if (p) setFocus(p); if (id) select(id, false); };
+  // stage background toggle (remembered per browser)
+  let stage: 'dark' | 'light' = 'dark'; try { if (localStorage.getItem('cova-stage') === 'light') stage = 'light'; } catch { /* storage off */ }
+  const stageBtn = h('button', { class: 'stage-toggle', title: 'Switch the 3D background', onclick: () => {
+    stage = stage === 'dark' ? 'light' : 'dark'; applyStage(); try { localStorage.setItem('cova-stage', stage); } catch { /* storage off */ } } }) as HTMLButtonElement;
+  const applyStage = () => { scene3d.setStage(stage); document.body.classList.toggle('stage-light', stage === 'light'); stageBtn.textContent = stage === 'dark' ? 'Light background' : 'Dark background'; };
+  $('#stage').append(stageBtn); applyStage();
   scene3d.onHover = (id) => { $('#hover').textContent = id ? (scene3d.items.get(id)?.meta.name ?? '') : ''; };
   status.textContent = '';
   $('#status').hidden = true;

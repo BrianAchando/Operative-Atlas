@@ -145,7 +145,7 @@ export class Scene3D {
     this.renderer.localClippingEnabled = true;
     this.renderer.toneMapping = THREE.NeutralToneMapping; this.renderer.toneMappingExposure = 1.0;
     this.renderer.shadowMap.enabled = true; this.renderer.shadowMap.type = THREE.PCFSoftShadowMap;
-    this.renderer.setClearColor(0xd9dee0); // COVA neutral stage
+    this.renderer.setClearColor(0x0e1c26); // dark stage by default: translucent anatomy reads best on dark
     host.append(this.renderer.domElement);
     this.labelsHost = document.createElement('div'); this.labelsHost.className = 'labels3d'; host.append(this.labelsHost);
     this.camera.up.set(0, 0, 1);
@@ -301,6 +301,8 @@ export class Scene3D {
   }
 
   // ---------------------------------------------------------------- state
+  /** stage background: 'dark' (default, best for translucent anatomy) or 'light' (COVA neutral #d9dee0, for slides and print) */
+  setStage(mode: 'dark' | 'light'): void { this.renderer.setClearColor(mode === 'light' ? 0xd9dee0 : 0x0e1c26); this.dirty = true; }
   setVisible(id: string, v: boolean): void { this.invalidate(); const it = this.items.get(id); if (it) { it.mesh.visible = v; if (it.distal) it.distal.visible = v && it.distal.visible; } }
   setOpacity(id: string, op: number): void {
     const it = this.items.get(id); if (!it) return;
