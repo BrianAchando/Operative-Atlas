@@ -912,6 +912,10 @@ TRLM.update(pathology_vasc.build(dict(emit=emit, emit_mesh=emit_mesh, W=W, tube=
 import field  # noqa: E402
 TRLM.update(field.build(dict(emit_mesh=emit_mesh, meshing=meshing, W=W, sternum_mm=st_mm, body=body_ds, body_aff=shifted(a2),
                              heart=ts('heart'), heart_aff=AT, heart_aff_shifted=shifted(AT), CARINA=CARINA)))
+# ------------------------------------------------------------------ pericardiectomy, the leg (ALI, fem-pop, amputation), the arm (fistulas), post-TB bronchiectasis
+import pathology_new  # noqa: E402
+TRLM.update(pathology_new.build(dict(emit=emit, emit_mesh=emit_mesh, W=W, tube=tube, sphere=sphere, ts=ts, AT=AT, vox_mm=vox_mm, CARINA=CARINA, skin_mm=skin_mm,
+                                     LMW={k: W(v) for k, v in TRLM.items()})))
 CW_L |= MD_L; CW_R |= MD_R
 for appr, ps in PORTS.items():
     for k, nm, p in ps:
@@ -1000,7 +1004,7 @@ atlas = {
                {'id': 'ports-r-anterior', 'name': 'Ports, right anterior approach'}, {'id': 'ports-r-posterior', 'name': 'Ports, right posterior approach'},
                {'id': 'segments', 'name': 'Segments (from bronchial territories)'}, {'id': 'trauma', 'name': 'Trauma (schematic)'}, {'id': 'ports-open-left', 'name': 'Thoracotomy, left'}, {'id': 'ports-open-right', 'name': 'Thoracotomy, right'},
                {'id': 'abdomen', 'name': 'Upper abdomen and conduit'}, {'id': 'incisions', 'name': 'Incisions (sternotomy, neck, abdomen)'},
-               {'id': 'cardiac', 'name': 'Heart: chambers, valves, cannulas'}, {'id': 'muscles', 'name': 'Chest wall muscles (schematic)'}, {'id': 'landmarks', 'name': 'Surface landmarks'}, {'id': 'ports-vats', 'name': 'VATS incisions, uni- and biportal'}, {'id': 'field', 'name': 'Operative field (drapes, pericardium)'}],
+               {'id': 'cardiac', 'name': 'Heart: chambers, valves, cannulas'}, {'id': 'muscles', 'name': 'Chest wall muscles (schematic)'}, {'id': 'landmarks', 'name': 'Surface landmarks'}, {'id': 'ports-vats', 'name': 'VATS incisions, uni- and biportal'}, {'id': 'field', 'name': 'Operative field (drapes, pericardium)'}, {'id': 'leg', 'name': 'Leg (schematic below the groin)'}, {'id': 'arm', 'name': 'Arm and forearm'}],
     'structures': structures,
     'landmarks': landmarks,
     'source': {'name': 'Reference CT: 3D Slicer sample CTA (CTA-cardio)', 'licence': 'unstated',
