@@ -26,21 +26,31 @@ export interface StructureMeta {
 interface Item { meta: StructureMeta; mesh: THREE.Mesh; mat: THREE.MeshPhysicalMaterial; hull?: THREE.Mesh; home: THREE.Vector3; ghost?: THREE.Mesh; distal?: THREE.Mesh; distalPlane?: THREE.Plane; keepPlane?: THREE.Plane; staple?: THREE.Group; ties?: THREE.Mesh[] }
 
 /**
- * In-vivo palette: what the tissues look like through a thoracoscope, kept distinct enough to teach with
- * (pulmonary artery dusky blue-violet, pulmonary veins deep red, bronchus white cartilage, lung pink with carbon
- * speckles, pericardial fat pale yellow, adult hilar nodes anthracotic grey-black).
+ * Palette: vessels, nerves and nodes in the COVA teaching colours; other tissues in their in-vivo tones
+ * (bronchus white cartilage, lung pink, pericardial fat pale yellow).
  */
+const COVA = { artery: '#c8372d', vein: '#3b6fb6', nerve: '#e8d44d', lymph: '#8fbf7f' };
+/* COVA teaching convention by blood oxygen: systemic arteries and pulmonary veins red, systemic veins and the
+   pulmonary artery blue, nerves yellow, lymph nodes green. Other tissues keep their in-vivo tones. */
 const REAL: Record<string, string> = {
-  arteries: '#4f5592', 'lul-intra-a': '#4f5592', veins: '#86293b', airway: '#e8ddd0', lungs: '#dc9d92', nerves: '#efe1a8', nodes: '#4d4845',
-  aorta: '#d48b76', bct: '#d48b76', lcca: '#d48b76', lsca: '#d48b76', svc: '#5b5d8c', lbcv: '#5b5d8c', heart: '#dcbd76', laa: '#a8564d',
+  arteries: COVA.vein, 'lul-intra-a': COVA.vein, veins: COVA.artery, airway: '#e8ddd0', lungs: '#dc9d92', nerves: COVA.nerve, nodes: COVA.lymph,
+  aorta: COVA.artery, bct: COVA.artery, lcca: COVA.artery, lsca: COVA.artery, svc: COVA.vein, lbcv: COVA.vein, heart: '#dcbd76', laa: '#a8564d',
   esophagus: '#d49a88', fissure: '#f1dfa0', skin: '#d9b8a4', 'lig-art': '#d8c9ae', bone: '#e9dec6',
+};
+/** module colours that stand for vessels, nerves and nodes, mapped onto the COVA palette */
+const SWAP: Record<string, string> = {
+  '#c0392b': COVA.artery, '#b8382e': COVA.artery, '#b8453a': COVA.artery,
+  '#4b5fa8': COVA.vein, '#3b52a8': COVA.vein, '#5e6a92': COVA.vein,
+  '#f2d24b': COVA.nerve, '#efe1a8': COVA.nerve,
 };
 function realColour(m: StructureMeta): string {
   if (REAL[m.id]) return REAL[m.id]!;
   if (m.group === 'lul-intra' || m.group === 'lll-intra') return m.colour.toLowerCase() === '#3f6fd8' ? REAL['arteries']! : m.colour.toLowerCase() === '#c2476f' ? REAL['veins']! : REAL['airway']!;
   if (m.group === 'chest-wall') return m.id === 'skin' ? REAL['skin']! : REAL['bone']!;
   if (m.id.startsWith('port-')) return m.colour;
-  return REAL[m.group] ?? m.colour;
+  if (REAL[m.group]) return REAL[m.group]!;
+  if (/^(rcca|coronaries|circumflex|rca-groove|ostium-[lr]|septal-perforator|aorta-cut-)/.test(m.id)) return COVA.artery;
+  return m.group === 'incisions' ? m.colour : SWAP[m.colour.toLowerCase()] ?? m.colour;
 }
 
 /** lung surface: soft mottling and scattered anthracotic speckles, in world space so retraction does not swim */
@@ -74,7 +84,7 @@ function rimShader(mat: THREE.MeshPhysicalMaterial): void {
 
 /** a slightly inflated back-face shell: the glowing outline for "working on" and "protect" */
 function hullMaterial(): THREE.MeshBasicMaterial {
-  const m = new THREE.MeshBasicMaterial({ color: 0x46c2c7, side: THREE.BackSide, transparent: true, opacity: 0.9, depthWrite: false, toneMapped: false });
+  const m = new THREE.MeshBasicMaterial({ color: 0x2ec4b6, side: THREE.BackSide, transparent: true, opacity: 0.9, depthWrite: false, toneMapped: false });
   m.onBeforeCompile = (sh) => { sh.vertexShader = sh.vertexShader.replace('#include <begin_vertex>', 'vec3 transformed = vec3(position) + normal * 0.6;'); };
   return m;
 }
@@ -135,7 +145,7 @@ export class Scene3D {
     this.renderer.localClippingEnabled = true;
     this.renderer.toneMapping = THREE.NeutralToneMapping; this.renderer.toneMappingExposure = 1.0;
     this.renderer.shadowMap.enabled = true; this.renderer.shadowMap.type = THREE.PCFSoftShadowMap;
-    this.renderer.setClearColor(0x0b0f13);
+    this.renderer.setClearColor(0xd9dee0); // COVA neutral stage
     host.append(this.renderer.domElement);
     this.labelsHost = document.createElement('div'); this.labelsHost.className = 'labels3d'; host.append(this.labelsHost);
     this.camera.up.set(0, 0, 1);
@@ -163,7 +173,7 @@ export class Scene3D {
     g.setIndex([0, 2, 1, 2, 3, 1]);
     this.plane = new THREE.Mesh(g, new THREE.MeshBasicMaterial({ side: THREE.DoubleSide, transparent: true, opacity: 0.92, depthWrite: true, toneMapped: false }));
     this.plane.renderOrder = -1; this.plane.frustumCulled = false; this.scene.add(this.plane);
-    this.marker = new THREE.Mesh(new THREE.SphereGeometry(1.6, 20, 14), new THREE.MeshBasicMaterial({ color: 0x46c2c7, depthTest: false, transparent: true, opacity: 0.9 }));
+    this.marker = new THREE.Mesh(new THREE.SphereGeometry(1.6, 20, 14), new THREE.MeshBasicMaterial({ color: 0x2ec4b6, depthTest: false, transparent: true, opacity: 0.9 }));
     this.marker.renderOrder = 30; this.scene.add(this.marker);
     new ResizeObserver(() => this.resize()).observe(host);
     let down: [number, number] | null = null;

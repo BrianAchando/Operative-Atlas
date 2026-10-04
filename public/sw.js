@@ -1,7 +1,7 @@
 // Offline and repeat-visit speed. Pages and the procedure text: network first, so a new deploy shows at once, with
 // the cached copy when offline. The app bundle, CT volumes, meshes and textures: from the cache at once, refreshed in
 // the background (a changed file appears on the next visit).
-const CACHE = 'cova-v1';
+const CACHE = 'cova-v2';
 const FRESH = (u) => u.pathname === '/' || u.pathname.endsWith('.html') || u.pathname.endsWith('.json') || u.pathname.endsWith('.webmanifest');
 
 self.addEventListener('install', (e) => { self.skipWaiting(); e.waitUntil(caches.open(CACHE).then((c) => c.add('/').catch(() => undefined))); });
