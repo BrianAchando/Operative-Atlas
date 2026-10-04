@@ -4790,5 +4790,13 @@ for v in procs.values():
             s['pose'] = 'lateral'
             s['show'] = [*s.get('show', []), *[i for i in (f'line-aal-{k}', f'line-mal-{k}', f'line-pal-{k}', f'lm-scaptip-{k}') if has(i)]]
             s['opacity'] = {**s.get('opacity', {}), 'skin': 1.0}
+# American spelling in what the reader sees (esophagus, esophagectomy); identifiers and the titles of cited papers are left as they are
+import re as _re
+def _us(x, key=None):
+    if isinstance(x, str): return x if key in ('id', 'op', 'url') else _re.sub(r'Oesophag', 'Esophag', _re.sub(r'oesophag', 'esophag', x))
+    if isinstance(x, list): return [_us(i, key) for i in x]
+    if isinstance(x, dict): return {k: (v if k == 'sources' else _us(v, k)) for k, v in x.items()}
+    return x
+procs = {k: _us(v) for k, v in procs.items()}
 (OUT / 'procedures.json').write_text(json.dumps(procs, indent=1))
 print({k: len(v['steps']) for k, v in procs.items()})

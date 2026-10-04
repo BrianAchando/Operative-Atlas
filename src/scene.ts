@@ -181,11 +181,19 @@ export class Scene3D {
     const pr = this.renderer.getPixelRatio(); this.composer?.setSize(w, h); this.composer?.setPixelRatio(pr); this.invalidate();
   }
 
-  async load(base: string, metas: StructureMeta[], onProgress: (f: number) => void): Promise<void> {
-    const loader = new GLTFLoader(); loader.setMeshoptDecoder(MeshoptDecoder);
-    let done = 0;
+  private loader = new GLTFLoader().setMeshoptDecoder(MeshoptDecoder);
+  private base = '';
+  private texs: Record<string, TissueTex> = {};
+  private metaOf = new Map<string, StructureMeta>();
+  private pending = new Map<string, Promise<void>>();
+  /** called after background loading adds structures, so the current step can be re-applied */
+  onLoaded?: (ids: string[]) => void;
+
+  /** Load the textures, then the `first` structures (awaited, with progress); the rest load in the background. */
+  async load(base: string, metas: StructureMeta[], onProgress: (f: number) => void, first?: Set<string>): Promise<void> {
+    this.base = base;
+    for (const m of metas) this.metaOf.set(m.id, m);
     // photographed tissue textures, if the pipeline made any (pipeline/textures.py); the procedural surfaces otherwise
-    const texs: Record<string, TissueTex> = {};
     try {
       const man = await (await fetch(base + 'textures/manifest.json')).json() as Record<string, { albedo: string; normal: string; mean: [number, number, number]; tile: number }>;
       const tl = new THREE.TextureLoader();
@@ -193,11 +201,38 @@ export class Scene3D {
         const [a, n] = await Promise.all([tl.loadAsync(base + e.albedo), tl.loadAsync(base + e.normal)]);
         for (const t of [a, n]) { t.wrapS = t.wrapT = THREE.RepeatWrapping; t.anisotropy = 4; }
         a.colorSpace = THREE.SRGBColorSpace;
-        texs[k] = { albedo: a, normal: n, mean: new THREE.Color().setRGB(...e.mean, THREE.SRGBColorSpace), tile: e.tile };
+        this.texs[k] = { albedo: a, normal: n, mean: new THREE.Color().setRGB(...e.mean, THREE.SRGBColorSpace), tile: e.tile };
       }));
     } catch { /* no textures yet */ }
-    await Promise.all(metas.map(async (m) => {
-      const gltf = await loader.loadAsync(base + m.file);
+    const now = first ? metas.filter((m) => first.has(m.id)) : metas;
+    let done = 0;
+    await Promise.all(now.map((m) => this.loadOne(m).then(() => onProgress(++done / now.length))));
+    if (first) void this.loadRest(metas.filter((m) => !first.has(m.id)));
+  }
+
+  /** load these structures now if they are not loaded yet */
+  ensure(ids: Iterable<string>): Promise<void> {
+    const ms = [...ids].map((i) => this.metaOf.get(i)).filter((m): m is StructureMeta => !!m && !this.items.has(m.id));
+    return Promise.all(ms.map((m) => this.loadOne(m))).then(() => undefined);
+  }
+
+  private async loadRest(metas: StructureMeta[]): Promise<void> {
+    for (let i = 0; i < metas.length; i += 16) {
+      const batch = metas.slice(i, i + 16).filter((m) => !this.items.has(m.id));
+      await Promise.all(batch.map((m) => this.loadOne(m)));
+      if (batch.length) this.onLoaded?.(batch.map((m) => m.id));
+    }
+  }
+
+  private loadOne(m: StructureMeta): Promise<void> {
+    if (this.items.has(m.id)) return Promise.resolve();
+    let p = this.pending.get(m.id);
+    if (!p) { p = this.loadMeta(m).catch(() => undefined).finally(() => this.pending.delete(m.id)); this.pending.set(m.id, p); }
+    return p;
+  }
+
+  private async loadMeta(m: StructureMeta): Promise<void> {
+      const gltf = await this.loader.loadAsync(this.base + m.file);
       let geo: THREE.BufferGeometry | null = null;
       gltf.scene.updateMatrixWorld(true);
       let world = new THREE.Matrix4();
@@ -223,7 +258,7 @@ export class Scene3D {
       const rim = m.group === 'lungs' || m.id === 'heart' || m.id === 'skin';
       const cut = CUTAWAY(m.id);
       const kind = tissueOf(m);
-      if (!lung) applyTissue(mat, kind, mainAxis(geo), (rim ? '-rim' : '') + (cut ? '-cut' : ''), m.schematic && kind === 'plain' ? undefined : texs[kind]);
+      if (!lung) applyTissue(mat, kind, mainAxis(geo), (rim ? '-rim' : '') + (cut ? '-cut' : ''), m.schematic && kind === 'plain' ? undefined : this.texs[kind]);
       if (cut) withCutaway(mat, m.id.startsWith('drape-'));
       if (m.group === 'lungs' && m.id !== 'fissure') lungShader(mat);
       if (m.group === 'lungs' || m.id === 'heart' || m.id === 'skin') rimShader(mat);
@@ -235,8 +270,7 @@ export class Scene3D {
       mesh.visible = m.visible !== false;
       this.scene.add(mesh);
       this.items.set(m.id, { meta: m, mesh, mat, home: new THREE.Vector3() });
-      onProgress(++done / metas.length);
-    }));
+    this.invalidate();
   }
 
   // ---------------------------------------------------------------- camera

@@ -8,7 +8,8 @@ import type { Procedure, Step } from './procedure.ts';
 const DATA = 'data/';
 
 interface Atlas {
-  ct: { file: string; dims: [number, number, number]; affine: number[][]; scale: number; offset: number; spacing: number };
+  ct: { file: string; dims: [number, number, number]; affine: number[][]; scale: number; offset: number; spacing: number;
+        lo?: { file: string; labels: string; dims: [number, number, number]; affine: number[][]; spacing: number } };
   labels: { file: string; lut: Record<string, string> };
   groups: { id: string; name: string; open?: boolean }[];
   structures: StructureMeta[];
@@ -65,6 +66,9 @@ const views: Record<Plane, CTView> = {} as Record<Plane, CTView>;
 const labelOf = new Map<string, number>();           // structure id -> label id
 const idOfLabel = new Map<number, string>();
 
+// offline use and fast repeat visits (production only: the dev server must not be cached)
+if (import.meta.env.PROD && 'serviceWorker' in navigator) navigator.serviceWorker.register('/sw.js').catch(() => undefined);
+
 async function boot(): Promise<void> {
   const status = $('#status');
   status.textContent = 'Loading the reference CT…';
@@ -74,12 +78,17 @@ async function boot(): Promise<void> {
   try { const r = await fetch(DATA + 'ai_questions.json'); if (r.ok) aiQs = ((await r.json()) as { questions: AIQ[] }).questions; } catch { /* none */ }
   try { const r = await fetch(DATA + 'ai_answers.json'); if (r.ok) aiAns = await r.json(); } catch { /* not run yet */ }
   for (const [k, v] of Object.entries(atlas.labels.lut)) { labelOf.set(v, Number(k)); idOfLabel.set(Number(k), v); }
-  const [ctBuf, labBuf] = await Promise.all([
-    fetchGunzip(DATA + atlas.ct.file, (f) => { status.textContent = `Loading the reference CT… ${Math.round(f * 100)}%`; }),
-    fetchGunzip(DATA + atlas.labels.file),
-  ]);
-  const c = atlas.ct;
-  refVol = { name: 'Reference CT', dims: c.dims, data: new Uint8Array(ctBuf), scale: c.scale, offset: c.offset, affine: c.affine, inverse: invertAffine(c.affine), shift: [0, 0, 0], spacing: c.spacing, labels: new Uint8Array(labBuf) };
+  // a half-resolution preview of the CT opens the atlas quickly; the full volume replaces it once downloaded
+  const c = atlas.ct; const lo = c.lo;
+  const mkVol = (data: ArrayBuffer, labels: ArrayBuffer, dims: [number, number, number], affine: number[][], spacing: number): Volume =>
+    ({ name: 'Reference CT', dims, data: new Uint8Array(data), scale: c.scale, offset: c.offset, affine, inverse: invertAffine(affine), shift: [0, 0, 0], spacing, labels: new Uint8Array(labels) });
+  const full = () => Promise.all([fetchGunzip(DATA + c.file, lo ? undefined : (f) => { status.textContent = `Loading the reference CT… ${Math.round(f * 100)}%`; }), fetchGunzip(DATA + atlas.labels.file)]);
+  if (lo) {
+    const [a, b] = await Promise.all([fetchGunzip(DATA + lo.file, (f) => { status.textContent = `Loading the reference CT… ${Math.round(f * 100)}%`; }), fetchGunzip(DATA + lo.labels)]);
+    refVol = mkVol(a, b, lo.dims, lo.affine, lo.spacing);
+  } else {
+    const [a, b] = await full(); refVol = mkVol(a, b, c.dims, c.affine, c.spacing);
+  }
 
   // ---- CT views
   const onFocus = (p: Vec3, from: CTView | null) => {
@@ -95,7 +104,14 @@ async function boot(): Promise<void> {
   if (import.meta.env.DEV) (window as unknown as { __s: Scene3D }).__s = scene3d;
   (window as unknown as { hilum: unknown }).hilum = { get scene() { return scene3d; }, views };
   status.textContent = 'Loading the 3D anatomy…';
-  await scene3d.load(DATA, atlas.structures, (f) => { status.textContent = `Loading the 3D anatomy… ${Math.round(f * 100)}%`; });
+  // the structures needed now (those shown by default and those of the operation being opened) load first; the rest follow in the background
+  const h0 = new URLSearchParams(location.hash.slice(1)).get('approach');
+  const first = new Set<string>([...atlas.structures.filter((m) => m.visible !== false).map((m) => m.id), ...procIds(procedures[h0 ?? ''] ?? procedures[state.approach])]);
+  scene3d.onLoaded = (ids) => {
+    const proc = currentProc(); if (!proc || state.mode !== 'procedure' || state.playing) return;
+    const need = procIds(proc); if (ids.some((i) => need.has(i))) goStep(state.step, false);
+  };
+  await scene3d.load(DATA, atlas.structures, (f) => { status.textContent = `Loading the 3D anatomy… ${Math.round(f * 100)}%`; }, first);
   scene3d.planeSource = () => { const v = views[state.plane]; return { canvas: v.canvas, corners: v.corners, version: v.version, visible: planeIn3d && (state.source === 'reference' || !!upVol?.shift.some((x) => x !== 0)) }; };
   scene3d.onPick = (id, p) => { if (p) setFocus(p); if (id) select(id, false); };
   scene3d.onHover = (id) => { $('#hover').textContent = id ? (scene3d.items.get(id)?.meta.name ?? '') : ''; };
@@ -111,6 +127,7 @@ async function boot(): Promise<void> {
   if (hash.get('step')) state.step = Number(hash.get('step'));
   setFocus(atlas.landmarks['carina'] ?? [0, 0, 0]);
   if (state.mode === 'procedure') goStep(state.step); else setMode('explore');
+  if (lo) void full().then(([a, b]) => { refVol = mkVol(a, b, c.dims, c.affine, c.spacing); for (const v of Object.values(views)) v.setVolume(refVol); renderCT(); }).catch(() => undefined);
   // links inside step text (#approach=…&step=…) jump within the app
   window.addEventListener('hashchange', () => {
     const q = new URLSearchParams(location.hash.slice(1)); const a = q.get('approach');
@@ -228,8 +245,20 @@ function currentProc(): Procedure | undefined { return procedures[state.approach
 function currentStep(): Step | undefined { return currentProc()?.steps[state.step]; }
 
 /** Rebuild the operative scene up to step n: every earlier action is done, retractions applied. */
+/** every structure an operation names, so its meshes can be loaded before they are needed */
+function procIds(proc?: Procedure): Set<string> {
+  const out = new Set<string>(); if (!proc) return out;
+  for (const st of proc.steps) {
+    for (const k of ['show', 'highlight', 'danger', 'labels'] as const) for (const i of (st[k] as string[] | undefined) ?? []) out.add(i);
+    const a = st.action; if (a) for (const i of [...(a.ids ?? []), ...(a.show ?? []), ...(a.remove ?? [])]) out.add(i);
+  }
+  return out;
+}
+
 function goStep(n: number, fly = true): void {
   const proc = currentProc(); if (!proc) return;
+  const need = [...procIds(proc)].filter((i) => !scene3d.items.has(i) && atlas.structures.some((m) => m.id === i));
+  if (need.length) void scene3d.ensure(need).then(() => { if (currentProc() === proc) goStep(state.step, false); });
   state.step = Math.max(0, Math.min(proc.steps.length - 1, n));
   state.playing = false;
   scene3d.resetOperative();
@@ -440,6 +469,7 @@ function procPanel(): HTMLElement {
     st.pearl && !locked ? h('p', { class: 'pearl' }, st.pearl) : null,
     nav,
     reading(proc, state.step === proc.steps.length - 1),
+    flagBox(proc, st),
     aiPanel(aiQs.filter((x) => x.op === proc.op)),
     h('details', { class: 'outline' }, h('summary', {}, 'All steps'), dots),
     h('p', { class: 'foot' }, 'Teaching model on one reference CT. Not for planning an operation on a patient.', ...(texCredits ? [' ', h('a', { href: 'data/textures/ATTRIBUTION.md', target: '_blank', rel: 'noopener' }, 'Texture credits')] : [])),
@@ -454,6 +484,36 @@ function shuffled<T>(key: string, xs: T[]): T[] {
   const a = xs.slice(); for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(rnd() * (i + 1)); [a[i], a[j]] = [a[j]!, a[i]!]; }
   return a;
 }
+/** "Flag this step": a reviewer reports an error or a suggestion; the form keeps its text across re-renders */
+const flagForms = new Map<string, HTMLElement>();
+function flagBox(proc: Procedure, st: Step): HTMLElement {
+  const key = `${state.approach}/${st.id}`; const old = flagForms.get(key); if (old) return old;
+  let saved = ''; try { saved = localStorage.getItem('hilum-reviewer') ?? ''; } catch { /* storage off */ }
+  const kind = h('select', { 'aria-label': 'Type' }, ...[['wrong', 'Wrong fact'], ['outdated', 'Outdated'], ['unclear', 'Unclear'], ['missing', 'Missing'], ['typo', 'Typo'], ['other', 'Other']].map(([v, t]) => h('option', { value: v }, t))) as HTMLSelectElement;
+  const text = h('textarea', { rows: 3, placeholder: 'What is wrong or missing, and what it should say (with a source if you have one)', 'aria-label': 'Comment' }) as HTMLTextAreaElement;
+  const name = h('input', { type: 'text', placeholder: 'Your name', value: saved, 'aria-label': 'Your name' }) as HTMLInputElement;
+  const trap = h('input', { type: 'text', tabindex: -1, autocomplete: 'off', class: 'hp', 'aria-hidden': 'true' }) as HTMLInputElement;
+  const note = h('span', { class: 'flag-note', role: 'status' });
+  const send = h('button', { class: 'btn', type: 'submit' }, 'Send') as HTMLButtonElement;
+  const form = h('form', { class: 'flag-form' }, kind, text, h('div', { class: 'flag-row' }, name, send), trap, note);
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    if (!text.value.trim()) { note.textContent = 'Add a comment first.'; return; }
+    send.disabled = true; note.textContent = 'Sending…';
+    try { localStorage.setItem('hilum-reviewer', name.value.trim()); } catch { /* storage off */ }
+    try {
+      const r = await fetch('api/flags', { method: 'POST', headers: { 'content-type': 'application/json' },
+        body: JSON.stringify({ proc: state.approach, approach: `${proc.opName} · ${proc.approach}`, step: st.id, stepTitle: st.title, kind: kind.value, comment: text.value, name: name.value, website: trap.value }) });
+      const j = await r.json().catch(() => ({})) as { error?: string };
+      if (r.ok) { text.value = ''; note.textContent = 'Sent. Thank you: it goes to the review list.'; }
+      else note.textContent = j.error ?? 'Could not send. Try again later.';
+    } catch { note.textContent = 'Could not send: no connection. Try again later.'; }
+    send.disabled = false;
+  });
+  const el = h('details', { class: 'flag' }, h('summary', {}, 'Flag this step'), form);
+  flagForms.set(key, el); return el;
+}
+
 /** the evidence behind the operation: papers and guidelines to read further */
 function reading(proc: { sources?: { title: string; url: string }[] }, open: boolean): HTMLElement | null {
   const src = proc.sources ?? []; if (!src.length) return null;

@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Atlas Review</title>
+<link rel="icon" href="/icon-192.png" />
+<style>
+/* Same monitor palette as the atlas. Red = open flag, teal = fixed, grey = rejected. */
+:root { --bg: #0b0f13; --panel: #10161c; --raised: #16202a; --line: #223040; --line-2: #2d3e50; --text: #dde6ec; --muted: #8b9cab; --faint: #5d6e7d;
+  --work: #46c2c7; --danger: #ff5a63; --sans: 'IBM Plex Sans', system-ui, -apple-system, 'Segoe UI', sans-serif; --mono: 'IBM Plex Mono', ui-monospace, Menlo, monospace; color-scheme: dark; }
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--bg); color: var(--text); font: 14px/1.5 var(--sans); }
+.wrap { max-width: 1100px; margin: 0 auto; padding-inline: 18px; padding-block: 18px 60px; }
+header { display: flex; flex-wrap: wrap; gap: 10px 16px; align-items: baseline; border-bottom: 1px solid var(--line); padding-bottom: 12px; }
+header b { font-size: 20px; } header span { color: var(--muted); font-size: 13px; } header a { margin-left: auto; color: var(--work); font-size: 13px; }
+.bar { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin: 14px 0; }
+input, select, textarea, button { font: inherit; font-size: 13px; color: var(--text); background: var(--raised); border: 1px solid var(--line-2); border-radius: 5px; padding: 6px 9px; }
+button { cursor: pointer; } button:hover { border-color: var(--muted); } button:focus-visible, input:focus-visible, select:focus-visible { outline: 2px solid var(--work); outline-offset: 1px; }
+.seg { display: inline-flex; border: 1px solid var(--line-2); border-radius: 6px; overflow: hidden; }
+.seg button { border: 0; border-radius: 0; border-right: 1px solid var(--line-2); background: none; color: var(--muted); }
+.seg button:last-child { border-right: 0; } .seg button[aria-pressed="true"] { background: var(--raised); color: var(--text); box-shadow: inset 0 -2px 0 var(--work); }
+.count { font: 500 11px var(--mono); color: var(--faint); margin-left: 4px; }
+.msg { color: var(--muted); padding: 18px 0; }
+.item { border: 1px solid var(--line); border-left: 3px solid var(--danger); border-radius: 6px; background: var(--panel); padding: 10px 12px; margin: 10px 0; display: grid; gap: 6px; }
+.item.fixed { border-left-color: var(--work); } .item.rejected { border-left-color: var(--faint); }
+.meta { font: 11px var(--mono); color: var(--muted); display: flex; flex-wrap: wrap; gap: 4px 14px; }
+.where { font-weight: 600; } .where a { color: var(--work); text-decoration: none; } .where a:hover { text-decoration: underline; }
+.kind { font: 500 10.5px var(--mono); text-transform: uppercase; letter-spacing: .05em; padding: 1px 6px; border-radius: 3px; background: #3d1c22; color: #ffb3b8; }
+.comment { white-space: pre-wrap; }
+.res { font-size: 12.5px; color: var(--muted); border-left: 2px solid var(--line-2); padding-left: 8px; }
+.act { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; } .act input { flex: 1; min-width: 180px; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header><b>Atlas review</b><span>Flags raised on Operative Atlas steps</span><a href="./">Back to the atlas</a></header>
+  <div class="bar">
+    <input id="key" type="password" placeholder="Review key" aria-label="Review key" autocomplete="current-password" />
+    <button id="load">Show flags</button>
+    <span class="seg" id="status" role="group" aria-label="Status">
+      <button data-s="open" aria-pressed="true">Open<span class="count" id="c-open"></span></button>
+      <button data-s="fixed" aria-pressed="false">Fixed<span class="count" id="c-fixed"></span></button>
+      <button data-s="rejected" aria-pressed="false">Rejected<span class="count" id="c-rejected"></span></button>
+      <button data-s="" aria-pressed="false">All<span class="count" id="c-all"></span></button>
+    </span>
+    <select id="op" aria-label="Operation"><option value="">All operations</option></select>
+    <button id="csv">Export CSV</button>
+  </div>
+  <div id="list"><p class="msg">Enter the review key to see the flags.</p></div>
+</div>
+<script>
+const $ = (s) => document.querySelector(s);
+let rows = [], status = 'open';
+try { $('#key').value = localStorage.getItem('hilum-review-key') || ''; } catch {}
+const esc = (t) => String(t ?? '').replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+async function load() {
+  const key = $('#key').value.trim(); try { localStorage.setItem('hilum-review-key', key); } catch {}
+  $('#list').innerHTML = '<p class="msg">Loading…</p>';
+  try {
+    const r = await fetch('api/flags', { headers: { 'x-review-key': key } }); const j = await r.json();
+    if (!r.ok) { $('#list').innerHTML = `<p class="msg">${esc(j.error || 'Could not load.')}</p>`; return; }
+    rows = j; fillOps(); draw();
+  } catch { $('#list').innerHTML = '<p class="msg">Could not reach the review service.</p>'; }
+}
+function fillOps() {
+  const cur = $('#op').value; const ops = [...new Set(rows.map((r) => r.approach || r.proc))].sort();
+  $('#op').innerHTML = '<option value="">All operations</option>' + ops.map((o) => `<option${o === cur ? ' selected' : ''}>${esc(o)}</option>`).join('');
+}
+function draw() {
+  for (const s of ['open', 'fixed', 'rejected']) $('#c-' + s).textContent = rows.filter((r) => r.status === s).length;
+  $('#c-all').textContent = rows.length;
+  const op = $('#op').value;
+  const show = rows.filter((r) => (!status || r.status === status) && (!op || (r.approach || r.proc) === op));
+  if (!show.length) { $('#list').innerHTML = '<p class="msg">No flags here.</p>'; return; }
+  $('#list').innerHTML = show.map((r) => `
+    <div class="item ${esc(r.status)}" data-id="${r.id}">
+      <div class="meta"><span>#${r.id}</span><span>${esc(new Date(r.created).toLocaleString())}</span><span>${esc(r.name || 'anonymous')}</span><span class="kind">${esc(r.kind)}</span><span>${esc(r.status)}</span></div>
+      <div class="where"><a href="./#approach=${encodeURIComponent(r.proc)}" target="_blank" rel="noopener">${esc(r.approach || r.proc)}</a> · ${esc(r.step_title || r.step)}</div>
+      <div class="comment">${esc(r.comment)}</div>
+      ${r.resolution ? `<div class="res">${esc(r.status)}: ${esc(r.resolution)}</div>` : ''}
+      <div class="act"><input placeholder="What was done (optional)" aria-label="Resolution" value="${esc(r.resolution || '')}" />
+        ${r.status !== 'fixed' ? '<button data-to="fixed">Mark fixed</button>' : ''}${r.status !== 'rejected' ? '<button data-to="rejected">Reject</button>' : ''}${r.status !== 'open' ? '<button data-to="open">Reopen</button>' : ''}</div>
+    </div>`).join('');
+}
+$('#list').addEventListener('click', async (e) => {
+  const b = e.target.closest('button[data-to]'); if (!b) return;
+  const item = b.closest('.item'); const id = +item.dataset.id; const resolution = item.querySelector('input').value;
+  b.disabled = true;
+  const r = await fetch('api/flags', { method: 'PATCH', headers: { 'content-type': 'application/json', 'x-review-key': $('#key').value.trim() }, body: JSON.stringify({ id, status: b.dataset.to, resolution }) });
+  if (r.ok) { const row = rows.find((x) => x.id === id); row.status = b.dataset.to; row.resolution = resolution; draw(); } else b.disabled = false;
+});
+$('#status').addEventListener('click', (e) => { const b = e.target.closest('button'); if (!b) return; status = b.dataset.s; for (const x of $('#status').children) x.setAttribute('aria-pressed', String(x === b)); draw(); });
+$('#op').addEventListener('change', draw);
+$('#load').addEventListener('click', load);
+$('#key').addEventListener('keydown', (e) => { if (e.key === 'Enter') load(); });
+$('#csv').addEventListener('click', () => {
+  const cols = ['id', 'created', 'name', 'approach', 'step_title', 'kind', 'comment', 'status', 'resolution', 'resolved'];
+  const csv = [cols.join(','), ...rows.map((r) => cols.map((c) => '"' + String(r[c] ?? '').replace(/"/g, '""') + '"').join(','))].join('\n');
+  const a = document.createElement('a'); a.href = URL.createObjectURL(new Blob([csv], { type: 'text/csv' })); a.download = 'atlas-flags.csv'; a.click();
+});
+if ($('#key').value) load();
+</script>
+</body>
+</html>

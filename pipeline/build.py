@@ -1010,6 +1010,10 @@ atlas = {
     'source': {'name': 'Reference CT: 3D Slicer sample CTA (CTA-cardio)', 'licence': 'unstated',
                'note': 'Segmented with TotalSegmentator (total and lung_vessels). Branch names are assigned from the geometry of this one scan and need a surgeon\'s check.'},
 }
+import re as _re  # noqa: E402
+for _s in atlas['structures']:                                   # American spelling in names and notes the reader sees
+    for _k in ('name', 'note'):
+        if _k in _s: _s[_k] = _re.sub(r'Oesophag', 'Esophag', _re.sub(r'oesophag', 'esophag', _s[_k]))
 (OUT / 'atlas.json').write_text(json.dumps(atlas))
 print('structures', len(structures))
 print('names', {v[0]: round(float(art_t.dist[k]), 1) for k, v in names.items()})

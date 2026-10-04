@@ -229,3 +229,15 @@ details.reading a:hover { color: #fff; border-bottom-color: #9fd6d8; }
 .body .box.amber { border-color: #5b4a22; background: rgba(240, 198, 110, 0.06); }
 .body .box.amber h4 { color: #f0c66e; }
 .body a.link { font-size: inherit; }
+
+/* ---------------------------------------------------------------- review: flag this step */
+.flag { margin: 10px 0; border: 1px solid var(--line); border-radius: 6px; }
+.flag summary { cursor: pointer; padding: 7px 10px; font-size: 13px; color: var(--muted); }
+.flag[open] summary { color: var(--text); border-bottom: 1px solid var(--line); }
+.flag-form { display: grid; gap: 8px; padding: 10px; }
+.flag-form select, .flag-form textarea, .flag-form input { font: inherit; font-size: 13px; color: var(--text); background: var(--raised); border: 1px solid var(--line-2); border-radius: 5px; padding: 6px 8px; width: 100%; }
+.flag-form textarea { resize: vertical; min-height: 64px; }
+.flag-row { display: flex; gap: 8px; }
+.flag-row input { flex: 1; min-width: 0; }
+.flag-note { font-size: 12px; color: var(--muted); }
+.flag-form .hp { position: absolute; left: -9999px; width: 1px; height: 1px; opacity: 0; }
