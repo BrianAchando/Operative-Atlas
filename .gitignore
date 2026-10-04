@@ -13,3 +13,6 @@ sample
 
 # texture sourcing: downloaded candidates stay local (pipeline/fetch_photos.py)
 pipeline/photos/_candidates/
+
+# wrangler local build output
+.wrangler/
