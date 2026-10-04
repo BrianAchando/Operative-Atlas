@@ -262,7 +262,13 @@ def add(procs, ask, has, LM, S):
             view(Wr + V(0, 0, 40), (0.7, 0.9, 0.2), 230), show=ARM, highlight=hv(['arm-radial', 'arm-cephalic']), labels=hv(['arm-radial', 'arm-cephalic', 'avf-rc']), opacity=AOP,
             action={'kind': 'reveal', 'label': 'Make the anastomosis', 'port': 'wrist-r', 'ids': ['inc-avf', 'avf-rc', 'anast-avf']})
         rc_m = step('av-rc-mature', 'Mature', 'Maturation: the forearm vein arterialises',
-            '<p>Over 4–6 weeks the cephalic vein dilates and thickens. Assess at 4–6 weeks: a strong thrill, a straight segment long enough for two needles, superficial enough to feel. Poor maturation: ultrasound for a juxta-anastomotic stenosis (balloon or revise) or competing veins (ligate).</p>',
+            '<p>Over 4–6 weeks the cephalic vein dilates and thickens. Examine it at 4–6 weeks: a continuous thrill, a soft pulse (not hammering), a straight segment long enough for two needles, superficial enough to feel.</p>'
+            '<table class="mini"><tr><th colspan="2">The rule of 6s: at 6 weeks a mature fistula has</th></tr>'
+            '<tr><td><b>Flow</b></td><td>600 mL/min or more</td></tr><tr><td><b>Diameter</b></td><td>6 mm or more</td></tr>'
+            '<tr><td><b>Depth</b></td><td>no more than 6 mm under the skin</td></tr><tr><td><b>When</b></td><td>assessed at 6 weeks</td></tr></table>'
+            '<p><b>KDOQI 2019</b> defines maturity by use: the fistula supports dialysis with two needles in more than two-thirds of sessions over 4 consecutive weeks. The rule of 6s stays a useful bedside and duplex check.</p>'
+            '<p><b>Not maturing by 6 weeks</b>: duplex ultrasound. A <b>juxta-anastomotic stenosis</b> (the commonest cause in the forearm): balloon angioplasty or revision. <b>Competing side branches</b> stealing flow: ligate. A <b>deep vein</b>: superficialise. A small, diseased artery: a more proximal fistula.</p>'
+            + ev('Rule of 6s: earlier KDOQI vascular access guidance (as summarised by the Renal Fellow Network). KDOQI 2019 update (Lok et al., Am J Kidney Dis 2020): functional definition of maturation; assess at 4–6 weeks.'),
             ARMV, show=[*ARM, 'avf-rc', 'anast-avf'], highlight=['avf-rc-mature'], labels=['avf-rc-mature'], opacity=AOP,
             action={'kind': 'reveal', 'label': 'Six weeks later', 'port': 'wrist-r', 'ids': ['avf-rc-mature']},
             quiz=ask('At 6 weeks a radiocephalic fistula has a weak thrill that fades just above the anastomosis. Most likely?', 'A juxta-anastomotic stenosis: ultrasound, then balloon angioplasty or revision',
