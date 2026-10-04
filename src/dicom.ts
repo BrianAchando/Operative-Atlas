@@ -1,5 +1,6 @@
 import dicomParser from 'dicom-parser';
 import { invertAffine, type Volume } from './volume.ts';
+import { DECODABLE, decodeFrame, expandZips } from './codecs.ts';
 
 /**
  * DICOM (and NIfTI) read entirely in the browser: nothing is uploaded anywhere. A series is assembled from the
@@ -37,6 +38,7 @@ export async function filesFromDrop(dt: DataTransfer): Promise<File[]> {
 }
 
 export async function loadImages(files: File[], onProgress?: (f: number) => void): Promise<LoadReport> {
+  files = await expandZips(files);
   const nii = files.find((f) => /\.nii(\.gz)?$/i.test(f.name));
   if (nii) return loadNifti(nii);
   const bySeries = new Map<string, { slices: Slice[]; desc: string }>();
@@ -51,7 +53,8 @@ export async function loadImages(files: File[], onProgress?: (f: number) => void
     const ts = ds.string('x00020010') ?? '1.2.840.10008.1.2';
     const pd = ds.elements['x7fe00010'];
     if (!pd) { skipped++; continue; }
-    if (!NATIVE.has(ts)) { syntaxes.add(ts); skipped++; continue; }
+    const native = NATIVE.has(ts);
+    if (!native && !DECODABLE.has(ts)) { syntaxes.add(ts); skipped++; continue; }
     const ipp = ds.string('x00200032'), iop = ds.string('x00200037'), ps = ds.string('x00280030');
     if (!ipp || !iop || !ps) { skipped++; continue; }
     const rows = ds.uint16('x00280010')!, cols = ds.uint16('x00280011')!;
@@ -59,7 +62,17 @@ export async function loadImages(files: File[], onProgress?: (f: number) => void
     if (bits !== 16 || (ds.uint16('x00280002') ?? 1) !== 1) { skipped++; continue; }
     const slope = Number(ds.string('x00281053') ?? 1), icpt = Number(ds.string('x00281052') ?? 0);
     const n = rows * cols;
-    const src = signed ? new Int16Array(bytes.buffer.slice(pd.dataOffset, pd.dataOffset + n * 2)) : new Uint16Array(bytes.buffer.slice(pd.dataOffset, pd.dataOffset + n * 2));
+    let src: Int16Array | Uint16Array;
+    if (native) src = signed ? new Int16Array(bytes.buffer.slice(pd.dataOffset, pd.dataOffset + n * 2)) : new Uint16Array(bytes.buffer.slice(pd.dataOffset, pd.dataOffset + n * 2));
+    else {
+      try {
+        const frame = pd.fragments?.length
+          ? dicomParser.readEncapsulatedPixelDataFromFragments(ds, pd, 0, pd.fragments.length)
+          : dicomParser.readEncapsulatedPixelData(ds, pd, 0);
+        src = await decodeFrame(ts, frame as Uint8Array, signed);
+        if (src.length < n) { skipped++; continue; }
+      } catch { syntaxes.add(ts); skipped++; continue; }
+    }
     const px = new Int16Array(n);
     for (let i = 0; i < n; i++) px[i] = Math.max(-32768, Math.min(32767, Math.round(src[i]! * slope + icpt)));
     const uid = ds.string('x0020000e') ?? 'series';
@@ -73,7 +86,10 @@ export async function loadImages(files: File[], onProgress?: (f: number) => void
       ? `These images are compressed (${names.join(', ')}), which this viewer cannot decode in the browser yet. Export the series uncompressed ("Explicit VR Little Endian") and drop it again.`
       : 'No CT slices found. Drop the folder of a DICOM series (or a .nii / .nii.gz file).');
   }
-  const [uid, best] = [...bySeries.entries()].sort((a, b) => b[1].slices.length - a[1].slices.length)[0]!;
+  // prefer an axial acquisition over reformats (studies often carry axial, coronal and sagittal series of similar size)
+  const axial = (x: { slices: Slice[] }) => { const o = x.slices[0]!.iop; return Math.abs(o[0]! * o[4]! - o[1]! * o[3]!) > 0.95 ? 2 : 1; };
+  const [uid, best] = [...bySeries.entries()].sort((a, b) => b[1].slices.length * axial(b[1]) - a[1].slices.length * axial(a[1]))[0]!;
+  const others = [...bySeries.values()].filter((x) => x !== best && x.slices.length > 20).map((x) => `${x.desc || 'series'} (${x.slices.length})`);
   const sl = best.slices.filter((s) => s.rows === best.slices[0]!.rows && s.cols === best.slices[0]!.cols);
   const iop = sl[0]!.iop;
   const r = iop.slice(0, 3), c = iop.slice(3, 6);
@@ -94,6 +110,7 @@ export async function loadImages(files: File[], onProgress?: (f: number) => void
   const affine = [0, 1, 2].map((d) => [flip[d]! * r[d]! * colSp, flip[d]! * c[d]! * rowSp, flip[d]! * nrm[d]! * dz, flip[d]! * p0[d]!]);
   const note: string[] = [];
   if (Math.abs(Math.abs(nrm[2]!) - 1) > 0.05) note.push('The series is not axial; the planes are resampled from it.');
+  if (others.length) note.push(`Also in this study: ${others.join(', ')}.`);
   if (syntaxes.size) note.push(`${[...syntaxes].map((s) => SYNTAX_NAMES[s] ?? s).join(', ')} files were skipped.`);
   const volume: Volume = { name: best.desc || 'Uploaded CT', dims: [cols, rows, uniq.length], data, scale: 1, offset: 0, affine, inverse: invertAffine(affine), shift: [0, 0, 0], spacing: Math.min(colSp, rowSp, Math.abs(dz)) };
   return { volume, slices: uniq.length, skipped, series: uid, note };

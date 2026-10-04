@@ -1,0 +1,29 @@
+{
+  "routes": [
+    {
+      "routePath": "/api/flags",
+      "mountPath": "/api",
+      "method": "GET",
+      "module": [
+        "api/flags.js:onRequestGet"
+      ]
+    },
+    {
+      "routePath": "/api/flags",
+      "mountPath": "/api",
+      "method": "PATCH",
+      "module": [
+        "api/flags.js:onRequestPatch"
+      ]
+    },
+    {
+      "routePath": "/api/flags",
+      "mountPath": "/api",
+      "method": "POST",
+      "module": [
+        "api/flags.js:onRequestPost"
+      ]
+    }
+  ],
+  "baseURL": "/"
+}

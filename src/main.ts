@@ -196,7 +196,7 @@ function buildCTPanel(): void {
   const main = h('div', { class: 'ct-main', id: 'ct-main' },
     h('span', { class: 'edge t', id: 'edge-t' }), h('span', { class: 'edge r', id: 'edge-r' }), h('span', { class: 'edge b', id: 'edge-b' }), h('span', { class: 'edge l', id: 'edge-l' }),
     h('div', { class: 'ct-hud' }, h('span', { id: 'ct-src' }), h('span', { 'data-readout': 'main', id: 'ct-readout' }), h('span', { id: 'ct-under', class: 'under' })),
-    h('div', { class: 'drop-hint', id: 'drop-hint' }, 'Drop a DICOM folder or a .nii file'),
+    h('div', { class: 'drop-hint', id: 'drop-hint' }, 'Drop a DICOM folder, a .zip export or a .nii file'),
   );
   const minis = h('div', { class: 'ct-minis', id: 'ct-minis' });
   host.append(h('div', { class: 'ct-bar' }, tabs, wins), main, h('div', { class: 'ct-bar lower' }, labelsBtn, planeBtn, hdBtn, h('span', { class: 'hint' }, 'Scroll = slice · click = move crosshair')), minis);
@@ -355,7 +355,7 @@ function wireUpload(): void {
   const input = h('input', { type: 'file', id: 'file', multiple: true, hidden: true }) as HTMLInputElement;
   input.setAttribute('webkitdirectory', '');
   document.body.append(input);
-  const single = h('input', { type: 'file', id: 'file-one', multiple: true, accept: '.dcm,.nii,.gz,application/dicom', hidden: true }) as HTMLInputElement;
+  const single = h('input', { type: 'file', id: 'file-one', multiple: true, accept: '.dcm,.nii,.gz,.zip,application/dicom,application/zip', hidden: true }) as HTMLInputElement;
   document.body.append(single);
   input.addEventListener('change', () => { if (input.files?.length) void ingest(Array.from(input.files)); input.value = ''; });
   single.addEventListener('change', () => { if (single.files?.length) void ingest(Array.from(single.files)); single.value = ''; });
