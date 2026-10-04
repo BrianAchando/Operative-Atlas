@@ -224,7 +224,7 @@ function buildTopbar(): void {
     h('button', { 'data-src': 'reference', onclick: () => { state.source = 'reference'; state.aligning = false; render(); } }, 'Reference CT'),
     h('button', { 'data-src': 'upload', id: 'src-upload', onclick: () => { if (upVol) { state.source = 'upload'; render(); } else $('#file').click(); } }, 'Your CT'));
   const up = h('label', { class: 'btn', for: 'file' }, 'Load DICOM…');
-  bar.append(h('div', { class: 'brand' }, h('b', {}, 'Operative Atlas'), h('span', {}, 'thoracic')), modes, opSel, approach, h('div', { class: 'spacer' }), src, up);
+  bar.append(h('div', { class: 'brand' }, h('b', {}, 'COVA'), h('span', {}, 'Cardiothoracic Operative and Vascular Atlas')), modes, opSel, approach, h('div', { class: 'spacer' }), src, up);
 }
 
 function pickOp(op: string): void {

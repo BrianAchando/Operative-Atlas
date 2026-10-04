@@ -1,6 +1,6 @@
 {
-  "name": "Operative Atlas",
-  "short_name": "Op Atlas",
+  "name": "COVA: Cardiothoracic Operative and Vascular Atlas",
+  "short_name": "COVA",
   "description": "3D operative teaching atlas: thoracic, cardiac and vascular surgery, with the CTICU protocol.",
   "start_url": "/",
   "display": "standalone",
