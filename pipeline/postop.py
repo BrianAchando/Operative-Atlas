@@ -429,6 +429,54 @@ OPS.update({
 KEY_OF.update({'pericardium': 'peri', 'ali': 'ali', 'avf': 'avf', 'bronchiectasis': 'bx'})
 APPR_OF.update({'fp-gsv': 'fempop', 'amp-levels': 'amp'})
 
+
+# ------------------------------------------------------------------ congenital series (children: doses by weight, paediatric ICU team)
+PAED = 'Children: fluids, drugs and blood by weight with the paediatric intensivist; the adult dose tables do not apply'
+OPS.update({
+    'asd': dict(kind='card', c=dict(risk='Age, PVR and RV function, other lesions; for an adult, AF and EuroSCORE II', common=['Pain, drains for 1–2 days', 'Atrial arrhythmias (AF, flutter), usually short-lived'],
+                                    serious=['Bleeding needing re-operation', 'Heart block (rare)', 'Stroke or air embolism', 'Death (well under 1% in children)'],
+                                    specific=['A small residual leak', 'Post-pericardiotomy syndrome: fever, chest pain, effusion in the first weeks', 'AF may persist in adults operated late'],
+                                    alt=['Device closure (secundum with adequate rims)', 'No closure: progressive RV dilatation, AF, heart failure'], kenya=['Waiting time for surgery or a device', 'Echo follow-up access']),
+                icu=['Usually extubated within hours; early mobilisation', 'Rhythm: atrial arrhythmias; check K⁺ and Mg²⁺; pacing wires', 'Echo before discharge: residual shunt, effusion', PAED],
+                q1=('Which late problem after surgical ASD closure should the family know about?', 'Post-pericardiotomy syndrome: fever, chest pain and an effusion in the first weeks',
+                    'It responds to anti-inflammatories; a growing effusion needs echo and sometimes drainage.', 'Complete heart block in most', 'Lifelong warfarin', 'Need for a valve replacement'),
+                q2=('Day 3 after ASD closure: fever, pleuritic pain, rub, small effusion, well perfused. Likely cause?', 'Post-pericardiotomy syndrome',
+                    'Treat with anti-inflammatories and watch the effusion; exclude infection.', 'Patch dehiscence', 'Endocarditis', 'Pulmonary embolism'),
+                ev='ESC 2020 adult congenital guideline; AATS/TSRA primer.'),
+    'vsd': dict(kind='card', c=dict(risk='Weight, nutrition, PVR, other defects; age at operation', common=['Drains, ICU stay of 1–3 days', 'Feeding difficulty at first'],
+                                    serious=['Complete heart block needing a pacemaker (a few per cent)', 'Residual VSD', 'Aortic or tricuspid valve injury', 'Pulmonary hypertensive crisis', 'Death'],
+                                    specific=['Temporary pacing wires', 'Echo follow-up of the aortic and tricuspid valves'],
+                                    alt=['Pulmonary artery banding (selected infants)', 'Device closure (some muscular and perimembranous defects)', 'Medical therapy only: risk of irreversible pulmonary vascular disease'],
+                                    kenya=['Waiting list and nutrition before surgery', 'Distance to follow-up and pacemaker services']),
+                icu=['ECG and rhythm: junctional ectopic tachycardia (cool, correct Mg²⁺, reduce inotropes) or heart block (pace)', 'Pulmonary hypertensive crisis: sedation, oxygen, avoid acidosis and hypercarbia; nitric oxide where available', 'Echo: residual VSD, tricuspid and aortic regurgitation', PAED],
+                q1=('Which risk of VSD closure is specific to the anatomy of a perimembranous defect?', 'Complete heart block from injury to the His bundle',
+                    'The bundle runs along the posteroinferior rim; a pacemaker is needed if block persists.', 'Paraplegia', 'Chylothorax', 'Phrenic nerve palsy as the main risk'),
+                q2=('Two hours after VSD closure: heart rate 210, narrow QRS, AV dissociation, low BP. Diagnosis and first steps?', 'Junctional ectopic tachycardia: cool to about 35 °C, correct Mg²⁺, reduce inotropes, consider amiodarone',
+                    'JET is common after VSD surgery; it responds to cooling, electrolytes and less catecholamine.', 'Sinus tachycardia: give fluid', 'Complete heart block', 'Atrial flutter: DC shock at once'),
+                ev='Azab 2013: permanent complete heart block in 3.5% of 400 closures.'),
+    'pda': dict(kind='card', c=dict(risk='Weight and prematurity, size and calcification of the duct, lung disease', common=['Pain', 'A chest drain for a day'],
+                                    serious=['Recurrent laryngeal nerve injury (hoarse voice, feeding problems)', 'Bleeding from a torn duct', 'Chylothorax', 'Ligation of the wrong vessel (rare)', 'Death (rare outside prematurity)'],
+                                    specific=['Small risk of the duct reopening after ligation', 'In preterm babies, unstable blood pressure and breathing in the first day'],
+                                    alt=['Device closure', 'In preterms: ibuprofen or paracetamol', 'No closure: heart failure, pulmonary hypertension, endarteritis'], kenya=['Device availability and waiting times']),
+                icu=['Blood pressure: the diastolic rises; watch for hypertension and, in preterms, post-ligation instability (low BP, worse oxygenation)', 'Voice and swallowing: RLN injury', 'Chest drain: blood, air or chyle (milky after feeds)', PAED],
+                q1=('Which nerve injury should be discussed before PDA ligation?', 'The left recurrent laryngeal nerve (hoarse voice, swallowing)',
+                    'It hooks under the duct and is at risk at every ligation.', 'The phrenic nerve only', 'The long thoracic nerve', 'The hypoglossal nerve'),
+                q2=('Day 2 after PDA ligation, the drain turns milky after feeds. Diagnosis?', 'Chylothorax',
+                    'The thoracic duct lies close by; drain, medium-chain triglyceride feeds, and re-explore if it persists.', 'Empyema', 'Haemothorax', 'Normal drainage'),
+                ev='Subbian 2024: pooled vocal cord paralysis after preterm ligation 32%; bleeding, chylothorax and pneumothorax rare.'),
+    'coa': dict(kind='card', c=dict(risk='Age (neonates carry more recoarctation), arch size, collaterals, LV function', common=['Pain, drains', 'High blood pressure for days to weeks'],
+                                    serious=['Paraplegia (rare)', 'Recoarctation needing balloon or surgery', 'Recurrent laryngeal nerve injury', 'Chylothorax', 'Bleeding'],
+                                    specific=['Paradoxical hypertension and abdominal pain in the first days', 'Lifelong blood pressure and imaging follow-up; aortic valve if bicuspid'],
+                                    alt=['Stent (older patients, suitable anatomy)', 'Balloon angioplasty (limited role)', 'No repair: hypertension, heart failure, stroke, dissection'], kenya=['Access to CT or MRI follow-up', 'Long-term BP control']),
+                icu=['Paradoxical hypertension: beta-blocker or nitroprusside early, then oral antihypertensives', 'Legs: power and sensation as soon as awake (cord ischaemia)', 'Abdominal pain or distension (mesenteric arteritis): delay feeds, control BP', 'Drain: chyle; voice: RLN', PAED],
+                q1=('Which rare but devastating risk of coarctation repair must be discussed?', 'Paraplegia from spinal cord ischaemia during clamping',
+                    'Rare (0% in a modern series, about 0.4% historically) but material to any patient.', 'Complete heart block', 'Tricuspid regurgitation', 'Endocarditis of the mitral valve'),
+                q2=('Day 1 after coarctation repair: BP 165/100, abdominal pain, legs moving well. Next?', 'Treat the paradoxical hypertension (beta-blocker or nitroprusside), withhold feeds, examine the abdomen',
+                    'Post-coarctectomy hypertension and mesenteric arteritis go together; control BP and rest the gut.', 'Ignore: it settles', 'Immediate re-operation', 'Fluid bolus'),
+                ev='Farag 2019: 14% on antihypertensives at follow-up; recoarctation 9.9%.'),
+})
+KEY_OF.update({'asd': 'asd', 'vsd': 'vsd', 'pda': 'pda', 'coa': 'coa'})
+
 CORE_LINK = {'card': ('cticu-cardiac', 'cardiac core'), 'thx': ('cticu-thoracic', 'thoracic core'), 'vasc': ('cticu-vascular', 'vascular core')}
 TEACH = ('Pathophysiology', 'Anatomy', 'Case', 'Decision')
 
