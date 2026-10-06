@@ -30190,18 +30190,18 @@
   "steps": [
    {
     "phase": "Pathophysiology",
-    "title": "Pathophysiology: congenital lobar emphysema versus CPAM",
-    "body": "<table class=\"mini\"><tr><th></th><th>Congenital lobar emphysema (CLE)</th><th>Congenital pulmonary airway malformation (CPAM)</th></tr><tr><td>What it is</td><td>A normal-structured lobe that <b>over-distends</b>: deficient bronchial cartilage (or compression) makes a <b>ball valve</b>; air enters, cannot leave</td><td>A <b>hamartomatous</b> lesion of cysts and abnormal airways, usually one lobe; blood supply from the pulmonary artery</td></tr><tr><td>Where</td><td>Left upper lobe (about 43%), middle lobe (32%), right upper (21%); lower lobes rare</td><td>Any lobe; lower lobes often</td></tr><tr><td>When</td><td>Neonatal respiratory distress; half at birth, most by 6 months</td><td>Most found on antenatal ultrasound; some present with infection later</td></tr><tr><td>Imaging</td><td>A hyperlucent lobe <b>with vascular markings</b>, the other lobes compressed, the mediastinum shifted</td><td>Air-filled cysts of varying size; solid in microcystic types</td></tr><tr><td>Risks</td><td>Progressive compression, tension physiology</td><td>Infection; hydrops in the fetus (CVR over 1.6); malignancy (mucinous adenocarcinoma with type 1; type 4 now regarded as cystic pleuropulmonary blastoma)</td></tr></table><div class=\"chain\"><span>Deficient bronchial cartilage</span><i>\u2192</i><span>Airway collapses in expiration (ball valve)</span><i>\u2192</i><span>Air trapping, lobe over-distends</span><i>\u2192</i><span class=\"hot\">Compresses the other lobes, shifts the mediastinum</span><i>\u2192</i><span class=\"hot\">Respiratory distress, falling venous return</span></div><p><b>The trap</b>: CLE looks like a tension pneumothorax. A chest drain into an emphysematous lobe makes a large air leak and can kill; look for lung markings in the lucent area before inserting one.</p><p><b>Anesthesia for CLE</b>: avoid nitrous oxide (it expands the lobe) and high positive-pressure ventilation before the chest is open (spontaneous breathing or gentle ventilation); the surgeon scrubbed at induction, ready to open the chest and deliver the lobe.</p><p><b>Stocker types of CPAM</b>: 0 (acinar dysplasia, lethal), 1 (large cysts over 2 cm, 50\u201370%), 2 (small cysts, associated anomalies), 3 (solid-appearing, alveolar), 4 (peripheral cysts; now considered cystic pleuropulmonary blastoma).</p><p class=\"evidence\"><b>Evidence:</b> CLE: StatPearls 2024 (lobe distribution, presentation, pneumothorax pitfall) and OpenAnesthesia 2025 (anesthetic management). CPAM: CPAM volume ratio over 1.6 predicted hydrops in 75% (Crombleholme et al., J Pediatr Surg 2002); resection of asymptomatic lesions at 6\u201312 months versus surveillance remains debated (StatPearls). Pathology update: Dehner et al., Pediatr Dev Pathol 2023.</p>",
+    "title": "Pathophysiology and staging: lung cancer",
+    "body": "<p><b>In Kenya and across Africa</b> lung cancer usually presents late: in series from Ghana and West Africa three-quarters or more are stage III\u2013IV at diagnosis. A cough, weight loss and a shadow are often treated first as <b>tuberculosis</b>, frequently without bacteriological confirmation; a smear- or GeneXpert-negative \"TB\" that does not improve needs a CT and a tissue diagnosis.</p><p><b>How it arises.</b> Carcinogens (tobacco above all; also biomass smoke, occupational exposures, radon) cause accumulating mutations in the airway epithelium. <b>Adenocarcinoma</b> (commonest, peripheral, and in never-smokers often driven by <b>EGFR</b> or <b>ALK</b> alterations) and <b>squamous cell carcinoma</b> (central, smokers) make up most non-small-cell cancer. Small-cell cancer is rarely surgical.</p><p><b>How it spreads</b> decides the stage and the operation:</p><div class=\"chain\"><span>Primary tumor (T: size, invasion)</span><i>\u2192</i><span>Intrapulmonary and hilar nodes (N1)</span><i>\u2192</i><span class=\"hot\">Mediastinal nodes (N2)</span><i>\u2192</i><span class=\"hot\">Contralateral or supraclavicular (N3)</span></div><div class=\"chain\"><span>Primary tumor</span><i>\u2192</i><span class=\"hot\">Blood: brain, bone, adrenal, liver (M1)</span></div><table class=\"mini\"><tr><th>T</th><th>Tumour (9th edition keeps the 8th-edition T)</th></tr><tr><td>T1</td><td>\u22643 cm, surrounded by lung (T1a \u22641, T1b >1\u20132, T1c >2\u20133 cm)</td></tr><tr><td>T2</td><td>>3\u20135 cm (T2a >3\u20134, T2b >4\u20135), or main bronchus (not carina), visceral pleura, collapse to the hilum</td></tr><tr><td>T3</td><td>>5\u20137 cm, or chest wall, phrenic nerve, parietal pericardium, a separate nodule in the same lobe</td></tr><tr><td>T4</td><td>>7 cm, or mediastinum, heart, great vessels, trachea, carina, esophagus, diaphragm, vertebra, a nodule in another ipsilateral lobe</td></tr><tr><th>N</th><th>Nodes</th></tr><tr><td>N1</td><td>ipsilateral hilar or intrapulmonary (stations 10\u201314)</td></tr><tr><td>N2a / N2b</td><td>ipsilateral mediastinal or subcarinal: <b>one station</b> (N2a) or <b>several stations</b> (N2b), new in the 9th edition</td></tr><tr><td>N3</td><td>contralateral mediastinal or hilar, or any scalene or supraclavicular</td></tr><tr><th>M</th><th>Metastasis</th></tr><tr><td>M1a\u2013c</td><td>M1a pleural or pericardial spread, contralateral nodules; M1b one extrathoracic metastasis; <b>M1c1</b> several in one organ system, <b>M1c2</b> several organ systems (new)</td></tr></table><p><b>Before an operation</b>: CT and <b>PET-CT</b>; <b>invasive mediastinal staging</b> (EBUS/EUS needle aspiration, or mediastinoscopy) when the tumor is central, over 3 cm, or the nodes are enlarged or PET-positive; brain imaging for stage II and above. Then fitness: FEV1 and DLCO, and the <b>predicted postoperative</b> values (ppo = preoperative value \u00d7 segments remaining / 19; by lobe: RUL 3, RML 2, RLL 5, LUL 5 with the lingula, LLL 4).</p><p class=\"evidence\"><b>Evidence:</b> 9th-edition TNM from the IASLC (Rami-Porta et al., J Thorac Oncol 2024): N2 split into N2a (single station) and N2b (multiple stations); M1c into M1c1 and M1c2; T1N1 moves to stage IIA, T1N2a is IIB. ACCP 2013 physiological evaluation (Brunelli et al.): ppoFEV1 and ppoDLCO both over 60% is low risk; 30\u201360% needs a stair climb (over 22 m) or shuttle walk (over 400 m); under 30%, or a poor walk test, needs CPET (VO2max over 20 mL/kg/min low risk, under 10 high risk). ESTS 2014 guideline for invasive mediastinal staging (De Leyn et al.).</p>",
     "view": {
      "eye": [
-      -382.6,
-      -59.2,
-      50.2
+      -376.7,
+      -65.5,
+      66.2
      ],
      "target": [
-      -71.5,
-      18.6,
-      -27.6
+      -75.0,
+      9.9,
+      -9.2
      ]
     },
     "spin": true,
@@ -30214,11 +30214,20 @@
      "fissure",
      "fissure-h",
      "fissure-r",
-     "cle-lul"
+     "tumor-lul",
+     "ln-5",
+     "ln-6",
+     "ln-7",
+     "ln-10l",
+     "ln-11l",
+     "ln-9l",
+     "ln-4r",
+     "ln-10r",
+     "ln-11r",
+     "ln-9r",
+     "trachea"
     ],
     "hide": [
-     "lul",
-     "tumor-lul",
      "tumor-lll",
      "tumor-rul",
      "tumor-rml",
@@ -30229,6 +30238,7 @@
      "asp-ball",
      "asp-pleura",
      "tb-cavities-l",
+     "cle-lul",
      "cpam-lll",
      "thymoma",
      "eso-tumor-mid",
@@ -30273,42 +30283,47 @@
      "vert-t10": 0.18,
      "vert-t11": 0.18,
      "vert-t12": 0.18,
-     "lul": 0.25,
-     "lll": 0.25,
-     "rul": 0.25,
-     "rml": 0.25,
-     "rll": 0.25,
-     "fissure": 0.25,
-     "fissure-h": 0.25,
-     "fissure-r": 0.25
+     "lul": 0.28,
+     "lll": 0.28,
+     "rul": 0.28,
+     "rml": 0.28,
+     "rll": 0.28,
+     "fissure": 0.28,
+     "fissure-h": 0.28,
+     "fissure-r": 0.28
     },
     "highlight": [
-     "cle-lul"
+     "tumor-lul"
     ],
     "labels": [
-     "cle-lul",
-     "lll"
+     "tumor-lul",
+     "ln-5",
+     "ln-6",
+     "ln-7",
+     "ln-10l",
+     "ln-11l",
+     "ln-9l"
     ],
     "ask": {
-     "question": "A 3-week-old with tachypnea has a hyperlucent left upper zone and mediastinal shift. Vascular markings are visible in the lucent area. What must you avoid?",
+     "question": "Under the 9th edition, a 2.6 cm tumor (T1c) with metastasis in a single mediastinal station (subcarinal, station 7) and no distant spread is stage\u2026",
      "choices": [
       {
-       "text": "Inserting a chest drain for a presumed pneumothorax",
+       "text": "IIB (T1 N2a)",
        "correct": true,
-       "why": "Vascular markings mean over-distended lung, not free air: this is CLE. A drain would enter the lobe and cause a large air leak. The treatment is lobectomy."
+       "why": "The 9th edition splits N2: a single station (N2a) with a T1 tumor is IIB; several stations (N2b) make it IIIA. Many single-station N2 patients are now treated with neoadjuvant chemo-immunotherapy and surgery."
       },
       {
-       "text": "A CT scan",
+       "text": "IIIA",
        "correct": false,
        "why": ""
       },
       {
-       "text": "Oxygen",
+       "text": "IIIB",
        "correct": false,
        "why": ""
       },
       {
-       "text": "Surgical consultation",
+       "text": "IV",
        "correct": false,
        "why": ""
       }
@@ -30316,9 +30331,9 @@
     },
     "ct": {
      "focus": [
-      -71.5,
-      18.6,
-      -27.6
+      -75.0,
+      9.9,
+      -9.2
      ],
      "plane": "axial",
      "window": "lung"
@@ -30445,29 +30460,29 @@
    },
    {
     "phase": "Case",
-    "title": "Case: a neonate with congenital lobar emphysema",
-    "lead": "<p>A <b>5-week-old boy</b>, increasing tachypnea and feeding difficulty; SpO\u2082 90% in air. Chest X-ray: a <b>hyperlucent left upper zone</b> with faint vascular markings, the left lower lobe compressed, the mediastinum pushed to the right. CT: an over-distended left upper lobe; no mass or vascular sling compressing the bronchus.</p>",
-    "body": "<p>Symptomatic CLE: <b>left upper lobectomy</b> (in a neonate by thoracotomy through the 4th or 5th space, or thoracoscopy in experienced hands). Mild, stable cases can be observed.</p><p><b>In theatre</b>: gentle or spontaneous ventilation until the chest is open; no nitrous oxide. Once the chest is open the lobe <b>herniates</b> out of the incision and the child improves at once. Then the hilum as in the adult: the lingular and upper lobe arteries, the superior pulmonary vein, the upper lobe bronchus.</p><p><i>The model shows an adult chest; the neonatal anatomy is the same in arrangement, much smaller in scale.</i></p><p class=\"evidence\"><b>Evidence:</b> StatPearls 2024: lobectomy for symptomatic CLE; conservative follow-up for mild cases. OpenAnesthesia 2025: avoid N\u2082O, minimize positive pressure, surgeon ready at induction.</p>",
+    "title": "Case: an EGFR-positive adenocarcinoma in a never-smoker",
+    "lead": "<p>A <b>58-year-old woman</b>, never a smoker, cooked over a wood fire for 30 years. Six months of cough; given anti-TB treatment twice at a health center without a positive sputum test. CT: a <b>3.4 cm</b> mass in the left upper lobe, no enlarged nodes; biopsy: <b>adenocarcinoma, EGFR exon 19 deletion</b>. PET: no nodal or distant uptake. EBUS: stations 4L, 7 and 10L negative. FEV1 78%, DLCO 72% predicted.</p>",
+    "body": "<p><b>Stage</b>: T2a (3\u20134 cm) N0 M0 = <b>IB</b>. <b>Why EBUS with a negative PET?</b> A tumor over 3 cm (or central, or cN1) carries enough risk of occult N2 to justify invasive staging. <b>Fitness</b>: the left upper lobe (with the lingula) has 5 of the 19 segments: ppoFEV1 = 78 \u00d7 14/19 \u2248 57%, ppoDLCO = 72 \u00d7 14/19 \u2248 53%; both are in the 30\u201360% band, and she climbs three flights (over 22 m) without stopping: fit for lobectomy.</p><p><b>Plan</b>: VATS left upper lobectomy with systematic nodal dissection, then adjuvant <b>osimertinib</b> for the EGFR mutation.</p><p class=\"evidence\"><b>Evidence:</b> VIOLET (HTA 2022; 503 patients): VATS lobectomy gave better physical function at 5 weeks and fewer in-hospital complications than open lobectomy, with no loss of nodal upstaging. ADAURA (NEJM 2023): adjuvant osimertinib after resection of EGFR-mutant stage IB\u2013IIIA disease improved 5-year overall survival (88% vs 78%, HR 0.49).</p>",
     "ask": {
-     "question": "At induction the child desaturates and becomes hypotensive with bag ventilation. Best immediate action?",
+     "question": "Why did she need EBUS when the PET showed no nodal uptake?",
      "choices": [
       {
-       "text": "Open the chest quickly and let the lobe decompress out of the wound",
+       "text": "A tumor over 3 cm carries a significant risk of occult mediastinal nodes; guidelines advise invasive staging for tumors over 3 cm, central tumors or cN1",
        "correct": true,
-       "why": "Positive pressure inflates the trapped lobe further (tension physiology). Opening the chest decompresses it at once; this is why the surgeon is scrubbed at induction."
+       "why": "PET misses small nodal deposits. ESTS 2014 recommends invasive staging for central tumors, tumors over 3 cm, or suspected N1 even when PET is negative."
       },
       {
-       "text": "Increase the ventilation pressure",
+       "text": "EBUS is required before every lobectomy",
        "correct": false,
        "why": ""
       },
       {
-       "text": "Give nitrous oxide",
+       "text": "To confirm the EGFR mutation",
        "correct": false,
        "why": ""
       },
       {
-       "text": "Insert a chest drain",
+       "text": "Because she had been treated for TB",
        "correct": false,
        "why": ""
       }
@@ -30475,14 +30490,14 @@
     },
     "view": {
      "eye": [
-      -382.6,
-      -59.2,
-      50.2
+      -357.8,
+      -60.8,
+      61.5
      ],
      "target": [
-      -71.5,
-      18.6,
-      -27.6
+      -75.0,
+      9.9,
+      -9.2
      ]
     },
     "show": [
@@ -30494,11 +30509,19 @@
      "fissure",
      "fissure-h",
      "fissure-r",
-     "cle-lul"
+     "tumor-lul",
+     "ln-5",
+     "ln-6",
+     "ln-7",
+     "ln-10l",
+     "ln-11l",
+     "ln-9l",
+     "ln-4r",
+     "ln-10r",
+     "ln-11r",
+     "ln-9r"
     ],
     "hide": [
-     "lul",
-     "tumor-lul",
      "tumor-lll",
      "tumor-rul",
      "tumor-rml",
@@ -30509,6 +30532,7 @@
      "asp-ball",
      "asp-pleura",
      "tb-cavities-l",
+     "cle-lul",
      "cpam-lll",
      "thymoma",
      "eso-tumor-mid",
@@ -30541,8 +30565,11 @@
      "rul-veins"
     ],
     "labels": [
-     "cle-lul",
-     "lll"
+     "tumor-lul",
+     "ln-5",
+     "ln-6",
+     "ln-7",
+     "ln-10l"
     ],
     "danger": [],
     "opacity": {
@@ -30558,20 +30585,20 @@
      "vert-t10": 0.18,
      "vert-t11": 0.18,
      "vert-t12": 0.18,
-     "lul": 0.25,
-     "lll": 0.25,
-     "rul": 0.25,
-     "rml": 0.25,
-     "rll": 0.25,
-     "fissure": 0.25,
-     "fissure-h": 0.25,
-     "fissure-r": 0.25
+     "lul": 0.3,
+     "lll": 0.3,
+     "rul": 0.3,
+     "rml": 0.3,
+     "rll": 0.3,
+     "fissure": 0.3,
+     "fissure-h": 0.3,
+     "fissure-r": 0.3
     },
     "ct": {
      "focus": [
-      -71.5,
-      18.6,
-      -27.6
+      -75.0,
+      9.9,
+      -9.2
      ],
      "plane": "axial",
      "window": "lung"
@@ -30613,14 +30640,14 @@
     },
     "view": {
      "eye": [
-      -382.6,
-      -59.2,
-      50.2
+      -357.8,
+      -60.8,
+      61.5
      ],
      "target": [
-      -71.5,
-      18.6,
-      -27.6
+      -75.0,
+      9.9,
+      -9.2
      ]
     },
     "show": [
@@ -30632,11 +30659,19 @@
      "fissure",
      "fissure-h",
      "fissure-r",
-     "cle-lul"
+     "tumor-lul",
+     "ln-5",
+     "ln-6",
+     "ln-7",
+     "ln-10l",
+     "ln-11l",
+     "ln-9l",
+     "ln-4r",
+     "ln-10r",
+     "ln-11r",
+     "ln-9r"
     ],
     "hide": [
-     "lul",
-     "tumor-lul",
      "tumor-lll",
      "tumor-rul",
      "tumor-rml",
@@ -30647,6 +30682,7 @@
      "asp-ball",
      "asp-pleura",
      "tb-cavities-l",
+     "cle-lul",
      "cpam-lll",
      "thymoma",
      "eso-tumor-mid",
@@ -30691,20 +30727,20 @@
      "vert-t10": 0.18,
      "vert-t11": 0.18,
      "vert-t12": 0.18,
-     "lul": 0.25,
-     "lll": 0.25,
-     "rul": 0.25,
-     "rml": 0.25,
-     "rll": 0.25,
-     "fissure": 0.25,
-     "fissure-h": 0.25,
-     "fissure-r": 0.25
+     "lul": 0.3,
+     "lll": 0.3,
+     "rul": 0.3,
+     "rml": 0.3,
+     "rll": 0.3,
+     "fissure": 0.3,
+     "fissure-h": 0.3,
+     "fissure-r": 0.3
     },
     "ct": {
      "focus": [
-      -71.5,
-      18.6,
-      -27.6
+      -75.0,
+      9.9,
+      -9.2
      ],
      "plane": "axial",
      "window": "lung"
@@ -31886,24 +31922,44 @@
   ],
   "sources": [
    {
-    "title": "Mukhtar S, Sharma S, Trovela DA. Congenital lobar emphysema. StatPearls 2024",
-    "url": "https://www.ncbi.nlm.nih.gov/books/NBK560602/"
+    "title": "Rami-Porta R, et al. The IASLC Lung Cancer Staging Project: proposals for revision of the TNM stage groups in the forthcoming (ninth) edition of the TNM classification for lung cancer. J Thorac Oncol 2024;19:1007-27",
+    "url": "https://www.jto.org/article/S1556-0864(24)00079-0/fulltext"
    },
    {
-    "title": "Congenital lobar emphysema: anaesthetic considerations. OpenAnesthesia 2025",
-    "url": "https://www.openanesthesia.org/keywords/congenital-lobar-emphysema/"
+    "title": "Klug M, et al. The ninth edition of TNM staging for lung cancer: what radiologists need to know. RadioGraphics 2024;44:e240057",
+    "url": "https://pubs.rsna.org/doi/10.1148/rg.240057"
    },
    {
-    "title": "Crombleholme TM, et al. Cystic adenomatoid malformation volume ratio predicts outcome in prenatally diagnosed CCAM. J Pediatr Surg 2002;37:331-8",
-    "url": "https://www.sciencedirect.com/science/article/abs/pii/S0022346802749269"
+    "title": "Brunelli A, Kim AW, Berger KI, et al. Physiologic evaluation of the patient with lung cancer being considered for resectional surgery. ACCP guidelines. Chest 2013;143(5 Suppl):e166S-e190S",
+    "url": "https://journal.chestnet.org/article/S0012-3692(13)60294-9/fulltext"
    },
    {
-    "title": "Congenital pulmonary airway malformation. StatPearls",
-    "url": "https://www.statpearls.com/point-of-care/20208"
+    "title": "De Leyn P, et al. Revised ESTS guidelines for preoperative mediastinal lymph node staging for non-small-cell lung cancer. Eur J Cardiothorac Surg 2014;45:787-98",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/?term=De+Leyn+revised+ESTS+guidelines+preoperative+mediastinal+lymph+node+staging+2014"
    },
    {
-    "title": "Dehner LP, et al. Congenital pulmonary airway malformations with a reconsideration and current classification. Pediatr Dev Pathol 2023",
-    "url": "https://dx.doi.org/10.1177/10935266221146823"
+    "title": "Saji H, et al. Segmentectomy versus lobectomy in small-sized peripheral non-small-cell lung cancer (JCOG0802/WJOG4607L). Lancet 2022;399:1607-17",
+    "url": "https://www.thelancet.com/journals/lancet/article/PIIS0140-6736(21)02333-3/abstract"
+   },
+   {
+    "title": "Altorki N, et al. Lobar or sublobar resection for peripheral stage IA non-small-cell lung cancer (CALGB 140503). N Engl J Med 2023;388:489-98",
+    "url": "https://www.nejm.org/doi/full/10.1056/NEJMoa2212083"
+   },
+   {
+    "title": "Lim E, et al. Video-assisted thoracoscopic versus open lobectomy in patients with early-stage lung cancer: the VIOLET RCT. Health Technol Assess 2022;26(48)",
+    "url": "https://www.ncbi.nlm.nih.gov/books/NBK587651/"
+   },
+   {
+    "title": "Tsuboi M, et al. Overall survival with osimertinib in resected EGFR-mutated NSCLC (ADAURA). N Engl J Med 2023;389:137-47",
+    "url": "https://www.nejm.org/doi/full/10.1056/NEJMoa2304594"
+   },
+   {
+    "title": "Forde PM, et al. Neoadjuvant nivolumab plus chemotherapy in resectable lung cancer (CheckMate 816). N Engl J Med 2022;386:1973-85",
+    "url": "https://www.nejm.org/doi/full/10.1056/NEJMoa2202170"
+   },
+   {
+    "title": "Daniels J, et al. Lung cancer at Korle-Bu Teaching Hospital, Ghana. ecancermedicalscience 2025",
+    "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12221260"
    },
    {
     "title": "Hansen HJ, Petersen RH. Video-assisted thoracoscopic lobectomy using a standardized three-port anterior approach: the Copenhagen experience. Ann Cardiothorac Surg 2012;1(1):70-76",
@@ -39312,18 +39368,18 @@
   "steps": [
    {
     "phase": "Pathophysiology",
-    "title": "Pathophysiology: congenital lobar emphysema versus CPAM",
-    "body": "<table class=\"mini\"><tr><th></th><th>Congenital lobar emphysema (CLE)</th><th>Congenital pulmonary airway malformation (CPAM)</th></tr><tr><td>What it is</td><td>A normal-structured lobe that <b>over-distends</b>: deficient bronchial cartilage (or compression) makes a <b>ball valve</b>; air enters, cannot leave</td><td>A <b>hamartomatous</b> lesion of cysts and abnormal airways, usually one lobe; blood supply from the pulmonary artery</td></tr><tr><td>Where</td><td>Left upper lobe (about 43%), middle lobe (32%), right upper (21%); lower lobes rare</td><td>Any lobe; lower lobes often</td></tr><tr><td>When</td><td>Neonatal respiratory distress; half at birth, most by 6 months</td><td>Most found on antenatal ultrasound; some present with infection later</td></tr><tr><td>Imaging</td><td>A hyperlucent lobe <b>with vascular markings</b>, the other lobes compressed, the mediastinum shifted</td><td>Air-filled cysts of varying size; solid in microcystic types</td></tr><tr><td>Risks</td><td>Progressive compression, tension physiology</td><td>Infection; hydrops in the fetus (CVR over 1.6); malignancy (mucinous adenocarcinoma with type 1; type 4 now regarded as cystic pleuropulmonary blastoma)</td></tr></table><div class=\"chain\"><span>Deficient bronchial cartilage</span><i>\u2192</i><span>Airway collapses in expiration (ball valve)</span><i>\u2192</i><span>Air trapping, lobe over-distends</span><i>\u2192</i><span class=\"hot\">Compresses the other lobes, shifts the mediastinum</span><i>\u2192</i><span class=\"hot\">Respiratory distress, falling venous return</span></div><p><b>The trap</b>: CLE looks like a tension pneumothorax. A chest drain into an emphysematous lobe makes a large air leak and can kill; look for lung markings in the lucent area before inserting one.</p><p><b>Anesthesia for CLE</b>: avoid nitrous oxide (it expands the lobe) and high positive-pressure ventilation before the chest is open (spontaneous breathing or gentle ventilation); the surgeon scrubbed at induction, ready to open the chest and deliver the lobe.</p><p><b>Stocker types of CPAM</b>: 0 (acinar dysplasia, lethal), 1 (large cysts over 2 cm, 50\u201370%), 2 (small cysts, associated anomalies), 3 (solid-appearing, alveolar), 4 (peripheral cysts; now considered cystic pleuropulmonary blastoma).</p><p class=\"evidence\"><b>Evidence:</b> CLE: StatPearls 2024 (lobe distribution, presentation, pneumothorax pitfall) and OpenAnesthesia 2025 (anesthetic management). CPAM: CPAM volume ratio over 1.6 predicted hydrops in 75% (Crombleholme et al., J Pediatr Surg 2002); resection of asymptomatic lesions at 6\u201312 months versus surveillance remains debated (StatPearls). Pathology update: Dehner et al., Pediatr Dev Pathol 2023.</p>",
+    "title": "Pathophysiology and staging: lung cancer",
+    "body": "<p><b>In Kenya and across Africa</b> lung cancer usually presents late: in series from Ghana and West Africa three-quarters or more are stage III\u2013IV at diagnosis. A cough, weight loss and a shadow are often treated first as <b>tuberculosis</b>, frequently without bacteriological confirmation; a smear- or GeneXpert-negative \"TB\" that does not improve needs a CT and a tissue diagnosis.</p><p><b>How it arises.</b> Carcinogens (tobacco above all; also biomass smoke, occupational exposures, radon) cause accumulating mutations in the airway epithelium. <b>Adenocarcinoma</b> (commonest, peripheral, and in never-smokers often driven by <b>EGFR</b> or <b>ALK</b> alterations) and <b>squamous cell carcinoma</b> (central, smokers) make up most non-small-cell cancer. Small-cell cancer is rarely surgical.</p><p><b>How it spreads</b> decides the stage and the operation:</p><div class=\"chain\"><span>Primary tumor (T: size, invasion)</span><i>\u2192</i><span>Intrapulmonary and hilar nodes (N1)</span><i>\u2192</i><span class=\"hot\">Mediastinal nodes (N2)</span><i>\u2192</i><span class=\"hot\">Contralateral or supraclavicular (N3)</span></div><div class=\"chain\"><span>Primary tumor</span><i>\u2192</i><span class=\"hot\">Blood: brain, bone, adrenal, liver (M1)</span></div><table class=\"mini\"><tr><th>T</th><th>Tumour (9th edition keeps the 8th-edition T)</th></tr><tr><td>T1</td><td>\u22643 cm, surrounded by lung (T1a \u22641, T1b >1\u20132, T1c >2\u20133 cm)</td></tr><tr><td>T2</td><td>>3\u20135 cm (T2a >3\u20134, T2b >4\u20135), or main bronchus (not carina), visceral pleura, collapse to the hilum</td></tr><tr><td>T3</td><td>>5\u20137 cm, or chest wall, phrenic nerve, parietal pericardium, a separate nodule in the same lobe</td></tr><tr><td>T4</td><td>>7 cm, or mediastinum, heart, great vessels, trachea, carina, esophagus, diaphragm, vertebra, a nodule in another ipsilateral lobe</td></tr><tr><th>N</th><th>Nodes</th></tr><tr><td>N1</td><td>ipsilateral hilar or intrapulmonary (stations 10\u201314)</td></tr><tr><td>N2a / N2b</td><td>ipsilateral mediastinal or subcarinal: <b>one station</b> (N2a) or <b>several stations</b> (N2b), new in the 9th edition</td></tr><tr><td>N3</td><td>contralateral mediastinal or hilar, or any scalene or supraclavicular</td></tr><tr><th>M</th><th>Metastasis</th></tr><tr><td>M1a\u2013c</td><td>M1a pleural or pericardial spread, contralateral nodules; M1b one extrathoracic metastasis; <b>M1c1</b> several in one organ system, <b>M1c2</b> several organ systems (new)</td></tr></table><p><b>Before an operation</b>: CT and <b>PET-CT</b>; <b>invasive mediastinal staging</b> (EBUS/EUS needle aspiration, or mediastinoscopy) when the tumor is central, over 3 cm, or the nodes are enlarged or PET-positive; brain imaging for stage II and above. Then fitness: FEV1 and DLCO, and the <b>predicted postoperative</b> values (ppo = preoperative value \u00d7 segments remaining / 19; by lobe: RUL 3, RML 2, RLL 5, LUL 5 with the lingula, LLL 4).</p><p class=\"evidence\"><b>Evidence:</b> 9th-edition TNM from the IASLC (Rami-Porta et al., J Thorac Oncol 2024): N2 split into N2a (single station) and N2b (multiple stations); M1c into M1c1 and M1c2; T1N1 moves to stage IIA, T1N2a is IIB. ACCP 2013 physiological evaluation (Brunelli et al.): ppoFEV1 and ppoDLCO both over 60% is low risk; 30\u201360% needs a stair climb (over 22 m) or shuttle walk (over 400 m); under 30%, or a poor walk test, needs CPET (VO2max over 20 mL/kg/min low risk, under 10 high risk). ESTS 2014 guideline for invasive mediastinal staging (De Leyn et al.).</p>",
     "view": {
      "eye": [
-      -393.4,
-      -100.9,
-      -4.1
+      -385.1,
+      -109.4,
+      -1.4
      ],
      "target": [
-      -82.3,
-      -23.1,
-      -81.9
+      -83.4,
+      -34.0,
+      -76.8
      ]
     },
     "spin": true,
@@ -39336,11 +39392,21 @@
      "fissure",
      "fissure-h",
      "fissure-r",
-     "cpam-lll"
+     "tumor-lll",
+     "ln-5",
+     "ln-6",
+     "ln-7",
+     "ln-10l",
+     "ln-11l",
+     "ln-9l",
+     "ln-4r",
+     "ln-10r",
+     "ln-11r",
+     "ln-9r",
+     "trachea"
     ],
     "hide": [
      "tumor-lul",
-     "tumor-lll",
      "tumor-rul",
      "tumor-rml",
      "tumor-rll",
@@ -39351,6 +39417,7 @@
      "asp-pleura",
      "tb-cavities-l",
      "cle-lul",
+     "cpam-lll",
      "thymoma",
      "eso-tumor-mid",
      "eso-tumor-low",
@@ -39394,42 +39461,47 @@
      "vert-t10": 0.18,
      "vert-t11": 0.18,
      "vert-t12": 0.18,
-     "lul": 0.25,
-     "lll": 0.25,
-     "rul": 0.25,
-     "rml": 0.25,
-     "rll": 0.25,
-     "fissure": 0.25,
-     "fissure-h": 0.25,
-     "fissure-r": 0.25
+     "lul": 0.28,
+     "lll": 0.28,
+     "rul": 0.28,
+     "rml": 0.28,
+     "rll": 0.28,
+     "fissure": 0.28,
+     "fissure-h": 0.28,
+     "fissure-r": 0.28
     },
     "highlight": [
-     "cpam-lll"
+     "tumor-lll"
     ],
     "labels": [
-     "cpam-lll",
-     "lul"
+     "tumor-lll",
+     "ln-5",
+     "ln-6",
+     "ln-7",
+     "ln-10l",
+     "ln-11l",
+     "ln-9l"
     ],
     "ask": {
-     "question": "A 3-week-old with tachypnea has a hyperlucent left upper zone and mediastinal shift. Vascular markings are visible in the lucent area. What must you avoid?",
+     "question": "Under the 9th edition, a 2.6 cm tumor (T1c) with metastasis in a single mediastinal station (subcarinal, station 7) and no distant spread is stage\u2026",
      "choices": [
       {
-       "text": "Inserting a chest drain for a presumed pneumothorax",
+       "text": "IIB (T1 N2a)",
        "correct": true,
-       "why": "Vascular markings mean over-distended lung, not free air: this is CLE. A drain would enter the lobe and cause a large air leak. The treatment is lobectomy."
+       "why": "The 9th edition splits N2: a single station (N2a) with a T1 tumor is IIB; several stations (N2b) make it IIIA. Many single-station N2 patients are now treated with neoadjuvant chemo-immunotherapy and surgery."
       },
       {
-       "text": "A CT scan",
+       "text": "IIIA",
        "correct": false,
        "why": ""
       },
       {
-       "text": "Oxygen",
+       "text": "IIIB",
        "correct": false,
        "why": ""
       },
       {
-       "text": "Surgical consultation",
+       "text": "IV",
        "correct": false,
        "why": ""
       }
@@ -39437,9 +39509,9 @@
     },
     "ct": {
      "focus": [
-      -82.3,
-      -23.1,
-      -81.9
+      -83.4,
+      -34.0,
+      -76.8
      ],
      "plane": "axial",
      "window": "lung"
@@ -39566,29 +39638,29 @@
    },
    {
     "phase": "Case",
-    "title": "Case: an infected CPAM in a child",
-    "lead": "<p>A <b>6-year-old girl</b>, three admissions for \"left lower lobe pneumonia\" in a year. Antenatal scans were not done. CT after treatment: <b>multiple air-filled cysts up to 3 cm</b> in the left lower lobe, the cyst walls thick; the arterial supply from the pulmonary artery (no systemic feeder).</p>",
-    "body": "<p>A symptomatic, recurrently infected <b>type 1 CPAM</b>: <b>left lower lobectomy</b> once the infection has settled (a segmentectomy only if the lesion is small and clearly confined). Complete excision matters: type 1 lesions carry a risk of mucinous adenocarcinoma, especially if incompletely removed. Check the CT for a systemic artery (a hybrid lesion with sequestration): an unseen feeder from the aorta in the inferior ligament bleeds.</p><p class=\"evidence\"><b>Evidence:</b> StatPearls (CPAM): resection is indicated for symptomatic lesions; for asymptomatic ones, elective resection at 6\u201312 months versus surveillance is debated. Malignancy association: Dehner et al., Pediatr Dev Pathol 2023.</p>",
+    "title": "Case: a squamous carcinoma with a hilar node",
+    "lead": "<p>A <b>66-year-old man</b>, smoker (45 pack-years). A <b>4.6 cm</b> squamous cell carcinoma in the left lower lobe; PET: uptake in an <b>interlobar node (station 11L)</b>, mediastinum clear; EBUS of stations 4L and 7 negative; no distant disease. FEV1 70%, DLCO 64%.</p>",
+    "body": "<p><b>Stage</b>: T2b (4\u20135 cm) N1 M0 = <b>IIB</b>. Resectable by lobectomy (a sleeve if the node is fused to the lower lobe bronchus origin).</p><p><b>Sequence</b>: for stage II\u2013IIIA disease, <b>neoadjuvant chemo-immunotherapy</b> (platinum doublet plus nivolumab, three cycles) before surgery is now an evidence-based option where available; otherwise surgery then adjuvant chemotherapy.</p><p class=\"evidence\"><b>Evidence:</b> CheckMate 816 (NEJM 2022; 358 patients, stage IB\u2013IIIA): three cycles of nivolumab plus chemotherapy before surgery gave a pathological complete response in 24% vs 2.2% with chemotherapy alone, and longer event-free survival (median 31.6 vs 20.8 months).</p>",
     "ask": {
-     "question": "Before dividing the inferior pulmonary ligament in a lower lobe cystic lesion, what must the CT be checked for?",
+     "question": "What stage is a 4.6 cm tumor with an interlobar (station 11) node and a negative mediastinum?",
      "choices": [
       {
-       "text": "A systemic arterial feeder from the aorta (a hybrid lesion or sequestration)",
+       "text": "IIB (T2b N1 M0)",
        "correct": true,
-       "why": "Sequestrations and hybrid lesions are supplied from the aorta, often through the inferior ligament; an unrecognized feeder retracts into the abdomen when cut."
+       "why": "T2b is over 4 up to 5 cm; station 11 is N1 (intrapulmonary/hilar). T2 N1 is stage IIB."
       },
       {
-       "text": "A pulmonary vein anomaly",
+       "text": "IIA",
        "correct": false,
        "why": ""
       },
       {
-       "text": "An enlarged subcarinal node",
+       "text": "IIIA",
        "correct": false,
        "why": ""
       },
       {
-       "text": "A pericardial cyst",
+       "text": "IB",
        "correct": false,
        "why": ""
       }
@@ -39596,14 +39668,14 @@
     },
     "view": {
      "eye": [
-      -393.4,
-      -100.9,
-      -4.1
+      -366.2,
+      -104.7,
+      -6.1
      ],
      "target": [
-      -82.3,
-      -23.1,
-      -81.9
+      -83.4,
+      -34.0,
+      -76.8
      ]
     },
     "show": [
@@ -39615,11 +39687,20 @@
      "fissure",
      "fissure-h",
      "fissure-r",
-     "cpam-lll"
+     "tumor-lll",
+     "ln-5",
+     "ln-6",
+     "ln-7",
+     "ln-10l",
+     "ln-11l",
+     "ln-9l",
+     "ln-4r",
+     "ln-10r",
+     "ln-11r",
+     "ln-9r"
     ],
     "hide": [
      "tumor-lul",
-     "tumor-lll",
      "tumor-rul",
      "tumor-rml",
      "tumor-rll",
@@ -39630,6 +39711,7 @@
      "asp-pleura",
      "tb-cavities-l",
      "cle-lul",
+     "cpam-lll",
      "thymoma",
      "eso-tumor-mid",
      "eso-tumor-low",
@@ -39661,8 +39743,10 @@
      "rul-veins"
     ],
     "labels": [
-     "cpam-lll",
-     "lll"
+     "tumor-lll",
+     "ln-11l",
+     "ln-10l",
+     "ln-7"
     ],
     "danger": [],
     "opacity": {
@@ -39689,9 +39773,9 @@
     },
     "ct": {
      "focus": [
-      -82.3,
-      -23.1,
-      -81.9
+      -83.4,
+      -34.0,
+      -76.8
      ],
      "plane": "axial",
      "window": "lung"
@@ -39733,14 +39817,14 @@
     },
     "view": {
      "eye": [
-      -393.4,
-      -100.9,
-      -4.1
+      -366.2,
+      -104.7,
+      -6.1
      ],
      "target": [
-      -82.3,
-      -23.1,
-      -81.9
+      -83.4,
+      -34.0,
+      -76.8
      ]
     },
     "show": [
@@ -39752,11 +39836,20 @@
      "fissure",
      "fissure-h",
      "fissure-r",
-     "cpam-lll"
+     "tumor-lll",
+     "ln-5",
+     "ln-6",
+     "ln-7",
+     "ln-10l",
+     "ln-11l",
+     "ln-9l",
+     "ln-4r",
+     "ln-10r",
+     "ln-11r",
+     "ln-9r"
     ],
     "hide": [
      "tumor-lul",
-     "tumor-lll",
      "tumor-rul",
      "tumor-rml",
      "tumor-rll",
@@ -39767,6 +39860,7 @@
      "asp-pleura",
      "tb-cavities-l",
      "cle-lul",
+     "cpam-lll",
      "thymoma",
      "eso-tumor-mid",
      "eso-tumor-low",
@@ -39821,9 +39915,9 @@
     },
     "ct": {
      "focus": [
-      -82.3,
-      -23.1,
-      -81.9
+      -83.4,
+      -34.0,
+      -76.8
      ],
      "plane": "axial",
      "window": "lung"
@@ -40994,24 +41088,44 @@
   ],
   "sources": [
    {
-    "title": "Mukhtar S, Sharma S, Trovela DA. Congenital lobar emphysema. StatPearls 2024",
-    "url": "https://www.ncbi.nlm.nih.gov/books/NBK560602/"
+    "title": "Rami-Porta R, et al. The IASLC Lung Cancer Staging Project: proposals for revision of the TNM stage groups in the forthcoming (ninth) edition of the TNM classification for lung cancer. J Thorac Oncol 2024;19:1007-27",
+    "url": "https://www.jto.org/article/S1556-0864(24)00079-0/fulltext"
    },
    {
-    "title": "Congenital lobar emphysema: anaesthetic considerations. OpenAnesthesia 2025",
-    "url": "https://www.openanesthesia.org/keywords/congenital-lobar-emphysema/"
+    "title": "Klug M, et al. The ninth edition of TNM staging for lung cancer: what radiologists need to know. RadioGraphics 2024;44:e240057",
+    "url": "https://pubs.rsna.org/doi/10.1148/rg.240057"
    },
    {
-    "title": "Crombleholme TM, et al. Cystic adenomatoid malformation volume ratio predicts outcome in prenatally diagnosed CCAM. J Pediatr Surg 2002;37:331-8",
-    "url": "https://www.sciencedirect.com/science/article/abs/pii/S0022346802749269"
+    "title": "Brunelli A, Kim AW, Berger KI, et al. Physiologic evaluation of the patient with lung cancer being considered for resectional surgery. ACCP guidelines. Chest 2013;143(5 Suppl):e166S-e190S",
+    "url": "https://journal.chestnet.org/article/S0012-3692(13)60294-9/fulltext"
    },
    {
-    "title": "Congenital pulmonary airway malformation. StatPearls",
-    "url": "https://www.statpearls.com/point-of-care/20208"
+    "title": "De Leyn P, et al. Revised ESTS guidelines for preoperative mediastinal lymph node staging for non-small-cell lung cancer. Eur J Cardiothorac Surg 2014;45:787-98",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/?term=De+Leyn+revised+ESTS+guidelines+preoperative+mediastinal+lymph+node+staging+2014"
    },
    {
-    "title": "Dehner LP, et al. Congenital pulmonary airway malformations with a reconsideration and current classification. Pediatr Dev Pathol 2023",
-    "url": "https://dx.doi.org/10.1177/10935266221146823"
+    "title": "Saji H, et al. Segmentectomy versus lobectomy in small-sized peripheral non-small-cell lung cancer (JCOG0802/WJOG4607L). Lancet 2022;399:1607-17",
+    "url": "https://www.thelancet.com/journals/lancet/article/PIIS0140-6736(21)02333-3/abstract"
+   },
+   {
+    "title": "Altorki N, et al. Lobar or sublobar resection for peripheral stage IA non-small-cell lung cancer (CALGB 140503). N Engl J Med 2023;388:489-98",
+    "url": "https://www.nejm.org/doi/full/10.1056/NEJMoa2212083"
+   },
+   {
+    "title": "Lim E, et al. Video-assisted thoracoscopic versus open lobectomy in patients with early-stage lung cancer: the VIOLET RCT. Health Technol Assess 2022;26(48)",
+    "url": "https://www.ncbi.nlm.nih.gov/books/NBK587651/"
+   },
+   {
+    "title": "Tsuboi M, et al. Overall survival with osimertinib in resected EGFR-mutated NSCLC (ADAURA). N Engl J Med 2023;389:137-47",
+    "url": "https://www.nejm.org/doi/full/10.1056/NEJMoa2304594"
+   },
+   {
+    "title": "Forde PM, et al. Neoadjuvant nivolumab plus chemotherapy in resectable lung cancer (CheckMate 816). N Engl J Med 2022;386:1973-85",
+    "url": "https://www.nejm.org/doi/full/10.1056/NEJMoa2202170"
+   },
+   {
+    "title": "Daniels J, et al. Lung cancer at Korle-Bu Teaching Hospital, Ghana. ecancermedicalscience 2025",
+    "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12221260"
    },
    {
     "title": "Hansen HJ, Petersen RH. Video-assisted thoracoscopic lobectomy using a standardized three-port anterior approach: the Copenhagen experience. Ann Cardiothorac Surg 2012;1(1):70-76",
@@ -80497,20 +80611,20 @@
     "url": "https://www.annalsthoracicsurgery.org/article/S0003-4975(04)01055-0/fulltext"
    },
    {
-    "title": "Mukhtar S, Sharma S, Trovela DA. Congenital lobar emphysema. StatPearls 2024",
-    "url": "https://www.ncbi.nlm.nih.gov/books/NBK560602/"
+    "title": "Rami-Porta R, et al. The IASLC Lung Cancer Staging Project: proposals for revision of the TNM stage groups in the forthcoming (ninth) edition of the TNM classification for lung cancer. J Thorac Oncol 2024;19:1007-27",
+    "url": "https://www.jto.org/article/S1556-0864(24)00079-0/fulltext"
    },
    {
-    "title": "Congenital lobar emphysema: anaesthetic considerations. OpenAnesthesia 2025",
-    "url": "https://www.openanesthesia.org/keywords/congenital-lobar-emphysema/"
+    "title": "Klug M, et al. The ninth edition of TNM staging for lung cancer: what radiologists need to know. RadioGraphics 2024;44:e240057",
+    "url": "https://pubs.rsna.org/doi/10.1148/rg.240057"
    },
    {
-    "title": "Crombleholme TM, et al. Cystic adenomatoid malformation volume ratio predicts outcome in prenatally diagnosed CCAM. J Pediatr Surg 2002;37:331-8",
-    "url": "https://www.sciencedirect.com/science/article/abs/pii/S0022346802749269"
+    "title": "Brunelli A, Kim AW, Berger KI, et al. Physiologic evaluation of the patient with lung cancer being considered for resectional surgery. ACCP guidelines. Chest 2013;143(5 Suppl):e166S-e190S",
+    "url": "https://journal.chestnet.org/article/S0012-3692(13)60294-9/fulltext"
    },
    {
-    "title": "Congenital pulmonary airway malformation. StatPearls",
-    "url": "https://www.statpearls.com/point-of-care/20208"
+    "title": "De Leyn P, et al. Revised ESTS guidelines for preoperative mediastinal lymph node staging for non-small-cell lung cancer. Eur J Cardiothorac Surg 2014;45:787-98",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/?term=De+Leyn+revised+ESTS+guidelines+preoperative+mediastinal+lymph+node+staging+2014"
    }
   ],
   "group": "Lobectomy"
@@ -107942,9 +108056,62 @@
      "cle-lul"
     ],
     "hide": [
-     "lul"
+     "lul",
+     "tumor-lul",
+     "tumor-lll",
+     "tumor-rul",
+     "tumor-rml",
+     "tumor-rll",
+     "tumor-central-l",
+     "tumor-central-r",
+     "asp-cavity",
+     "asp-ball",
+     "asp-pleura",
+     "tb-cavities-l",
+     "cpam-lll",
+     "thymoma",
+     "eso-tumor-mid",
+     "eso-tumor-low",
+     "ppe-fluid",
+     "ppe-air",
+     "bronchial-stump",
+     "bpf",
+     "flap-lat",
+     "peri-thick",
+     "peri-calcium",
+     "peri-left",
+     "bx-lul",
+     "bx-bronchial-a",
+     "bx-adhesions",
+     "lul-arteries",
+     "lll-arteries",
+     "lul-veins",
+     "lll-veins",
+     "lul-bronchi",
+     "lll-bronchi",
+     "seg-lul-upper",
+     "seg-lingula",
+     "seg-s6",
+     "seg-lll-basal",
+     "isp-lingula",
+     "isp-s6",
+     "rul-bronchi",
+     "rul-arteries",
+     "rul-veins"
     ],
     "opacity": {
+     "vert-t1": 0.18,
+     "vert-t2": 0.18,
+     "vert-t3": 0.18,
+     "vert-t4": 0.18,
+     "vert-t5": 0.18,
+     "vert-t6": 0.18,
+     "vert-t7": 0.18,
+     "vert-t8": 0.18,
+     "vert-t9": 0.18,
+     "vert-t10": 0.18,
+     "vert-t11": 0.18,
+     "vert-t12": 0.18,
      "rul": 0.45,
      "rml": 0.55,
      "lll": 0.2,
