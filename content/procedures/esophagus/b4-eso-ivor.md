@@ -127,7 +127,7 @@ Lift the stomach up; the **left gastric pedicle** is taut in the lesser sac. Cle
 
 ## [il-thor] Right thoracotomy (or right VATS)
 
-Left lateral decubitus. Right posterolateral thoracotomy through the **5th space** (or four-port VATS / prone thoracoscopy). The right lung is isolated and retracted forward.
+Left lateral decubitus. Right posterolateral thoracotomy through the **5th space** (or VATS: **two-port** at KNH <span class="tag knh">KNH practice</span>; four-port or prone thoracoscopy elsewhere). The right lung is isolated and retracted forward.
 
 ## [il-azygos] Divide the azygos arch
 
