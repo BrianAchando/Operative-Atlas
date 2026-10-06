@@ -13,6 +13,12 @@ The goals: **release tamponade**, **control bleeding** from the heart or lung, *
 
 Best results after a **penetrating chest wound** with signs of life, poorest after **blunt** injury. Commonly used cut-offs: thoracotomy is futile after about **15 minutes of CPR** for penetrating injury, and after about **10 minutes** for blunt injury, without a response. Follow your unit's protocol.
 
+> **Evidence:** The EAST practice management guideline (Seamon et al., J Trauma Acute Care Surg 2015) recommends emergency department thoracotomy for pulseless patients with penetrating thoracic injury and signs of life, with weaker recommendations for other groups; survival is lowest after blunt injury and without signs of life.
+
+### Case
+
+A **26-year-old man** is brought in eight minutes after a single stab wound to the **left anterior chest**, just medial to the nipple. He was talking at the scene. On arrival in the resuscitation room he **loses his pulse** (organized rhythm on the monitor, no output); the pupils are still reactive. CPR has been running for six minutes. A surgeon, a thoracotomy set and blood are in the room.
+
 ### Question
 
 **Q:** A man with a stab wound to the left chest loses his pulse on arrival; CPR for 6 minutes. What now?
@@ -20,6 +26,7 @@ Best results after a **penetrating chest wound** with signs of life, poorest aft
   > Penetrating chest injury, pulseless, CPR well under 15 minutes: the best indication there is (EAST: strong recommendation).
 - [ ] Keep up CPR and give blood only
 - [ ] Pericardiocentesis and wait
+- [ ] Immediate transfer to the operating room for CT first
 
 ## [rt-consent] Consent: what to discuss with this patient
 
@@ -64,6 +71,7 @@ A tense, blue, non-pulsatile pericardium is **tamponade**: scoop out the clot an
   > The nerve runs on the lateral pericardium; a longitudinal cut in front of it spares it. A transverse cut divides it.
 - [ ] Posterior to the phrenic nerve
 - [ ] Transversely across the nerve
+- [ ] Directly over the phrenic nerve
 
 ## [rt-cardio] Cardiorrhaphy: right ventricular stab wound
 
@@ -90,6 +98,7 @@ Place a vascular clamp across the aorta. It diverts what cardiac output there is
   > Low in the chest the esophagus lies in front of and to the right of the aorta; a blind clamp can take both.
 - [ ] Behind it, on the spine
 - [ ] Lateral to it, under the lung
+- [ ] Posterior and to its left, separated by the pleura
 
 ## [rt-massage] Internal massage and defibrillation
 
@@ -135,7 +144,7 @@ Doses: [electrolytes](#approach=cticu-doses&step=0), [vasoactive drugs](#approac
 
 ## Sources
 
-- [Seamon MJ, et al. An evidence-based approach to patient selection for emergency department thoracotomy: a practice management guideline from the Eastern Association for the Surgery of Trauma. J Trauma Acute Care Surg 2015;79(1):159-173](https://pubmed.ncbi.nlm.nih.gov/?term=Seamon+emergency+department+thoracotomy+Eastern+Association+2015)
+- [Seamon MJ, et al. An evidence-based approach to patient selection for emergency department thoracotomy: a practice management guideline from the Eastern Association for the Surgery of Trauma. J Trauma Acute Care Surg 2015;79(1):159-173](https://doi.org/10.1097/TA.0000000000000648)
 - [Burlew CC, et al. Western Trauma Association critical decisions in trauma: resuscitative thoracotomy. J Trauma Acute Care Surg 2012;73(6):1359-1363](https://pubmed.ncbi.nlm.nih.gov/?term=Burlew+Western+Trauma+Association+resuscitative+thoracotomy)
 - [Simms ER, et al. Bilateral anterior thoracotomy (clamshell incision) is the ideal emergency thoracotomy incision: an anatomic study. World J Surg 2013;37(6):1277-1285](https://pubmed.ncbi.nlm.nih.gov/?term=Simms+clamshell+incision+ideal+emergency+thoracotomy)
 - [Wall MJ Jr, Hirshberg A, Mattox KL. Pulmonary tractotomy with selective vascular ligation for penetrating injuries to the lung. Am J Surg 1994;168(6):665-669](https://pubmed.ncbi.nlm.nih.gov/?term=Wall+Hirshberg+Mattox+pulmonary+tractotomy)

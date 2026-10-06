@@ -20,9 +20,9 @@ The balance is delicate: too small a shunt leaves the baby blue; too big floods 
 **Q:** A shunt that is too large for the baby causes what?
 - [x] Pulmonary over-circulation with diastolic steal: low diastolic pressure, coronary and gut ischaemia
   > Blood runs off into the lungs throughout diastole; coronary perfusion and mesenteric flow fall.
-- [ ] Worse cyanosis
+- [ ] Worsening cyanosis
 - [ ] Hypertension
-- [ ] Nothing
+- [ ] Pulmonary oligaemia and a falling saturation
 
 ## [bt-anatomy] Innominate artery, right PA and the nerves
 
@@ -103,7 +103,7 @@ Template and how to use it: [CTICU protocol, consent](#approach=cticu-consent&st
   > Thrombosis is commonest early; sudden desaturation needs immediate assessment.
 - [ ] Mild cough
 - [ ] Sweating with feeds
-- [ ] Slight fever
+- [ ] A slightly warm baby after a feed
 
 ## [bt-sternotomy] Median sternotomy
 

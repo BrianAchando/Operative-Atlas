@@ -222,7 +222,7 @@ Identify the **IVC orifice and the Eustachian valve** before the first stitch: t
   > The Eustachian valve guards the IVC orifice; the patch must go to the septal rim, or the IVC is baffled to the left side.
 - [ ] Complete heart block
 - [ ] Tricuspid stenosis
-- [ ] Nothing
+- [ ] Left-to-right shunt through the patch
 
 ## [asd-patch] Sew in the pericardial patch
 
@@ -273,7 +273,7 @@ Doses: [electrolytes](#approach=cticu-doses&step=0), [vasoactive drugs](#approac
 - [Abman SH, et al. Pediatric pulmonary hypertension: guidelines from the AHA and ATS. Circulation 2015;132:2037-99](https://www.ahajournals.org/doi/10.1161/cir.0000000000000329)
 - [Management of systemic-to-pulmonary shunts and elevated pulmonary vascular resistance. ERJ Open Res 2023;9:00271-2023](https://publications.ersnet.org/content/erjor/9/6/00271-2023)
 - [Baumgartner H, et al. 2020 ESC Guidelines for the management of adult congenital heart disease. Eur Heart J 2021;42:563-645](https://academic.oup.com/eurheartj/article/42/6/563/5898606)
-- [American College of Cardiology. 2020 ESC Guidelines for adult congenital heart disease: key points](https://www.acc.org/latest-in-cardiology/ten-points-to-remember/2020/08/29/13/17/2020-esc-guidelines-for-adult-chd-esc-2020)
+- [Baumgartner H, et al. 2020 ESC Guidelines for the management of adult congenital heart disease. Eur Heart J 2021;42:563-645](https://doi.org/10.1093/eurheartj/ehaa554)
 - [AATS / TSRA primer: surgical techniques 1. ASD, VSD, PDA, coarctation](https://www.aats.org/tsra-primer-surgical-techniques-1-asd-vsd-pda-coarctation)
 - [Osano et al. One-year outcomes and intervention waiting time of patients admitted with congenital heart disease at Kenyatta National Hospital, Kenya. Preprint (Research Square) 2025](https://www.researchsquare.com/article/rs-7386594/v1)
 - [5-Minute Clinical Consult: atrial septal defect (types and proportions; spontaneous closure)](https://www.unboundmedicine.com/5minute/view/5-Minute-Clinical-Consult/816415/all/Atrial_Septal_Defect)

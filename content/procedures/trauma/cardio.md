@@ -49,6 +49,10 @@ Push the collapsed lung back. The **phrenic nerve** runs down the side of the pe
 
 A tense, blue, non-pulsatile pericardium is **tamponade**: scoop out the clot and deliver the heart into the wound.
 
+### Case
+
+A **24-year-old man** with a stab wound in the fourth intercostal space left of the sternum: pressure 70/40, pulse 130, distended neck veins, muffled heart sounds, and fluid around the heart on ultrasound. In the resuscitation room a **left anterolateral thoracotomy** is done and the lung is held back. The pericardium bulges, **tense and bluish**, and does not move with the heartbeat.
+
 ### Question
 
 **Q:** Where do you open the pericardium?
@@ -56,6 +60,7 @@ A tense, blue, non-pulsatile pericardium is **tamponade**: scoop out the clot an
   > The nerve runs on the lateral pericardium; a longitudinal cut in front of it spares it. A transverse cut divides it.
 - [ ] Posterior to the phrenic nerve
 - [ ] Transversely across the nerve
+- [ ] Directly over the phrenic nerve
 
 ## [cr-cardio] Cardiorrhaphy: right ventricular stab wound
 
@@ -107,7 +112,7 @@ Doses: [electrolytes](#approach=cticu-doses&step=0), [vasoactive drugs](#approac
 
 ## Sources
 
-- [Seamon MJ, et al. An evidence-based approach to patient selection for emergency department thoracotomy: a practice management guideline from the Eastern Association for the Surgery of Trauma. J Trauma Acute Care Surg 2015;79(1):159-173](https://pubmed.ncbi.nlm.nih.gov/?term=Seamon+emergency+department+thoracotomy+Eastern+Association+2015)
+- [Seamon MJ, et al. An evidence-based approach to patient selection for emergency department thoracotomy: a practice management guideline from the Eastern Association for the Surgery of Trauma. J Trauma Acute Care Surg 2015;79(1):159-173](https://doi.org/10.1097/TA.0000000000000648)
 - [Burlew CC, et al. Western Trauma Association critical decisions in trauma: resuscitative thoracotomy. J Trauma Acute Care Surg 2012;73(6):1359-1363](https://pubmed.ncbi.nlm.nih.gov/?term=Burlew+Western+Trauma+Association+resuscitative+thoracotomy)
 - [Simms ER, et al. Bilateral anterior thoracotomy (clamshell incision) is the ideal emergency thoracotomy incision: an anatomic study. World J Surg 2013;37(6):1277-1285](https://pubmed.ncbi.nlm.nih.gov/?term=Simms+clamshell+incision+ideal+emergency+thoracotomy)
 - [Wall MJ Jr, Hirshberg A, Mattox KL. Pulmonary tractotomy with selective vascular ligation for penetrating injuries to the lung. Am J Surg 1994;168(6):665-669](https://pubmed.ncbi.nlm.nih.gov/?term=Wall+Hirshberg+Mattox+pulmonary+tractotomy)

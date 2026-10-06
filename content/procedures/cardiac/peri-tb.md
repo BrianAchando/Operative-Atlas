@@ -51,7 +51,7 @@ A **28-year-old woman**, HIV-positive on antiretrovirals, treated for tuberculou
 **Q:** She has completed 8 weeks of anti-TB therapy and is not improving. What next?
 - [x] Pericardiectomy, before she reaches NYHA class IV
   > Pericardiectomy is indicated when constriction persists or worsens after several weeks of anti-TB therapy; advanced functional class is the strongest predictor of death.
-- [ ] Wait 6 more months
+- [ ] Stop anti-TB therapy and observe
 - [ ] Pericardiocentesis
 - [ ] Diuretics alone indefinitely
 
@@ -113,8 +113,8 @@ Template and how to use it: [CTICU protocol, consent](#approach=cticu-consent&st
 **Q:** What should a patient expect after pericardiectomy for long-standing constriction?
 - [x] Improvement over weeks, with a risk of low cardiac output early on
   > The myocardium has atrophied under the shell and needs time and support.
-- [ ] Instant cure on the table
-- [ ] No risk of bleeding
+- [ ] Complete resolution of all symptoms within 24 hours
+- [ ] A guaranteed normal ejection fraction
 - [ ] Lifelong warfarin
 
 ## [pc-sternotomy] Median sternotomy; groin prepped for bypass

@@ -43,6 +43,7 @@ Here the left lung is shown **trapped**, smaller than the chest, under its peel,
   > Septations and a low pH or glucose mean a complicated effusion or empyema in the fibrinopurulent stage: drain it, and add fibrinolytics or VATS if it does not clear.
 - [ ] I, exudative
 - [ ] III, organising
+- [ ] IV, chronic fibrous
 
 ## [b4-emp-vats-case] Case: a fibrinopurulent empyema that did not drain
 
@@ -163,4 +164,4 @@ Doses: [electrolytes](#approach=cticu-doses&step=0), [vasoactive drugs](#approac
 - [Mwesige M, et al. Management and outcomes of thoracic empyema at Mulago National Referral Hospital, Uganda. BMC Pulm Med 2025](https://bmcpulmmed.biomedcentral.com/articles/10.1186/s12890-025-03861-0)
 - [Vorster MJ, et al. Tuberculous pleural effusions: advances and controversies. J Thorac Dis 2015;7:981-91](https://jtd.amegroups.org/article/view/4221/4848)
 - [Shen KR, et al. The American Association for Thoracic Surgery consensus guidelines for the management of empyema. J Thorac Cardiovasc Surg 2017;153:e129-46](https://pubmed.ncbi.nlm.nih.gov/?term=AATS+consensus+guidelines+management+of+empyema+2017)
-- [Rahman NM, et al. Intrapleural use of tissue plasminogen activator and DNase in pleural infection (MIST2). N Engl J Med 2011;365:518-26](https://pubmed.ncbi.nlm.nih.gov/?term=MIST2+tissue+plasminogen+activator+DNase+pleural+infection)
+- [Rahman NM, et al. Intrapleural use of tissue plasminogen activator and DNase in pleural infection (MIST2). N Engl J Med 2011;365:518-26](https://doi.org/10.1056/NEJMoa1012740)

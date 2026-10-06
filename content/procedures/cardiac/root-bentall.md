@@ -20,6 +20,7 @@ The **root** runs from the ventricular attachment of the cusps (the annulus) to 
   > In root disease the sinuses themselves are aneurysmal; a supracoronary graft leaves them in place to dilate or dissect.
 - [ ] The coronary ostia are always too low
 - [ ] An AVR cannot be done in a large root
+- [ ] The coronary ostia always sit too high for an AVR
 
 ## [rb-decide] Which root operation
 
@@ -32,6 +33,10 @@ The **root** runs from the ventricular attachment of the cusps (the annulus) to 
 -   **Ross** (pulmonary autograft) for selected young adults with aortic valve disease, at experienced centres.
 
 > **Evidence:** no randomised trial compares mechanical and biological Bentall; in a propensity-matched series of 1,112 patients (Pantaleo et al., EJCTS 2017), 5-year survival did not differ (84% vs 87%), with more reoperation after tissue valves and more bleeding after mechanical ones.
+
+### Case
+
+A **45-year-old schoolteacher** with a bicuspid aortic valve known since a murmur in her twenties, now with exertional breathlessness and one episode of presyncope. Echo: **severe aortic stenosis** with a heavily calcified, thickened bicuspid valve; LVEF 55%. CT: **aortic root 5.6 cm**, ascending aorta 4.0 cm, normal coronary origins. She lives near a clinic that can check her INR weekly and does not plan a pregnancy.
 
 ### Question
 
@@ -121,6 +126,7 @@ Repeat every 15–20 minutes (retrograde, or down the ostia), or as the solution
   > Root cardioplegia is going through the incompetent valve into the LV, not down the coronaries. Distension injures the myocardium.
 - [ ] Increase the root infusion pressure
 - [ ] Cool further and wait for arrest
+- [ ] Clamp the root and continue the infusion at higher flow
 
 ## [rb-excise] Transect, excise the sinuses, keep the coronary buttons
 
@@ -153,6 +159,7 @@ Test each suture line (cardioplegia down the graft) **before** the distal anasto
   > The right button, placed too low or with the heart empty, kinks when the heart fills. Go back on bypass and redo it (or bypass the RCA).
 - [ ] Air in the left main
 - [ ] A paravalvular leak
+- [ ] Left main ostial stenosis from the valve
 
 ## [rb-distal] Distal anastomosis, de-air, check
 
@@ -179,6 +186,7 @@ Then venous cannula out, protamine, arterial cannula out last.
   > This is dynamic LVOT obstruction with systolic anterior motion of the mitral leaflet, which inotropes worsen. Fill, slow and constrict.
 - [ ] More adrenaline
 - [ ] Go back on bypass and replace the mitral valve
+- [ ] Add a vasodilator and reduce preload further
 
 ## [root-bentall-icu] ICU and post-operative care
 
@@ -201,8 +209,8 @@ Doses: [electrolytes](#approach=cticu-doses&step=0), [vasoactive drugs](#approac
 **Q:** After a Bentall, new ST elevation in the inferior leads. Think of?
 - [x] Right coronary button kinking or ischaemia
   > Coronary button problems present early with ST change or arrhythmia: echo and angiography.
-- [ ] Pericarditis only
-- [ ] Normal after bypass
+- [ ] Pericarditis, which needs only an NSAID
+- [ ] Left main button kinking
 - [ ] Hypokalaemia
 
 ## Sources

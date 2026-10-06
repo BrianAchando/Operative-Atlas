@@ -143,9 +143,9 @@ Template and how to use it: [CTICU protocol, consent](#approach=cticu-consent&st
 **Q:** Which open AAA risk should be discussed with a sexually active man?
 - [x] Sexual dysfunction from injury to the hypogastric plexus
   > The autonomic nerves over the left common iliac and aortic bifurcation can be injured.
-- [ ] Blindness
+- [ ] Retinal artery occlusion
 - [ ] Hoarseness
-- [ ] Paraplegia is common
+- [ ] Paraplegia, which is common after infrarenal repair
 
 ## [as-flank] Left flank incision; the retroperitoneal plane
 
@@ -227,7 +227,7 @@ Doses: [electrolytes](#approach=cticu-doses&step=0), [vasoactive drugs](#approac
   > Oliguria despite filling with a tense abdomen: more fluid makes it worse.
 - [ ] More fluid boluses
 - [ ] Furosemide
-- [ ] Observe until morning
+- [ ] Observe and recheck in the morning
 
 ## Sources
 
@@ -235,11 +235,11 @@ Doses: [electrolytes](#approach=cticu-doses&step=0), [vasoactive drugs](#approac
 - [Oderich GS, et al. Reporting standards for endovascular aortic repair of aneurysms involving the renal-mesenteric arteries (SVS). J Vasc Surg 2021;73(1 Suppl):4S-52S](https://www.sciencedirect.com/science/article/pii/S0741521420314178)
 - [Lederle FA, et al. Rupture rate of large abdominal aortic aneurysms in patients refusing or unfit for elective repair. JAMA 2002;287:2968-72](https://pure.johnshopkins.edu/en/publications/rupture-rate-of-large-abdominal-aortic-aneurysms-in-patients-refu-6/)
 - [Powell JT, et al. Final 12-year follow-up of surgery versus surveillance in the UK Small Aneurysm Trial. Br J Surg 2007;94:702-8](https://academic.oup.com/bjs/article/94/6/702/6142549)
-- [Lederle FA, et al. Immediate repair compared with surveillance of small abdominal aortic aneurysms (ADAM). N Engl J Med 2002;346:1437-44](https://www.acc.org/latest-in-cardiology/clinical-trials/2010/02/22/19/20/adam)
-- [Patel R, et al. Endovascular versus open repair of abdominal aortic aneurysm in 15 years' follow-up of the UK EVAR trial 1. Lancet 2016;388:2366-74](https://www.ncbi.nlm.nih.gov/books/NBK476568/)
-- [Lederle FA, et al. Open versus endovascular repair of abdominal aortic aneurysm (OVER long-term). N Engl J Med 2019;380:2126-35](https://www.tctmd.com/news/over-trial-long-term-mortality-similar-after-endovascular-and-open-aaa-repair)
-- [De Bruin JL, et al. Long-term outcome of open or endovascular repair of abdominal aortic aneurysm (DREAM). N Engl J Med 2010;362:1881-9](https://www.acc.org/latest-in-cardiology/clinical-trials/2010/05/25/16/28/dream)
-- [IMPROVE trial investigators. Comparative clinical effectiveness and cost effectiveness of endovascular strategy v open repair for ruptured AAA: three year results. BMJ 2017;359:j4859](https://evtoday.com/news/three-year-improve-results-compare-treatment-strategies-for-ruptured-aaa)
+- [Lederle FA, et al. Immediate repair compared with surveillance of small abdominal aortic aneurysms (ADAM). N Engl J Med 2002;346:1437-44](https://doi.org/10.1056/NEJMoa012573)
+- [Patel R, et al. Endovascular versus open repair of abdominal aortic aneurysm in 15 years' follow-up of the UK EVAR trial 1. Lancet 2016;388:2366-74](https://doi.org/10.1016/S0140-6736(16)31135-7)
+- [Lederle FA, et al. Open versus endovascular repair of abdominal aortic aneurysm (OVER long-term). N Engl J Med 2019;380:2126-35](https://doi.org/10.1056/NEJMoa1715955)
+- [De Bruin JL, et al. Long-term outcome of open or endovascular repair of abdominal aortic aneurysm (DREAM). N Engl J Med 2010;362:1881-9](https://doi.org/10.1056/NEJMoa0909499)
+- [IMPROVE trial investigators. Comparative clinical effectiveness and cost effectiveness of endovascular strategy v open repair for ruptured AAA: three year results. BMJ 2017;359:j4859](https://doi.org/10.1136/bmj.j4859)
 - [Jongkind V, et al. Juxtarenal aortic aneurysm repair: a systematic review. J Vasc Surg 2010;52:760-7](https://www.ncbi.nlm.nih.gov/books/NBK80665/)
 - [Sicard GA, et al. Transabdominal versus retroperitoneal incision for abdominal aortic surgery: report of a prospective randomized trial. J Vasc Surg 1995;21:174-83](https://www.sciencedirect.com/science/article/pii/S0741521495702601)
 - [Ashton HA, et al. The Multicentre Aneurysm Screening Study (MASS). Lancet 2002;360:1531-9; 13-year results, Br J Surg 2012;99:1649-56](https://pmc.ncbi.nlm.nih.gov/articles/PMC3569614/)

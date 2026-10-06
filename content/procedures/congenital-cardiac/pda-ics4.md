@@ -233,7 +233,7 @@ Dissect the **upper and lower borders** of the duct with fine scissors, then pas
 - [x] The descending aorta has been clamped, not the duct
   > Lower-body flow stops if the clamp is on the aorta: release and re-identify the three vessels.
 - [ ] The duct is very large
-- [ ] Normal response
+- [ ] The duct is closed, which is the expected result
 - [ ] Pulmonary hypertension crisis
 
 ## [pda-ics4-tie] Ligate: aortic end first
@@ -297,17 +297,17 @@ Doses: [electrolytes](#approach=cticu-doses&step=0), [vasoactive drugs](#approac
   > The thoracic duct lies close by; drain, medium-chain triglyceride feeds, and re-explore if it persists.
 - [ ] Empyema
 - [ ] Haemothorax
-- [ ] Normal drainage
+- [ ] Serous drainage that is normal after ligation
 
 ## Sources
 
 - [Abman SH, et al. Pediatric pulmonary hypertension: guidelines from the AHA and ATS. Circulation 2015;132:2037-99](https://www.ahajournals.org/doi/10.1161/cir.0000000000000329)
 - [Management of systemic-to-pulmonary shunts and elevated pulmonary vascular resistance. ERJ Open Res 2023;9:00271-2023](https://publications.ersnet.org/content/erjor/9/6/00271-2023)
 - [Baumgartner H, et al. 2020 ESC Guidelines for the management of adult congenital heart disease. Eur Heart J 2021;42:563-645](https://academic.oup.com/eurheartj/article/42/6/563/5898606)
-- [American College of Cardiology. 2020 ESC Guidelines for adult congenital heart disease: key points](https://www.acc.org/latest-in-cardiology/ten-points-to-remember/2020/08/29/13/17/2020-esc-guidelines-for-adult-chd-esc-2020)
+- [Baumgartner H, et al. 2020 ESC Guidelines for the management of adult congenital heart disease. Eur Heart J 2021;42:563-645](https://doi.org/10.1093/eurheartj/ehaa554)
 - [AATS / TSRA primer: surgical techniques 1. ASD, VSD, PDA, coarctation](https://www.aats.org/tsra-primer-surgical-techniques-1-asd-vsd-pda-coarctation)
 - [Osano et al. One-year outcomes and intervention waiting time of patients admitted with congenital heart disease at Kenyatta National Hospital, Kenya. Preprint (Research Square) 2025](https://www.researchsquare.com/article/rs-7386594/v1)
-- [Krichenko A, et al. Angiographic classification of the isolated, persistently patent ductus arteriosus. Am J Cardiol 1989 (summary: Pediatric Echocardiography library)](https://pedecho.org/library/chd/pda)
+- [Krichenko A, et al. Angiographic classification of the isolated, persistently patent ductus arteriosus. Am J Cardiol 1989;63:877-80](https://doi.org/10.1016/0002-9149(89)90064-7)
 - [Fernando R, et al. PDA classification based on size and haemodynamic significance (table), 2013](https://www.researchgate.net/figure/Patent-ductus-arteriosus-PDA-classification-based-on-size-and-hemodynamic-significance_tbl2_259111641)
 - [Sathanandam S, et al. Scoring system for post-ligation cardiac syndrome after transcatheter and surgical PDA closure in extremely low birthweight infants. Circulation 2019](https://www.researchgate.net/publication/342702564_Scoring_System_for_Post_Ligation_Cardiac_Syndrome_and_Its_Utility_After_Transcatheter_and_Surgical_Patent_Ductus_Arteriosus_Ligation_in_Extremely_Low_Birthweight_Infants)
 - [Surgical management of PDA in the very preterm infant and postligation cardiac compromise. Thoracic Key](https://thoracickey.com/surgical-management-of-patent-ductus-arteriosus-in-the-very-preterm-infant-and-postligation-cardiac-compromise/)

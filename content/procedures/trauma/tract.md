@@ -13,6 +13,10 @@ Most lung wounds need only a **chest drain**. Operate for continuing bleeding: c
 
 Choose the **least lung resection** that controls it: suture (pneumonorrhaphy) for a superficial wound, **tractotomy** for a through-and-through tract, a stapled wedge at the periphery; lobectomy or pneumonectomy only for hilar injury. Mortality climbs steeply with each step up.
 
+### Case
+
+A **20-year-old man** with a high-velocity gunshot wound to the left chest: **1.6 L of blood** returns when the chest drain goes in, and it keeps bleeding while he stays hypotensive. At left anterolateral thoracotomy there is a **through-and-through tract in the periphery of the left lower lobe**, bleeding and leaking air. The **hilum is intact**.
+
 ### Question
 
 **Q:** A missile tract runs through the left lower lobe, away from the hilum, and bleeds. Best operation?
@@ -20,6 +24,7 @@ Choose the **least lung resection** that controls it: suture (pneumonorrhaphy) f
   > It opens the tract, controls the bleeding vessels and air leaks individually, and saves the lobe.
 - [ ] Left lower lobectomy
 - [ ] Oversew the entry and exit wounds
+- [ ] Anatomic lower lobectomy with lymphadenectomy
 
 ## [tract-consent] Consent: what to discuss with this patient
 
@@ -72,6 +77,7 @@ In the open tract, find each **bleeding vessel** and each **leaking bronchus** a
   > An oversewn tract becomes a haematoma and a route for systemic air embolism.
 - [ ] It takes longer
 - [ ] It needs a larger incision
+- [ ] It is contraindicated because of infection risk
 
 ## [tr-close] Test and close
 
@@ -109,7 +115,7 @@ Doses: [electrolytes](#approach=cticu-doses&step=0), [vasoactive drugs](#approac
 
 ## Sources
 
-- [Seamon MJ, et al. An evidence-based approach to patient selection for emergency department thoracotomy: a practice management guideline from the Eastern Association for the Surgery of Trauma. J Trauma Acute Care Surg 2015;79(1):159-173](https://pubmed.ncbi.nlm.nih.gov/?term=Seamon+emergency+department+thoracotomy+Eastern+Association+2015)
+- [Seamon MJ, et al. An evidence-based approach to patient selection for emergency department thoracotomy: a practice management guideline from the Eastern Association for the Surgery of Trauma. J Trauma Acute Care Surg 2015;79(1):159-173](https://doi.org/10.1097/TA.0000000000000648)
 - [Burlew CC, et al. Western Trauma Association critical decisions in trauma: resuscitative thoracotomy. J Trauma Acute Care Surg 2012;73(6):1359-1363](https://pubmed.ncbi.nlm.nih.gov/?term=Burlew+Western+Trauma+Association+resuscitative+thoracotomy)
 - [Simms ER, et al. Bilateral anterior thoracotomy (clamshell incision) is the ideal emergency thoracotomy incision: an anatomic study. World J Surg 2013;37(6):1277-1285](https://pubmed.ncbi.nlm.nih.gov/?term=Simms+clamshell+incision+ideal+emergency+thoracotomy)
 - [Wall MJ Jr, Hirshberg A, Mattox KL. Pulmonary tractotomy with selective vascular ligation for penetrating injuries to the lung. Am J Surg 1994;168(6):665-669](https://pubmed.ncbi.nlm.nih.gov/?term=Wall+Hirshberg+Mattox+pulmonary+tractotomy)

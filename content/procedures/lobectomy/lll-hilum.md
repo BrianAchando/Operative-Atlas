@@ -157,6 +157,7 @@ Before stapling, **see the superior pulmonary vein** as a separate structure: a 
   > A common pulmonary vein taken as the "inferior vein" drains the whole lung.
 - [ ] That the fissure is complete
 - [ ] That A6 is already divided
+- [ ] That the lingular artery has been divided
 
 ## [lh-bronchus] Lower lobe bronchus: clamp, inflate, staple
 
@@ -171,6 +172,7 @@ Close the stapler (thick-tissue reload) and inflate: **the upper lobe must venti
   > If the upper lobe does not ventilate, the stapler is across the left main or upper lobe bronchus.
 - [ ] The lower lobe expands
 - [ ] Nothing should move
+- [ ] Both lobes should stay collapsed
 
 ## [lh-artery] Superior segmental artery (A6) and basal trunk
 
@@ -189,6 +191,7 @@ If A6 arises high and the basal trunk is short, staple them separately; one stap
   > The lingular artery leaves the anterior aspect of the interlobar artery, often at the level of A6; stapling the basal trunk too high can take it.
 - [ ] The truncus anterior
 - [ ] The inferior pulmonary vein
+- [ ] The apical segmental artery of the upper lobe
 
 ## [lh-fissure] Staple the fissure last, front to back
 
@@ -230,7 +233,7 @@ Doses: [electrolytes](#approach=cticu-doses&step=0), [vasoactive drugs](#approac
 - [Rami-Porta R, et al. The IASLC Lung Cancer Staging Project: proposals for revision of the TNM stage groups in the forthcoming (ninth) edition of the TNM classification for lung cancer. J Thorac Oncol 2024;19:1007-27](https://www.jto.org/article/S1556-0864(24)00079-0/fulltext)
 - [Klug M, et al. The ninth edition of TNM staging for lung cancer: what radiologists need to know. RadioGraphics 2024;44:e240057](https://pubs.rsna.org/doi/10.1148/rg.240057)
 - [Brunelli A, Kim AW, Berger KI, et al. Physiologic evaluation of the patient with lung cancer being considered for resectional surgery. ACCP guidelines. Chest 2013;143(5 Suppl):e166S-e190S](https://journal.chestnet.org/article/S0012-3692(13)60294-9/fulltext)
-- [De Leyn P, et al. Revised ESTS guidelines for preoperative mediastinal lymph node staging for non-small-cell lung cancer. Eur J Cardiothorac Surg 2014;45:787-98](https://pubmed.ncbi.nlm.nih.gov/?term=De+Leyn+revised+ESTS+guidelines+preoperative+mediastinal+lymph+node+staging+2014)
+- [De Leyn P, et al. Revised ESTS guidelines for preoperative mediastinal lymph node staging for non-small-cell lung cancer. Eur J Cardiothorac Surg 2014;45:787-98](https://doi.org/10.1093/ejcts/ezu028)
 - [Saji H, et al. Segmentectomy versus lobectomy in small-sized peripheral non-small-cell lung cancer (JCOG0802/WJOG4607L). Lancet 2022;399:1607-17](https://www.thelancet.com/journals/lancet/article/PIIS0140-6736(21)02333-3/abstract)
 - [Altorki N, et al. Lobar or sublobar resection for peripheral stage IA non-small-cell lung cancer (CALGB 140503). N Engl J Med 2023;388:489-98](https://www.nejm.org/doi/full/10.1056/NEJMoa2212083)
 - [Lim E, et al. Video-assisted thoracoscopic versus open lobectomy in patients with early-stage lung cancer: the VIOLET RCT. Health Technol Assess 2022;26(48)](https://www.ncbi.nlm.nih.gov/books/NBK587651/)
@@ -240,7 +243,7 @@ Doses: [electrolytes](#approach=cticu-doses&step=0), [vasoactive drugs](#approac
 - [Hansen HJ, Petersen RH. Video-assisted thoracoscopic lobectomy using a standardized three-port anterior approach: the Copenhagen experience. Ann Cardiothorac Surg 2012;1(1):70-76](https://doi.org/10.3978/j.issn.2225-319X.2012.04.15)
 - [McElnay P, Casali G, Batchelor T, West D. Adopting a standardized anterior approach significantly increases VATS lobectomy rates. Eur J Cardiothorac Surg 2014;46(1):100](https://academic.oup.com/ejcts/article/46/1/100/394433)
 - [Rusch VW, et al. The IASLC lung cancer staging project: a proposal for a new international lymph node map. J Thorac Oncol 2009](https://pubmed.ncbi.nlm.nih.gov/19357537)
-- [Lim E, et al. Video-assisted thoracoscopic versus open lobectomy in patients with early-stage lung cancer (VIOLET): a randomised controlled trial. Lancet Oncol 2022](https://pubmed.ncbi.nlm.nih.gov/?term=VIOLET+video-assisted+thoracoscopic+versus+open+lobectomy+Lim+2022)
-- [Saji H, et al. Segmentectomy versus lobectomy in small-sized peripheral non-small-cell lung cancer (JCOG0802/WJOG4607L). Lancet 2022;399:1607-17](https://pubmed.ncbi.nlm.nih.gov/?term=JCOG0802+segmentectomy+versus+lobectomy+Saji+2022)
-- [Altorki N, et al. Lobar or sublobar resection for peripheral stage IA non-small-cell lung cancer (CALGB 140503). N Engl J Med 2023;388:489-98](https://pubmed.ncbi.nlm.nih.gov/?term=CALGB+140503+lobar+or+sublobar+resection+Altorki+2023)
+- [Lim E, et al. Video-assisted thoracoscopic or open lobectomy in early-stage lung cancer (VIOLET). NEJM Evid 2022;1](https://doi.org/10.1056/EVIDoa2100016)
+- [Saji H, et al. Segmentectomy versus lobectomy in small-sized peripheral non-small-cell lung cancer (JCOG0802/WJOG4607L). Lancet 2022;399:1607-17](https://doi.org/10.1016/S0140-6736(21)02333-3)
+- [Altorki N, et al. Lobar or sublobar resection for peripheral stage IA non-small-cell lung cancer (CALGB 140503). N Engl J Med 2023;388:489-98](https://doi.org/10.1056/NEJMoa2212083)
 - [Wasserthal J, et al. TotalSegmentator. Radiol Artif Intell 2023](https://doi.org/10.1148/ryai.230024)

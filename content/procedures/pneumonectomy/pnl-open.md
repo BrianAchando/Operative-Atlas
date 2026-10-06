@@ -138,6 +138,7 @@ The **main pulmonary artery** now lies free above the bronchus. Clear it proxima
   > Acute right heart strain or a fall in pressure on clamping warns that pneumonectomy may not be tolerated.
 - [ ] To check for bleeding from the bronchial arteries
 - [ ] To test the bronchial stump
+- [ ] To check pulmonary vein pressure
 
 ## [pnlo-spv] Superior pulmonary vein: staple
 
@@ -160,6 +161,7 @@ On the left the bronchus runs under the aortic arch: pull the lung down and out 
   > The shorter the stump, the less dead space for infection and dehiscence.
 - [ ] To preserve the contralateral lung
 - [ ] To make the specimen easier to remove
+- [ ] To make the stump easier to see
 
 ## [pnlo-specimen] Specimen out, cover the stump, leak test
 
@@ -205,7 +207,7 @@ Doses: [electrolytes](#approach=cticu-doses&step=0), [vasoactive drugs](#approac
 - [Hansen HJ, Petersen RH. Video-assisted thoracoscopic lobectomy using a standardized three-port anterior approach: the Copenhagen experience. Ann Cardiothorac Surg 2012;1(1):70-76](https://doi.org/10.3978/j.issn.2225-319X.2012.04.15)
 - [McElnay P, Casali G, Batchelor T, West D. Adopting a standardized anterior approach significantly increases VATS lobectomy rates. Eur J Cardiothorac Surg 2014;46(1):100](https://academic.oup.com/ejcts/article/46/1/100/394433)
 - [Rusch VW, et al. The IASLC lung cancer staging project: a proposal for a new international lymph node map. J Thorac Oncol 2009](https://pubmed.ncbi.nlm.nih.gov/19357537)
-- [Lim E, et al. Video-assisted thoracoscopic versus open lobectomy in patients with early-stage lung cancer (VIOLET): a randomised controlled trial. Lancet Oncol 2022](https://pubmed.ncbi.nlm.nih.gov/?term=VIOLET+video-assisted+thoracoscopic+versus+open+lobectomy+Lim+2022)
-- [Saji H, et al. Segmentectomy versus lobectomy in small-sized peripheral non-small-cell lung cancer (JCOG0802/WJOG4607L). Lancet 2022;399:1607-17](https://pubmed.ncbi.nlm.nih.gov/?term=JCOG0802+segmentectomy+versus+lobectomy+Saji+2022)
-- [Altorki N, et al. Lobar or sublobar resection for peripheral stage IA non-small-cell lung cancer (CALGB 140503). N Engl J Med 2023;388:489-98](https://pubmed.ncbi.nlm.nih.gov/?term=CALGB+140503+lobar+or+sublobar+resection+Altorki+2023)
+- [Lim E, et al. Video-assisted thoracoscopic or open lobectomy in early-stage lung cancer (VIOLET). NEJM Evid 2022;1](https://doi.org/10.1056/EVIDoa2100016)
+- [Saji H, et al. Segmentectomy versus lobectomy in small-sized peripheral non-small-cell lung cancer (JCOG0802/WJOG4607L). Lancet 2022;399:1607-17](https://doi.org/10.1016/S0140-6736(21)02333-3)
+- [Altorki N, et al. Lobar or sublobar resection for peripheral stage IA non-small-cell lung cancer (CALGB 140503). N Engl J Med 2023;388:489-98](https://doi.org/10.1056/NEJMoa2212083)
 - [Wasserthal J, et al. TotalSegmentator. Radiol Artif Intell 2023](https://doi.org/10.1148/ryai.230024)

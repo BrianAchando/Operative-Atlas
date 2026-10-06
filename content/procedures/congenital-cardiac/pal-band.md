@@ -34,6 +34,10 @@ Then adjust on the table: **distal PA pressure** down to about a third to a half
 
 > **Evidence:** Trusler rules (Pedi Cardiology summary): 20 mm + 1 mm/kg for left-to-right shunts, 24 mm + 1 mm/kg for mixing; add 1–2 mm with a large ASD or PA; tighten until distal PA pressure is about 50% of systemic when pulmonary hypertension is present; loosen for distal PA collapse, cyanosis or bradycardia.
 
+### Case
+
+A **3-month-old girl, 5 kg**, with **multiple muscular VSDs**, in heart failure with failure to thrive despite diuretics. Echo: normal ventricles, a **two-ventricle circulation**, pulmonary pressures near systemic. She is not suitable for a single-stage repair, so a **pulmonary artery band** is planned.
+
 ### Question
 
 **Q:** Trusler's band circumference for a 5 kg infant with multiple VSDs (biventricular)?
@@ -87,9 +91,9 @@ Template and how to use it: [CTICU protocol, consent](#approach=cticu-consent&st
 **Q:** Why will a banded child need another operation?
 - [x] The band is palliation: the defect still needs closing and the band removed
   > Banding protects the lungs while the child grows; definitive repair follows.
-- [ ] Bands dissolve
-- [ ] Only if the band breaks
-- [ ] They do not
+- [ ] The band dissolves, so the pulmonary artery reopens
+- [ ] Only if the child becomes cyanosed
+- [ ] Only if the band slips
 
 ## [band-sternotomy] Median sternotomy
 

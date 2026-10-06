@@ -17,6 +17,10 @@ Haemodialysis needs blood flow of about 300–400 mL/min, three times a week, fo
 
 > **Evidence:** KDOQI Clinical Practice Guideline for Vascular Access: 2019 Update (Lok et al., Am J Kidney Dis 2020): ESKD Life-Plan; no absolute minimum vessel diameter (vessels under 2 mm need careful evaluation); selective pre-operative ultrasound for high-risk patients; maturation assessed at 4–6 weeks; rope-ladder cannulation preferred. Rule of 6s: earlier KDOQI guidance.
 
+### Case
+
+A **54-year-old right-handed teacher** with hypertensive kidney disease, **eGFR 17** and falling by about 5 a year, is referred for dialysis access planning. She has had repeated blood tests from the forearm veins of her left arm and a PICC line in the past. Her nephrologist asks what access should be planned and how to protect her veins.
+
 ### Question
 
 **Q:** What did KDOQI 2019 change about access planning?
@@ -75,7 +79,7 @@ Template and how to use it: [CTICU protocol, consent](#approach=cticu-consent&st
   > Commoner with brachial inflow, diabetes and age.
 - [ ] Paraplegia
 - [ ] Stroke
-- [ ] Chylothorax
+- [ ] Phrenic nerve palsy
 
 ## [av-bb] Transposed brachiobasilic fistula
 
@@ -109,5 +113,5 @@ Doses: [electrolytes](#approach=cticu-doses&step=0), [vasoactive drugs](#approac
 ## Sources
 
 - [Lok CE, et al. KDOQI clinical practice guideline for vascular access: 2019 update. Am J Kidney Dis 2020;75(4 Suppl 2):S1-164](https://www.ajkd.org/article/S0272-6386(19)31137-0/fulltext)
-- [A Korean perspective on the 2019 KDOQI vascular access guideline (Kidney Res Clin Pract)](https://www.krcp-ksn.org/m/journal/view.php?number=6004)
+- [Lok CE, et al. KDOQI clinical practice guideline for vascular access: 2019 update. Am J Kidney Dis 2020;75(4 Suppl 2):S1-S164](https://doi.org/10.1053/j.ajkd.2019.12.001)
 - [Rule of 6s for dialysis access (Renal Fellow Network)](https://www.renalfellow.org/2011/09/02/from-rfn-archive-rule-of-6s-for/)

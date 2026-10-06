@@ -43,6 +43,7 @@ Indications: **thymoma** (stage by Masaoka-Koga) and **myasthenia gravis** (the 
   > Everything anterior between the phrenic nerves, from the diaphragm to the thyroid, comes out; a phrenic palsy in a myasthenic is disastrous.
 - [ ] The internal mammary arteries
 - [ ] The lateral borders of the sternum
+- [ ] The anterior axillary lines
 
 ## [b4-thymectomy-subx-case] Case: a young woman with bulbar myasthenia
 
@@ -109,7 +110,7 @@ Template and how to use it: [CTICU protocol, consent](#approach=cticu-consent&st
 - [x] Better clinical scores and less prednisone over 3 years
   > MGTX (NEJM 2016): improved Quantitative MG score and lower prednisone dose at 3 years; benefit is gradual.
 - [ ] Immediate cure
-- [ ] Stopping all medicines the next day
+- [ ] Stopping all medication the next day
 - [ ] No benefit
 
 ## [tx-entry] Subxiphoid approach
@@ -137,6 +138,7 @@ Lift the gland forward off the **left brachiocephalic vein**. One to three **thy
   > Blind clips or diathermy on a torn innominate vein make it bigger.
 - [ ] Clip it blindly
 - [ ] Ligate the innominate vein
+- [ ] Apply a vascular clamp across the innominate vein
 
 ## [tx-horns] The upper horns from the thyroid
 
@@ -170,8 +172,8 @@ Doses: [electrolytes](#approach=cticu-doses&step=0), [vasoactive drugs](#approac
 **Q:** After thymectomy for MG: FVC falls to 15 mL/kg with a weak cough. Next?
 - [x] Call the consultant; prepare to intubate and start IVIG or plasma exchange
   > Myasthenic crisis: the 20/30/40 rule; do not wait for hypercapnia.
-- [ ] Give magnesium
-- [ ] Increase opioids
+- [ ] Give intravenous magnesium
+- [ ] Increase opioid analgesia
 - [ ] Start gentamicin
 
 ## Sources
@@ -186,6 +188,6 @@ Doses: [electrolytes](#approach=cticu-doses&step=0), [vasoactive drugs](#approac
 - [College of American Pathologists. Protocol for thymic epithelial tumours (AJCC/UICC 9th edition TNM), v5.0](https://documents.cap.org/protocols/Thymus_5.0.0.0.REL.CAPCP.pdf)
 - [Friedant AJ, et al. Minimally invasive versus open thymectomy for thymic malignancies: systematic review and meta-analysis. J Thorac Oncol 2016;11:30-8](https://www.sciencedirect.com/science/article/pii/S1556086415000106)
 - [Lee Y, et al. Minimally invasive vs open thymectomy for myasthenia gravis: meta-analysis. Surg Endosc 2023;37:3321-39](https://link.springer.com/article/10.1007/s00464-022-09757-y)
-- [Wolfe GI, et al. Randomized trial of thymectomy in myasthenia gravis (MGTX). N Engl J Med 2016;375:511-522](https://pubmed.ncbi.nlm.nih.gov/?term=Wolfe+randomized+trial+thymectomy+myasthenia+gravis+2016)
+- [Wolfe GI, et al. Randomized trial of thymectomy in myasthenia gravis (MGTX). N Engl J Med 2016;375:511-22](https://doi.org/10.1056/NEJMoa1602489)
 - [Detterbeck FC, Parsons AM. Management of stage I and II thymoma. Thorac Surg Clin 2011 (Masaoka-Koga staging)](https://pubmed.ncbi.nlm.nih.gov/?term=Masaoka-Koga+thymoma+staging)
 - [Suda T. Subxiphoid thymectomy: single-port, dual-port, and robot-assisted. J Vis Surg 2017](https://pubmed.ncbi.nlm.nih.gov/?term=Suda+subxiphoid+thymectomy)

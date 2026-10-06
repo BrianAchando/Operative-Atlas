@@ -22,6 +22,7 @@ A 64-year-old man, diabetic, breathless and with angina; **EF 30%** with viable 
   > STICH, extended to 10 years (STICHES), showed lower all-cause and cardiovascular mortality with CABG in ischaemic cardiomyopathy.
 - [ ] has no effect on survival
 - [ ] is contraindicated below EF 35%
+- [ ] is harmful when the EF is below 35%
 
 ## [co-decide] Why surgery, which conduits
 
@@ -38,6 +39,7 @@ A 64-year-old man, diabetic, breathless and with angina; **EF 30%** with viable 
   > In diabetes with multivessel disease, CABG reduced death, MI and stroke compared with PCI in FREEDOM; the 2021 guideline gives surgery class I.
 - [ ] PCI with drug-eluting stents
 - [ ] Medical therapy alone
+- [ ] Repeat medical therapy for six months before deciding
 
 ## [cabg-onpump-consent] Consent: what to discuss with this patient
 
@@ -117,6 +119,7 @@ Heparin before dividing it distally; check the free flow; spray papaverine to pr
   > Arterial grafts, the radial above all, need a severe proximal stenosis; with competitive native flow they string down or occlude. Vein is more forgiving here.
 - [ ] A saphenous vein graft
 - [ ] Neither
+- [ ] Both are equally at risk
 
 ## [co-cannulate] Cannulate (aorta; two-stage venous RA to IVC), arrest
 
@@ -167,6 +170,7 @@ Before closing: the LIMA pedicle lies without tension; the veins do not kink whe
   > Low flow with a high PI points to a technical problem (kink, twist, anastomotic narrowing). Fixing it before leaving theatre is far safer than finding it after an infarct.
 - [ ] Accept it: flows improve after weaning
 - [ ] Add a vein graft to the LAD later if needed
+- [ ] Convert to off-pump and leave the graft
 
 ## [cabg-onpump-icu] ICU and post-operative care
 
@@ -191,20 +195,20 @@ Doses: [electrolytes](#approach=cticu-doses&step=0), [vasoactive drugs](#approac
   > Early aspirin after CABG reduces death and ischaemic complications (Mangano, NEJM 2002).
 - [ ] Warfarin
 - [ ] Clopidogrel loading only
-- [ ] Nothing until day 3
+- [ ] Aspirin only after the drains are out on day 3
 
 ## Sources
 
 - [Lawton JS, Tamis-Holland JE, et al. 2021 ACC/AHA/SCAI guideline for coronary artery revascularization. J Am Coll Cardiol 2022;79:e21-e129](https://pubmed.ncbi.nlm.nih.gov/34882435/)
 - [Kouchoukos NT, Blackstone EH, Hanley FL, Kirklin JK. Kirklin/Barratt-Boyes Cardiac Surgery, 4th ed. Elsevier 2013: coronary artery bypass](https://pubmed.ncbi.nlm.nih.gov/?term=Kirklin+Barratt-Boyes+coronary+artery+bypass)
-- [Farkouh ME, et al. Strategies for multivessel revascularization in patients with diabetes (FREEDOM). N Engl J Med 2012;367:2375-84](https://pubmed.ncbi.nlm.nih.gov/?term=FREEDOM+trial+Farkouh+multivessel+revascularization+diabetes+2012)
+- [Farkouh ME, et al. Strategies for multivessel revascularization in patients with diabetes (FREEDOM). N Engl J Med 2012;367:2375-84](https://doi.org/10.1056/NEJMoa1211585)
 - [Velazquez EJ, et al. Coronary-artery bypass surgery in patients with ischemic cardiomyopathy (STICHES, 10 years). N Engl J Med 2016;374:1511-20](https://pubmed.ncbi.nlm.nih.gov/?term=Velazquez+STICHES+ischemic+cardiomyopathy+2016)
 - [Taggart DP, et al. Bilateral versus single internal-thoracic-artery grafts at 10 years (ART). N Engl J Med 2019;380:437-46](https://www.nejm.org/doi/full/10.1056/NEJMoa1808783)
-- [Gaudino M, et al. Radial-artery or saphenous-vein grafts in coronary-artery bypass surgery (RADIAL). N Engl J Med 2018;378:2069-77](https://www.acc.org/latest-in-cardiology/journal-scans/2018/04/30/14/44/radial-artery-or-saphenous-vein-grafts-in-cabg)
+- [Gaudino M, et al. Radial-artery or saphenous-vein grafts in coronary-artery bypass surgery (RADIAL). N Engl J Med 2018;378:2069-77](https://doi.org/10.1056/NEJMoa1716026)
 - [Zenati MA, et al. Randomized trial of endoscopic or open vein-graft harvesting (REGROUP). N Engl J Med 2019](https://www.nejm.org/doi/full/10.1056/NEJMoa1812390)
 - [No-touch vein grafts in coronary artery bypass surgery: a registry-based randomized clinical trial (SWEDEGRAFT). Eur Heart J 2025;46:1720](https://academic.oup.com/eurheartj/article/46/18/1720/8023883)
 - [Graft patency of no-touch versus conventionally harvested saphenous vein conduits: meta-analysis of 7 randomized trials. 2025](https://www.sciencedirect.com/science/article/pii/S2666273625000555)
 - [Maron DJ, et al. Initial invasive or conservative strategy for stable coronary disease (ISCHEMIA). N Engl J Med 2020;382:1395-407](https://www.nejm.org/doi/full/10.1056/NEJMoa1915922)
 - [Blazek S, et al. Comparison of bare-metal stenting with minimally invasive bypass surgery for stenosis of the LAD: 10-year follow-up of a randomized trial. JACC Cardiovasc Interv 2013;6:20-6](https://www.jacc.org/doi/10.1016/j.jcin.2012.09.008)
-- [Lamy A, et al. Five-year outcomes after off-pump or on-pump coronary-artery bypass grafting (CORONARY). N Engl J Med 2016;375:2359-68](https://www.acc.org/Latest-in-Cardiology/Clinical-Trials/2014/06/08/17/13/CORONARY)
-- [Shroyer AL, et al. Five-year outcomes after on-pump and off-pump coronary-artery bypass (ROOBY-FS). N Engl J Med 2017;377:623-32; Quin JA, et al. Ten-year outcomes. JAMA Surg 2022](https://www.tctmd.com/news/rooby-fs-10-year-data-affirm-pump-cabg-default-strategy)
+- [Lamy A, et al. Five-year outcomes after off-pump or on-pump coronary-artery bypass grafting (CORONARY). N Engl J Med 2016;375:2359-68](https://doi.org/10.1056/NEJMoa1601564)
+- [Shroyer AL, et al. Five-year outcomes after on-pump and off-pump coronary-artery bypass (ROOBY-FS). N Engl J Med 2017;377:623-32; Quin JA, et al. Ten-year outcomes. JAMA Surg 2022](https://doi.org/10.1056/NEJMoa1614341)

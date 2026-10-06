@@ -13,6 +13,10 @@ Hilar control is for **massive bleeding from the hilum or deep lung** that a han
 
 Two ways: a **clamp across the whole hilum**, or the **hilar twist**. Both need the **inferior pulmonary ligament** divided first. The right ventricle then pumps into one lung: expect **acute right heart strain**.
 
+### Case
+
+A **29-year-old man** shot in the left chest has a left thoracotomy for ongoing shock. Blood pours from a **central lung wound near the hilum** faster than it can be suctioned. After positive-pressure ventilation is resumed, he suddenly **arrests with air bubbling in the coronary arteries**, a sign of **systemic air embolism**. A clamp across the hilum is what stops both problems; the ligament must be divided first.
+
 ## [hilar-clamp-consent] Consent: what to discuss with this patient
 
 **Life-saving emergency surgery**: when the patient cannot consent and delay risks life, proceed on necessity, document why, and inform the next of kin as soon as possible. If the patient can talk, a short explanation still matters.
@@ -93,7 +97,7 @@ Doses: [electrolytes](#approach=cticu-doses&step=0), [vasoactive drugs](#approac
 
 ## Sources
 
-- [Seamon MJ, et al. An evidence-based approach to patient selection for emergency department thoracotomy: a practice management guideline from the Eastern Association for the Surgery of Trauma. J Trauma Acute Care Surg 2015;79(1):159-173](https://pubmed.ncbi.nlm.nih.gov/?term=Seamon+emergency+department+thoracotomy+Eastern+Association+2015)
+- [Seamon MJ, et al. An evidence-based approach to patient selection for emergency department thoracotomy: a practice management guideline from the Eastern Association for the Surgery of Trauma. J Trauma Acute Care Surg 2015;79(1):159-173](https://doi.org/10.1097/TA.0000000000000648)
 - [Burlew CC, et al. Western Trauma Association critical decisions in trauma: resuscitative thoracotomy. J Trauma Acute Care Surg 2012;73(6):1359-1363](https://pubmed.ncbi.nlm.nih.gov/?term=Burlew+Western+Trauma+Association+resuscitative+thoracotomy)
 - [Simms ER, et al. Bilateral anterior thoracotomy (clamshell incision) is the ideal emergency thoracotomy incision: an anatomic study. World J Surg 2013;37(6):1277-1285](https://pubmed.ncbi.nlm.nih.gov/?term=Simms+clamshell+incision+ideal+emergency+thoracotomy)
 - [Wall MJ Jr, Hirshberg A, Mattox KL. Pulmonary tractotomy with selective vascular ligation for penetrating injuries to the lung. Am J Surg 1994;168(6):665-669](https://pubmed.ncbi.nlm.nih.gov/?term=Wall+Hirshberg+Mattox+pulmonary+tractotomy)

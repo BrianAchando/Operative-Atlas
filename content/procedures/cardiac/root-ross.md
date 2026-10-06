@@ -22,6 +22,7 @@ The **pulmonary root** lies in front and to the left, sharing a fascial plane wi
   > In root disease the sinuses themselves are aneurysmal; a supracoronary graft leaves them in place to dilate or dissect.
 - [ ] The coronary ostia are always too low
 - [ ] An AVR cannot be done in a large root
+- [ ] The coronary ostia always sit too high for an AVR
 
 ## [rr-decide] Which root operation: is this patient for a Ross?
 
@@ -39,6 +40,10 @@ The **pulmonary root** lies in front and to the left, sharing a fascial plane wi
 
 > **Evidence:** Ross: the one RCT (El-Hamamsy et al., Lancet 2010; 228 adults, mean age 38) found 10-year survival of 97% after the autograft vs 83% after a homograft root, and 99% vs 51% freedom from aortic valve reoperation at 13 years; survival matched the general population. ACC/AHA 2020 gives the Ross a class 2b recommendation in young adults, at experienced centres; ESC/EACTS 2025 calls it a valid alternative in well-selected young patients.
 
+### Case
+
+A **24-year-old woman** who had rheumatic fever at nine. She now has **severe aortic regurgitation** with progressive LV dilatation, exertional breathlessness (NYHA II) and **mild mitral disease**. She plans a pregnancy in the next few years and has read that the Ross operation avoids warfarin, so she asks for it.
+
 ### Question
 
 **Q:** A 24-year-old with rheumatic aortic regurgitation and mild mitral disease asks for the Ross operation. What does the evidence suggest?
@@ -46,6 +51,7 @@ The **pulmonary root** lies in front and to the left, sharing a fascial plane wi
   > In young rheumatic patients autograft dysfunction was far more common (freedom only 65%), with rheumatic changes in the explanted autografts; EACTS 2025 lists rheumatic disease among the cautions.
 - [ ] The Ross is ideal: young and wants to avoid warfarin
 - [ ] A homograft root
+- [ ] Rheumatic disease is an ideal indication: the autograft is immune to it
 
 ## [root-ross-consent] Consent: what to discuss with this patient
 
@@ -126,6 +132,7 @@ Repeat every 15–20 minutes (retrograde, or down the ostia), or as the solution
   > Root cardioplegia is going through the incompetent valve into the LV, not down the coronaries. Distension injures the myocardium.
 - [ ] Increase the root infusion pressure
 - [ ] Cool further and wait for arrest
+- [ ] Clamp the root and continue the infusion at higher flow
 
 ## [rr-excise] Transect the aorta, excise the valve, take the buttons
 
@@ -150,6 +157,7 @@ Free the root from the septum **posteriorly and to the left**, keeping the plane
   > It runs just beneath the posterior RVOT; dividing it gives a septal infarct. Stay shallow and close to the root.
 - [ ] The right coronary artery
 - [ ] The AV node
+- [ ] The left circumflex artery
 
 ## [rr-implant] Implant the autograft as a root; stabilise it
 
@@ -174,6 +182,7 @@ Test each suture line (cardioplegia down the graft) **before** the distal anasto
   > The right button, placed too low or with the heart empty, kinks when the heart fills. Go back on bypass and redo it (or bypass the RCA).
 - [ ] Air in the left main
 - [ ] A paravalvular leak
+- [ ] Left main ostial stenosis from the valve
 
 ## [rr-distal] Join the autograft to the ascending aorta
 
@@ -202,6 +211,7 @@ TOE: autograft competence (no AR), RVOT gradient across the homograft, regional 
   > This is dynamic LVOT obstruction with systolic anterior motion of the mitral leaflet, which inotropes worsen. Fill, slow and constrict.
 - [ ] More adrenaline
 - [ ] Go back on bypass and replace the mitral valve
+- [ ] Add a vasodilator and reduce preload further
 
 ## [root-ross-icu] ICU and post-operative care
 
@@ -224,8 +234,8 @@ Doses: [electrolytes](#approach=cticu-doses&step=0), [vasoactive drugs](#approac
 **Q:** After a Bentall, new ST elevation in the inferior leads. Think of?
 - [x] Right coronary button kinking or ischaemia
   > Coronary button problems present early with ST change or arrhythmia: echo and angiography.
-- [ ] Pericarditis only
-- [ ] Normal after bypass
+- [ ] Pericarditis, which needs only an NSAID
+- [ ] Left main button kinking
 - [ ] Hypokalaemia
 
 ## Sources
