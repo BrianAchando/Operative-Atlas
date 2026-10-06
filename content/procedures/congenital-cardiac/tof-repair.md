@@ -16,7 +16,7 @@ One developmental error, **anterior and cephalad deviation of the outlet septum*
 -   **Overriding aorta**: straddling the defect
 -   **RV hypertrophy**: the RV pumps at systemic pressure
 
-Chain: Equal RV and LV pressures (large VSD) → RVOT obstruction sets the shunt → **More obstruction: right-to-left, cyanosis** → Polycythaemia, clubbing, squatting, spells
+Chain: Equal RV and LV pressures (large VSD) → RVOT obstruction sets the shunt → **More obstruction: right-to-left, cyanosis** → Polycythemia, clubbing, squatting, spells
 
 The spectrum runs from a "pink tet" (mild obstruction, net left-to-right) to severe cyanosis or pulmonary atresia. Untreated, about 55% survive 5 years and 30% 10 years.
 
@@ -223,7 +223,7 @@ Doses: [electrolytes](#approach=cticu-doses&step=0), [vasoactive drugs](#approac
 **Q:** 6 h after TOF repair: CVP 16, BP low, small RV on echo with forward diastolic flow in the PA, ascites. Problem?
 - [x] Restrictive RV physiology
   > A stiff hypertrophied RV fills poorly; support with preload, milrinone, low airway pressures, and let the PFO decompress the right heart.
-- [ ] Hypovolaemia only
+- [ ] Hypovolemia only
 - [ ] Tamponade only
 - [ ] LV failure
 

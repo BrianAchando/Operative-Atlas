@@ -160,7 +160,7 @@ Develop **Sondergaard's plane**: the fat between the right atrium and the right 
 
 ## [mr-inspect] Valve analysis: repair or replace?
 
-Analyse the valve systematically before deciding (Carpentier): the **annulus** (dilated?), each **leaflet** segment (pliable, thickened, retracted, calcified?), the **commissures** (fused?), the **chordae** (elongated, ruptured, fused?) and the papillary muscles. Test with saline under pressure.
+Analyze the valve systematically before deciding (Carpentier): the **annulus** (dilated?), each **leaflet** segment (pliable, thickened, retracted, calcified?), the **commissures** (fused?), the **chordae** (elongated, ruptured, fused?) and the papillary muscles. Test with saline under pressure.
 
 **Rheumatic repair**, when the tissue allows: commissurotomy, thinning (peeling) of thickened leaflets, fenestration of fused chordae, **augmenting a retracted leaflet with a pericardial patch**, chordal shortening, transfer or artificial chordae for prolapse, and a **complete ring** annuloplasty. **Replace** when the leaflets are thick, retracted and calcified, the subvalvular apparatus is fused, or a durable repair is unlikely: a failed repair in a young patient means another sternotomy.
 

@@ -49,7 +49,7 @@ Order of division from behind: **fissure → posterior segmental → truncus →
 
 ## [bx-case] Case: recurrent hemoptysis from a destroyed left upper lobe
 
-Localised, symptomatic disease in a fit patient with a healthy remaining lung, bleeding again after embolization: **left upper lobectomy**. Open thoracotomy is safer than VATS with dense adhesions and calcified hilar nodes.
+Localized, symptomatic disease in a fit patient with a healthy remaining lung, bleeding again after embolization: **left upper lobectomy**. Open thoracotomy is safer than VATS with dense adhesions and calcified hilar nodes.
 
 **Before surgery**: sputum negative for TB; treat infection; physiotherapy; nutrition; spirometry and a perfusion scan if borderline; bronchoscopy to exclude an endobronchial lesion and to see the left lower lobe bronchus is clean.
 
@@ -61,7 +61,7 @@ A **32-year-old woman**, TB treated 6 years ago. Two years of daily purulent spu
 
 **Q:** Which finding makes her a good candidate for resection?
 - [x] Disease confined to one lobe with healthy remaining lung
-  > Localised disease with adequate reserve; diffuse bronchiectasis is managed medically.
+  > Localized disease with adequate reserve; diffuse bronchiectasis is managed medically.
 - [ ] Bilateral disease
 - [ ] Active TB on sputum
 - [ ] FEV1 25%

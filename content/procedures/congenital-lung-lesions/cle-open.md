@@ -24,7 +24,7 @@ summary: An over-distended lobe from a ball-valve bronchus: where it sits, how i
 
 Chain: Deficient bronchial cartilage or compression → Airway collapses in expiration (ball valve) → Air trapped, lobe over-distends → **Compresses other lobes, shifts the mediastinum** → **Respiratory distress, falling venous return**
 
-**The trap**: CLE looks like a tension pneumothorax. A chest drain into an emphysematous lobe makes a large air leak and can kill; look for lung markings in the lucent area before inserting one. In a true pneumothorax the hemidiaphragm is depressed; in CLE the lung markings continue through the lucent lobe.
+**The trap**: CLE looks like a tension pneumothorax. A chest drain into an emphysematous lobe makes a large air leak and can kill; look for lung markings in the lucent area before inserting one. In a tension pneumothorax the hemidiaphragm is depressed; in CLE the lung markings continue through the lucent lobe.
 
 **Anesthesia for CLE**: avoid nitrous oxide (it expands the lobe) and high positive-pressure ventilation before the chest is open (spontaneous breathing or gentle ventilation); the surgeon scrubbed at induction, ready to open the chest and deliver the lobe.
 

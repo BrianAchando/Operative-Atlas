@@ -19,7 +19,7 @@ Chain: Primary tumor (T: size, invasion) → Intrapulmonary and hilar nodes (N1)
 
 Chain: Primary tumor → **Blood: brain, bone, adrenal, liver (M1)**
 
-| T | Tumour (9th edition keeps the 8th-edition T) |
+| T | Tumor (9th edition keeps the 8th-edition T) |
 | --- | --- |
 | T1 | ≤3 cm, surrounded by lung (T1a ≤1, T1b >1–2, T1c >2–3 cm) |
 | T2 | \>3–5 cm (T2a >3–4, T2b >4–5), or main bronchus (not carina), visceral pleura, collapse to the hilum |
@@ -239,10 +239,20 @@ Doses: [electrolytes](#approach=cticu-doses&step=0), [vasoactive drugs](#approac
 
 ## Sources
 
+- [Rami-Porta R, et al. The IASLC Lung Cancer Staging Project: proposals for revision of the TNM stage groups in the forthcoming (ninth) edition of the TNM classification for lung cancer. J Thorac Oncol 2024;19:1007-27](https://www.jto.org/article/S1556-0864(24)00079-0/fulltext)
+- [Klug M, et al. The ninth edition of TNM staging for lung cancer: what radiologists need to know. RadioGraphics 2024;44:e240057](https://pubs.rsna.org/doi/10.1148/rg.240057)
+- [Brunelli A, Kim AW, Berger KI, et al. Physiologic evaluation of the patient with lung cancer being considered for resectional surgery. ACCP guidelines. Chest 2013;143(5 Suppl):e166S-e190S](https://journal.chestnet.org/article/S0012-3692(13)60294-9/fulltext)
+- [De Leyn P, et al. Revised ESTS guidelines for preoperative mediastinal lymph node staging for non-small-cell lung cancer. Eur J Cardiothorac Surg 2014;45:787-98](https://pubmed.ncbi.nlm.nih.gov/?term=De+Leyn+revised+ESTS+guidelines+preoperative+mediastinal+lymph+node+staging+2014)
+- [Saji H, et al. Segmentectomy versus lobectomy in small-sized peripheral non-small-cell lung cancer (JCOG0802/WJOG4607L). Lancet 2022;399:1607-17](https://www.thelancet.com/journals/lancet/article/PIIS0140-6736(21)02333-3/abstract)
+- [Altorki N, et al. Lobar or sublobar resection for peripheral stage IA non-small-cell lung cancer (CALGB 140503). N Engl J Med 2023;388:489-98](https://www.nejm.org/doi/full/10.1056/NEJMoa2212083)
+- [Lim E, et al. Video-assisted thoracoscopic versus open lobectomy in patients with early-stage lung cancer: the VIOLET RCT. Health Technol Assess 2022;26(48)](https://www.ncbi.nlm.nih.gov/books/NBK587651/)
+- [Tsuboi M, et al. Overall survival with osimertinib in resected EGFR-mutated NSCLC (ADAURA). N Engl J Med 2023;389:137-47](https://www.nejm.org/doi/full/10.1056/NEJMoa2304594)
+- [Forde PM, et al. Neoadjuvant nivolumab plus chemotherapy in resectable lung cancer (CheckMate 816). N Engl J Med 2022;386:1973-85](https://www.nejm.org/doi/full/10.1056/NEJMoa2202170)
+- [Daniels J, et al. Lung cancer at Korle-Bu Teaching Hospital, Ghana. ecancermedicalscience 2025](https://pmc.ncbi.nlm.nih.gov/articles/PMC12221260)
 - [Hansen HJ, Petersen RH. Video-assisted thoracoscopic lobectomy using a standardized three-port anterior approach: the Copenhagen experience. Ann Cardiothorac Surg 2012;1(1):70-76](https://doi.org/10.3978/j.issn.2225-319X.2012.04.15)
 - [McElnay P, Casali G, Batchelor T, West D. Adopting a standardized anterior approach significantly increases VATS lobectomy rates. Eur J Cardiothorac Surg 2014;46(1):100](https://academic.oup.com/ejcts/article/46/1/100/394433)
 - [Rusch VW, et al. The IASLC lung cancer staging project: a proposal for a new international lymph node map. J Thorac Oncol 2009](https://pubmed.ncbi.nlm.nih.gov/19357537)
-- [Lim E, et al. Video-assisted thoracoscopic or open lobectomy in early-stage lung cancer (VIOLET). NEJM Evid 2022;1](https://doi.org/10.1056/EVIDoa2100016)
-- [Saji H, et al. Segmentectomy versus lobectomy in small-sized peripheral non-small-cell lung cancer (JCOG0802/WJOG4607L). Lancet 2022;399:1607-17](https://doi.org/10.1016/S0140-6736(21)02333-3)
-- [Altorki N, et al. Lobar or sublobar resection for peripheral stage IA non-small-cell lung cancer (CALGB 140503). N Engl J Med 2023;388:489-98](https://doi.org/10.1056/NEJMoa2212083)
+- [Lim E, et al. Video-assisted thoracoscopic versus open lobectomy in patients with early-stage lung cancer (VIOLET): a randomised controlled trial. Lancet Oncol 2022](https://pubmed.ncbi.nlm.nih.gov/?term=VIOLET+video-assisted+thoracoscopic+versus+open+lobectomy+Lim+2022)
+- [Saji H, et al. Segmentectomy versus lobectomy in small-sized peripheral non-small-cell lung cancer (JCOG0802/WJOG4607L). Lancet 2022;399:1607-17](https://pubmed.ncbi.nlm.nih.gov/?term=JCOG0802+segmentectomy+versus+lobectomy+Saji+2022)
+- [Altorki N, et al. Lobar or sublobar resection for peripheral stage IA non-small-cell lung cancer (CALGB 140503). N Engl J Med 2023;388:489-98](https://pubmed.ncbi.nlm.nih.gov/?term=CALGB+140503+lobar+or+sublobar+resection+Altorki+2023)
 - [Wasserthal J, et al. TotalSegmentator. Radiol Artif Intell 2023](https://doi.org/10.1148/ryai.230024)

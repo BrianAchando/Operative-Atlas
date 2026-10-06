@@ -155,7 +155,7 @@ Supine, arms out; an epidural or good analgesia; arterial line, central line, ce
 
 ## [aj-neck] Expose the neck and the renal vein
 
-The aneurysm reaches the renal arteries: the clamp must go **above** them. Mobilise the **left renal vein**; if it prevents access, **divide it close to the IVC**, keeping its gonadal, adrenal and lumbar tributaries (they drain the kidney afterwards). Expose the aorta between the renal arteries and the SMA, taking care of the SMA origin and the renal ostia.
+The aneurysm reaches the renal arteries: the clamp must go **above** them. Mobilize the **left renal vein**; if it prevents access, **divide it close to the IVC**, keeping its gonadal, adrenal and lumbar tributaries (they drain the kidney afterwards). Expose the aorta between the renal arteries and the SMA, taking care of the SMA origin and the renal ostia.
 
 ## [aj-iliacs] Control the iliac arteries (do not encircle them)
 

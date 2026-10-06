@@ -117,7 +117,7 @@ Template and how to use it: [CTICU protocol, consent](#approach=cticu-consent&st
 
 ## [th-lap] Abdomen: mobilize the stomach
 
-Upper midline laparotomy (or laparoscopy). Divide the gastrocolic omentum **well away from the right gastroepiploic arcade**, which the conduit will live on, then the short gastric vessels up to the left crus. Open the lesser omentum. **Kocherise** the duodenum so the pylorus reaches the hiatus; a pyloric drainage procedure or none, by unit policy.
+Upper midline laparotomy (or laparoscopy). Divide the gastrocolic omentum **well away from the right gastroepiploic arcade**, which the conduit will live on, then the short gastric vessels up to the left crus. Open the lesser omentum. **Kocherize** the duodenum so the pylorus reaches the hiatus; a pyloric drainage procedure or none, by unit policy.
 
 ## [th-lga] Left gastric artery at its origin
 

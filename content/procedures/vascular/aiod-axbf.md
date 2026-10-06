@@ -26,7 +26,7 @@ Chain: Collaterals insufficient → **Rest pain, ulcers, gangrene (chronic limb-
 
 **In Africa** think also of **HIV-associated vasculopathy** (young patients, acute thrombosis or occlusions, often presenting late with critical ischemia) and **Takayasu arteritis** (young women, aorta and its branches; control inflammation before surgery).
 
-**Treatment**: for everyone, best medical therapy: stop smoking (varenicline), antiplatelet, statin, blood pressure and diabetes control; supervised exercise for claudication. Revascularise **chronic limb-threatening ischemia**, and claudication that still limits life after exercise and medical therapy, by shared decision. Treat the inflow (aorto-iliac) before the outflow.
+**Treatment**: for everyone, best medical therapy: stop smoking (varenicline), antiplatelet, statin, blood pressure and diabetes control; supervised exercise for claudication. Revascularize **chronic limb-threatening ischemia**, and claudication that still limits life after exercise and medical therapy, by shared decision. Treat the inflow (aorto-iliac) before the outflow.
 
 > **Evidence:** TASC II (Norgren et al., J Vasc Surg 2007). ESVS 2024 claudication guideline (Nordanstig et al.): ABI thresholds, smoking cessation, individualized revascularization for claudication. Global Vascular Guidelines 2019 for CLTI (Conte et al.): endovascular-first for moderate-to-severe aorto-iliac disease; open reconstruction for extensive disease in average-risk patients. HIV vasculopathy: Robbs and Paruk (Eur J Vasc Endovasc Surg 2010; 226 patients, mean age 36) and Van Marle et al. (S Afr J Surg; over 90% presented with Fontaine III/IV, primary amputation 32%). Takayasu in Africa: Genga, Oyoo and Adebajo (Curr Rheumatol Rep 2018).
 

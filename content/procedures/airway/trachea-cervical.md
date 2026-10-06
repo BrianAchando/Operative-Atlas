@@ -120,7 +120,7 @@ Stay sutures above, then divide at healthy airway above the stricture (bevel it 
 
 ## [tr-tension] Test the tension; release if needed
 
-Flex the neck and draw the ends together on the **crossed stay sutures**: they should meet without strain. Mobilise the **front of the distal trachea** into the mediastinum by finger (pretracheal plane, avascular).
+Flex the neck and draw the ends together on the **crossed stay sutures**: they should meet without strain. Mobilize the **front of the distal trachea** into the mediastinum by finger (pretracheal plane, avascular).
 
 If the ends will not meet: a **suprahyoid laryngeal release** (Montgomery) gives 1–2 cm; a thyrohyoid release risks the **internal branch of the superior laryngeal nerve** (aspiration). Low lesions: hilar and pericardial release through the chest.
 
@@ -166,7 +166,7 @@ Doses: [electrolytes](#approach=cticu-doses&step=0), [vasoactive drugs](#approac
 **Q:** Day 2 after tracheal resection: new stridor and neck surgical emphysema. Next?
 - [x] Call the consultant and prepare urgent bronchoscopy in theatre
   > Suspect anastomotic dehiscence; secure the airway under direct vision.
-- [ ] Nebulised adrenaline and observe
+- [ ] Nebulized adrenaline and observe
 - [ ] Remove the guardian stitch
 - [ ] Increase humidification only
 

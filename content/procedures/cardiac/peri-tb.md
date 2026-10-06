@@ -154,7 +154,7 @@ The freed ventricles visibly expand; the CVP falls. Hemostasis over the raw epic
 - [x] Myocardial atrophy from long-standing constriction: inotropic support and cautious filling
   > Low output syndrome is the commonest cause of death after pericardiectomy in African series.
 - [ ] Residual constriction: re-operate now
-- [ ] Hypovolaemia: give 2 L fluid
+- [ ] Hypovolemia: give 2 L fluid
 - [ ] Tamponade
 
 ## [peri-tb-icu] ICU and post-operative care

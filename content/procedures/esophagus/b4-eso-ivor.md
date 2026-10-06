@@ -119,7 +119,7 @@ Template and how to use it: [CTICU protocol, consent](#approach=cticu-consent&st
 
 ## [il-lap] Abdomen: mobilize the stomach
 
-Upper midline laparotomy (or laparoscopy). Divide the gastrocolic omentum **well away from the right gastroepiploic arcade**, which the conduit will live on, then the short gastric vessels up to the left crus. Open the lesser omentum. **Kocherise** the duodenum so the pylorus reaches the hiatus; a pyloric drainage procedure or none, by unit policy.
+Upper midline laparotomy (or laparoscopy). Divide the gastrocolic omentum **well away from the right gastroepiploic arcade**, which the conduit will live on, then the short gastric vessels up to the left crus. Open the lesser omentum. **Kocherize** the duodenum so the pylorus reaches the hiatus; a pyloric drainage procedure or none, by unit policy.
 
 ## [il-lga] Left gastric artery at its origin
 
@@ -133,7 +133,7 @@ Left lateral decubitus. Right posterolateral thoracotomy through the **5th space
 
 Open the mediastinal pleura along the front of the azygos arch and behind it. Staple the arch (vascular load): it opens the upper mediastinum and the space for the conduit.
 
-## [il-mobilise] Mobilise the esophagus en bloc
+## [il-mobilise] Mobilize the esophagus en bloc
 
 Open the pleura in front of the **aorta** and along the **pericardium**. Take the esophagus with its **periesophageal fat and nodes**, including the **subcarinal (station 7)** packet, from the hiatus to above the azygos arch.
 

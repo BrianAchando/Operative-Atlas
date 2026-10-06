@@ -19,7 +19,7 @@ Chain: Primary tumor (T: size, invasion) → Intrapulmonary and hilar nodes (N1)
 
 Chain: Primary tumor → **Blood: brain, bone, adrenal, liver (M1)**
 
-| T | Tumour (9th edition keeps the 8th-edition T) |
+| T | Tumor (9th edition keeps the 8th-edition T) |
 | --- | --- |
 | T1 | ≤3 cm, surrounded by lung (T1a ≤1, T1b >1–2, T1c >2–3 cm) |
 | T2 | \>3–5 cm (T2a >3–4, T2b >4–5), or main bronchus (not carina), visceral pleura, collapse to the hilum |
@@ -53,7 +53,7 @@ The **lower lobe bronchus** continues the bronchus intermedius; the **middle lob
 
 ## [rll-uni-case] Case: single-station N2 disease
 
-**Stage**: T3 (5–7 cm) **N2a** (one mediastinal station) M0 = **IIIA**. N2 disease is treated with **multimodality** therapy: neoadjuvant chemo-immunotherapy, then restaging and lobectomy with nodal dissection if the disease responds and a lobectomy suffices; or definitive chemoradiotherapy followed by durvalumab. Multi-station (N2b) or bulky N2 favors the non-surgical route. The **Tumour Board** decides.
+**Stage**: T3 (5–7 cm) **N2a** (one mediastinal station) M0 = **IIIA**. N2 disease is treated with **multimodality** therapy: neoadjuvant chemo-immunotherapy, then restaging and lobectomy with nodal dissection if the disease responds and a lobectomy suffices; or definitive chemoradiotherapy followed by durvalumab. Multi-station (N2b) or bulky N2 favors the non-surgical route. The **Tumor Board** decides.
 
 > **Evidence:** 9th-edition staging (IASLC 2024): T3 N2a is IIIA; T3 N2b is IIIB. CheckMate 816: neoadjuvant nivolumab plus chemotherapy improved pCR (24% vs 2.2%) and event-free survival in resectable IB–IIIA disease; about two-thirds of patients were stage IIIA.
 

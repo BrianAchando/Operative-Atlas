@@ -138,7 +138,7 @@ Repeat every 15–20 minutes (retrograde, or down the ostia), or as the solution
 
 Cross-clamp high; cardioplegia **retrograde** and **directly into the ostia** once open. Transect the aorta above the STJ. Excise the **valve** and the **sinus walls**, leaving a 3–5 mm rim at the annulus and a **button** of sinus wall (5–8 mm) round each coronary ostium.
 
-Mobilise each button **just enough** to reach the graft: the left main is short and lies behind the pulmonary trunk; the right coronary has branches (conus, RV branches) that tether it.
+Mobilize each button **just enough** to reach the graft: the left main is short and lies behind the pulmonary trunk; the right coronary has branches (conus, RV branches) that tether it.
 
 > **Evidence:** the "open" button technique replaced the older inclusion and wrap methods, which were associated with pseudoaneurysms at the coronary suture lines. When buttons cannot be mobilized (redo, low ostia), a small interposition graft (Cabrol) is used.
 
@@ -236,7 +236,7 @@ Doses: [electrolytes](#approach=cticu-doses&step=0), [vasoactive drugs](#approac
   > Coronary button problems present early with ST change or arrhythmia: echo and angiography.
 - [ ] Pericarditis, which needs only an NSAID
 - [ ] Left main button kinking
-- [ ] Hypokalaemia
+- [ ] Hypokalemia
 
 ## Sources
 

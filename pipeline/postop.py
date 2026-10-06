@@ -367,13 +367,25 @@ OPS = {
 
 KEY_OF = {'lul': 'lobe', 'lll': 'lobe', 'rul': 'lobe', 'rml': 'lobe', 'rll': 'lobe', 'pnl': 'pn', 'pnr': 'pn', 'seg-lingula': 'seg', 'seg-lul-updiv': 'seg', 'seg-s6': 'seg',
           'trachea': 'trachea', 'thymectomy': 'thymectomy', 'oesophagectomy': 'oesophagectomy', 'duct': 'duct', 'empyema': 'empyema', 'ppe': 'ppe',
-          'cle': 'cle', 'cpam': 'cpam',
+          'cle': 'cle', 'cpam': 'cpam', 'asp': 'asp',
           'rt': 'trauma', 'clamshell': 'trauma', 'cardio': 'trauma', 'tract': 'trauma', 'hilar': 'trauma',
           'mvr': 'mvr', 'avr': 'avr', 'root': 'root', 'tricuspid': 'tricuspid', 'cabg': 'cabg'}
 APPR_OF = {'aaa-infra': 'aaa-open', 'aaa-juxta': 'aaa-open', 'aaa-supra': 'aaa-open', 'aaa-evar': 'evar', 'taa-open': 'taa-open', 'taa-tevar': 'tevar', 'taa-asc': 'taa-asc',
            'aiod-abf': 'abf', 'aiod-axbf': 'axbf', 'aiod-endo': 'endo'}
 
 OPS.update({
+    'asp': dict(kind='thx', c=dict(risk='Simple or complex disease (complex carries far more risk), lung function (ppoFEV1), TB status, HIV status, nutrition',
+                                   common=['Air leak and a chest drain', 'Pain', 'Chest infection'],
+                                   serious=['Bleeding, including conversion to open surgery for hemorrhage from adhesions', 'Spillage of the fungal ball into the pleura and empyema', 'Bronchopleural fistula', 'Death'],
+                                   specific=['Complex disease in a TB-scarred lung has much higher complication rates than a simple aspergilloma (41% versus 10% in one series of 76 patients)', 'Antifungal treatment may be needed after surgery for complex disease'],
+                                   alt=['Tranexamic acid and bronchial artery embolization: a bridge, because bleeding recurs in 30-50% within 3 years', 'Oral azole therapy for complex disease', 'Observation when there are few or no symptoms'],
+                                   kenya=['Finish TB treatment and send GeneXpert before surgery', 'HIV status and ART', 'Access to embolization and to itraconazole or voriconazole']),
+                icu=['Drain output: adhesion beds and bronchial collaterals ooze, and sustained high output needs theatre', 'Air leak, and watch for empyema after spillage of the fungal ball', 'Antifungal and TB treatment plans continue; a muscle flap if a space remained'],
+                q1=('What should a patient with a simple aspergilloma be told about resection?', 'It is the definitive treatment and the risk is low for simple disease; without it, bleeding is the main danger',
+                    'Embolization controls bleeding for a time but it recurs often; a simple aspergilloma in a fit patient is best removed electively.', 'It is only needed if the fungal ball grows', 'Antifungal tablets alone will cure it', 'Surgery is safest in complex disease'),
+                q2=('Day 1 after resection of an aspergilloma: the drain fills with 300 mL of blood in one hour. Next?', 'Call the consultant: sustained bleeding from the adhesion bed needs return to theatre',
+                    'Apical adhesion beds and chest wall collaterals bleed; sustained output above the unit thresholds needs re-exploration.', 'Clamp the drain', 'Give tranexamic acid by mouth and wait', 'Start an azole'),
+                ev='ESCMID/ERS guideline (Denning et al., Eur Respir J 2016): resection is the definitive treatment for simple aspergilloma; embolization recurrence 30-50% in 3 years. Cho, J Vis Surg 2019 (76 patients): complications 10.2% simple versus 41.2% complex.'),
     'cle': dict(kind='thx', c=dict(risk='Age and weight, prematurity, the child\'s breathing (oxygen need, feeding), and any other anomaly: a heart defect is found in up to 1 in 5',
                                    common=['Air leak and a chest drain for a few days', 'Pain', 'Chest infection'],
                                    serious=['Bleeding', 'Injury to a nerve (phrenic, recurrent laryngeal) or to the remaining lung', 'Problems with the anesthetic, which is the main risk in a small infant', 'Death (rare)'],

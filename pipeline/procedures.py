@@ -4024,23 +4024,26 @@ if TX_OK:
         add_case(f'lll-{k}', lc_patho('left', 'lll'), lc_case('left', 'lll', k), LC_SRC)
         add_case(f'rll-{k}', lc_patho('right', 'rll'), lc_case('right', 'rll', k), LC_SRC)
     add_case('rll-open', lc_patho('right', 'rll'), lc_case('right', 'rll', 'o'), LC_SRC)
-    add_case('rul-open', tb_patho(), asp_case, TB_SRC)
     # ---- congenital lung lesions have entries of their own: each is cloned from the raw open-lobectomy skeleton, then given its own pathophysiology and case.
     # The lobectomies themselves carry the general lung-cancer pathophysiology and staging, like the other approaches.
     import copy as _cp
-    def cong_entry(key, src, op, opName, approach, summary, patho, case_):
+    def cong_entry(key, src, op, opName, approach, summary, patho, case_, group='Congenital lung lesions', srcs=CONG_SRC):
         if src not in procs: return
         q = _cp.deepcopy(procs[src])
-        q.update({'id': f'open-{op}', 'op': op, 'opName': opName, 'name': opName, 'approach': approach, 'summary': summary, 'group': 'Congenital lung lesions'})
+        q.update({'id': f'open-{op}', 'op': op, 'opName': opName, 'name': opName, 'approach': approach, 'summary': summary, 'group': group})
         for s in q['steps']: s['id'] = f"{key}-{s['id']}"
         procs[key] = q
-        add_case(key, patho, case_, CONG_SRC)
+        add_case(key, patho, case_, srcs)
     cong_entry('cle-open', 'lul-open', 'cle', 'Congenital lobar emphysema', 'Left upper lobectomy, open (the commonest site)',
                'An over-distended lobe from a ball-valve bronchus: where it sits, how it presents, the drain trap, the anesthetic, and lobectomy.',
                {**cong_patho('cle'), 'opacity': {'rul': 0.45, 'rml': 0.55, 'lll': 0.2, 'rll': 0.2}, 'highlight': ['cle-lul', 'rml', 'rul'], 'labels': ['cle-lul', 'rml', 'rul']}, cle_case)
     cong_entry('cpam-open', 'lll-open', 'cpam', 'Congenital pulmonary airway malformation (CPAM)', 'Left lower lobectomy, open (any lobe is possible)',
                'A cystic or solid malformation of one lobe: Stocker types, hydrops and the CVR, the infection and malignancy risk, timing, and lobectomy.',
                {**cong_patho('cpam'), 'highlight': ['cpam-lll'], 'labels': ['cpam-lll', 'lll']}, cpam_case)
+    cong_entry('asp-open', 'rul-open', 'asp', 'Aspergilloma (post-TB cavity)', 'Right upper lobectomy, open (upper lobes most often)',
+               'A fungal ball in a post-TB cavity: simple versus complex disease, the hemoptysis pathway, embolization as a bridge, and resection.',
+               tb_patho(), asp_case, group='Lung infection and cavities', srcs=TB_SRC)
+    add_case('rul-open', lc_patho('right', 'rul'), lc_case('right', 'rul', 'o'), LC_SRC)
     add_case('lul-open', lc_patho('left', 'lul'), lc_case('left', 'lul', 'o'), LC_SRC)
     add_case('lll-open', lc_patho('left', 'lll'), lc_case('left', 'lll', 'o'), LC_SRC)
     for k, nm in (('lingula', 'lingula'), ('lul-updiv', 'upper division of the left upper lobe'), ('s6', 'superior segment (S6) of the left lower lobe')):
@@ -4795,7 +4798,7 @@ modules_cong.add(procs, ask, has, LM, S)
 import postop
 postop.apply(procs, ask, has)
 # operations appear in the menu in this order
-ORDER = ['position', 'thoracotomy-l', 'thoracotomy-r', 'vats-ports-l', 'vats-ports-r', 'lul', 'lll', 'rul', 'rml', 'rll', 'pnl', 'pnr', 'bronchiectasis', 'seg-lingula', 'seg-lul-updiv', 'seg-s6', 'trachea', 'thymectomy', 'oesophagectomy', 'duct', 'empyema', 'ppe', 'cle', 'cpam', 'rt', 'clamshell', 'cardio', 'tract', 'hilar', 'mvr', 'avr', 'root', 'tricuspid', 'cabg', 'pericardium', 'asd', 'vsd', 'pda', 'coa', 'tof', 'palliation', 'aiod', 'aaa', 'taa', 'ali', 'infrainguinal', 'avf', 'cticu']
+ORDER = ['position', 'thoracotomy-l', 'thoracotomy-r', 'vats-ports-l', 'vats-ports-r', 'lul', 'lll', 'rul', 'rml', 'rll', 'pnl', 'pnr', 'bronchiectasis', 'asp', 'seg-lingula', 'seg-lul-updiv', 'seg-s6', 'trachea', 'thymectomy', 'oesophagectomy', 'duct', 'empyema', 'ppe', 'cle', 'cpam', 'rt', 'clamshell', 'cardio', 'tract', 'hilar', 'mvr', 'avr', 'root', 'tricuspid', 'cabg', 'pericardium', 'asd', 'vsd', 'pda', 'coa', 'tof', 'palliation', 'aiod', 'aaa', 'taa', 'ali', 'infrainguinal', 'avf', 'cticu']
 procs = dict(sorted(procs.items(), key=lambda kv: (ORDER.index(kv[1]['op']), list(procs).index(kv[0]))))
 for v in procs.values():
     v['group'] = v.get('group') or ('Pneumonectomy' if v['op'].startswith('pn') else 'Segmentectomy' if v['op'].startswith('seg-') else 'Lobectomy')

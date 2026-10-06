@@ -61,11 +61,11 @@ A **71-year-old man**, smoker, COPD (FEV1 48%), hypertension. CT: a **6.4 cm** f
 ### Question
 
 **Q:** The landing zone requires covering his left subclavian, and his left vertebral is dominant. What should be done?
-- [x] Revascularise the left subclavian (carotid-subclavian bypass or transposition) before or at the TEVAR
+- [x] Revascularize the left subclavian (carotid-subclavian bypass or transposition) before or at the TEVAR
   > Covering the subclavian with a dominant left vertebral risks posterior-circulation stroke, arm ischemia and spinal cord ischemia; revascularization is strongly recommended in this setting.
 - [ ] Cover it without revascularization
 - [ ] Abandon TEVAR
-- [ ] Embolise the vertebral artery
+- [ ] Embolize the vertebral artery
 
 ## [taa-tevar-consent] Consent: what to discuss with this patient
 

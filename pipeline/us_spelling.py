@@ -8,7 +8,15 @@ FAM = [
 def case(src, rep):
     return rep[0].upper()+rep[1:] if src[0].isupper() else rep
 rules = []
-def add(pat, rep): rules.append((re.compile(pat), rep))
+def _cp(src, r):
+    if src.isupper() and len(src) > 1: return r.upper()
+    if src[:1].isupper(): return r[:1].upper() + r[1:]
+    return r
+def add(pat, rep):
+    if callable(rep):
+        rules.append((re.compile(pat, re.I), rep))
+    else:
+        rules.append((re.compile(pat, re.I), lambda m, rep=rep: _cp(m.group(0), rep)))
 add(r'\b(H|h)aem', lambda m: m.group(1)+'em')
 add(r'\b(O|o)edem', lambda m: ('E' if m.group(1)=='O' else 'e')+'dem')
 add(r'\b(I|i)schaem', lambda m: m.group(1)+'schem')
@@ -45,11 +53,10 @@ def fix(text):
     # protect link targets and html hrefs
     prot=[]
     def keep(m): prot.append(m.group(0)); return '\x00%d\x00'%(len(prot)-1)
-    text = re.sub(r'\]\([^)]*\)|href="[^"]*"|https?://\S+', keep, text)
+    text = re.sub(r'\]\([^)]*\)|href="[^"]*"|https?://\S+|^## \[[^\]]*\]|^id: .*$', keep, text, flags=re.M)
     for rx, rep in rules:
         def sub(m, rep=rep):
             r = rep(m) if callable(rep) else rep
-            if not callable(rep) and m.group(0)[0].isupper(): r = r[0].upper()+r[1:]
             cnt[(m.group(0), r)] += 1
             return r
         text = rx.sub(sub, text)

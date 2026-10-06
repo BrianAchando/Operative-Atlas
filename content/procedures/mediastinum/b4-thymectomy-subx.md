@@ -47,7 +47,7 @@ Indications: **thymoma** (stage by Masaoka-Koga) and **myasthenia gravis** (the 
 
 ## [b4-thymectomy-subx-case] Case: a young woman with bulbar myasthenia
 
-**Thymectomy is indicated** (young, AChR-positive, generalized). **Not yet**: bulbar weakness and a reduced vital capacity mean a high risk of postoperative crisis. Optimise first: **plasma exchange or IVIG**, pyridostigmine adjusted, infections treated, then operate when stable. A **subxiphoid** approach avoids an intercostal incision and gives a symmetric view of both phrenic nerves and both cervical horns.
+**Thymectomy is indicated** (young, AChR-positive, generalized). **Not yet**: bulbar weakness and a reduced vital capacity mean a high risk of postoperative crisis. Optimize first: **plasma exchange or IVIG**, pyridostigmine adjusted, infections treated, then operate when stable. A **subxiphoid** approach avoids an intercostal incision and gives a symmetric view of both phrenic nerves and both cervical horns.
 
 > **Evidence:** International consensus (2016): IVIG or plasma exchange before surgery with significant bulbar dysfunction. Leuzzi et al. (Eur J Cardiothorac Surg 2014; 177 patients): postoperative crisis in 12.4%, higher with Osserman IIB and III–IV disease.
 

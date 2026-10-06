@@ -211,7 +211,7 @@ Doses: [electrolytes](#approach=cticu-doses&step=0), [vasoactive drugs](#approac
   > Coronary button problems present early with ST change or arrhythmia: echo and angiography.
 - [ ] Pericarditis, which needs only an NSAID
 - [ ] Left main button kinking
-- [ ] Hypokalaemia
+- [ ] Hypokalemia
 
 ## Sources
 

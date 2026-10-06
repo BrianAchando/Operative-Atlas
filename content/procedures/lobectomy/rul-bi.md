@@ -19,7 +19,7 @@ Chain: Primary tumor (T: size, invasion) → Intrapulmonary and hilar nodes (N1)
 
 Chain: Primary tumor → **Blood: brain, bone, adrenal, liver (M1)**
 
-| T | Tumour (9th edition keeps the 8th-edition T) |
+| T | Tumor (9th edition keeps the 8th-edition T) |
 | --- | --- |
 | T1 | ≤3 cm, surrounded by lung (T1a ≤1, T1b >1–2, T1c >2–3 cm) |
 | T2 | \>3–5 cm (T2a >3–4, T2b >4–5), or main bronchus (not carina), visceral pleura, collapse to the hilum |

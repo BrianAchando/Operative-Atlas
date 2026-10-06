@@ -37,17 +37,17 @@ Chain: Disordered lung development or bronchial atresia → Abnormal cystic or s
 
 Frequencies are the historical figures. So the CPAM types still in use are **1 to 3**; types 0 and 4 are other diseases.
 
-**The CVR.** The CPAM volume ratio (lesion volume divided by head circumference, on antenatal ultrasound) above **1.6** predicted fetal hydrops in 75% in the original series; some centers use over 2.
+**The CVR.** The CPAM volume ratio (lesion volume divided by head circumference, on antenatal ultrasound) above **1.6** is strongly associated with fetal hydrops and worse outcomes; some studies use over 2 as the more critical threshold.
 
 **Which operation?** A left lower lesion is a left lower lobectomy, shown in this entry. Other lobes follow the same steps in their own lobectomy (for example the [right lower](#approach=rll-open&step=0)). The lesion most often confused with CPAM is CLE, an over-distended lobe with no cysts: see the [CLE entry](#approach=cle-open&step=0).
 
-> **Evidence:** StatPearls (Stocker types and frequencies, pulmonary artery supply, CVR over 1.6 strongly associated with hydrops, resection timing); Crombleholme et al., J Pediatr Surg 2002 (CVR: hydrops in 75% above 1.6); Dehner et al., Pediatr Dev Pathol 2023 (type 0 is acinar dysplasia, type 4 is pleuropulmonary blastoma, type 2 arises from bronchial atresia); Pathology Outlines (types 0 and 4 no longer used).
+> **Evidence:** StatPearls (Stocker types and frequencies, pulmonary artery supply, CVR over 1.6 strongly associated with hydrops, resection timing); Crombleholme et al., J Pediatr Surg 2002 (the CVR as a predictor of outcome); Dehner et al., Pediatr Dev Pathol 2023 (type 0 is acinar dysplasia, type 4 is pleuropulmonary blastoma, type 2 arises from bronchial atresia); Pathology Outlines (types 0 and 4 no longer used).
 
 ### Question
 
 **Q:** A fetus has a CPAM with a CVR of 2.1 on antenatal ultrasound. What is the main concern?
 - [x] Fetal hydrops from a large lesion compressing the heart and mediastinum
-  > A CVR over 1.6 was associated with hydrops in 75% in the original series, so the fetus needs close surveillance and a plan for antenatal treatment or early delivery and surgery.
+  > A CVR over 1.6 is strongly associated with fetal hydrops and worse outcomes, so the fetus needs close surveillance and a plan for antenatal treatment or early delivery and surgery.
 - [ ] A lobe full of trapped air, as in CLE
 - [ ] Bronchial atresia of the lower lobe
 - [ ] Nothing: all CPAMs are harmless

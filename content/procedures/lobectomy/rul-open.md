@@ -7,30 +7,43 @@ summary: Posterolateral thoracotomy, then fissure junction, ascending arteries, 
 
 <!-- Edit the words freely. Keep each "## [step-id]" line as it is: it ties the text to its step in the 3D atlas. -->
 
-## [rul-open-patho] Pathophysiology: post-tuberculous lung and aspergilloma
+## [rul-open-patho] Pathophysiology and staging: lung cancer
 
-**Cured is not healed.** Up to half of people who complete TB treatment are left with lung damage (post-TB lung disease): cavities, bronchiectasis, fibrosis and pleural thickening, with obstruction, restriction or both.
+**In Kenya and across Africa** lung cancer usually presents late: in series from Ghana and West Africa three-quarters or more are stage III–IV at diagnosis. A cough, weight loss and a shadow are often treated first as **tuberculosis**, frequently without bacteriological confirmation; a smear- or GeneXpert-negative "TB" that does not improve needs a CT and a tissue diagnosis.
 
-Chain: Caseous necrosis in the upper lobe → Liquefaction, discharged through a bronchus → Cavity → Healing by fibrosis: thick wall, traction bronchiectasis
+**How it arises.** Carcinogens (tobacco above all; also biomass smoke, occupational exposures, radon) cause accumulating mutations in the airway epithelium. **Adenocarcinoma** (commonest, peripheral, and in never-smokers often driven by **EGFR** or **ALK** alterations) and **squamous cell carcinoma** (central, smokers) make up most non-small-cell cancer. Small-cell cancer is rarely surgical.
 
-Chain: Cavity + bronchial and non-bronchial systemic arteries hypertrophy → **Hemoptysis (from the systemic circulation, at systemic pressure)**
+**How it spreads** decides the stage and the operation:
 
-Chain: Cavity colonized by *Aspergillus* → Fungal ball (aspergilloma) → **Erosion of the vascular wall → hemoptysis** → Chronic cavitary aspergillosis if it progresses
+Chain: Primary tumor (T: size, invasion) → Intrapulmonary and hilar nodes (N1) → **Mediastinal nodes (N2)** → **Contralateral or supraclavicular (N3)**
 
-**Simple aspergilloma**: a single cavity with a fungal ball, few symptoms, no progression over 3 months. **Chronic cavitary pulmonary aspergillosis**: one or more cavities that enlarge or multiply over months, with symptoms and a positive *Aspergillus* IgG; treated with long-term oral azoles. Surgery is for simple aspergilloma, and for complex disease with hemoptysis once medically optimized.
+Chain: Primary tumor → **Blood: brain, bone, adrenal, liver (M1)**
 
-**Massive hemoptysis** kills by asphyxia, not blood loss. First: lie the patient **bleeding side down**, secure the airway (a large tube, selective intubation of the good side or a bronchial blocker), then **bronchial artery embolization** as a bridge; operate once the bleeding has settled and the patient is optimized.
+| T | Tumor (9th edition keeps the 8th-edition T) |
+| --- | --- |
+| T1 | ≤3 cm, surrounded by lung (T1a ≤1, T1b >1–2, T1c >2–3 cm) |
+| T2 | \>3–5 cm (T2a >3–4, T2b >4–5), or main bronchus (not carina), visceral pleura, collapse to the hilum |
+| T3 | \>5–7 cm, or chest wall, phrenic nerve, parietal pericardium, a separate nodule in the same lobe |
+| T4 | \>7 cm, or mediastinum, heart, great vessels, trachea, carina, esophagus, diaphragm, vertebra, a nodule in another ipsilateral lobe |
+| N | Nodes |
+| N1 | ipsilateral hilar or intrapulmonary (stations 10–14) |
+| N2a / N2b | ipsilateral mediastinal or subcarinal: **one station** (N2a) or **several stations** (N2b), new in the 9th edition |
+| N3 | contralateral mediastinal or hilar, or any scalene or supraclavicular |
+| M | Metastasis |
+| M1a–c | M1a pleural or pericardial spread, contralateral nodules; M1b one extrathoracic metastasis; **M1c1** several in one organ system, **M1c2** several organ systems (new) |
 
-> **Evidence:** post-TB lung disease: Migliori et al. clinical standards (Int J Tuberc Lung Dis 2021): up to 50% have problems after treatment; a meta-analysis (Ivanova et al., Eur Respir Rev 2023; 14,621 people) found mean FEV1 77% predicted with obstruction in 22% and restriction in 23%. ESCMID/ERS guideline (Denning et al., Eur Respir J 2016): excise simple aspergilloma if technically possible. Bronchial artery embolization stops hemoptysis in 70–99%, but it recurs in 10–57% (Panda et al., 2017).
+**Before an operation**: CT and **PET-CT**; **invasive mediastinal staging** (EBUS/EUS needle aspiration, or mediastinoscopy) when the tumor is central, over 3 cm, or the nodes are enlarged or PET-positive; brain imaging for stage II and above. Then fitness: FEV1 and DLCO, and the **predicted postoperative** values (ppo = preoperative value × segments remaining / 19; by lobe: RUL 3, RML 2, RLL 5, LUL 5 with the lingula, LLL 4).
+
+> **Evidence:** 9th-edition TNM from the IASLC (Rami-Porta et al., J Thorac Oncol 2024): N2 split into N2a (single station) and N2b (multiple stations); M1c into M1c1 and M1c2; T1N1 moves to stage IIA, T1N2a is IIB. ACCP 2013 physiological evaluation (Brunelli et al.): ppoFEV1 and ppoDLCO both over 60% is low risk; 30–60% needs a stair climb (over 22 m) or shuttle walk (over 400 m); under 30%, or a poor walk test, needs CPET (VO2max over 20 mL/kg/min low risk, under 10 high risk). ESTS 2014 guideline for invasive mediastinal staging (De Leyn et al.).
 
 ### Question
 
-**Q:** Where does the blood come from in hemoptysis from a post-TB cavity?
-- [x] Hypertrophied bronchial and non-bronchial systemic arteries, at systemic pressure
-  > That is why it can be massive, and why bronchial (and intercostal, phrenic) artery embolization controls it; the pulmonary artery is the source in a minority (Rasmussen aneurysm).
-- [ ] The pulmonary veins
-- [ ] The fungal ball itself
-- [ ] Capillaries in the cavity wall only
+**Q:** Under the 9th edition, a 2.6 cm tumor (T1c) with metastasis in a single mediastinal station (subcarinal, station 7) and no distant spread is stage…
+- [x] IIB (T1 N2a)
+  > The 9th edition splits N2: a single station (N2a) with a T1 tumor is IIB; several stations (N2b) make it IIIA. Many single-station N2 patients are now treated with neoadjuvant chemo-immunotherapy and surgery.
+- [ ] IIIA
+- [ ] IIIB
+- [ ] IV
 
 ## [ro-anatomy] The right hilum from behind
 
@@ -40,26 +53,24 @@ Where the fissures meet, the interlobar artery gives the **ascending posterior a
 
 Order from behind: **fissure → ascending arteries → bronchus → truncus → upper lobe veins**.
 
-## [rul-open-case] Case: aspergilloma with hemoptysis
+## [rul-open-case] Case: a small peripheral adenocarcinoma: segment or lobe?
 
-**Simple aspergilloma** in a fit patient with recurrent hemoptysis: **resection** (right upper lobectomy). Embolisation bought time; bleeding recurs in a large proportion. Exclude active TB first.
+**Stage**: cT1b N0 = **IA2**. For a peripheral tumor of 2 cm or less with confirmed node-negative disease, an anatomical **segmentectomy** is now equivalent or better than lobectomy for survival. But it needs a **margin** at least as wide as the tumor (2 cm, or the tumor diameter). Straddling the S1/S3 plane, a single segment would not give that margin: a bisegmentectomy or, as here, a **lobectomy**.
 
-**Why open** (or experienced VATS only): dense, vascular apical adhesions; an **extrapleural** plane may be needed; bleeding from the chest wall collaterals; the cavity must not be entered (spillage). An antifungal (voriconazole) around surgery is reasonable if spillage is likely. Plan a **muscle flap** (serratus or intercostal) if a residual space is expected.
-
-> **Evidence:** surgical series: Akbari et al. (Mayo, 2005): no deaths or major complications after resection of simple aspergilloma vs 4.3% mortality and 26% major complications for complex disease; Kim et al. (Korea, 2005): mortality 1.1%, morbidity 27%. ESCMID/ERS 2016: excise simple aspergilloma if technically possible.
+> **Evidence:** JCOG0802/WJOG4607L (Lancet 2022; tumors ≤2 cm, C/T ratio >0.5): 5-year overall survival 94.3% after segmentectomy vs 91.1% after lobectomy (HR 0.66), with more local recurrence (10.5% vs 5.4%). CALGB 140503 (NEJM 2023; ≤2 cm, node-negative on frozen section): sublobar resection was non-inferior for disease-free survival (63.6% vs 64.1%).
 
 ### Case
 
-A **42-year-old man**, treated for pulmonary TB 8 years ago (cured). Three episodes of hemoptysis in 2 months, the last about 300 mL, controlled by **bronchial artery embolization** 10 days ago. CT: a **thick-walled right apical cavity with a mobile fungal ball** (air crescent), the rest of the lung nearly normal; *Aspergillus* IgG positive. FEV1 72%. Sputum smear and GeneXpert negative.
+A **54-year-old woman**. An incidental **1.8 cm** part-solid nodule in the right upper lobe (consolidation-to-tumor ratio 0.8), growing over 6 months; PET: mild uptake, nodes clear. It lies **across the plane between the apical (S1) and anterior (S3) segments**, 12 mm from it. FEV1 92%.
 
 ### Question
 
-**Q:** After successful bronchial artery embolization, why operate on this simple aspergilloma?
-- [x] Hemoptysis often recurs after embolization, and resection of a simple aspergilloma is curative with low risk
-  > Recurrence after embolization ranges from 10% to over 50%; a simple aspergilloma in a fit patient is best removed, electively, once bleeding has settled.
-- [ ] Embolisation is curative; surgery is not needed
-- [ ] To obtain tissue for TB culture only
-- [ ] Only if itraconazole fails for 2 years
+**Q:** Which trial showed better overall survival with segmentectomy than lobectomy for peripheral tumors of 2 cm or less?
+- [x] JCOG0802/WJOG4607L
+  > 5-year OS 94.3% vs 91.1%, attributed to preserved lung function and fewer deaths from other causes, despite more local recurrence.
+- [ ] CALGB 140503
+- [ ] VIOLET
+- [ ] ADAURA
 
 ## [rul-open-consent] Consent: what to discuss with this patient
 
@@ -222,17 +233,20 @@ Doses: [electrolytes](#approach=cticu-doses&step=0), [vasoactive drugs](#approac
 
 ## Sources
 
-- [Denning DW, et al. Chronic pulmonary aspergillosis: rationale and clinical guidelines for diagnosis and management (ESCMID/ERS). Eur Respir J 2016;47:45-68](https://publications.ersnet.org/content/erj/47/1/45)
-- [Akbari JG, et al. Clinical profile and surgical outcome for pulmonary aspergilloma: a single center experience. Ann Thorac Surg 2005;80:1067-72](https://www.sciencedirect.com/science/article/abs/pii/S0003497505005382)
-- [Kim YT, et al. Surgical treatment of pulmonary aspergilloma. Ann Thorac Surg 2005;79:294-8](https://www.sciencedirect.com/science/article/abs/pii/S0003497504011920)
-- [Panda A, Bhalla AS, Goyal A. Bronchial artery embolization in hemoptysis: a systematic review. Diagn Interv Radiol 2017;23:307-17](https://dirjournal.org/articles/bronchial-artery-embolization-in-hemoptysis-a-systematic-review/dir.2017.16454)
-- [Migliori GB, et al. Clinical standards for the assessment, management and rehabilitation of post-TB lung disease. Int J Tuberc Lung Dis 2021;25:797-813](https://scienceportal.msf.org/api/assets/7348/download/13290)
-- [Ivanova O, et al. Lung function testing and prediction equations in adult population with a history of tuberculosis: a systematic review and meta-analysis. Eur Respir Rev 2023;32:220221](https://publications.ersnet.org/content/errev/32/168/220221)
-- [Kim YT, et al. Pneumonectomy for tuberculous destroyed lung. Eur J Cardiothorac Surg 2003;23:833-9](https://academic.oup.com/ejcts/article/23/5/833/407385)
+- [Rami-Porta R, et al. The IASLC Lung Cancer Staging Project: proposals for revision of the TNM stage groups in the forthcoming (ninth) edition of the TNM classification for lung cancer. J Thorac Oncol 2024;19:1007-27](https://www.jto.org/article/S1556-0864(24)00079-0/fulltext)
+- [Klug M, et al. The ninth edition of TNM staging for lung cancer: what radiologists need to know. RadioGraphics 2024;44:e240057](https://pubs.rsna.org/doi/10.1148/rg.240057)
+- [Brunelli A, Kim AW, Berger KI, et al. Physiologic evaluation of the patient with lung cancer being considered for resectional surgery. ACCP guidelines. Chest 2013;143(5 Suppl):e166S-e190S](https://journal.chestnet.org/article/S0012-3692(13)60294-9/fulltext)
+- [De Leyn P, et al. Revised ESTS guidelines for preoperative mediastinal lymph node staging for non-small-cell lung cancer. Eur J Cardiothorac Surg 2014;45:787-98](https://pubmed.ncbi.nlm.nih.gov/?term=De+Leyn+revised+ESTS+guidelines+preoperative+mediastinal+lymph+node+staging+2014)
+- [Saji H, et al. Segmentectomy versus lobectomy in small-sized peripheral non-small-cell lung cancer (JCOG0802/WJOG4607L). Lancet 2022;399:1607-17](https://www.thelancet.com/journals/lancet/article/PIIS0140-6736(21)02333-3/abstract)
+- [Altorki N, et al. Lobar or sublobar resection for peripheral stage IA non-small-cell lung cancer (CALGB 140503). N Engl J Med 2023;388:489-98](https://www.nejm.org/doi/full/10.1056/NEJMoa2212083)
+- [Lim E, et al. Video-assisted thoracoscopic versus open lobectomy in patients with early-stage lung cancer: the VIOLET RCT. Health Technol Assess 2022;26(48)](https://www.ncbi.nlm.nih.gov/books/NBK587651/)
+- [Tsuboi M, et al. Overall survival with osimertinib in resected EGFR-mutated NSCLC (ADAURA). N Engl J Med 2023;389:137-47](https://www.nejm.org/doi/full/10.1056/NEJMoa2304594)
+- [Forde PM, et al. Neoadjuvant nivolumab plus chemotherapy in resectable lung cancer (CheckMate 816). N Engl J Med 2022;386:1973-85](https://www.nejm.org/doi/full/10.1056/NEJMoa2202170)
+- [Daniels J, et al. Lung cancer at Korle-Bu Teaching Hospital, Ghana. ecancermedicalscience 2025](https://pmc.ncbi.nlm.nih.gov/articles/PMC12221260)
 - [Hansen HJ, Petersen RH. Video-assisted thoracoscopic lobectomy using a standardized three-port anterior approach: the Copenhagen experience. Ann Cardiothorac Surg 2012;1(1):70-76](https://doi.org/10.3978/j.issn.2225-319X.2012.04.15)
 - [McElnay P, Casali G, Batchelor T, West D. Adopting a standardized anterior approach significantly increases VATS lobectomy rates. Eur J Cardiothorac Surg 2014;46(1):100](https://academic.oup.com/ejcts/article/46/1/100/394433)
 - [Rusch VW, et al. The IASLC lung cancer staging project: a proposal for a new international lymph node map. J Thorac Oncol 2009](https://pubmed.ncbi.nlm.nih.gov/19357537)
-- [Lim E, et al. Video-assisted thoracoscopic or open lobectomy in early-stage lung cancer (VIOLET). NEJM Evid 2022;1](https://doi.org/10.1056/EVIDoa2100016)
-- [Saji H, et al. Segmentectomy versus lobectomy in small-sized peripheral non-small-cell lung cancer (JCOG0802/WJOG4607L). Lancet 2022;399:1607-17](https://doi.org/10.1016/S0140-6736(21)02333-3)
-- [Altorki N, et al. Lobar or sublobar resection for peripheral stage IA non-small-cell lung cancer (CALGB 140503). N Engl J Med 2023;388:489-98](https://doi.org/10.1056/NEJMoa2212083)
+- [Lim E, et al. Video-assisted thoracoscopic versus open lobectomy in patients with early-stage lung cancer (VIOLET): a randomised controlled trial. Lancet Oncol 2022](https://pubmed.ncbi.nlm.nih.gov/?term=VIOLET+video-assisted+thoracoscopic+versus+open+lobectomy+Lim+2022)
+- [Saji H, et al. Segmentectomy versus lobectomy in small-sized peripheral non-small-cell lung cancer (JCOG0802/WJOG4607L). Lancet 2022;399:1607-17](https://pubmed.ncbi.nlm.nih.gov/?term=JCOG0802+segmentectomy+versus+lobectomy+Saji+2022)
+- [Altorki N, et al. Lobar or sublobar resection for peripheral stage IA non-small-cell lung cancer (CALGB 140503). N Engl J Med 2023;388:489-98](https://pubmed.ncbi.nlm.nih.gov/?term=CALGB+140503+lobar+or+sublobar+resection+Altorki+2023)
 - [Wasserthal J, et al. TotalSegmentator. Radiol Artif Intell 2023](https://doi.org/10.1148/ryai.230024)

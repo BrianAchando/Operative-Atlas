@@ -250,7 +250,7 @@ Hours after ligation in a preterm infant: **falling blood pressure, worsening ox
 
 Chain: Duct tied → **LV afterload rises suddenly** → Preload falls (no more ductal return) → Immature LV cannot cope → Low output, hypotension, pulmonary edema
 
-#### Recognise and prevent
+#### Recognize and prevent
 
 -   **Echo within 1 hour**: left ventricular output under about 200 mL/kg/min predicts the syndrome
 -   **Targeted milrinone** for low output: lowers afterload and supports contractility

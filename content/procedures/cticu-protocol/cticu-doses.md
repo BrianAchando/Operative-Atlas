@@ -37,7 +37,7 @@ Dilute 50% MgSO₄ to 20% or less for IV use; no faster than 150 mg/min. Severe 
 
 Target ionized Ca 1.1–1.3 mmol/L.
 
-| Ionised Ca | Dose |
+| Ionized Ca | Dose |
 | --- | --- |
 | 1.0–1.2 (mild) | 1–2 g IV over 2 h |
 | Under 1.0, no tetany | 0.5 mg/kg/h IV, up to 2 mg/kg/h; no more than 3–4 g over 4 h |

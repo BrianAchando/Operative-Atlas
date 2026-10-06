@@ -22,7 +22,7 @@ summary: The unit protocol: labs, rounds, escalation, cardiac, thoracic and vasc
 
 #### Fluids, rhythm, VTE
 
--   Euvolaemic to restrictive; no liberal crystalloid
+-   Euvolemic to restrictive; no liberal crystalloid
 -   AF: continue beta-blockers, keep K⁺ and Mg²⁺ replete
 -   LMWH + mechanical prophylaxis; extended prophylaxis for high-risk cancer resections
 

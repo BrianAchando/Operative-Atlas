@@ -152,9 +152,9 @@ Template and how to use it: [CTICU protocol, consent](#approach=cticu-consent&st
 
 In an older child the **chest wall collaterals** bleed: control them as you go; the intercostal muscle may be several millimeters thick with dilated vessels.
 
-## [coa-mobilise] Mobilise the arch, the subclavian and the descending aorta
+## [coa-mobilise] Mobilize the arch, the subclavian and the descending aorta
 
-Open the pleura over the aorta behind the vagus. Mobilise the **distal transverse arch** (to beyond the left carotid), the **left subclavian artery**, and the descending aorta well below the coarctation. **Ligate and divide the ductus or ligamentum**. Control one or two pairs of intercostal arteries with loops if needed; avoid dividing them.
+Open the pleura over the aorta behind the vagus. Mobilize the **distal transverse arch** (to beyond the left carotid), the **left subclavian artery**, and the descending aorta well below the coarctation. **Ligate and divide the ductus or ligamentum**. Control one or two pairs of intercostal arteries with loops if needed; avoid dividing them.
 
 Mobility is what makes a tension-free anastomosis.
 

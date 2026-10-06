@@ -71,7 +71,7 @@ A **58-year-old man**, poorly controlled diabetes. Wet gangrene of the forefoot 
 
 #### 5\. Alternatives
 
--   Revascularisation if the limb is salvageable
+-   Revascularization if the limb is salvageable
 -   Palliative care
 -   No operation, and what that means
 

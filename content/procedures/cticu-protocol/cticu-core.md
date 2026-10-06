@@ -28,7 +28,7 @@ Present every patient in this order on the ward round.
 **Q:** Two hours after surgery the drains stop suddenly, CVP rises, BP and urine fall. Diagnosis?
 - [x] Tamponade
   > Clot in the drains with falling output and rising filling pressures: echo and prepare to re-open.
-- [ ] Hypovolaemia
+- [ ] Hypovolemia
 - [ ] Vasoplegia
 - [ ] Normal recovery
 

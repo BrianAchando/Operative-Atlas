@@ -96,7 +96,7 @@ Template and how to use it: [CTICU protocol, consent](#approach=cticu-consent&st
 
 ## [av-rc] Radiocephalic fistula at the wrist (Brescia–Cimino)
 
-Local or regional anesthesia. A **longitudinal incision** between the radial artery and the cephalic vein at the wrist. Mobilise the vein, ligate its distal end and divide it; dilate gently. Expose the radial artery under the deep fascia, control it, open 6–8 mm. Swing the vein to the artery: **vein end to artery side**, 7-0 polypropylene. A thrill should be felt at once.
+Local or regional anesthesia. A **longitudinal incision** between the radial artery and the cephalic vein at the wrist. Mobilize the vein, ligate its distal end and divide it; dilate gently. Expose the radial artery under the deep fascia, control it, open 6–8 mm. Swing the vein to the artery: **vein end to artery side**, 7-0 polypropylene. A thrill should be felt at once.
 
 ## [av-rc-mature] Maturation: the forearm vein arterializes
 
