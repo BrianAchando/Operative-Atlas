@@ -419,7 +419,7 @@ Doses: [electrolytes](#approach=cticu-doses&step=0), [vasoactive drugs](#approac
 ## Sources
 
 - [Carapetis JR, Beaton A, Cunningham MW, et al. Acute rheumatic fever and rheumatic heart disease. Nat Rev Dis Primers 2016;2:15084](https://www.nature.com/articles/nrdp201584)
-- [Marijon E, Mirabel M, Celermajer DS, Jouven X. Rheumatic heart disease. Lancet 2012;379:953-64](https://pubmed.ncbi.nlm.nih.gov/?term=Marijon+Mirabel+Celermajer+Jouven+rheumatic+heart+disease+Lancet+2012)
+- [Marijon E, Mirabel M, Celermajer DS, Jouven X. Rheumatic heart disease. Lancet 2012;379:953-64](https://doi.org/10.1016/S0140-6736(11)61171-9)
 - [Kumar RK, Antunes MJ, Beaton A, et al. Contemporary diagnosis and management of rheumatic heart disease: implications for closing the gap. AHA scientific statement. Circulation 2020;142:e337-e357](https://www.ahajournals.org/doi/10.1161/CIR.0000000000000921)
 - [Afifi A, Hosny H, Yacoub M. Rheumatic aortic valve disease: when and who to repair? Ann Cardiothorac Surg 2019;8:383-9](https://pubmed.ncbi.nlm.nih.gov/?term=Afifi+Hosny+Yacoub+rheumatic+aortic+valve+disease+when+and+who+to+repair)
 - [Best evidence topic: in young patients with rheumatic aortic regurgitation, is a Ross operation associated with more autograft failure? Interact CardioVasc Thorac Surg 2010;10:600](https://academic.oup.com/icvts/article/10/4/600/659372)
@@ -437,7 +437,7 @@ Doses: [electrolytes](#approach=cticu-doses&step=0), [vasoactive drugs](#approac
 - [Isselbacher EM, et al. 2022 ACC/AHA guideline for the diagnosis and management of aortic disease. Circulation 2022](https://pubmed.ncbi.nlm.nih.gov/36322642/)
 - [Mack MJ, et al. Transcatheter aortic-valve replacement with a balloon-expandable valve in low-risk patients (PARTNER 3). N Engl J Med 2019;380:1695-705](https://doi.org/10.1056/NEJMoa1814052)
 - [Popma JJ, et al. Transcatheter aortic-valve replacement with a self-expanding valve in low-risk patients (Evolut Low Risk). N Engl J Med 2019;380:1706-15](https://doi.org/10.1056/NEJMoa1816885)
-- [Généreux P, et al. Valve Academic Research Consortium 3 (VARC-3): updated endpoint definitions. J Am Coll Cardiol 2021](https://pubmed.ncbi.nlm.nih.gov/?term=VARC-3+updated+endpoint+definitions+Genereux+2021)
+- [Généreux P, et al. Valve Academic Research Consortium 3 (VARC-3): updated endpoint definitions. JACC 2021;77:2717-46](https://doi.org/10.1016/j.jacc.2021.02.038)
 - [Impact of prosthesis-patient mismatch after surgical aortic valve replacement: systematic review and meta-analysis of reconstructed time-to-event data of 122 989 patients. J Am Heart Assoc 2024](https://www.ahajournals.org/doi/10.1161/JAHA.123.033176)
 - [Englberger L, et al. Importance of implant technique on risk of major paravalvular leak after St. Jude mechanical valve replacement (AVERT). Eur J Cardiothorac Surg 2005;28:838-43](https://academic.oup.com/ejcts/article/28/6/838/377180)
 - [Boltje JWT, et al. The use of pledget-reinforced sutures during surgical aortic valve replacement: systematic review and meta-analysis. 2024](https://pmc.ncbi.nlm.nih.gov/articles/PMC11387225/)
