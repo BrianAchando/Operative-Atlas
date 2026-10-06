@@ -9,27 +9,45 @@ summary: Posterolateral thoracotomy, then fissure first: arteries in the fissure
 
 ## [lul-open-patho] Pathophysiology: congenital lobar emphysema versus CPAM
 
+Both present in infancy as an abnormal lobe, but the mechanisms differ. **CLE is an airway problem**: a structurally normal lobe over-distends because air enters but cannot leave. **CPAM is a tissue problem**: part of the lung is replaced by abnormal, disorganized airways and cysts.
+
 |  | Congenital lobar emphysema (CLE) | Congenital pulmonary airway malformation (CPAM) |
 | --- | --- | --- |
-| What it is | A normal-structured lobe that **over-distends**: deficient bronchial cartilage (or compression) makes a **ball valve**; air enters, cannot leave | A **hamartomatous** lesion of cysts and abnormal airways, usually one lobe; blood supply from the pulmonary artery |
-| Where | Left upper lobe (about 43%), middle lobe (32%), right upper (21%); lower lobes rare | Any lobe; lower lobes often |
-| When | Neonatal respiratory distress; half at birth, most by 6 months | Most found on antenatal ultrasound; some present with infection later |
-| Imaging | A hyperlucent lobe **with vascular markings**, the other lobes compressed, the mediastinum shifted | Air-filled cysts of varying size; solid in microcystic types |
-| Risks | Progressive compression, tension physiology | Infection; hydrops in the fetus (CVR over 1.6); malignancy (mucinous adenocarcinoma with type 1; type 4 now regarded as cystic pleuropulmonary blastoma) |
+| What it is | A **normal-structured lobe that over-distends** through a **ball-valve** bronchus | A **hamartomatous** malformation of cysts and abnormal airways from disordered lung development; usually one lobe |
+| Cause | Idiopathic about 50%; deficient bronchial cartilage about 25%; internal or external obstruction or parenchymal disease about 25% | Disrupted lung development at one of the embryonic stages (many developmental genes implicated; KRAS mutations in some) |
+| Where | Left upper lobe 43%, right middle 32%, right upper 21%; lower lobes about 2% | Usually unilateral, one lobe, any lobe |
+| When | About half symptomatic at birth, the rest within 6 months; boys 3:1 | Most found on antenatal ultrasound; some present later with infection |
+| Imaging | A **hyperlucent, over-distended lobe with fine vascular markings**; neighboring lobe compressed, mediastinum shifted; **no cysts** | **Cysts** of varying size, or a solid-looking mass in the microcystic type; CT is the preferred study for both |
+| Blood supply and airway | Normal | **Pulmonary artery supply** and communication with the tracheobronchial tree (a systemic feeder from the aorta means a sequestration or hybrid lesion) |
+| Associated | Cardiac anomalies in up to 20% | Type 2 with bronchial atresia and other anomalies |
+| Risks | Progressive compression and tension physiology | Infection; fetal hydrops (CVR over 1.6, some use over 2); malignancy |
+| Treatment | Lobectomy if symptomatic; mild cases observed | Symptomatic: lobectomy (segmentectomy in selected cases). Asymptomatic: elective resection at 6-12 months versus surveillance, still debated |
 
-Chain: Deficient bronchial cartilage → Airway collapses in expiration (ball valve) → Air trapping, lobe over-distends → **Compresses the other lobes, shifts the mediastinum** → **Respiratory distress, falling venous return**
+Chain: Deficient bronchial cartilage or compression → Airway collapses in expiration (ball valve) → Air trapped, lobe over-distends → **Compresses other lobes, shifts the mediastinum** → **Respiratory distress, falling venous return**
 
-**The trap**: CLE looks like a tension pneumothorax. A chest drain into an emphysematous lobe makes a large air leak and can kill; look for lung markings in the lucent area before inserting one.
+Chain: Disordered lung development or bronchial atresia → Abnormal cystic or solid lung connected to the airway → Mass enlarges → **Compresses normal lung and mediastinum** → **Fetal hydrops and lung hypoplasia when large; infection later**
 
-**Anaesthesia for CLE**: avoid nitrous oxide (it expands the lobe) and high positive-pressure ventilation before the chest is open (spontaneous breathing or gentle ventilation); the surgeon scrubbed at induction, ready to open the chest and deliver the lobe.
+**Classification of CPAM (Stocker types).** The types are histological, from the level of the airway involved:
 
-**Stocker types of CPAM**: 0 (acinar dysplasia, lethal), 1 (large cysts over 2 cm, 50–70%), 2 (small cysts, associated anomalies), 3 (solid-appearing, alveolar), 4 (peripheral cysts; now considered cystic pleuropulmonary blastoma).
+| Type | Frequency | Level | Features | Today |
+| --- | --- | --- | --- | --- |
+| 0 | 1-3% | Trachea and bronchi | Bilateral, diffuse; lethal | Now **congenital acinar dysplasia** (germline *TBX4*, *FGFR2* variants), not a CPAM |
+| 1 | 50-70% | Bronchi | Single or multiloculated **large cysts** | Good prognosis; KRAS; rarely mucinous adenocarcinoma |
+| 2 | 10-40% | Bronchioles | Multiple **small cysts**; bronchial atresia and other anomalies | Variable prognosis; acquired from bronchial atresia; same pathology as extralobar sequestration |
+| 3 | 5-10% | Alveoli | **Solid-looking**; may involve a whole lobe and compress the others | Hydrops, hypoplasia, poor prognosis |
+| 4 | 10-15% | Acinar | Peripheral thin-walled cysts | Now **pleuropulmonary blastoma type I** (*DICER1*): resect and treat as a tumor |
 
-> **Evidence:** CLE: StatPearls 2024 (lobe distribution, presentation, pneumothorax pitfall) and OpenAnesthesia 2025 (anaesthetic management). CPAM: CPAM volume ratio over 1.6 predicted hydrops in 75% (Crombleholme et al., J Pediatr Surg 2002); resection of asymptomatic lesions at 6–12 months versus surveillance remains debated (StatPearls). Pathology update: Dehner et al., Pediatr Dev Pathol 2023.
+Frequencies are the historical figures. So the CPAM types still in use are **1 to 3**; types 0 and 4 are other diseases.
+
+**The trap**: CLE looks like a tension pneumothorax. A chest drain into an emphysematous lobe makes a large air leak and can kill; look for lung markings in the lucent area before inserting one. In a true pneumothorax the hemidiaphragm is depressed; in CLE the lung markings continue through the lucent lobe.
+
+**Anesthesia for CLE**: avoid nitrous oxide (it expands the lobe) and high positive-pressure ventilation before the chest is open (spontaneous breathing or gentle ventilation); the surgeon scrubbed at induction, ready to open the chest and deliver the lobe.
+
+> **Evidence:** CLE: StatPearls 2024 (cause, lobe distribution, age, 3:1 male ratio, cardiac anomalies up to 20%, imaging, differentials) and OpenAnesthesia 2025 (anesthetic management). CPAM: StatPearls (Stocker types and frequencies, pulmonary artery supply, CVR over 1.6 strongly associated with hydrops, resection timing) and Crombleholme et al., J Pediatr Surg 2002 (CVR). Current classification: Dehner et al., Pediatr Dev Pathol 2023 (type 0 is acinar dysplasia, type 4 is pleuropulmonary blastoma, type 2 arises from bronchial atresia) and Pathology Outlines (types 0 and 4 no longer used).
 
 ### Question
 
-**Q:** A 3-week-old with tachypnoea has a hyperlucent left upper zone and mediastinal shift. Vascular markings are visible in the lucent area. What must you avoid?
+**Q:** A 3-week-old with tachypnea has a hyperlucent left upper zone and mediastinal shift. Vascular markings are visible in the lucent area. What must you avoid?
 - [x] Inserting a chest drain for a presumed pneumothorax
   > Vascular markings mean over-distended lung, not free air: this is CLE. A drain would enter the lobe and cause a large air leak. The treatment is lobectomy.
 - [ ] A CT scan
@@ -233,6 +251,8 @@ Doses: [electrolytes](#approach=cticu-doses&step=0), [vasoactive drugs](#approac
 - [Crombleholme TM, et al. Cystic adenomatoid malformation volume ratio predicts outcome in prenatally diagnosed CCAM. J Pediatr Surg 2002;37:331-8](https://www.sciencedirect.com/science/article/abs/pii/S0022346802749269)
 - [Congenital pulmonary airway malformation. StatPearls](https://www.statpearls.com/point-of-care/20208)
 - [Dehner LP, et al. Congenital pulmonary airway malformations with a reconsideration and current classification. Pediatr Dev Pathol 2023](https://dx.doi.org/10.1177/10935266221146823)
+- [Congenital pulmonary airway malformation. StatPearls (NCBI Bookshelf)](https://www.ncbi.nlm.nih.gov/books/NBK551664/)
+- [Congenital pulmonary airway malformation. Pathology Outlines](https://www.pathologyoutlines.com/topic/lungnontumorcysticadenomatoid.html)
 - [Hansen HJ, Petersen RH. Video-assisted thoracoscopic lobectomy using a standardized three-port anterior approach: the Copenhagen experience. Ann Cardiothorac Surg 2012;1(1):70-76](https://doi.org/10.3978/j.issn.2225-319X.2012.04.15)
 - [McElnay P, Casali G, Batchelor T, West D. Adopting a standardized anterior approach significantly increases VATS lobectomy rates. Eur J Cardiothorac Surg 2014;46(1):100](https://academic.oup.com/ejcts/article/46/1/100/394433)
 - [Rusch VW, et al. The IASLC lung cancer staging project: a proposal for a new international lymph node map. J Thorac Oncol 2009](https://pubmed.ncbi.nlm.nih.gov/19357537)
