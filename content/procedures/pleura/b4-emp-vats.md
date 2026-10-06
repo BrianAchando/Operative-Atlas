@@ -156,7 +156,7 @@ Doses: [electrolytes](#approach=cticu-doses&step=0), [vasoactive drugs](#approac
 ## Sources
 
 - [Roberts ME, Rahman NM, Maskell NA, et al. British Thoracic Society guideline for pleural disease. Thorax 2023;78:1143-56](https://www.brit-thoracic.org.uk/about-us/news/2023/british-thoracic-society-publishes-a-guideline-and-clinical-statement-on-pleural-disease/)
-- [Davies HE, Davies RJO, Davies CWH. Management of pleural infection in adults: BTS pleural disease guideline 2010. Thorax 2010;65(Suppl 2):ii41-53](https://pubmed.ncbi.nlm.nih.gov/?term=Davies+management+of+pleural+infection+in+adults+BTS+2010)
+- [Davies HE, Davies RJO, Davies CWH. Management of pleural infection in adults: BTS pleural disease guideline 2010. Thorax 2010;65(Suppl 2):ii41-53](https://doi.org/10.1136/thx.2010.137000)
 - [Maskell NA, et al. U.K. controlled trial of intrapleural streptokinase for pleural infection (MIST1). N Engl J Med 2005;352:865-74](https://pubmed.ncbi.nlm.nih.gov/?term=Maskell+intrapleural+streptokinase+pleural+infection+MIST1+2005)
 - [Rahman NM, et al. A clinical score (RAPID) to identify those at risk for poor outcome at presentation in patients with pleural infection. Chest 2014;145:848-55](https://discovery.ucl.ac.uk/id/eprint/1430484/)
 - [Corcoran JP, et al. Prospective validation of the RAPID clinical risk prediction score (PILOT). Eur Respir J 2020;56:2000130](https://publications.ersnet.org/content/erj/56/5/2000130)

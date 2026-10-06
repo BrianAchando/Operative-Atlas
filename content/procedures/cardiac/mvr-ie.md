@@ -320,7 +320,7 @@ Doses: [electrolytes](#approach=cticu-doses&step=0), [vasoactive drugs](#approac
 ## Sources
 
 - [Carapetis JR, Beaton A, Cunningham MW, et al. Acute rheumatic fever and rheumatic heart disease. Nat Rev Dis Primers 2016;2:15084](https://www.nature.com/articles/nrdp201584)
-- [Marijon E, Mirabel M, Celermajer DS, Jouven X. Rheumatic heart disease. Lancet 2012;379:953-64](https://pubmed.ncbi.nlm.nih.gov/?term=Marijon+Mirabel+Celermajer+Jouven+rheumatic+heart+disease+Lancet+2012)
+- [Marijon E, Mirabel M, Celermajer DS, Jouven X. Rheumatic heart disease. Lancet 2012;379:953-64](https://doi.org/10.1016/S0140-6736(11)61171-9)
 - [Kumar RK, Antunes MJ, Beaton A, et al. Contemporary diagnosis and management of rheumatic heart disease: implications for closing the gap. AHA scientific statement. Circulation 2020;142:e337-e357](https://www.ahajournals.org/doi/10.1161/CIR.0000000000000921)
 - [Cunningham MW. Pathogenesis of group A streptococcal infections. Clin Microbiol Rev 2000;13:470-511](https://pubmed.ncbi.nlm.nih.gov/?term=Cunningham+Pathogenesis+of+group+A+streptococcal+infections+Clin+Microbiol+Rev+2000)
 - [Guilherme L, et al. Human heart-infiltrating T-cell clones from rheumatic heart disease patients recognize both streptococcal and cardiac proteins. Circulation 1995;92:415-20](https://pubmed.ncbi.nlm.nih.gov/?term=Guilherme+heart-infiltrating+T-cell+clones+rheumatic+heart+disease+Circulation+1995)
