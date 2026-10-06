@@ -14,7 +14,7 @@ Three leaflets: the large **anterior**, the **posterior**, and the **septal**, h
 What the sutures can injure:
 
 -   **The AV node and His bundle**, at the apex of **Koch's triangle** (coronary sinus ostium, tendon of Todaro, septal leaflet hinge), close to the **anteroseptal commissure**. Deep bites here cause heart block.
--   **The right coronary artery**, a few millimetres outside the anterior and posterior annulus in the AV groove.
+-   **The right coronary artery**, a few millimeters outside the anterior and posterior annulus in the AV groove.
 -   **The non-coronary sinus** of the aortic root, just beyond the anteroseptal commissure.
 
 > **Evidence:** heart block is the commonest serious complication of tricuspid surgery. In a national Swedish registry of 1,502 annuloplasties, 14.2% needed a permanent pacemaker within 30 days, mostly for AV block (Ragnarsson et al., JTCVS Open 2023).
@@ -113,11 +113,11 @@ Heparin. The aortic cannula as usual. **Separate SVC and IVC cannulas** (the IVC
 ## [tr-heart] Arrested or beating heart?
 
 **Arrested** (cross-clamp and cardioplegia): a still, bloodless field; the usual choice when the tricuspid follows a mitral or aortic procedure under the same clamp.  
-**Beating** (on bypass, clamp off, the right heart isolated by the snares): no cardioplegia or ischaemia for the left heart. The rhythm can be **watched as each suture is tied** near the AV node, and a stitch that causes block can be removed at once. Any left-heart opening (a patent foramen ovale) risks air embolism, so check the septum on TOE first.
+**Beating** (on bypass, clamp off, the right heart isolated by the snares): no cardioplegia or ischemia for the left heart. The rhythm can be **watched as each suture is tied** near the AV node, and a stitch that causes block can be removed at once. Any left-heart opening (a patent foramen ovale) risks air embolism, so check the septum on TOE first.
 
-After a mitral operation the tricuspid is often done **after the clamp is off**, during reperfusion, which also shortens the ischaemic time.
+After a mitral operation the tricuspid is often done **after the clamp is off**, during reperfusion, which also shortens the ischemic time.
 
-> **Evidence:** a 2025 meta-analysis of 6 observational studies (767 isolated tricuspid operations; Caldonazo et al., Innovations) found **no difference** between beating and arrested hearts in permanent pacemaker rate, early or late mortality, or bypass time. The theoretical advantage in conduction safety has not been shown; randomised trials are lacking.
+> **Evidence:** a 2025 meta-analysis of 6 observational studies (767 isolated tricuspid operations; Caldonazo et al., Innovations) found **no difference** between beating and arrested hearts in permanent pacemaker rate, early or late mortality, or bypass time. The theoretical advantage in conduction safety has not been shown; randomized trials are lacking.
 
 ### Question
 
@@ -152,17 +152,17 @@ Look at the leaflets (thickened, retracted, perforated, tethered), the chordae a
 **De Vega** (double running suture, anteroseptal to posteroseptal commissure)  
 **For:** quick, cheap, no prosthesis: attractive where rings are costly or scarce. **Against:** the suture can cut through or the annulus re-dilate ("guitar-string" effect): more late recurrence.
 
-**Kay** (bicuspidisation: obliterates the posterior leaflet annulus)  
+**Kay** (bicuspidization: obliterates the posterior leaflet annulus)  
 **For:** simple, for moderate dilatation. **Against:** less durable than a ring when the annulus is very large.
 
-**Clover** (edge-to-edge, the three leaflets stitched at their centres, with a ring)  
+**Clover** (edge-to-edge, the three leaflets stitched at their centers, with a ring)  
 for complex or prolapsing leaflets.
 
-> **Evidence:** meta-analysis of 9 studies (2 randomised; Parolari et al., Ann Thorac Surg 2014): rings protected against early mortality and late recurrence, with freedom from moderate or worse TR at 15 years of about 79% with a ring vs 60% with suture annuloplasty; late survival did not differ.
+> **Evidence:** meta-analysis of 9 studies (2 randomized; Parolari et al., Ann Thorac Surg 2014): rings protected against early mortality and late recurrence, with freedom from moderate or worse TR at 15 years of about 79% with a ring vs 60% with suture annuloplasty; late survival did not differ.
 
 ### Question
 
-**Q:** A young patient with functional TR (annulus 44 mm) at MVR. What does the evidence favour for durability?
+**Q:** A young patient with functional TR (annulus 44 mm) at MVR. What does the evidence favor for durability?
 - [x] Ring annuloplasty
   > Rings reduce late recurrence compared with suture techniques (Parolari 2014). A De Vega is a reasonable fallback where rings are not available.
 - [ ] De Vega
@@ -173,7 +173,7 @@ for complex or prolapsing leaflets.
 
 Horizontal mattress sutures of **2-0 braided polyester** in the annulus, **not** the leaflet. Start just beyond the **anteroseptal commissure**, go round the **anterior and posterior** annulus, and finish on the **septal annulus** short of the coronary sinus. **No sutures at the apex of Koch's triangle**: the ring's gap sits there. Bites posteriorly and anteriorly are firm but not deep (the right coronary lies just outside).
 
-> **Evidence:** the incomplete ring was designed to leave the conduction tissue untouched. Heart block still occurs after annuloplasty; concomitant mitral surgery, ablation and a low-volume centre raised the risk in the Swedish registry (Ragnarsson 2023).
+> **Evidence:** the incomplete ring was designed to leave the conduction tissue untouched. Heart block still occurs after annuloplasty; concomitant mitral surgery, ablation and a low-volume center raised the risk in the Swedish registry (Ragnarsson 2023).
 
 ## [tr-ring] Seat and tie the ring; test
 

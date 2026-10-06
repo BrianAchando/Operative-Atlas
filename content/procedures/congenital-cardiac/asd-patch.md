@@ -56,12 +56,12 @@ Chain: Left-to-right shunt → RA, RV and pulmonary arteries carry 1.5–3 times
 
 ## [asd-size] Size, and what the heart shows
 
-An ASD is judged less by its millimetres than by its **effect on the right heart**:
+An ASD is judged less by its millimeters than by its **effect on the right heart**:
 
 | Finding | Meaning |
 | --- | --- |
 | Small defect, normal RA and RV in an infant | Often closes on its own: the smaller the defect and the younger the child, the likelier. Review |
-| **RA and RV dilated**, Qp:Qs 1.5 or more | Haemodynamically significant: close (if PVR allows) |
+| **RA and RV dilated**, Qp:Qs 1.5 or more | Hemodynamically significant: close (if PVR allows) |
 | Defect over about 38 mm or rims under 5 mm | Too big or too poorly supported for a device: surgery |
 | Adult with AF, paradoxical embolism, or symptoms | Close even if older; AF may persist |
 
@@ -71,7 +71,7 @@ Unlike a VSD or PDA, an ASD dilates the **right** heart: shunted blood goes RA �
 
 ## [asd-anatomy] The septum seen from the right atrium
 
-Through a right atriotomy the **fossa ovalis** is the target. Know its neighbours before you place a stitch:
+Through a right atriotomy the **fossa ovalis** is the target. Know its neighbors before you place a stitch:
 
 -   **Superior / anterosuperior**: the SVC orifice and, behind the septum, the **aortic root** (the "aortic rim")
 -   **Inferior**: the **IVC** orifice with the **Eustachian valve** in front of it, a trap: sew the patch to it and the IVC drains into the left atrium
@@ -119,21 +119,21 @@ A ASD seen late, as so many are in Kenya, raises one question before any other: 
 
 |  | Points to operable | Warns of inoperable (Eisenmenger) |
 | --- | --- | --- |
-| History | Breathless, poor growth, chest infections (high flow) | Fewer infections and "better" with age; exertional cyanosis, syncope, haemoptysis |
+| History | Breathless, poor growth, chest infections (high flow) | Fewer infections and "better" with age; exertional cyanosis, syncope, hemoptysis |
 | Examination | Normal saturations; loud flow murmur; big active heart | **Resting or exercise desaturation**, clubbing; murmur fading; loud single P2; RV heave; small heart on X-ray |
 | Echo | Left-to-right shunt throughout; dilated left heart (VSD, PDA) or right heart (ASD) | **Bidirectional or right-to-left shunt**; RV hypertrophy; left heart no longer dilated |
 | Catheter (the decider) | **PVRi under about 4 WU·m²** (PVR under 3 WU in adults); PVR/SVR under 1/3; Qp:Qs 1.5 or more | **PVRi over 8 WU·m²** (PVR 5 WU or more in adults despite treatment); PVR/SVR over about 0.4 |
 
--   **Grey zone** (PVRi about 4–8 WU·m²): individual decision in a team with pulmonary hypertension expertise; the response to oxygen or nitric oxide helps, though criteria for shunts are not standardised
+-   **Grey zone** (PVRi about 4–8 WU·m²): individual decision in a team with pulmonary hypertension expertise; the response to oxygen or nitric oxide helps, though criteria for shunts are not standardized
 -   **Treat-and-repair** (pulmonary vasodilators first, then a fenestrated or flap-valve closure) is used in selected patients but remains controversial
--   Where catheterisation is not available, a clear left-to-right shunt with a dilated left heart and normal saturations is reassuring; any desaturation or bidirectional flow needs a catheter before surgery
+-   Where catheterization is not available, a clear left-to-right shunt with a dilated left heart and normal saturations is reassuring; any desaturation or bidirectional flow needs a catheter before surgery
 
 > **Evidence:** 6th World Symposium: PVRi 4 WU·m² as the operability cut-off, 4–8 individual, over 8 inoperable; AHA/ATS 2015: PVRi 6–8 WU·m² individual, PVR/SVR under 1/3 operable; ESC 2020 (adults): PVR under 3 WU class I, 3–5 WU IIa, 5 WU or more only in selected cases; vasoreactivity criteria for shunts not established (ERJ Open Res 2023).
 
 ### Question
 
 **Q:** A 7-year-old with a large ASD now has saturations of 89% at rest and bidirectional shunting on echo. Next step?
-- [x] Cardiac catheterisation with PVR measurement and vasoreactivity testing before any decision
+- [x] Cardiac catheterization with PVR measurement and vasoreactivity testing before any decision
   > Desaturation and bidirectional flow suggest advanced pulmonary vascular disease; closure could be lethal if PVR is fixed.
 - [ ] Close the defect urgently
 - [ ] Discharge: the shunt has improved
@@ -228,13 +228,13 @@ Identify the **IVC orifice and the Eustachian valve** before the first stitch: t
 
 Trim the pericardium a little larger than the defect. Start at the **inferior (IVC) end**, where exposure is hardest, with a running **5-0 polypropylene** suture, and run both arms up each side to meet superiorly. Stay superficial near the aortic rim (the aortic root is just behind) and away from Koch's triangle.
 
-Before tying: **de-air the left atrium**: the anaesthetist inflates the lungs and blood and air are allowed out at the last stitch.
+Before tying: **de-air the left atrium**: the anesthetist inflates the lungs and blood and air are allowed out at the last stitch.
 
 > **Evidence:** AATS/TSRA primer: autologous pericardium or Gore-Tex, running polypropylene; left side de-aired through the aortic root vent before the suture line is completed.
 
 ## [asd-close] De-air, close the atrium, release the clamp
 
-Before the last sutures: **fill the left heart** (anaesthetist inflates the lungs), let air escape through the defect or the patch edge, then tie. Close the right atriotomy in two layers of running polypropylene, release the snares, **vent the aortic root** and remove the cross-clamp.
+Before the last sutures: **fill the left heart** (anesthetist inflates the lungs), let air escape through the defect or the patch edge, then tie. Close the right atriotomy in two layers of running polypropylene, release the snares, **vent the aortic root** and remove the cross-clamp.
 
 ## [asd-decannulate] Separate from bypass; check the repair
 
@@ -246,10 +246,10 @@ Start with the [cardiac core](#approach=cticu-cardiac&step=0), the [lab schedule
 
 #### Specific to this operation
 
--   Usually extubated within hours; early mobilisation
+-   Usually extubated within hours; early mobilization
 -   Rhythm: atrial arrhythmias; check K⁺ and Mg²⁺; pacing wires
 -   Echo before discharge: residual shunt, effusion
--   Children: fluids, drugs and blood by weight with the paediatric intensivist; the adult dose tables do not apply
+-   Children: fluids, drugs and blood by weight with the pediatric intensivist; the adult dose tables do not apply
 
 #### Labs
 

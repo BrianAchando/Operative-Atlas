@@ -36,7 +36,7 @@ Associations: **bicuspid aortic valve** (common), intracranial aneurysms, Turner
 Through the left chest: the **distal arch** with the left subclavian artery, the **ligamentum** (or duct), the coarctation, and the dilated aorta below it. The **vagus and recurrent laryngeal nerve** cross the arch; the **thoracic duct** lies behind and to the right.
 
 -   **Collaterals**: enlarged, thin-walled intercostal arteries and chest wall vessels; they bleed from the incision onward and need control, not wholesale ligation
--   **Spinal cord**: in a child with poor collaterals, clamping the aorta can leave the cord ischaemic; protect it (short clamp time, avoid hyperthermia, keep distal pressure)
+-   **Spinal cord**: in a child with poor collaterals, clamping the aorta can leave the cord ischemic; protect it (short clamp time, avoid hyperthermia, keep distal pressure)
 
 <p class="note">The model is an adult heart: in a child the relations are the same and everything is smaller.</p>
 
@@ -138,7 +138,7 @@ Template and how to use it: [CTICU protocol, consent](#approach=cticu-consent&st
 ### Question
 
 **Q:** Which rare but devastating risk of coarctation repair must be discussed?
-- [x] Paraplegia from spinal cord ischaemia during clamping
+- [x] Paraplegia from spinal cord ischemia during clamping
   > Rare (0% in a modern series, about 0.4% historically) but material to any patient.
 - [ ] Complete heart block
 - [ ] Tricuspid regurgitation
@@ -150,7 +150,7 @@ Template and how to use it: [CTICU protocol, consent](#approach=cticu-consent&st
 
 **Count the ribs** from inside or under the scapula (the first rib you can feel under the scapula is usually the 2nd) and enter the **4th intercostal space** on the upper border of the 5th rib. Retract the lung forward and down with a moist pack.
 
-In an older child the **chest wall collaterals** bleed: control them as you go; the intercostal muscle may be several millimetres thick with dilated vessels.
+In an older child the **chest wall collaterals** bleed: control them as you go; the intercostal muscle may be several millimeters thick with dilated vessels.
 
 ## [coa-mobilise] Mobilise the arch, the subclavian and the descending aorta
 
@@ -196,10 +196,10 @@ Start with the [cardiac core](#approach=cticu-cardiac&step=0), the [lab schedule
 #### Specific to this operation
 
 -   Paradoxical hypertension: beta-blocker or nitroprusside early, then oral antihypertensives
--   Legs: power and sensation as soon as awake (cord ischaemia)
+-   Legs: power and sensation as soon as awake (cord ischemia)
 -   Abdominal pain or distension (mesenteric arteritis): delay feeds, control BP
 -   Drain: chyle; voice: RLN
--   Children: fluids, drugs and blood by weight with the paediatric intensivist; the adult dose tables do not apply
+-   Children: fluids, drugs and blood by weight with the pediatric intensivist; the adult dose tables do not apply
 
 #### Labs
 

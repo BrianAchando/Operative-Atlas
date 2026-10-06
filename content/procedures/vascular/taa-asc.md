@@ -9,7 +9,7 @@ summary: Sternotomy, axillary cannulation, moderate hypothermia, antegrade cereb
 
 ## [tas-patho] Pathophysiology: thoracic aortic aneurysm
 
-**Medial degeneration** (loss of smooth muscle cells, fragmented elastic fibres, pooled proteoglycans) weakens the wall. Causes: **heritable** (Marfan syndrome, Loeys-Dietz, familial, bicuspid aortic valve), **degenerative/atherosclerotic** (the descending aorta in older smokers with hypertension), and **inflammatory or infective**: **syphilitic aortitis** (ascending and arch; obliterative endarteritis of the vasa vasorum) and **Takayasu arteritis** (young women), both seen in Africa.
+**Medial degeneration** (loss of smooth muscle cells, fragmented elastic fibers, pooled proteoglycans) weakens the wall. Causes: **heritable** (Marfan syndrome, Loeys-Dietz, familial, bicuspid aortic valve), **degenerative/atherosclerotic** (the descending aorta in older smokers with hypertension), and **inflammatory or infective**: **syphilitic aortitis** (ascending and arch; obliterative endarteritis of the vasa vasorum) and **Takayasu arteritis** (young women), both seen in Africa.
 
 Chain: Medial degeneration → Dilatation → Laplace: tension rises with radius → **Dissection or rupture**
 
@@ -121,7 +121,7 @@ Excise the aneurysm; **proximal anastomosis** to the sinotubular junction (4-0 p
 
 ## [tas-after] Rewarm, wean, and treat the syphilis
 
-Rewarm slowly (no more than 10 °C gradient, not above 37 °C), wean, protamine, haemostasis (coagulopathy after circulatory arrest: platelets, fibrinogen). Neurological assessment on waking. **Penicillin** for tertiary syphilis (14 days intravenously for cardiovascular syphilis, per local protocol), and follow-up imaging of the remaining arch and descending aorta.
+Rewarm slowly (no more than 10 °C gradient, not above 37 °C), wean, protamine, hemostasis (coagulopathy after circulatory arrest: platelets, fibrinogen). Neurological assessment on waking. **Penicillin** for tertiary syphilis (14 days intravenously for cardiovascular syphilis, per local protocol), and follow-up imaging of the remaining arch and descending aorta.
 
 ## [taa-asc-icu] ICU and post-operative care
 

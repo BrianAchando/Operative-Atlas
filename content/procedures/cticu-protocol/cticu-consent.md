@@ -24,7 +24,7 @@ A structured aid for the conversation: it does not replace the signed KNH consen
 
 ## [cticu-consent-1] Governance, open decisions and audit
 
-<table class="mini"><tr><th style="width:32%">Field</th><th>Value</th></tr><tr><td>Title</td><td>KNH Thoracic and Cardiovascular ICU Protocol</td></tr><tr><td>Version</td><td>0.1 (draft)</td></tr><tr><td>Authors</td><td>Department of Thoracic and Cardiovascular Surgery, KNH/UoN</td></tr><tr><td>Sign-off</td><td>Thoracic and cardiovascular surgery; anaesthesia and critical care (vasoactive drugs); pharmacy (concentrations)</td></tr><tr><td>Review</td><td>12 months after adoption</td></tr></table>
+<table class="mini"><tr><th style="width:32%">Field</th><th>Value</th></tr><tr><td>Title</td><td>KNH Thoracic and Cardiovascular ICU Protocol</td></tr><tr><td>Version</td><td>0.1 (draft)</td></tr><tr><td>Authors</td><td>Department of Thoracic and Cardiovascular Surgery, KNH/UoN</td></tr><tr><td>Sign-off</td><td>Thoracic and cardiovascular surgery; anesthesia and critical care (vasoactive drugs); pharmacy (concentrations)</td></tr><tr><td>Review</td><td>12 months after adoption</td></tr></table>
 
 <div class="box amber"><h4>Still open</h4><ul><li>Bladder pressure after AAA (trigger-based)</li><li>Refeeding start rate after esophagectomy</li><li>Mg²⁺ target 1.0 mmol/L</li><li>INR in range on two consecutive days before stopping enoxaparin</li><li>Pharmacy: MgSO₄ vial strength; calcium infusion units; concentrated central KCl</li></ul></div>
 
@@ -35,8 +35,8 @@ A structured aid for the conversation: it does not replace the signed KNH consen
 -   AKI (KDIGO)
 -   Post-operative AF
 -   Anastomotic leak after esophagectomy
--   Compartment syndrome and colonic ischaemia after AAA
--   Spinal cord ischaemia after aortic surgery
+-   Compartment syndrome and colonic ischemia after AAA
+-   Spinal cord ischemia after aortic surgery
 
 ## Sources
 

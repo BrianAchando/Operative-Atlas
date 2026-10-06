@@ -4027,6 +4027,23 @@ if TX_OK:
     add_case('rul-open', tb_patho(), asp_case, TB_SRC)
     add_case('lul-open', cong_patho('cle'), cle_case, CONG_SRC)
     add_case('lll-open', cong_patho('cpam'), cpam_case, CONG_SRC)
+    # ---- congenital lung lesions get entries of their own (the CLE vs CPAM comparison stays in the lobectomies as the differential)
+    import copy as _cp
+    def cong_entry(key, src, op, opName, approach, summary, scene):
+        if src not in procs: return
+        q = _cp.deepcopy(procs[src])
+        q.update({'id': f'open-{op}', 'op': op, 'opName': opName, 'name': opName, 'approach': approach, 'summary': summary, 'group': 'Congenital lung lesions'})
+        for s in q['steps']:
+            s['id'] = key + s['id'][len(src):] if s['id'].startswith(src + '-') else f"{key}-{s['id']}"
+        q['steps'][0].update(scene)
+        procs[key] = q
+    cong_entry('cle-open', 'lul-open', 'cle', 'Congenital lobar emphysema', 'Left upper lobectomy, open (the commonest site)',
+               'An over-distended lobe from a ball-valve bronchus: where it sits, how it presents, the drain trap, the anesthetic, and lobectomy.',
+               {'show': [*LOBE_IDS, 'cle-lul'], 'hide': ['lul'], 'opacity': {'rul': 0.45, 'rml': 0.55, 'lll': 0.2, 'rll': 0.2},
+                'highlight': ['cle-lul', 'rml', 'rul'], 'labels': ['cle-lul', 'rml', 'rul']})
+    cong_entry('cpam-open', 'lll-open', 'cpam', 'Congenital pulmonary airway malformation (CPAM)', 'Left lower lobectomy, open (any lobe is possible)',
+               'A cystic or solid malformation of one lobe: Stocker types, hydrops and the CVR, the infection and malignancy risk, timing, and lobectomy.',
+               {'show': [*LOBE_IDS, 'cpam-lll'], 'highlight': ['cpam-lll'], 'labels': ['cpam-lll', 'lll']})
     for k, nm in (('lingula', 'lingula'), ('lul-updiv', 'upper division of the left upper lobe'), ('s6', 'superior segment (S6) of the left lower lobe')):
         add_case(f'seg-{k}', lc_patho('left', 'lll' if k == 's6' else 'lul'), seg_case('lll' if k == 's6' else 'lul', nm), LC_SRC)
     add_case('pnl-open', tb_patho(destroyed=True), destroyed_case, TB_SRC)
@@ -4779,7 +4796,7 @@ modules_cong.add(procs, ask, has, LM, S)
 import postop
 postop.apply(procs, ask, has)
 # operations appear in the menu in this order
-ORDER = ['position', 'thoracotomy-l', 'thoracotomy-r', 'vats-ports-l', 'vats-ports-r', 'lul', 'lll', 'rul', 'rml', 'rll', 'pnl', 'pnr', 'bronchiectasis', 'seg-lingula', 'seg-lul-updiv', 'seg-s6', 'trachea', 'thymectomy', 'oesophagectomy', 'duct', 'empyema', 'ppe', 'rt', 'clamshell', 'cardio', 'tract', 'hilar', 'mvr', 'avr', 'root', 'tricuspid', 'cabg', 'pericardium', 'asd', 'vsd', 'pda', 'coa', 'tof', 'palliation', 'aiod', 'aaa', 'taa', 'ali', 'infrainguinal', 'avf', 'cticu']
+ORDER = ['position', 'thoracotomy-l', 'thoracotomy-r', 'vats-ports-l', 'vats-ports-r', 'lul', 'lll', 'rul', 'rml', 'rll', 'pnl', 'pnr', 'bronchiectasis', 'seg-lingula', 'seg-lul-updiv', 'seg-s6', 'trachea', 'thymectomy', 'oesophagectomy', 'duct', 'empyema', 'ppe', 'cle', 'cpam', 'rt', 'clamshell', 'cardio', 'tract', 'hilar', 'mvr', 'avr', 'root', 'tricuspid', 'cabg', 'pericardium', 'asd', 'vsd', 'pda', 'coa', 'tof', 'palliation', 'aiod', 'aaa', 'taa', 'ali', 'infrainguinal', 'avf', 'cticu']
 procs = dict(sorted(procs.items(), key=lambda kv: (ORDER.index(kv[1]['op']), list(procs).index(kv[0]))))
 for v in procs.values():
     v['group'] = v.get('group') or ('Pneumonectomy' if v['op'].startswith('pn') else 'Segmentectomy' if v['op'].startswith('seg-') else 'Lobectomy')
@@ -4794,8 +4811,9 @@ for v in procs.values():
             s['opacity'] = {**s.get('opacity', {}), 'skin': 1.0}
 # American spelling in what the reader sees (esophagus, esophagectomy); identifiers and the titles of cited papers are left as they are
 import re as _re
+from us_spelling import fix as _us_fix
 def _us(x, key=None):
-    if isinstance(x, str): return x if key in ('id', 'op', 'url') else _re.sub(r'Oesophag', 'Esophag', _re.sub(r'oesophag', 'esophag', x))
+    if isinstance(x, str): return x if key in ('id', 'op', 'url') else _us_fix(_re.sub(r'Oesophag', 'Esophag', _re.sub(r'oesophag', 'esophag', x)))[0]
     if isinstance(x, list): return [_us(i, key) for i in x]
     if isinstance(x, dict): return {k: (v if k == 'sources' else _us(v, k)) for k, v in x.items()}
     return x

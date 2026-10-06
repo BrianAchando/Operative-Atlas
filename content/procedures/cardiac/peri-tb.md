@@ -13,13 +13,13 @@ In Kenya and across sub-Saharan Africa most constrictive pericarditis follows **
 
 Chain: TB pericardial effusion → Fibrinous, then fibrotic pericardium → Rigid shell (± calcium) → **All four chambers cannot fill in late diastole**
 
-**Physiology**: early diastolic filling is rapid, then stops abruptly when the heart meets the shell (the **dip-and-plateau** or "square root" sign). Diastolic pressures equalise in all chambers. Filling of the two ventricles is **interdependent**: on inspiration the septum shifts left. The JVP **rises on inspiration (Kussmaul's sign)**; there is a pericardial knock, ascites and hepatomegaly out of proportion to oedema, and a small, quiet heart.
+**Physiology**: early diastolic filling is rapid, then stops abruptly when the heart meets the shell (the **dip-and-plateau** or "square root" sign). Diastolic pressures equalize in all chambers. Filling of the two ventricles is **interdependent**: on inspiration the septum shifts left. The JVP **rises on inspiration (Kussmaul's sign)**; there is a pericardial knock, ascites and hepatomegaly out of proportion to edema, and a small, quiet heart.
 
 **Diagnosis**: echocardiography (respiratory septal shift, preserved or raised medial e', hepatic vein expiratory flow reversal; the Mayo criteria); CT for thickness and calcium; catheter pressures when unclear. **Restrictive cardiomyopathy** is the main differential.
 
 **Prevention**: anti-tuberculous therapy for all; adjunctive prednisolone reduced progression to constriction in IMPI (4.4% vs 7.8%) but raised HIV-associated cancers, so it is not given routinely to people living with HIV.
 
-> **Evidence:** IMPI (Mayosi et al., NEJM 2014): prednisolone did not reduce the combined outcome (23.8% vs 24.5%) but reduced constriction (4.4% vs 7.8%) and hospitalisation; cancers 1.05 vs 0.32 per 100 person-years. Mayo echo criteria (Welch et al., Circ Cardiovasc Imaging 2014). ESC 2015 pericardial guideline (Adler et al., Eur Heart J 2015).
+> **Evidence:** IMPI (Mayosi et al., NEJM 2014): prednisolone did not reduce the combined outcome (23.8% vs 24.5%) but reduced constriction (4.4% vs 7.8%) and hospitalization; cancers 1.05 vs 0.32 per 100 person-years. Mayo echo criteria (Welch et al., Circ Cardiovasc Imaging 2014). ESC 2015 pericardial guideline (Adler et al., Eur Heart J 2015).
 
 ### Question
 
@@ -44,7 +44,7 @@ The **coronary arteries** run under the epicardium in the atrioventricular and i
 
 ### Case
 
-A **28-year-old woman**, HIV-positive on antiretrovirals, treated for tuberculous pericardial effusion 3 months ago. Now: abdominal swelling, breathlessness on walking 100 m. **JVP 12 cm, rising on inspiration**, ascites, hepatomegaly, mild ankle oedema. Echo: septal bounce, respiratory variation in mitral inflow, dilated IVC. CT: pericardium 6 mm with calcium over the AV grooves.
+A **28-year-old woman**, HIV-positive on antiretrovirals, treated for tuberculous pericardial effusion 3 months ago. Now: abdominal swelling, breathlessness on walking 100 m. **JVP 12 cm, rising on inspiration**, ascites, hepatomegaly, mild ankle edema. Echo: septal bounce, respiratory variation in mitral inflow, dilated IVC. CT: pericardium 6 mm with calcium over the AV grooves.
 
 ### Question
 
@@ -64,7 +64,7 @@ A **28-year-old woman**, HIV-positive on antiretrovirals, treated for tuberculou
 | Approach? | **Median sternotomy** (access to both sides and the cavae, bypass if needed); a left anterolateral thoracotomy is an alternative when the disease is left-sided or for a redo |
 | Bypass? | Off-pump; **bypass on standby** (groin prepped) for bleeding or a torn chamber |
 
-**Before surgery**: optimise with diuretics, drain large ascites or effusions, correct albumin and nutrition, continue anti-TB and antiretroviral therapy; cross-match.
+**Before surgery**: optimize with diuretics, drain large ascites or effusions, correct albumin and nutrition, continue anti-TB and antiretroviral therapy; cross-match.
 
 > **Evidence:** ESC 2015 pericardial guideline: pericardiectomy for persistent constriction despite anti-TB therapy (expert timing 4–8 weeks). Total versus partial pericardiectomy: better long-term survival after total (reviews, e.g. IntechOpen 2023 "Constrictive pericarditis: surgical management").
 
@@ -125,12 +125,12 @@ Median sternotomy with the groins prepped and draped: femoral cannulation is the
 
 Incise the thick pericardium over the aorta and right ventricular outflow until the **epicardium bulges** through: that is the plane. Develop it with scissors and blunt dissection, a sponge on a stick, and sharp division of bands.
 
-**Free the left ventricle before the right**: releasing the right ventricle first lets it fill and pump into a still-constrained left ventricle and lungs, causing **pulmonary oedema**. Work from the left phrenic nerve, over the apex, down to the diaphragm, keeping a strip of pericardium on the nerve.
+**Free the left ventricle before the right**: releasing the right ventricle first lets it fill and pump into a still-constrained left ventricle and lungs, causing **pulmonary edema**. Work from the left phrenic nerve, over the apex, down to the diaphragm, keeping a strip of pericardium on the nerve.
 
 ### Question
 
 **Q:** Why is the left ventricle freed before the right?
-- [x] Releasing the right side first can flood a still-constrained left ventricle and cause pulmonary oedema
+- [x] Releasing the right side first can flood a still-constrained left ventricle and cause pulmonary edema
   > The traditional order protects the lungs: the left side is decompressed first.
 - [ ] The left side is easier
 - [ ] To avoid the phrenic nerve
@@ -142,9 +142,9 @@ Then the **right ventricle**, the **right atrium** (thin: take care) and the ban
 
 Do not chase the plane over a coronary artery in the atrioventricular groove.
 
-## [pc-after] The heart fills: check, haemostasis, close
+## [pc-after] The heart fills: check, hemostasis, close
 
-The freed ventricles visibly expand; the CVP falls. Haemostasis over the raw epicardium (warm packs, topical agents, cautery away from the coronaries). Drains to both pleural spaces if opened. Send the pericardium for **histology and TB culture** (GeneXpert).
+The freed ventricles visibly expand; the CVP falls. Hemostasis over the raw epicardium (warm packs, topical agents, cautery away from the coronaries). Drains to both pleural spaces if opened. Send the pericardium for **histology and TB culture** (GeneXpert).
 
 **Expect low cardiac output** in the first days: the myocardium has been atrophied by months of constriction. Inotropes, careful filling and diuresis; continue anti-TB therapy.
 

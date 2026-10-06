@@ -9,7 +9,7 @@ summary: Case-based: pathophysiology, anatomy, the patient and the Heart Team de
 
 ## [ah-patho] Pathophysiology: calcific aortic stenosis
 
-**How the valve calcifies.** Years of mechanical stress injure the endothelium on the aortic side of the cusps; lipids (LDL, lipoprotein(a)) enter and oxidise; macrophages and T cells follow; and the valve interstitial cells switch to a **bone-forming** programme (RUNX2), laying calcium nodules in the cusp bodies. The commissures stay open; the cusps become stiff. It is a disease of later life, sharing risk factors with atherosclerosis.
+**How the valve calcifies.** Years of mechanical stress injure the endothelium on the aortic side of the cusps; lipids (LDL, lipoprotein(a)) enter and oxidize; macrophages and T cells follow; and the valve interstitial cells switch to a **bone-forming** program (RUNX2), laying calcium nodules in the cusp bodies. The commissures stay open; the cusps become stiff. It is a disease of later life, sharing risk factors with atherosclerosis.
 
 Chain: Aortic valve area ↓ → LV pressure overload → Concentric hypertrophy → **O₂ demand ↑, coronary reserve ↓ → angina**
 
@@ -69,7 +69,7 @@ A **74-year-old woman**, retired nurse, exertional chest tightness and a presync
 
 **Q:** At 74 with severe tricuspid AS, what makes SAVR preferable to TAVI for this patient?
 - [x] Anatomy: a low left main ostium with shallow sinuses (coronary obstruction risk) and poor femoral access
-  > Age favours TAVI, but the Heart Team decides on anatomy too; when TAVI anatomy is hostile and surgical risk is low, SAVR is the safer choice.
+  > Age favors TAVI, but the Heart Team decides on anatomy too; when TAVI anatomy is hostile and surgical risk is low, SAVR is the safer choice.
 - [ ] Her age alone
 - [ ] The aortic valve area of 0.7 cm²
 - [ ] Chest tightness
@@ -132,7 +132,7 @@ A 6–8 cm skin incision from just below the sternal notch. Saw the sternum in t
 
 Central cannulation is usually possible: the aorta directly, and venous drainage either through the right atrial appendage or **percutaneously from the femoral vein** under TOE. Convert to full sternotomy (extend the cut) if exposure is poor or there is bleeding.
 
-> **Evidence:** randomised trials and meta-analyses comparing hemisternotomy with full sternotomy show similar mortality and valve results. Differences in bleeding, ventilation and stay are small and inconsistent, and cross-clamp and bypass times are slightly longer.
+> **Evidence:** randomized trials and meta-analyses comparing hemisternotomy with full sternotomy show similar mortality and valve results. Differences in bleeding, ventilation and stay are small and inconsistent, and cross-clamp and bypass times are slightly longer.
 
 ## [ah-cannulate] Cannulation: aorta, two-stage venous cannula (RA to IVC), LV vent
 
@@ -204,7 +204,7 @@ If the annulus is too small:
 -   a valve with a better orifice for its size (supra-annular, thin-sewing-ring, or stentless);
 -   **annular enlargement**: **Nicks** (through the non-coronary sinus toward the aortomitral curtain), **Manouguian** (through the left–non-coronary commissure into the curtain and the anterior mitral leaflet), **Y-incision** (Yang: through the left–non-coronary commissure with a Y into both trigones, allowing about 3–4 sizes larger). The **Konno** operation (into the septum) is mainly for children.
 
-> **Evidence:** VARC-3 (Généreux et al., JACC 2021) sets the definitions. In a meta-analysis of about 123,000 patients (J Am Heart Assoc 2024), mismatch after SAVR was associated with higher late mortality and earlier failure of tissue valves. The Y-incision series (Yang et al., JTCVS) reported enlargement by 3–4 sizes with low early mortality; these are single-centre, non-randomised data.
+> **Evidence:** VARC-3 (Généreux et al., JACC 2021) sets the definitions. In a meta-analysis of about 123,000 patients (J Am Heart Assoc 2024), mismatch after SAVR was associated with higher late mortality and earlier failure of tissue valves. The Y-incision series (Yang et al., JTCVS) reported enlargement by 3–4 sizes with low early mortality; these are single-center, non-randomized data.
 
 ### Question
 
@@ -235,7 +235,7 @@ Usually 12–15 sutures of **2-0 braided polyester**, following the crown: up to
 
 Keep pledgets and sutures clear of the **ostia**; take shallow bites under the **right–non-coronary commissure**.
 
-> **Evidence:** no randomised trial has settled this. In the AVERT cohort (807 patients), major paravalvular leak occurred in 1.7% with pledgets and 5.8% without (Englberger et al., EJCTS 2005). A 2024 meta-analysis of 9 observational SAVR studies (4,390 patients; Boltje et al.) found no clear difference in leak, gradients or mortality, and concluded that the evidence neither supports nor opposes pledgets. In 152 patients with small (19–21 mm) supra-annular bioprostheses, simple interrupted sutures gave a larger orifice and less mismatch than mattress sutures (Tabata et al., JTCVS 2014; retrospective).
+> **Evidence:** no randomized trial has settled this. In the AVERT cohort (807 patients), major paravalvular leak occurred in 1.7% with pledgets and 5.8% without (Englberger et al., EJCTS 2005). A 2024 meta-analysis of 9 observational SAVR studies (4,390 patients; Boltje et al.) found no clear difference in leak, gradients or mortality, and concluded that the evidence neither supports nor opposes pledgets. In 152 patients with small (19–21 mm) supra-annular bioprostheses, simple interrupted sutures gave a larger orifice and less mismatch than mattress sutures (Tabata et al., JTCVS 2014; retrospective).
 
 ### Question
 
@@ -282,7 +282,7 @@ Before closing: look into **both ostia** (nothing overhanging); check for **gaps
 ### Question
 
 **Q:** After weaning, new ST elevation in the anterolateral leads and poor anterior wall motion on TOE. The valve looks well seated. First suspicion?
-- [x] The left main ostium is partly obstructed by a post, a pledget or the sewing ring (or has embolised air/debris)
+- [x] The left main ostium is partly obstructed by a post, a pledget or the sewing ring (or has embolized air/debris)
   > Coronary compromise right after SAVR is the prosthesis or embolism until proved otherwise: go back on bypass, inspect, and re-seat or graft.
 - [ ] Heart block
 - [ ] Patient–prosthesis mismatch
@@ -296,7 +296,7 @@ Close the aortotomy in **two layers of 4-0 polypropylene** (a horizontal mattres
 
 Through a mini-thoracotomy the heart cannot be handled, so **CO₂ in the field** and TOE-guided venting carry more weight.
 
-> **Evidence:** no trial compares de-airing strategies; CO₂ field flooding reduced microemboli on TOE in a randomised trial (Svenarud et al., Circulation 2004); a stroke benefit has not been shown.
+> **Evidence:** no trial compares de-airing strategies; CO₂ field flooding reduced microemboli on TOE in a randomized trial (Svenarud et al., Circulation 2004); a stroke benefit has not been shown.
 
 ## [ah-wean] Reperfuse, wean, TOE, decannulate
 
@@ -306,7 +306,7 @@ Reperfuse on bypass until the heart is ready (about a third of the clamp time is
 
 Then venous cannula out, protamine, arterial cannula out last.
 
-> **Evidence:** intraoperative TOE is standard in valve surgery (ASE/SCA guidelines). A leak more than mild on TOE is usually repaired before leaving theatre, because significant paravalvular leak is associated with haemolysis, heart failure and worse survival.
+> **Evidence:** intraoperative TOE is standard in valve surgery (ASE/SCA guidelines). A leak more than mild on TOE is usually repaired before leaving theatre, because significant paravalvular leak is associated with hemolysis, heart failure and worse survival.
 
 ### Question
 

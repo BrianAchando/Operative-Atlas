@@ -7,11 +7,11 @@ summary: CLTI staging (WIfI, GLASS, PLAN), BEST-CLI and BASIL-2, vein harvest, f
 
 <!-- Edit the words freely. Keep each "## [step-id]" line as it is: it ties the text to its step in the 3D atlas. -->
 
-## [fp-patho] Pathophysiology: femoropopliteal disease and chronic limb-threatening ischaemia
+## [fp-patho] Pathophysiology: femoropopliteal disease and chronic limb-threatening ischemia
 
 The **superficial femoral artery at the adductor canal** is the commonest site of leg atherosclerosis. Collaterals from the profunda reconstitute the popliteal: alone, an SFA occlusion usually causes calf claudication. Add tibial disease, diabetes or a wound, and the limb becomes **threatened** (rest pain, ulcer, gangrene: Rutherford 4–6).
 
-**Stage the limb** (WIfI: wound, ischaemia, foot infection) and the anatomy (GLASS); decide by the PLAN: **P**atient risk, **L**imb severity, **AN**atomy. Best medical therapy for every patient.
+**Stage the limb** (WIfI: wound, ischemia, foot infection) and the anatomy (GLASS); decide by the PLAN: **P**atient risk, **L**imb severity, **AN**atomy. Best medical therapy for every patient.
 
 > **Evidence:** Global Vascular Guidelines on CLTI (Conte et al., Eur J Vasc Endovasc Surg / J Vasc Surg 2019): WIfI, GLASS, PLAN; great saphenous vein the preferred conduit.
 
@@ -96,7 +96,7 @@ Template and how to use it: [CTICU protocol, consent](#approach=cticu-consent&st
 
 ## [fp-vein] Harvest the great saphenous vein; reverse it
 
-Mark the vein with duplex. Harvest through continuous or skip incisions, ligating tributaries with fine ties without narrowing the vein. Gently distend with heparinised saline and check for leaks. **Reverse** the vein so its valves do not obstruct flow (or leave it in situ and cut the valves with a valvulotome).
+Mark the vein with duplex. Harvest through continuous or skip incisions, ligating tributaries with fine ties without narrowing the vein. Gently distend with heparinized saline and check for leaks. **Reverse** the vein so its valves do not obstruct flow (or leave it in situ and cut the valves with a valvulotome).
 
 ## [fp-graft] Femoral and below-knee popliteal anastomoses; tunnel
 
@@ -122,7 +122,7 @@ Start with the [vascular core](#approach=cticu-vascular&step=0), the [lab schedu
 #### Specific to this operation
 
 -   Graft pulse and pedal Doppler hourly at first
--   Leg wound and swelling (reperfusion oedema)
+-   Leg wound and swelling (reperfusion edema)
 -   Antiplatelet and statin; glucose control
 
 #### Labs

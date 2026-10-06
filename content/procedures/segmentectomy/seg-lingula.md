@@ -15,9 +15,9 @@ summary: Fissure, segmental artery, vein, bronchus, inflation–deflation line, 
 
 **How it spreads** decides the stage and the operation:
 
-Chain: Primary tumour (T: size, invasion) → Intrapulmonary and hilar nodes (N1) → **Mediastinal nodes (N2)** → **Contralateral or supraclavicular (N3)**
+Chain: Primary tumor (T: size, invasion) → Intrapulmonary and hilar nodes (N1) → **Mediastinal nodes (N2)** → **Contralateral or supraclavicular (N3)**
 
-Chain: Primary tumour → **Blood: brain, bone, adrenal, liver (M1)**
+Chain: Primary tumor → **Blood: brain, bone, adrenal, liver (M1)**
 
 | T | Tumour (9th edition keeps the 8th-edition T) |
 | --- | --- |
@@ -32,15 +32,15 @@ Chain: Primary tumour → **Blood: brain, bone, adrenal, liver (M1)**
 | M | Metastasis |
 | M1a–c | M1a pleural or pericardial spread, contralateral nodules; M1b one extrathoracic metastasis; **M1c1** several in one organ system, **M1c2** several organ systems (new) |
 
-**Before an operation**: CT and **PET-CT**; **invasive mediastinal staging** (EBUS/EUS needle aspiration, or mediastinoscopy) when the tumour is central, over 3 cm, or the nodes are enlarged or PET-positive; brain imaging for stage II and above. Then fitness: FEV1 and DLCO, and the **predicted postoperative** values (ppo = preoperative value × segments remaining / 19; by lobe: RUL 3, RML 2, RLL 5, LUL 5 with the lingula, LLL 4).
+**Before an operation**: CT and **PET-CT**; **invasive mediastinal staging** (EBUS/EUS needle aspiration, or mediastinoscopy) when the tumor is central, over 3 cm, or the nodes are enlarged or PET-positive; brain imaging for stage II and above. Then fitness: FEV1 and DLCO, and the **predicted postoperative** values (ppo = preoperative value × segments remaining / 19; by lobe: RUL 3, RML 2, RLL 5, LUL 5 with the lingula, LLL 4).
 
 > **Evidence:** 9th-edition TNM from the IASLC (Rami-Porta et al., J Thorac Oncol 2024): N2 split into N2a (single station) and N2b (multiple stations); M1c into M1c1 and M1c2; T1N1 moves to stage IIA, T1N2a is IIB. ACCP 2013 physiological evaluation (Brunelli et al.): ppoFEV1 and ppoDLCO both over 60% is low risk; 30–60% needs a stair climb (over 22 m) or shuttle walk (over 400 m); under 30%, or a poor walk test, needs CPET (VO2max over 20 mL/kg/min low risk, under 10 high risk). ESTS 2014 guideline for invasive mediastinal staging (De Leyn et al.).
 
 ### Question
 
-**Q:** Under the 9th edition, a 2.6 cm tumour (T1c) with metastasis in a single mediastinal station (subcarinal, station 7) and no distant spread is stage…
+**Q:** Under the 9th edition, a 2.6 cm tumor (T1c) with metastasis in a single mediastinal station (subcarinal, station 7) and no distant spread is stage…
 - [x] IIB (T1 N2a)
-  > The 9th edition splits N2: a single station (N2a) with a T1 tumour is IIB; several stations (N2b) make it IIIA. Many single-station N2 patients are now treated with neoadjuvant chemo-immunotherapy and surgery.
+  > The 9th edition splits N2: a single station (N2a) with a T1 tumor is IIB; several stations (N2b) make it IIIA. Many single-station N2 patients are now treated with neoadjuvant chemo-immunotherapy and surgery.
 - [ ] IIIA
 - [ ] IIIB
 - [ ] IV
@@ -51,11 +51,11 @@ The lingula is the upper lobe's lower division, supplied by its own three struct
 
 What stays: the **upper division** above, A6 and the basal trunk in the fissure.
 
-## [seg-lingula-case] Case: a small peripheral tumour: lingula
+## [seg-lingula-case] Case: a small peripheral tumor: lingula
 
 **Stage**: cT1b N0 = IA2. An anatomical **segmentectomy** with sampling of hilar and mediastinal nodes (frozen section: if a node is positive, convert to lobectomy). It saves lung she needs, and in JCOG0802 it gave better overall survival than lobectomy.
 
-The margin must be at least 2 cm or the tumour's diameter; the intersegmental plane is found by inflation–deflation or indocyanine green after the segmental artery is divided.
+The margin must be at least 2 cm or the tumor's diameter; the intersegmental plane is found by inflation–deflation or indocyanine green after the segmental artery is divided.
 
 > **Evidence:** JCOG0802 (Lancet 2022): 5-year OS 94.3% segmentectomy vs 91.1% lobectomy; local recurrence 10.5% vs 5.4%. CALGB 140503 (NEJM 2023): sublobar resection non-inferior for DFS and OS; FEV1 about 2 percentage points better at 6 months.
 
@@ -94,7 +94,7 @@ A **63-year-old woman** with a **1.6 cm** solid-predominant adenocarcinoma in th
 
 #### 4\. Specific to this operation
 
--   Local recurrence somewhat higher than lobectomy, survival not worse for small peripheral tumours (JCOG0802)
+-   Local recurrence somewhat higher than lobectomy, survival not worse for small peripheral tumors (JCOG0802)
 -   Conversion to lobectomy if margins or nodes demand it
 
 #### 5\. Alternatives
@@ -170,7 +170,7 @@ Behind the vein, the **lingular bronchus** leaves the lower side of the upper lo
 
 Lift the divided bronchus and vessels with the specimen and staple along the **inflation–deflation line**, from the hilum outward, keeping the **intersegmental veins** on the side that stays.
 
-A margin of at least the tumour diameter (and 2 cm) is the aim for cancer.
+A margin of at least the tumor diameter (and 2 cm) is the aim for cancer.
 
 ## [sl-specimen] Specimen out, nodes, margins
 

@@ -64,7 +64,7 @@ Type 2 is about 80% of operated defects. Muscular defects are common at birth (a
 | **Moderate** | 1/3 to 2/3 | Partly restrictive | 1.5–3 | **LA and LV dilated**, RV pressure mildly raised |
 | **Large** | Over 2/3 (about the size of the annulus) | Non-restrictive: LV and RV pressures equal | Over 3 (falls as PVR rises) | Heart failure, failure to thrive, pulmonary hypertension |
 
-**LA and LV dilatation are the echo signature of a haemodynamically important shunt**: the shunted blood returns through the lungs to the left heart. A restrictive defect with normal left heart size is followed, not closed.
+**LA and LV dilatation are the echo signature of a hemodynamically important shunt**: the shunted blood returns through the lungs to the left heart. A restrictive defect with normal left heart size is followed, not closed.
 
 Beware a large defect with a **small heart and little murmur** in an older child: the shunt has fallen because pulmonary resistance has risen.
 
@@ -117,7 +117,7 @@ A **7-month-old boy, 5.2 kg** (below the 3rd centile), on furosemide and spirono
 | Large VSD, heart failure, poor growth | Surgical closure in infancy (usually within the first 6 months to a year); PA banding only for multiple muscular defects or a very unwell infant |
 | **LA and LV dilatation** (left heart volume load), Qp:Qs 1.5 or more | Close: the key echo indication at any age, provided PVR allows |
 | Small restrictive VSD, normal heart size | Observe; endocarditis prevention (dental care) |
-| Adult or older child, LV volume overload | Close if PVR is under 3 WU (I) or 3–5 WU (IIa); PVR 5 WU or more: individual decision in an expert centre (IIb) |
+| Adult or older child, LV volume overload | Close if PVR is under 3 WU (I) or 3–5 WU (IIa); PVR 5 WU or more: individual decision in an expert center (IIb) |
 | Outlet VSD with aortic cusp prolapse or AR | Close even when the shunt is small, to protect the valve |
 | Device? | Muscular defects, and selected perimembranous ones in experienced hands; heart block after device closure of perimembranous defects limits its use |
 
@@ -129,21 +129,21 @@ A VSD seen late, as so many are in Kenya, raises one question before any other: 
 
 |  | Points to operable | Warns of inoperable (Eisenmenger) |
 | --- | --- | --- |
-| History | Breathless, poor growth, chest infections (high flow) | Fewer infections and "better" with age; exertional cyanosis, syncope, haemoptysis |
+| History | Breathless, poor growth, chest infections (high flow) | Fewer infections and "better" with age; exertional cyanosis, syncope, hemoptysis |
 | Examination | Normal saturations; loud flow murmur; big active heart | **Resting or exercise desaturation**, clubbing; murmur fading; loud single P2; RV heave; small heart on X-ray |
 | Echo | Left-to-right shunt throughout; dilated left heart (VSD, PDA) or right heart (ASD) | **Bidirectional or right-to-left shunt**; RV hypertrophy; left heart no longer dilated |
 | Catheter (the decider) | **PVRi under about 4 WU·m²** (PVR under 3 WU in adults); PVR/SVR under 1/3; Qp:Qs 1.5 or more | **PVRi over 8 WU·m²** (PVR 5 WU or more in adults despite treatment); PVR/SVR over about 0.4 |
 
--   **Grey zone** (PVRi about 4–8 WU·m²): individual decision in a team with pulmonary hypertension expertise; the response to oxygen or nitric oxide helps, though criteria for shunts are not standardised
+-   **Grey zone** (PVRi about 4–8 WU·m²): individual decision in a team with pulmonary hypertension expertise; the response to oxygen or nitric oxide helps, though criteria for shunts are not standardized
 -   **Treat-and-repair** (pulmonary vasodilators first, then a fenestrated or flap-valve closure) is used in selected patients but remains controversial
--   Where catheterisation is not available, a clear left-to-right shunt with a dilated left heart and normal saturations is reassuring; any desaturation or bidirectional flow needs a catheter before surgery
+-   Where catheterization is not available, a clear left-to-right shunt with a dilated left heart and normal saturations is reassuring; any desaturation or bidirectional flow needs a catheter before surgery
 
 > **Evidence:** 6th World Symposium: PVRi 4 WU·m² as the operability cut-off, 4–8 individual, over 8 inoperable; AHA/ATS 2015: PVRi 6–8 WU·m² individual, PVR/SVR under 1/3 operable; ESC 2020 (adults): PVR under 3 WU class I, 3–5 WU IIa, 5 WU or more only in selected cases; vasoreactivity criteria for shunts not established (ERJ Open Res 2023).
 
 ### Question
 
 **Q:** A 7-year-old with a large VSD now has saturations of 89% at rest and bidirectional shunting on echo. Next step?
-- [x] Cardiac catheterisation with PVR measurement and vasoreactivity testing before any decision
+- [x] Cardiac catheterization with PVR measurement and vasoreactivity testing before any decision
   > Desaturation and bidirectional flow suggest advanced pulmonary vascular disease; closure could be lethal if PVR is fixed.
 - [ ] Close the defect urgently
 - [ ] Discharge: the shunt has improved
@@ -238,7 +238,7 @@ A **Dacron, PTFE or treated pericardial patch** a little larger than the defect,
 
 Test the tricuspid valve with saline and resuspend a detached leaflet. Watch the rhythm when the heart beats again.
 
-> **Evidence:** TSRA primer: the conduction system runs close to the posteroinferior edge: partial-thickness bites. Yoneyama 2022: in perimembranous outlet defects the conduction tissue deviates toward the LV side, which favours shallow continuous suturing.
+> **Evidence:** TSRA primer: the conduction system runs close to the posteroinferior edge: partial-thickness bites. Yoneyama 2022: in perimembranous outlet defects the conduction tissue deviates toward the LV side, which favors shallow continuous suturing.
 
 ### Question
 
@@ -251,7 +251,7 @@ Test the tricuspid valve with saline and resuspend a detached leaflet. Watch the
 
 ## [vsd-close] De-air, close the atrium, release the clamp
 
-Before the last sutures: **fill the left heart** (anaesthetist inflates the lungs), let air escape through the defect or the patch edge, then tie. Close the right atriotomy in two layers of running polypropylene, release the snares, **vent the aortic root** and remove the cross-clamp.
+Before the last sutures: **fill the left heart** (anesthetist inflates the lungs), let air escape through the defect or the patch edge, then tie. Close the right atriotomy in two layers of running polypropylene, release the snares, **vent the aortic root** and remove the cross-clamp.
 
 Check the rhythm off bypass: **complete heart block** needs temporary pacing; if it persists beyond about 7–10 days, a permanent pacemaker.
 
@@ -268,7 +268,7 @@ Start with the [cardiac core](#approach=cticu-cardiac&step=0), the [lab schedule
 -   ECG and rhythm: junctional ectopic tachycardia (cool, correct Mg²⁺, reduce inotropes) or heart block (pace)
 -   Pulmonary hypertensive crisis: sedation, oxygen, avoid acidosis and hypercarbia; nitric oxide where available
 -   Echo: residual VSD, tricuspid and aortic regurgitation
--   Children: fluids, drugs and blood by weight with the paediatric intensivist; the adult dose tables do not apply
+-   Children: fluids, drugs and blood by weight with the pediatric intensivist; the adult dose tables do not apply
 
 #### Labs
 

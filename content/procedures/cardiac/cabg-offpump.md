@@ -9,7 +9,7 @@ summary: Case-based: single-vessel MIDCAB, two-vessel LIMA + radial, three-vesse
 
 ## [cf-case] Case: three-vessel disease with impaired LV
 
-> **Evidence:** STICHES (NEJM 2016): in ischaemic cardiomyopathy with EF 35% or less, CABG plus medical therapy reduced death from any cause at 10 years compared with medical therapy alone (59% vs 66%).
+> **Evidence:** STICHES (NEJM 2016): in ischemic cardiomyopathy with EF 35% or less, CABG plus medical therapy reduced death from any cause at 10 years compared with medical therapy alone (59% vs 66%).
 
 ### Case
 
@@ -19,20 +19,20 @@ A 64-year-old man, diabetic, breathless and with angina; **EF 30%** with viable 
 
 **Q:** EF 30%, three-vessel disease, suitable targets. Compared with medical therapy alone, CABG…
 - [x] reduces death at 10 years (STICHES)
-  > STICH, extended to 10 years (STICHES), showed lower all-cause and cardiovascular mortality with CABG in ischaemic cardiomyopathy.
+  > STICH, extended to 10 years (STICHES), showed lower all-cause and cardiovascular mortality with CABG in ischemic cardiomyopathy.
 - [ ] has no effect on survival
 - [ ] is contraindicated below EF 35%
 - [ ] is harmful when the EF is below 35%
 
 ## [cf-decide] Why surgery, which conduits, and why off-pump
 
-**Surgery over PCI** (Heart Team, ACC/AHA/SCAI 2021): **left main** disease (CABG class I; PCI class IIa if anatomy is of low or intermediate complexity); **diabetes with three-vessel disease** (CABG class I); **three-vessel disease with a normal EF** (CABG class IIb for survival). With **ischaemic cardiomyopathy**, CABG improves long-term survival (STICHES).
+**Surgery over PCI** (Heart Team, ACC/AHA/SCAI 2021): **left main** disease (CABG class I; PCI class IIa if anatomy is of low or intermediate complexity); **diabetes with three-vessel disease** (CABG class I); **three-vessel disease with a normal EF** (CABG class IIb for survival). With **ischemic cardiomyopathy**, CABG improves long-term survival (STICHES).
 
 **Conduits**: the **LIMA to the LAD** is the foundation. For the second most important target, a **radial artery** is preferred to vein (ACC/AHA/SCAI class IIa). Saphenous vein for the rest.
 
-**Off-pump** avoids bypass and aortic manipulation; it fits a heavily calcified aorta (a no-touch aorta), and it needs experience with the stabiliser and heart positioning.
+**Off-pump** avoids bypass and aortic manipulation; it fits a heavily calcified aorta (a no-touch aorta), and it needs experience with the stabilizer and heart positioning.
 
-> **Evidence:** FREEDOM (NEJM 2012): in diabetes with multivessel disease, CABG reduced death, MI and stroke at 5 years compared with drug-eluting stents. STICHES (NEJM 2016): CABG reduced 10-year death in ischaemic cardiomyopathy (EF 35% or less). RADIAL (NEJM 2018, 6 trials, 1,036 patients): radial artery grafts had fewer adverse cardiac events (HR 0.67) and graft occlusions (HR 0.44) than vein at 5 years, with no difference in death. ART (NEJM 2019): bilateral ITA grafts did not reduce 10-year death on intention to treat (many crossovers; radial artery used in some single-ITA patients), and sternal wound complications were more frequent. CORONARY (NEJM 2016, 4,752 patients): off-pump and on-pump had the same 5-year composite (23.1% vs 23.6%). ROOBY-FS (NEJM 2017): off-pump had higher 5-year mortality in VA surgeons' hands; at 10 years (JAMA Surg 2022) the difference was no longer significant.
+> **Evidence:** FREEDOM (NEJM 2012): in diabetes with multivessel disease, CABG reduced death, MI and stroke at 5 years compared with drug-eluting stents. STICHES (NEJM 2016): CABG reduced 10-year death in ischemic cardiomyopathy (EF 35% or less). RADIAL (NEJM 2018, 6 trials, 1,036 patients): radial artery grafts had fewer adverse cardiac events (HR 0.67) and graft occlusions (HR 0.44) than vein at 5 years, with no difference in death. ART (NEJM 2019): bilateral ITA grafts did not reduce 10-year death on intention to treat (many crossovers; radial artery used in some single-ITA patients), and sternal wound complications were more frequent. CORONARY (NEJM 2016, 4,752 patients): off-pump and on-pump had the same 5-year composite (23.1% vs 23.6%). ROOBY-FS (NEJM 2017): off-pump had higher 5-year mortality in VA surgeons' hands; at 10 years (JAMA Surg 2022) the difference was no longer significant.
 
 ### Question
 
@@ -63,7 +63,7 @@ A 64-year-old man, diabetic, breathless and with angina; **EF 30%** with viable 
 
 #### 4\. Specific to this operation
 
--   Radial artery harvest: hand ischaemia (Allen test)
+-   Radial artery harvest: hand ischemia (Allen test)
 -   On-pump versus off-pump
 
 #### 5\. Alternatives
@@ -100,11 +100,11 @@ Median sternotomy; open the pericardium in the midline and **hitch it up as a cr
 
 ## [cf-lima] Harvest the LIMA
 
-A retractor lifts the left sternal half. Open the left pleura if needed. Harvest the **left internal mammary artery** from its origin under the subclavian vein to its bifurcation at the 6th space: as a **pedicle** (with its veins, fat and muscle) or **skeletonised** (the artery alone, with low-energy diathermy and clips on each branch).
+A retractor lifts the left sternal half. Open the left pleura if needed. Harvest the **left internal mammary artery** from its origin under the subclavian vein to its bifurcation at the 6th space: as a **pedicle** (with its veins, fat and muscle) or **skeletonized** (the artery alone, with low-energy diathermy and clips on each branch).
 
 Heparin before dividing it distally; check the free flow; spray papaverine to prevent spasm; keep it long enough to reach the LAD without tension.
 
-> **Evidence:** skeletonisation gives a longer conduit and preserves sternal blood supply (fewer sternal wound problems with bilateral ITA). In a post hoc analysis of ART, skeletonised grafts were associated with more adverse events in some analyses, so the choice remains debated and experience-dependent.
+> **Evidence:** skeletonization gives a longer conduit and preserves sternal blood supply (fewer sternal wound problems with bilateral ITA). In a post hoc analysis of ART, skeletonized grafts were associated with more adverse events in some analyses, so the choice remains debated and experience-dependent.
 
 ## [cf-conduits] Radial artery or long saphenous vein
 
@@ -123,19 +123,19 @@ Heparin before dividing it distally; check the free flow; spray papaverine to pr
 - [ ] Neither
 - [ ] Both are equally at risk
 
-## [cf-position] Off-pump: heparin, positioning, stabiliser
+## [cf-position] Off-pump: heparin, positioning, stabilizer
 
 Heparin (a lower dose than for bypass, often about 150–200 U/kg, per unit practice). Keep the patient **warm**, the blood pressure up and the heart filled. **Deep pericardial stitches** (and head-down tilt) lift and rotate the heart without compressing it; an **apical suction** device helps for the lateral and inferior walls.
 
 Graft the **LAD first** with the LIMA: the anterior wall is then reperfused before the heart is lifted for the other targets. Keep a perfusionist and pump ready: convert if the heart will not tolerate positioning.
 
-> **Evidence:** conversion from off-pump to on-pump during surgery is associated with worse outcomes in registry data, which is why haemodynamic instability should prompt an early, controlled conversion rather than a late, emergency one.
+> **Evidence:** conversion from off-pump to on-pump during surgery is associated with worse outcomes in registry data, which is why hemodynamic instability should prompt an early, controlled conversion rather than a late, emergency one.
 
 ## [cf-lad] Distal: LIMA to LAD (first, off-pump)
 
 Bring the LIMA pedicle down lateral to the pulmonary artery, with no tension or twist and enough length for the heart to fill. On the **mid LAD** beyond the disease (after the second diagonal here): a 4–5 mm arteriotomy on the vessel's anterior surface; an end-to-side anastomosis with running **8-0 polypropylene**, heel and toe first; tack the pedicle to the epicardium on each side.
 
-**Off-pump**: the stabiliser holds the target still; an intracoronary shunt or a silicone snare proximally keeps the field bloodless; a CO₂ blower clears the view. Warn the anaesthetist before lifting the heart.
+**Off-pump**: the stabilizer holds the target still; an intracoronary shunt or a silicone snare proximally keeps the field bloodless; a CO₂ blower clears the view. Warn the anesthetist before lifting the heart.
 
 > **Evidence:** LIMA to LAD gives the best long-term patency and survival of any graft and is the basis of the class I recommendation to use it; its patency is above 90% at 10 years in large series.
 
@@ -145,7 +145,7 @@ Lift the apex (on-pump: with the heart empty; off-pump: an apical suction device
 
 Judge the vein's length with the heart **filled**: too long kinks, too short tears.
 
-**Off-pump**: the stabiliser holds the target still; an intracoronary shunt or a silicone snare proximally keeps the field bloodless; a CO₂ blower clears the view. Warn the anaesthetist before lifting the heart.
+**Off-pump**: the stabilizer holds the target still; an intracoronary shunt or a silicone snare proximally keeps the field bloodless; a CO₂ blower clears the view. Warn the anesthetist before lifting the heart.
 
 > **Evidence:** the order of grafting (lateral and inferior wall first, LIMA to LAD last on-pump so it is not torn when the heart is lifted) is standard practice (Kirklin/Barratt-Boyes).
 
@@ -153,7 +153,7 @@ Judge the vein's length with the heart **filled**: too long kinks, too short tea
 
 Lift the heart up and toward the head to expose the **inferior wall**. The **PDA** beyond the crux, or the distal RCA before the crux if it is large and soft: the vein end-to-side with running 7-0 polypropylene.
 
-**Off-pump**: the stabiliser holds the target still; an intracoronary shunt or a silicone snare proximally keeps the field bloodless; a CO₂ blower clears the view. Warn the anaesthetist before lifting the heart.
+**Off-pump**: the stabilizer holds the target still; an intracoronary shunt or a silicone snare proximally keeps the field bloodless; a CO₂ blower clears the view. Warn the anesthetist before lifting the heart.
 
 > **Evidence:** grafting the PDA rather than a diseased distal RCA avoids the crux, where disease is common; the choice follows the angiogram and palpation, not trials.
 
@@ -200,7 +200,7 @@ Doses: [electrolytes](#approach=cticu-doses&step=0), [vasoactive drugs](#approac
 
 **Q:** Four hours after CABG, bleeding has settled. What should start within 6 h?
 - [x] Aspirin
-  > Early aspirin after CABG reduces death and ischaemic complications (Mangano, NEJM 2002).
+  > Early aspirin after CABG reduces death and ischemic complications (Mangano, NEJM 2002).
 - [ ] Warfarin
 - [ ] Clopidogrel loading only
 - [ ] Aspirin only after the drains are out on day 3

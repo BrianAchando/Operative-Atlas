@@ -30,9 +30,9 @@ The **root** runs from the ventricular attachment of the cusps (the annulus) to 
 
 -   **Valve-sparing root replacement** (David, Yacoub) when the cusps are good: no prosthesis, no warfarin. It needs experience.
 -   **Bentall** (composite valved graft) when the valve is diseased: the reliable standard. **Mechanical** for the young with reliable INR monitoring, **biological** ("bio-Bentall") for the older.
--   **Ross** (pulmonary autograft) for selected young adults with aortic valve disease, at experienced centres.
+-   **Ross** (pulmonary autograft) for selected young adults with aortic valve disease, at experienced centers.
 
-> **Evidence:** no randomised trial compares mechanical and biological Bentall; in a propensity-matched series of 1,112 patients (Pantaleo et al., EJCTS 2017), 5-year survival did not differ (84% vs 87%), with more reoperation after tissue valves and more bleeding after mechanical ones.
+> **Evidence:** no randomized trial compares mechanical and biological Bentall; in a propensity-matched series of 1,112 patients (Pantaleo et al., EJCTS 2017), 5-year survival did not differ (84% vs 87%), with more reoperation after tissue valves and more bleeding after mechanical ones.
 
 ### Case
 
@@ -42,7 +42,7 @@ A **45-year-old schoolteacher** with a bicuspid aortic valve known since a murmu
 
 **Q:** A 45-year-old with a 5.6 cm root aneurysm and a severely stenotic bicuspid valve. What operation fits?
 - [x] A Bentall (mechanical composite graft, if INR monitoring is reliable)
-  > The root is past 5.5 cm and the valve is diseased, so valve-sparing is not an option; at 45 guidelines favour a mechanical valve if anticoagulation is safe.
+  > The root is past 5.5 cm and the valve is diseased, so valve-sparing is not an option; at 45 guidelines favor a mechanical valve if anticoagulation is safe.
 - [ ] AVR alone
 - [ ] A valve-sparing root replacement
 - [ ] Surveillance
@@ -61,7 +61,7 @@ A **45-year-old schoolteacher** with a bicuspid aortic valve known since a murmu
 
 -   Stroke
 -   Death
--   Coronary button ischaemia
+-   Coronary button ischemia
 -   Heart block
 
 #### 4\. Specific to this operation
@@ -134,13 +134,13 @@ Cross-clamp high; cardioplegia **retrograde** and **directly into the ostia** on
 
 Mobilise each button **just enough** to reach the graft: the left main is short and lies behind the pulmonary trunk; the right coronary has branches (conus, RV branches) that tether it.
 
-> **Evidence:** the "open" button technique replaced the older inclusion and wrap methods, which were associated with pseudoaneurysms at the coronary suture lines. When buttons cannot be mobilised (redo, low ostia), a small interposition graft (Cabrol) is used.
+> **Evidence:** the "open" button technique replaced the older inclusion and wrap methods, which were associated with pseudoaneurysms at the coronary suture lines. When buttons cannot be mobilized (redo, low ostia), a small interposition graft (Cabrol) is used.
 
 ## [rb-graft] Sew the composite graft to the annulus
 
 Size the annulus. Place **pledgeted horizontal mattress sutures** round the annulus (non-everting, pledgets below, so the valve sits supra-annular), through the sewing ring of the composite graft, and tie. Shallow bites under the right–non-coronary commissure (His bundle).
 
-The graft diameter is usually the annulus size plus a few millimetres, so the coronary buttons can be reached and the distal aorta matched.
+The graft diameter is usually the annulus size plus a few millimeters, so the coronary buttons can be reached and the distal aorta matched.
 
 > **Evidence:** pledgeted interrupted sutures are the usual choice at the proximal line, where bleeding after the graft is in is hard to reach; there is no trial of techniques in root replacement.
 
@@ -150,7 +150,7 @@ Cut a hole in the graft (cautery) opposite each ostium. Sew each button end-to-s
 
 Test each suture line (cardioplegia down the graft) **before** the distal anastomosis: afterwards the back of these suture lines is hard to reach.
 
-> **Evidence:** coronary button problems (kinking, tension, bleeding) are the main technical causes of early death and ischaemia after root replacement in series; positioning with the heart filled is standard advice.
+> **Evidence:** coronary button problems (kinking, tension, bleeding) are the main technical causes of early death and ischemia after root replacement in series; positioning with the heart filled is standard advice.
 
 ### Question
 
@@ -165,7 +165,7 @@ Test each suture line (cardioplegia down the graft) **before** the distal anasto
 
 Cut the graft to length and join it to the ascending aorta with running **4-0 polypropylene**, often with a felt strip. De-air through the root vent in the graft, release the clamp, and check **every suture line**, especially the backs of the buttons.
 
-**TOE**: valve function, **regional wall motion** in the left and right coronary territories, no leak. Bleeding is the other big risk: keep haemostatic agents and blood ready.
+**TOE**: valve function, **regional wall motion** in the left and right coronary territories, no leak. Bleeding is the other big risk: keep hemostatic agents and blood ready.
 
 > **Evidence:** bleeding and coronary problems dominate early morbidity after root replacement in large series (Kirklin/Barratt-Boyes).
 
@@ -177,7 +177,7 @@ Reperfuse on bypass until the heart is ready (about a third of the clamp time is
 
 Then venous cannula out, protamine, arterial cannula out last.
 
-> **Evidence:** intraoperative TOE is standard in valve surgery (ASE/SCA guidelines). A leak more than mild on TOE is usually repaired before leaving theatre, because significant paravalvular leak is associated with haemolysis, heart failure and worse survival.
+> **Evidence:** intraoperative TOE is standard in valve surgery (ASE/SCA guidelines). A leak more than mild on TOE is usually repaired before leaving theatre, because significant paravalvular leak is associated with hemolysis, heart failure and worse survival.
 
 ### Question
 
@@ -195,7 +195,7 @@ Start with the [cardiac core](#approach=cticu-cardiac&step=0), the [lab schedule
 #### Specific to this operation
 
 -   Strict blood pressure control to protect suture lines
--   New ST change or ventricular arrhythmia: coronary button ischaemia
+-   New ST change or ventricular arrhythmia: coronary button ischemia
 -   Ross: control autograft pressure
 
 #### Labs
@@ -207,7 +207,7 @@ Doses: [electrolytes](#approach=cticu-doses&step=0), [vasoactive drugs](#approac
 ### Question
 
 **Q:** After a Bentall, new ST elevation in the inferior leads. Think of?
-- [x] Right coronary button kinking or ischaemia
+- [x] Right coronary button kinking or ischemia
   > Coronary button problems present early with ST change or arrhythmia: echo and angiography.
 - [ ] Pericarditis, which needs only an NSAID
 - [ ] Left main button kinking

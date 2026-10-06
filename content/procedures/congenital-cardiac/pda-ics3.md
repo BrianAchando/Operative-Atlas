@@ -51,7 +51,7 @@ The classification comes from lateral angiography, but echo and CT show the same
 - [ ] Type C, tubular
 - [ ] Type E, elongated
 
-## [pda-size] Size and haemodynamic significance
+## [pda-size] Size and hemodynamic significance
 
 | Grade | Narrowest diameter (child or adult) | Clinical picture |
 | --- | --- | --- |
@@ -61,11 +61,11 @@ The classification comes from lateral angiography, but echo and CT show the same
 | **Moderate** | Over 3 to 5 mm | **LA and LV dilated**, wide pulse pressure; may be symptomatic |
 | **Large** | Over 5 mm | Heart failure, poor growth, pulmonary hypertension; risk of pulmonary vascular disease |
 
-In a preterm baby millimetres matter less than **haemodynamic significance**: the ratio of the duct to the baby's size, left heart dilatation, flow reversal in the descending aorta, and the clinical state.
+In a preterm baby millimeters matter less than **hemodynamic significance**: the ratio of the duct to the baby's size, left heart dilatation, flow reversal in the descending aorta, and the clinical state.
 
 As with a VSD, **LA and LV dilatation** is the sign that the shunt matters.
 
-> **Evidence:** Size bands from the classification table in Fernando et al. 2013 (silent; very small under 1.5 mm; small 1.5–3 mm; moderate over 3–5 mm; large over 5 mm). ESC 2020: closure in adults on haemodynamic grounds (LV volume overload, PVR under 3 WU).
+> **Evidence:** Size bands from the classification table in Fernando et al. 2013 (silent; very small under 1.5 mm; small 1.5–3 mm; moderate over 3–5 mm; large over 5 mm). ESC 2020: closure in adults on hemodynamic grounds (LV volume overload, PVR under 3 WU).
 
 ## [pda-anatomy] The duct, the nerves and the wrong vessels
 
@@ -84,7 +84,7 @@ The classic disasters are ligating the **left pulmonary artery** or the **descen
 
 A large symptomatic duct with left heart dilatation in a child too small for the available device: ligate it surgically.
 
-> **Evidence:** ESC 2020 (adults): closure is indicated on haemodynamic grounds (LV volume overload) with PVR under 3 WU; device closure is preferred when feasible. TSRA primer: in adults with a calcified duct, closure may need bypass.
+> **Evidence:** ESC 2020 (adults): closure is indicated on hemodynamic grounds (LV volume overload) with PVR under 3 WU; device closure is preferred when feasible. TSRA primer: in adults with a calcified duct, closure may need bypass.
 
 ### Case
 
@@ -107,7 +107,7 @@ A **14-month-old girl, 7.4 kg**, with poor weight gain and recurrent chest infec
 | Term infant or child, large duct | Device closure where available and the child is big enough; surgical ligation otherwise |
 | Small, silent duct | No closure needed |
 | Adult, calcified or aneurysmal duct | Device if feasible; otherwise surgery, often on bypass through a sternotomy |
-| PVR 5 WU or more | Individual decision in an expert centre (ESC IIb) |
+| PVR 5 WU or more | Individual decision in an expert center (ESC IIb) |
 
 ## [pda-operable] Is this patient still operable?
 
@@ -115,21 +115,21 @@ A PDA seen late, as so many are in Kenya, raises one question before any other: 
 
 |  | Points to operable | Warns of inoperable (Eisenmenger) |
 | --- | --- | --- |
-| History | Breathless, poor growth, chest infections (high flow) | Fewer infections and "better" with age; exertional cyanosis, syncope, haemoptysis |
+| History | Breathless, poor growth, chest infections (high flow) | Fewer infections and "better" with age; exertional cyanosis, syncope, hemoptysis |
 | Examination | Normal saturations; loud flow murmur; big active heart | **Resting or exercise desaturation**, clubbing; murmur fading; loud single P2; RV heave; small heart on X-ray |
 | Echo | Left-to-right shunt throughout; dilated left heart (VSD, PDA) or right heart (ASD) | **Bidirectional or right-to-left shunt**; RV hypertrophy; left heart no longer dilated |
 | Catheter (the decider) | **PVRi under about 4 WU·m²** (PVR under 3 WU in adults); PVR/SVR under 1/3; Qp:Qs 1.5 or more | **PVRi over 8 WU·m²** (PVR 5 WU or more in adults despite treatment); PVR/SVR over about 0.4 |
 
--   **Grey zone** (PVRi about 4–8 WU·m²): individual decision in a team with pulmonary hypertension expertise; the response to oxygen or nitric oxide helps, though criteria for shunts are not standardised
+-   **Grey zone** (PVRi about 4–8 WU·m²): individual decision in a team with pulmonary hypertension expertise; the response to oxygen or nitric oxide helps, though criteria for shunts are not standardized
 -   **Treat-and-repair** (pulmonary vasodilators first, then a fenestrated or flap-valve closure) is used in selected patients but remains controversial
--   Where catheterisation is not available, a clear left-to-right shunt with a dilated left heart and normal saturations is reassuring; any desaturation or bidirectional flow needs a catheter before surgery
+-   Where catheterization is not available, a clear left-to-right shunt with a dilated left heart and normal saturations is reassuring; any desaturation or bidirectional flow needs a catheter before surgery
 
 > **Evidence:** 6th World Symposium: PVRi 4 WU·m² as the operability cut-off, 4–8 individual, over 8 inoperable; AHA/ATS 2015: PVRi 6–8 WU·m² individual, PVR/SVR under 1/3 operable; ESC 2020 (adults): PVR under 3 WU class I, 3–5 WU IIa, 5 WU or more only in selected cases; vasoreactivity criteria for shunts not established (ERJ Open Res 2023).
 
 ### Question
 
 **Q:** A 7-year-old with a large PDA now has saturations of 89% at rest and bidirectional shunting on echo. Next step?
-- [x] Cardiac catheterisation with PVR measurement and vasoreactivity testing before any decision
+- [x] Cardiac catheterization with PVR measurement and vasoreactivity testing before any decision
   > Desaturation and bidirectional flow suggest advanced pulmonary vascular disease; closure could be lethal if PVR is fixed.
 - [ ] Close the defect urgently
 - [ ] Discharge: the shunt has improved
@@ -238,9 +238,9 @@ Dissect the **upper and lower borders** of the duct with fine scissors, then pas
 
 ## [pda-ics3-tie] Ligate: aortic end first
 
-Tie two heavy non-absorbable ligatures, the **aortic end first**, then the pulmonary end, slowly while the anaesthetist lowers the pressure a little. In a premature or small infant a **titanium clip** is enough; a short, wide or older duct is safer **divided between clamps and oversewn**.
+Tie two heavy non-absorbable ligatures, the **aortic end first**, then the pulmonary end, slowly while the anesthetist lowers the pressure a little. In a premature or small infant a **titanium clip** is enough; a short, wide or older duct is safer **divided between clamps and oversewn**.
 
-Check the RLN, haemostasis and the lung; close the pleura over the aorta; one chest drain (often removed early).
+Check the RLN, hemostasis and the lung; close the pleura over the aorta; one chest drain (often removed early).
 
 > **Evidence:** Thoracic Key: two heavy Ethibond sutures; finer suture can cut through a friable duct; division between clamps and oversewing for others. TSRA primer: a clip over the aortic end, or double or triple ligation with 3-0 non-absorbable suture; older children divided between ligatures.
 
@@ -248,7 +248,7 @@ Check the RLN, haemostasis and the lung; close the pleura over the aorta; one ch
 
 Hours after ligation in a preterm infant: **falling blood pressure, worsening oxygenation and ventilation**, often needing inotropes, typically **6–12 hours** after surgery.
 
-Chain: Duct tied → **LV afterload rises suddenly** → Preload falls (no more ductal return) → Immature LV cannot cope → Low output, hypotension, pulmonary oedema
+Chain: Duct tied → **LV afterload rises suddenly** → Preload falls (no more ductal return) → Immature LV cannot cope → Low output, hypotension, pulmonary edema
 
 #### Recognise and prevent
 
@@ -280,7 +280,7 @@ Start with the [cardiac core](#approach=cticu-cardiac&step=0), the [lab schedule
 -   Older children: the diastolic pressure rises; treat hypertension
 -   Voice and swallowing: RLN injury
 -   Chest drain: blood, air or chyle (milky after feeds)
--   Children: fluids, drugs and blood by weight with the paediatric intensivist; the adult dose tables do not apply
+-   Children: fluids, drugs and blood by weight with the pediatric intensivist; the adult dose tables do not apply
 
 #### Labs
 
@@ -296,7 +296,7 @@ Doses: [electrolytes](#approach=cticu-doses&step=0), [vasoactive drugs](#approac
 - [x] Chylothorax
   > The thoracic duct lies close by; drain, medium-chain triglyceride feeds, and re-explore if it persists.
 - [ ] Empyema
-- [ ] Haemothorax
+- [ ] Hemothorax
 - [ ] Serous drainage that is normal after ligation
 
 ## Sources

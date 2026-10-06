@@ -9,11 +9,11 @@ summary: Case-based: pathophysiology, anatomy, the patient and the decision, the
 
 ## [me-patho] Pathophysiology: endocarditis on a rheumatic valve
 
-**Why rheumatic valves get infected.** Rheumatic heart disease is the commonest substrate for endocarditis in African adults. A regurgitant jet and a scarred valve damage the endothelium on the **low-pressure side** (the atrial face of the mitral leaflets); platelets and fibrin settle there (a sterile thrombus). A transient bacteraemia (dental sepsis, skin infection, an intravenous line, injecting) seeds it, and the organisms multiply inside the growing **vegetation**, shielded from white cells and antibiotics. This is why bactericidal antibiotics are given intravenously for weeks.
+**Why rheumatic valves get infected.** Rheumatic heart disease is the commonest substrate for endocarditis in African adults. A regurgitant jet and a scarred valve damage the endothelium on the **low-pressure side** (the atrial face of the mitral leaflets); platelets and fibrin settle there (a sterile thrombus). A transient bacteremia (dental sepsis, skin infection, an intravenous line, injecting) seeds it, and the organisms multiply inside the growing **vegetation**, shielded from white cells and antibiotics. This is why bactericidal antibiotics are given intravenously for weeks.
 
 What the infection does:
 
-Chain: Vegetation → **Destruction: leaflet perforation, chordal rupture** → Acute severe MR → **Pulmonary oedema, shock**
+Chain: Vegetation → **Destruction: leaflet perforation, chordal rupture** → Acute severe MR → **Pulmonary edema, shock**
 
 Chain: Vegetation → **Embolism: brain, spleen, kidneys, limbs** → Risk highest with mobile vegetations ≥10 mm on the anterior mitral leaflet
 
@@ -51,19 +51,19 @@ Round the posterior annulus, in the AV groove: the **circumflex artery** (close 
 
 **Indications** (ESC 2023): severe MR with heart failure; a vegetation of 10 mm or more **after an embolic event**. Both point to **urgent** surgery, within days, on antibiotics.
 
-**The stroke**: after a transient ischaemic attack or an ischaemic stroke **without haemorrhage or coma**, surgery should not be delayed when it is indicated for heart failure, uncontrolled infection or a high embolic risk. After an intracranial **haemorrhage**, surgery is generally deferred (often about 4 weeks) unless the patient is unstable.
+**The stroke**: after a transient ischemic attack or an ischemic stroke **without hemorrhage or coma**, surgery should not be delayed when it is indicated for heart failure, uncontrolled infection or a high embolic risk. After an intracranial **hemorrhage**, surgery is generally deferred (often about 4 weeks) unless the patient is unstable.
 
 > **Evidence:** EASE (NEJM 2012; 76 patients with left-sided endocarditis, severe valve disease and vegetations over 10 mm): surgery within 48 hours reduced in-hospital death or embolism at 6 weeks from 23% to 3%, mainly by preventing embolism. ESC 2023 endocarditis guidelines (Delgado et al.) define emergency (within 24 h), urgent (3–5 days) and non-urgent timing.
 
 ### Case
 
-A **24-year-old man** with known rheumatic MR, three weeks of fever after a dental abscess. Two blood cultures grow *Streptococcus*. Today: sudden **left arm weakness**; CT head: a small ischaemic infarct, **no haemorrhage**. TOE: a **14 mm mobile vegetation** on the anterior leaflet, a leaflet perforation, **severe MR**; breathless on minimal exertion.
+A **24-year-old man** with known rheumatic MR, three weeks of fever after a dental abscess. Two blood cultures grow *Streptococcus*. Today: sudden **left arm weakness**; CT head: a small ischemic infarct, **no hemorrhage**. TOE: a **14 mm mobile vegetation** on the anterior leaflet, a leaflet perforation, **severe MR**; breathless on minimal exertion.
 
 ### Question
 
-**Q:** Small ischaemic stroke without haemorrhage, a 14 mm mobile vegetation, severe MR with heart failure. When should he have surgery?
+**Q:** Small ischemic stroke without hemorrhage, a 14 mm mobile vegetation, severe MR with heart failure. When should he have surgery?
 - [x] Urgently, within days, without waiting for the stroke to recover
-  > A non-haemorrhagic stroke without coma is not a reason to delay when surgery is indicated; waiting risks a second embolus and worsening heart failure (EASE; ESC 2023).
+  > A non-hemorrhagic stroke without coma is not a reason to delay when surgery is indicated; waiting risks a second embolus and worsening heart failure (EASE; ESC 2023).
 - [ ] After 6 weeks of antibiotics
 - [ ] After 4 weeks, to let the stroke settle
 - [ ] Only if a second embolus occurs
@@ -180,7 +180,7 @@ A common compromise: **ventricular pledgets posteriorly and at the commissures**
 
 Whatever the technique, bite **in the annulus, not beyond it**.
 
-> **Evidence:** no randomised trial compares everting and non-everting sutures in MVR. In the AVERT trial cohort, **pledgeted** sutures were associated with fewer major paravalvular leaks than unpledgeted ones (Englberger et al., *Eur J Cardiothorac Surg* 2005). The ACC/AHA 2020 and ESC/EACTS 2021 valve guidelines make no recommendation on suture technique, but support **preserving the subvalvular apparatus** in MVR (for LV function), and that is one more reason to keep pledgets clear of preserved chordae.
+> **Evidence:** no randomized trial compares everting and non-everting sutures in MVR. In the AVERT trial cohort, **pledgeted** sutures were associated with fewer major paravalvular leaks than unpledgeted ones (Englberger et al., *Eur J Cardiothorac Surg* 2005). The ACC/AHA 2020 and ESC/EACTS 2021 valve guidelines make no recommendation on suture technique, but support **preserving the subvalvular apparatus** in MVR (for LV function), and that is one more reason to keep pledgets clear of preserved chordae.
 
 ### Question
 
@@ -246,7 +246,7 @@ Close the left atriotomy with 3-0/4-0 polypropylene, leaving the LV vent across 
 
 The end-point is **TOE, not the clock**: no bubbles in the LA, LV or pulmonary veins at near-normal filling, then vent out.
 
-> **Evidence:** no trial compares early with late de-airing; practice rests on physiology and TOE studies. CO₂ field flooding cut microemboli on TOE in a randomised trial (Svenarud et al., *Circulation* 2004) and reduced neurocognitive impairment in another (Martens et al., *Ann Thorac Surg* 2008); a benefit for stroke has not been shown. Intraoperative TOE in valve surgery, including to guide de-airing, is standard practice (ASE/SCA guidelines, Hahn et al., *J Am Soc Echocardiogr* 2013).
+> **Evidence:** no trial compares early with late de-airing; practice rests on physiology and TOE studies. CO₂ field flooding cut microemboli on TOE in a randomized trial (Svenarud et al., *Circulation* 2004) and reduced neurocognitive impairment in another (Martens et al., *Ann Thorac Surg* 2008); a benefit for stroke has not been shown. Intraoperative TOE in valve surgery, including to guide de-airing, is standard practice (ASE/SCA guidelines, Hahn et al., *J Am Soc Echocardiogr* 2013).
 
 **TOE** before leaving theatre: no paravalvular leak, leaflets moving, no LVOT obstruction. Pacing wires, drains.
 
@@ -263,13 +263,13 @@ Serious complications: **AV groove disruption** (catastrophic), circumflex injur
 
 ## [me-reperfuse] Reperfuse on bypass, or separate early?
 
-With the clamp off the heart is **reperfused while bypass still carries the circulation**. How long to rest it before weaning is a judgement, not a fixed rule. A common rule of thumb is about **a third of the cross-clamp time** (roughly 10 minutes for each 30 of ischaemia).
+With the clamp off the heart is **reperfused while bypass still carries the circulation**. How long to rest it before weaning is a judgment, not a fixed rule. A common rule of thumb is about **a third of the cross-clamp time** (roughly 10 minutes for each 30 of ischemia).
 
 **Waiting for myocardial recovery** (a longer supported reperfusion): it washes out cardioplegia and potassium, restores energy stores, lets the rhythm settle and rewarming finish, and needs fewer inotropes. Worth it after a **long clamp**, with a **poor LV or RV**, a hypertrophied ventricle, doubtful protection, or **pulmonary hypertension** (common in rheumatic mitral stenosis: the RV fails first).
 
-**Separating early**: every extra minute of bypass adds haemodilution, platelet damage, inflammation and bleeding. After a **short clamp**, a good ventricle, sound protection and a stable rhythm, wean as soon as the conditions are met.
+**Separating early**: every extra minute of bypass adds hemodilution, platelet damage, inflammation and bleeding. After a **short clamp**, a good ventricle, sound protection and a stable rhythm, wean as soon as the conditions are met.
 
-Before either: temperature 36–37 °C, sinus rhythm or pacing, potassium and haemoglobin corrected, lungs ventilated, **de-airing confirmed on TOE**, and the valve checked (no paravalvular leak, leaflets moving). The cost of weaning too early is a low-output state and a return to bypass; that is still easy while **the cannulas are in and protamine has not been given**.
+Before either: temperature 36–37 °C, sinus rhythm or pacing, potassium and hemoglobin corrected, lungs ventilated, **de-airing confirmed on TOE**, and the valve checked (no paravalvular leak, leaflets moving). The cost of weaning too early is a low-output state and a return to bypass; that is still easy while **the cannulas are in and protamine has not been given**.
 
 ### Question
 
@@ -288,7 +288,7 @@ Wean slowly, watching the pressures and the TOE. Then the order that keeps a way
 2.  **Protamine** started slowly (watch for pulmonary hypertension and hypotension); **stop the pump suckers** once it runs.
 3.  **Arterial cannula out last**, after part of the protamine and a stable pressure: while it is in, blood can be given from the pump and bypass restarted quickly.
 
-A fast decannulation saves pump time only if the heart is ready; a return to bypass after full protamine means re-heparinising and re-cannulating a heart that is already struggling.
+A fast decannulation saves pump time only if the heart is ready; a return to bypass after full protamine means re-heparinizing and re-cannulating a heart that is already struggling.
 
 ## [mvr-ie-icu] ICU and post-operative care
 

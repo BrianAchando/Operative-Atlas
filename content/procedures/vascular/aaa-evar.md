@@ -58,7 +58,7 @@ An aneurysm is a diameter of **3.0 cm or more**. Growth accelerates as it enlarg
 - [ ] Thrombus lining the sac weakens it
 - [ ] Blood pressure rises with size
 
-## [ae-anatomy] The infrarenal aorta and its neighbours
+## [ae-anatomy] The infrarenal aorta and its neighbors
 
 From above down on the front of the aorta: the **coeliac trunk** (T12/L1), the **SMA** about 1 cm lower, the **renal arteries** (L1/L2, the right passing behind the IVC), the **left renal vein** crossing in front of the aorta just below the SMA (the upper limit of the infrarenal neck), the **IMA** from the left front at L3, and the bifurcation at L4.
 
@@ -85,7 +85,7 @@ What to protect: the **left renal vein** above the neck (and a retroaortic or ci
 
 ### Case
 
-A **77-year-old man**, COPD (FEV1 45%), ischaemic heart disease with a stent 3 years ago. A **5.9 cm** infrarenal aneurysm; neck **24 mm long**, 23 mm wide, angle 35°; common iliacs 13 mm and not aneurysmal; external iliacs 8 mm. Lives in Nairobi near a hospital with CT.
+A **77-year-old man**, COPD (FEV1 45%), ischemic heart disease with a stent 3 years ago. A **5.9 cm** infrarenal aneurysm; neck **24 mm long**, 23 mm wide, angle 35°; common iliacs 13 mm and not aneurysmal; external iliacs 8 mm. Lives in Nairobi near a hospital with CT.
 
 ### Question
 
@@ -102,7 +102,7 @@ A **77-year-old man**, COPD (FEV1 45%), ischaemic heart disease with a stent 3 y
 
 #### 2\. Common
 
--   Groin haematoma
+-   Groin hematoma
 -   Post-implantation fever
 
 #### 3\. Serious
@@ -157,7 +157,7 @@ Introduce the **main body** through one groin, align its top marker just below t
 
 **Q:** The completion angiogram shows contrast filling the sac from around the top of the graft. What is it, and what now?
 - [x] A type I (proximal seal) endoleak: treat it now (balloon, proximal cuff or anchors)
-  > Type I and III endoleaks pressurise the sac and must be fixed; a type II (from lumbars or IMA) is usually observed.
+  > Type I and III endoleaks pressurize the sac and must be fixed; a type II (from lumbars or IMA) is usually observed.
 - [ ] A type II endoleak: observe
 - [ ] Normal: it will thrombose
 - [ ] Convert to open repair immediately
@@ -197,7 +197,7 @@ Doses: [electrolytes](#approach=cticu-doses&step=0), [vasoactive drugs](#approac
   > A sterile inflammatory response is common after EVAR; examine and culture if unwell.
 - [ ] Graft infection
 - [ ] Endoleak
-- [ ] Colonic ischaemia
+- [ ] Colonic ischemia
 
 ## Sources
 

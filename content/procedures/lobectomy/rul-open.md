@@ -13,21 +13,21 @@ summary: Posterolateral thoracotomy, then fissure junction, ascending arteries, 
 
 Chain: Caseous necrosis in the upper lobe → Liquefaction, discharged through a bronchus → Cavity → Healing by fibrosis: thick wall, traction bronchiectasis
 
-Chain: Cavity + bronchial and non-bronchial systemic arteries hypertrophy → **Haemoptysis (from the systemic circulation, at systemic pressure)**
+Chain: Cavity + bronchial and non-bronchial systemic arteries hypertrophy → **Hemoptysis (from the systemic circulation, at systemic pressure)**
 
-Chain: Cavity colonised by *Aspergillus* → Fungal ball (aspergilloma) → **Erosion of the vascular wall → haemoptysis** → Chronic cavitary aspergillosis if it progresses
+Chain: Cavity colonized by *Aspergillus* → Fungal ball (aspergilloma) → **Erosion of the vascular wall → hemoptysis** → Chronic cavitary aspergillosis if it progresses
 
-**Simple aspergilloma**: a single cavity with a fungal ball, few symptoms, no progression over 3 months. **Chronic cavitary pulmonary aspergillosis**: one or more cavities that enlarge or multiply over months, with symptoms and a positive *Aspergillus* IgG; treated with long-term oral azoles. Surgery is for simple aspergilloma, and for complex disease with haemoptysis once medically optimised.
+**Simple aspergilloma**: a single cavity with a fungal ball, few symptoms, no progression over 3 months. **Chronic cavitary pulmonary aspergillosis**: one or more cavities that enlarge or multiply over months, with symptoms and a positive *Aspergillus* IgG; treated with long-term oral azoles. Surgery is for simple aspergilloma, and for complex disease with hemoptysis once medically optimized.
 
-**Massive haemoptysis** kills by asphyxia, not blood loss. First: lie the patient **bleeding side down**, secure the airway (a large tube, selective intubation of the good side or a bronchial blocker), then **bronchial artery embolisation** as a bridge; operate once the bleeding has settled and the patient is optimised.
+**Massive hemoptysis** kills by asphyxia, not blood loss. First: lie the patient **bleeding side down**, secure the airway (a large tube, selective intubation of the good side or a bronchial blocker), then **bronchial artery embolization** as a bridge; operate once the bleeding has settled and the patient is optimized.
 
-> **Evidence:** post-TB lung disease: Migliori et al. clinical standards (Int J Tuberc Lung Dis 2021): up to 50% have problems after treatment; a meta-analysis (Ivanova et al., Eur Respir Rev 2023; 14,621 people) found mean FEV1 77% predicted with obstruction in 22% and restriction in 23%. ESCMID/ERS guideline (Denning et al., Eur Respir J 2016): excise simple aspergilloma if technically possible. Bronchial artery embolisation stops haemoptysis in 70–99%, but it recurs in 10–57% (Panda et al., 2017).
+> **Evidence:** post-TB lung disease: Migliori et al. clinical standards (Int J Tuberc Lung Dis 2021): up to 50% have problems after treatment; a meta-analysis (Ivanova et al., Eur Respir Rev 2023; 14,621 people) found mean FEV1 77% predicted with obstruction in 22% and restriction in 23%. ESCMID/ERS guideline (Denning et al., Eur Respir J 2016): excise simple aspergilloma if technically possible. Bronchial artery embolization stops hemoptysis in 70–99%, but it recurs in 10–57% (Panda et al., 2017).
 
 ### Question
 
-**Q:** Where does the blood come from in haemoptysis from a post-TB cavity?
+**Q:** Where does the blood come from in hemoptysis from a post-TB cavity?
 - [x] Hypertrophied bronchial and non-bronchial systemic arteries, at systemic pressure
-  > That is why it can be massive, and why bronchial (and intercostal, phrenic) artery embolisation controls it; the pulmonary artery is the source in a minority (Rasmussen aneurysm).
+  > That is why it can be massive, and why bronchial (and intercostal, phrenic) artery embolization controls it; the pulmonary artery is the source in a minority (Rasmussen aneurysm).
 - [ ] The pulmonary veins
 - [ ] The fungal ball itself
 - [ ] Capillaries in the cavity wall only
@@ -40,9 +40,9 @@ Where the fissures meet, the interlobar artery gives the **ascending posterior a
 
 Order from behind: **fissure → ascending arteries → bronchus → truncus → upper lobe veins**.
 
-## [rul-open-case] Case: aspergilloma with haemoptysis
+## [rul-open-case] Case: aspergilloma with hemoptysis
 
-**Simple aspergilloma** in a fit patient with recurrent haemoptysis: **resection** (right upper lobectomy). Embolisation bought time; bleeding recurs in a large proportion. Exclude active TB first.
+**Simple aspergilloma** in a fit patient with recurrent hemoptysis: **resection** (right upper lobectomy). Embolisation bought time; bleeding recurs in a large proportion. Exclude active TB first.
 
 **Why open** (or experienced VATS only): dense, vascular apical adhesions; an **extrapleural** plane may be needed; bleeding from the chest wall collaterals; the cavity must not be entered (spillage). An antifungal (voriconazole) around surgery is reasonable if spillage is likely. Plan a **muscle flap** (serratus or intercostal) if a residual space is expected.
 
@@ -50,13 +50,13 @@ Order from behind: **fissure → ascending arteries → bronchus → truncus →
 
 ### Case
 
-A **42-year-old man**, treated for pulmonary TB 8 years ago (cured). Three episodes of haemoptysis in 2 months, the last about 300 mL, controlled by **bronchial artery embolisation** 10 days ago. CT: a **thick-walled right apical cavity with a mobile fungal ball** (air crescent), the rest of the lung nearly normal; *Aspergillus* IgG positive. FEV1 72%. Sputum smear and GeneXpert negative.
+A **42-year-old man**, treated for pulmonary TB 8 years ago (cured). Three episodes of hemoptysis in 2 months, the last about 300 mL, controlled by **bronchial artery embolization** 10 days ago. CT: a **thick-walled right apical cavity with a mobile fungal ball** (air crescent), the rest of the lung nearly normal; *Aspergillus* IgG positive. FEV1 72%. Sputum smear and GeneXpert negative.
 
 ### Question
 
-**Q:** After successful bronchial artery embolisation, why operate on this simple aspergilloma?
-- [x] Haemoptysis often recurs after embolisation, and resection of a simple aspergilloma is curative with low risk
-  > Recurrence after embolisation ranges from 10% to over 50%; a simple aspergilloma in a fit patient is best removed, electively, once bleeding has settled.
+**Q:** After successful bronchial artery embolization, why operate on this simple aspergilloma?
+- [x] Hemoptysis often recurs after embolization, and resection of a simple aspergilloma is curative with low risk
+  > Recurrence after embolization ranges from 10% to over 50%; a simple aspergilloma in a fit patient is best removed, electively, once bleeding has settled.
 - [ ] Embolisation is curative; surgery is not needed
 - [ ] To obtain tissue for TB culture only
 - [ ] Only if itraconazole fails for 2 years
@@ -89,7 +89,7 @@ A **42-year-old man**, treated for pulmonary TB 8 years ago (cured). Three episo
 
 #### 5\. Alternatives
 
--   Segmentectomy for small peripheral tumours
+-   Segmentectomy for small peripheral tumors
 -   Stereotactic radiotherapy (SBRT) if unfit
 -   Surveillance for indeterminate nodules
 -   No operation, and what that means

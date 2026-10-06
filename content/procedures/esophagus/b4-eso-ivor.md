@@ -23,7 +23,7 @@ Chain: No serosa: early spread → Lymphatics along the length of the esophagus 
 | T4a / T4b | pleura, pericardium, azygos, diaphragm, peritoneum (resectable) / aorta, vertebra, trachea (unresectable) |
 | N | by number of nodes: N1 1–2, N2 3–6, N3 7 or more |
 
-Separate clinical, pathological and post-neoadjuvant (yp) stage groups; squamous and adenocarcinoma are grouped differently. **Work-up**: endoscopy and biopsy, CT chest and abdomen, PET-CT for curative candidates, EUS for T and N, **bronchoscopy** for tumours at or above the carina, staging laparoscopy for junctional adenocarcinoma.
+Separate clinical, pathological and post-neoadjuvant (yp) stage groups; squamous and adenocarcinoma are grouped differently. **Work-up**: endoscopy and biopsy, CT chest and abdomen, PET-CT for curative candidates, EUS for T and N, **bronchoscopy** for tumors at or above the carina, staging laparoscopy for junctional adenocarcinoma.
 
 **Most patients here present with advanced disease**: palliation of dysphagia (a self-expanding metal stent works fastest; brachytherapy lasts longer) is the commonest intervention.
 
@@ -33,12 +33,12 @@ Separate clinical, pathological and post-neoadjuvant (yp) stage groups; squamous
 
 **Q:** A squamous carcinoma of the middle third lies at the level of the carina. Which test must precede resection?
 - [x] Bronchoscopy, to exclude invasion of the trachea or left main bronchus (T4b)
-  > Mid-third tumours sit against the membranous trachea and left main bronchus; airway invasion makes the tumour unresectable and changes the plan.
+  > Mid-third tumors sit against the membranous trachea and left main bronchus; airway invasion makes the tumor unresectable and changes the plan.
 - [ ] Colonoscopy
 - [ ] Lower limb Doppler
 - [ ] Bone marrow biopsy
 
-## [il-anat] The esophagus and its neighbours
+## [il-anat] The esophagus and its neighbors
 
 **Neck**: behind the trachea, the **recurrent laryngeal nerves** in the grooves either side. **Upper chest**: behind the trachea, the **azygos arch** on its right, the aortic arch on its left. **Mid chest**: behind the left main bronchus and the left atrium. **Lower chest**: in front of and to the right of the descending aorta, through the hiatus at T10.
 
@@ -46,7 +46,7 @@ Behind it on the right: the **thoracic duct** between the aorta and the azygos, 
 
 ## [b4-eso-ivor-case] Case: lower-third squamous carcinoma after chemoradiotherapy
 
-**Esophagectomy** after neoadjuvant chemoradiotherapy: Ivor Lewis (abdomen, then right thoracotomy or thoracoscopy, anastomosis in the chest) suits a lower-third tumour with a good proximal margin. Nutrition before surgery (a feeding jejunostomy is often placed). Minimally invasive or hybrid access lowers pulmonary complications.
+**Esophagectomy** after neoadjuvant chemoradiotherapy: Ivor Lewis (abdomen, then right thoracotomy or thoracoscopy, anastomosis in the chest) suits a lower-third tumor with a good proximal margin. Nutrition before surgery (a feeding jejunostomy is often placed). Minimally invasive or hybrid access lowers pulmonary complications.
 
 **If there is residual disease** in the specimen, adjuvant nivolumab is an option.
 
@@ -54,13 +54,13 @@ Behind it on the right: the **thoracic duct** between the aorta and the azygos, 
 
 ### Case
 
-A **52-year-old farmer** from Bomet, 3 months of dysphagia to solids, 6 kg weight loss. Endoscopy: a lower-third ulcerated tumour at 36–40 cm, biopsy **squamous cell carcinoma**; CT/EUS: **cT3 N1**; no distant disease; bronchoscopy normal. After **CROSS** chemoradiotherapy (carboplatin/paclitaxel with 41.4 Gy), restaging shows a good response. Fit, BMI 19.
+A **52-year-old farmer** from Bomet, 3 months of dysphagia to solids, 6 kg weight loss. Endoscopy: a lower-third ulcerated tumor at 36–40 cm, biopsy **squamous cell carcinoma**; CT/EUS: **cT3 N1**; no distant disease; bronchoscopy normal. After **CROSS** chemoradiotherapy (carboplatin/paclitaxel with 41.4 Gy), restaging shows a good response. Fit, BMI 19.
 
 ### Question
 
 **Q:** In CROSS, which histology responded best to chemoradiotherapy?
 - [x] Squamous cell carcinoma (pCR 49% vs 23% in adenocarcinoma)
-  > Squamous tumours are more radiosensitive; the survival gain was largest in squamous carcinoma (median OS 81.6 vs 21.1 months).
+  > Squamous tumors are more radiosensitive; the survival gain was largest in squamous carcinoma (median OS 81.6 vs 21.1 months).
 - [ ] Adenocarcinoma
 - [ ] Both equally
 - [ ] Neither: CROSS was negative
@@ -117,7 +117,7 @@ Template and how to use it: [CTICU protocol, consent](#approach=cticu-consent&st
 - [ ] No change in diet is expected
 - [ ] Chronic diarrhea only
 
-## [il-lap] Abdomen: mobilise the stomach
+## [il-lap] Abdomen: mobilize the stomach
 
 Upper midline laparotomy (or laparoscopy). Divide the gastrocolic omentum **well away from the right gastroepiploic arcade**, which the conduit will live on, then the short gastric vessels up to the left crus. Open the lesser omentum. **Kocherise** the duodenum so the pylorus reaches the hiatus; a pyloric drainage procedure or none, by unit policy.
 
@@ -145,13 +145,13 @@ Many units ligate the duct routinely: **mass-ligate all the tissue between the a
 
 ## [il-divide] Divide the esophagus above the azygos
 
-With the stomach already mobilised from below, divide the esophagus **above the azygos arch** (tissue load, or open for a purse-string for the anvil). Pull the specimen with the lesser curvature and its nodes into the chest.
+With the stomach already mobilized from below, divide the esophagus **above the azygos arch** (tissue load, or open for a purse-string for the anvil). Pull the specimen with the lesser curvature and its nodes into the chest.
 
 ## [il-conduit] Make the conduit and bring it up
 
 Staple the lesser curvature from below the cardia to make a **4–5 cm tube** of greater curvature on the **right gastroepiploic artery**. Pull it up through the hiatus into the right chest, without twisting (staple line to the right).
 
-Check the colour of the tip: poor perfusion there is what leaks.
+Check the color of the tip: poor perfusion there is what leaks.
 
 ## [il-anast] The anastomosis
 
@@ -161,7 +161,7 @@ Nasogastric tube past the anastomosis; feeding jejunostomy by unit policy.
 
 ## [il-after] What goes wrong
 
-**Anastomotic leak** and **conduit necrosis** (fever, arrhythmia, effluent in the drain: contrast study or endoscopy). **Chylothorax** (milky drain output once fed). **Recurrent laryngeal nerve palsy** (hoarseness, aspiration), mostly after neck dissection. Pneumonia above all: early mobilisation, physiotherapy, sitting up.
+**Anastomotic leak** and **conduit necrosis** (fever, arrhythmia, effluent in the drain: contrast study or endoscopy). **Chylothorax** (milky drain output once fed). **Recurrent laryngeal nerve palsy** (hoarseness, aspiration), mostly after neck dissection. Pneumonia above all: early mobilization, physiotherapy, sitting up.
 
 ## [b4-eso-ivor-icu] ICU and post-operative care
 

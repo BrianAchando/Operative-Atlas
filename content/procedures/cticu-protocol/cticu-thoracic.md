@@ -56,10 +56,10 @@ summary: The unit protocol: labs, rounds, escalation, cardiac, thoracic and vasc
 #### Pneumonectomy
 
 -   **No suction** on the pneumonectomy drain (clamped or balanced)
--   Strict fluids: post-pneumonectomy pulmonary oedema is rare but often fatal
+-   Strict fluids: post-pneumonectomy pulmonary edema is rare but often fatal
 -   BPF at days 7–14 (right side, after chemoradiation, TB stump): lie operated side down, drain the space, bronchoscopy
 
-> **Evidence:** Batchelor 2019 (drain removal up to 450 mL/24 h, no routine suction). Post-pneumonectomy pulmonary oedema: Parquin et al. (Eur J Cardiothorac Surg 1996); Campisi (Shanghai Chest).
+> **Evidence:** Batchelor 2019 (drain removal up to 450 mL/24 h, no routine suction). Post-pneumonectomy pulmonary edema: Parquin et al. (Eur J Cardiothorac Surg 1996); Campisi (Shanghai Chest).
 
 ### Question
 

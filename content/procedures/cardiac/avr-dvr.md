@@ -13,7 +13,7 @@ summary: Case-based: pathophysiology, anatomy, the patient and the Heart Team de
 
 **The pattern of rheumatic valve disease.** The **mitral** valve is involved, alone or with others, in about 85%; mitral plus aortic disease in roughly a fifth; **isolated aortic** disease is uncommon (under 5%) and is then nearly always **regurgitation**. Rheumatic aortic **stenosis** comes late, as fusion and calcium accumulate, and almost never without regurgitation or mitral disease. One explanation (a hypothesis) is load: the mitral valve closes against full LV systolic pressure every beat, the aortic cusps against the lower diastolic pressure.
 
-**The rheumatic aortic valve**: fibrosis **retracts** the cusps so they no longer meet in the centre (a central leak), the free edges thicken and roll, and the commissures fuse. Contrast degenerative calcific stenosis, where calcium in the cusp bodies stiffens a valve whose commissures are open.
+**The rheumatic aortic valve**: fibrosis **retracts** the cusps so they no longer meet in the center (a central leak), the free edges thicken and roll, and the commissures fuse. Contrast degenerative calcific stenosis, where calcium in the cusp bodies stiffens a valve whose commissures are open.
 
 Chain: Regurgitant volume back into the LV → LV volume and pressure overload → Eccentric hypertrophy, dilatation (years compensated) → **End-systolic size ↑, EF ↓** → **Irreversible LV dysfunction**
 
@@ -21,9 +21,9 @@ Chain: Low aortic diastolic pressure → Wide pulse pressure → **Less coronary
 
 **Two lesions mask each other.** Mitral stenosis under-fills the LV, so aortic regurgitation seems milder and an aortic gradient is lower than the stenosis deserves (low flow). After the mitral valve is opened, the aortic lesion can be unmasked. Assess each valve on its own (valve area, regurgitant volume, LV size), and inspect them at surgery.
 
-**Acute** aortic regurgitation (endocarditis, dissection) is different: a normal-sized LV cannot take the sudden volume, the diastolic pressure rises steeply, and pulmonary oedema and shock follow.
+**Acute** aortic regurgitation (endocarditis, dissection) is different: a normal-sized LV cannot take the sudden volume, the diastolic pressure rises steeply, and pulmonary edema and shock follow.
 
-> **Evidence:** distribution of rheumatic valve involvement: Kumar et al., AHA scientific statement 2020; Afifi, Hosny and Yacoub, Ann Cardiothorac Surg 2019. Haemodynamics and intervention thresholds: ACC/AHA 2020, ESC/EACTS 2021 and 2025 guidelines.
+> **Evidence:** distribution of rheumatic valve involvement: Kumar et al., AHA scientific statement 2020; Afifi, Hosny and Yacoub, Ann Cardiothorac Surg 2019. Hemodynamics and intervention thresholds: ACC/AHA 2020, ESC/EACTS 2021 and 2025 guidelines.
 
 ### Question
 
@@ -57,7 +57,7 @@ What the sutures and the debridement can injure:
 
 ## [ad-case] Case: rheumatic mitral stenosis with mixed aortic disease
 
-**Both valves**: the mitral is unfavourable for a balloon, and the aortic valve is significantly diseased (a balloon would leave it). Low flow through the stenotic mitral makes the aortic gradient understate the stenosis. **Double valve replacement**, with the appendage closed and AF ablation where possible.
+**Both valves**: the mitral is unfavorable for a balloon, and the aortic valve is significantly diseased (a balloon would leave it). Low flow through the stenotic mitral makes the aortic gradient understate the stenosis. **Double valve replacement**, with the appendage closed and AF ablation where possible.
 
 **The order at surgery**: open the aorta and **excise the aortic valve first** (it opens the view of the mitral through the LA and lets you see the aortomitral curtain), then replace the **mitral**, then implant the **aortic** prosthesis: an aortic valve already in place would block access to the anterior mitral annulus, and mitral sutures pulled against it could distort it.
 
@@ -217,7 +217,7 @@ A common compromise: **ventricular pledgets posteriorly and at the commissures**
 
 Whatever the technique, bite **in the annulus, not beyond it**.
 
-> **Evidence:** no randomised trial compares everting and non-everting sutures in MVR. In the AVERT trial cohort, **pledgeted** sutures were associated with fewer major paravalvular leaks than unpledgeted ones (Englberger et al., *Eur J Cardiothorac Surg* 2005). The ACC/AHA 2020 and ESC/EACTS 2021 valve guidelines make no recommendation on suture technique, but support **preserving the subvalvular apparatus** in MVR (for LV function), and that is one more reason to keep pledgets clear of preserved chordae.
+> **Evidence:** no randomized trial compares everting and non-everting sutures in MVR. In the AVERT trial cohort, **pledgeted** sutures were associated with fewer major paravalvular leaks than unpledgeted ones (Englberger et al., *Eur J Cardiothorac Surg* 2005). The ACC/AHA 2020 and ESC/EACTS 2021 valve guidelines make no recommendation on suture technique, but support **preserving the subvalvular apparatus** in MVR (for LV function), and that is one more reason to keep pledgets clear of preserved chordae.
 
 ### Question
 
@@ -278,7 +278,7 @@ If the annulus is too small:
 -   a valve with a better orifice for its size (supra-annular, thin-sewing-ring, or stentless);
 -   **annular enlargement**: **Nicks** (through the non-coronary sinus toward the aortomitral curtain), **Manouguian** (through the left–non-coronary commissure into the curtain and the anterior mitral leaflet), **Y-incision** (Yang: through the left–non-coronary commissure with a Y into both trigones, allowing about 3–4 sizes larger). The **Konno** operation (into the septum) is mainly for children.
 
-> **Evidence:** VARC-3 (Généreux et al., JACC 2021) sets the definitions. In a meta-analysis of about 123,000 patients (J Am Heart Assoc 2024), mismatch after SAVR was associated with higher late mortality and earlier failure of tissue valves. The Y-incision series (Yang et al., JTCVS) reported enlargement by 3–4 sizes with low early mortality; these are single-centre, non-randomised data.
+> **Evidence:** VARC-3 (Généreux et al., JACC 2021) sets the definitions. In a meta-analysis of about 123,000 patients (J Am Heart Assoc 2024), mismatch after SAVR was associated with higher late mortality and earlier failure of tissue valves. The Y-incision series (Yang et al., JTCVS) reported enlargement by 3–4 sizes with low early mortality; these are single-center, non-randomized data.
 
 ### Question
 
@@ -309,7 +309,7 @@ Usually 12–15 sutures of **2-0 braided polyester**, following the crown: up to
 
 Keep pledgets and sutures clear of the **ostia**; take shallow bites under the **right–non-coronary commissure**.
 
-> **Evidence:** no randomised trial has settled this. In the AVERT cohort (807 patients), major paravalvular leak occurred in 1.7% with pledgets and 5.8% without (Englberger et al., EJCTS 2005). A 2024 meta-analysis of 9 observational SAVR studies (4,390 patients; Boltje et al.) found no clear difference in leak, gradients or mortality, and concluded that the evidence neither supports nor opposes pledgets. In 152 patients with small (19–21 mm) supra-annular bioprostheses, simple interrupted sutures gave a larger orifice and less mismatch than mattress sutures (Tabata et al., JTCVS 2014; retrospective).
+> **Evidence:** no randomized trial has settled this. In the AVERT cohort (807 patients), major paravalvular leak occurred in 1.7% with pledgets and 5.8% without (Englberger et al., EJCTS 2005). A 2024 meta-analysis of 9 observational SAVR studies (4,390 patients; Boltje et al.) found no clear difference in leak, gradients or mortality, and concluded that the evidence neither supports nor opposes pledgets. In 152 patients with small (19–21 mm) supra-annular bioprostheses, simple interrupted sutures gave a larger orifice and less mismatch than mattress sutures (Tabata et al., JTCVS 2014; retrospective).
 
 ### Question
 
@@ -356,7 +356,7 @@ Before closing: look into **both ostia** (nothing overhanging); check for **gaps
 ### Question
 
 **Q:** After weaning, new ST elevation in the anterolateral leads and poor anterior wall motion on TOE. The valve looks well seated. First suspicion?
-- [x] The left main ostium is partly obstructed by a post, a pledget or the sewing ring (or has embolised air/debris)
+- [x] The left main ostium is partly obstructed by a post, a pledget or the sewing ring (or has embolized air/debris)
   > Coronary compromise right after SAVR is the prosthesis or embolism until proved otherwise: go back on bypass, inspect, and re-seat or graft.
 - [ ] Heart block
 - [ ] Patient–prosthesis mismatch
@@ -370,7 +370,7 @@ Close the aortotomy in **two layers of 4-0 polypropylene** (a horizontal mattres
 
 **Early vs late de-airing** is the same question as in mitral surgery, with less air because the left atrium was not opened: venting only until the clamp is off is quicker, but air trapped in the pulmonary veins and LV comes out later and goes up the right coronary (uppermost) or to the brain; keeping the root vent on while the heart ejects on partial bypass catches it. Stop when **TOE** shows no air, not by the clock.
 
-> **Evidence:** no trial compares de-airing strategies; CO₂ field flooding reduced microemboli on TOE in a randomised trial (Svenarud et al., Circulation 2004); a stroke benefit has not been shown.
+> **Evidence:** no trial compares de-airing strategies; CO₂ field flooding reduced microemboli on TOE in a randomized trial (Svenarud et al., Circulation 2004); a stroke benefit has not been shown.
 
 ## [ad-wean] Reperfuse, wean, TOE, decannulate
 
@@ -380,7 +380,7 @@ Reperfuse on bypass until the heart is ready (about a third of the clamp time is
 
 Then venous cannula out, protamine, arterial cannula out last.
 
-> **Evidence:** intraoperative TOE is standard in valve surgery (ASE/SCA guidelines). A leak more than mild on TOE is usually repaired before leaving theatre, because significant paravalvular leak is associated with haemolysis, heart failure and worse survival.
+> **Evidence:** intraoperative TOE is standard in valve surgery (ASE/SCA guidelines). A leak more than mild on TOE is usually repaired before leaving theatre, because significant paravalvular leak is associated with hemolysis, heart failure and worse survival.
 
 ### Question
 

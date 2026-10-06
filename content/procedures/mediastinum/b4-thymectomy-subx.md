@@ -9,22 +9,22 @@ summary: Extended thymectomy: phrenic to phrenic, diaphragm to thyroid, the thym
 
 ## [b4-thymectomy-subx-patho] Pathophysiology: myasthenia gravis and the thymus
 
-**An antibody attack on the neuromuscular junction.** In about 85% of generalised myasthenia, IgG1/IgG3 antibodies against the **acetylcholine receptor (AChR)** bind the endplate, fix **complement** and destroy the postsynaptic folds; fewer receptors means a smaller endplate potential, which fails with repeated firing: **fatigable weakness**. Other subtypes: anti-MuSK (IgG4, no complement; the thymus is normal), anti-LRP4, and seronegative.
+**An antibody attack on the neuromuscular junction.** In about 85% of generalized myasthenia, IgG1/IgG3 antibodies against the **acetylcholine receptor (AChR)** bind the endplate, fix **complement** and destroy the postsynaptic folds; fewer receptors means a smaller endplate potential, which fails with repeated firing: **fatigable weakness**. Other subtypes: anti-MuSK (IgG4, no complement; the thymus is normal), anti-LRP4, and seronegative.
 
-Chain: Thymus: myoid cells express AChR → Germinal centres: autoreactive B cells (thymic follicular hyperplasia) → Anti-AChR antibodies → **Complement destroys the endplate** → Fatigable weakness: eyes, bulbar, limbs, breathing
+Chain: Thymus: myoid cells express AChR → Germinal centers: autoreactive B cells (thymic follicular hyperplasia) → Anti-AChR antibodies → **Complement destroys the endplate** → Fatigable weakness: eyes, bulbar, limbs, breathing
 
-**Why remove the thymus**: in early-onset AChR-positive disease, about 70% of thymuses show germinal-centre hyperplasia, a factory for the antibodies. Removing it (all of it, including ectopic thymic fat) lowers the drive. **Thymoma** occurs in about 10–20% of patients with myasthenia, and roughly 20–25% of thymoma patients have myasthenia: every thymoma is removed.
+**Why remove the thymus**: in early-onset AChR-positive disease, about 70% of thymuses show germinal-center hyperplasia, a factory for the antibodies. Removing it (all of it, including ectopic thymic fat) lowers the drive. **Thymoma** occurs in about 10–20% of patients with myasthenia, and roughly 20–25% of thymoma patients have myasthenia: every thymoma is removed.
 
-**Crisis**: respiratory or bulbar failure (MGFA class V: intubation). Triggers: infection, surgery, certain drugs (aminoglycosides, fluoroquinolones, magnesium, some anaesthetic agents), steroid initiation. A falling vital capacity warns before the gases change.
+**Crisis**: respiratory or bulbar failure (MGFA class V: intubation). Triggers: infection, surgery, certain drugs (aminoglycosides, fluoroquinolones, magnesium, some anesthetic agents), steroid initiation. A falling vital capacity warns before the gases change.
 
-**MGFA classes**: I ocular only; II mild, III moderate, IV severe generalised (a: limb and axial, b: oropharyngeal and respiratory); V intubated.
+**MGFA classes**: I ocular only; II mild, III moderate, IV severe generalized (a: limb and axial, b: oropharyngeal and respiratory); V intubated.
 
-> **Evidence:** mechanisms and subtypes: Gilhus, NEJM 2016 and Nat Rev Dis Primers 2019; Fichtner et al., Front Immunol 2020 (germinal centres in about 70% of early-onset AChR MG). MG in thymoma: Lucchi et al., Eur J Cardiothorac Surg 2009.
+> **Evidence:** mechanisms and subtypes: Gilhus, NEJM 2016 and Nat Rev Dis Primers 2019; Fichtner et al., Front Immunol 2020 (germinal centers in about 70% of early-onset AChR MG). MG in thymoma: Lucchi et al., Eur J Cardiothorac Surg 2009.
 
 ### Question
 
 **Q:** Why is thymectomy not recommended for anti-MuSK myasthenia?
-- [x] The thymus is usually normal in MuSK disease, and the antibodies (IgG4) are not driven by thymic germinal centres
+- [x] The thymus is usually normal in MuSK disease, and the antibodies (IgG4) are not driven by thymic germinal centers
   > Thymic hyperplasia is a feature of AChR-positive, early-onset disease; guidance (2020) finds no evidence of benefit in MuSK MG.
 - [ ] MuSK patients are too weak for surgery
 - [ ] It is recommended for all subtypes
@@ -34,7 +34,7 @@ Chain: Thymus: myoid cells express AChR → Germinal centres: autoreactive B cel
 
 In an adult the thymus is a fatty, bilobed organ in the **anterior mediastinum**, on the pericardium and the great vessels. Its limits: the **phrenic nerves** laterally, the **thyroid** above (the two upper horns), the **diaphragm** below. Its veins drain into the back of the **left brachiocephalic (innominate) vein**; its arteries come from the internal mammary and inferior thyroid arteries.
 
-Indications: **thymoma** (stage by Masaoka-Koga) and **myasthenia gravis** (the MGTX trial favoured extended thymectomy in AChR-antibody-positive, non-thymomatous disease). For myasthenia, remove **all** the anterior mediastinal fat between the phrenic nerves: ectopic thymic tissue lies throughout it.
+Indications: **thymoma** (stage by Masaoka-Koga) and **myasthenia gravis** (the MGTX trial favored extended thymectomy in AChR-antibody-positive, non-thymomatous disease). For myasthenia, remove **all** the anterior mediastinal fat between the phrenic nerves: ectopic thymic tissue lies throughout it.
 
 ### Question
 
@@ -47,19 +47,19 @@ Indications: **thymoma** (stage by Masaoka-Koga) and **myasthenia gravis** (the 
 
 ## [b4-thymectomy-subx-case] Case: a young woman with bulbar myasthenia
 
-**Thymectomy is indicated** (young, AChR-positive, generalised). **Not yet**: bulbar weakness and a reduced vital capacity mean a high risk of postoperative crisis. Optimise first: **plasma exchange or IVIG**, pyridostigmine adjusted, infections treated, then operate when stable. A **subxiphoid** approach avoids an intercostal incision and gives a symmetric view of both phrenic nerves and both cervical horns.
+**Thymectomy is indicated** (young, AChR-positive, generalized). **Not yet**: bulbar weakness and a reduced vital capacity mean a high risk of postoperative crisis. Optimise first: **plasma exchange or IVIG**, pyridostigmine adjusted, infections treated, then operate when stable. A **subxiphoid** approach avoids an intercostal incision and gives a symmetric view of both phrenic nerves and both cervical horns.
 
 > **Evidence:** International consensus (2016): IVIG or plasma exchange before surgery with significant bulbar dysfunction. Leuzzi et al. (Eur J Cardiothorac Surg 2014; 177 patients): postoperative crisis in 12.4%, higher with Osserman IIB and III–IV disease.
 
 ### Case
 
-A **19-year-old student**, 8 months of generalised myasthenia with **nasal speech and choking on fluids** (MGFA IIIb), AChR antibodies positive; CT: thymic hyperplasia. Vital capacity 2.1 L (55% predicted).
+A **19-year-old student**, 8 months of generalized myasthenia with **nasal speech and choking on fluids** (MGFA IIIb), AChR antibodies positive; CT: thymic hyperplasia. Vital capacity 2.1 L (55% predicted).
 
 ### Question
 
 **Q:** Which feature most raises her risk of myasthenic crisis after thymectomy?
 - [x] Bulbar weakness with a reduced vital capacity
-  > Bulbar-predominant, more severe disease predicts crisis; optimise with IVIG or plasma exchange, and extubate only when strength allows.
+  > Bulbar-predominant, more severe disease predicts crisis; optimize with IVIG or plasma exchange, and extubate only when strength allows.
 - [ ] Her young age
 - [ ] Thymic hyperplasia on CT
 - [ ] Being AChR-positive
@@ -106,7 +106,7 @@ Template and how to use it: [CTICU protocol, consent](#approach=cticu-consent&st
 
 ### Question
 
-**Q:** What benefit can a patient with generalised MG expect from thymectomy (MGTX)?
+**Q:** What benefit can a patient with generalized MG expect from thymectomy (MGTX)?
 - [x] Better clinical scores and less prednisone over 3 years
   > MGTX (NEJM 2016): improved Quantitative MG score and lower prednisone dose at 3 years; benefit is gradual.
 - [ ] Immediate cure

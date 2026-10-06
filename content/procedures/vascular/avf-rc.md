@@ -7,9 +7,9 @@ summary: Access planning (KDOQI 2019 Life-Plan), radiocephalic fistula, maturati
 
 <!-- Edit the words freely. Keep each "## [step-id]" line as it is: it ties the text to its step in the 3D atlas. -->
 
-## [av-patho] Why a fistula: access for haemodialysis
+## [av-patho] Why a fistula: access for hemodialysis
 
-Haemodialysis needs blood flow of about 300–400 mL/min, three times a week, for years. A **fistula** joins an artery to a superficial vein: the vein **arterialises** (dilates and thickens) over weeks until it can be needled. Compared with a **graft** (PTFE) it has fewer infections and interventions; compared with a **tunnelled catheter**, far less bacteraemia and central vein stenosis.
+Hemodialysis needs blood flow of about 300–400 mL/min, three times a week, for years. A **fistula** joins an artery to a superficial vein: the vein **arterializes** (dilates and thickens) over weeks until it can be needled. Compared with a **graft** (PTFE) it has fewer infections and interventions; compared with a **tunnelled catheter**, far less bacteremia and central vein stenosis.
 
 **KDOQI 2019** replaced "fistula first" with **"patient first"**: an **ESKD Life-Plan** for every patient with progressive CKD (eGFR 15–20), choosing the access that fits that patient's expected course: forearm first, distal to proximal, non-dominant arm, protecting veins (no cannulas or blood tests in the planned arm).
 
@@ -54,7 +54,7 @@ A **45-year-old man**, hypertensive nephropathy, eGFR 14 and falling, not yet on
 
 #### 3\. Serious
 
--   Steal syndrome (hand ischaemia)
+-   Steal syndrome (hand ischemia)
 -   Thrombosis
 -   Infection
 -   Nerve injury
@@ -88,7 +88,7 @@ Template and how to use it: [CTICU protocol, consent](#approach=cticu-consent&st
 ### Question
 
 **Q:** Which serious early complication must be explained before a brachial fistula?
-- [x] Steal syndrome: hand ischaemia needing urgent correction
+- [x] Steal syndrome: hand ischemia needing urgent correction
   > Commoner with brachial inflow, diabetes and age.
 - [ ] Paraplegia
 - [ ] Stroke
@@ -96,9 +96,9 @@ Template and how to use it: [CTICU protocol, consent](#approach=cticu-consent&st
 
 ## [av-rc] Radiocephalic fistula at the wrist (Brescia–Cimino)
 
-Local or regional anaesthesia. A **longitudinal incision** between the radial artery and the cephalic vein at the wrist. Mobilise the vein, ligate its distal end and divide it; dilate gently. Expose the radial artery under the deep fascia, control it, open 6–8 mm. Swing the vein to the artery: **vein end to artery side**, 7-0 polypropylene. A thrill should be felt at once.
+Local or regional anesthesia. A **longitudinal incision** between the radial artery and the cephalic vein at the wrist. Mobilise the vein, ligate its distal end and divide it; dilate gently. Expose the radial artery under the deep fascia, control it, open 6–8 mm. Swing the vein to the artery: **vein end to artery side**, 7-0 polypropylene. A thrill should be felt at once.
 
-## [av-rc-mature] Maturation: the forearm vein arterialises
+## [av-rc-mature] Maturation: the forearm vein arterializes
 
 Over 4–6 weeks the cephalic vein dilates and thickens. Examine it at 4–6 weeks: a continuous thrill, a soft pulse (not hammering), a straight segment long enough for two needles, superficial enough to feel.
 
@@ -106,9 +106,9 @@ Over 4–6 weeks the cephalic vein dilates and thickens. Examine it at 4–6 wee
 
 **KDOQI 2019** defines maturity by use: the fistula supports dialysis with two needles in more than two-thirds of sessions over 4 consecutive weeks. The rule of 6s stays a useful bedside and duplex check.
 
-**Not maturing by 6 weeks**: duplex ultrasound. A **juxta-anastomotic stenosis** (the commonest cause in the forearm): balloon angioplasty or revision. **Competing side branches** stealing flow: ligate. A **deep vein**: superficialise. A small, diseased artery: a more proximal fistula.
+**Not maturing by 6 weeks**: duplex ultrasound. A **juxta-anastomotic stenosis** (the commonest cause in the forearm): balloon angioplasty or revision. **Competing side branches** stealing flow: ligate. A **deep vein**: superficialize. A small, diseased artery: a more proximal fistula.
 
-> **Evidence:** Rule of 6s: earlier KDOQI vascular access guidance (as summarised by the Renal Fellow Network). KDOQI 2019 update (Lok et al., Am J Kidney Dis 2020): functional definition of maturation; assess at 4–6 weeks.
+> **Evidence:** Rule of 6s: earlier KDOQI vascular access guidance (as summarized by the Renal Fellow Network). KDOQI 2019 update (Lok et al., Am J Kidney Dis 2020): functional definition of maturation; assess at 4–6 weeks.
 
 ### Question
 
@@ -126,7 +126,7 @@ Start with the [vascular core](#approach=cticu-vascular&step=0), the [lab schedu
 #### Specific to this operation
 
 -   Check the thrill and bruit every few hours
--   Hand: colour, warmth, movement, sensation (steal)
+-   Hand: color, warmth, movement, sensation (steal)
 -   No BP cuff, cannula or blood tests on the fistula arm
 
 #### Labs

@@ -23,7 +23,7 @@ Chain: No serosa: early spread → Lymphatics along the length of the esophagus 
 | T4a / T4b | pleura, pericardium, azygos, diaphragm, peritoneum (resectable) / aorta, vertebra, trachea (unresectable) |
 | N | by number of nodes: N1 1–2, N2 3–6, N3 7 or more |
 
-Separate clinical, pathological and post-neoadjuvant (yp) stage groups; squamous and adenocarcinoma are grouped differently. **Work-up**: endoscopy and biopsy, CT chest and abdomen, PET-CT for curative candidates, EUS for T and N, **bronchoscopy** for tumours at or above the carina, staging laparoscopy for junctional adenocarcinoma.
+Separate clinical, pathological and post-neoadjuvant (yp) stage groups; squamous and adenocarcinoma are grouped differently. **Work-up**: endoscopy and biopsy, CT chest and abdomen, PET-CT for curative candidates, EUS for T and N, **bronchoscopy** for tumors at or above the carina, staging laparoscopy for junctional adenocarcinoma.
 
 **Most patients here present with advanced disease**: palliation of dysphagia (a self-expanding metal stent works fastest; brachytherapy lasts longer) is the commonest intervention.
 
@@ -33,12 +33,12 @@ Separate clinical, pathological and post-neoadjuvant (yp) stage groups; squamous
 
 **Q:** A squamous carcinoma of the middle third lies at the level of the carina. Which test must precede resection?
 - [x] Bronchoscopy, to exclude invasion of the trachea or left main bronchus (T4b)
-  > Mid-third tumours sit against the membranous trachea and left main bronchus; airway invasion makes the tumour unresectable and changes the plan.
+  > Mid-third tumors sit against the membranous trachea and left main bronchus; airway invasion makes the tumor unresectable and changes the plan.
 - [ ] Colonoscopy
 - [ ] Lower limb Doppler
 - [ ] Bone marrow biopsy
 
-## [th-anat] The esophagus and its neighbours
+## [th-anat] The esophagus and its neighbors
 
 **Neck**: behind the trachea, the **recurrent laryngeal nerves** in the grooves either side. **Upper chest**: behind the trachea, the **azygos arch** on its right, the aortic arch on its left. **Mid chest**: behind the left main bronchus and the left atrium. **Lower chest**: in front of and to the right of the descending aorta, through the hiatus at T10.
 
@@ -56,7 +56,7 @@ A **68-year-old man**, long-standing reflux, dysphagia; endoscopy: an **adenocar
 
 ### Question
 
-**Q:** For resectable esophageal adenocarcinoma, which neoadjuvant strategy did ESOPEC favour?
+**Q:** For resectable esophageal adenocarcinoma, which neoadjuvant strategy did ESOPEC favor?
 - [x] Perioperative FLOT chemotherapy over CROSS chemoradiotherapy
   > 3-year OS 57.4% vs 50.7% (HR 0.70). For squamous carcinoma, CROSS-type chemoradiotherapy remains standard.
 - [ ] CROSS over FLOT
@@ -115,7 +115,7 @@ Template and how to use it: [CTICU protocol, consent](#approach=cticu-consent&st
 - [ ] No change in diet is expected
 - [ ] Chronic diarrhea only
 
-## [th-lap] Abdomen: mobilise the stomach
+## [th-lap] Abdomen: mobilize the stomach
 
 Upper midline laparotomy (or laparoscopy). Divide the gastrocolic omentum **well away from the right gastroepiploic arcade**, which the conduit will live on, then the short gastric vessels up to the left crus. Open the lesser omentum. **Kocherise** the duodenum so the pylorus reaches the hiatus; a pyloric drainage procedure or none, by unit policy.
 
@@ -131,7 +131,7 @@ Watch the blood pressure: the heart is compressed by the hand.
 
 ### Question
 
-**Q:** During transhiatal blunt dissection the anaesthetist reports a large air leak. What has happened?
+**Q:** During transhiatal blunt dissection the anesthetist reports a large air leak. What has happened?
 - [x] A tear in the membranous trachea or left main bronchus
   > The membranous airway lies directly on the esophagus; advance the tube past the tear and repair it through a right thoracotomy or via the neck.
 - [ ] A pneumothorax
@@ -152,7 +152,7 @@ From the neck, free the upper esophagus with a finger to meet the hand from belo
 
 Staple the lesser curvature from below the cardia to make a **4–5 cm tube** of greater curvature on the **right gastroepiploic artery**. Pass it through the posterior mediastinum (the esophageal bed) to the neck in a plastic sleeve, without twisting.
 
-Check the colour of the tip: poor perfusion there is what leaks.
+Check the color of the tip: poor perfusion there is what leaks.
 
 ## [th-anast] The anastomosis
 
@@ -162,7 +162,7 @@ Nasogastric tube past the anastomosis; feeding jejunostomy by unit policy.
 
 ## [th-after] What goes wrong
 
-**Anastomotic leak** and **conduit necrosis** (fever, arrhythmia, effluent in the drain: contrast study or endoscopy). **Chylothorax** (milky drain output once fed). **Recurrent laryngeal nerve palsy** (hoarseness, aspiration), mostly after neck dissection. Pneumonia above all: early mobilisation, physiotherapy, sitting up.
+**Anastomotic leak** and **conduit necrosis** (fever, arrhythmia, effluent in the drain: contrast study or endoscopy). **Chylothorax** (milky drain output once fed). **Recurrent laryngeal nerve palsy** (hoarseness, aspiration), mostly after neck dissection. Pneumonia above all: early mobilization, physiotherapy, sitting up.
 
 ## [b4-eso-transhiatal-icu] ICU and post-operative care
 

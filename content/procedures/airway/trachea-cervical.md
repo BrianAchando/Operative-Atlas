@@ -28,12 +28,12 @@ The **recurrent laryngeal nerves** run up in the **tracheo-esophageal grooves** 
 
 **Rigid and flexible bronchoscopy**: the length of the stricture, its distance below the cords and the cricoid, the state of the mucosa; CT for length and extrinsic disease. Dilate to buy time if needed.
 
-Operate when the inflammation has settled, the patient is **off steroids** and off the ventilator, and any tracheostomy can be closed at the same time. Up to about **half the adult trachea (4–5 cm)** can be resected with mobilisation and release; less in children. Subglottic disease involving the cricoid needs a **cricotracheal (Pearson) resection** instead.
+Operate when the inflammation has settled, the patient is **off steroids** and off the ventilator, and any tracheostomy can be closed at the same time. Up to about **half the adult trachea (4–5 cm)** can be resected with mobilization and release; less in children. Subglottic disease involving the cricoid needs a **cricotracheal (Pearson) resection** instead.
 
 ### Question
 
 **Q:** Roughly how much adult trachea can be resected with primary anastomosis?
-- [x] About half (4–5 cm), with mobilisation and release manoeuvres
+- [x] About half (4–5 cm), with mobilization and release maneuvers
   > Beyond that, tension rises steeply and dehiscence and restenosis follow.
 - [ ] Up to three quarters
 - [ ] No more than 1 cm
@@ -92,7 +92,7 @@ Template and how to use it: [CTICU protocol, consent](#approach=cticu-consent&st
 
 ## [tr-incision] Position and collar incision
 
-Supine, a **shoulder roll**, the neck extended, the head on a ring. Anaesthesia: a small tube passed through or above the stricture (after dilatation if needed), or spontaneous ventilation.
+Supine, a **shoulder roll**, the neck extended, the head on a ring. Anesthesia: a small tube passed through or above the stricture (after dilatation if needed), or spontaneous ventilation.
 
 A **low collar incision** two fingerbreadths above the sternal notch; include an old stoma. A partial upper sternal split is added only for low lesions.
 
@@ -112,7 +112,7 @@ Encircle the trachea **only at the stricture**, staying **on the tracheal wall**
 
 ## [tr-lower] Divide below; cross-field ventilation
 
-Place **lateral stay sutures** (2-0) through the full wall a ring below the stricture. Divide the trachea just below it; pass a sterile **armoured tube into the distal trachea** across the field and ventilate through it.
+Place **lateral stay sutures** (2-0) through the full wall a ring below the stricture. Divide the trachea just below it; pass a sterile **armored tube into the distal trachea** across the field and ventilate through it.
 
 ## [tr-upper] Divide above; the segment out
 
@@ -143,7 +143,7 @@ Take the cross-field tube out and **advance the oral tube past the anastomosis**
 
 A heavy **guardian (chin-to-chest) suture** keeps the neck flexed for about 7 days. **Extubate in theatre** where possible. Bronchoscopy before discharge (around day 7).
 
-Watch for: **stridor** (oedema: steroids, racemic adrenaline, a small tube; dehiscence must be excluded), **air or wound infection** (a leak), **voice change or aspiration** (nerve injury). In large series about **95% have a good airway**; restenosis around 4–5%, and dehiscence is the complication that kills.
+Watch for: **stridor** (edema: steroids, racemic adrenaline, a small tube; dehiscence must be excluded), **air or wound infection** (a leak), **voice change or aspiration** (nerve injury). In large series about **95% have a good airway**; restenosis around 4–5%, and dehiscence is the complication that kills.
 
 ## [trachea-cervical-icu] ICU and post-operative care
 

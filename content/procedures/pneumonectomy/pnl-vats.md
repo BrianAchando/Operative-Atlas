@@ -15,9 +15,9 @@ summary: Ligament, inferior vein, superior vein, main artery, main bronchus.
 
 **How it spreads** decides the stage and the operation:
 
-Chain: Primary tumour (T: size, invasion) → Intrapulmonary and hilar nodes (N1) → **Mediastinal nodes (N2)** → **Contralateral or supraclavicular (N3)**
+Chain: Primary tumor (T: size, invasion) → Intrapulmonary and hilar nodes (N1) → **Mediastinal nodes (N2)** → **Contralateral or supraclavicular (N3)**
 
-Chain: Primary tumour → **Blood: brain, bone, adrenal, liver (M1)**
+Chain: Primary tumor → **Blood: brain, bone, adrenal, liver (M1)**
 
 | T | Tumour (9th edition keeps the 8th-edition T) |
 | --- | --- |
@@ -32,15 +32,15 @@ Chain: Primary tumour → **Blood: brain, bone, adrenal, liver (M1)**
 | M | Metastasis |
 | M1a–c | M1a pleural or pericardial spread, contralateral nodules; M1b one extrathoracic metastasis; **M1c1** several in one organ system, **M1c2** several organ systems (new) |
 
-**Before an operation**: CT and **PET-CT**; **invasive mediastinal staging** (EBUS/EUS needle aspiration, or mediastinoscopy) when the tumour is central, over 3 cm, or the nodes are enlarged or PET-positive; brain imaging for stage II and above. Then fitness: FEV1 and DLCO, and the **predicted postoperative** values (ppo = preoperative value × segments remaining / 19; by lobe: RUL 3, RML 2, RLL 5, LUL 5 with the lingula, LLL 4).
+**Before an operation**: CT and **PET-CT**; **invasive mediastinal staging** (EBUS/EUS needle aspiration, or mediastinoscopy) when the tumor is central, over 3 cm, or the nodes are enlarged or PET-positive; brain imaging for stage II and above. Then fitness: FEV1 and DLCO, and the **predicted postoperative** values (ppo = preoperative value × segments remaining / 19; by lobe: RUL 3, RML 2, RLL 5, LUL 5 with the lingula, LLL 4).
 
 > **Evidence:** 9th-edition TNM from the IASLC (Rami-Porta et al., J Thorac Oncol 2024): N2 split into N2a (single station) and N2b (multiple stations); M1c into M1c1 and M1c2; T1N1 moves to stage IIA, T1N2a is IIB. ACCP 2013 physiological evaluation (Brunelli et al.): ppoFEV1 and ppoDLCO both over 60% is low risk; 30–60% needs a stair climb (over 22 m) or shuttle walk (over 400 m); under 30%, or a poor walk test, needs CPET (VO2max over 20 mL/kg/min low risk, under 10 high risk). ESTS 2014 guideline for invasive mediastinal staging (De Leyn et al.).
 
 ### Question
 
-**Q:** Under the 9th edition, a 2.6 cm tumour (T1c) with metastasis in a single mediastinal station (subcarinal, station 7) and no distant spread is stage…
+**Q:** Under the 9th edition, a 2.6 cm tumor (T1c) with metastasis in a single mediastinal station (subcarinal, station 7) and no distant spread is stage…
 - [x] IIB (T1 N2a)
-  > The 9th edition splits N2: a single station (N2a) with a T1 tumour is IIB; several stations (N2b) make it IIIA. Many single-station N2 patients are now treated with neoadjuvant chemo-immunotherapy and surgery.
+  > The 9th edition splits N2: a single station (N2a) with a T1 tumor is IIB; several stations (N2b) make it IIIA. Many single-station N2 patients are now treated with neoadjuvant chemo-immunotherapy and surgery.
 - [ ] IIIA
 - [ ] IIIB
 - [ ] IV
@@ -59,7 +59,7 @@ Before committing, assess the **fissure and hilum for a lobectomy** option, and 
 
 ### Case
 
-A **63-year-old man**, smoker, haemoptysis. Bronchoscopy: a squamous carcinoma at the origin of the left upper and lower lobe bronchi, extending into the left main bronchus; CT: a 5 cm hilar mass encasing the left pulmonary artery. EBUS: 4L and 7 negative, 10L positive (N1). PET: no distant disease. FEV1 2.4 L (82%), DLCO 75%; perfusion to the left lung 45%.
+A **63-year-old man**, smoker, hemoptysis. Bronchoscopy: a squamous carcinoma at the origin of the left upper and lower lobe bronchi, extending into the left main bronchus; CT: a 5 cm hilar mass encasing the left pulmonary artery. EBUS: 4L and 7 negative, 10L positive (N1). PET: no distant disease. FEV1 2.4 L (82%), DLCO 75%; perfusion to the left lung 45%.
 
 ### Question
 
@@ -94,7 +94,7 @@ A **63-year-old man**, smoker, haemoptysis. Bronchoscopy: a squamous carcinoma a
 
 -   Higher mortality than lobectomy (right more than left)
 -   Permanent reduction in exercise tolerance
--   Post-pneumonectomy pulmonary oedema
+-   Post-pneumonectomy pulmonary edema
 -   Cardiac herniation (intrapericardial)
 
 #### 5\. Alternatives
@@ -136,7 +136,7 @@ Retract the lower lobe up and divide the **inferior pulmonary ligament** with th
 
 ## [lp-ipv] Inferior pulmonary vein: staple
 
-Clear the **inferior pulmonary vein** circumferentially down to the pericardium and staple it with a vascular load. For a central tumour it can be taken **inside the pericardium**.
+Clear the **inferior pulmonary vein** circumferentially down to the pericardium and staple it with a vascular load. For a central tumor it can be taken **inside the pericardium**.
 
 ## [lp-spv] Superior pulmonary vein: staple
 
@@ -174,7 +174,7 @@ On the left the bronchus runs under the aortic arch: pull the lung down and out 
 
 ## [lp-specimen] Specimen out, cover the stump, leak test
 
-Remove the lung in a bag through an enlarged incision. Leak-test the stump under saline at 20–25 cmH<sub>2</sub>O. Cover it with a vascularised flap (pericardial fat, pleura or intercostal muscle), especially after induction therapy.
+Remove the lung in a bag through an enlarged incision. Leak-test the stump under saline at 20–25 cmH<sub>2</sub>O. Cover it with a vascularized flap (pericardial fat, pleura or intercostal muscle), especially after induction therapy.
 
 Complete the nodal dissection. Leave a balanced drain or none, and keep the mediastinum central; restrict fluids.
 

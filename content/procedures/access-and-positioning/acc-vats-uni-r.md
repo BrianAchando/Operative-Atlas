@@ -11,13 +11,13 @@ summary: Where the ports go, what they go through, and the view from inside.
 
 Uniportal is the routine lobectomy approach at KNH <span class="tag knh">KNH practice</span>. A single **4–5 cm incision** in the **5th intercostal space** at the **anterior axillary line**, used for every lobe (the technique as described by Gonzalez-Rivas; a 4th-space incision is sometimes chosen for upper lobes by individual surgeons).
 
-Serratus anterior is split along its fibres; a wound protector holds it open. The **camera sits at the back** of the wound, instruments below and in front of it, all working in the same plane as in open surgery. Staplers come in from the same incision, so angles for the superior vein and the bronchus need planning (curved-tip staplers help).
+Serratus anterior is split along its fibers; a wound protector holds it open. The **camera sits at the back** of the wound, instruments below and in front of it, all working in the same plane as in open surgery. Staplers come in from the same incision, so angles for the superior vein and the bronchus need planning (curved-tip staplers help).
 
 > **Evidence:** Uniportal lobectomy through one 4–5 cm incision in the 5th space was described by Gonzalez-Rivas et al. (J Thorac Dis 2013). Choice of port layout is a surgeon-preference decision; comparative evidence is limited to cohort studies.
 
 ## [vmunir-layers] What the port goes through
 
-Skin and subcutaneous fat → Serratus anterior: split along its fibres → Intercostal muscles, on the upper border of the rib below.
+Skin and subcutaneous fat → Serratus anterior: split along its fibers → Intercostal muscles, on the upper border of the rib below.
 
 Enter on the **upper border of the lower rib**; open the pleura with a finger and sweep for adhesions before the first instrument goes in.
 

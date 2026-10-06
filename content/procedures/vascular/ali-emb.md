@@ -1,34 +1,34 @@
 ---
 id: ali-emb
-operation: Acute limb ischaemia
+operation: Acute limb ischemia
 approach: Embolectomy and fasciotomy
 summary: Rutherford grading, heparin, femoral embolectomy with a Fogarty catheter, source search, and four-compartment fasciotomy.
 ---
 
 <!-- Edit the words freely. Keep each "## [step-id]" line as it is: it ties the text to its step in the 3D atlas. -->
 
-## [ali-patho] Pathophysiology: acute limb ischaemia
+## [ali-patho] Pathophysiology: acute limb ischemia
 
 A sudden loss of limb perfusion threatening viability, presenting within 2 weeks. **Embolus** (from the heart: AF, mitral stenosis, a mural thrombus after MI, endocarditis) lodges at a bifurcation, most often the **common femoral**; **thrombosis in situ** occludes a diseased artery or bypass graft, and the limb often has collaterals. In Kenya add **rheumatic AF** and **HIV-associated arterial thrombosis** in the young.
 
-Chain: Occlusion → Muscle and nerve ischaemia → **Irreversible after about 6 hours of severe ischaemia** → Reperfusion: swelling, compartment syndrome, K⁺ and myoglobin release
+Chain: Occlusion → Muscle and nerve ischemia → **Irreversible after about 6 hours of severe ischemia** → Reperfusion: swelling, compartment syndrome, K⁺ and myoglobin release
 
-**The 6 Ps**: pain, pallor, pulselessness, perishing cold, paraesthesia, paralysis. Sensory loss and weakness are the ones that decide urgency.
+**The 6 Ps**: pain, pallor, pulselessness, perishing cold, paresthesia, paralysis. Sensory loss and weakness are the ones that decide urgency.
 
 | Rutherford | Sensory loss | Weakness | Doppler (art / vein) | Action |
 | --- | --- | --- | --- | --- |
-| I viable | none | none | audible / audible | urgent imaging, revascularise |
-| IIa marginally threatened | toes or none | none | inaudible / audible | revascularise urgently |
-| IIb immediately threatened | beyond the toes, rest pain | mild to moderate | inaudible / audible | **emergency** revascularisation |
-| III irreversible | profound, anaesthetic | paralysis, rigor | inaudible / inaudible | amputation |
+| I viable | none | none | audible / audible | urgent imaging, revascularize |
+| IIa marginally threatened | toes or none | none | inaudible / audible | revascularize urgently |
+| IIb immediately threatened | beyond the toes, rest pain | mild to moderate | inaudible / audible | **emergency** revascularization |
+| III irreversible | profound, anesthetic | paralysis, rigor | inaudible / inaudible | amputation |
 
-> **Evidence:** Rutherford et al. (J Vasc Surg 1997) categories, as adopted by the ESVS 2020 acute limb ischaemia guideline (Björck et al., Eur J Vasc Endovasc Surg 2020).
+> **Evidence:** Rutherford et al. (J Vasc Surg 1997) categories, as adopted by the ESVS 2020 acute limb ischemia guideline (Björck et al., Eur J Vasc Endovasc Surg 2020).
 
 ### Question
 
-**Q:** Which finding moves acute limb ischaemia from Rutherford IIa to IIb?
+**Q:** Which finding moves acute limb ischemia from Rutherford IIa to IIb?
 - [x] Sensory loss beyond the toes, rest pain or muscle weakness
-  > IIb is immediately threatened: emergency revascularisation.
+  > IIb is immediately threatened: emergency revascularization.
 - [ ] An absent foot pulse
 - [ ] A cold foot
 - [ ] Pallor
@@ -41,9 +41,9 @@ A **single transverse femoral arteriotomy** reaches all of these with a Fogarty 
 
 ## [ali-case] Case: a cold right leg in rheumatic AF
 
-**Rutherford IIb** embolic occlusion at the femoral bifurcation. **Heparin now**, then **emergency femoral embolectomy**; the history and the normal left leg make an embolus likely, so imaging need not delay theatre. Plan a **fasciotomy**: ischaemia beyond 6 hours with motor loss.
+**Rutherford IIb** embolic occlusion at the femoral bifurcation. **Heparin now**, then **emergency femoral embolectomy**; the history and the normal left leg make an embolus likely, so imaging need not delay theatre. Plan a **fasciotomy**: ischemia beyond 6 hours with motor loss.
 
-> **Evidence:** Heparin on diagnosis: 70–100 IU/kg (or 5000 IU) bolus then an infusion (ESVS 2020, as summarised in Endovascular Today 2026). Clinical decision without imaging for a clear embolus with a normal contralateral limb is accepted practice.
+> **Evidence:** Heparin on diagnosis: 70–100 IU/kg (or 5000 IU) bolus then an infusion (ESVS 2020, as summarized in Endovascular Today 2026). Clinical decision without imaging for a clear embolus with a normal contralateral limb is accepted practice.
 
 ### Case
 
@@ -100,7 +100,7 @@ Template and how to use it: [CTICU protocol, consent](#approach=cticu-consent&st
 
 ### Question
 
-**Q:** Which risk is specific to revascularising a limb ischaemic for many hours?
+**Q:** Which risk is specific to revascularizing a limb ischemic for many hours?
 - [x] Reperfusion injury: compartment syndrome, high potassium and kidney injury
   > Restoring flow to dead or injured muscle releases potassium and myoglobin.
 - [ ] Paraplegia
@@ -109,11 +109,11 @@ Template and how to use it: [CTICU protocol, consent](#approach=cticu-consent&st
 
 ## [ali-expose] Expose the common femoral bifurcation; control; transverse arteriotomy
 
-A vertical groin incision over the femoral artery (local anaesthesia is possible in a frail patient). Control the **common femoral, superficial femoral and profunda** with slings. Heparin is already running. A **transverse arteriotomy** just above the bifurcation (closed primarily without narrowing); a longitudinal one if the artery is diseased and will need a patch.
+A vertical groin incision over the femoral artery (local anesthesia is possible in a frail patient). Control the **common femoral, superficial femoral and profunda** with slings. Heparin is already running. A **transverse arteriotomy** just above the bifurcation (closed primarily without narrowing); a longitudinal one if the artery is diseased and will need a patch.
 
 ## [ali-fogarty] Fogarty embolectomy: proximal, then distal; check back-bleeding
 
-The embolus often extrudes. **Proximally**: a 5F Fogarty catheter into the iliac until pulsatile inflow returns. **Distally**: a 3–4F catheter down the superficial femoral and the profunda, passed beyond the clot, the balloon inflated gently with saline and withdrawn steadily while the inflation is adjusted to the vessel. Repeat until **two clean passes** and good **back-bleeding**. Flush with heparinised saline.
+The embolus often extrudes. **Proximally**: a 5F Fogarty catheter into the iliac until pulsatile inflow returns. **Distally**: a 3–4F catheter down the superficial femoral and the profunda, passed beyond the clot, the balloon inflated gently with saline and withdrawn steadily while the inflation is adjusted to the vessel. Repeat until **two clean passes** and good **back-bleeding**. Flush with heparinized saline.
 
 Over-inflation damages the intima, causing dissection and later stenosis. If the catheter will not pass or flow stays poor, image on the table (angiogram) and explore the below-knee popliteal to direct the catheter into each tibial artery.
 
@@ -134,14 +134,14 @@ Send the clot for histology (myxoma, infection) and look for the source: **ECG, 
 
 ## [ali-fasciotomy] Four-compartment fasciotomy through two incisions
 
-After revascularisation of severe or prolonged ischaemia, reperfusion swells the muscle inside unyielding fascia. **Prophylactic fasciotomy** when ischaemia exceeded about 6 hours with neuromotor deficit; therapeutic when compartment syndrome appears (pain on passive stretch, tense calf, falling sensation).
+After revascularization of severe or prolonged ischemia, reperfusion swells the muscle inside unyielding fascia. **Prophylactic fasciotomy** when ischemia exceeded about 6 hours with neuromotor deficit; therapeutic when compartment syndrome appears (pain on passive stretch, tense calf, falling sensation).
 
 -   **Anterolateral incision**: midway between the tibial crest and the fibula; open the anterior and lateral compartments either side of the intermuscular septum; protect the **superficial peroneal nerve** in the lower third
 -   **Posteromedial incision**: 1–2 cm behind the posteromedial border of the tibia; protect the great saphenous vein and saphenous nerve; open the superficial posterior compartment, then detach soleus from the tibia to open the **deep posterior** compartment
 
 Long incisions through skin and fascia; leave open, dress (or negative pressure); close or graft at 3–7 days. Dead muscle is debrided.
 
-> **Evidence:** Fasciotomy for severe ischaemia lasting more than 6 hours (compartment syndrome in up to 30% of revascularisations; Endovascular Today 2026 summary of ESVS 2020). Two-incision technique and the diastolic pressure minus compartment pressure under 30 mmHg threshold: AO Surgery Reference.
+> **Evidence:** Fasciotomy for severe ischemia lasting more than 6 hours (compartment syndrome in up to 30% of revascularizations; Endovascular Today 2026 summary of ESVS 2020). Two-incision technique and the diastolic pressure minus compartment pressure under 30 mmHg threshold: AO Surgery Reference.
 
 ### Question
 
@@ -159,7 +159,7 @@ Start with the [vascular core](#approach=cticu-vascular&step=0), the [lab schedu
 #### Specific to this operation
 
 -   Hourly foot Doppler and compartment checks (pain on passive stretch, tense calf)
--   Reperfusion: K⁺, CK, myoglobinuria; urine output; alkalinise urine per unit
+-   Reperfusion: K⁺, CK, myoglobinuria; urine output; alkalinize urine per unit
 -   Heparin infusion, then anticoagulation for AF; echo for the source
 
 #### Labs

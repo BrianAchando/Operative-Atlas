@@ -11,11 +11,11 @@ summary: The infected post-pneumonectomy space and a stump fistula: protect the 
 
 **The empty hemithorax.** After pneumonectomy the space fills with serous fluid over days to weeks, while the mediastinum shifts across, the diaphragm rises and the ribs crowd in. The fluid is an ideal culture medium: seeded at operation, from the blood, or through a **bronchopleural fistula (BPF)**, it becomes **post-pneumonectomy empyema (PPE)**, reported in 2–16%.
 
-Chain: Stump ischaemia (stripped bronchial arteries), tension, a long stump, residual tumour, radiation, infection → **Stump dehiscence: BPF** → Air enters the space; fluid drains into the airway → **Aspiration into the only lung: pneumonia, ARDS, death**
+Chain: Stump ischemia (stripped bronchial arteries), tension, a long stump, residual tumor, radiation, infection → **Stump dehiscence: BPF** → Air enters the space; fluid drains into the airway → **Aspiration into the only lung: pneumonia, ARDS, death**
 
 Chain: Infected fluid in a rigid space → Sepsis → **Erodes the stump from outside: late BPF**
 
-**Early BPF** (first days to about 2 weeks) is usually technical; **late BPF** follows infection or ischaemia and can appear months later. **Right** pneumonectomy is worst: the right stump lies uncovered in the pleural space, usually on a single bronchial artery, while the left retracts under the aortic arch and has two.
+**Early BPF** (first days to about 2 weeks) is usually technical; **late BPF** follows infection or ischemia and can appear months later. **Right** pneumonectomy is worst: the right stump lies uncovered in the pleural space, usually on a single bronchial artery, while the left retracts under the aortic arch and has two.
 
 **Signs**: fever, **coughing up large volumes of serous or brownish fluid** (the pleural fluid), a **falling fluid level** or a new air-fluid level on the X-ray, subcutaneous emphysema, contralateral aspiration pneumonia.
 
@@ -32,7 +32,7 @@ Chain: Infected fluid in a rigid space → Sepsis → **Erodes the stump from ou
 - [ ] Flat and supine
 - [ ] Head down
 
-## [ppe-anatomy] The right stump and its neighbours
+## [ppe-anatomy] The right stump and its neighbors
 
 The right main bronchial stump sits at the **carina**, behind the **SVC** and the stump of the right pulmonary artery, under the **azygos arch**, with the **esophagus** behind and medial. Re-exposing it through the infected space means dense, friable tissue; the **transsternal, transpericardial** route reaches the carina through clean tissue, between the SVC and the aorta, when the pleural route is hostile.
 
@@ -42,12 +42,12 @@ The space itself is bounded by the mediastinum, the raised diaphragm and the che
 
 **Early BPF with post-pneumonectomy empyema**. Immediate: operated side down, a **chest drain** into the space, broad-spectrum antibiotics, ICU. Then two paths:
 
--   **Fit, early fistula, clean enough**: **re-operate early**: debride the space, re-amputate and close the stump, **cover it with a vascularised flap** (latissimus, serratus, intercostal muscle or omentum), then sterilise and close the space (Clagett-type fill, or repeated debridement with negative pressure and closure).
+-   **Fit, early fistula, clean enough**: **re-operate early**: debride the space, re-amputate and close the stump, **cover it with a vascularized flap** (latissimus, serratus, intercostal muscle or omentum), then sterilize and close the space (Clagett-type fill, or repeated debridement with negative pressure and closure).
 -   **Unfit, or late, established infection**: **open window thoracostomy** (Eloesser) to drain the space for weeks, dressing changes, then a later closure (Clagett) once the cavity is clean, with or without muscle transposition.
 
 Small fistulas (under 3–5 mm) in unfit patients can sometimes be closed endoscopically (glue, occluder devices, stents), usually as a bridge.
 
-> **Evidence:** Clagett and Geraci (1963): open window drainage then filling the cavity with antibiotic solution and closing it; Zaheer et al. (Mayo 2006): success 81% after the first attempt. Pairolero et al. (JTCVS 1990): muscle transposition to close the fistula and fill the space, success 84%. Accelerated treatment (Schneiter et al., JTCVS 2008; 75 patients, 59% with BPF): repeated debridement, negative pressure and antibiotic-filled closure healed 97% with 4% 90-day mortality. Stump coverage (Di Maio et al., meta-analysis 2015): coverage was selective in most series; the one trial, in diabetics, favoured coverage.
+> **Evidence:** Clagett and Geraci (1963): open window drainage then filling the cavity with antibiotic solution and closing it; Zaheer et al. (Mayo 2006): success 81% after the first attempt. Pairolero et al. (JTCVS 1990): muscle transposition to close the fistula and fill the space, success 84%. Accelerated treatment (Schneiter et al., JTCVS 2008; 75 patients, 59% with BPF): repeated debridement, negative pressure and antibiotic-filled closure healed 97% with 4% 90-day mortality. Stump coverage (Di Maio et al., meta-analysis 2015): coverage was selective in most series; the one trial, in diabetics, favored coverage.
 
 ### Case
 
@@ -137,7 +137,7 @@ Debride the fibrin and necrotic tissue; irrigate. Pack with gauze soaked in dilu
 
 ## [ppe-clagett] Clagett closure: fill the clean cavity and close
 
-When the cavity is clean and granulating, and the fistula closed (weeks to months later, typically 6–8 weeks), **fill the space with antibiotic solution** (for example DAB: neomycin, polymyxin B and gentamicin per litre), and close the window in layers, watertight. The sterile fluid then obliterates slowly, like a normal post-pneumonectomy space.
+When the cavity is clean and granulating, and the fistula closed (weeks to months later, typically 6–8 weeks), **fill the space with antibiotic solution** (for example DAB: neomycin, polymyxin B and gentamicin per liter), and close the window in layers, watertight. The sterile fluid then obliterates slowly, like a normal post-pneumonectomy space.
 
 A persistent fistula must first be closed and **covered with muscle** (latissimus or serratus through the window), or the Clagett fails.
 

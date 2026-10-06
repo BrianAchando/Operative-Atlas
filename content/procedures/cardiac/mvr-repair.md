@@ -24,7 +24,7 @@ summary: Case-based: pathophysiology, anatomy, the patient and the decision, the
 | The valve… | cannot close | cannot open |
 | Reversible? | partly, if carditis settles and recurrences are prevented | no: scar and calcium, treated mechanically (balloon or surgery) |
 
-**How carditis makes the valve leak.** Rheumatic carditis is a pancarditis: the leaflets are oedematous and friable, the **chordae elongate** so the **anterior leaflet prolapses** (Carpentier II), the inflamed ventricle and atrium dilate and **stretch the annulus** (Carpentier I), and displaced papillary muscles tether the leaflets. The jet points **away from the prolapsing leaflet**: posteriorly. With time, fibrosis retracts the posterior leaflet and the lesion becomes restrictive (IIIa), often with some stenosis.
+**How carditis makes the valve leak.** Rheumatic carditis is a pancarditis: the leaflets are edematous and friable, the **chordae elongate** so the **anterior leaflet prolapses** (Carpentier II), the inflamed ventricle and atrium dilate and **stretch the annulus** (Carpentier I), and displaced papillary muscles tether the leaflets. The jet points **away from the prolapsing leaflet**: posteriorly. With time, fibrosis retracts the posterior leaflet and the lesion becomes restrictive (IIIa), often with some stenosis.
 
 Chain: Regurgitant volume into the LA → LA and LV volume overload → LV dilates (eccentric hypertrophy) → **Contractility falls while the EF still looks normal** → **Irreversible LV dysfunction**
 
@@ -34,7 +34,7 @@ Chain: LA pressure ↑ → Pulmonary congestion → Pulmonary hypertension → A
 
 **Repair or replace?** Repair keeps the native valve and avoids warfarin, which matters for young women and where INR monitoring is hard, but rheumatic repair is less durable than repair of degenerative valves: the fibrotic process goes on, and recurrences re-injure the valve, so **penicillin prophylaxis continues after surgery**.
 
-> **Evidence:** mechanisms from human pathology and the Carpentier functional classification; see Carapetis et al., Nat Rev Dis Primers 2016. Intervention thresholds from the ACC/AHA 2020 and ESC/EACTS 2021/2025 guidelines. A meta-analysis of 16 retrospective studies (Jiang et al., Ann Transl Med 2021; 8,659 patients) found lower early mortality (OR 0.58) and better long-term survival with repair than replacement for rheumatic mitral disease, but about twice the risk of reoperation (HR 1.96); the studies are observational and repaired valves were selected. The AHA 2020 statement notes repair is feasible in most patients in expert hands, while many endemic-region centres favour replacement to avoid redo surgery.
+> **Evidence:** mechanisms from human pathology and the Carpentier functional classification; see Carapetis et al., Nat Rev Dis Primers 2016. Intervention thresholds from the ACC/AHA 2020 and ESC/EACTS 2021/2025 guidelines. A meta-analysis of 16 retrospective studies (Jiang et al., Ann Transl Med 2021; 8,659 patients) found lower early mortality (OR 0.58) and better long-term survival with repair than replacement for rheumatic mitral disease, but about twice the risk of reoperation (HR 1.96); the studies are observational and repaired valves were selected. The AHA 2020 statement notes repair is feasible in most patients in expert hands, while many endemic-region centers favor replacement to avoid redo surgery.
 
 ### Question
 
@@ -66,7 +66,7 @@ Round the posterior annulus, in the AV groove: the **circumflex artery** (close 
 
 **Repair first, if the valve allows**: in a young woman, repair avoids warfarin (teratogenic, and hard to monitor far from a clinic) and keeps the native valve for pregnancy. Its weakness in rheumatic disease is durability.
 
-**If it must be replaced**, the choice is hard. A **mechanical** valve lasts but needs warfarin: a high-risk pregnancy (valve thrombosis, embryopathy, bleeding). A **tissue** valve avoids warfarin and is favoured for women planning pregnancy, but in a 17-year-old it may fail within about 10 years and needs a redo (mitral valve-in-valve is possible later). Decide with her and her family, before theatre.
+**If it must be replaced**, the choice is hard. A **mechanical** valve lasts but needs warfarin: a high-risk pregnancy (valve thrombosis, embryopathy, bleeding). A **tissue** valve avoids warfarin and is favored for women planning pregnancy, but in a 17-year-old it may fail within about 10 years and needs a redo (mitral valve-in-valve is possible later). Decide with her and her family, before theatre.
 
 **Access**: median sternotomy and a left atriotomy (the default; any concomitant surgery). Transseptal for a small LA, tricuspid surgery or a redo; a right mini-thoracotomy for isolated mitral surgery in selected patients.
 
@@ -78,7 +78,7 @@ A **17-year-old girl**, two admissions with acute rheumatic fever, now NYHA II�
 
 ### Question
 
-**Q:** The valve is unrepairable. For this 17-year-old who wants children and lives far from an INR clinic, which valve do current guidelines favour?
+**Q:** The valve is unrepairable. For this 17-year-old who wants children and lives far from an INR clinic, which valve do current guidelines favor?
 - [x] A bioprosthesis, accepting a likely reoperation, after a shared decision
   > The ESC 2025 pregnancy guideline recommends a bioprosthesis in women contemplating pregnancy; poor access to INR monitoring adds to the case. The cost is early degeneration and a redo, which she must understand.
 - [ ] A mechanical valve: durability matters most
@@ -164,7 +164,7 @@ Analyse the valve systematically before deciding (Carpentier): the **annulus** (
 
 **Rheumatic repair**, when the tissue allows: commissurotomy, thinning (peeling) of thickened leaflets, fenestration of fused chordae, **augmenting a retracted leaflet with a pericardial patch**, chordal shortening, transfer or artificial chordae for prolapse, and a **complete ring** annuloplasty. **Replace** when the leaflets are thick, retracted and calcified, the subvalvular apparatus is fused, or a durable repair is unlikely: a failed repair in a young patient means another sternotomy.
 
-> **Evidence:** repair versus replacement in rheumatic disease has no randomised trial; observational data and meta-analysis favour repair for survival with more reoperations (Jiang et al., 2021). Intraoperative TOE after repair (residual MR, gradient, systolic anterior motion) is standard.
+> **Evidence:** repair versus replacement in rheumatic disease has no randomized trial; observational data and meta-analysis favor repair for survival with more reoperations (Jiang et al., 2021). Intraoperative TOE after repair (residual MR, gradient, systolic anterior motion) is standard.
 
 ### Question
 
@@ -197,7 +197,7 @@ A common compromise: **ventricular pledgets posteriorly and at the commissures**
 
 Whatever the technique, bite **in the annulus, not beyond it**.
 
-> **Evidence:** no randomised trial compares everting and non-everting sutures in MVR. In the AVERT trial cohort, **pledgeted** sutures were associated with fewer major paravalvular leaks than unpledgeted ones (Englberger et al., *Eur J Cardiothorac Surg* 2005). The ACC/AHA 2020 and ESC/EACTS 2021 valve guidelines make no recommendation on suture technique, but support **preserving the subvalvular apparatus** in MVR (for LV function), and that is one more reason to keep pledgets clear of preserved chordae.
+> **Evidence:** no randomized trial compares everting and non-everting sutures in MVR. In the AVERT trial cohort, **pledgeted** sutures were associated with fewer major paravalvular leaks than unpledgeted ones (Englberger et al., *Eur J Cardiothorac Surg* 2005). The ACC/AHA 2020 and ESC/EACTS 2021 valve guidelines make no recommendation on suture technique, but support **preserving the subvalvular apparatus** in MVR (for LV function), and that is one more reason to keep pledgets clear of preserved chordae.
 
 ### Question
 
@@ -263,7 +263,7 @@ Close the left atriotomy with 3-0/4-0 polypropylene, leaving the LV vent across 
 
 The end-point is **TOE, not the clock**: no bubbles in the LA, LV or pulmonary veins at near-normal filling, then vent out.
 
-> **Evidence:** no trial compares early with late de-airing; practice rests on physiology and TOE studies. CO₂ field flooding cut microemboli on TOE in a randomised trial (Svenarud et al., *Circulation* 2004) and reduced neurocognitive impairment in another (Martens et al., *Ann Thorac Surg* 2008); a benefit for stroke has not been shown. Intraoperative TOE in valve surgery, including to guide de-airing, is standard practice (ASE/SCA guidelines, Hahn et al., *J Am Soc Echocardiogr* 2013).
+> **Evidence:** no trial compares early with late de-airing; practice rests on physiology and TOE studies. CO₂ field flooding cut microemboli on TOE in a randomized trial (Svenarud et al., *Circulation* 2004) and reduced neurocognitive impairment in another (Martens et al., *Ann Thorac Surg* 2008); a benefit for stroke has not been shown. Intraoperative TOE in valve surgery, including to guide de-airing, is standard practice (ASE/SCA guidelines, Hahn et al., *J Am Soc Echocardiogr* 2013).
 
 **TOE** before leaving theatre: no paravalvular leak, leaflets moving, no LVOT obstruction. Pacing wires, drains.
 
@@ -280,13 +280,13 @@ Serious complications: **AV groove disruption** (catastrophic), circumflex injur
 
 ## [mr-reperfuse] Reperfuse on bypass, or separate early?
 
-With the clamp off the heart is **reperfused while bypass still carries the circulation**. How long to rest it before weaning is a judgement, not a fixed rule. A common rule of thumb is about **a third of the cross-clamp time** (roughly 10 minutes for each 30 of ischaemia).
+With the clamp off the heart is **reperfused while bypass still carries the circulation**. How long to rest it before weaning is a judgment, not a fixed rule. A common rule of thumb is about **a third of the cross-clamp time** (roughly 10 minutes for each 30 of ischemia).
 
 **Waiting for myocardial recovery** (a longer supported reperfusion): it washes out cardioplegia and potassium, restores energy stores, lets the rhythm settle and rewarming finish, and needs fewer inotropes. Worth it after a **long clamp**, with a **poor LV or RV**, a hypertrophied ventricle, doubtful protection, or **pulmonary hypertension** (common in rheumatic mitral stenosis: the RV fails first).
 
-**Separating early**: every extra minute of bypass adds haemodilution, platelet damage, inflammation and bleeding. After a **short clamp**, a good ventricle, sound protection and a stable rhythm, wean as soon as the conditions are met.
+**Separating early**: every extra minute of bypass adds hemodilution, platelet damage, inflammation and bleeding. After a **short clamp**, a good ventricle, sound protection and a stable rhythm, wean as soon as the conditions are met.
 
-Before either: temperature 36–37 °C, sinus rhythm or pacing, potassium and haemoglobin corrected, lungs ventilated, **de-airing confirmed on TOE**, and the valve checked (no paravalvular leak, leaflets moving). The cost of weaning too early is a low-output state and a return to bypass; that is still easy while **the cannulas are in and protamine has not been given**.
+Before either: temperature 36–37 °C, sinus rhythm or pacing, potassium and hemoglobin corrected, lungs ventilated, **de-airing confirmed on TOE**, and the valve checked (no paravalvular leak, leaflets moving). The cost of weaning too early is a low-output state and a return to bypass; that is still easy while **the cannulas are in and protamine has not been given**.
 
 ### Question
 
@@ -305,7 +305,7 @@ Wean slowly, watching the pressures and the TOE. Then the order that keeps a way
 2.  **Protamine** started slowly (watch for pulmonary hypertension and hypotension); **stop the pump suckers** once it runs.
 3.  **Arterial cannula out last**, after part of the protamine and a stable pressure: while it is in, blood can be given from the pump and bypass restarted quickly.
 
-A fast decannulation saves pump time only if the heart is ready; a return to bypass after full protamine means re-heparinising and re-cannulating a heart that is already struggling.
+A fast decannulation saves pump time only if the heart is ready; a return to bypass after full protamine means re-heparinizing and re-cannulating a heart that is already struggling.
 
 ## [mvr-repair-icu] ICU and post-operative care
 

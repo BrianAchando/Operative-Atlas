@@ -9,7 +9,7 @@ summary: Case-based: single-vessel MIDCAB, two-vessel LIMA + radial, three-vesse
 
 ## [co-case] Case: three-vessel disease with impaired LV
 
-> **Evidence:** STICHES (NEJM 2016): in ischaemic cardiomyopathy with EF 35% or less, CABG plus medical therapy reduced death from any cause at 10 years compared with medical therapy alone (59% vs 66%).
+> **Evidence:** STICHES (NEJM 2016): in ischemic cardiomyopathy with EF 35% or less, CABG plus medical therapy reduced death from any cause at 10 years compared with medical therapy alone (59% vs 66%).
 
 ### Case
 
@@ -19,18 +19,18 @@ A 64-year-old man, diabetic, breathless and with angina; **EF 30%** with viable 
 
 **Q:** EF 30%, three-vessel disease, suitable targets. Compared with medical therapy alone, CABG…
 - [x] reduces death at 10 years (STICHES)
-  > STICH, extended to 10 years (STICHES), showed lower all-cause and cardiovascular mortality with CABG in ischaemic cardiomyopathy.
+  > STICH, extended to 10 years (STICHES), showed lower all-cause and cardiovascular mortality with CABG in ischemic cardiomyopathy.
 - [ ] has no effect on survival
 - [ ] is contraindicated below EF 35%
 - [ ] is harmful when the EF is below 35%
 
 ## [co-decide] Why surgery, which conduits
 
-**Surgery over PCI** (Heart Team, ACC/AHA/SCAI 2021): **left main** disease (CABG class I; PCI class IIa if anatomy is of low or intermediate complexity); **diabetes with three-vessel disease** (CABG class I); **three-vessel disease with a normal EF** (CABG class IIb for survival). With **ischaemic cardiomyopathy**, CABG improves long-term survival (STICHES).
+**Surgery over PCI** (Heart Team, ACC/AHA/SCAI 2021): **left main** disease (CABG class I; PCI class IIa if anatomy is of low or intermediate complexity); **diabetes with three-vessel disease** (CABG class I); **three-vessel disease with a normal EF** (CABG class IIb for survival). With **ischemic cardiomyopathy**, CABG improves long-term survival (STICHES).
 
 **Conduits**: the **LIMA to the LAD** is the foundation. For the second most important target, a **radial artery** is preferred to vein (ACC/AHA/SCAI class IIa). Saphenous vein for the rest.
 
-> **Evidence:** FREEDOM (NEJM 2012): in diabetes with multivessel disease, CABG reduced death, MI and stroke at 5 years compared with drug-eluting stents. STICHES (NEJM 2016): CABG reduced 10-year death in ischaemic cardiomyopathy (EF 35% or less). RADIAL (NEJM 2018, 6 trials, 1,036 patients): radial artery grafts had fewer adverse cardiac events (HR 0.67) and graft occlusions (HR 0.44) than vein at 5 years, with no difference in death. ART (NEJM 2019): bilateral ITA grafts did not reduce 10-year death on intention to treat (many crossovers; radial artery used in some single-ITA patients), and sternal wound complications were more frequent.
+> **Evidence:** FREEDOM (NEJM 2012): in diabetes with multivessel disease, CABG reduced death, MI and stroke at 5 years compared with drug-eluting stents. STICHES (NEJM 2016): CABG reduced 10-year death in ischemic cardiomyopathy (EF 35% or less). RADIAL (NEJM 2018, 6 trials, 1,036 patients): radial artery grafts had fewer adverse cardiac events (HR 0.67) and graft occlusions (HR 0.44) than vein at 5 years, with no difference in death. ART (NEJM 2019): bilateral ITA grafts did not reduce 10-year death on intention to treat (many crossovers; radial artery used in some single-ITA patients), and sternal wound complications were more frequent.
 
 ### Question
 
@@ -61,7 +61,7 @@ A 64-year-old man, diabetic, breathless and with angina; **EF 30%** with viable 
 
 #### 4\. Specific to this operation
 
--   Radial artery harvest: hand ischaemia (Allen test)
+-   Radial artery harvest: hand ischemia (Allen test)
 -   On-pump versus off-pump
 
 #### 5\. Alternatives
@@ -98,11 +98,11 @@ Median sternotomy; open the pericardium in the midline and **hitch it up as a cr
 
 ## [co-lima] Harvest the LIMA
 
-A retractor lifts the left sternal half. Open the left pleura if needed. Harvest the **left internal mammary artery** from its origin under the subclavian vein to its bifurcation at the 6th space: as a **pedicle** (with its veins, fat and muscle) or **skeletonised** (the artery alone, with low-energy diathermy and clips on each branch).
+A retractor lifts the left sternal half. Open the left pleura if needed. Harvest the **left internal mammary artery** from its origin under the subclavian vein to its bifurcation at the 6th space: as a **pedicle** (with its veins, fat and muscle) or **skeletonized** (the artery alone, with low-energy diathermy and clips on each branch).
 
 Heparin before dividing it distally; check the free flow; spray papaverine to prevent spasm; keep it long enough to reach the LAD without tension.
 
-> **Evidence:** skeletonisation gives a longer conduit and preserves sternal blood supply (fewer sternal wound problems with bilateral ITA). In a post hoc analysis of ART, skeletonised grafts were associated with more adverse events in some analyses, so the choice remains debated and experience-dependent.
+> **Evidence:** skeletonization gives a longer conduit and preserves sternal blood supply (fewer sternal wound problems with bilateral ITA). In a post hoc analysis of ART, skeletonized grafts were associated with more adverse events in some analyses, so the choice remains debated and experience-dependent.
 
 ## [co-conduits] Radial artery or long saphenous vein
 
@@ -192,7 +192,7 @@ Doses: [electrolytes](#approach=cticu-doses&step=0), [vasoactive drugs](#approac
 
 **Q:** Four hours after CABG, bleeding has settled. What should start within 6 h?
 - [x] Aspirin
-  > Early aspirin after CABG reduces death and ischaemic complications (Mangano, NEJM 2002).
+  > Early aspirin after CABG reduces death and ischemic complications (Mangano, NEJM 2002).
 - [ ] Warfarin
 - [ ] Clopidogrel loading only
 - [ ] Aspirin only after the drains are out on day 3

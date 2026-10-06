@@ -1,29 +1,27 @@
 ---
-id: lll-open
-operation: Left lower lobectomy
-approach: Open thoracotomy
-summary: Posterolateral thoracotomy, then ligament, fissure, A6 and basal trunk, inferior vein, bronchus.
+id: cpam-open
+operation: Congenital pulmonary airway malformation (CPAM)
+approach: Left lower lobectomy, open (any lobe is possible)
+summary: A cystic or solid malformation of one lobe: Stocker types, hydrops and the CVR, the infection and malignancy risk, timing, and lobectomy.
 ---
 
 <!-- Edit the words freely. Keep each "## [step-id]" line as it is: it ties the text to its step in the 3D atlas. -->
 
-## [lll-open-patho] Pathophysiology: congenital lobar emphysema versus CPAM
+## [cpam-open-patho] Pathophysiology: congenital pulmonary airway malformation (CPAM)
 
-Both present in infancy as an abnormal lobe, but the mechanisms differ. **CLE is an airway problem**: a structurally normal lobe over-distends because air enters but cannot leave. **CPAM is a tissue problem**: part of the lung is replaced by abnormal, disorganized airways and cysts. Each now has its own entry: [CLE](#approach=cle-open&step=0) and [CPAM](#approach=cpam-open&step=0).
+**CPAM is a tissue problem.** Part of the lung is replaced by abnormal, disorganized airways and cysts from disordered lung development. The model shows cysts in the left lower lobe as an example; the lesion can sit in any lobe, usually one lobe and one side.
 
-|  | Congenital lobar emphysema (CLE) | Congenital pulmonary airway malformation (CPAM) |
-| --- | --- | --- |
-| What it is | A **normal-structured lobe that over-distends** through a **ball-valve** bronchus | A **hamartomatous** malformation of cysts and abnormal airways from disordered lung development; usually one lobe |
-| Cause | Idiopathic about 50%; deficient bronchial cartilage about 25%; internal or external obstruction or parenchymal disease about 25% | Disrupted lung development at one of the embryonic stages (many developmental genes implicated; KRAS mutations in some) |
-| Where | Left upper lobe 43%, right middle 32%, right upper 21%; lower lobes about 2% | Usually unilateral, one lobe, any lobe |
-| When | About half symptomatic at birth, the rest within 6 months; boys 3:1 | Most found on antenatal ultrasound; some present later with infection |
-| Imaging | A **hyperlucent, over-distended lobe with fine vascular markings**; neighboring lobe compressed, mediastinum shifted; **no cysts** | **Cysts** of varying size, or a solid-looking mass in the microcystic type; CT is the preferred study for both |
-| Blood supply and airway | Normal | **Pulmonary artery supply** and communication with the tracheobronchial tree (a systemic feeder from the aorta means a sequestration or hybrid lesion) |
-| Associated | Cardiac anomalies in up to 20% | Type 2 with bronchial atresia and other anomalies |
-| Risks | Progressive compression and tension physiology | Infection; fetal hydrops (CVR over 1.6, some use over 2); malignancy |
-| Treatment | Lobectomy if symptomatic; mild cases observed | Symptomatic: lobectomy (segmentectomy in selected cases). Asymptomatic: elective resection at 6-12 months versus surveillance, still debated |
-
-Chain: Deficient bronchial cartilage or compression → Airway collapses in expiration (ball valve) → Air trapped, lobe over-distends → **Compresses other lobes, shifts the mediastinum** → **Respiratory distress, falling venous return**
+| | Congenital pulmonary airway malformation (CPAM) |
+| --- | --- |
+| What it is | A **hamartomatous** malformation of cysts and abnormal airways; usually one lobe |
+| Cause | Disrupted lung development at one of the embryonic stages (many developmental genes implicated; KRAS mutations in some) |
+| Where | Usually unilateral, one lobe, **any lobe** |
+| When | Most found on **antenatal ultrasound**; some present later with infection |
+| Imaging | **Cysts** of varying size, or a solid-looking mass in the microcystic type; CT is the preferred study |
+| Blood supply and airway | **Pulmonary artery supply** and communication with the tracheobronchial tree (a systemic feeder from the aorta means a sequestration or hybrid lesion) |
+| Associated | Type 2 with bronchial atresia and other anomalies |
+| Risks | Infection; fetal hydrops (CVR over 1.6, some use over 2); malignancy |
+| Treatment | Symptomatic: **lobectomy** (segmentectomy in selected cases). Asymptomatic: elective resection at 6-12 months versus surveillance, still debated |
 
 Chain: Disordered lung development or bronchial atresia → Abnormal cystic or solid lung connected to the airway → Mass enlarges → **Compresses normal lung and mediastinum** → **Fetal hydrops and lung hypoplasia when large; infection later**
 
@@ -39,25 +37,22 @@ Chain: Disordered lung development or bronchial atresia → Abnormal cystic or s
 
 Frequencies are the historical figures. So the CPAM types still in use are **1 to 3**; types 0 and 4 are other diseases.
 
-**The trap**: CLE looks like a tension pneumothorax. A chest drain into an emphysematous lobe makes a large air leak and can kill; look for lung markings in the lucent area before inserting one. In a true pneumothorax the hemidiaphragm is depressed; in CLE the lung markings continue through the lucent lobe.
+**The CVR.** The CPAM volume ratio (lesion volume divided by head circumference, on antenatal ultrasound) above **1.6** predicted fetal hydrops in 75% in the original series; some centers use over 2.
 
-**Anesthesia for CLE**: avoid nitrous oxide (it expands the lobe) and high positive-pressure ventilation before the chest is open (spontaneous breathing or gentle ventilation); the surgeon scrubbed at induction, ready to open the chest and deliver the lobe.
+**Which operation?** A left lower lesion is a left lower lobectomy, shown in this entry. Other lobes follow the same steps in their own lobectomy (for example the [right lower](#approach=rll-open&step=0)). The lesion most often confused with CPAM is CLE, an over-distended lobe with no cysts: see the [CLE entry](#approach=cle-open&step=0).
 
-> **Evidence:** CLE: StatPearls 2024 (cause, lobe distribution, age, 3:1 male ratio, cardiac anomalies up to 20%, imaging, differentials) and OpenAnesthesia 2025 (anesthetic management). CPAM: StatPearls (Stocker types and frequencies, pulmonary artery supply, CVR over 1.6 strongly associated with hydrops, resection timing) and Crombleholme et al., J Pediatr Surg 2002 (CVR). Current classification: Dehner et al., Pediatr Dev Pathol 2023 (type 0 is acinar dysplasia, type 4 is pleuropulmonary blastoma, type 2 arises from bronchial atresia) and Pathology Outlines (types 0 and 4 no longer used).
+> **Evidence:** StatPearls (Stocker types and frequencies, pulmonary artery supply, CVR over 1.6 strongly associated with hydrops, resection timing); Crombleholme et al., J Pediatr Surg 2002 (CVR: hydrops in 75% above 1.6); Dehner et al., Pediatr Dev Pathol 2023 (type 0 is acinar dysplasia, type 4 is pleuropulmonary blastoma, type 2 arises from bronchial atresia); Pathology Outlines (types 0 and 4 no longer used).
 
 ### Question
 
-**Q:** Which statement about Stocker's CPAM classification reflects current understanding?
-- [x] Type 0 is now acinar dysplasia and type 4 is pleuropulmonary blastoma, so neither is regarded as a CPAM
-  > Dehner et al. 2023: type 0 carries germline TBX4 or FGFR2 variants; type 4 is type I pleuropulmonary blastoma (DICER1) and must be treated as a tumor. Types 1 to 3 remain CPAM.
-- [ ] Type 1 is the rarest and has no malignant potential
-  > Type 1 is the commonest (50-70%) and can rarely transform to mucinous adenocarcinoma.
-- [ ] Type 3 is the commonest and is usually cystic
-  > Type 3 is uncommon (5-10%) and solid-looking, and may cause hydrops.
-- [ ] All five types remain distinct CPAMs managed the same way
-  > Types 0 and 4 are other diseases, with different prognosis and management.
+**Q:** A fetus has a CPAM with a CVR of 2.1 on antenatal ultrasound. What is the main concern?
+- [x] Fetal hydrops from a large lesion compressing the heart and mediastinum
+  > A CVR over 1.6 was associated with hydrops in 75% in the original series, so the fetus needs close surveillance and a plan for antenatal treatment or early delivery and surgery.
+- [ ] A lobe full of trapped air, as in CLE
+- [ ] Bronchial atresia of the lower lobe
+- [ ] Nothing: all CPAMs are harmless
 
-## [llo-anatomy] The lower lobe hilum
+## [cpam-open-llo-anatomy] The lower lobe hilum
 
 Three structures leave the lower lobe, each lower and more posterior than its upper lobe counterpart. The **inferior pulmonary vein** is the lowest structure of the hilum, with the **inferior pulmonary ligament** running down from its lower border to the diaphragm.
 
@@ -65,7 +60,7 @@ In the fissure the artery gives the **superior segmental artery (A6)** posterior
 
 Keep in view what stays: the **lingular artery**, the **posterior segmental arteries** and the **upper lobe bronchus**.
 
-## [lll-open-case] Case: an infected CPAM in a child
+## [cpam-open-case] Case: an infected CPAM in a child
 
 A symptomatic, recurrently infected **type 1 CPAM**: **left lower lobectomy** once the infection has settled (a segmentectomy only if the lesion is small and clearly confined). Complete excision matters: type 1 lesions carry a risk of mucinous adenocarcinoma, especially if incompletely removed. Check the CT for a systemic artery (a hybrid lesion with sequestration): an unseen feeder from the aorta in the inferior ligament bleeds.
 
@@ -84,37 +79,32 @@ A **6-year-old girl**, three admissions for "left lower lobe pneumonia" in a yea
 - [ ] An enlarged subcarinal node
 - [ ] A pericardial cyst
 
-## [lll-open-consent] Consent: what to discuss with this patient
+## [cpam-open-consent] Consent: what to discuss with this patient
 
-**1\. The patient's own risk**: ppoFEV1 and ppoDLCO (stair climb or CPET if low); Thoracoscore. Quote the figure, not a textbook average.
+**1\. The patient's own risk**: Age and weight, lesion size and type, recurrent infection (inflamed lung is harder to remove), and any other anomaly. Quote the figure, not a textbook average.
 
 #### 2\. Common
 
--   Prolonged air leak
--   AF
--   Pneumonia and sputum retention
--   Bleeding
--   Wound infection
--   Chronic chest wall pain (more after thoracotomy)
+-   Air leak and a chest drain for a few days
+-   Pain
+-   Chest infection
 
 #### 3\. Serious
 
--   Death
--   Respiratory failure and ventilation
--   Bronchopleural fistula
--   Return to theatre
+-   Bleeding, especially from adhesions after infection
+-   Injury to the remaining lung or a nerve
+-   Problems with the anesthetic in a small child
+-   Death (rare)
 
 #### 4\. Specific to this operation
 
--   Conversion from VATS to open
--   Final staging on the specimen may change the plan (adjuvant therapy)
--   Recurrence
+-   Complete removal is the aim: some lesions carry a small risk of cancer, so a leftover cyst is not a safe result
+-   A small lesion with no symptoms may be watched or removed electively at 6-12 months; experts still disagree on which
 
 #### 5\. Alternatives
 
--   Segmentectomy for small peripheral tumors
--   Stereotactic radiotherapy (SBRT) if unfit
--   Surveillance for indeterminate nodules
+-   Surveillance for a small asymptomatic lesion
+-   Segmentectomy in selected cases
 -   No operation, and what that means
 
 #### 6\. Recovery
@@ -125,34 +115,33 @@ A **6-year-old girl**, three admissions for "left lower lobe pneumonia" in a yea
 
 #### 7\. Kenya-specific
 
--   Post-TB adhesions and calcified nodes raise bleeding and conversion risk
--   Exclude TB before calling a mass cancer
--   Cost and access to adjuvant treatment
+-   Antenatal scans are often missing, so the first sign may be infection
+-   Distance to the unit and follow-up CT or X-ray
 
 Template and how to use it: [CTICU protocol, consent](#approach=cticu-consent&step=0).
 
 ### Question
 
-**Q:** Which of these belongs in consent for a VATS lobectomy in a patient with healed TB?
-- [x] A higher chance of conversion to open and of bleeding from adhesions and calcified nodes
-  > Post-TB pleural and nodal changes make VATS dissection harder; the conversion risk is a material risk.
-- [ ] A guaranteed shorter stay
-- [ ] No chest drain
-- [ ] No risk of air leak
+**Q:** Why is complete removal advised for a symptomatic CPAM?
+- [x] Infection tends to recur, and some lesions carry a small risk of malignancy
+  > Recurrent infection and a malignancy association (mucinous adenocarcinoma with type 1; pleuropulmonary blastoma) favor removing the whole lesion.
+- [ ] To restore hearing
+- [ ] Because it always causes hydrops
+- [ ] Because it grows back
 
-## [llo-thor] Posterolateral thoracotomy, 5th intercostal space
+## [cpam-open-llo-thor] Posterolateral thoracotomy, 5th intercostal space
 
 Right lateral decubitus, table flexed, the arm forward. The incision curves from the **anterior axillary line** to a point midway between the **tip of the scapula** and the spine.
 
 Divide **latissimus dorsi**, spare and retract **serratus anterior**, count the ribs from above under the scapula, and enter the chest over the **upper border of the 6th rib** so the neurovascular bundle under the 5th is spared. Open the space with the **rib spreader**, slowly.
 
-## [llo-ligament] Divide the inferior pulmonary ligament
+## [cpam-open-llo-ligament] Divide the inferior pulmonary ligament
 
 Retract the lower lobe up and forward. Divide the **inferior pulmonary ligament** with the diathermy hook from the diaphragm upward, close to the lung, taking the **station 9** nodes with the specimen.
 
 Stop at the lower border of the **inferior pulmonary vein**. The esophagus and the descending aorta are just medial: keep the hook on the lung side.
 
-## [llo-fissure] Open the fissure bluntly with a peanut
+## [cpam-open-llo-fissure] Open the fissure bluntly with a peanut
 
 Retract the upper lobe forward and up, the lower lobe back and down. Open the visceral pleura where the fissure is deepest and **dissect bluntly with the peanut** onto the interlobar artery.
 
@@ -165,9 +154,8 @@ Identify the **A6** branch behind, the **basal trunk** continuing down and the *
   > In a complete fissure the interlobar artery lies just under the visceral pleura where the fissures meet.
 - [ ] The fissure is fused
 - [ ] The superior vein is short
-- [ ] The pulmonary vein is already divided
 
-## [llo-artery] Superior segmental artery (A6) and basal trunk
+## [cpam-open-llo-artery] Superior segmental artery (A6) and basal trunk
 
 In the open fissure the artery is followed down. **A6** leaves its posterior surface first; the **basal trunk** continues below. Opposite A6, on the anterior surface, is the **lingular artery**, which stays.
 
@@ -184,9 +172,8 @@ If A6 arises high and the basal trunk is short, staple them separately; one stap
   > The lingular artery leaves the anterior aspect of the interlobar artery, often at the level of A6; stapling the basal trunk too high can take it.
 - [ ] The truncus anterior
 - [ ] The inferior pulmonary vein
-- [ ] The apical segmental artery of the upper lobe
 
-## [llo-vein] Inferior pulmonary vein: staple
+## [cpam-open-llo-vein] Inferior pulmonary vein: staple
 
 With the ligament divided the **inferior pulmonary vein** lies free at the bottom of the hilum. Clear it circumferentially.
 
@@ -199,9 +186,8 @@ Before stapling, **see the superior pulmonary vein** as a separate structure: a 
   > A common pulmonary vein taken as the "inferior vein" drains the whole lung.
 - [ ] That the fissure is complete
 - [ ] That A6 is already divided
-- [ ] That the lingular artery has been divided
 
-## [llo-bronchus] Lower lobe bronchus: clamp, inflate, staple
+## [cpam-open-llo-bronchus] Lower lobe bronchus: clamp, inflate, staple
 
 Sweep the **station 11** nodes up into the specimen and expose the **lower lobe bronchus** down to the secondary carina. Staple proximal to the **superior segmental bronchus (B6)**, which leaves early and posteriorly.
 
@@ -214,23 +200,22 @@ Close the stapler (thick-tissue reload) and inflate: **the upper lobe must venti
   > If the upper lobe does not ventilate, the stapler is across the left main or upper lobe bronchus.
 - [ ] The lower lobe expands
 - [ ] Nothing should move
-- [ ] Both lobes should stay collapsed
 
-## [llo-specimen] Specimen out, nodes, leak test
+## [cpam-open-llo-specimen] Specimen out, nodes, leak test
 
 Bag the lobe and remove it. Complete the nodal dissection: **station 7** below the carina, **9** in the ligament, **10 and 11** at the hilum; for lower lobe tumors the subcarinal nodes matter most.
 
 Leak-test the bronchial stump under saline and check that the upper lobe fills the chest; an upper lobe that does not reach the apex may need an apical drain.
 
-## [lll-open-icu] ICU and post-operative care
+## [cpam-open-icu] ICU and post-operative care
 
 Start with the [thoracic core](#approach=cticu-thoracic&step=0), the [lab schedule](#approach=cticu-core&step=0) and the [escalation table](#approach=cticu-core&step=2); then this operation's own points.
 
 #### Specific to this operation
 
--   Air leak: record every shift; prolonged beyond 5 days
--   Lobar torsion (especially the middle lobe): a lobe that opacifies on X-ray
--   Sputum retention
+-   Gentle ventilation; early extubation
+-   Chest drain: air leak and chest X-ray for re-expansion
+-   Send the specimen for histology: Stocker type, and exclude pleuropulmonary blastoma (type 4)
 
 #### Labs
 
@@ -238,14 +223,16 @@ Start with the [thoracic core](#approach=cticu-thoracic&step=0), the [lab schedu
 
 Doses: [electrolytes](#approach=cticu-doses&step=0), [vasoactive drugs](#approach=cticu-doses&step=1).
 
+> **Evidence:** StatPearls (CPAM): resection for symptomatic lesions, elective resection at 6-12 months versus surveillance debated. Dehner et al., Pediatr Dev Pathol 2023: type 4 is pleuropulmonary blastoma.
+
 ### Question
 
-**Q:** Day 2 after right upper lobectomy: the middle lobe has opacified and the patient is febrile. Most important diagnosis to exclude?
-- [x] Middle lobe torsion
-  > Torsion is rare but causes infarction; bronchoscopy and return to theatre if suspected.
-- [ ] Atelectasis only: physiotherapy
-- [ ] Pleural effusion
-- [ ] Normal after resection
+**Q:** The histology of a child's resected "CPAM" shows rhabdomyoblastic cells and a DICER1 variant. What does this mean?
+- [x] It was a pleuropulmonary blastoma type I: refer for oncology and genetic counseling
+  > Type 4 CPAM is now regarded as cystic pleuropulmonary blastoma, which is a tumor, not a malformation.
+- [ ] A benign type 1 CPAM; no action
+- [ ] A bronchogenic cyst
+- [ ] A lung abscess
 
 ## Sources
 
@@ -254,12 +241,10 @@ Doses: [electrolytes](#approach=cticu-doses&step=0), [vasoactive drugs](#approac
 - [Crombleholme TM, et al. Cystic adenomatoid malformation volume ratio predicts outcome in prenatally diagnosed CCAM. J Pediatr Surg 2002;37:331-8](https://www.sciencedirect.com/science/article/abs/pii/S0022346802749269)
 - [Congenital pulmonary airway malformation. StatPearls](https://www.statpearls.com/point-of-care/20208)
 - [Dehner LP, et al. Congenital pulmonary airway malformations with a reconsideration and current classification. Pediatr Dev Pathol 2023](https://dx.doi.org/10.1177/10935266221146823)
-- [Congenital pulmonary airway malformation. StatPearls (NCBI Bookshelf)](https://www.ncbi.nlm.nih.gov/books/NBK551664/)
-- [Congenital pulmonary airway malformation. Pathology Outlines](https://www.pathologyoutlines.com/topic/lungnontumorcysticadenomatoid.html)
 - [Hansen HJ, Petersen RH. Video-assisted thoracoscopic lobectomy using a standardized three-port anterior approach: the Copenhagen experience. Ann Cardiothorac Surg 2012;1(1):70-76](https://doi.org/10.3978/j.issn.2225-319X.2012.04.15)
 - [McElnay P, Casali G, Batchelor T, West D. Adopting a standardized anterior approach significantly increases VATS lobectomy rates. Eur J Cardiothorac Surg 2014;46(1):100](https://academic.oup.com/ejcts/article/46/1/100/394433)
 - [Rusch VW, et al. The IASLC lung cancer staging project: a proposal for a new international lymph node map. J Thorac Oncol 2009](https://pubmed.ncbi.nlm.nih.gov/19357537)
-- [Lim E, et al. Video-assisted thoracoscopic or open lobectomy in early-stage lung cancer (VIOLET). NEJM Evid 2022;1](https://doi.org/10.1056/EVIDoa2100016)
-- [Saji H, et al. Segmentectomy versus lobectomy in small-sized peripheral non-small-cell lung cancer (JCOG0802/WJOG4607L). Lancet 2022;399:1607-17](https://doi.org/10.1016/S0140-6736(21)02333-3)
-- [Altorki N, et al. Lobar or sublobar resection for peripheral stage IA non-small-cell lung cancer (CALGB 140503). N Engl J Med 2023;388:489-98](https://doi.org/10.1056/NEJMoa2212083)
+- [Lim E, et al. Video-assisted thoracoscopic versus open lobectomy in patients with early-stage lung cancer (VIOLET): a randomised controlled trial. Lancet Oncol 2022](https://pubmed.ncbi.nlm.nih.gov/?term=VIOLET+video-assisted+thoracoscopic+versus+open+lobectomy+Lim+2022)
+- [Saji H, et al. Segmentectomy versus lobectomy in small-sized peripheral non-small-cell lung cancer (JCOG0802/WJOG4607L). Lancet 2022;399:1607-17](https://pubmed.ncbi.nlm.nih.gov/?term=JCOG0802+segmentectomy+versus+lobectomy+Saji+2022)
+- [Altorki N, et al. Lobar or sublobar resection for peripheral stage IA non-small-cell lung cancer (CALGB 140503). N Engl J Med 2023;388:489-98](https://pubmed.ncbi.nlm.nih.gov/?term=CALGB+140503+lobar+or+sublobar+resection+Altorki+2023)
 - [Wasserthal J, et al. TotalSegmentator. Radiol Artif Intell 2023](https://doi.org/10.1148/ryai.230024)

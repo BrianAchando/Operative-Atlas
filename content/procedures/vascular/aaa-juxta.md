@@ -58,7 +58,7 @@ An aneurysm is a diameter of **3.0 cm or more**. Growth accelerates as it enlarg
 - [ ] Thrombus lining the sac weakens it
 - [ ] Blood pressure rises with size
 
-## [aj-anatomy] The infrarenal aorta and its neighbours
+## [aj-anatomy] The infrarenal aorta and its neighbors
 
 From above down on the front of the aorta: the **coeliac trunk** (T12/L1), the **SMA** about 1 cm lower, the **renal arteries** (L1/L2, the right passing behind the IVC), the **left renal vein** crossing in front of the aorta just below the SMA (the upper limit of the infrarenal neck), the **IMA** from the left front at L3, and the bifurcation at L4.
 
@@ -110,8 +110,8 @@ A **70-year-old man** with a **6.0 cm** aneurysm on CT; the sac begins **2 mm be
 
 -   MI
 -   Kidney failure (higher with juxta- or suprarenal clamping)
--   Colonic ischaemia
--   Limb ischaemia
+-   Colonic ischemia
+-   Limb ischemia
 -   Death
 
 #### 4\. Specific to this operation
@@ -151,7 +151,7 @@ Template and how to use it: [CTICU protocol, consent](#approach=cticu-consent&st
 
 Supine, arms out; an epidural or good analgesia; arterial line, central line, cell salvage, warming; prophylactic antibiotics. Prepare from nipples to knees (the groins in the field).
 
-**Midline laparotomy** from the xiphoid to the pubis. Lift the transverse colon up, the small bowel to the right in a bag; incise the **posterior peritoneum** to the right of the duodenojejunal flexure, mobilise the **4th part of the duodenum** to the right (divide the ligament of Treitz and the inferior mesenteric vein if needed), and open the peritoneum down over the aneurysm to the bifurcation, staying to the **right** of the IMA and the hypogastric plexus.
+**Midline laparotomy** from the xiphoid to the pubis. Lift the transverse colon up, the small bowel to the right in a bag; incise the **posterior peritoneum** to the right of the duodenojejunal flexure, mobilize the **4th part of the duodenum** to the right (divide the ligament of Treitz and the inferior mesenteric vein if needed), and open the peritoneum down over the aneurysm to the bifurcation, staying to the **right** of the IMA and the hypogastric plexus.
 
 ## [aj-neck] Expose the neck and the renal vein
 
@@ -165,7 +165,7 @@ Open the peritoneum over both **common iliac arteries**, see the **ureters** cro
 
 ## [aj-clamp] Heparin, clamp distally, then proximally
 
-Heparin (about 70–100 U/kg). Clamp the **iliac arteries first** (so that debris from the sac goes nowhere), then the aorta **between the renal arteries and the SMA** (suprarenal), or above the SMA if there is no room; the renal arteries are now ischaemic: note the time. Tell the anaesthetist before clamping: afterload rises; before releasing, fluid and vasoconstrictor ready.
+Heparin (about 70–100 U/kg). Clamp the **iliac arteries first** (so that debris from the sac goes nowhere), then the aorta **between the renal arteries and the SMA** (suprarenal), or above the SMA if there is no room; the renal arteries are now ischemic: note the time. Tell the anesthetist before clamping: afterload rises; before releasing, fluid and vasoconstrictor ready.
 
 > **Evidence:** ESVS 2024: consider cold renal perfusion when the suprarenal clamp time is expected to exceed about 25 minutes. In a systematic review of 1,256 open juxtarenal repairs (Jongkind et al., J Vasc Surg 2010), 30-day mortality was 2.9% and 3.3% needed new dialysis.
 
@@ -173,26 +173,26 @@ Heparin (about 70–100 U/kg). Clamp the **iliac arteries first** (so that debri
 
 Open the aneurysm longitudinally on its right anterior surface (away from the IMA), T-ing the incision at the neck and at the bifurcation. Scoop out the laminated **thrombus**. **Oversew the lumbar arteries** from inside with figure-of-eight 2-0 or 3-0 sutures; back-bleeding from the **IMA**: if it bleeds briskly (good collaterals) oversew its origin from inside; if the flow is poor and the colon may depend on it, keep a button for reimplantation.
 
-> **Evidence:** ESVS 2024: routine IMA reimplantation is not recommended; consider it when pelvic and colonic perfusion is doubtful (both internal iliacs diseased or excluded, previous colectomy, poor back-bleeding). Colonic ischaemia after open repair presents with bloody diarrhoea, acidosis or distension: sigmoidoscopy early.
+> **Evidence:** ESVS 2024: routine IMA reimplantation is not recommended; consider it when pelvic and colonic perfusion is doubtful (both internal iliacs diseased or excluded, previous colectomy, poor back-bleeding). Colonic ischemia after open repair presents with bloody diarrhea, acidosis or distension: sigmoidoscopy early.
 
 ## [aj-graft] Sew in the graft
 
-**Proximal anastomosis at the level of the renal arteries**, the back wall sewn from inside, the suture line just below the renal ostia (so neither is narrowed). Then **move the clamp below the renal arteries onto the graft** as soon as the proximal suture line is done: renal ischaemia ends. The rest as for an infrarenal repair.
+**Proximal anastomosis at the level of the renal arteries**, the back wall sewn from inside, the suture line just below the renal ostia (so neither is narrowed). Then **move the clamp below the renal arteries onto the graft** as soon as the proximal suture line is done: renal ischemia ends. The rest as for an infrarenal repair.
 
 ### Question
 
 **Q:** Before tying the distal anastomosis, why flush the graft?
-- [x] To wash out air, thrombus and debris that would otherwise embolise to the legs or pelvis
-  > Brief release of the iliac, then aortic clamps flushes the graft; debris left in it embolises to the feet ("trash foot") or the pelvis.
+- [x] To wash out air, thrombus and debris that would otherwise embolize to the legs or pelvis
+  > Brief release of the iliac, then aortic clamps flushes the graft; debris left in it embolizes to the feet ("trash foot") or the pelvis.
 - [ ] To test the proximal anastomosis only
 - [ ] It is not needed
 - [ ] To reduce heparin effect
 
 ## [aj-close] Release, close the sac over the graft, check the colon and the feet
 
-Release the clamps **one leg at a time**, slowly, with the anaesthetist (declamping hypotension). Protamine if needed. **Close the sac over the graft** and then the posterior peritoneum, so the graft never touches the duodenum (aortoenteric fistula). Look at the **sigmoid colon** (pink, peristalsing, a mesenteric pulse) and the **feet** (pulses, colour) before closing.
+Release the clamps **one leg at a time**, slowly, with the anesthetist (declamping hypotension). Protamine if needed. **Close the sac over the graft** and then the posterior peritoneum, so the graft never touches the duodenum (aortoenteric fistula). Look at the **sigmoid colon** (pink, peristalsing, a mesenteric pulse) and the **feet** (pulses, color) before closing.
 
-If the left renal vein was divided, check the kidney's colour; reconstruction may be considered if its collaterals were sacrificed.
+If the left renal vein was divided, check the kidney's color; reconstruction may be considered if its collaterals were sacrificed.
 
 ### Question
 
@@ -200,7 +200,7 @@ If the left renal vein was divided, check the kidney's colour; reconstruction ma
 - [x] To keep the graft away from the duodenum and prevent an aortoenteric fistula
   > Direct contact between the graft suture line and the duodenum can erode into the bowel months or years later: a catastrophic bleed.
 - [ ] To stop back-bleeding
-- [ ] To help the graft endothelialise
+- [ ] To help the graft endothelialize
 - [ ] For cosmetic reasons
 
 ## [aaa-juxta-icu] ICU and post-operative care
@@ -209,8 +209,8 @@ Start with the [vascular core](#approach=cticu-vascular&step=0), the [lab schedu
 
 #### Specific to this operation
 
--   Serial haematocrit and abdominal girth <span class="tag knh">KNH practice</span>; [bladder pressure when triggered](#approach=cticu-vascular&step=0) <span class="tag prop">proposed</span>
--   Colonic ischaemia: bloody diarrhoea, rising lactate: sigmoidoscopy
+-   Serial hematocrit and abdominal girth <span class="tag knh">KNH practice</span>; [bladder pressure when triggered](#approach=cticu-vascular&step=0) <span class="tag prop">proposed</span>
+-   Colonic ischemia: bloody diarrhea, rising lactate: sigmoidoscopy
 -   Feet: trash foot
 -   Kidneys after supra- or juxtarenal clamps
 

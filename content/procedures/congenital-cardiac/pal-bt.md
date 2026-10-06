@@ -18,11 +18,11 @@ The balance is delicate: too small a shunt leaves the baby blue; too big floods 
 ### Question
 
 **Q:** A shunt that is too large for the baby causes what?
-- [x] Pulmonary over-circulation with diastolic steal: low diastolic pressure, coronary and gut ischaemia
+- [x] Pulmonary over-circulation with diastolic steal: low diastolic pressure, coronary and gut ischemia
   > Blood runs off into the lungs throughout diastole; coronary perfusion and mesenteric flow fall.
 - [ ] Worsening cyanosis
 - [ ] Hypertension
-- [ ] Pulmonary oligaemia and a falling saturation
+- [ ] Pulmonary oligemia and a falling saturation
 
 ## [bt-anatomy] Innominate artery, right PA and the nerves
 
@@ -98,7 +98,7 @@ Template and how to use it: [CTICU protocol, consent](#approach=cticu-consent&st
 
 ### Question
 
-**Q:** Which complication of a BT shunt is an emergency the parents should recognise?
+**Q:** Which complication of a BT shunt is an emergency the parents should recognize?
 - [x] Shunt blockage: the baby becomes suddenly bluer
   > Thrombosis is commonest early; sudden desaturation needs immediate assessment.
 - [ ] Mild cough

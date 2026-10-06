@@ -24,21 +24,21 @@ summary: Case-based: pathophysiology, anatomy, the patient and the decision, the
 | The valve… | cannot close | cannot open |
 | Reversible? | partly, if carditis settles and recurrences are prevented | no: scar and calcium, treated mechanically (balloon or surgery) |
 
-**The haemodynamics.** A normal mitral orifice is 4–6 cm²; stenosis becomes clinically significant at **1.5 cm² or less**. The LV is protected (it is under-filled); the load falls on everything behind the valve:
+**The hemodynamics.** A normal mitral orifice is 4–6 cm²; stenosis becomes clinically significant at **1.5 cm² or less**. The LV is protected (it is under-filled); the load falls on everything behind the valve:
 
 Chain: Small orifice → LA→LV gradient → LA pressure ↑, LA dilates → **Atrial fibrillation** → **LA appendage thrombus → stroke**
 
-Chain: LA pressure ↑ → Pulmonary venous pressure ↑ (breathless, oedema) → Pulmonary hypertension → RV pressure overload → **RV dilates → TR → right heart failure**
+Chain: LA pressure ↑ → Pulmonary venous pressure ↑ (breathless, edema) → Pulmonary hypertension → RV pressure overload → **RV dilates → TR → right heart failure**
 
-**Why a fast heart rate decompensates MS.** The gradient depends on flow and on the time available for the LA to empty: diastole. Tachycardia (AF with a fast ventricular rate, exercise, fever, anaemia, **pregnancy**) shortens diastole, so the gradient and LA pressure climb and pulmonary oedema follows. Hence rate control (a β-blocker) and why MS often declares itself in pregnancy. AF also removes the atrial kick and adds stasis: rheumatic AF carries a high embolic risk, and it is treated with **warfarin**, not a direct oral anticoagulant.
+**Why a fast heart rate decompensates MS.** The gradient depends on flow and on the time available for the LA to empty: diastole. Tachycardia (AF with a fast ventricular rate, exercise, fever, anemia, **pregnancy**) shortens diastole, so the gradient and LA pressure climb and pulmonary edema follows. Hence rate control (a β-blocker) and why MS often declares itself in pregnancy. AF also removes the atrial kick and adds stasis: rheumatic AF carries a high embolic risk, and it is treated with **warfarin**, not a direct oral anticoagulant.
 
-> **Evidence:** the immunology (mimicry, valvular endothelial activation, T-cell infiltration) rests on studies of human rheumatic valves and valve-derived T-cell clones (Guilherme et al., Circulation 1995; Cunningham, Clin Microbiol Rev 2000); the later fibrocalcific steps are largely extrapolated from calcific aortic valve disease. Clinical picture: Carapetis et al., Nat Rev Dis Primers 2016; Chandrashekhar, Westaby and Narula, Lancet 2009. Prevention works: in GOAL (NEJM 2022; 818 Ugandan children with latent RHD) monthly benzathine penicillin cut progression over 2 years from 8.3% to 0.8%. INVICTUS (NEJM 2022; 4,531 patients with rheumatic AF) found more vascular deaths and ischaemic strokes with rivaroxaban than with a vitamin K antagonist; ESC/EACTS 2025 advise against DOACs in AF with rheumatic MS and a valve area of 2.0 cm² or less.
+> **Evidence:** the immunology (mimicry, valvular endothelial activation, T-cell infiltration) rests on studies of human rheumatic valves and valve-derived T-cell clones (Guilherme et al., Circulation 1995; Cunningham, Clin Microbiol Rev 2000); the later fibrocalcific steps are largely extrapolated from calcific aortic valve disease. Clinical picture: Carapetis et al., Nat Rev Dis Primers 2016; Chandrashekhar, Westaby and Narula, Lancet 2009. Prevention works: in GOAL (NEJM 2022; 818 Ugandan children with latent RHD) monthly benzathine penicillin cut progression over 2 years from 8.3% to 0.8%. INVICTUS (NEJM 2022; 4,531 patients with rheumatic AF) found more vascular deaths and ischemic strokes with rivaroxaban than with a vitamin K antagonist; ESC/EACTS 2025 advise against DOACs in AF with rheumatic MS and a valve area of 2.0 cm² or less.
 
 ### Question
 
-**Q:** A 26-year-old woman with moderate rheumatic MS, comfortable at rest, goes into AF at 150 beats per minute and within hours is in pulmonary oedema. Why?
+**Q:** A 26-year-old woman with moderate rheumatic MS, comfortable at rest, goes into AF at 150 beats per minute and within hours is in pulmonary edema. Why?
 - [x] The short diastole leaves too little time to empty the LA through the narrow valve, so the gradient and LA pressure rise
-  > In MS the transmitral gradient rises steeply with heart rate. Slowing the rate (and cardioversion, with anticoagulation) often relieves the oedema before anything is done to the valve.
+  > In MS the transmitral gradient rises steeply with heart rate. Slowing the rate (and cardioversion, with anticoagulation) often relieves the edema before anything is done to the valve.
 - [ ] The LV has failed
 - [ ] The valve has suddenly narrowed further
 - [ ] AF has caused acute mitral regurgitation
@@ -60,7 +60,7 @@ Round the posterior annulus, in the AV groove: the **circumflex artery** (close 
 
 ## [ms-case] Case: rheumatic mitral stenosis, AF and an appendage thrombus
 
-**Why not a balloon?** Percutaneous mitral commissurotomy (PMC) is the first choice for symptomatic MS with favourable anatomy. Here there are three reasons against it: an **LA thrombus** (a contraindication: the catheter crosses the LA), **unfavourable morphology** (Wilkins over 8, commissural calcium) and a poor predicted result. So: **surgery**.
+**Why not a balloon?** Percutaneous mitral commissurotomy (PMC) is the first choice for symptomatic MS with favorable anatomy. Here there are three reasons against it: an **LA thrombus** (a contraindication: the catheter crosses the LA), **unfavorable morphology** (Wilkins over 8, commissural calcium) and a poor predicted result. So: **surgery**.
 
 **Which operation?** Heavily calcified, fused rheumatic valves rarely repair durably: **replacement**, with removal of the thrombus, **closure of the appendage** and, where available, **surgical ablation** of the AF.
 
@@ -68,7 +68,7 @@ Round the posterior annulus, in the AV groove: the **circumflex artery** (close 
 
 **Access**: median sternotomy and a left atriotomy (the default; any concomitant surgery). Transseptal for a small LA, tricuspid surgery or a redo; a right mini-thoracotomy for isolated mitral surgery in selected patients.
 
-> **Evidence:** Wilkins score (Br Heart J 1988): leaflet mobility, thickening, calcification and subvalvular disease, each 1–4; 8 or less favours PMC; commissural calcium is the strongest single predictor of a poor result (Nunes et al., Circulation 2014). ESC/EACTS 2025 list LA thrombus, more than mild MR, severe or bicommissural calcification and severe concomitant aortic or tricuspid disease as contraindications to PMC.
+> **Evidence:** Wilkins score (Br Heart J 1988): leaflet mobility, thickening, calcification and subvalvular disease, each 1–4; 8 or less favors PMC; commissural calcium is the strongest single predictor of a poor result (Nunes et al., Circulation 2014). ESC/EACTS 2025 list LA thrombus, more than mild MR, severe or bicommissural calcification and severe concomitant aortic or tricuspid disease as contraindications to PMC.
 
 ### Case
 
@@ -77,7 +77,7 @@ A **32-year-old woman** from western Kenya, NYHA III, on monthly benzathine peni
 ### Question
 
 **Q:** What makes surgery, not a balloon, the right choice here?
-- [x] The left atrial appendage thrombus together with a calcified, unfavourable valve (Wilkins 11)
+- [x] The left atrial appendage thrombus together with a calcified, unfavorable valve (Wilkins 11)
   > An LA thrombus contraindicates PMC, and the morphology predicts a poor balloon result. A tissue valve would not spare her warfarin, as rheumatic AF needs it anyway.
 - [ ] Her age
 - [ ] The pulmonary pressure of 60 mmHg
@@ -164,7 +164,7 @@ Close the appendage from inside: a double layer of running 4-0 or 5-0 polypropyl
 
 With AF, add a **surgical ablation** (a left atrial lesion set or a full Cox-Maze) where the equipment and experience exist; in a very large rheumatic LA sinus rhythm is less often restored.
 
-> **Evidence:** LAAOS III (NEJM 2021; 4,770 patients with AF having cardiac surgery): closing the appendage reduced ischaemic stroke or systemic embolism (4.8% vs 7.0% over 3.8 years), on top of continued anticoagulation. The 2024 ESC AF guideline recommends appendage closure at cardiac surgery in AF (class I) and concomitant surgical ablation at mitral surgery (class I). Warfarin continues after surgery.
+> **Evidence:** LAAOS III (NEJM 2021; 4,770 patients with AF having cardiac surgery): closing the appendage reduced ischemic stroke or systemic embolism (4.8% vs 7.0% over 3.8 years), on top of continued anticoagulation. The 2024 ESC AF guideline recommends appendage closure at cardiac surgery in AF (class I) and concomitant surgical ablation at mitral surgery (class I). Warfarin continues after surgery.
 
 ### Question
 
@@ -199,7 +199,7 @@ A common compromise: **ventricular pledgets posteriorly and at the commissures**
 
 Whatever the technique, bite **in the annulus, not beyond it**.
 
-> **Evidence:** no randomised trial compares everting and non-everting sutures in MVR. In the AVERT trial cohort, **pledgeted** sutures were associated with fewer major paravalvular leaks than unpledgeted ones (Englberger et al., *Eur J Cardiothorac Surg* 2005). The ACC/AHA 2020 and ESC/EACTS 2021 valve guidelines make no recommendation on suture technique, but support **preserving the subvalvular apparatus** in MVR (for LV function), and that is one more reason to keep pledgets clear of preserved chordae.
+> **Evidence:** no randomized trial compares everting and non-everting sutures in MVR. In the AVERT trial cohort, **pledgeted** sutures were associated with fewer major paravalvular leaks than unpledgeted ones (Englberger et al., *Eur J Cardiothorac Surg* 2005). The ACC/AHA 2020 and ESC/EACTS 2021 valve guidelines make no recommendation on suture technique, but support **preserving the subvalvular apparatus** in MVR (for LV function), and that is one more reason to keep pledgets clear of preserved chordae.
 
 ### Question
 
@@ -265,7 +265,7 @@ Close the left atriotomy with 3-0/4-0 polypropylene, leaving the LV vent across 
 
 The end-point is **TOE, not the clock**: no bubbles in the LA, LV or pulmonary veins at near-normal filling, then vent out.
 
-> **Evidence:** no trial compares early with late de-airing; practice rests on physiology and TOE studies. CO₂ field flooding cut microemboli on TOE in a randomised trial (Svenarud et al., *Circulation* 2004) and reduced neurocognitive impairment in another (Martens et al., *Ann Thorac Surg* 2008); a benefit for stroke has not been shown. Intraoperative TOE in valve surgery, including to guide de-airing, is standard practice (ASE/SCA guidelines, Hahn et al., *J Am Soc Echocardiogr* 2013).
+> **Evidence:** no trial compares early with late de-airing; practice rests on physiology and TOE studies. CO₂ field flooding cut microemboli on TOE in a randomized trial (Svenarud et al., *Circulation* 2004) and reduced neurocognitive impairment in another (Martens et al., *Ann Thorac Surg* 2008); a benefit for stroke has not been shown. Intraoperative TOE in valve surgery, including to guide de-airing, is standard practice (ASE/SCA guidelines, Hahn et al., *J Am Soc Echocardiogr* 2013).
 
 **TOE** before leaving theatre: no paravalvular leak, leaflets moving, no LVOT obstruction. Pacing wires, drains.
 
@@ -282,13 +282,13 @@ Serious complications: **AV groove disruption** (catastrophic), circumflex injur
 
 ## [ms-reperfuse] Reperfuse on bypass, or separate early?
 
-With the clamp off the heart is **reperfused while bypass still carries the circulation**. How long to rest it before weaning is a judgement, not a fixed rule. A common rule of thumb is about **a third of the cross-clamp time** (roughly 10 minutes for each 30 of ischaemia).
+With the clamp off the heart is **reperfused while bypass still carries the circulation**. How long to rest it before weaning is a judgment, not a fixed rule. A common rule of thumb is about **a third of the cross-clamp time** (roughly 10 minutes for each 30 of ischemia).
 
 **Waiting for myocardial recovery** (a longer supported reperfusion): it washes out cardioplegia and potassium, restores energy stores, lets the rhythm settle and rewarming finish, and needs fewer inotropes. Worth it after a **long clamp**, with a **poor LV or RV**, a hypertrophied ventricle, doubtful protection, or **pulmonary hypertension** (common in rheumatic mitral stenosis: the RV fails first).
 
-**Separating early**: every extra minute of bypass adds haemodilution, platelet damage, inflammation and bleeding. After a **short clamp**, a good ventricle, sound protection and a stable rhythm, wean as soon as the conditions are met.
+**Separating early**: every extra minute of bypass adds hemodilution, platelet damage, inflammation and bleeding. After a **short clamp**, a good ventricle, sound protection and a stable rhythm, wean as soon as the conditions are met.
 
-Before either: temperature 36–37 °C, sinus rhythm or pacing, potassium and haemoglobin corrected, lungs ventilated, **de-airing confirmed on TOE**, and the valve checked (no paravalvular leak, leaflets moving). The cost of weaning too early is a low-output state and a return to bypass; that is still easy while **the cannulas are in and protamine has not been given**.
+Before either: temperature 36–37 °C, sinus rhythm or pacing, potassium and hemoglobin corrected, lungs ventilated, **de-airing confirmed on TOE**, and the valve checked (no paravalvular leak, leaflets moving). The cost of weaning too early is a low-output state and a return to bypass; that is still easy while **the cannulas are in and protamine has not been given**.
 
 ### Question
 
@@ -307,7 +307,7 @@ Wean slowly, watching the pressures and the TOE. Then the order that keeps a way
 2.  **Protamine** started slowly (watch for pulmonary hypertension and hypotension); **stop the pump suckers** once it runs.
 3.  **Arterial cannula out last**, after part of the protamine and a stable pressure: while it is in, blood can be given from the pump and bypass restarted quickly.
 
-A fast decannulation saves pump time only if the heart is ready; a return to bypass after full protamine means re-heparinising and re-cannulating a heart that is already struggling.
+A fast decannulation saves pump time only if the heart is ready; a return to bypass after full protamine means re-heparinizing and re-cannulating a heart that is already struggling.
 
 ## [mvr-std-icu] ICU and post-operative care
 

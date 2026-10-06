@@ -7,9 +7,9 @@ summary: Brachiocephalic fistula at the elbow; steal syndrome.
 
 <!-- Edit the words freely. Keep each "## [step-id]" line as it is: it ties the text to its step in the 3D atlas. -->
 
-## [avb-patho] Why a fistula: access for haemodialysis
+## [avb-patho] Why a fistula: access for hemodialysis
 
-Haemodialysis needs blood flow of about 300–400 mL/min, three times a week, for years. A **fistula** joins an artery to a superficial vein: the vein **arterialises** (dilates and thickens) over weeks until it can be needled. Compared with a **graft** (PTFE) it has fewer infections and interventions; compared with a **tunnelled catheter**, far less bacteraemia and central vein stenosis.
+Hemodialysis needs blood flow of about 300–400 mL/min, three times a week, for years. A **fistula** joins an artery to a superficial vein: the vein **arterializes** (dilates and thickens) over weeks until it can be needled. Compared with a **graft** (PTFE) it has fewer infections and interventions; compared with a **tunnelled catheter**, far less bacteremia and central vein stenosis.
 
 **KDOQI 2019** replaced "fistula first" with **"patient first"**: an **ESKD Life-Plan** for every patient with progressive CKD (eGFR 15–20), choosing the access that fits that patient's expected course: forearm first, distal to proximal, non-dominant arm, protecting veins (no cannulas or blood tests in the planned arm).
 
@@ -41,7 +41,7 @@ A **67-year-old diabetic man** with **eGFR 16**. Ultrasound shows radial and for
 
 #### 3\. Serious
 
--   Steal syndrome (hand ischaemia)
+-   Steal syndrome (hand ischemia)
 -   Thrombosis
 -   Infection
 -   Nerve injury
@@ -75,7 +75,7 @@ Template and how to use it: [CTICU protocol, consent](#approach=cticu-consent&st
 ### Question
 
 **Q:** Which serious early complication must be explained before a brachial fistula?
-- [x] Steal syndrome: hand ischaemia needing urgent correction
+- [x] Steal syndrome: hand ischemia needing urgent correction
   > Commoner with brachial inflow, diabetes and age.
 - [ ] Paraplegia
 - [ ] Stroke
@@ -88,7 +88,7 @@ A **transverse incision** in the antecubital fossa. The cephalic vein (or the me
 ### Question
 
 **Q:** Six hours after a brachiocephalic fistula the hand is cold, painful and numb. Diagnosis and action?
-- [x] Access-related hand ischaemia (steal): urgent assessment; ligation or a flow-reducing or DRIL procedure
+- [x] Access-related hand ischemia (steal): urgent assessment; ligation or a flow-reducing or DRIL procedure
   > Severe steal with neurological signs is an emergency; it is commoner with brachial fistulas, in diabetics and the elderly.
 - [ ] Normal postoperative swelling: elevate the arm
 - [ ] Venous hypertension
@@ -101,7 +101,7 @@ Start with the [vascular core](#approach=cticu-vascular&step=0), the [lab schedu
 #### Specific to this operation
 
 -   Check the thrill and bruit every few hours
--   Hand: colour, warmth, movement, sensation (steal)
+-   Hand: color, warmth, movement, sensation (steal)
 -   No BP cuff, cannula or blood tests on the fistula arm
 
 #### Labs

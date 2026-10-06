@@ -9,7 +9,7 @@ summary: Left thoracotomy, CSF drainage, left heart bypass, intercostal reattach
 
 ## [ta-patho] Pathophysiology: thoracic aortic aneurysm
 
-**Medial degeneration** (loss of smooth muscle cells, fragmented elastic fibres, pooled proteoglycans) weakens the wall. Causes: **heritable** (Marfan syndrome, Loeys-Dietz, familial, bicuspid aortic valve), **degenerative/atherosclerotic** (the descending aorta in older smokers with hypertension), and **inflammatory or infective**: **syphilitic aortitis** (ascending and arch; obliterative endarteritis of the vasa vasorum) and **Takayasu arteritis** (young women), both seen in Africa.
+**Medial degeneration** (loss of smooth muscle cells, fragmented elastic fibers, pooled proteoglycans) weakens the wall. Causes: **heritable** (Marfan syndrome, Loeys-Dietz, familial, bicuspid aortic valve), **degenerative/atherosclerotic** (the descending aorta in older smokers with hypertension), and **inflammatory or infective**: **syphilitic aortitis** (ascending and arch; obliterative endarteritis of the vasa vasorum) and **Takayasu arteritis** (young women), both seen in Africa.
 
 Chain: Medial degeneration → Dilatation → Laplace: tension rises with radius → **Dissection or rupture**
 
@@ -54,7 +54,7 @@ Aortic zones for TEVAR (Ishimaru): 0 ascending to the innominate; 1 to the left 
 
 **Plan**: left thoracotomy, **left heart bypass** (distal aortic perfusion), **CSF drainage**, reattachment of critical intercostals, mild hypothermia.
 
-> **Evidence:** 2022 ACC/AHA: TEVAR is preferred for descending aneurysms with suitable anatomy in the absence of Marfan, Loeys-Dietz or vascular Ehlers-Danlos syndrome. Coselli et al. (J Vasc Surg 2002, randomised, extent I/II): CSF drainage reduced paraplegia or paraparesis from 13.0% to 2.6%.
+> **Evidence:** 2022 ACC/AHA: TEVAR is preferred for descending aneurysms with suitable anatomy in the absence of Marfan, Loeys-Dietz or vascular Ehlers-Danlos syndrome. Coselli et al. (J Vasc Surg 2002, randomized, extent I/II): CSF drainage reduced paraplegia or paraparesis from 13.0% to 2.6%.
 
 ### Case
 
@@ -111,7 +111,7 @@ Template and how to use it: [CTICU protocol, consent](#approach=cticu-consent&st
 ### Question
 
 **Q:** Which risk must be discussed before open descending thoracic aneurysm repair?
-- [x] Paraplegia from spinal cord ischaemia
+- [x] Paraplegia from spinal cord ischemia
   > A defining risk of thoracic aortic surgery.
 - [ ] Stroke from the cerebral circulation
 - [ ] Phrenic nerve palsy
@@ -129,7 +129,7 @@ Before induction: a **lumbar CSF drain** (L3–L4), keeping the pressure at 10�
 
 Clamp proximally (between the left carotid and subclavian, or distal to the subclavian if there is a neck), and distally in the mid-descending aorta. Keep the proximal MAP 80–100 mmHg and the distal pressure above about 60 mmHg.
 
-> **Evidence:** Coselli et al. (Ann Cardiothorac Surg 2023) protection bundle: CSF pressure below 15 mmHg during clamping, left heart bypass, reattachment of T7/8 to L1/2 intercostals, MAP 80–100 mmHg, spinal perfusion pressure at least 60 mmHg, haemoglobin at least 10 g/dL, mild hypothermia 32–34 °C.
+> **Evidence:** Coselli et al. (Ann Cardiothorac Surg 2023) protection bundle: CSF pressure below 15 mmHg during clamping, left heart bypass, reattachment of T7/8 to L1/2 intercostals, MAP 80–100 mmHg, spinal perfusion pressure at least 60 mmHg, hemoglobin at least 10 g/dL, mild hypothermia 32–34 °C.
 
 ## [to-graft] Open the aneurysm, reattach intercostals, sew in the graft
 
@@ -138,15 +138,15 @@ Open the aneurysm longitudinally, oversew back-bleeding upper intercostals, and 
 ### Question
 
 **Q:** After an extensive descending repair the patient wakes with weak legs. First moves?
-- [x] Raise the MAP (above about 90 mmHg), drain CSF to below 10 mmHg, correct anaemia and hypoxia
-  > Delayed spinal cord ischaemia often recovers if spinal perfusion pressure (MAP minus CSF pressure) is restored quickly.
+- [x] Raise the MAP (above about 90 mmHg), drain CSF to below 10 mmHg, correct anemia and hypoxia
+  > Delayed spinal cord ischemia often recovers if spinal perfusion pressure (MAP minus CSF pressure) is restored quickly.
 - [ ] Wait and reassess in 24 hours
 - [ ] Give steroids only
 - [ ] Lower the blood pressure to protect the anastomoses
 
 ## [to-after] Spinal cord watch; the drain
 
-Hourly leg checks for 48–72 hours; MAP targets, CSF drainage by protocol (watch for headache and for blood in the CSF: subdural haematoma), then clamp and remove the drain. Other complications: bleeding, renal failure, left recurrent laryngeal nerve palsy (hoarseness), chylothorax, pneumonia.
+Hourly leg checks for 48–72 hours; MAP targets, CSF drainage by protocol (watch for headache and for blood in the CSF: subdural hematoma), then clamp and remove the drain. Other complications: bleeding, renal failure, left recurrent laryngeal nerve palsy (hoarseness), chylothorax, pneumonia.
 
 ## [taa-open-icu] ICU and post-operative care
 
@@ -167,7 +167,7 @@ Doses: [electrolytes](#approach=cticu-doses&step=0), [vasoactive drugs](#approac
 
 **Q:** Six hours after thoracic aortic repair: new bilateral leg weakness. First action?
 - [x] Raise MAP, drain CSF to target, keep Hb up, call immediately
-  > Spinal cord ischaemia can recover if perfusion pressure is restored quickly.
+  > Spinal cord ischemia can recover if perfusion pressure is restored quickly.
 - [ ] Wait for MRI tomorrow
 - [ ] Lower the blood pressure
 - [ ] Remove the CSF drain

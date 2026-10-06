@@ -36,7 +36,7 @@ A **28-year-old man** with Marfan syndrome diagnosed in childhood, on a beta-blo
 
 ### Question
 
-**Q:** A 28-year-old with Marfan syndrome, root 5.0 cm, mild AR, normal cusps. Which operation keeps his own valve and also stabilises the annulus?
+**Q:** A 28-year-old with Marfan syndrome, root 5.0 cm, mild AR, normal cusps. Which operation keeps his own valve and also stabilizes the annulus?
 - [x] Valve-sparing reimplantation (David)
   > Reimplantation fixes the base inside the graft as well as replacing the sinuses; with normal cusps it avoids a prosthesis and anticoagulation.
 - [ ] Mechanical Bentall
@@ -57,7 +57,7 @@ A **28-year-old man** with Marfan syndrome diagnosed in childhood, on a beta-blo
 
 -   Stroke
 -   Death
--   Coronary button ischaemia
+-   Coronary button ischemia
 -   Heart block
 
 #### 4\. Specific to this operation
@@ -138,11 +138,11 @@ Twelve or so **horizontal mattress** sutures (2-0 polyester, often pledgeted), p
 
 ## [rd-graft] Size the graft; lower it over the valve; tie
 
-**Size** the graft to the valve, not to the aneurysm: several methods are used (the cusp height, the span between commissures, or the annulus plus a few millimetres); commonly 26–32 mm. Too large leaves the cusps without coaptation; too small crowds them.
+**Size** the graft to the valve, not to the aneurysm: several methods are used (the cusp height, the span between commissures, or the annulus plus a few millimeters); commonly 26–32 mm. Too large leaves the cusps without coaptation; too small crowds them.
 
 Pass the subannular sutures through the base of the graft, lower it over the valve and tie them over the graft: the valve now sits **inside** the tube.
 
-> **Evidence:** no trial compares sizing methods; surgeons follow their method consistently. Residual AR after reimplantation is most often due to a mismatch between graft size and cusp size, or to unrecognised cusp prolapse.
+> **Evidence:** no trial compares sizing methods; surgeons follow their method consistently. Residual AR after reimplantation is most often due to a mismatch between graft size and cusp size, or to unrecognized cusp prolapse.
 
 ## [rd-reimplant] Resuspend the commissures; sew the valve inside the graft
 
@@ -152,7 +152,7 @@ Pull each **commissure** up vertically inside the graft and fix it with a pledge
 
 ## [rd-check] Check the cusps: effective height and prolapse
 
-Look at the valve from above. The free margins should meet at the same level, well above the base. Measure the **effective height** (from the base of the cusp to its free margin at the centre) with a calliper: a common target is **about 9 mm**. A cusp lying lower than the others is **prolapsing**: correct it by **central plication** of its free margin (a fine polypropylene suture), then re-check. A saline test into the graft (clamped above) shows central coaptation.
+Look at the valve from above. The free margins should meet at the same level, well above the base. Measure the **effective height** (from the base of the cusp to its free margin at the center) with a calliper: a common target is **about 9 mm**. A cusp lying lower than the others is **prolapsing**: correct it by **central plication** of its free margin (a fine polypropylene suture), then re-check. A saline test into the graft (clamped above) shows central coaptation.
 
 > **Evidence:** effective height as a target (about 9–10 mm) and the importance of the geometric (cusp) height come from the Homburg group (Schäfers et al.) and are widely used in valve repair; they are expert practice rather than trial-based thresholds.
 
@@ -171,7 +171,7 @@ Cut holes in the graft opposite each coronary ostium (the valve is already insid
 
 Test each suture line (cardioplegia down the graft) **before** the distal anastomosis: afterwards the back of these suture lines is hard to reach.
 
-> **Evidence:** coronary button problems (kinking, tension, bleeding) are the main technical causes of early death and ischaemia after root replacement in series; positioning with the heart filled is standard advice.
+> **Evidence:** coronary button problems (kinking, tension, bleeding) are the main technical causes of early death and ischemia after root replacement in series; positioning with the heart filled is standard advice.
 
 ### Question
 
@@ -195,7 +195,7 @@ Start with the [cardiac core](#approach=cticu-cardiac&step=0), the [lab schedule
 #### Specific to this operation
 
 -   Strict blood pressure control to protect suture lines
--   New ST change or ventricular arrhythmia: coronary button ischaemia
+-   New ST change or ventricular arrhythmia: coronary button ischemia
 -   Ross: control autograft pressure
 
 #### Labs
@@ -207,7 +207,7 @@ Doses: [electrolytes](#approach=cticu-doses&step=0), [vasoactive drugs](#approac
 ### Question
 
 **Q:** After a Bentall, new ST elevation in the inferior leads. Think of?
-- [x] Right coronary button kinking or ischaemia
+- [x] Right coronary button kinking or ischemia
   > Coronary button problems present early with ST change or arrhythmia: echo and angiography.
 - [ ] Pericarditis, which needs only an NSAID
 - [ ] Left main button kinking

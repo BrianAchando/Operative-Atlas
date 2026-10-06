@@ -89,7 +89,7 @@ Near a coronary artery, pass the mattress stitch **beneath** the artery so it is
 
 Lift the left lung **up and forward**. Just above the diaphragm, open the mediastinal pleura over the aorta and separate it from the **esophagus** with the fingers: the aorta is the firm tube on the spine; a **nasogastric tube** makes the esophagus easy to feel.
 
-Place a vascular clamp across the aorta. It diverts what cardiac output there is to the heart and brain and cuts bleeding below the diaphragm. **Note the time**: visceral and spinal ischaemia build after about 30 minutes.
+Place a vascular clamp across the aorta. It diverts what cardiac output there is to the heart and brain and cuts bleeding below the diaphragm. **Note the time**: visceral and spinal ischemia build after about 30 minutes.
 
 ### Question
 
@@ -110,7 +110,7 @@ Fill the heart first: an empty heart gains nothing from massage. For VF, interna
 
 Cannot reach the right side of the heart, the right lung or the great vessels? **Extend across the sternum** into a clamshell (next operation in the menu).
 
-With a circulation back: go to theatre; release the aortic clamp slowly with the anaesthetist ready; **ligate both internal mammary arteries**; look for bleeding you could not see at a pressure of zero.
+With a circulation back: go to theatre; release the aortic clamp slowly with the anesthetist ready; **ligate both internal mammary arteries**; look for bleeding you could not see at a pressure of zero.
 
 ## [rt-icu] ICU and post-operative care
 

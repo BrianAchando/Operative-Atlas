@@ -23,7 +23,7 @@ Chain: No serosa: early spread → Lymphatics along the length of the esophagus 
 | T4a / T4b | pleura, pericardium, azygos, diaphragm, peritoneum (resectable) / aorta, vertebra, trachea (unresectable) |
 | N | by number of nodes: N1 1–2, N2 3–6, N3 7 or more |
 
-Separate clinical, pathological and post-neoadjuvant (yp) stage groups; squamous and adenocarcinoma are grouped differently. **Work-up**: endoscopy and biopsy, CT chest and abdomen, PET-CT for curative candidates, EUS for T and N, **bronchoscopy** for tumours at or above the carina, staging laparoscopy for junctional adenocarcinoma.
+Separate clinical, pathological and post-neoadjuvant (yp) stage groups; squamous and adenocarcinoma are grouped differently. **Work-up**: endoscopy and biopsy, CT chest and abdomen, PET-CT for curative candidates, EUS for T and N, **bronchoscopy** for tumors at or above the carina, staging laparoscopy for junctional adenocarcinoma.
 
 **Most patients here present with advanced disease**: palliation of dysphagia (a self-expanding metal stent works fastest; brachytherapy lasts longer) is the commonest intervention.
 
@@ -33,12 +33,12 @@ Separate clinical, pathological and post-neoadjuvant (yp) stage groups; squamous
 
 **Q:** A squamous carcinoma of the middle third lies at the level of the carina. Which test must precede resection?
 - [x] Bronchoscopy, to exclude invasion of the trachea or left main bronchus (T4b)
-  > Mid-third tumours sit against the membranous trachea and left main bronchus; airway invasion makes the tumour unresectable and changes the plan.
+  > Mid-third tumors sit against the membranous trachea and left main bronchus; airway invasion makes the tumor unresectable and changes the plan.
 - [ ] Colonoscopy
 - [ ] Lower limb Doppler
 - [ ] Bone marrow biopsy
 
-## [mk-anat] The esophagus and its neighbours
+## [mk-anat] The esophagus and its neighbors
 
 **Neck**: behind the trachea, the **recurrent laryngeal nerves** in the grooves either side. **Upper chest**: behind the trachea, the **azygos arch** on its right, the aortic arch on its left. **Mid chest**: behind the left main bronchus and the left atrium. **Lower chest**: in front of and to the right of the descending aorta, through the hiatus at T10.
 
@@ -46,7 +46,7 @@ Behind it on the right: the **thoracic duct** between the aorta and the azygos, 
 
 ## [b4-eso-mckeown-case] Case: a young man with mid-esophageal squamous carcinoma
 
-**Mid-third tumours** need a long proximal margin: a **McKeown** (three-stage) esophagectomy with a **neck anastomosis**, after neoadjuvant chemoradiotherapy (CROSS). The thoracic dissection is close to the membranous trachea and the left main bronchus: injury there is a disaster.
+**Mid-third tumors** need a long proximal margin: a **McKeown** (three-stage) esophagectomy with a **neck anastomosis**, after neoadjuvant chemoradiotherapy (CROSS). The thoracic dissection is close to the membranous trachea and the left main bronchus: injury there is a disaster.
 
 **Definitive chemoradiotherapy** is an alternative for squamous carcinoma: surgery adds local control but not clearly survival, at higher treatment mortality; it suits patients who respond clinically, the frail, or those declining surgery, with salvage surgery for residual disease.
 
@@ -54,13 +54,13 @@ Behind it on the right: the **thoracic duct** between the aorta and the azygos, 
 
 ### Case
 
-A **27-year-old man** from western Kenya, dysphagia for 4 months. Endoscopy: a tumour at **25–30 cm** (mid third, at the carina), squamous; CT/EUS cT3 N1; **bronchoscopy: no airway invasion**; PET: no distant disease. Good performance status.
+A **27-year-old man** from western Kenya, dysphagia for 4 months. Endoscopy: a tumor at **25–30 cm** (mid third, at the carina), squamous; CT/EUS cT3 N1; **bronchoscopy: no airway invasion**; PET: no distant disease. Good performance status.
 
 ### Question
 
-**Q:** Why a neck anastomosis (McKeown) for this tumour?
-- [x] A mid-third tumour needs a long proximal margin that a chest anastomosis may not give
-  > Taking the esophagus into the neck gives a longer margin above the tumour and a complete thoracic lymphadenectomy; a cervical leak is also easier to manage than an intrathoracic one.
+**Q:** Why a neck anastomosis (McKeown) for this tumor?
+- [x] A mid-third tumor needs a long proximal margin that a chest anastomosis may not give
+  > Taking the esophagus into the neck gives a longer margin above the tumor and a complete thoracic lymphadenectomy; a cervical leak is also easier to manage than an intrathoracic one.
 - [ ] It is always required for squamous carcinoma
 - [ ] Because the stomach is too short
 - [ ] To avoid the abdomen
@@ -135,7 +135,7 @@ Clip the aortic esophageal branches. Watch the **membranous trachea and left mai
 
 Many units ligate the duct routinely: **mass-ligate all the tissue between the aorta and the azygos** just above the hiatus, on the front of the spine. A missed duct injury declares itself as a milky drain output once feeding starts.
 
-## [mk-lap] Abdomen: mobilise the stomach
+## [mk-lap] Abdomen: mobilize the stomach
 
 Upper midline laparotomy (or laparoscopy). Divide the gastrocolic omentum **well away from the right gastroepiploic arcade**, which the conduit will live on, then the short gastric vessels up to the left crus. Open the lesser omentum. **Kocherise** the duodenum so the pylorus reaches the hiatus; a pyloric drainage procedure or none, by unit policy.
 
@@ -157,7 +157,7 @@ Encircle the cervical esophagus with a finger from the neck, meeting the thoraci
 
 Staple the lesser curvature from below the cardia to make a **4–5 cm tube** of greater curvature on the **right gastroepiploic artery**. Pass it through the posterior mediastinum (the esophageal bed) to the neck in a plastic sleeve, without twisting.
 
-Check the colour of the tip: poor perfusion there is what leaks.
+Check the color of the tip: poor perfusion there is what leaks.
 
 ## [mk-anast] The anastomosis
 
@@ -167,7 +167,7 @@ Nasogastric tube past the anastomosis; feeding jejunostomy by unit policy.
 
 ## [mk-after] What goes wrong
 
-**Anastomotic leak** and **conduit necrosis** (fever, arrhythmia, effluent in the drain: contrast study or endoscopy). **Chylothorax** (milky drain output once fed). **Recurrent laryngeal nerve palsy** (hoarseness, aspiration), mostly after neck dissection. Pneumonia above all: early mobilisation, physiotherapy, sitting up.
+**Anastomotic leak** and **conduit necrosis** (fever, arrhythmia, effluent in the drain: contrast study or endoscopy). **Chylothorax** (milky drain output once fed). **Recurrent laryngeal nerve palsy** (hoarseness, aspiration), mostly after neck dissection. Pneumonia above all: early mobilization, physiotherapy, sitting up.
 
 ## [b4-eso-mckeown-icu] ICU and post-operative care
 

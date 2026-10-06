@@ -9,9 +9,9 @@ summary: Stage III: thoracotomy, evacuate, peel the cortex off the lung.
 
 ## [b4-emp-open-patho] Pathophysiology: parapneumonic effusion to empyema
 
-**From pneumonia to peel.** Inflammation next to the pleura makes the pleural capillaries leak: a sterile **exudate**. If bacteria cross, neutrophils and bacteria consume glucose and produce lactate and CO₂ (pH falls, LDH rises), fibrin is laid down and the fluid **loculates**. Fibroblasts then organise the fibrin into a **peel** that traps the lung.
+**From pneumonia to peel.** Inflammation next to the pleura makes the pleural capillaries leak: a sterile **exudate**. If bacteria cross, neutrophils and bacteria consume glucose and produce lactate and CO₂ (pH falls, LDH rises), fibrin is laid down and the fluid **loculates**. Fibroblasts then organize the fibrin into a **peel** that traps the lung.
 
-Chain: I exudative (days): free-flowing, sterile → II fibrinopurulent (1–2 weeks): infected, pH and glucose fall, septations → III organising (3–6 weeks): fibrous peel, trapped lung
+Chain: I exudative (days): free-flowing, sterile → II fibrinopurulent (1–2 weeks): infected, pH and glucose fall, septations → III organizing (3–6 weeks): fibrous peel, trapped lung
 
 **Drain when**: pus, organisms on Gram stain or culture, **pH 7.2 or less**, or (if pH unavailable) glucose under 3.3 mmol/L; loculation on ultrasound supports it. A pH of 7.2–7.4 is intermediate (LDH over 900 IU/L supports drainage).
 
@@ -32,7 +32,7 @@ Chain: I exudative (days): free-flowing, sterile → II fibrinopurulent (1–2 w
 
 ## [em-stages] Empyema: three stages
 
-**I, exudative** (days): thin fluid, the lung still expands: a chest drain and antibiotics. **II, fibrinopurulent** (1–2 weeks): fibrin septa and loculations: drain plus intrapleural **tPA and DNase** (MIST2), or early **VATS debridement**. **III, organising** (after 3–6 weeks): a thick **peel** on the visceral pleura traps the lung: **decortication**.
+**I, exudative** (days): thin fluid, the lung still expands: a chest drain and antibiotics. **II, fibrinopurulent** (1–2 weeks): fibrin septa and loculations: drain plus intrapleural **tPA and DNase** (MIST2), or early **VATS debridement**. **III, organizing** (after 3–6 weeks): a thick **peel** on the visceral pleura traps the lung: **decortication**.
 
 Here the left lung is shown **trapped**, smaller than the chest, under its peel, with pus in the posterior costophrenic gutter.
 
@@ -42,12 +42,12 @@ Here the left lung is shown **trapped**, smaller than the chest, under its peel,
 - [x] II, fibrinopurulent
   > Septations and a low pH or glucose mean a complicated effusion or empyema in the fibrinopurulent stage: drain it, and add fibrinolytics or VATS if it does not clear.
 - [ ] I, exudative
-- [ ] III, organising
+- [ ] III, organizing
 - [ ] IV, chronic fibrous
 
 ## [b4-emp-open-case] Case: a chronic tuberculous empyema with a trapped lung
 
-**Stage III (organising)**, tuberculous: continue TB treatment, and **decortication** through a thoracotomy (a thick, old peel rarely comes off thoracoscopically) once she is on treatment and nutritionally supported. The goal: free the lung so it fills the chest and the space is gone.
+**Stage III (organizing)**, tuberculous: continue TB treatment, and **decortication** through a thoracotomy (a thick, old peel rarely comes off thoracoscopically) once she is on treatment and nutritionally supported. The goal: free the lung so it fills the chest and the space is gone.
 
 If the lung is destroyed underneath, decortication will not re-expand it: plan for space-filling (muscle flap, limited thoracoplasty) or an open window.
 

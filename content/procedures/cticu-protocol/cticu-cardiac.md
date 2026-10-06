@@ -7,17 +7,17 @@ summary: The unit protocol: labs, rounds, escalation, cardiac, thoracic and vasc
 
 <!-- Edit the words freely. Keep each "## [step-id]" line as it is: it ties the text to its step in the 3D atlas. -->
 
-## [cticu-cardiac-0] Arrival, haemodynamics, bleeding, ventilation
+## [cticu-cardiac-0] Arrival, hemodynamics, bleeding, ventilation
 
 #### Arrival (first 30 min)
 
--   Structured handover: surgeon, anaesthetist, nurse: the operation, bypass and clamp times, how the heart came off bypass, drugs running, pacing, drains
+-   Structured handover: surgeon, anesthetist, nurse: the operation, bypass and clamp times, how the heart came off bypass, drugs running, pacing, drains
 -   ABG, Hb, K⁺, glucose, lactate, ACT or coagulation screen, chest X-ray, ECG; test the epicardial pacing wires
 
-#### Haemodynamics
+#### Hemodynamics
 
 -   MAP 65–80 mmHg; higher after CABG with carotid disease, lower with a friable aortic suture line
--   Noradrenaline for vasodilatation, adding adrenaline for low output: the anaesthetist's choice <span class="tag knh">KNH practice</span> ([doses](#approach=cticu-doses&step=1))
+-   Noradrenaline for vasodilatation, adding adrenaline for low output: the anesthetist's choice <span class="tag knh">KNH practice</span> ([doses](#approach=cticu-doses&step=1))
 -   Low output: preload, rhythm and pacing first; then inotrope; then IABP. **Never miss tamponade**
 
 #### Bleeding
@@ -53,7 +53,7 @@ summary: The unit protocol: labs, rounds, escalation, cardiac, thoracic and vasc
 -   AKI prevention: perfusion pressure, no nephrotoxins, urine output (KDIGO)
 -   Glucose under 10 mmol/L (180 mg/dL) <span class="tag gl">guideline</span>
 -   Paracetamol-based multimodal analgesia; avoid NSAIDs
--   Screen for delirium (CAM-ICU); mobilise early
+-   Screen for delirium (CAM-ICU); mobilize early
 
 #### Day 1
 

@@ -32,13 +32,13 @@ The **pulmonary root** lies in front and to the left, sharing a fascial plane wi
 
 -   **Valve-sparing root replacement** (David, Yacoub) when the cusps are good: no prosthesis, no warfarin. It needs experience.
 -   **Bentall** (composite valved graft) when the valve is diseased: the reliable standard. **Mechanical** for the young with reliable INR monitoring, **biological** ("bio-Bentall") for the older.
--   **Ross** (pulmonary autograft) for selected young adults with aortic valve disease, at experienced centres.
+-   **Ross** (pulmonary autograft) for selected young adults with aortic valve disease, at experienced centers.
 
 **Ross: good candidates**: young adults (typically under about 50–60) with a long life expectancy, active lives, women planning pregnancy (no warfarin). **Cautions** (EACTS consensus 2025): **rheumatic** valve disease, connective tissue disease, a **dilated annulus** or severe AR (dilatation risk), and a need for other valve surgery.
 
 **Rheumatic disease** matters here: in 81 rheumatic Ross patients (mean age 29.5), freedom from autograft dysfunction was 65% under 30 vs 98.5% over 30, and explanted autografts showed rheumatic valvulitis.
 
-> **Evidence:** Ross: the one RCT (El-Hamamsy et al., Lancet 2010; 228 adults, mean age 38) found 10-year survival of 97% after the autograft vs 83% after a homograft root, and 99% vs 51% freedom from aortic valve reoperation at 13 years; survival matched the general population. ACC/AHA 2020 gives the Ross a class 2b recommendation in young adults, at experienced centres; ESC/EACTS 2025 calls it a valid alternative in well-selected young patients.
+> **Evidence:** Ross: the one RCT (El-Hamamsy et al., Lancet 2010; 228 adults, mean age 38) found 10-year survival of 97% after the autograft vs 83% after a homograft root, and 99% vs 51% freedom from aortic valve reoperation at 13 years; survival matched the general population. ACC/AHA 2020 gives the Ross a class 2b recommendation in young adults, at experienced centers; ESC/EACTS 2025 calls it a valid alternative in well-selected young patients.
 
 ### Case
 
@@ -67,7 +67,7 @@ A **24-year-old woman** who had rheumatic fever at nine. She now has **severe ao
 
 -   Stroke
 -   Death
--   Coronary button ischaemia
+-   Coronary button ischemia
 -   Heart block
 
 #### 4\. Specific to this operation
@@ -140,7 +140,7 @@ Cross-clamp high; cardioplegia **retrograde** and **directly into the ostia** on
 
 Mobilise each button **just enough** to reach the graft: the left main is short and lies behind the pulmonary trunk; the right coronary has branches (conus, RV branches) that tether it.
 
-> **Evidence:** the "open" button technique replaced the older inclusion and wrap methods, which were associated with pseudoaneurysms at the coronary suture lines. When buttons cannot be mobilised (redo, low ostia), a small interposition graft (Cabrol) is used.
+> **Evidence:** the "open" button technique replaced the older inclusion and wrap methods, which were associated with pseudoaneurysms at the coronary suture lines. When buttons cannot be mobilized (redo, low ostia), a small interposition graft (Cabrol) is used.
 
 ## [rr-harvest] Harvest the pulmonary autograft
 
@@ -148,7 +148,7 @@ Transect the **PA trunk** just below its bifurcation and look at the pulmonary v
 
 Free the root from the septum **posteriorly and to the left**, keeping the plane shallow: the **first septal perforator** runs just beneath, and the **left main** lies behind the root. Keep the muscle cuff thin but intact.
 
-> **Evidence:** injury to the first septal perforator (septal infarction, ventricular arrhythmia) is a recognised harvest complication; the EACTS 2025 consensus highlights preserving it.
+> **Evidence:** injury to the first septal perforator (septal infarction, ventricular arrhythmia) is a recognized harvest complication; the EACTS 2025 consensus highlights preserving it.
 
 ### Question
 
@@ -159,13 +159,13 @@ Free the root from the septum **posteriorly and to the left**, keeping the plane
 - [ ] The AV node
 - [ ] The left circumflex artery
 
-## [rr-implant] Implant the autograft as a root; stabilise it
+## [rr-implant] Implant the autograft as a root; stabilize it
 
 Sew the autograft to the aortic annulus with **interrupted** sutures (or a running suture with a strip), **in the same plane** as the annulus so the cusps do not distort. The pulmonary sinuses are thinner than aortic ones.
 
 To limit later **dilatation** (the main long-term failure mode): reduce and fix the annulus if it is large, keep the STJ at the right size, and consider **reinforcing** the autograft (inclusion inside a polyester graft, or an external wrap), especially with pre-existing AR or a big annulus.
 
-> **Evidence:** the EACTS 2025 consensus recommends annular assessment and stabilisation, and considering autograft reinforcement in higher-risk roots. The full-root technique is the most widely used; the best form of reinforcement is not settled.
+> **Evidence:** the EACTS 2025 consensus recommends annular assessment and stabilization, and considering autograft reinforcement in higher-risk roots. The full-root technique is the most widely used; the best form of reinforcement is not settled.
 
 ## [rr-buttons] Reimplant the coronary buttons
 
@@ -173,7 +173,7 @@ Open the autograft's facing sinuses opposite each ostium. Sew each button end-to
 
 Test each suture line (cardioplegia down the graft) **before** the distal anastomosis: afterwards the back of these suture lines is hard to reach.
 
-> **Evidence:** coronary button problems (kinking, tension, bleeding) are the main technical causes of early death and ischaemia after root replacement in series; positioning with the heart filled is standard advice.
+> **Evidence:** coronary button problems (kinking, tension, bleeding) are the main technical causes of early death and ischemia after root replacement in series; positioning with the heart filled is standard advice.
 
 ### Question
 
@@ -188,7 +188,7 @@ Test each suture line (cardioplegia down the graft) **before** the distal anasto
 
 Cut the graft to length and join it to the ascending aorta with running **4-0 polypropylene**, often with a felt strip. De-air through the root vent in the graft, release the clamp, and check **every suture line**, especially the backs of the buttons.
 
-**TOE**: valve function, **regional wall motion** in the left and right coronary territories, no leak. Bleeding is the other big risk: keep haemostatic agents and blood ready.
+**TOE**: valve function, **regional wall motion** in the left and right coronary territories, no leak. Bleeding is the other big risk: keep hemostatic agents and blood ready.
 
 > **Evidence:** bleeding and coronary problems dominate early morbidity after root replacement in large series (Kirklin/Barratt-Boyes).
 
@@ -220,7 +220,7 @@ Start with the [cardiac core](#approach=cticu-cardiac&step=0), the [lab schedule
 #### Specific to this operation
 
 -   Strict blood pressure control to protect suture lines
--   New ST change or ventricular arrhythmia: coronary button ischaemia
+-   New ST change or ventricular arrhythmia: coronary button ischemia
 -   Ross: control autograft pressure
 
 #### Labs
@@ -232,7 +232,7 @@ Doses: [electrolytes](#approach=cticu-doses&step=0), [vasoactive drugs](#approac
 ### Question
 
 **Q:** After a Bentall, new ST elevation in the inferior leads. Think of?
-- [x] Right coronary button kinking or ischaemia
+- [x] Right coronary button kinking or ischemia
   > Coronary button problems present early with ST change or arrhythmia: echo and angiography.
 - [ ] Pericarditis, which needs only an NSAID
 - [ ] Left main button kinking

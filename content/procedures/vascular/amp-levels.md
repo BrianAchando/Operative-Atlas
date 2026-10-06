@@ -13,7 +13,7 @@ The level is chosen by **perfusion** (will it heal?), **infection** (is all dead
 
 | Level | Use | Note |
 | --- | --- | --- |
-| Toe or ray | dry gangrene or osteomyelitis of one or two toes | needs adequate foot perfusion; revascularise first |
+| Toe or ray | dry gangrene or osteomyelitis of one or two toes | needs adequate foot perfusion; revascularize first |
 | Transmetatarsal | forefoot loss, three or more toes | preserves a weight-bearing foot; more revisions than BKA but better walking |
 | **Below-knee** | unreconstructable foot, heel or midfoot sepsis | the knee makes prosthetic walking far easier |
 | Through-knee | BKA not healable, long stump wanted | end-bearing; for non-walkers it balances well in sitting |
@@ -30,7 +30,7 @@ More proximal levels cost more energy to walk, so a vascular patient is far more
   > Energy cost and prosthetic success fall steeply with an above-knee level.
 - [ ] It is quicker to perform
 - [ ] It never needs revision
-- [ ] It avoids anaesthesia
+- [ ] It avoids anesthesia
 
 ## [am-case] Case: wet gangrene of the foot in a diabetic
 

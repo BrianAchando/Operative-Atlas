@@ -9,17 +9,17 @@ summary: Case-based: single-vessel MIDCAB, two-vessel LIMA + radial, three-vesse
 
 ## [c1-case] Case: isolated proximal LAD disease
 
-> **Evidence:** in stable coronary disease, revascularisation relieves angina, but ISCHEMIA (NEJM 2020, over 5,000 patients with moderate or severe ischaemia) found no reduction in death or MI with an initial invasive strategy. For isolated proximal LAD disease, the randomised Leipzig trial (Blazek et al., JACC Cardiovasc Interv 2013; 220 patients, 10 years) found MIDCAB and stenting similar for death and MI, with far fewer repeat revascularisations after MIDCAB (11% vs 34%).
+> **Evidence:** in stable coronary disease, revascularization relieves angina, but ISCHEMIA (NEJM 2020, over 5,000 patients with moderate or severe ischemia) found no reduction in death or MI with an initial invasive strategy. For isolated proximal LAD disease, the randomized Leipzig trial (Blazek et al., JACC Cardiovasc Interv 2013; 220 patients, 10 years) found MIDCAB and stenting similar for death and MI, with far fewer repeat revascularizations after MIDCAB (11% vs 34%).
 
 ### Case
 
-A 62-year-old man, **angina (CCS III) despite full medical therapy**; stress imaging shows a large anterior ischaemic area. Angiogram: a long, calcified **90% ostial–proximal LAD** stenosis involving the diagonal origin; circumflex and RCA normal; EF 55%. The interventional team judge it unfavourable for PCI.
+A 62-year-old man, **angina (CCS III) despite full medical therapy**; stress imaging shows a large anterior ischemic area. Angiogram: a long, calcified **90% ostial–proximal LAD** stenosis involving the diagonal origin; circumflex and RCA normal; EF 55%. The interventional team judge it unfavorable for PCI.
 
 ### Question
 
-**Q:** What is the main aim of revascularising this man?
+**Q:** What is the main aim of revascularizing this man?
 - [x] Relieving angina that persists despite medical therapy
-  > In stable single-vessel disease, trials have not shown a survival benefit; the indication is symptoms despite optimal medical therapy (and here an anatomy unfavourable for PCI).
+  > In stable single-vessel disease, trials have not shown a survival benefit; the indication is symptoms despite optimal medical therapy (and here an anatomy unfavorable for PCI).
 - [ ] Improving survival
 - [ ] Preventing a future myocardial infarction
 - [ ] Improving left ventricular function in all patients
@@ -44,7 +44,7 @@ A 62-year-old man, **angina (CCS III) despite full medical therapy**; stress ima
 
 #### 4\. Specific to this operation
 
--   Radial artery harvest: hand ischaemia (Allen test)
+-   Radial artery harvest: hand ischemia (Allen test)
 -   On-pump versus off-pump
 
 #### 5\. Alternatives
@@ -81,31 +81,31 @@ Double-lumen tube, **left lung deflated**, the left chest raised about 30°, ext
 
 No sternotomy, no bypass: the operation is **off-pump**, and the only graft is the **LIMA to the LAD**.
 
-> **Evidence:** MIDCAB avoids sternotomy and cardiopulmonary bypass; its results depend on centre experience, and conversion to sternotomy must always be possible.
+> **Evidence:** MIDCAB avoids sternotomy and cardiopulmonary bypass; its results depend on center experience, and conversion to sternotomy must always be possible.
 
 ## [c1-lima] Harvest the LIMA
 
-A special retractor lifts the upper ribs. The **LIMA** is harvested under direct vision (or thoracoscopically) from as high as possible down to the incision, pedicled or skeletonised, with clips on each branch. Heparin before dividing it.
+A special retractor lifts the upper ribs. The **LIMA** is harvested under direct vision (or thoracoscopically) from as high as possible down to the incision, pedicled or skeletonized, with clips on each branch. Heparin before dividing it.
 
 > **Evidence:** a long LIMA is essential here: the target must be reached without tension through a small incision, and the pedicle cannot be brought round other structures as at sternotomy.
 
-## [c1-stabilise] Open the pericardium over the LAD; stabilise
+## [c1-stabilise] Open the pericardium over the LAD; stabilize
 
-Open the pericardium over the LAD, stitch its edges up to lift the heart. Find the target beyond the lesion (and beyond the diagonal); place the **stabiliser**, a proximal silicone snare or an intracoronary shunt, and a CO₂ blower.
+Open the pericardium over the LAD, stitch its edges up to lift the heart. Find the target beyond the lesion (and beyond the diagonal); place the **stabilizer**, a proximal silicone snare or an intracoronary shunt, and a CO₂ blower.
 
-> **Evidence:** ischaemic preconditioning (a brief trial occlusion) before the arteriotomy is practised by some surgeons; its benefit is not proven in trials.
+> **Evidence:** ischemic preconditioning (a brief trial occlusion) before the arteriotomy is practiced by some surgeons; its benefit is not proven in trials.
 
 ## [c1-lad] LIMA to LAD, off-pump
 
 Bring the LIMA pedicle down lateral to the pulmonary artery, with no tension or twist and enough length for the heart to fill. On the **mid LAD** beyond the disease (after the second diagonal here): a 4–5 mm arteriotomy on the vessel's anterior surface; an end-to-side anastomosis with running **8-0 polypropylene**, heel and toe first; tack the pedicle to the epicardium on each side.
 
-**Off-pump**: the stabiliser holds the target still; an intracoronary shunt or a silicone snare proximally keeps the field bloodless; a CO₂ blower clears the view. Warn the anaesthetist before lifting the heart.
+**Off-pump**: the stabilizer holds the target still; an intracoronary shunt or a silicone snare proximally keeps the field bloodless; a CO₂ blower clears the view. Warn the anesthetist before lifting the heart.
 
 > **Evidence:** LIMA to LAD gives the best long-term patency and survival of any graft and is the basis of the class I recommendation to use it; its patency is above 90% at 10 years in large series.
 
 ## [c1-check] Check the graft, close
 
-**Transit-time flow** on the LIMA (a good mean flow and a PI below about 5), TOE for anterior wall motion. Protamine. A chest drain, the lung re-expanded, the ribs approximated, a local anaesthetic block for pain.
+**Transit-time flow** on the LIMA (a good mean flow and a PI below about 5), TOE for anterior wall motion. Protamine. A chest drain, the lung re-expanded, the ribs approximated, a local anesthetic block for pain.
 
 > **Evidence:** TTFM thresholds come from observational series; a poor reading on the only graft calls for revision before closing.
 
@@ -138,7 +138,7 @@ Doses: [electrolytes](#approach=cticu-doses&step=0), [vasoactive drugs](#approac
 
 **Q:** Four hours after CABG, bleeding has settled. What should start within 6 h?
 - [x] Aspirin
-  > Early aspirin after CABG reduces death and ischaemic complications (Mangano, NEJM 2002).
+  > Early aspirin after CABG reduces death and ischemic complications (Mangano, NEJM 2002).
 - [ ] Warfarin
 - [ ] Clopidogrel loading only
 - [ ] Aspirin only after the drains are out on day 3

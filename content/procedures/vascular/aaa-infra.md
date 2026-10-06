@@ -58,7 +58,7 @@ An aneurysm is a diameter of **3.0 cm or more**. Growth accelerates as it enlarg
 - [ ] Thrombus lining the sac weakens it
 - [ ] Blood pressure rises with size
 
-## [ai-anatomy] The infrarenal aorta and its neighbours
+## [ai-anatomy] The infrarenal aorta and its neighbors
 
 From above down on the front of the aorta: the **coeliac trunk** (T12/L1), the **SMA** about 1 cm lower, the **renal arteries** (L1/L2, the right passing behind the IVC), the **left renal vein** crossing in front of the aorta just below the SMA (the upper limit of the infrarenal neck), the **IMA** from the left front at L3, and the bifurcation at L4.
 
@@ -91,7 +91,7 @@ A **64-year-old man**, a retired teacher from Nakuru, hypertensive, ex-smoker. A
 
 **Q:** What is the main long-term drawback of EVAR compared with open repair?
 - [x] The need for lifelong imaging surveillance and reinterventions, with a risk of late rupture
-  > EVAR excludes the sac without removing it; endoleaks and migration can re-pressurise it. EVAR-1 showed more reinterventions and higher late aneurysm mortality after 8 years.
+  > EVAR excludes the sac without removing it; endoleaks and migration can re-pressurize it. EVAR-1 showed more reinterventions and higher late aneurysm mortality after 8 years.
 - [ ] Higher 30-day mortality
 - [ ] Longer hospital stay
 - [ ] More blood loss
@@ -110,8 +110,8 @@ A **64-year-old man**, a retired teacher from Nakuru, hypertensive, ex-smoker. A
 
 -   MI
 -   Kidney failure (higher with juxta- or suprarenal clamping)
--   Colonic ischaemia
--   Limb ischaemia
+-   Colonic ischemia
+-   Limb ischemia
 -   Death
 
 #### 4\. Specific to this operation
@@ -151,7 +151,7 @@ Template and how to use it: [CTICU protocol, consent](#approach=cticu-consent&st
 
 Supine, arms out; an epidural or good analgesia; arterial line, central line, cell salvage, warming; prophylactic antibiotics. Prepare from nipples to knees (the groins in the field).
 
-**Midline laparotomy** from the xiphoid to the pubis. Lift the transverse colon up, the small bowel to the right in a bag; incise the **posterior peritoneum** to the right of the duodenojejunal flexure, mobilise the **4th part of the duodenum** to the right (divide the ligament of Treitz and the inferior mesenteric vein if needed), and open the peritoneum down over the aneurysm to the bifurcation, staying to the **right** of the IMA and the hypogastric plexus.
+**Midline laparotomy** from the xiphoid to the pubis. Lift the transverse colon up, the small bowel to the right in a bag; incise the **posterior peritoneum** to the right of the duodenojejunal flexure, mobilize the **4th part of the duodenum** to the right (divide the ligament of Treitz and the inferior mesenteric vein if needed), and open the peritoneum down over the aneurysm to the bifurcation, staying to the **right** of the IMA and the hypogastric plexus.
 
 ## [ai-neck] Expose the neck and the renal vein
 
@@ -165,13 +165,13 @@ Open the peritoneum over both **common iliac arteries**, see the **ureters** cro
 
 ## [ai-clamp] Heparin, clamp distally, then proximally
 
-Heparin (about 70–100 U/kg). Clamp the **iliac arteries first** (so that debris from the sac goes nowhere), then the **infrarenal neck**, below the renal arteries. Tell the anaesthetist before clamping: afterload rises; before releasing, fluid and vasoconstrictor ready.
+Heparin (about 70–100 U/kg). Clamp the **iliac arteries first** (so that debris from the sac goes nowhere), then the **infrarenal neck**, below the renal arteries. Tell the anesthetist before clamping: afterload rises; before releasing, fluid and vasoconstrictor ready.
 
 ## [ai-sac] Open the sac, clear the thrombus, stop the back-bleeding
 
 Open the aneurysm longitudinally on its right anterior surface (away from the IMA), T-ing the incision at the neck and at the bifurcation. Scoop out the laminated **thrombus**. **Oversew the lumbar arteries** from inside with figure-of-eight 2-0 or 3-0 sutures; back-bleeding from the **IMA**: if it bleeds briskly (good collaterals) oversew its origin from inside; if the flow is poor and the colon may depend on it, keep a button for reimplantation.
 
-> **Evidence:** ESVS 2024: routine IMA reimplantation is not recommended; consider it when pelvic and colonic perfusion is doubtful (both internal iliacs diseased or excluded, previous colectomy, poor back-bleeding). Colonic ischaemia after open repair presents with bloody diarrhoea, acidosis or distension: sigmoidoscopy early.
+> **Evidence:** ESVS 2024: routine IMA reimplantation is not recommended; consider it when pelvic and colonic perfusion is doubtful (both internal iliacs diseased or excluded, previous colectomy, poor back-bleeding). Colonic ischemia after open repair presents with bloody diarrhea, acidosis or distension: sigmoidoscopy early.
 
 ## [ai-graft] Sew in the graft
 
@@ -182,15 +182,15 @@ Open the aneurysm longitudinally on its right anterior surface (away from the IM
 ### Question
 
 **Q:** Before tying the distal anastomosis, why flush the graft?
-- [x] To wash out air, thrombus and debris that would otherwise embolise to the legs or pelvis
-  > Brief release of the iliac, then aortic clamps flushes the graft; debris left in it embolises to the feet ("trash foot") or the pelvis.
+- [x] To wash out air, thrombus and debris that would otherwise embolize to the legs or pelvis
+  > Brief release of the iliac, then aortic clamps flushes the graft; debris left in it embolizes to the feet ("trash foot") or the pelvis.
 - [ ] To test the proximal anastomosis only
 - [ ] It is not needed
 - [ ] To reduce heparin effect
 
 ## [ai-close] Release, close the sac over the graft, check the colon and the feet
 
-Release the clamps **one leg at a time**, slowly, with the anaesthetist (declamping hypotension). Protamine if needed. **Close the sac over the graft** and then the posterior peritoneum, so the graft never touches the duodenum (aortoenteric fistula). Look at the **sigmoid colon** (pink, peristalsing, a mesenteric pulse) and the **feet** (pulses, colour) before closing.
+Release the clamps **one leg at a time**, slowly, with the anesthetist (declamping hypotension). Protamine if needed. **Close the sac over the graft** and then the posterior peritoneum, so the graft never touches the duodenum (aortoenteric fistula). Look at the **sigmoid colon** (pink, peristalsing, a mesenteric pulse) and the **feet** (pulses, color) before closing.
 
 ### Question
 
@@ -198,7 +198,7 @@ Release the clamps **one leg at a time**, slowly, with the anaesthetist (declamp
 - [x] To keep the graft away from the duodenum and prevent an aortoenteric fistula
   > Direct contact between the graft suture line and the duodenum can erode into the bowel months or years later: a catastrophic bleed.
 - [ ] To stop back-bleeding
-- [ ] To help the graft endothelialise
+- [ ] To help the graft endothelialize
 - [ ] For cosmetic reasons
 
 ## [aaa-infra-icu] ICU and post-operative care
@@ -207,8 +207,8 @@ Start with the [vascular core](#approach=cticu-vascular&step=0), the [lab schedu
 
 #### Specific to this operation
 
--   Serial haematocrit and abdominal girth <span class="tag knh">KNH practice</span>; [bladder pressure when triggered](#approach=cticu-vascular&step=0) <span class="tag prop">proposed</span>
--   Colonic ischaemia: bloody diarrhoea, rising lactate: sigmoidoscopy
+-   Serial hematocrit and abdominal girth <span class="tag knh">KNH practice</span>; [bladder pressure when triggered](#approach=cticu-vascular&step=0) <span class="tag prop">proposed</span>
+-   Colonic ischemia: bloody diarrhea, rising lactate: sigmoidoscopy
 -   Feet: trash foot
 -   Kidneys after supra- or juxtarenal clamps
 

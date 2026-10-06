@@ -74,7 +74,7 @@ In the open tract, find each **bleeding vessel** and each **leaking bronchus** a
 
 **Q:** Why not simply oversew the entry and exit holes of a deep tract?
 - [x] Bleeding continues inside, and air can enter the pulmonary veins
-  > An oversewn tract becomes a haematoma and a route for systemic air embolism.
+  > An oversewn tract becomes a hematoma and a route for systemic air embolism.
 - [ ] It takes longer
 - [ ] It needs a larger incision
 - [ ] It is contraindicated because of infection risk

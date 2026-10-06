@@ -35,7 +35,7 @@ Dilute 50% MgSO₄ to 20% or less for IV use; no faster than 150 mg/min. Severe 
 
 #### Calcium: calcium gluconate 10% (10 mL = 1 g, about 2.3 mmol Ca)
 
-Target ionised Ca 1.1–1.3 mmol/L.
+Target ionized Ca 1.1–1.3 mmol/L.
 
 | Ionised Ca | Dose |
 | --- | --- |
@@ -60,14 +60,14 @@ Potassium phosphate if K⁺ is low, sodium phosphate otherwise; caution in renal
 
 **Q:** Maximum KCl rate for K⁺ 2.8 mmol/L without ECG changes?
 - [x] 10 mmol/h, at no more than 40 mmol/L
-  > The label limit for K⁺ 2.5 or more; up to 40 mmol/h only with ECG monitoring for severe hypokalaemia with ECG changes.
+  > The label limit for K⁺ 2.5 or more; up to 40 mmol/h only with ECG monitoring for severe hypokalemia with ECG changes.
 - [ ] 40 mmol/h peripherally
 - [ ] A 20 mmol push
 - [ ] 100 mmol/h
 
 ## [cticu-doses-1] Noradrenaline and adrenaline infusions
 
-**One standard syringe for both**: 4 mL of the 1 mg/mL vial (4 mg) + 46 mL 5% dextrose = 50 mL at **80 µg/mL**, central line only. Label clearly: the two syringes look the same. The choice of drug and dose is the anaesthetist's <span class="tag knh">KNH practice</span>
+**One standard syringe for both**: 4 mL of the 1 mg/mL vial (4 mg) + 46 mL 5% dextrose = 50 mL at **80 µg/mL**, central line only. Label clearly: the two syringes look the same. The choice of drug and dose is the anesthetist's <span class="tag knh">KNH practice</span>
 
 #### Noradrenaline
 

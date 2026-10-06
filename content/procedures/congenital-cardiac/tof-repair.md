@@ -35,10 +35,10 @@ The spectrum runs from a "pink tet" (mild obstruction, net left-to-right) to sev
 
 ## [tof-spell] Hypercyanotic (tet) spell: what to do
 
-Agitation, crying or dehydration → infundibular spasm and falling SVR → more right-to-left shunt → deeper cyanosis, which drives more hyperpnoea and acidosis. Break the cycle:
+Agitation, crying or dehydration → infundibular spasm and falling SVR → more right-to-left shunt → deeper cyanosis, which drives more hyperpnea and acidosis. Break the cycle:
 
 1.  **Calm the child; knee-chest position** (raises SVR and venous return); 100% oxygen
-2.  **Morphine** to stop hyperpnoea; IV fluid bolus to fill the RV
+2.  **Morphine** to stop hyperpnea; IV fluid bolus to fill the RV
 3.  **Raise SVR: phenylephrine** (1–5 µg/kg IV) or vasopressin
 4.  **Beta-blocker** (propranolol, or esmolol infusion) to relax the infundibulum
 5.  Sedation, intubation and ventilation if refractory (beware falling SVR on induction); correct acidosis
@@ -50,7 +50,7 @@ Agitation, crying or dehydration → infundibular spasm and falling SVR → more
 
 **Q:** A 9-month-old with tetralogy is deeply cyanosed and hyperpnoeic after crying. Oxygen and knee-chest have not helped. Next?
 - [x] Morphine and a fluid bolus, then phenylephrine to raise SVR
-  > Stop the hyperpnoea, fill the RV and raise systemic resistance so less blood shunts right to left.
+  > Stop the hyperpnea, fill the RV and raise systemic resistance so less blood shunts right to left.
 - [ ] Furosemide
 - [ ] Adrenaline bolus to increase contractility
 - [ ] Sodium nitroprusside
@@ -97,7 +97,7 @@ A **3-year-old girl, 11 kg**, from Kisii, referred with cyanosis since infancy, 
 
 ## [tof-repair-consent] Consent: what to discuss with this patient
 
-**1\. The patient's own risk**: Age and weight, cyanosis and haematocrit, PA size, coronary anatomy. Quote the figure, not a textbook average.
+**1\. The patient's own risk**: Age and weight, cyanosis and hematocrit, PA size, coronary anatomy. Quote the figure, not a textbook average.
 
 #### 2\. Common
 
@@ -191,7 +191,7 @@ Off bypass: measure **RV and LV pressures** and check for a residual VSD on TOE.
 
 ## [tof-close] De-air, close the atrium, release the clamp
 
-Before the last sutures: **fill the left heart** (anaesthetist inflates the lungs), let air escape through the defect or the patch edge, then tie. Close the right atriotomy in two layers of running polypropylene, release the snares, **vent the aortic root** and remove the cross-clamp.
+Before the last sutures: **fill the left heart** (anesthetist inflates the lungs), let air escape through the defect or the patch edge, then tie. Close the right atriotomy in two layers of running polypropylene, release the snares, **vent the aortic root** and remove the cross-clamp.
 
 Leave a small **patent foramen ovale** in a hypertrophied, stiff RV: it lets the right heart off-load early (at the cost of some desaturation).
 
@@ -208,7 +208,7 @@ Start with the [cardiac core](#approach=cticu-cardiac&step=0), the [lab schedule
 -   Restrictive RV: low output with high CVP and a small, stiff RV; keep preload, avoid high airway pressures, milrinone; early extubation helps
 -   JET: cool to about 35 °C, correct Mg²⁺ and K⁺, reduce catecholamines, amiodarone; atrial pacing faster than the JET
 -   Echo: residual VSD, RVOT gradient, pulmonary regurgitation, effusions; chylothorax
--   Children: doses by weight with the paediatric intensivist
+-   Children: doses by weight with the pediatric intensivist
 
 #### Labs
 

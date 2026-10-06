@@ -15,9 +15,9 @@ summary: Fissure first: arteries in the fissure, truncus, bronchus, vein last.
 
 **How it spreads** decides the stage and the operation:
 
-Chain: Primary tumour (T: size, invasion) → Intrapulmonary and hilar nodes (N1) → **Mediastinal nodes (N2)** → **Contralateral or supraclavicular (N3)**
+Chain: Primary tumor (T: size, invasion) → Intrapulmonary and hilar nodes (N1) → **Mediastinal nodes (N2)** → **Contralateral or supraclavicular (N3)**
 
-Chain: Primary tumour → **Blood: brain, bone, adrenal, liver (M1)**
+Chain: Primary tumor → **Blood: brain, bone, adrenal, liver (M1)**
 
 | T | Tumour (9th edition keeps the 8th-edition T) |
 | --- | --- |
@@ -32,15 +32,15 @@ Chain: Primary tumour → **Blood: brain, bone, adrenal, liver (M1)**
 | M | Metastasis |
 | M1a–c | M1a pleural or pericardial spread, contralateral nodules; M1b one extrathoracic metastasis; **M1c1** several in one organ system, **M1c2** several organ systems (new) |
 
-**Before an operation**: CT and **PET-CT**; **invasive mediastinal staging** (EBUS/EUS needle aspiration, or mediastinoscopy) when the tumour is central, over 3 cm, or the nodes are enlarged or PET-positive; brain imaging for stage II and above. Then fitness: FEV1 and DLCO, and the **predicted postoperative** values (ppo = preoperative value × segments remaining / 19; by lobe: RUL 3, RML 2, RLL 5, LUL 5 with the lingula, LLL 4).
+**Before an operation**: CT and **PET-CT**; **invasive mediastinal staging** (EBUS/EUS needle aspiration, or mediastinoscopy) when the tumor is central, over 3 cm, or the nodes are enlarged or PET-positive; brain imaging for stage II and above. Then fitness: FEV1 and DLCO, and the **predicted postoperative** values (ppo = preoperative value × segments remaining / 19; by lobe: RUL 3, RML 2, RLL 5, LUL 5 with the lingula, LLL 4).
 
 > **Evidence:** 9th-edition TNM from the IASLC (Rami-Porta et al., J Thorac Oncol 2024): N2 split into N2a (single station) and N2b (multiple stations); M1c into M1c1 and M1c2; T1N1 moves to stage IIA, T1N2a is IIB. ACCP 2013 physiological evaluation (Brunelli et al.): ppoFEV1 and ppoDLCO both over 60% is low risk; 30–60% needs a stair climb (over 22 m) or shuttle walk (over 400 m); under 30%, or a poor walk test, needs CPET (VO2max over 20 mL/kg/min low risk, under 10 high risk). ESTS 2014 guideline for invasive mediastinal staging (De Leyn et al.).
 
 ### Question
 
-**Q:** Under the 9th edition, a 2.6 cm tumour (T1c) with metastasis in a single mediastinal station (subcarinal, station 7) and no distant spread is stage…
+**Q:** Under the 9th edition, a 2.6 cm tumor (T1c) with metastasis in a single mediastinal station (subcarinal, station 7) and no distant spread is stage…
 - [x] IIB (T1 N2a)
-  > The 9th edition splits N2: a single station (N2a) with a T1 tumour is IIB; several stations (N2b) make it IIIA. Many single-station N2 patients are now treated with neoadjuvant chemo-immunotherapy and surgery.
+  > The 9th edition splits N2: a single station (N2a) with a T1 tumor is IIB; several stations (N2b) make it IIIA. Many single-station N2 patients are now treated with neoadjuvant chemo-immunotherapy and surgery.
 - [ ] IIIA
 - [ ] IIIB
 - [ ] IV
@@ -55,7 +55,7 @@ Order of division from behind: **fissure → posterior segmental → truncus →
 
 ## [lul-posterior-case] Case: an EGFR-positive adenocarcinoma in a never-smoker
 
-**Stage**: T2a (3–4 cm) N0 M0 = **IB**. **Why EBUS with a negative PET?** A tumour over 3 cm (or central, or cN1) carries enough risk of occult N2 to justify invasive staging. **Fitness**: the left upper lobe (with the lingula) has 5 of the 19 segments: ppoFEV1 = 78 × 14/19 ≈ 57%, ppoDLCO = 72 × 14/19 ≈ 53%; both are in the 30–60% band, and she climbs three flights (over 22 m) without stopping: fit for lobectomy.
+**Stage**: T2a (3–4 cm) N0 M0 = **IB**. **Why EBUS with a negative PET?** A tumor over 3 cm (or central, or cN1) carries enough risk of occult N2 to justify invasive staging. **Fitness**: the left upper lobe (with the lingula) has 5 of the 19 segments: ppoFEV1 = 78 × 14/19 ≈ 57%, ppoDLCO = 72 × 14/19 ≈ 53%; both are in the 30–60% band, and she climbs three flights (over 22 m) without stopping: fit for lobectomy.
 
 **Plan**: VATS left upper lobectomy with systematic nodal dissection, then adjuvant **osimertinib** for the EGFR mutation.
 
@@ -63,13 +63,13 @@ Order of division from behind: **fissure → posterior segmental → truncus →
 
 ### Case
 
-A **58-year-old woman**, never a smoker, cooked over a wood fire for 30 years. Six months of cough; given anti-TB treatment twice at a health centre without a positive sputum test. CT: a **3.4 cm** mass in the left upper lobe, no enlarged nodes; biopsy: **adenocarcinoma, EGFR exon 19 deletion**. PET: no nodal or distant uptake. EBUS: stations 4L, 7 and 10L negative. FEV1 78%, DLCO 72% predicted.
+A **58-year-old woman**, never a smoker, cooked over a wood fire for 30 years. Six months of cough; given anti-TB treatment twice at a health center without a positive sputum test. CT: a **3.4 cm** mass in the left upper lobe, no enlarged nodes; biopsy: **adenocarcinoma, EGFR exon 19 deletion**. PET: no nodal or distant uptake. EBUS: stations 4L, 7 and 10L negative. FEV1 78%, DLCO 72% predicted.
 
 ### Question
 
 **Q:** Why did she need EBUS when the PET showed no nodal uptake?
-- [x] A tumour over 3 cm carries a significant risk of occult mediastinal nodes; guidelines advise invasive staging for tumours over 3 cm, central tumours or cN1
-  > PET misses small nodal deposits. ESTS 2014 recommends invasive staging for central tumours, tumours over 3 cm, or suspected N1 even when PET is negative.
+- [x] A tumor over 3 cm carries a significant risk of occult mediastinal nodes; guidelines advise invasive staging for tumors over 3 cm, central tumors or cN1
+  > PET misses small nodal deposits. ESTS 2014 recommends invasive staging for central tumors, tumors over 3 cm, or suspected N1 even when PET is negative.
 - [ ] EBUS is required before every lobectomy
 - [ ] To confirm the EGFR mutation
 - [ ] Because she had been treated for TB
@@ -102,7 +102,7 @@ A **58-year-old woman**, never a smoker, cooked over a wood fire for 30 years. S
 
 #### 5\. Alternatives
 
--   Segmentectomy for small peripheral tumours
+-   Segmentectomy for small peripheral tumors
 -   Stereotactic radiotherapy (SBRT) if unfit
 -   Surveillance for indeterminate nodules
 -   No operation, and what that means
@@ -159,7 +159,7 @@ Map the lower lobe branches first: **A6** behind, often opposite the lingular ar
 
 **Q:** In the fissure, which lower-lobe branch arises posteriorly, often opposite the lingular artery?
 - [x] The superior segmental artery (A6)
-  > A6 is the first lower-lobe branch and leaves the posterior aspect of the artery; take it by mistake and the superior segment is devascularised.
+  > A6 is the first lower-lobe branch and leaves the posterior aspect of the artery; take it by mistake and the superior segment is devascularized.
 - [ ] The basal trunk
 - [ ] The truncus anterior
 - [ ] The superior pulmonary vein
@@ -201,7 +201,7 @@ Keep the phrenic nerve on the pericardium, pass the vascular stapler round the s
 
 **Q:** Taking the vein last, what is the argument for doing it this way?
 - [x] Arterial inflow is stopped before venous outflow
-  > Dividing arteries first avoids congesting the lobe; in cancer surgery the vein-first argument (less tumour-cell shedding) is debated.
+  > Dividing arteries first avoids congesting the lobe; in cancer surgery the vein-first argument (less tumor-cell shedding) is debated.
 - [ ] The vein is easier to reach from behind
 - [ ] It avoids the phrenic nerve
 - [ ] It lets the lobe collapse sooner

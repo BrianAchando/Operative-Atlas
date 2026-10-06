@@ -13,7 +13,7 @@ summary: For the high-risk patient: axillary artery, subcutaneous tunnel, femora
 
 Chain: Plaque at the bifurcation → Stenosis → Thrombosis: occluded distal aorta and iliacs → Collaterals → Claudication (buttock, thigh, calf)
 
-Chain: Collaterals insufficient → **Rest pain, ulcers, gangrene (chronic limb-threatening ischaemia)**
+Chain: Collaterals insufficient → **Rest pain, ulcers, gangrene (chronic limb-threatening ischemia)**
 
 **Leriche syndrome**: buttock and thigh claudication, absent femoral pulses, erectile dysfunction. **Ankle–brachial index**: 0.90 or less is peripheral arterial disease; 1.40 or more means non-compressible (calcified) arteries.
 
@@ -24,37 +24,37 @@ Chain: Collaterals insufficient → **Rest pain, ulcers, gangrene (chronic limb-
 | C | bilateral CIA occlusions; bilateral EIA stenoses 3–10 cm; EIA disease into the CFA; heavily calcified EIA occlusion | open in fit patients; endovascular increasingly |
 | D | **infrarenal aorto-iliac occlusion**; diffuse disease of the aorta and both iliacs; unilateral CIA + EIA occlusion; bilateral EIA occlusions | open (aortobifemoral); CERAB in experienced hands |
 
-**In Africa** think also of **HIV-associated vasculopathy** (young patients, acute thrombosis or occlusions, often presenting late with critical ischaemia) and **Takayasu arteritis** (young women, aorta and its branches; control inflammation before surgery).
+**In Africa** think also of **HIV-associated vasculopathy** (young patients, acute thrombosis or occlusions, often presenting late with critical ischemia) and **Takayasu arteritis** (young women, aorta and its branches; control inflammation before surgery).
 
-**Treatment**: for everyone, best medical therapy: stop smoking (varenicline), antiplatelet, statin, blood pressure and diabetes control; supervised exercise for claudication. Revascularise **chronic limb-threatening ischaemia**, and claudication that still limits life after exercise and medical therapy, by shared decision. Treat the inflow (aorto-iliac) before the outflow.
+**Treatment**: for everyone, best medical therapy: stop smoking (varenicline), antiplatelet, statin, blood pressure and diabetes control; supervised exercise for claudication. Revascularise **chronic limb-threatening ischemia**, and claudication that still limits life after exercise and medical therapy, by shared decision. Treat the inflow (aorto-iliac) before the outflow.
 
-> **Evidence:** TASC II (Norgren et al., J Vasc Surg 2007). ESVS 2024 claudication guideline (Nordanstig et al.): ABI thresholds, smoking cessation, individualised revascularisation for claudication. Global Vascular Guidelines 2019 for CLTI (Conte et al.): endovascular-first for moderate-to-severe aorto-iliac disease; open reconstruction for extensive disease in average-risk patients. HIV vasculopathy: Robbs and Paruk (Eur J Vasc Endovasc Surg 2010; 226 patients, mean age 36) and Van Marle et al. (S Afr J Surg; over 90% presented with Fontaine III/IV, primary amputation 32%). Takayasu in Africa: Genga, Oyoo and Adebajo (Curr Rheumatol Rep 2018).
+> **Evidence:** TASC II (Norgren et al., J Vasc Surg 2007). ESVS 2024 claudication guideline (Nordanstig et al.): ABI thresholds, smoking cessation, individualized revascularization for claudication. Global Vascular Guidelines 2019 for CLTI (Conte et al.): endovascular-first for moderate-to-severe aorto-iliac disease; open reconstruction for extensive disease in average-risk patients. HIV vasculopathy: Robbs and Paruk (Eur J Vasc Endovasc Surg 2010; 226 patients, mean age 36) and Van Marle et al. (S Afr J Surg; over 90% presented with Fontaine III/IV, primary amputation 32%). Takayasu in Africa: Genga, Oyoo and Adebajo (Curr Rheumatol Rep 2018).
 
-**Grading the ischaemia** (chronic):
+**Grading the ischemia** (chronic):
 
 | Fontaine | Rutherford (category) | Clinical picture | Objective (Rutherford) |
 | --- | --- | --- | --- |
 | I | 0 | asymptomatic | normal treadmill test |
 | IIa (over 200 m) | 1 mild | claudication | completes treadmill; ankle pressure after exercise over 50 mmHg but at least 20 mmHg below resting |
 | IIb (under 200 m) | 2 moderate, 3 severe | claudication | category 3: cannot complete treadmill; ankle pressure after exercise under 50 mmHg |
-| III | 4 | ischaemic rest pain | resting ankle pressure under 40 mmHg, toe pressure under 30 mmHg |
+| III | 4 | ischemic rest pain | resting ankle pressure under 40 mmHg, toe pressure under 30 mmHg |
 | IV | 5 minor, 6 major tissue loss | ulcer, gangrene | resting ankle pressure under 60 mmHg, toe pressure under 40 mmHg |
 
-Rutherford 4–6 is **chronic limb-threatening ischaemia (CLTI)**. **Acute** limb ischaemia has its own Rutherford grading: I viable; IIa marginally threatened (no or minimal sensory loss, no weakness); IIb immediately threatened (sensory loss beyond the toes, rest pain, mild or moderate weakness); III irreversible (anaesthetic, paralysed, no venous Doppler signal).
+Rutherford 4–6 is **chronic limb-threatening ischemia (CLTI)**. **Acute** limb ischemia has its own Rutherford grading: I viable; IIa marginally threatened (no or minimal sensory loss, no weakness); IIb immediately threatened (sensory loss beyond the toes, rest pain, mild or moderate weakness); III irreversible (anesthetic, paralysed, no venous Doppler signal).
 
 **Ankle-brachial index**: 0.90 or less is PAD; 1.40 or more is non-compressible (calcified, common in diabetes and renal failure): use toe pressures.
 
 **Best medical therapy is for everyone with PAD**, and the first treatment for claudication:
 
 -   **Stop smoking**: counselling at every visit, with varenicline (or bupropion, nicotine replacement).
--   **Antithrombotic**: a single antiplatelet (aspirin or clopidogrel); consider low-dose rivaroxaban 2.5 mg twice daily with aspirin in symptomatic PAD and after revascularisation if bleeding risk is low.
+-   **Antithrombotic**: a single antiplatelet (aspirin or clopidogrel); consider low-dose rivaroxaban 2.5 mg twice daily with aspirin in symptomatic PAD and after revascularization if bleeding risk is low.
 -   **High-intensity statin**: LDL under 1.4 mmol/L (55 mg/dL) and at least a 50% fall (ESVS 2024).
 -   **Blood pressure** under 130/80 mmHg (ACE inhibitor or ARB); **diabetes** control (SGLT2 inhibitors, GLP-1 agonists); foot care.
 -   **Supervised exercise**: 30–45 minutes of walking to near-maximal pain, at least 3 times a week, for at least 12 weeks.
 
-**When to revascularise**: **claudication** only when it stays lifestyle-limiting despite best medical therapy and exercise, decided with the patient (never for asymptomatic disease); **CLTI** (rest pain, ulcer, gangrene): prompt assessment for revascularisation to save the limb; **acute ischaemia** IIa urgently, IIb as an emergency, III amputation.
+**When to revascularize**: **claudication** only when it stays lifestyle-limiting despite best medical therapy and exercise, decided with the patient (never for asymptomatic disease); **CLTI** (rest pain, ulcer, gangrene): prompt assessment for revascularization to save the limb; **acute ischemia** IIa urgently, IIb as an emergency, III amputation.
 
-> **Evidence:** Rutherford 1997 standards (J Vasc Surg 1997;26:517-38) and Fontaine, as tabulated in current reviews. ACC/AHA 2024 PAD guideline (Gornik et al.): single antiplatelet, rivaroxaban 2.5 mg twice daily plus aspirin, high-intensity statin, BP under 130/80, supervised exercise at least 3 times a week for 12 weeks; revascularisation for claudication only if lifestyle-limiting despite therapy. ESVS 2024 (Nordanstig et al.): LDL under 1.4 mmol/L; varenicline first-line; individualised decisions. COMPASS (Lancet 2018) and VOYAGER PAD (NEJM 2020) for low-dose rivaroxaban.
+> **Evidence:** Rutherford 1997 standards (J Vasc Surg 1997;26:517-38) and Fontaine, as tabulated in current reviews. ACC/AHA 2024 PAD guideline (Gornik et al.): single antiplatelet, rivaroxaban 2.5 mg twice daily plus aspirin, high-intensity statin, BP under 130/80, supervised exercise at least 3 times a week for 12 weeks; revascularization for claudication only if lifestyle-limiting despite therapy. ESVS 2024 (Nordanstig et al.): LDL under 1.4 mmol/L; varenicline first-line; individualized decisions. COMPASS (Lancet 2018) and VOYAGER PAD (NEJM 2020) for low-dose rivaroxaban.
 
 ### Question
 
@@ -73,7 +73,7 @@ Protect: the **ureters** (crossing the iliac bifurcations: graft tunnels pass be
 
 > **Note:** the reference CT ends at the 4th lumbar vertebra; the iliac and femoral vessels and the groins are drawn to typical adult dimensions below it.
 
-## [ax-case] Case: critical ischaemia with a hostile abdomen and poor lungs
+## [ax-case] Case: critical ischemia with a hostile abdomen and poor lungs
 
 An aortic operation is too risky (her lungs, the frozen abdomen): an **extra-anatomic** bypass from the **axillary artery** avoids the abdomen and the aortic clamp. Choose the side with the better arm pressure (and no subclavian stenosis). Less durable than an aortobifemoral graft.
 
@@ -96,13 +96,13 @@ A **71-year-old woman**, rest pain and a heel ulcer on the right, ABI 0.3 both s
 
 The choice rests on **the extent of disease** (unilateral or bilateral, how far up the aorta, the common femorals), **the patient** (fitness for laparotomy, the abdomen, life expectancy, infection) and **the inflow** for an extra-anatomic graft.
 
-<div class="opt"><p><b>Aortobifemoral bypass</b></p><ul><li><b>Choose for:</b> a fit patient with extensive bilateral aorto-iliac disease or aortic occlusion (TASC C/D); failed endovascular treatment</li><li><b>Avoid when:</b> unfit for general anaesthesia and laparotomy; a hostile abdomen; (relative) retroperitoneal fibrosis, horseshoe kidney, severe cardiac disease</li><li><b>Patency at 5 years:</b> about 86–91% per limb</li><li><b>Main risks:</b> operative mortality about 4% in older series; sexual dysfunction; graft infection; aortoenteric fistula</li></ul></div>
+<div class="opt"><p><b>Aortobifemoral bypass</b></p><ul><li><b>Choose for:</b> a fit patient with extensive bilateral aorto-iliac disease or aortic occlusion (TASC C/D); failed endovascular treatment</li><li><b>Avoid when:</b> unfit for general anesthesia and laparotomy; a hostile abdomen; (relative) retroperitoneal fibrosis, horseshoe kidney, severe cardiac disease</li><li><b>Patency at 5 years:</b> about 86–91% per limb</li><li><b>Main risks:</b> operative mortality about 4% in older series; sexual dysfunction; graft infection; aortoenteric fistula</li></ul></div>
 
 <div class="opt"><p><b>Axillobifemoral bypass</b></p><ul><li><b>Choose for:</b> bilateral aorto-iliac occlusion in a patient unfit for laparotomy; a hostile abdomen (several laparotomies, a stoma, radiation); an infected aortic graft or aortoenteric fistula after the graft is removed</li><li><b>Avoid when:</b> <b>inflow disease</b> in the subclavian or axillary artery (compare both arm pressures, image the arch branches, use the arm with the higher pressure); a fit claudicant (poorer patency)</li><li><b>Patency at 5 years:</b> about 50–75% (63% primary in one series)</li><li><b>Main risks:</b> graft thrombosis; disruption of the axillary anastomosis with arm strain; infection along the tunnel</li></ul></div>
 
 <div class="opt"><p><b>Femorofemoral cross-over</b></p><ul><li><b>Choose for:</b> <b>unilateral</b> iliac occlusion with a healthy donor iliac (or one stented first); high risk or hostile abdomen; failed iliac stenting</li><li><b>Avoid when:</b> untreated disease in the donor iliac; bilateral disease; (relative) marked obesity</li><li><b>Patency at 5 years:</b> about 70% primary, 85% secondary</li><li><b>Main risks:</b> groin infection; steal from the donor leg (rare)</li></ul></div>
 
-<div class="opt"><p><b>Endovascular (kissing stents, CERAB)</b></p><ul><li><b>Choose for:</b> most TASC A–C lesions, and increasingly D in experienced centres</li><li><b>Avoid when:</b> heavy calcified occlusion into the common femoral (hybrid: femoral endarterectomy plus stent); occlusion up to the renal arteries; no access</li><li><b>Patency at 5 years:</b> covered stents about 75% (COBEST); CERAB 82% at 3 years</li><li><b>Main risks:</b> access complications; stent occlusion; reintervention</li></ul></div>
+<div class="opt"><p><b>Endovascular (kissing stents, CERAB)</b></p><ul><li><b>Choose for:</b> most TASC A–C lesions, and increasingly D in experienced centers</li><li><b>Avoid when:</b> heavy calcified occlusion into the common femoral (hybrid: femoral endarterectomy plus stent); occlusion up to the renal arteries; no access</li><li><b>Patency at 5 years:</b> covered stents about 75% (COBEST); CERAB 82% at 3 years</li><li><b>Main risks:</b> access complications; stent occlusion; reintervention</li></ul></div>
 
 > **Evidence:** de Vries and Hunink (J Vasc Surg 1997): aortic bifurcation grafts, 5-year limb patency 91% (claudication) and 87.5% (CLI), mortality 4.4%. Martin and Katz (Am J Surg 2000): axillofemoral primary patency 63% at 5 years. Park et al. (Vasc Specialist Int 2017): femorofemoral 70% primary, 85% secondary at 5 years; donor-iliac disease was treated first when present. COBEST (J Vasc Surg 2016); CERAB (Taeymans, J Vasc Surg 2018). Indications and contraindications: StatPearls/Medscape reviews of each operation.
 
@@ -158,7 +158,7 @@ Template and how to use it: [CTICU protocol, consent](#approach=cticu-consent&st
   > Extra-anatomic bypass trades durability for lower operative risk.
 - [ ] It lasts longer
 - [ ] It is cheaper to maintain
-- [ ] It needs no anaesthetic
+- [ ] It needs no anesthetic
 
 ## [ax-groins] Expose both femoral bifurcations
 
@@ -168,9 +168,9 @@ Vertical incisions over the femoral pulses (or where they should be: the mid-ing
 
 ## [ax-axilla] Expose the first part of the axillary artery
 
-A horizontal incision 2 cm below the middle third of the clavicle. Split the **pectoralis major** in the line of its fibres, divide the clavipectoral fascia (and the **pectoralis minor** if needed); the axillary vein lies in front and below, the **brachial plexus** cords above and behind. Control the artery medial to pectoralis minor.
+A horizontal incision 2 cm below the middle third of the clavicle. Split the **pectoralis major** in the line of its fibers, divide the clavipectoral fascia (and the **pectoralis minor** if needed); the axillary vein lies in front and below, the **brachial plexus** cords above and behind. Control the artery medial to pectoralis minor.
 
-The anastomosis goes on the **first part** of the artery, the graft running along the artery for a few centimetres before turning down (so arm abduction does not tear it off).
+The anastomosis goes on the **first part** of the artery, the graft running along the artery for a few centimeters before turning down (so arm abduction does not tear it off).
 
 ## [ax-tunnel] Subcutaneous tunnel down the mid-axillary line; the cross-over
 

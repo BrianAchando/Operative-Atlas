@@ -11,13 +11,13 @@ summary: Landmarks, the incision, each muscle layer, then the ribs.
 
 A **vertical incision of 10–12 cm** along the anterior border of latissimus dorsi, from the axilla down. Raise skin flaps widely.
 
-**Latissimus dorsi is retracted back** (the thoracodorsal bundle stays on its deep surface). **Serratus anterior is split along its fibres** over the 5th space, or lifted forward. Divide the intercostals well beyond the skin incision so the ribs spread without breaking. Less pain and better shoulder function; seroma is common, so drain the flaps.
+**Latissimus dorsi is retracted back** (the thoracodorsal bundle stays on its deep surface). **Serratus anterior is split along its fibers** over the 5th space, or lifted forward. Divide the intercostals well beyond the skin incision so the ribs spread without breaking. Less pain and better shoulder function; seroma is common, so drain the flaps.
 
 Landmarks: **tip of the scapula**, the **5th space** (count from above), the anterior and posterior axillary lines.
 
 ## [mul-layers] Through the chest wall, layer by layer
 
-Skin and subcutaneous fat → Latissimus dorsi: retracted back → Serratus anterior: split along its fibres → Intercostal muscles, on the upper border of the 6th rib.
+Skin and subcutaneous fat → Latissimus dorsi: retracted back → Serratus anterior: split along its fibers → Intercostal muscles, on the upper border of the 6th rib.
 
 Press play to take each layer in turn.
 

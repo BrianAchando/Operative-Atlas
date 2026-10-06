@@ -15,9 +15,9 @@ summary: Two ports; fissure junction, ascending arteries, bronchus, truncus, upp
 
 **How it spreads** decides the stage and the operation:
 
-Chain: Primary tumour (T: size, invasion) → Intrapulmonary and hilar nodes (N1) → **Mediastinal nodes (N2)** → **Contralateral or supraclavicular (N3)**
+Chain: Primary tumor (T: size, invasion) → Intrapulmonary and hilar nodes (N1) → **Mediastinal nodes (N2)** → **Contralateral or supraclavicular (N3)**
 
-Chain: Primary tumour → **Blood: brain, bone, adrenal, liver (M1)**
+Chain: Primary tumor → **Blood: brain, bone, adrenal, liver (M1)**
 
 | T | Tumour (9th edition keeps the 8th-edition T) |
 | --- | --- |
@@ -32,15 +32,15 @@ Chain: Primary tumour → **Blood: brain, bone, adrenal, liver (M1)**
 | M | Metastasis |
 | M1a–c | M1a pleural or pericardial spread, contralateral nodules; M1b one extrathoracic metastasis; **M1c1** several in one organ system, **M1c2** several organ systems (new) |
 
-**Before an operation**: CT and **PET-CT**; **invasive mediastinal staging** (EBUS/EUS needle aspiration, or mediastinoscopy) when the tumour is central, over 3 cm, or the nodes are enlarged or PET-positive; brain imaging for stage II and above. Then fitness: FEV1 and DLCO, and the **predicted postoperative** values (ppo = preoperative value × segments remaining / 19; by lobe: RUL 3, RML 2, RLL 5, LUL 5 with the lingula, LLL 4).
+**Before an operation**: CT and **PET-CT**; **invasive mediastinal staging** (EBUS/EUS needle aspiration, or mediastinoscopy) when the tumor is central, over 3 cm, or the nodes are enlarged or PET-positive; brain imaging for stage II and above. Then fitness: FEV1 and DLCO, and the **predicted postoperative** values (ppo = preoperative value × segments remaining / 19; by lobe: RUL 3, RML 2, RLL 5, LUL 5 with the lingula, LLL 4).
 
 > **Evidence:** 9th-edition TNM from the IASLC (Rami-Porta et al., J Thorac Oncol 2024): N2 split into N2a (single station) and N2b (multiple stations); M1c into M1c1 and M1c2; T1N1 moves to stage IIA, T1N2a is IIB. ACCP 2013 physiological evaluation (Brunelli et al.): ppoFEV1 and ppoDLCO both over 60% is low risk; 30–60% needs a stair climb (over 22 m) or shuttle walk (over 400 m); under 30%, or a poor walk test, needs CPET (VO2max over 20 mL/kg/min low risk, under 10 high risk). ESTS 2014 guideline for invasive mediastinal staging (De Leyn et al.).
 
 ### Question
 
-**Q:** Under the 9th edition, a 2.6 cm tumour (T1c) with metastasis in a single mediastinal station (subcarinal, station 7) and no distant spread is stage…
+**Q:** Under the 9th edition, a 2.6 cm tumor (T1c) with metastasis in a single mediastinal station (subcarinal, station 7) and no distant spread is stage…
 - [x] IIB (T1 N2a)
-  > The 9th edition splits N2: a single station (N2a) with a T1 tumour is IIB; several stations (N2b) make it IIIA. Many single-station N2 patients are now treated with neoadjuvant chemo-immunotherapy and surgery.
+  > The 9th edition splits N2: a single station (N2a) with a T1 tumor is IIB; several stations (N2b) make it IIIA. Many single-station N2 patients are now treated with neoadjuvant chemo-immunotherapy and surgery.
 - [ ] IIIA
 - [ ] IIIB
 - [ ] IV
@@ -55,17 +55,17 @@ Order from behind: **fissure → ascending arteries → bronchus → truncus →
 
 ## [rul-bi-case] Case: a small peripheral adenocarcinoma: segment or lobe?
 
-**Stage**: cT1b N0 = **IA2**. For a peripheral tumour of 2 cm or less with confirmed node-negative disease, an anatomical **segmentectomy** is now equivalent or better than lobectomy for survival. But it needs a **margin** at least as wide as the tumour (2 cm, or the tumour diameter). Straddling the S1/S3 plane, a single segment would not give that margin: a bisegmentectomy or, as here, a **lobectomy**.
+**Stage**: cT1b N0 = **IA2**. For a peripheral tumor of 2 cm or less with confirmed node-negative disease, an anatomical **segmentectomy** is now equivalent or better than lobectomy for survival. But it needs a **margin** at least as wide as the tumor (2 cm, or the tumor diameter). Straddling the S1/S3 plane, a single segment would not give that margin: a bisegmentectomy or, as here, a **lobectomy**.
 
-> **Evidence:** JCOG0802/WJOG4607L (Lancet 2022; tumours ≤2 cm, C/T ratio >0.5): 5-year overall survival 94.3% after segmentectomy vs 91.1% after lobectomy (HR 0.66), with more local recurrence (10.5% vs 5.4%). CALGB 140503 (NEJM 2023; ≤2 cm, node-negative on frozen section): sublobar resection was non-inferior for disease-free survival (63.6% vs 64.1%).
+> **Evidence:** JCOG0802/WJOG4607L (Lancet 2022; tumors ≤2 cm, C/T ratio >0.5): 5-year overall survival 94.3% after segmentectomy vs 91.1% after lobectomy (HR 0.66), with more local recurrence (10.5% vs 5.4%). CALGB 140503 (NEJM 2023; ≤2 cm, node-negative on frozen section): sublobar resection was non-inferior for disease-free survival (63.6% vs 64.1%).
 
 ### Case
 
-A **54-year-old woman**. An incidental **1.8 cm** part-solid nodule in the right upper lobe (consolidation-to-tumour ratio 0.8), growing over 6 months; PET: mild uptake, nodes clear. It lies **across the plane between the apical (S1) and anterior (S3) segments**, 12 mm from it. FEV1 92%.
+A **54-year-old woman**. An incidental **1.8 cm** part-solid nodule in the right upper lobe (consolidation-to-tumor ratio 0.8), growing over 6 months; PET: mild uptake, nodes clear. It lies **across the plane between the apical (S1) and anterior (S3) segments**, 12 mm from it. FEV1 92%.
 
 ### Question
 
-**Q:** Which trial showed better overall survival with segmentectomy than lobectomy for peripheral tumours of 2 cm or less?
+**Q:** Which trial showed better overall survival with segmentectomy than lobectomy for peripheral tumors of 2 cm or less?
 - [x] JCOG0802/WJOG4607L
   > 5-year OS 94.3% vs 91.1%, attributed to preserved lung function and fewer deaths from other causes, despite more local recurrence.
 - [ ] CALGB 140503
@@ -100,7 +100,7 @@ A **54-year-old woman**. An incidental **1.8 cm** part-solid nodule in the right
 
 #### 5\. Alternatives
 
--   Segmentectomy for small peripheral tumours
+-   Segmentectomy for small peripheral tumors
 -   Stereotactic radiotherapy (SBRT) if unfit
 -   Surveillance for indeterminate nodules
 -   No operation, and what that means

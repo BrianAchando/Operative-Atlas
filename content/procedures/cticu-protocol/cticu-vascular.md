@@ -12,13 +12,13 @@ summary: The unit protocol: labs, rounds, escalation, cardiac, thoracic and vasc
 #### Open aortic surgery
 
 -   Hourly urine output; foot pulses and Doppler; wounds
--   Serial haematocrit 6-hourly for 24 h, then daily <span class="tag knh">KNH practice</span>
+-   Serial hematocrit 6-hourly for 24 h, then daily <span class="tag knh">KNH practice</span>
 -   Abdominal girth at the umbilicus against a marked line, every 4–6 h <span class="tag knh">KNH practice</span>
 -   When girth rises, the abdomen is tense, after rupture or massive transfusion, or with oliguria despite filling: bladder pressure <span class="tag prop">proposed</span>
 
-**Why bladder pressure**: clinical examination misses raised abdominal pressure (sensitivity about 40–60%), and oliguria after a clamp may be hypovolaemia, AKI or compartment syndrome: fluid worsens the last. Foley, 25 mL saline, zero at the mid-axillary line, read at end-expiration. Intra-abdominal hypertension is 12 mmHg or more; compartment syndrome over 20 mmHg with new organ failure: decompress.
+**Why bladder pressure**: clinical examination misses raised abdominal pressure (sensitivity about 40–60%), and oliguria after a clamp may be hypovolemia, AKI or compartment syndrome: fluid worsens the last. Foley, 25 mL saline, zero at the mid-axillary line, read at end-expiration. Intra-abdominal hypertension is 12 mmHg or more; compartment syndrome over 20 mmHg with new organ failure: decompress.
 
--   Colonic ischaemia: bloody diarrhoea or rising lactate: sigmoidoscopy
+-   Colonic ischemia: bloody diarrhea or rising lactate: sigmoidoscopy
 -   Trash foot: distal emboli
 -   AKI after juxta- or suprarenal clamping
 
@@ -45,7 +45,7 @@ summary: The unit protocol: labs, rounds, escalation, cardiac, thoracic and vasc
 
 -   Graft and foot Doppler signals hourly at first; groin wounds (lymph leak, infection)
 -   Axillobifemoral: no BP cuff on the donor arm; do not lie on the graft side
--   Puncture sites: haematoma; back pain and a falling Hb: retroperitoneal bleed
+-   Puncture sites: hematoma; back pain and a falling Hb: retroperitoneal bleed
 -   EVAR and TEVAR: contrast AKI; post-implantation fever
 
 > **Evidence:** ESVS 2024 AAA guideline; ESC 2024 and ACC/AHA 2022 aortic guidelines (spinal cord protection, CSF drainage).

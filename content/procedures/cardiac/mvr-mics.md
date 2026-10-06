@@ -24,21 +24,21 @@ summary: Case-based: pathophysiology, anatomy, the patient and the decision, the
 | The valve… | cannot close | cannot open |
 | Reversible? | partly, if carditis settles and recurrences are prevented | no: scar and calcium, treated mechanically (balloon or surgery) |
 
-**The haemodynamics.** A normal mitral orifice is 4–6 cm²; stenosis becomes clinically significant at **1.5 cm² or less**. The LV is protected (it is under-filled); the load falls on everything behind the valve:
+**The hemodynamics.** A normal mitral orifice is 4–6 cm²; stenosis becomes clinically significant at **1.5 cm² or less**. The LV is protected (it is under-filled); the load falls on everything behind the valve:
 
 Chain: Small orifice → LA→LV gradient → LA pressure ↑, LA dilates → **Atrial fibrillation** → **LA appendage thrombus → stroke**
 
-Chain: LA pressure ↑ → Pulmonary venous pressure ↑ (breathless, oedema) → Pulmonary hypertension → RV pressure overload → **RV dilates → TR → right heart failure**
+Chain: LA pressure ↑ → Pulmonary venous pressure ↑ (breathless, edema) → Pulmonary hypertension → RV pressure overload → **RV dilates → TR → right heart failure**
 
-**Why a fast heart rate decompensates MS.** The gradient depends on flow and on the time available for the LA to empty: diastole. Tachycardia (AF with a fast ventricular rate, exercise, fever, anaemia, **pregnancy**) shortens diastole, so the gradient and LA pressure climb and pulmonary oedema follows. Hence rate control (a β-blocker) and why MS often declares itself in pregnancy. AF also removes the atrial kick and adds stasis: rheumatic AF carries a high embolic risk, and it is treated with **warfarin**, not a direct oral anticoagulant.
+**Why a fast heart rate decompensates MS.** The gradient depends on flow and on the time available for the LA to empty: diastole. Tachycardia (AF with a fast ventricular rate, exercise, fever, anemia, **pregnancy**) shortens diastole, so the gradient and LA pressure climb and pulmonary edema follows. Hence rate control (a β-blocker) and why MS often declares itself in pregnancy. AF also removes the atrial kick and adds stasis: rheumatic AF carries a high embolic risk, and it is treated with **warfarin**, not a direct oral anticoagulant.
 
-> **Evidence:** the immunology (mimicry, valvular endothelial activation, T-cell infiltration) rests on studies of human rheumatic valves and valve-derived T-cell clones (Guilherme et al., Circulation 1995; Cunningham, Clin Microbiol Rev 2000); the later fibrocalcific steps are largely extrapolated from calcific aortic valve disease. Clinical picture: Carapetis et al., Nat Rev Dis Primers 2016; Chandrashekhar, Westaby and Narula, Lancet 2009. Prevention works: in GOAL (NEJM 2022; 818 Ugandan children with latent RHD) monthly benzathine penicillin cut progression over 2 years from 8.3% to 0.8%. INVICTUS (NEJM 2022; 4,531 patients with rheumatic AF) found more vascular deaths and ischaemic strokes with rivaroxaban than with a vitamin K antagonist; ESC/EACTS 2025 advise against DOACs in AF with rheumatic MS and a valve area of 2.0 cm² or less.
+> **Evidence:** the immunology (mimicry, valvular endothelial activation, T-cell infiltration) rests on studies of human rheumatic valves and valve-derived T-cell clones (Guilherme et al., Circulation 1995; Cunningham, Clin Microbiol Rev 2000); the later fibrocalcific steps are largely extrapolated from calcific aortic valve disease. Clinical picture: Carapetis et al., Nat Rev Dis Primers 2016; Chandrashekhar, Westaby and Narula, Lancet 2009. Prevention works: in GOAL (NEJM 2022; 818 Ugandan children with latent RHD) monthly benzathine penicillin cut progression over 2 years from 8.3% to 0.8%. INVICTUS (NEJM 2022; 4,531 patients with rheumatic AF) found more vascular deaths and ischemic strokes with rivaroxaban than with a vitamin K antagonist; ESC/EACTS 2025 advise against DOACs in AF with rheumatic MS and a valve area of 2.0 cm² or less.
 
 ### Question
 
-**Q:** A 26-year-old woman with moderate rheumatic MS, comfortable at rest, goes into AF at 150 beats per minute and within hours is in pulmonary oedema. Why?
+**Q:** A 26-year-old woman with moderate rheumatic MS, comfortable at rest, goes into AF at 150 beats per minute and within hours is in pulmonary edema. Why?
 - [x] The short diastole leaves too little time to empty the LA through the narrow valve, so the gradient and LA pressure rise
-  > In MS the transmitral gradient rises steeply with heart rate. Slowing the rate (and cardioversion, with anticoagulation) often relieves the oedema before anything is done to the valve.
+  > In MS the transmitral gradient rises steeply with heart rate. Slowing the rate (and cardioversion, with anticoagulation) often relieves the edema before anything is done to the valve.
 - [ ] The LV has failed
 - [ ] The valve has suddenly narrowed further
 - [ ] AF has caused acute mitral regurgitation
@@ -60,11 +60,11 @@ Round the posterior annulus, in the AV groove: the **circumflex artery** (close 
 
 ## [mm-case] Case: restenosis after balloon commissurotomy
 
-**A second balloon?** Repeat PMC works for restenosis caused by commissural refusion when the anatomy is still favourable. Bicommissural calcium makes a good result unlikely, so: **surgery**.
+**A second balloon?** Repeat PMC works for restenosis caused by commissural refusion when the anatomy is still favorable. Bicommissural calcium makes a good result unlikely, so: **surgery**.
 
-**Access**: isolated mitral disease, no aortic regurgitation, good femoral vessels and no pleural adhesions: a **right mini-thoracotomy** is reasonable in a centre that does it regularly. A sternotomy would be equally correct.
+**Access**: isolated mitral disease, no aortic regurgitation, good femoral vessels and no pleural adhesions: a **right mini-thoracotomy** is reasonable in a center that does it regularly. A sternotomy would be equally correct.
 
-> **Evidence:** UK Mini Mitral (Akowuah et al., JAMA 2023; 330 patients, degenerative MR repair): the minithoracotomy did not improve physical function at 12 weeks over sternotomy, but was as safe, with a shorter stay and faster early recovery. Evidence for rheumatic valves is observational, from experienced centres.
+> **Evidence:** UK Mini Mitral (Akowuah et al., JAMA 2023; 330 patients, degenerative MR repair): the minithoracotomy did not improve physical function at 12 weeks over sternotomy, but was as safe, with a shorter stay and faster early recovery. Evidence for rheumatic valves is observational, from experienced centers.
 
 ### Case
 
@@ -170,7 +170,7 @@ A common compromise: **ventricular pledgets posteriorly and at the commissures**
 
 Whatever the technique, bite **in the annulus, not beyond it**.
 
-> **Evidence:** no randomised trial compares everting and non-everting sutures in MVR. In the AVERT trial cohort, **pledgeted** sutures were associated with fewer major paravalvular leaks than unpledgeted ones (Englberger et al., *Eur J Cardiothorac Surg* 2005). The ACC/AHA 2020 and ESC/EACTS 2021 valve guidelines make no recommendation on suture technique, but support **preserving the subvalvular apparatus** in MVR (for LV function), and that is one more reason to keep pledgets clear of preserved chordae.
+> **Evidence:** no randomized trial compares everting and non-everting sutures in MVR. In the AVERT trial cohort, **pledgeted** sutures were associated with fewer major paravalvular leaks than unpledgeted ones (Englberger et al., *Eur J Cardiothorac Surg* 2005). The ACC/AHA 2020 and ESC/EACTS 2021 valve guidelines make no recommendation on suture technique, but support **preserving the subvalvular apparatus** in MVR (for LV function), and that is one more reason to keep pledgets clear of preserved chordae.
 
 ### Question
 
@@ -238,7 +238,7 @@ The end-point is **TOE, not the clock**: no bubbles in the LA, LV or pulmonary v
 
 In **MICS** the heart cannot be handled or balloted, so CO₂ flooding and TOE-guided venting matter even more.
 
-> **Evidence:** no trial compares early with late de-airing; practice rests on physiology and TOE studies. CO₂ field flooding cut microemboli on TOE in a randomised trial (Svenarud et al., *Circulation* 2004) and reduced neurocognitive impairment in another (Martens et al., *Ann Thorac Surg* 2008); a benefit for stroke has not been shown. Intraoperative TOE in valve surgery, including to guide de-airing, is standard practice (ASE/SCA guidelines, Hahn et al., *J Am Soc Echocardiogr* 2013).
+> **Evidence:** no trial compares early with late de-airing; practice rests on physiology and TOE studies. CO₂ field flooding cut microemboli on TOE in a randomized trial (Svenarud et al., *Circulation* 2004) and reduced neurocognitive impairment in another (Martens et al., *Ann Thorac Surg* 2008); a benefit for stroke has not been shown. Intraoperative TOE in valve surgery, including to guide de-airing, is standard practice (ASE/SCA guidelines, Hahn et al., *J Am Soc Echocardiogr* 2013).
 
 **TOE** before leaving theatre: no paravalvular leak, leaflets moving, no LVOT obstruction. Pacing wires, drains.
 
@@ -257,13 +257,13 @@ Serious complications: **AV groove disruption** (catastrophic), circumflex injur
 
 ## [mm-reperfuse] Reperfuse on bypass, or separate early?
 
-With the clamp off the heart is **reperfused while bypass still carries the circulation**. How long to rest it before weaning is a judgement, not a fixed rule. A common rule of thumb is about **a third of the cross-clamp time** (roughly 10 minutes for each 30 of ischaemia).
+With the clamp off the heart is **reperfused while bypass still carries the circulation**. How long to rest it before weaning is a judgment, not a fixed rule. A common rule of thumb is about **a third of the cross-clamp time** (roughly 10 minutes for each 30 of ischemia).
 
 **Waiting for myocardial recovery** (a longer supported reperfusion): it washes out cardioplegia and potassium, restores energy stores, lets the rhythm settle and rewarming finish, and needs fewer inotropes. Worth it after a **long clamp**, with a **poor LV or RV**, a hypertrophied ventricle, doubtful protection, or **pulmonary hypertension** (common in rheumatic mitral stenosis: the RV fails first).
 
-**Separating early**: every extra minute of bypass adds haemodilution, platelet damage, inflammation and bleeding. After a **short clamp**, a good ventricle, sound protection and a stable rhythm, wean as soon as the conditions are met.
+**Separating early**: every extra minute of bypass adds hemodilution, platelet damage, inflammation and bleeding. After a **short clamp**, a good ventricle, sound protection and a stable rhythm, wean as soon as the conditions are met.
 
-Before either: temperature 36–37 °C, sinus rhythm or pacing, potassium and haemoglobin corrected, lungs ventilated, **de-airing confirmed on TOE**, and the valve checked (no paravalvular leak, leaflets moving). The cost of weaning too early is a low-output state and a return to bypass; that is still easy while **the cannulas are in and protamine has not been given**.
+Before either: temperature 36–37 °C, sinus rhythm or pacing, potassium and hemoglobin corrected, lungs ventilated, **de-airing confirmed on TOE**, and the valve checked (no paravalvular leak, leaflets moving). The cost of weaning too early is a low-output state and a return to bypass; that is still easy while **the cannulas are in and protamine has not been given**.
 
 ### Question
 
@@ -282,7 +282,7 @@ Wean slowly, watching the pressures and the TOE. Then the order that keeps a way
 2.  **Protamine** started slowly (watch for pulmonary hypertension and hypotension); **stop the pump suckers** once it runs.
 3.  **Arterial cannula out last**, after part of the protamine and a stable pressure (repair the femoral artery): while it is in, blood can be given from the pump and bypass restarted quickly.
 
-A fast decannulation saves pump time only if the heart is ready; a return to bypass after full protamine means re-heparinising and re-cannulating a heart that is already struggling.
+A fast decannulation saves pump time only if the heart is ready; a return to bypass after full protamine means re-heparinizing and re-cannulating a heart that is already struggling.
 
 ## [mvr-mics-icu] ICU and post-operative care
 

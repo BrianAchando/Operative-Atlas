@@ -2,7 +2,7 @@
 id: bx-lul
 operation: Bronchiectasis (post-TB)
 approach: Destroyed left upper lobe (open)
-summary: Post-tuberculous bronchiectasis: indications, embolisation, extrapleural dissection, a frozen hilum, protecting the stump.
+summary: Post-tuberculous bronchiectasis: indications, embolization, extrapleural dissection, a frozen hilum, protecting the stump.
 ---
 
 <!-- Edit the words freely. Keep each "## [step-id]" line as it is: it ties the text to its step in the 3D atlas. -->
@@ -47,15 +47,15 @@ In the fissure: the **posterior segmental** artery up and back, the **lingular**
 
 Order of division from behind: **fissure → posterior segmental → truncus → bronchus → vein**.
 
-## [bx-case] Case: recurrent haemoptysis from a destroyed left upper lobe
+## [bx-case] Case: recurrent hemoptysis from a destroyed left upper lobe
 
-Localised, symptomatic disease in a fit patient with a healthy remaining lung, bleeding again after embolisation: **left upper lobectomy**. Open thoracotomy is safer than VATS with dense adhesions and calcified hilar nodes.
+Localised, symptomatic disease in a fit patient with a healthy remaining lung, bleeding again after embolization: **left upper lobectomy**. Open thoracotomy is safer than VATS with dense adhesions and calcified hilar nodes.
 
 **Before surgery**: sputum negative for TB; treat infection; physiotherapy; nutrition; spirometry and a perfusion scan if borderline; bronchoscopy to exclude an endobronchial lesion and to see the left lower lobe bronchus is clean.
 
 ### Case
 
-A **32-year-old woman**, TB treated 6 years ago. Two years of daily purulent sputum and **three episodes of haemoptysis** (the last 300 mL), recurring 4 months after bronchial artery embolisation. CT: **a shrunken left upper lobe** with cystic bronchiectasis and a small cavity; left lower lobe and right lung clear. Sputum GeneXpert negative twice. FEV1 72% predicted.
+A **32-year-old woman**, TB treated 6 years ago. Two years of daily purulent sputum and **three episodes of hemoptysis** (the last 300 mL), recurring 4 months after bronchial artery embolization. CT: **a shrunken left upper lobe** with cystic bronchiectasis and a small cavity; left lower lobe and right lung clear. Sputum GeneXpert negative twice. FEV1 72% predicted.
 
 ### Question
 
@@ -91,7 +91,7 @@ A **32-year-old woman**, TB treated 6 years ago. Two years of daily purulent spu
 #### 5\. Alternatives
 
 -   Medical therapy and airway clearance
--   Bronchial artery embolisation for haemoptysis
+-   Bronchial artery embolization for hemoptysis
 -   No operation, and what that means
 
 #### 6\. Recovery
@@ -159,7 +159,7 @@ Map the lower lobe branches first: **A6** behind, often opposite the lingular ar
 
 **Q:** In the fissure, which lower-lobe branch arises posteriorly, often opposite the lingular artery?
 - [x] The superior segmental artery (A6)
-  > A6 is the first lower-lobe branch and leaves the posterior aspect of the artery; take it by mistake and the superior segment is devascularised.
+  > A6 is the first lower-lobe branch and leaves the posterior aspect of the artery; take it by mistake and the superior segment is devascularized.
 - [ ] The basal trunk
 - [ ] The truncus anterior
 - [ ] The superior pulmonary vein
@@ -203,7 +203,7 @@ Keep the phrenic nerve on the pericardium, pass the vascular stapler round the s
 
 **Q:** Taking the vein last, what is the argument for doing it this way?
 - [x] Arterial inflow is stopped before venous outflow
-  > Dividing arteries first avoids congesting the lobe; in cancer surgery the vein-first argument (less tumour-cell shedding) is debated.
+  > Dividing arteries first avoids congesting the lobe; in cancer surgery the vein-first argument (less tumor-cell shedding) is debated.
 - [ ] The vein is easier to reach from behind
 - [ ] It avoids the phrenic nerve
 - [ ] It lets the lobe collapse sooner

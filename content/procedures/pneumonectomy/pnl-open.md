@@ -13,23 +13,23 @@ summary: Posterolateral thoracotomy; artery first: main PA, superior vein, infer
 
 Chain: Caseous necrosis in the upper lobe → Liquefaction, discharged through a bronchus → Cavity → Healing by fibrosis: thick wall, traction bronchiectasis
 
-Chain: Cavity + bronchial and non-bronchial systemic arteries hypertrophy → **Haemoptysis (from the systemic circulation, at systemic pressure)**
+Chain: Cavity + bronchial and non-bronchial systemic arteries hypertrophy → **Hemoptysis (from the systemic circulation, at systemic pressure)**
 
-Chain: Cavity colonised by *Aspergillus* → Fungal ball (aspergilloma) → **Erosion of the vascular wall → haemoptysis** → Chronic cavitary aspergillosis if it progresses
+Chain: Cavity colonized by *Aspergillus* → Fungal ball (aspergilloma) → **Erosion of the vascular wall → hemoptysis** → Chronic cavitary aspergillosis if it progresses
 
-**The destroyed lung**: a whole lung reduced to cavities, bronchiectasis and fibrosis, contracted, with the pleura fused to the chest wall. It is a reservoir of infection (TB, non-tuberculous mycobacteria, *Aspergillus*, bacteria), a source of recurrent haemoptysis, and it contributes no gas exchange, often only shunt.
+**The destroyed lung**: a whole lung reduced to cavities, bronchiectasis and fibrosis, contracted, with the pleura fused to the chest wall. It is a reservoir of infection (TB, non-tuberculous mycobacteria, *Aspergillus*, bacteria), a source of recurrent hemoptysis, and it contributes no gas exchange, often only shunt.
 
-**Simple aspergilloma**: a single cavity with a fungal ball, few symptoms, no progression over 3 months. **Chronic cavitary pulmonary aspergillosis**: one or more cavities that enlarge or multiply over months, with symptoms and a positive *Aspergillus* IgG; treated with long-term oral azoles. Surgery is for simple aspergilloma, and for complex disease with haemoptysis once medically optimised.
+**Simple aspergilloma**: a single cavity with a fungal ball, few symptoms, no progression over 3 months. **Chronic cavitary pulmonary aspergillosis**: one or more cavities that enlarge or multiply over months, with symptoms and a positive *Aspergillus* IgG; treated with long-term oral azoles. Surgery is for simple aspergilloma, and for complex disease with hemoptysis once medically optimized.
 
-**Massive haemoptysis** kills by asphyxia, not blood loss. First: lie the patient **bleeding side down**, secure the airway (a large tube, selective intubation of the good side or a bronchial blocker), then **bronchial artery embolisation** as a bridge; operate once the bleeding has settled and the patient is optimised.
+**Massive hemoptysis** kills by asphyxia, not blood loss. First: lie the patient **bleeding side down**, secure the airway (a large tube, selective intubation of the good side or a bronchial blocker), then **bronchial artery embolization** as a bridge; operate once the bleeding has settled and the patient is optimized.
 
-> **Evidence:** post-TB lung disease: Migliori et al. clinical standards (Int J Tuberc Lung Dis 2021): up to 50% have problems after treatment; a meta-analysis (Ivanova et al., Eur Respir Rev 2023; 14,621 people) found mean FEV1 77% predicted with obstruction in 22% and restriction in 23%. ESCMID/ERS guideline (Denning et al., Eur Respir J 2016): excise simple aspergilloma if technically possible. Bronchial artery embolisation stops haemoptysis in 70–99%, but it recurs in 10–57% (Panda et al., 2017).
+> **Evidence:** post-TB lung disease: Migliori et al. clinical standards (Int J Tuberc Lung Dis 2021): up to 50% have problems after treatment; a meta-analysis (Ivanova et al., Eur Respir Rev 2023; 14,621 people) found mean FEV1 77% predicted with obstruction in 22% and restriction in 23%. ESCMID/ERS guideline (Denning et al., Eur Respir J 2016): excise simple aspergilloma if technically possible. Bronchial artery embolization stops hemoptysis in 70–99%, but it recurs in 10–57% (Panda et al., 2017).
 
 ### Question
 
-**Q:** Where does the blood come from in haemoptysis from a post-TB cavity?
+**Q:** Where does the blood come from in hemoptysis from a post-TB cavity?
 - [x] Hypertrophied bronchial and non-bronchial systemic arteries, at systemic pressure
-  > That is why it can be massive, and why bronchial (and intercostal, phrenic) artery embolisation controls it; the pulmonary artery is the source in a minority (Rasmussen aneurysm).
+  > That is why it can be massive, and why bronchial (and intercostal, phrenic) artery embolization controls it; the pulmonary artery is the source in a minority (Rasmussen aneurysm).
 - [ ] The pulmonary veins
 - [ ] The fungal ball itself
 - [ ] Capillaries in the cavity wall only
@@ -48,7 +48,7 @@ Before committing, assess the **fissure and hilum for a lobectomy** option, and 
 
 ### Case
 
-A **29-year-old woman**, treated twice for TB (the second time for multidrug-resistant TB, now culture-negative after treatment). Recurrent haemoptysis and purulent sputum; CT: the **left lung destroyed** (cavities, bronchiectasis, volume loss, pleural thickening), the right lung clear. Perfusion scan: left lung 8% of total. FEV1 1.4 L (48%).
+A **29-year-old woman**, treated twice for TB (the second time for multidrug-resistant TB, now culture-negative after treatment). Recurrent hemoptysis and purulent sputum; CT: the **left lung destroyed** (cavities, bronchiectasis, volume loss, pleural thickening), the right lung clear. Perfusion scan: left lung 8% of total. FEV1 1.4 L (48%).
 
 ### Question
 
@@ -83,7 +83,7 @@ A **29-year-old woman**, treated twice for TB (the second time for multidrug-res
 
 -   Higher mortality than lobectomy (right more than left)
 -   Permanent reduction in exercise tolerance
--   Post-pneumonectomy pulmonary oedema
+-   Post-pneumonectomy pulmonary edema
 -   Cardiac herniation (intrapericardial)
 
 #### 5\. Alternatives
@@ -146,7 +146,7 @@ Retract the lung back, open the pleura over the front of the hilum **behind the 
 
 ## [pnlo-ipv] Inferior pulmonary vein: staple
 
-Clear the **inferior pulmonary vein** circumferentially down to the pericardium and staple it with a vascular load. For a central tumour it can be taken **inside the pericardium**.
+Clear the **inferior pulmonary vein** circumferentially down to the pericardium and staple it with a vascular load. For a central tumor it can be taken **inside the pericardium**.
 
 ## [pnlo-bronchus] Main bronchus: staple flush with the carina
 
@@ -165,7 +165,7 @@ On the left the bronchus runs under the aortic arch: pull the lung down and out 
 
 ## [pnlo-specimen] Specimen out, cover the stump, leak test
 
-Remove the lung in a bag through an enlarged incision. Leak-test the stump under saline at 20–25 cmH<sub>2</sub>O. Cover it with a vascularised flap (pericardial fat, pleura or intercostal muscle), especially after induction therapy.
+Remove the lung in a bag through an enlarged incision. Leak-test the stump under saline at 20–25 cmH<sub>2</sub>O. Cover it with a vascularized flap (pericardial fat, pleura or intercostal muscle), especially after induction therapy.
 
 Complete the nodal dissection. Leave a balanced drain or none, and keep the mediastinum central; restrict fluids.
 

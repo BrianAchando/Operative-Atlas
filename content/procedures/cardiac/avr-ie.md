@@ -11,7 +11,7 @@ summary: Case-based: pathophysiology, anatomy, the patient and the Heart Team de
 
 On the aortic valve the vegetation sits on the **ventricular** face of the cusps (the low-pressure side of the regurgitant jet). The infection perforates or tears the cusps (**acute severe AR**), and it can burrow into the **annulus**: a **paravalvular abscess**, typically in the aortomitral curtain and under the non-coronary sinus, next to the His bundle.
 
-Chain: Vegetation → **Cusp perforation → acute severe AR** → Sudden volume load on a normal-sized LV → **Pulmonary oedema, shock**
+Chain: Vegetation → **Cusp perforation → acute severe AR** → Sudden volume load on a normal-sized LV → **Pulmonary edema, shock**
 
 Chain: Annular extension → Abscess, false aneurysm → **Fistula (to the RA, LA, RV)** → **Heart block (the His bundle lies just below)**
 
@@ -51,7 +51,7 @@ What the sutures and the debridement can injure:
 
 ## [ai-case] Case: aortic endocarditis with a root abscess
 
-**Indications** (ESC 2023): **uncontrolled infection** (a paravalvular abscess; persistent bacteraemia on appropriate antibiotics) and severe AR with heart failure: **urgent surgery**, within days.
+**Indications** (ESC 2023): **uncontrolled infection** (a paravalvular abscess; persistent bacteremia on appropriate antibiotics) and severe AR with heart failure: **urgent surgery**, within days.
 
 **The operation**: radical debridement of all infected tissue, closure of the abscess cavity (autologous or bovine pericardium), then valve replacement; if the root is destroyed, **root replacement** (homograft, or a composite graft or stentless root: see the **Root** module). Pacing wires: heart block may be permanent.
 
@@ -64,8 +64,8 @@ A **30-year-old man** with known mild rheumatic AR, admitted with fever and rigo
 ### Question
 
 **Q:** What makes this an urgent operation rather than completing 6 weeks of antibiotics first?
-- [x] Uncontrolled infection: a paravalvular abscess and persistent bacteraemia, with severe AR
-  > Abscess and persistent bacteraemia do not resolve on antibiotics alone; waiting risks fistula, complete heart block, embolism and death.
+- [x] Uncontrolled infection: a paravalvular abscess and persistent bacteremia, with severe AR
+  > Abscess and persistent bacteremia do not resolve on antibiotics alone; waiting risks fistula, complete heart block, embolism and death.
 - [ ] The vegetation size alone
 - [ ] His young age
 - [ ] The PR interval alone
@@ -208,7 +208,7 @@ Respect what lies close: the **His bundle** below the right/non-coronary commiss
 
 ## [ai-patch] Close the cavity; patch or replace the root
 
-A **localised** cavity: close it with a patch of glutaraldehyde-fixed autologous or bovine **pericardium**, sewn to healthy tissue with running 4-0 polypropylene, so that the new valve sits on the patch and healthy annulus rather than in infected space. Then size and implant the valve as usual, with pledgeted sutures in sound tissue.
+A **localized** cavity: close it with a patch of glutaraldehyde-fixed autologous or bovine **pericardium**, sewn to healthy tissue with running 4-0 polypropylene, so that the new valve sits on the patch and healthy annulus rather than in infected space. Then size and implant the valve as usual, with pledgeted sutures in sound tissue.
 
 **Extensive** destruction (circumferential abscess, aorto-ventricular discontinuity, fistula): replace the **root** (an aortic homograft, whose anterior mitral leaflet can patch the curtain, or a composite valved graft or stentless root) with coronary buttons. The **Root** module shows these steps.
 
@@ -225,7 +225,7 @@ If the annulus is too small:
 -   a valve with a better orifice for its size (supra-annular, thin-sewing-ring, or stentless);
 -   **annular enlargement**: **Nicks** (through the non-coronary sinus toward the aortomitral curtain), **Manouguian** (through the left–non-coronary commissure into the curtain and the anterior mitral leaflet), **Y-incision** (Yang: through the left–non-coronary commissure with a Y into both trigones, allowing about 3–4 sizes larger). The **Konno** operation (into the septum) is mainly for children.
 
-> **Evidence:** VARC-3 (Généreux et al., JACC 2021) sets the definitions. In a meta-analysis of about 123,000 patients (J Am Heart Assoc 2024), mismatch after SAVR was associated with higher late mortality and earlier failure of tissue valves. The Y-incision series (Yang et al., JTCVS) reported enlargement by 3–4 sizes with low early mortality; these are single-centre, non-randomised data.
+> **Evidence:** VARC-3 (Généreux et al., JACC 2021) sets the definitions. In a meta-analysis of about 123,000 patients (J Am Heart Assoc 2024), mismatch after SAVR was associated with higher late mortality and earlier failure of tissue valves. The Y-incision series (Yang et al., JTCVS) reported enlargement by 3–4 sizes with low early mortality; these are single-center, non-randomized data.
 
 ### Question
 
@@ -256,7 +256,7 @@ Usually 12–15 sutures of **2-0 braided polyester**, following the crown: up to
 
 Keep pledgets and sutures clear of the **ostia**; take shallow bites under the **right–non-coronary commissure**.
 
-> **Evidence:** no randomised trial has settled this. In the AVERT cohort (807 patients), major paravalvular leak occurred in 1.7% with pledgets and 5.8% without (Englberger et al., EJCTS 2005). A 2024 meta-analysis of 9 observational SAVR studies (4,390 patients; Boltje et al.) found no clear difference in leak, gradients or mortality, and concluded that the evidence neither supports nor opposes pledgets. In 152 patients with small (19–21 mm) supra-annular bioprostheses, simple interrupted sutures gave a larger orifice and less mismatch than mattress sutures (Tabata et al., JTCVS 2014; retrospective).
+> **Evidence:** no randomized trial has settled this. In the AVERT cohort (807 patients), major paravalvular leak occurred in 1.7% with pledgets and 5.8% without (Englberger et al., EJCTS 2005). A 2024 meta-analysis of 9 observational SAVR studies (4,390 patients; Boltje et al.) found no clear difference in leak, gradients or mortality, and concluded that the evidence neither supports nor opposes pledgets. In 152 patients with small (19–21 mm) supra-annular bioprostheses, simple interrupted sutures gave a larger orifice and less mismatch than mattress sutures (Tabata et al., JTCVS 2014; retrospective).
 
 ### Question
 
@@ -303,7 +303,7 @@ Before closing: look into **both ostia** (nothing overhanging); check for **gaps
 ### Question
 
 **Q:** After weaning, new ST elevation in the anterolateral leads and poor anterior wall motion on TOE. The valve looks well seated. First suspicion?
-- [x] The left main ostium is partly obstructed by a post, a pledget or the sewing ring (or has embolised air/debris)
+- [x] The left main ostium is partly obstructed by a post, a pledget or the sewing ring (or has embolized air/debris)
   > Coronary compromise right after SAVR is the prosthesis or embolism until proved otherwise: go back on bypass, inspect, and re-seat or graft.
 - [ ] Heart block
 - [ ] Patient–prosthesis mismatch
@@ -315,7 +315,7 @@ Close the aortotomy in **two layers of 4-0 polypropylene** (a horizontal mattres
 
 **Early vs late de-airing** is the same question as in mitral surgery, with less air because the left atrium was not opened: venting only until the clamp is off is quicker, but air trapped in the pulmonary veins and LV comes out later and goes up the right coronary (uppermost) or to the brain; keeping the root vent on while the heart ejects on partial bypass catches it. Stop when **TOE** shows no air, not by the clock.
 
-> **Evidence:** no trial compares de-airing strategies; CO₂ field flooding reduced microemboli on TOE in a randomised trial (Svenarud et al., Circulation 2004); a stroke benefit has not been shown.
+> **Evidence:** no trial compares de-airing strategies; CO₂ field flooding reduced microemboli on TOE in a randomized trial (Svenarud et al., Circulation 2004); a stroke benefit has not been shown.
 
 ## [ai-wean] Reperfuse, wean, TOE, decannulate
 
@@ -325,7 +325,7 @@ Reperfuse on bypass until the heart is ready (about a third of the clamp time is
 
 Then venous cannula out, protamine, arterial cannula out last.
 
-> **Evidence:** intraoperative TOE is standard in valve surgery (ASE/SCA guidelines). A leak more than mild on TOE is usually repaired before leaving theatre, because significant paravalvular leak is associated with haemolysis, heart failure and worse survival.
+> **Evidence:** intraoperative TOE is standard in valve surgery (ASE/SCA guidelines). A leak more than mild on TOE is usually repaired before leaving theatre, because significant paravalvular leak is associated with hemolysis, heart failure and worse survival.
 
 **This patient**: atrioventricular pacing through epicardial wires from the start; if heart block persists, a permanent system once the infection is controlled.
 

@@ -9,7 +9,7 @@ summary: Landing zones, left subclavian management, spinal cord protection, depl
 
 ## [tv2-patho] Pathophysiology: thoracic aortic aneurysm
 
-**Medial degeneration** (loss of smooth muscle cells, fragmented elastic fibres, pooled proteoglycans) weakens the wall. Causes: **heritable** (Marfan syndrome, Loeys-Dietz, familial, bicuspid aortic valve), **degenerative/atherosclerotic** (the descending aorta in older smokers with hypertension), and **inflammatory or infective**: **syphilitic aortitis** (ascending and arch; obliterative endarteritis of the vasa vasorum) and **Takayasu arteritis** (young women), both seen in Africa.
+**Medial degeneration** (loss of smooth muscle cells, fragmented elastic fibers, pooled proteoglycans) weakens the wall. Causes: **heritable** (Marfan syndrome, Loeys-Dietz, familial, bicuspid aortic valve), **degenerative/atherosclerotic** (the descending aorta in older smokers with hypertension), and **inflammatory or infective**: **syphilitic aortitis** (ascending and arch; obliterative endarteritis of the vasa vasorum) and **Takayasu arteritis** (young women), both seen in Africa.
 
 Chain: Medial degeneration → Dilatation → Laplace: tension rises with radius → **Dissection or rupture**
 
@@ -50,9 +50,9 @@ Aortic zones for TEVAR (Ishimaru): 0 ascending to the innominate; 1 to the left 
 
 ## [tv2-case] Case: a degenerative descending aneurysm in an older man
 
-**TEVAR**: a 6.4 cm degenerative aneurysm in a 71-year-old with COPD, with **landing zones of at least 20 mm** of healthy aorta at both ends and iliac access that takes the sheath. The proximal landing needs coverage of the **left subclavian artery** (zone 2): **revascularise it first** (carotid-subclavian bypass or transposition), which lowers stroke, arm ischaemia and spinal cord risk.
+**TEVAR**: a 6.4 cm degenerative aneurysm in a 71-year-old with COPD, with **landing zones of at least 20 mm** of healthy aorta at both ends and iliac access that takes the sheath. The proximal landing needs coverage of the **left subclavian artery** (zone 2): **revascularize it first** (carotid-subclavian bypass or transposition), which lowers stroke, arm ischemia and spinal cord risk.
 
-> **Evidence:** VALOR (J Vasc Surg 2008): 30-day mortality 2.1% with TEVAR vs 7.9% with open repair (historical controls), paraplegia 1.5% and stroke 3.6% after TEVAR. Cheng et al. (JACC 2010, 5,888 patients): TEVAR lower 30-day mortality (OR 0.44) and paraplegia (OR 0.42), no long-term survival difference. SVS 2009 (Matsumura et al.): routine revascularisation before elective TEVAR that covers the left subclavian (weak recommendation); strongly recommended with a LIMA graft or dominant left vertebral. Spinal cord injury meta-analysis (Ann Cardiothorac Surg 2023; 61,962 patients): descending aneurysms 2.0% after TEVAR and after open repair.
+> **Evidence:** VALOR (J Vasc Surg 2008): 30-day mortality 2.1% with TEVAR vs 7.9% with open repair (historical controls), paraplegia 1.5% and stroke 3.6% after TEVAR. Cheng et al. (JACC 2010, 5,888 patients): TEVAR lower 30-day mortality (OR 0.44) and paraplegia (OR 0.42), no long-term survival difference. SVS 2009 (Matsumura et al.): routine revascularization before elective TEVAR that covers the left subclavian (weak recommendation); strongly recommended with a LIMA graft or dominant left vertebral. Spinal cord injury meta-analysis (Ann Cardiothorac Surg 2023; 61,962 patients): descending aneurysms 2.0% after TEVAR and after open repair.
 
 ### Case
 
@@ -62,8 +62,8 @@ A **71-year-old man**, smoker, COPD (FEV1 48%), hypertension. CT: a **6.4 cm** f
 
 **Q:** The landing zone requires covering his left subclavian, and his left vertebral is dominant. What should be done?
 - [x] Revascularise the left subclavian (carotid-subclavian bypass or transposition) before or at the TEVAR
-  > Covering the subclavian with a dominant left vertebral risks posterior-circulation stroke, arm ischaemia and spinal cord ischaemia; revascularisation is strongly recommended in this setting.
-- [ ] Cover it without revascularisation
+  > Covering the subclavian with a dominant left vertebral risks posterior-circulation stroke, arm ischemia and spinal cord ischemia; revascularization is strongly recommended in this setting.
+- [ ] Cover it without revascularization
 - [ ] Abandon TEVAR
 - [ ] Embolise the vertebral artery
 
@@ -73,7 +73,7 @@ A **71-year-old man**, smoker, COPD (FEV1 48%), hypertension. CT: a **6.4 cm** f
 
 #### 2\. Common
 
--   Groin haematoma
+-   Groin hematoma
 -   Post-implantation fever
 
 #### 3\. Serious
@@ -81,7 +81,7 @@ A **71-year-old man**, smoker, COPD (FEV1 48%), hypertension. CT: a **6.4 cm** f
 -   Paraplegia (lower than open)
 -   Stroke
 -   Endoleak
--   Left arm ischaemia if the subclavian is covered
+-   Left arm ischemia if the subclavian is covered
 
 #### 4\. Specific to this operation
 
@@ -142,8 +142,8 @@ Doses: [electrolytes](#approach=cticu-doses&step=0), [vasoactive drugs](#approac
 ### Question
 
 **Q:** After TEVAR with left subclavian coverage: cold left hand. Next?
-- [x] Assess and call: arm ischaemia may need revascularisation
-  > Covering the subclavian without revascularisation can cause arm ischaemia.
+- [x] Assess and call: arm ischemia may need revascularization
+  > Covering the subclavian without revascularization can cause arm ischemia.
 - [ ] Normal after coverage: ignore it
 - [ ] Raise the arm
 - [ ] Heparin only

@@ -7,9 +7,9 @@ summary: Transposed basilic vein fistula for when the cephalic vein is unusable.
 
 <!-- Edit the words freely. Keep each "## [step-id]" line as it is: it ties the text to its step in the 3D atlas. -->
 
-## [avt-patho] Why a fistula: access for haemodialysis
+## [avt-patho] Why a fistula: access for hemodialysis
 
-Haemodialysis needs blood flow of about 300–400 mL/min, three times a week, for years. A **fistula** joins an artery to a superficial vein: the vein **arterialises** (dilates and thickens) over weeks until it can be needled. Compared with a **graft** (PTFE) it has fewer infections and interventions; compared with a **tunnelled catheter**, far less bacteraemia and central vein stenosis.
+Hemodialysis needs blood flow of about 300–400 mL/min, three times a week, for years. A **fistula** joins an artery to a superficial vein: the vein **arterializes** (dilates and thickens) over weeks until it can be needled. Compared with a **graft** (PTFE) it has fewer infections and interventions; compared with a **tunnelled catheter**, far less bacteremia and central vein stenosis.
 
 **KDOQI 2019** replaced "fistula first" with **"patient first"**: an **ESKD Life-Plan** for every patient with progressive CKD (eGFR 15–20), choosing the access that fits that patient's expected course: forearm first, distal to proximal, non-dominant arm, protecting veins (no cannulas or blood tests in the planned arm).
 
@@ -41,7 +41,7 @@ A **54-year-old right-handed teacher** with hypertensive kidney disease, **eGFR 
 
 #### 3\. Serious
 
--   Steal syndrome (hand ischaemia)
+-   Steal syndrome (hand ischemia)
 -   Thrombosis
 -   Infection
 -   Nerve injury
@@ -75,7 +75,7 @@ Template and how to use it: [CTICU protocol, consent](#approach=cticu-consent&st
 ### Question
 
 **Q:** Which serious early complication must be explained before a brachial fistula?
-- [x] Steal syndrome: hand ischaemia needing urgent correction
+- [x] Steal syndrome: hand ischemia needing urgent correction
   > Commoner with brachial inflow, diabetes and age.
 - [ ] Paraplegia
 - [ ] Stroke
@@ -83,7 +83,7 @@ Template and how to use it: [CTICU protocol, consent](#approach=cticu-consent&st
 
 ## [av-bb] Transposed brachiobasilic fistula
 
-When the cephalic vein is unusable. The **basilic vein** runs deep to the fascia in the upper arm beside the **medial cutaneous nerve of the forearm** and the median nerve: mobilise it along the arm through a long medial incision (or several), then **tunnel it superficially and laterally** so it can be needled, and join it to the brachial artery. One or two stages.
+When the cephalic vein is unusable. The **basilic vein** runs deep to the fascia in the upper arm beside the **medial cutaneous nerve of the forearm** and the median nerve: mobilize it along the arm through a long medial incision (or several), then **tunnel it superficially and laterally** so it can be needled, and join it to the brachial artery. One or two stages.
 
 ## [avf-bb-icu] ICU and post-operative care
 
@@ -92,7 +92,7 @@ Start with the [vascular core](#approach=cticu-vascular&step=0), the [lab schedu
 #### Specific to this operation
 
 -   Check the thrill and bruit every few hours
--   Hand: colour, warmth, movement, sensation (steal)
+-   Hand: color, warmth, movement, sensation (steal)
 -   No BP cuff, cannula or blood tests on the fistula arm
 
 #### Labs

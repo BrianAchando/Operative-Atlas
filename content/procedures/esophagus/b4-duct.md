@@ -30,7 +30,7 @@ A **58-year-old man** has a left upper lobectomy with mediastinal node dissectio
 
 Milky fluid; confirm with **triglycerides above 1.24 mmol/L (110 mg/dL)** or chylomicrons. Start with drainage, nil by mouth or a fat-free / medium-chain diet, parenteral nutrition, octreotide.
 
-Operate (or embolise) for **high output** (commonly more than 1 L a day, or more than 10 mL/kg/day in a child), failure after about **5–7 days**, or nutritional and immune depletion. **Thoracic duct embolisation** by interventional radiology is the alternative where available.
+Operate (or embolize) for **high output** (commonly more than 1 L a day, or more than 10 mL/kg/day in a child), failure after about **5–7 days**, or nutritional and immune depletion. **Thoracic duct embolization** by interventional radiology is the alternative where available.
 
 Give **cream or olive oil** 2–4 hours before surgery: the leak turns white and shows itself.
 
@@ -55,7 +55,7 @@ Give **cream or olive oil** 2–4 hours before surgery: the leak turns white and
 #### 5\. Alternatives
 
 -   Conservative: fat-free diet or TPN (± octreotide)
--   Thoracic duct embolisation where available
+-   Thoracic duct embolization where available
 -   No operation, and what that means
 
 #### 6\. Recovery
@@ -66,7 +66,7 @@ Give **cream or olive oil** 2–4 hours before surgery: the leak turns white and
 
 #### 7\. Kenya-specific
 
--   Access to TPN and embolisation
+-   Access to TPN and embolization
 
 Template and how to use it: [CTICU protocol, consent](#approach=cticu-consent&step=0).
 
