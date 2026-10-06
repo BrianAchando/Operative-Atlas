@@ -4,10 +4,11 @@
   "version": "0.1.0",
   "type": "module",
   "scripts": {
-    "dev": "vite --port 5174",
-    "build": "vite build",
+    "dev": "node scripts/content-build.mjs && vite --port 5174",
+    "build": "node scripts/content-build.mjs && vite build",
     "typecheck": "tsc --noEmit",
-    "data": "python pipeline/build.py && python pipeline/procedures.py"
+    "data": "python pipeline/build.py && python pipeline/procedures.py && node scripts/content-export.mjs && node scripts/content-build.mjs",
+    "content": "node scripts/content-build.mjs"
   },
   "dependencies": {
     "@cornerstonejs/codec-openjpeg": "^1.3.6",
@@ -21,6 +22,9 @@
   "devDependencies": {
     "@gltf-transform/cli": "4.5.0",
     "@types/three": "0.185.4",
+    "marked": "^18.1.0",
+    "turndown": "^7.2.4",
+    "turndown-plugin-gfm": "^1.0.2",
     "typescript": "5.9.3",
     "vite": "8.2.2"
   }

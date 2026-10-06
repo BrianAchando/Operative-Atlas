@@ -4800,5 +4800,7 @@ def _us(x, key=None):
     if isinstance(x, dict): return {k: (v if k == 'sources' else _us(v, k)) for k, v in x.items()}
     return x
 procs = {k: _us(v) for k, v in procs.items()}
-(OUT / 'procedures.json').write_text(json.dumps(procs, indent=1))
+# the 3D skeleton of every operation; the words are edited in content/procedures/*.md and merged by scripts/content-build.mjs
+_BASE = Path(__file__).resolve().parent.parent / 'content' / '_base'; _BASE.mkdir(parents=True, exist_ok=True)
+(_BASE / 'procedures.base.json').write_text(json.dumps(procs, indent=1))
 print({k: len(v['steps']) for k, v in procs.items()})

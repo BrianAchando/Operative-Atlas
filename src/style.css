@@ -267,3 +267,29 @@ body.stage-light #hover { color: #33505e; }
 .calc-big { font: 700 18px var(--display); color: var(--text); }
 .calc-big b { color: var(--cova-cta); }
 .calc-note { color: var(--muted); font-size: 12px !important; }
+
+/* search */
+.search-wrap { position: relative; }
+.search { width: 220px; font: inherit; font-size: 13px; color: var(--text); background: var(--raised); border: 1px solid var(--line-2); border-radius: var(--cova-radius-card); padding: 6px 10px; }
+.search:focus { outline: 2px solid var(--work); outline-offset: 1px; }
+.search-results { position: absolute; top: calc(100% + 4px); left: 0; z-index: 50; width: min(520px, 90vw); max-height: 70vh; overflow: auto; background: var(--panel); border: 1px solid var(--line-2); border-radius: var(--cova-radius-card); box-shadow: 0 12px 30px rgba(0,0,0,.45); }
+.sr { display: grid; gap: 2px; width: 100%; text-align: left; padding: 8px 12px; border-bottom: 1px solid var(--line); }
+.sr:hover, .sr:focus-visible { background: var(--raised); }
+.sr b { font-size: 13px; color: var(--text); }
+.sr-where { font-size: 11px; color: var(--work); }
+.sr-snip { font-size: 12px; color: var(--muted); }
+.sr-snip mark { background: rgba(242,184,75,.25); color: var(--text); }
+.sr-none { padding: 10px 12px; color: var(--muted); font-size: 13px; margin: 0; }
+/* progress */
+.overlay { position: fixed; inset: 0; z-index: 60; background: rgba(4,10,14,.6); display: grid; place-items: center; padding: 16px; }
+.overlay-box { width: min(760px, 100%); max-height: 88vh; overflow: auto; background: var(--panel); border: 1px solid var(--line-2); border-radius: var(--cova-radius-card); padding: 16px 18px; }
+.ov-head { display: flex; justify-content: space-between; align-items: center; }
+.ov-head b { font: 800 18px var(--display); }
+.pg-sum { color: var(--muted); }
+.pg-group { border-top: 1px solid var(--line); padding: 6px 0; }
+.pg-group summary { cursor: pointer; font-weight: 700; padding: 4px 0; }
+.pg-row { display: grid; grid-template-columns: 1fr 120px 90px 100px; gap: 10px; align-items: center; padding: 3px 0 3px 12px; font-size: 13px; }
+.pg-row a { color: var(--text); text-decoration: none; } .pg-row a:hover { color: var(--work); text-decoration: underline; }
+.pg-bar { height: 6px; background: var(--raised); display: block; } .pg-bar i { display: block; height: 100%; background: var(--work); }
+.pg-num { color: var(--muted); font-size: 12px; }
+@media (max-width: 700px) { .search { width: 150px; } .pg-row { grid-template-columns: 1fr 70px; } .pg-row .pg-num:last-child { display: none; } }

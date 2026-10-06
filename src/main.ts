@@ -230,7 +230,8 @@ function buildTopbar(): void {
     h('button', { 'data-src': 'reference', onclick: () => { state.source = 'reference'; state.aligning = false; render(); } }, 'Reference CT'),
     h('button', { 'data-src': 'upload', id: 'src-upload', onclick: () => { if (upVol) { state.source = 'upload'; render(); } else $('#file').click(); } }, 'Your CT'));
   const up = h('label', { class: 'btn', for: 'file' }, 'Load DICOM…');
-  bar.append(h('div', { class: 'brand' }, h('b', {}, 'COVA'), h('span', {}, 'Cardiothoracic Operative and Vascular Atlas')), modes, opSel, approach, h('div', { class: 'spacer' }), src, up);
+  bar.append(h('div', { class: 'brand' }, h('b', {}, 'COVA'), h('span', {}, 'Cardiothoracic Operative and Vascular Atlas')), modes, opSel, searchBox(), approach, h('div', { class: 'spacer' }),
+    h('button', { class: 'btn', onclick: showProgress, title: 'Your progress on this device' }, 'Progress'), src, up);
 }
 
 function pickOp(op: string): void {
@@ -267,6 +268,7 @@ function goStep(n: number, fly = true): void {
   if (need.length) void scene3d.ensure(need).then(() => { if (currentProc() === proc) goStep(state.step, false); });
   state.step = Math.max(0, Math.min(proc.steps.length - 1, n));
   state.playing = false;
+  markSeen(state.approach, proc.steps[state.step]!.id);
   scene3d.resetOperative();
   // one side's hilum per operation: the other side's structures stay hidden
   for (const s of atlas.structures) scene3d.setVisible(s.id, s.side ? ((proc.side === 'both' || s.side === proc.side) && (s.side === 'right' ? s.sideVisible !== false : s.visible !== false)) : s.visible !== false);
@@ -439,7 +441,7 @@ function procPanel(): HTMLElement {
     const list = h('div', { class: 'choices' });
     shuffled(st.id, st.ask.choices).forEach((c) => {
       const picked = answered && pickedChoice.get(st.id) === c.text;
-      list.append(h('button', { class: 'choice' + (answered ? (c.correct ? ' right' : picked ? ' wrong' : ' dim') : ''), disabled: answered, onclick: () => { pickedChoice.set(st.id, c.text); state.answered.add(st.id); render(); } }, c.text));
+      list.append(h('button', { class: 'choice' + (answered ? (c.correct ? ' right' : picked ? ' wrong' : ' dim') : ''), disabled: answered, onclick: () => { pickedChoice.set(st.id, c.text); state.answered.add(st.id); markAnswer(state.approach, st.id, c.correct); render(); } }, c.text));
     });
     ask.append(list);
     if (answered) { const c = st.ask.choices.find((x) => x.text === pickedChoice.get(st.id))!; const right = st.ask.choices.find((x) => x.correct)!; ask.append(h('p', { class: 'why ' + (c.correct ? 'ok' : 'no') }, h('b', {}, c.correct ? 'Yes. ' : `Not quite: ${right.text}. `), right.why)); }
@@ -493,6 +495,90 @@ function shuffled<T>(key: string, xs: T[]): T[] {
 }
 /** "Flag this step": a reviewer reports an error or a suggestion; the form keeps its text across re-renders */
 const flagForms = new Map<string, HTMLElement>();
+
+// ------------------------------------------------------------------ progress (kept on this device until accounts exist)
+type Progress = { v: Record<string, Record<string, 1>>; q: Record<string, Record<string, 0 | 1>> };
+const PKEY = 'cova-progress';
+const progress: Progress = (() => { try { const x = JSON.parse(localStorage.getItem(PKEY) ?? ''); if (x && x.v && x.q) return x as Progress; } catch { /* none yet */ } return { v: {}, q: {} }; })();
+const saveProgress = () => { try { localStorage.setItem(PKEY, JSON.stringify(progress)); } catch { /* storage off */ } };
+function markSeen(p: string, id: string): void { (progress.v[p] ??= {})[id] = 1; saveProgress(); }
+function markAnswer(p: string, id: string, right: boolean): void { const q = (progress.q[p] ??= {}); if (!(id in q)) { q[id] = right ? 1 : 0; saveProgress(); } }
+
+function showProgress(): void {
+  document.getElementById('progress-panel')?.remove();
+  const close = () => panel.remove();
+  const groups = new Map<string, [string, Procedure][]>();
+  for (const [k, p] of Object.entries(procedures)) { if (p.op === 'cticu' || p.group === 'Access and positioning') continue; const g = p.group ?? 'Operations'; if (!groups.has(g)) groups.set(g, []); groups.get(g)!.push([k, p]); }
+  let seenAll = 0, stepsAll = 0, right = 0, answered = 0;
+  const wrong: [string, number, string][] = [];
+  const sections = [...groups].map(([g, list]) => h('details', { class: 'pg-group', open: list.some(([k]) => progress.v[k]) },
+    h('summary', {}, g),
+    ...list.map(([k, p]) => {
+      const seen = p.steps.filter((s) => progress.v[k]?.[s.id]).length; const qs = p.steps.filter((s) => s.ask);
+      const ans = qs.filter((s) => progress.q[k]?.[s.id] !== undefined); const ok = ans.filter((s) => progress.q[k]![s.id] === 1).length;
+      seenAll += seen; stepsAll += p.steps.length; right += ok; answered += ans.length;
+      p.steps.forEach((s, i) => { if (progress.q[k]?.[s.id] === 0) wrong.push([k, i, `${p.opName}: ${s.title}`]); });
+      const pct = Math.round((100 * seen) / p.steps.length);
+      return h('div', { class: 'pg-row' },
+        h('a', { href: `#approach=${k}&step=0`, onclick: close }, `${p.opName} · ${p.approach}`),
+        h('span', { class: 'pg-bar' }, h('i', { style: `width:${pct}%` })),
+        h('span', { class: 'pg-num' }, `${seen}/${p.steps.length} steps`),
+        h('span', { class: 'pg-num' }, ans.length ? `${ok}/${ans.length} correct` : `${qs.length} questions`));
+    })));
+  const panel = h('div', { id: 'progress-panel', class: 'overlay', role: 'dialog', 'aria-label': 'Your progress' },
+    h('div', { class: 'overlay-box' },
+      h('div', { class: 'ov-head' }, h('b', {}, 'Your progress'), h('button', { class: 'btn ghost', onclick: close }, 'Close')),
+      h('p', { class: 'pg-sum' }, `${seenAll} of ${stepsAll} steps seen · ${answered ? Math.round((100 * right) / answered) : 0}% of ${answered} questions right first time`),
+      wrong.length ? h('details', { class: 'pg-group', open: true }, h('summary', {}, `To revisit: ${wrong.length} question${wrong.length > 1 ? 's' : ''} answered wrongly`),
+        ...wrong.slice(0, 40).map(([k, i, t]) => h('div', { class: 'pg-row' }, h('a', { href: `#approach=${k}&step=${i}`, onclick: close }, t)))) : null,
+      ...sections,
+      h('p', { class: 'foot' }, 'Saved on this device only. It will move to your account when sign-in arrives. ',
+        h('button', { class: 'link', onclick: () => { if (confirmReset.dataset['armed']) { progress.v = {}; progress.q = {}; saveProgress(); close(); } else { confirmReset.dataset['armed'] = '1'; confirmReset.textContent = 'Click again to erase'; } } }, 'Reset progress'))));
+  const confirmReset = panel.querySelector('.foot .link') as HTMLElement;
+  panel.addEventListener('click', (e) => { if (e.target === panel) close(); });
+  document.body.append(panel);
+}
+
+// ------------------------------------------------------------------ search across every operation and step
+type Hit = { p: string; i: number; o: string; a: string; g: string; ph: string; t: string; x: string };
+let searchIdx: Hit[] | null = null;
+function searchBox(): HTMLElement {
+  const input = h('input', { type: 'search', class: 'search', placeholder: 'Search COVA…', 'aria-label': 'Search operations and steps' }) as HTMLInputElement;
+  const list = h('div', { class: 'search-results', role: 'listbox', hidden: true });
+  const load = async () => { if (!searchIdx) { try { searchIdx = await (await fetch(DATA + 'search.json')).json() as Hit[]; } catch { searchIdx = []; } } };
+  const esc = (t: string) => t.replace(/[&<>]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;' }[c]!));
+  const go = (r: Hit) => { list.hidden = true; input.blur(); location.hash = `approach=${r.p}&step=${r.i}`; };
+  let results: Hit[] = [];
+  const run = async () => {
+    await load();
+    const q = input.value.toLowerCase().trim(); const terms = q.split(/\s+/).filter((t) => t.length > 1);
+    if (!terms.length) { list.hidden = true; return; }
+    const scored: [number, Hit][] = [];
+    for (const r of searchIdx!) {
+      const t = r.t.toLowerCase(), o = (r.o + ' ' + r.a).toLowerCase(), x = r.x.toLowerCase();
+      if (!terms.every((w) => t.includes(w) || o.includes(w) || x.includes(w))) continue;
+      let sc = 0; for (const w of terms) sc += (t.includes(w) ? 6 : 0) + (o.includes(w) ? 3 : 0) + (x.includes(w) ? 1 : 0);
+      scored.push([sc, r]);
+    }
+    scored.sort((a, b) => b[0] - a[0]);
+    // one hit per step text: identical steps shared between approaches show once
+    const seen = new Set<string>(); results = [];
+    for (const [, r] of scored) { const key = r.o + '|' + r.t; if (seen.has(key)) continue; seen.add(key); results.push(r); if (results.length >= 25) break; }
+    list.replaceChildren(...(results.length ? results.map((r) => {
+      const x = r.x; const lx = x.toLowerCase(); const at = Math.max(0, lx.indexOf(terms[0]!) - 50);
+      const snip = esc((at > 0 ? '…' : '') + x.slice(at, at + 140) + '…').replace(new RegExp(`(${terms.map((t) => t.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')).join('|')})`, 'gi'), '<mark>$1</mark>');
+      const b = h('button', { class: 'sr', role: 'option', onclick: () => go(r) }, h('b', {}, r.t), h('span', { class: 'sr-where' }, `${r.o} · ${r.a} · ${r.ph}`));
+      const sn = h('span', { class: 'sr-snip' }); sn.innerHTML = snip; b.append(sn); return b;
+    }) : [h('p', { class: 'sr-none' }, 'No step mentions that.')]));
+    list.hidden = false;
+  };
+  input.addEventListener('input', () => { void run(); });
+  input.addEventListener('focus', () => { void load(); if (input.value.trim()) list.hidden = false; });
+  input.addEventListener('keydown', (e) => { if (e.key === 'Enter' && results[0]) go(results[0]); if (e.key === 'Escape') { list.hidden = true; input.blur(); } e.stopPropagation(); });
+  document.addEventListener('click', (e) => { if (!wrap.contains(e.target as Node)) list.hidden = true; });
+  const wrap = h('div', { class: 'search-wrap' }, input, list);
+  return wrap;
+}
 
 /** sizing calculators: indexed effective orifice area for valve prostheses, and BT shunt size per kg */
 function calcBox(kind: 'aortic' | 'mitral' | 'bt'): HTMLElement {

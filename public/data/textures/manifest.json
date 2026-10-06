@@ -1,0 +1,57 @@
+{
+ "drape": {
+  "albedo": "textures/drape.jpg",
+  "normal": "textures/drape_n.jpg",
+  "mean": [
+   0.6618,
+   0.7154,
+   0.7361
+  ],
+  "tile": 60,
+  "credit": "LightScalpel CO2 Laser Abdominal Incision.jpg (Academicguru22, CC BY 4.0)"
+ },
+ "fat": {
+  "albedo": "textures/fat.jpg",
+  "normal": "textures/fat_n.jpg",
+  "mean": [
+   0.9209,
+   0.5449,
+   0.1172
+  ],
+  "tile": 40,
+  "credit": "Gross pathology of hemopericardium.jpg (Mikael H\u00e4ggstr\u00f6m, M.D. Author info - Reusing images- Conflicts of interest:\u00a0 None\nMikael H\u00e4ggstr\u00f6m, M.D.Consent note: Consent from the patient or patient's relatives is regarded as redundant, because , CC0)"
+ },
+ "liver": {
+  "albedo": "textures/liver.jpg",
+  "normal": "textures/liver_n.jpg",
+  "mean": [
+   0.5474,
+   0.2353,
+   0.1553
+  ],
+  "tile": 40,
+  "credit": "Liver lobectomy 01.jpg (Seza A Gulec, Kenneth Pennington, Michael Hall and Yuman Fong, CC BY 2.0)"
+ },
+ "myocardium": {
+  "albedo": "textures/myocardium.jpg",
+  "normal": "textures/myocardium_n.jpg",
+  "mean": [
+   0.6074,
+   0.5012,
+   0.4858
+  ],
+  "tile": 30,
+  "credit": "Heart Surgery Practice.jpg (Pramath kakodkar, CC BY 4.0)"
+ },
+ "organ": {
+  "albedo": "textures/organ.jpg",
+  "normal": "textures/organ_n.jpg",
+  "mean": [
+   0.8402,
+   0.4392,
+   0.3487
+  ],
+  "tile": 35,
+  "credit": "Stomach surgery, 2000.jpeg (Milton H. Robinson, U.S. Army, Public domain)"
+ }
+}

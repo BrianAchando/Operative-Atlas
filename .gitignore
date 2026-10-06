@@ -1,6 +1,7 @@
 node_modules
 dist
-public/data
+public/data/procedures.json
+public/data/search.json
 work
 .venv
 pipeline/.venv

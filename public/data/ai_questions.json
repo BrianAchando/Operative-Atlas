@@ -1,0 +1,533 @@
+{
+ "model": "nvidia/NV-Reason-CT",
+ "questions": [
+  {
+   "id": "general:report",
+   "op": "general",
+   "kind": "report",
+   "q": "write a structured chest CT report",
+   "focus": "carina",
+   "key": "Read it yourself first: lungs (nodules, emphysema, consolidation), pleura, mediastinum and nodes, heart and pericardium, great vessels, bones, upper abdomen."
+  },
+  {
+   "id": "general:nodes",
+   "op": "general",
+   "kind": "preop",
+   "q": "Is there mediastinal or hilar lymphadenopathy? If so, which nodal stations and what size?",
+   "focus": "ln-7",
+   "key": "Short axis over 10 mm is enlarged. Check stations 2R/4R, 2L/4L, 5, 6, 7 (subcarinal), 10 and 11 on both sides."
+  },
+  {
+   "id": "general:nodules",
+   "op": "general",
+   "kind": "preop",
+   "q": "Are there any pulmonary nodules or masses? Give the lobe, size and features.",
+   "focus": "lung-centre",
+   "key": "Scroll every lobe on lung windows; a nodule is under 3 cm, a mass over 3 cm."
+  },
+  {
+   "id": "general:parenchyma",
+   "op": "general",
+   "kind": "preop",
+   "q": "Is there emphysema, fibrosis or other chronic lung disease?",
+   "focus": "lung-centre",
+   "key": "Emphysema and fibrosis lower the reserve for resection: they push toward a smaller resection and formal lung function testing."
+  },
+  {
+   "id": "general:pleura",
+   "op": "general",
+   "kind": "preop",
+   "q": "Is there a pleural effusion, pleural thickening, calcification or pneumothorax?",
+   "focus": "lung-centre",
+   "key": "Pleural thickening or calcification warns of adhesions and a harder VATS."
+  },
+  {
+   "id": "lul:lobe",
+   "op": "lul",
+   "kind": "preop",
+   "q": "Describe the left upper lobe: is there any mass, nodule, consolidation, collapse or bronchiectasis?",
+   "focus": "lul",
+   "key": "Find the lesion and its relation to the fissure and the hilum: a central lesion or one crossing the fissure may need more than a lobectomy."
+  },
+  {
+   "id": "lul:hilar-nodes",
+   "op": "lul",
+   "kind": "preop",
+   "q": "Are the left hilar and interlobar lymph nodes enlarged or calcified?",
+   "focus": "ln-10l",
+   "key": "Calcified or matted hilar nodes (old TB is common in Kenya) stick to the artery and make VATS dissection dangerous: consider an open approach or proximal control first."
+  },
+  {
+   "id": "lul:fissure",
+   "op": "lul",
+   "kind": "approach",
+   "q": "Is the left oblique fissure complete on this CT?",
+   "focus": "fissure",
+   "key": "Complete fissure: artery-first in the fissure is easy (posterior / fissure-first approach). Incomplete fissure: hilum-first (anterior / fissureless), fissure stapled last."
+  },
+  {
+   "id": "lul:vats",
+   "op": "lul",
+   "kind": "approach",
+   "q": "Is there anything on this CT that would make a VATS left upper lobe lobectomy difficult, such as a central tumour, calcified nodes, pleural thickening or chest wall invasion?",
+   "focus": "lul",
+   "key": "Central tumour, calcified hilar nodes, chest wall invasion or a frozen pleura favour thoracotomy or a planned conversion."
+  },
+  {
+   "id": "lll:lobe",
+   "op": "lll",
+   "kind": "preop",
+   "q": "Describe the left lower lobe: is there any mass, nodule, consolidation, collapse or bronchiectasis?",
+   "focus": "lll",
+   "key": "Find the lesion and its relation to the fissure and the hilum: a central lesion or one crossing the fissure may need more than a lobectomy."
+  },
+  {
+   "id": "lll:hilar-nodes",
+   "op": "lll",
+   "kind": "preop",
+   "q": "Are the left hilar and interlobar lymph nodes enlarged or calcified?",
+   "focus": "ln-10l",
+   "key": "Calcified or matted hilar nodes (old TB is common in Kenya) stick to the artery and make VATS dissection dangerous: consider an open approach or proximal control first."
+  },
+  {
+   "id": "lll:fissure",
+   "op": "lll",
+   "kind": "approach",
+   "q": "Is the left oblique fissure complete on this CT?",
+   "focus": "fissure",
+   "key": "Complete fissure: artery-first in the fissure is easy (posterior / fissure-first approach). Incomplete fissure: hilum-first (anterior / fissureless), fissure stapled last."
+  },
+  {
+   "id": "lll:vats",
+   "op": "lll",
+   "kind": "approach",
+   "q": "Is there anything on this CT that would make a VATS left lower lobe lobectomy difficult, such as a central tumour, calcified nodes, pleural thickening or chest wall invasion?",
+   "focus": "lll",
+   "key": "Central tumour, calcified hilar nodes, chest wall invasion or a frozen pleura favour thoracotomy or a planned conversion."
+  },
+  {
+   "id": "rul:lobe",
+   "op": "rul",
+   "kind": "preop",
+   "q": "Describe the right upper lobe: is there any mass, nodule, consolidation, collapse or bronchiectasis?",
+   "focus": "rul",
+   "key": "Find the lesion and its relation to the fissure and the hilum: a central lesion or one crossing the fissure may need more than a lobectomy."
+  },
+  {
+   "id": "rul:hilar-nodes",
+   "op": "rul",
+   "kind": "preop",
+   "q": "Are the right hilar and interlobar lymph nodes enlarged or calcified?",
+   "focus": "ln-10r",
+   "key": "Calcified or matted hilar nodes (old TB is common in Kenya) stick to the artery and make VATS dissection dangerous: consider an open approach or proximal control first."
+  },
+  {
+   "id": "rul:fissure",
+   "op": "rul",
+   "kind": "approach",
+   "q": "Is the right oblique and horizontal fissure complete on this CT?",
+   "focus": "fissure-r",
+   "key": "Complete fissure: artery-first in the fissure is easy (posterior / fissure-first approach). Incomplete fissure: hilum-first (anterior / fissureless), fissure stapled last."
+  },
+  {
+   "id": "rul:vats",
+   "op": "rul",
+   "kind": "approach",
+   "q": "Is there anything on this CT that would make a VATS right upper lobe lobectomy difficult, such as a central tumour, calcified nodes, pleural thickening or chest wall invasion?",
+   "focus": "rul",
+   "key": "Central tumour, calcified hilar nodes, chest wall invasion or a frozen pleura favour thoracotomy or a planned conversion."
+  },
+  {
+   "id": "rml:lobe",
+   "op": "rml",
+   "kind": "preop",
+   "q": "Describe the right middle lobe: is there any mass, nodule, consolidation, collapse or bronchiectasis?",
+   "focus": "rml",
+   "key": "Find the lesion and its relation to the fissure and the hilum: a central lesion or one crossing the fissure may need more than a lobectomy."
+  },
+  {
+   "id": "rml:hilar-nodes",
+   "op": "rml",
+   "kind": "preop",
+   "q": "Are the right hilar and interlobar lymph nodes enlarged or calcified?",
+   "focus": "ln-10r",
+   "key": "Calcified or matted hilar nodes (old TB is common in Kenya) stick to the artery and make VATS dissection dangerous: consider an open approach or proximal control first."
+  },
+  {
+   "id": "rml:fissure",
+   "op": "rml",
+   "kind": "approach",
+   "q": "Is the right oblique and horizontal fissure complete on this CT?",
+   "focus": "fissure-r",
+   "key": "Complete fissure: artery-first in the fissure is easy (posterior / fissure-first approach). Incomplete fissure: hilum-first (anterior / fissureless), fissure stapled last."
+  },
+  {
+   "id": "rml:vats",
+   "op": "rml",
+   "kind": "approach",
+   "q": "Is there anything on this CT that would make a VATS right middle lobe lobectomy difficult, such as a central tumour, calcified nodes, pleural thickening or chest wall invasion?",
+   "focus": "rml",
+   "key": "Central tumour, calcified hilar nodes, chest wall invasion or a frozen pleura favour thoracotomy or a planned conversion."
+  },
+  {
+   "id": "rll:lobe",
+   "op": "rll",
+   "kind": "preop",
+   "q": "Describe the right lower lobe: is there any mass, nodule, consolidation, collapse or bronchiectasis?",
+   "focus": "rll",
+   "key": "Find the lesion and its relation to the fissure and the hilum: a central lesion or one crossing the fissure may need more than a lobectomy."
+  },
+  {
+   "id": "rll:hilar-nodes",
+   "op": "rll",
+   "kind": "preop",
+   "q": "Are the right hilar and interlobar lymph nodes enlarged or calcified?",
+   "focus": "ln-10r",
+   "key": "Calcified or matted hilar nodes (old TB is common in Kenya) stick to the artery and make VATS dissection dangerous: consider an open approach or proximal control first."
+  },
+  {
+   "id": "rll:fissure",
+   "op": "rll",
+   "kind": "approach",
+   "q": "Is the right oblique and horizontal fissure complete on this CT?",
+   "focus": "fissure-r",
+   "key": "Complete fissure: artery-first in the fissure is easy (posterior / fissure-first approach). Incomplete fissure: hilum-first (anterior / fissureless), fissure stapled last."
+  },
+  {
+   "id": "rll:vats",
+   "op": "rll",
+   "kind": "approach",
+   "q": "Is there anything on this CT that would make a VATS right lower lobe lobectomy difficult, such as a central tumour, calcified nodes, pleural thickening or chest wall invasion?",
+   "focus": "rll",
+   "key": "Central tumour, calcified hilar nodes, chest wall invasion or a frozen pleura favour thoracotomy or a planned conversion."
+  },
+  {
+   "id": "lul:arteries",
+   "op": "lul",
+   "kind": "anatomy",
+   "q": "How many arterial branches arise from the left pulmonary artery to the left upper lobe?",
+   "focus": "pa-left",
+   "key": "On this scan the atlas finds 4: Truncus anterior (A1+2a,b and A3), Posterior segmental artery 1 (A1+2c), Posterior segmental artery 2 (A1+2c), Lingular artery (A4+5). The usual range is 3 to 7; the truncus anterior comes first."
+  },
+  {
+   "id": "lul:veins",
+   "op": "lul",
+   "kind": "anatomy",
+   "q": "Are the left superior and inferior pulmonary veins separate, or is there a common trunk?",
+   "focus": "pv-superior",
+   "key": "Separate on this scan (two left atrial ostia). A common trunk is a recognised variant: never staple a \"superior vein\" until the inferior vein is seen."
+  },
+  {
+   "id": "lll:a6",
+   "op": "lll",
+   "kind": "anatomy",
+   "q": "Describe the superior segmental artery of the left lower lobe and its origin relative to the lingular artery.",
+   "focus": "pa-a6",
+   "key": "A6 leaves the back of the interlobar artery, usually at or above the level of the lingular artery on the front: take A6 and the basal trunk separately if the lingular artery is close."
+  },
+  {
+   "id": "rul:arteries",
+   "op": "rul",
+   "kind": "anatomy",
+   "q": "Describe the right pulmonary artery branches to the right upper lobe, including the truncus anterior and any posterior ascending artery.",
+   "focus": "rpa",
+   "key": "On this scan: Truncus anterior (right; A1 + A3), Ascending anterior artery (A3), Ascending posterior artery (A2). The truncus anterior is first and short; the posterior ascending artery (A2) arises in the fissure."
+  },
+  {
+   "id": "rul:azygos",
+   "op": "rul",
+   "kind": "anatomy",
+   "q": "Describe the azygos vein and its relation to the right main bronchus.",
+   "focus": "azygos",
+   "key": "The azygos arches over the right main bronchus into the SVC: it is the roof of the dissection for the RUL bronchus and station 4R."
+  },
+  {
+   "id": "rml:veins",
+   "op": "rml",
+   "kind": "anatomy",
+   "q": "Does the middle lobe vein drain into the right superior pulmonary vein?",
+   "focus": "rpv-ml",
+   "key": "Usually yes, as its lowest tributary: preserve the upper lobe veins above it."
+  },
+  {
+   "id": "rll:a6",
+   "op": "rll",
+   "kind": "anatomy",
+   "q": "Where does the superior segmental artery of the right lower lobe arise relative to the middle lobe artery?",
+   "focus": "rpa-a6",
+   "key": "A6 often arises opposite or above the middle lobe artery: a single staple across the \"basal trunk plus A6\" can take the middle lobe artery."
+  },
+  {
+   "id": "pnl:central",
+   "op": "pnl",
+   "kind": "preop",
+   "q": "Is there a central left lung tumour involving the main bronchus, main pulmonary artery or pulmonary veins?",
+   "focus": "pa-left",
+   "key": "Pneumonectomy is for central disease a lobectomy or sleeve cannot clear. Check the length of main bronchus and artery free of tumour."
+  },
+  {
+   "id": "pnl:other-lung",
+   "op": "pnl",
+   "kind": "preop",
+   "q": "Is the right lung normal? Any nodules, emphysema or fibrosis?",
+   "focus": "lung-centre",
+   "key": "After pneumonectomy the other lung is all there is: any disease there may rule the operation out."
+  },
+  {
+   "id": "pnl:mainpa",
+   "op": "pnl",
+   "kind": "anatomy",
+   "q": "Describe the left main pulmonary artery: its length before the first branch and its diameter.",
+   "focus": "pa-left",
+   "key": "The right main PA is longer (runs behind the SVC); the left is short: the truncus anterior comes off early, so clamp-space on the left is tight."
+  },
+  {
+   "id": "pnl:pericardium",
+   "op": "pnl",
+   "kind": "approach",
+   "q": "Is there tumour near the pericardium or left atrium on the left side that would need an intrapericardial approach?",
+   "focus": "heart",
+   "key": "Tumour at the vein ostia or on the proximal PA: open the pericardium and control the vessels inside it."
+  },
+  {
+   "id": "pnr:central",
+   "op": "pnr",
+   "kind": "preop",
+   "q": "Is there a central right lung tumour involving the main bronchus, main pulmonary artery or pulmonary veins?",
+   "focus": "rpa",
+   "key": "Pneumonectomy is for central disease a lobectomy or sleeve cannot clear. Check the length of main bronchus and artery free of tumour."
+  },
+  {
+   "id": "pnr:other-lung",
+   "op": "pnr",
+   "kind": "preop",
+   "q": "Is the left lung normal? Any nodules, emphysema or fibrosis?",
+   "focus": "lung-centre",
+   "key": "After pneumonectomy the other lung is all there is: any disease there may rule the operation out."
+  },
+  {
+   "id": "pnr:mainpa",
+   "op": "pnr",
+   "kind": "anatomy",
+   "q": "Describe the right main pulmonary artery: its length before the first branch and its diameter.",
+   "focus": "rpa",
+   "key": "The right main PA is longer (runs behind the SVC); the left is short: the truncus anterior comes off early, so clamp-space on the left is tight."
+  },
+  {
+   "id": "pnr:pericardium",
+   "op": "pnr",
+   "kind": "approach",
+   "q": "Is there tumour near the pericardium or left atrium on the right side that would need an intrapericardial approach?",
+   "focus": "heart",
+   "key": "Tumour at the vein ostia or on the proximal PA: open the pericardium and control the vessels inside it."
+  },
+  {
+   "id": "seg-lingula:lesion",
+   "op": "seg-lingula",
+   "kind": "preop",
+   "q": "Is there a nodule in the lingula? What is its size and distance from the intersegmental plane?",
+   "focus": "seg-lingula",
+   "key": "Segmentectomy suits a peripheral nodule of 2 cm or less with a margin at least equal to its diameter."
+  },
+  {
+   "id": "seg-lul-updiv:lesion",
+   "op": "seg-lul-updiv",
+   "kind": "preop",
+   "q": "Is there a nodule in the apicoposterior or anterior segments of the left upper lobe? Size and location?",
+   "focus": "seg-lul-upper",
+   "key": "Upper division segmentectomy: lesion in S1+2 or S3, small and peripheral, margin clear of the lingula."
+  },
+  {
+   "id": "seg-s6:lesion",
+   "op": "seg-s6",
+   "kind": "preop",
+   "q": "Is there a nodule in the superior segment of the left lower lobe? Size and location?",
+   "focus": "seg-s6",
+   "key": "S6 segmentectomy: the superior segment has its own artery, vein and bronchus and a relatively flat plane."
+  },
+  {
+   "id": "seg-lingula:bronchus",
+   "op": "seg-lingula",
+   "kind": "anatomy",
+   "q": "Describe the segmental bronchi of the left lung and the division of the left upper lobe bronchus.",
+   "focus": "br-lul",
+   "key": "The left upper lobe bronchus divides into an upper division (B1+2, B3) and the lingular bronchus (B4, B5); B6 leaves the back of the lower lobe bronchus."
+  },
+  {
+   "id": "seg-lul-updiv:bronchus",
+   "op": "seg-lul-updiv",
+   "kind": "anatomy",
+   "q": "Describe the segmental bronchi of the left lung and the division of the left upper lobe bronchus.",
+   "focus": "br-lul",
+   "key": "The left upper lobe bronchus divides into an upper division (B1+2, B3) and the lingular bronchus (B4, B5); B6 leaves the back of the lower lobe bronchus."
+  },
+  {
+   "id": "seg-s6:bronchus",
+   "op": "seg-s6",
+   "kind": "anatomy",
+   "q": "Describe the segmental bronchi of the left lung and the division of the left upper lobe bronchus.",
+   "focus": "br-lul",
+   "key": "The left upper lobe bronchus divides into an upper division (B1+2, B3) and the lingular bronchus (B4, B5); B6 leaves the back of the lower lobe bronchus."
+  },
+  {
+   "id": "rt:tamponade",
+   "op": "rt",
+   "kind": "preop",
+   "q": "Is there a pericardial effusion or haemopericardium?",
+   "focus": "heart",
+   "key": "Fluid in the pericardium in a shocked patient with a precordial wound is tamponade until proved otherwise: thoracotomy or sternotomy, not a needle."
+  },
+  {
+   "id": "rt:haemothorax",
+   "op": "rt",
+   "kind": "preop",
+   "q": "Is there a haemothorax or pneumothorax? Which side and roughly how large?",
+   "focus": "lung-centre",
+   "key": "Operate for about 1500 mL on drain insertion, or 200 mL an hour for several hours, or instability."
+  },
+  {
+   "id": "rt:aorta",
+   "op": "rt",
+   "kind": "anatomy",
+   "q": "Describe the descending thoracic aorta and the oesophagus just above the diaphragm and their relationship.",
+   "focus": "aorta-clamp",
+   "key": "Low in the chest the oesophagus lies anterior and to the right of the aorta: separate them with the fingers before clamping."
+  },
+  {
+   "id": "clamshell:mammary",
+   "op": "clamshell",
+   "kind": "anatomy",
+   "q": "Identify the internal mammary (internal thoracic) arteries and their distance from the sternal edge.",
+   "focus": "ima-l",
+   "key": "About 1 to 2 cm from the sternal edge behind the costal cartilages: divided in a clamshell, ligate both ends."
+  },
+  {
+   "id": "clamshell:mediastinum",
+   "op": "clamshell",
+   "kind": "preop",
+   "q": "Is there a mediastinal haematoma or any sign of injury to the aorta or great vessels?",
+   "focus": "aorta",
+   "key": "Mediastinal blood around the arch suggests great vessel injury: a clamshell plus upper sternal extension reaches the arch branches."
+  },
+  {
+   "id": "cardio:pericardium",
+   "op": "cardio",
+   "kind": "preop",
+   "q": "Is there pericardial fluid, and which cardiac chamber lies directly behind the sternum?",
+   "focus": "heart",
+   "key": "The right ventricle is the most anterior chamber: the one most often hit by a precordial stab."
+  },
+  {
+   "id": "cardio:coronary",
+   "op": "cardio",
+   "kind": "anatomy",
+   "q": "Describe the course of the left anterior descending and right coronary arteries on this CT.",
+   "focus": "heart",
+   "key": "LAD in the anterior interventricular groove, RCA in the right atrioventricular groove: pass mattress sutures beneath them, never tie them off."
+  },
+  {
+   "id": "tract:contusion",
+   "op": "tract",
+   "kind": "preop",
+   "q": "Is there pulmonary contusion, laceration or a pneumatocoele in the left lung?",
+   "focus": "lll",
+   "key": "A tract away from the hilum: tractotomy. Near the hilum: control the hilum and consider anatomical resection."
+  },
+  {
+   "id": "hilar:hilum",
+   "op": "hilar",
+   "kind": "anatomy",
+   "q": "Describe the arrangement of the left pulmonary artery, pulmonary veins and main bronchus at the hilum.",
+   "focus": "pa-left",
+   "key": "Artery highest, veins anterior and lowest, bronchus behind: a clamp across the whole hilum takes all three; the inferior ligament must be free first."
+  },
+  {
+   "id": "hilar:air",
+   "op": "hilar",
+   "kind": "preop",
+   "q": "Is there air in the cardiac chambers, aorta or pulmonary veins?",
+   "focus": "heart",
+   "key": "Air in the left heart or coronaries after lung injury is systemic air embolism: clamp or twist the hilum, head down, aspirate the left ventricle and aorta."
+  },
+  {
+   "id": "thymectomy:mass",
+   "op": "thymectomy",
+   "kind": "preop",
+   "q": "Is there an anterior mediastinal mass? Describe its size, margins, and any invasion of the pericardium, great vessels or lung.",
+   "focus": "thymus",
+   "key": "Thymoma: a well-defined anterior mediastinal mass; loss of fat planes with the great vessels or pericardium suggests invasion (Masaoka-Koga III)."
+  },
+  {
+   "id": "thymectomy:innominate",
+   "op": "thymectomy",
+   "kind": "anatomy",
+   "q": "Describe the left brachiocephalic (innominate) vein and its relation to the thymus.",
+   "focus": "lbcv",
+   "key": "It crosses behind the upper thymus from left to right to join the SVC; the thymic veins drain into its back."
+  },
+  {
+   "id": "thymectomy:side",
+   "op": "thymectomy",
+   "kind": "approach",
+   "q": "Is the anterior mediastinal tissue predominantly to the right or the left of the midline?",
+   "focus": "thymus",
+   "key": "Right VATS gives the best view of the SVC and right phrenic; left-sided disease or the aortopulmonary window favours left VATS, subxiphoid or sternotomy."
+  },
+  {
+   "id": "oesophagectomy:tumour",
+   "op": "oesophagectomy",
+   "kind": "preop",
+   "q": "Is there oesophageal wall thickening or a mass? Give its level, length and relation to the carina, aorta and left main bronchus.",
+   "focus": "esophagus",
+   "key": "Level decides the operation: upper third (above the carina) favours McKeown with a neck anastomosis; lower third and GE junction suit Ivor Lewis or transhiatal."
+  },
+  {
+   "id": "oesophagectomy:nodes",
+   "op": "oesophagectomy",
+   "kind": "preop",
+   "q": "Are there enlarged paraoesophageal, subcarinal, coeliac or left gastric lymph nodes?",
+   "focus": "esophagus",
+   "key": "Coeliac or distant nodes change staging; subcarinal and paraoesophageal nodes come out with a transthoracic en bloc resection."
+  },
+  {
+   "id": "oesophagectomy:stomach",
+   "op": "oesophagectomy",
+   "kind": "anatomy",
+   "q": "Describe the stomach and whether it is suitable as a conduit (any mass, previous surgery or hiatus hernia).",
+   "focus": "stomach",
+   "key": "A healthy stomach with an intact right gastroepiploic arcade makes the conduit; if not, colon or jejunum."
+  },
+  {
+   "id": "duct:chyle",
+   "op": "duct",
+   "kind": "preop",
+   "q": "Is there a pleural effusion, and on which side?",
+   "focus": "thoracic-duct",
+   "key": "A duct injury below T5 gives a right chylothorax, above it a left one; the ligation is still done low on the right."
+  },
+  {
+   "id": "duct:retrocrural",
+   "op": "duct",
+   "kind": "anatomy",
+   "q": "Describe the space between the descending aorta and the azygos vein just above the diaphragm.",
+   "focus": "thoracic-duct",
+   "key": "The thoracic duct runs here on the front of the vertebral bodies: the target of mass ligation."
+  },
+  {
+   "id": "empyema:collection",
+   "op": "empyema",
+   "kind": "preop",
+   "q": "Is there a pleural collection? Is it loculated, is there pleural thickening or enhancement (split pleura sign), and is the underlying lung collapsed?",
+   "focus": "empyema-l",
+   "key": "Split pleura sign and loculation mean empyema; thick pleura with a trapped lung means stage III and decortication."
+  },
+  {
+   "id": "empyema:lung",
+   "op": "empyema",
+   "kind": "preop",
+   "q": "Is there consolidation, abscess or a bronchopleural fistula in the adjacent lung?",
+   "focus": "lll",
+   "key": "A lung abscess or fistula changes the operation (resection, muscle flap) and the prognosis."
+  }
+ ]
+}
