@@ -293,3 +293,4 @@ body.stage-light #hover { color: #33505e; }
 .pg-bar { height: 6px; background: var(--raised); display: block; } .pg-bar i { display: block; height: 100%; background: var(--work); }
 .pg-num { color: var(--muted); font-size: 12px; }
 @media (max-width: 700px) { .search { width: 150px; } .pg-row { grid-template-columns: 1fr 70px; } .pg-row .pg-num:last-child { display: none; } }
+.sp-select { max-width: 150px; }

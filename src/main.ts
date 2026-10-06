@@ -214,13 +214,28 @@ function mountViews(): void {
 }
 
 // ------------------------------------------------------------------ top bar
+const SPECIALTIES = ['Thoracic', 'Cardiac', 'Vascular', 'CTICU protocol'];
+const SP_OF: Record<string, string> = { 'Cardiac': 'Cardiac', 'Congenital cardiac': 'Cardiac', 'Vascular': 'Vascular', 'CTICU protocol': 'CTICU protocol' };
+function specialtyOf(p?: Procedure): string | undefined { return p ? (SP_OF[p.group ?? ''] ?? 'Thoracic') : undefined; }
+let refillOps: ((sp: string) => void) | undefined;
 function buildTopbar(): void {
   const bar = $('#topbar');
   // operations (each with its approaches), grouped in one menu, and the free anatomy explorer
+  // two menus: the specialty (thoracic, cardiac, vascular, CTICU), then its operations grouped by subgroup
   const opSel = h('select', { id: 'op-select', class: 'op-select', 'aria-label': 'Operation', onchange: (e: Event) => pickOp((e.target as HTMLSelectElement).value) }) as HTMLSelectElement;
-  const groups = new Map<string, Map<string, string>>();
-  for (const p of Object.values(procedures)) { const g = p.group ?? 'Operations'; if (!groups.has(g)) groups.set(g, new Map()); groups.get(g)!.set(p.op, p.opName); }
-  for (const [g, ops] of groups) { const og = h('optgroup', { label: g }); for (const [op, name] of ops) og.append(h('option', { value: op }, name)); opSel.append(og); }
+  const spSel = h('select', { id: 'sp-select', class: 'op-select sp-select', 'aria-label': 'Specialty', onchange: (e: Event) => {
+    const sp = (e.target as HTMLSelectElement).value; fillOps(sp);
+    const first = Object.values(procedures).find((p) => specialtyOf(p) === sp); if (first) pickOp(first.op);
+  } }) as HTMLSelectElement;
+  for (const sp of SPECIALTIES) if (Object.values(procedures).some((p) => specialtyOf(p) === sp)) spSel.append(h('option', { value: sp }, sp));
+  const fillOps = (sp: string) => {
+    opSel.replaceChildren();
+    const groups = new Map<string, Map<string, string>>();
+    for (const p of Object.values(procedures)) { if (specialtyOf(p) !== sp) continue; const g = p.group ?? 'Operations'; if (!groups.has(g)) groups.set(g, new Map()); groups.get(g)!.set(p.op, p.opName); }
+    for (const [g, ops] of groups) { const og = h('optgroup', { label: g }); for (const [op, name] of ops) og.append(h('option', { value: op }, name)); opSel.append(og); }
+  };
+  fillOps(specialtyOf(procedures[state.approach]) ?? SPECIALTIES[0]!);
+  refillOps = fillOps;
   const modes = h('div', { class: 'seg', 'aria-label': 'Mode' },
     h('button', { 'data-mode': 'procedure', onclick: () => pickOp(opSel.value) }, 'Operate'),
     h('button', { 'data-mode': 'explore', onclick: () => setMode('explore') }, 'Explore anatomy'));
@@ -230,7 +245,7 @@ function buildTopbar(): void {
     h('button', { 'data-src': 'reference', onclick: () => { state.source = 'reference'; state.aligning = false; render(); } }, 'Reference CT'),
     h('button', { 'data-src': 'upload', id: 'src-upload', onclick: () => { if (upVol) { state.source = 'upload'; render(); } else $('#file').click(); } }, 'Your CT'));
   const up = h('label', { class: 'btn', for: 'file' }, 'Load DICOM…');
-  bar.append(h('div', { class: 'brand' }, h('b', {}, 'COVA'), h('span', {}, 'Cardiothoracic Operative and Vascular Atlas')), modes, opSel, searchBox(), approach, h('div', { class: 'spacer' }),
+  bar.append(h('div', { class: 'brand' }, h('b', {}, 'COVA'), h('span', {}, 'Cardiothoracic Operative and Vascular Atlas')), modes, spSel, opSel, searchBox(), approach, h('div', { class: 'spacer' }),
     h('button', { class: 'btn', onclick: showProgress, title: 'Your progress on this device' }, 'Progress'), src, up);
 }
 
@@ -410,7 +425,11 @@ function render(): void {
   document.body.classList.toggle('proc', state.mode === 'procedure');
   document.querySelectorAll<HTMLElement>('[data-mode]').forEach((b) => b.setAttribute('aria-pressed', String(b.dataset['mode'] === state.mode)));
   document.querySelectorAll<HTMLElement>('[data-approach]').forEach((b) => { b.setAttribute('aria-pressed', String(b.dataset['approach'] === state.approach)); b.hidden = b.dataset['of'] !== procedures[state.approach]?.op; });
-  const sel = document.getElementById('op-select') as HTMLSelectElement | null; if (sel) { sel.value = procedures[state.approach]?.op ?? ''; sel.disabled = state.mode !== 'procedure'; }
+  const spSel = document.getElementById('sp-select') as HTMLSelectElement | null; const cur = procedures[state.approach];
+  if (spSel && cur) { const sp = specialtyOf(cur)!; if (spSel.value !== sp) { spSel.value = sp; refillOps?.(sp); } spSel.disabled = state.mode !== 'procedure'; }
+  const sel = document.getElementById('op-select') as HTMLSelectElement | null;
+  if (sel && cur && ![...sel.options].some((o) => o.value === cur.op)) refillOps?.(specialtyOf(cur)!);
+  if (sel) { sel.value = cur?.op ?? ''; sel.disabled = state.mode !== 'procedure'; }
   document.querySelectorAll<HTMLElement>('[data-plane]').forEach((b) => b.setAttribute('aria-pressed', String(b.dataset['plane'] === state.plane)));
   document.querySelectorAll<HTMLElement>('[data-window]').forEach((b) => b.setAttribute('aria-pressed', String(b.dataset['window'] === state.window)));
   document.querySelectorAll<HTMLElement>('[data-src]').forEach((b) => b.setAttribute('aria-pressed', String(b.dataset['src'] === state.source)));
