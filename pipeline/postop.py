@@ -458,7 +458,7 @@ OPS.update({
                                     serious=['Recurrent laryngeal nerve injury (hoarse voice, feeding problems)', 'Bleeding from a torn duct', 'Chylothorax', 'Ligation of the wrong vessel (rare)', 'Death (rare outside prematurity)'],
                                     specific=['Small risk of the duct reopening after ligation', 'In preterm babies, unstable blood pressure and breathing in the first day'],
                                     alt=['Device closure', 'In preterms: ibuprofen or paracetamol', 'No closure: heart failure, pulmonary hypertension, endarteritis'], kenya=['Device availability and waiting times']),
-                icu=['Blood pressure: the diastolic rises; watch for hypertension and, in preterms, post-ligation instability (low BP, worse oxygenation)', 'Voice and swallowing: RLN injury', 'Chest drain: blood, air or chyle (milky after feeds)', PAED],
+                icu=['Preterms: <b>post-ligation cardiac syndrome</b> at 6–12 h (low BP, worse oxygenation): echo LV output within 1 h; milrinone for low output, not escalating vasoconstrictors', 'Older children: the diastolic pressure rises; treat hypertension', 'Voice and swallowing: RLN injury', 'Chest drain: blood, air or chyle (milky after feeds)', PAED],
                 q1=('Which nerve injury should be discussed before PDA ligation?', 'The left recurrent laryngeal nerve (hoarse voice, swallowing)',
                     'It hooks under the duct and is at risk at every ligation.', 'The phrenic nerve only', 'The long thoracic nerve', 'The hypoglossal nerve'),
                 q2=('Day 2 after PDA ligation, the drain turns milky after feeds. Diagnosis?', 'Chylothorax',

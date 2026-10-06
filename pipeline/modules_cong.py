@@ -30,9 +30,17 @@ KNH = {'title': 'Osano et al. One-year outcomes and intervention waiting time of
 ASD_SRC = [ESC, ESC_ACC, TSRA, KNH,
            {'title': 'Haleem SM, Kanmanthareddy A. Catheter management of atrial septal defect. StatPearls, updated 2025', 'url': 'https://www.ncbi.nlm.nih.gov/books/NBK536908/'}]
 VSD_SRC = [ESC, ESC_ACC, TSRA, KNH,
+           {'title': 'Society of Thoracic Surgeons. Ventricular septal defects (VSD): STS Cardiothoracic Surgery Consult (types 1-4, size by aortic annulus, indications)', 'url': 'https://consult.sts.org/sts/view/Cardiac-and-Congenital/1864080/all/Ventricular_Septal_Defects__VSD_'},
+           {'title': 'Jacobs JP, et al. Congenital Heart Surgery Nomenclature and Database Project: ventricular septal defect. Ann Thorac Surg 2000;69:S25-35', 'url': 'https://www.sciencedirect.com/science/article/abs/pii/S0003497599012709'},
+           {'title': 'Lopez L, et al. Classification of ventricular septal defects for ICD-11. Ann Thorac Surg 2018', 'url': 'https://ipccc.net/wp-content/uploads/2024/01/2018-11-ANNALS-Lopez-2018-VSD-Classification.pdf'},
+           {'title': 'WFSA Anaesthesia Tutorial of the Week 316: ventricular septal defects (size relative to the aortic annulus)', 'url': 'https://resources.wfsahq.org/wp-content/uploads/316_english.pdf'},
            {'title': 'Azab S, et al. Permanent complete heart block following surgical closure of isolated ventricular septal defect. Egypt J Chest Dis Tuberc 2013;62:529-33', 'url': 'https://www.sciencedirect.com/science/article/pii/S0422763813000332'},
            {'title': 'Yoneyama F, et al. Conduction disorders after perimembranous ventricular septal defect closure: continuous versus interrupted suturing. Eur J Cardiothorac Surg 2022;62:ezab407', 'url': 'https://academic.oup.com/ejcts/article/62/1/ezab407/6373863'}]
 PDA_SRC = [ESC, ESC_ACC, TSRA, KNH,
+           {'title': 'Krichenko A, et al. Angiographic classification of the isolated, persistently patent ductus arteriosus. Am J Cardiol 1989 (summary: Pediatric Echocardiography library)', 'url': 'https://pedecho.org/library/chd/pda'},
+           {'title': 'Fernando R, et al. PDA classification based on size and haemodynamic significance (table), 2013', 'url': 'https://www.researchgate.net/figure/Patent-ductus-arteriosus-PDA-classification-based-on-size-and-hemodynamic-significance_tbl2_259111641'},
+           {'title': 'Sathanandam S, et al. Scoring system for post-ligation cardiac syndrome after transcatheter and surgical PDA closure in extremely low birthweight infants. Circulation 2019', 'url': 'https://www.researchgate.net/publication/342702564_Scoring_System_for_Post_Ligation_Cardiac_Syndrome_and_Its_Utility_After_Transcatheter_and_Surgical_Patent_Ductus_Arteriosus_Ligation_in_Extremely_Low_Birthweight_Infants'},
+           {'title': 'Surgical management of PDA in the very preterm infant and postligation cardiac compromise. Thoracic Key', 'url': 'https://thoracickey.com/surgical-management-of-patent-ductus-arteriosus-in-the-very-preterm-infant-and-postligation-cardiac-compromise/'},
            {'title': 'Patent ductus arteriosus: surgical technique. Thoracic Key (from a cardiac surgery textbook)', 'url': 'https://thoracickey.com/patent-ductus-arteriosus/'},
            {'title': 'Subbian S, Winn MMA, Kiraly L. Surgical ligation of patent ductus arteriosus in pre-term infants: a narrative review. Pediatr Med 2024', 'url': 'https://pm.amegroups.org/article/view/7773/html'}]
 COA_SRC = [ESC, ESC_REV, TSRA, KNH,
@@ -213,9 +221,35 @@ def add(procs, ask, has, LM, S):
              'Echo: <b>perimembranous VSD 9 mm</b>, unrestrictive (low gradient), dilated LA and LV, no aortic cusp prolapse. Systolic PA pressure near systemic, but the shunt is <b>left to right</b> throughout and he is not cyanosed.</p>',
         quiz=ask('What next?', 'Surgical closure soon, on bypass',
                  'Heart failure and failure to thrive despite medical therapy with a large left-to-right shunt: close it in infancy, before the pulmonary vessels remodel.', 'Wait for spontaneous closure', 'Pulmonary artery band as routine', 'Increase diuretics and review at 2 years'))
+    LOCS = hv(['vsd-loc-1', 'vsd-loc-3', 'vsd-loc-4', 'vsd-loc-g'])
+    types = step('vsd-types', 'Anatomy', 'Five types of VSD: where they sit',
+        tbl(['Type', 'Other names', 'Where', 'Conduction tissue', 'Usual surgical route'],
+            ['<b>1. Subarterial</b>', 'Outlet, supracristal, conal, doubly committed juxta-arterial', 'Under the pulmonary and aortic valves; roof is the two valves', 'Away from the defect', 'Through the pulmonary trunk (or RV outflow); watch aortic cusp prolapse'],
+            ['<b>2. Perimembranous</b>', 'Paramembranous, conoventricular, membranous', 'Membranous septum, under the septal tricuspid leaflet and the right/non-coronary cusps', '<b>Posteroinferior rim</b>, left side of the septum', 'Right atrium, through the tricuspid valve'],
+            ['<b>3. Inlet</b>', 'AV canal type', 'Under the septal tricuspid leaflet, behind the perimembranous zone; often with AV septal defect', 'Inferior and posterior (from a posterior AV node)', 'Right atrium, through the tricuspid valve'],
+            ['<b>4. Muscular</b>', 'Trabecular', 'Wholly surrounded by muscle: mid, apical, anterior, posterior; often multiple ("Swiss cheese")', 'Usually remote', 'Right atrium; apical ones by LV apex, device, or hybrid'],
+            ['<b>Gerbode</b>', 'LV to right atrial communication', 'Atrioventricular part of the membranous septum, above the tricuspid hinge', 'Close by: the AV node region', 'Right atrium'])
+        + '<p>Type 2 is about 80% of operated defects. Muscular defects are common at birth (about 20% overall) but many close on their own, so fewer reach surgery.</p>'
+        + ev('STS Cardiothoracic Surgery Consult: types 1–4; operated proportions type 2 80%, type 1 7%, type 4 4%, type 3 2%, multiple 5%; conduction in perimembranous defects along the posteroinferior rim, on the left side. Congenital Heart Surgery Nomenclature project (Jacobs 2000) adds the Gerbode (LV–RA) type. ICD-11 (Lopez 2018) renames them outlet, central perimembranous, inlet and trabecular muscular.'),
+        vsd_v(dist=150), show=[*CH, 'vsd-defect', *LOCS, *TV, *CUSPS, 'his-bundle'], highlight=['vsd-defect', *LOCS], danger=hv(['his-bundle']),
+        labels=['vsd-defect', *LOCS], opacity={**VOP, 'tv-septal': 0.3, 'tv-anterior': 0.3, 'tv-posterior': 0.3}, spin=True, ct=VC, after=True,
+        quiz=ask('Which VSD type is most likely to cause aortic regurgitation?', 'Type 1, subarterial (doubly committed)',
+                 'The unsupported right coronary cusp prolapses into the defect; close it even when the shunt is small.', 'Type 4, muscular', 'Type 3, inlet', 'Gerbode defect'))
+    size = step('vsd-size', 'Anatomy', 'Size, restriction and what the heart shows',
+        tbl(['Size', 'Defect vs aortic annulus', 'Physiology', 'Qp:Qs', 'Echo / clinical'],
+            ['<b>Small</b>', 'Under 1/3', 'Restrictive: high LV–RV gradient, normal RV pressure', 'Under 1.5', 'Loud murmur, normal LA and LV size'],
+            ['<b>Moderate</b>', '1/3 to 2/3', 'Partly restrictive', '1.5–3', '<b>LA and LV dilated</b>, RV pressure mildly raised'],
+            ['<b>Large</b>', 'Over 2/3 (about the size of the annulus)', 'Non-restrictive: LV and RV pressures equal', 'Over 3 (falls as PVR rises)', 'Heart failure, failure to thrive, pulmonary hypertension'])
+        + '<p><b>LA and LV dilatation are the echo signature of a haemodynamically important shunt</b>: the shunted blood returns through the lungs to the left heart. A restrictive defect with normal left heart size is followed, not closed.</p>'
+        + '<p>Beware a large defect with a <b>small heart and little murmur</b> in an older child: the shunt has fallen because pulmonary resistance has risen.</p>'
+        + ev('Size relative to the aortic annulus: WFSA tutorial 316 (Rolo 2015). Qp:Qs bands and LA/LV enlargement as evidence of a significant shunt: STS Consult.'),
+        vsd_v(), show=[*CH, *VSD], highlight=['vsd-defect'], labels=['vsd-defect', 'la', 'lv'], opacity={**VOP, 'la': 0.35, 'lv': 0.3}, ct=VC, after=True,
+        quiz=ask('A 6-year-old with a perimembranous VSD has a loud murmur, LV–RV gradient of 80 mmHg and normal LA and LV size. Plan?', 'Follow up; no closure (small restrictive defect)',
+                 'No left heart volume load and normal RV pressure: watch for aortic cusp prolapse and endocarditis.', 'Close on bypass now', 'PA banding', 'Device closure now'))
     dec = step('vsd-decision', 'Decision', 'Who needs closure, and how',
         tbl(['Situation', 'Plan'],
             ['Large VSD, heart failure, poor growth', 'Surgical closure in infancy (usually within the first 6 months to a year); PA banding only for multiple muscular defects or a very unwell infant'],
+            ['<b>LA and LV dilatation</b> (left heart volume load), Qp:Qs 1.5 or more', 'Close: the key echo indication at any age, provided PVR allows'],
             ['Small restrictive VSD, normal heart size', 'Observe; endocarditis prevention (dental care)'],
             ['Adult or older child, LV volume overload', 'Close if PVR is under 3 WU (I) or 3–5 WU (IIa); PVR 5 WU or more: individual decision in an expert centre (IIb)'],
             ['Outlet VSD with aortic cusp prolapse or AR', 'Close even when the shunt is small, to protect the valve'],
@@ -242,7 +276,7 @@ def add(procs, ask, has, LM, S):
                  'The bundle penetrates at the apex of Koch\'s triangle and runs along the posteroinferior margin of the defect.', 'The superior rim, under the aortic valve', 'The anterior muscular rim', 'Only in muscular VSDs'))
     proc('vsd-pm', 'vsd', 'Ventricular septal defect closure', 'Perimembranous VSD: transatrial patch closure',
          'Closure of a large perimembranous VSD through the right atrium and tricuspid valve: timing, operability (PVR), the His bundle, the aortic valve, patch technique.',
-         [('Patho', 'other', [patho]), ('Anatomy', 'other', [anat]), ('Case', 'other', [case]), ('Decide', 'other', [dec]),
+         [('Patho', 'other', [patho]), ('Types', 'other', [types]), ('Size', 'other', [size]), ('Anatomy', 'other', [anat]), ('Case', 'other', [case]), ('Decide', 'other', [dec]),
           ('Sternotomy', 'other', bypass('vsd', 'a VSD')[:1]), ('Bypass', 'other', bypass('vsd', 'a VSD')[1:3]), ('Atrium', 'other', bypass('vsd', 'a VSD')[3:]),
           ('Expose', 'other', [expose]), ('Patch', 'other', [patch]),
           ('Close', 'other', finish('vsd', '<p>Check the rhythm off bypass: <b>complete heart block</b> needs temporary pacing; if it persists beyond about 7–10 days, a permanent pacemaker.</p>', ['vsd-patch', 'vsd-suture']))], VSD_SRC)
@@ -334,7 +368,44 @@ def add(procs, ask, has, LM, S):
         + ev('Thoracic Key: two heavy Ethibond sutures; finer suture can cut through a friable duct; division between clamps and oversewing for others. TSRA primer: a clip over the aortic end, or double or triple ligation with 3-0 non-absorbable suture; older children divided between ligatures.'),
         left(DC, 75), show=[*LCH, *PDA, 'pda-ligatures'], highlight=['pda-ligatures'], danger=hv(['n-rln']), labels=['pda-ligatures', 'pda', 'n-rln'], opacity=THX_OP, ct=DC,
         action={'kind': 'reveal', 'label': 'Tie the duct', 'port': 'thor4-l', 'ids': ['pda-ligatures']})
-    teach = [('Patho', 'other', [patho]), ('Anatomy', 'other', [anat]), ('Case', 'other', [case]), ('Decide', 'other', [dec])]
+    KT = hv([f'pda-type-{k}' for k in 'abcde'])
+    lineup = (P('pda-type-a') + P('pda-type-e')) / 2
+    ptypes = step('pda-types', 'Anatomy', 'Morphology: Krichenko types A to E',
+        tbl(['Type', 'Shape', 'What it means for the surgeon'],
+            ['<b>A, conical</b>', 'Wide aortic ampulla, narrowest at the pulmonary end; the commonest', 'Room for two ligatures; ideal for a device (it seats in the ampulla)'],
+            ['<b>B, window</b>', 'Very short and wide; the aorta almost touches the PA', '<b>No length to tie</b>: a ligature can tear it or cut through. Divide between clamps and oversew; in adults, often bypass. Hard for devices'],
+            ['<b>C, tubular</b>', 'Long, no constriction', 'Easy to encircle and ligate; devices may slip'],
+            ['<b>D, complex</b>', 'Several constrictions', 'Measure carefully; tie or clip at the longest straight segment'],
+            ['<b>E, elongated</b>', 'Long, constriction far from the aortic end (on lateral angiography)', 'Plenty of length to ligate; device sizing needs care'])
+        + '<p>The classification comes from lateral angiography, but echo and CT show the same shapes. <b>Measure the narrowest point and the length before choosing ligation, division, clip or device.</b></p>'
+        + ev('Krichenko et al., Am J Cardiol 1989: types A (conical), B (window), C (tubular), D (complex), E (elongated), described for planning catheter occlusion.'),
+        view(lineup, (-1, 0, 0.12), 280), show=KT, highlight=KT, labels=KT, opacity={}, after=True,
+        quiz=ask('Which duct is most dangerous to ligate with simple ties?', 'Type B, window: very short and wide',
+                 'There is no length for two ligatures; division between clamps (or bypass in adults) is safer.', 'Type A, conical', 'Type C, tubular', 'Type E, elongated'))
+    psize = step('pda-size', 'Anatomy', 'Size and haemodynamic significance',
+        tbl(['Grade', 'Narrowest diameter (child or adult)', 'Clinical picture'],
+            ['<b>Silent</b>', 'Tiny; found only on echo', 'No murmur, no volume load'],
+            ['<b>Very small</b>', 'Under 1.5 mm', 'Often no symptoms'],
+            ['<b>Small</b>', '1.5–3 mm', 'Continuous murmur, normal heart size'],
+            ['<b>Moderate</b>', 'Over 3 to 5 mm', '<b>LA and LV dilated</b>, wide pulse pressure; may be symptomatic'],
+            ['<b>Large</b>', 'Over 5 mm', 'Heart failure, poor growth, pulmonary hypertension; risk of pulmonary vascular disease'])
+        + '<p>In a preterm baby millimetres matter less than <b>haemodynamic significance</b>: the ratio of the duct to the baby\'s size, left heart dilatation, flow reversal in the descending aorta, and the clinical state.</p>'
+        + '<p>As with a VSD, <b>LA and LV dilatation</b> is the sign that the shunt matters.</p>'
+        + ev('Size bands from the classification table in Fernando et al. 2013 (silent; very small under 1.5 mm; small 1.5–3 mm; moderate over 3–5 mm; large over 5 mm). ESC 2020: closure in adults on haemodynamic grounds (LV volume overload, PVR under 3 WU).'),
+        left(DC, 150), show=[*LCH, *PDA], highlight=['pda'], labels=['pda', 'aorta', 'pa-left'], opacity=THX_OP, ct=DC)
+    plcs = step('pda-plcs', 'Post-op', 'Post-ligation cardiac syndrome (preterm)',
+        '<p>Hours after ligation in a preterm infant: <b>falling blood pressure, worsening oxygenation and ventilation</b>, often needing inotropes, typically <b>6–12 hours</b> after surgery.</p>'
+        + chain('Duct tied', '!LV afterload rises suddenly', 'Preload falls (no more ductal return)', 'Immature LV cannot cope', 'Low output, hypotension, pulmonary oedema')
+        + h4('Recognise and prevent') + ul('<b>Echo within 1 hour</b>: left ventricular output under about 200 mL/kg/min predicts the syndrome',
+                                         '<b>Targeted milrinone</b> for low output: lowers afterload and supports contractility',
+                                         'Avoid escalating pure vasoconstrictors, which raise afterload further; hydrocortisone for refractory hypotension',
+                                         'Less likely after transcatheter closure, which is one reason it is growing in small preterms')
+        + '<p>In older children the opposite is seen: a transient rise in blood pressure after the diastolic run-off stops.</p>'
+        + ev('Thoracic Key: onset 6–12 h, related to increased LV afterload; LVO under 200 mL/kg/min within 1 h as predictor; early targeted milrinone may ameliorate it. Sathanandam et al., Circulation 2019 (ELBW infants): clinically significant PLCS in 42% after surgical ligation vs 4% after transcatheter closure.'),
+        left(DC, 140, (-1, -0.15, 0.55)), show=[*LCH, *PDA, 'pda-ligatures'], highlight=['pda-ligatures'], labels=['pda-ligatures', 'aorta'], opacity=THX_OP, ct=DC, after=True,
+        quiz=ask('Eight hours after PDA ligation, a 900 g preterm becomes hypotensive and needs more oxygen. Echo: LV output low. Best first treatment?', 'Milrinone (afterload reduction and inotropy), with cautious volume',
+                 'Post-ligation cardiac syndrome is an afterload problem for an immature LV; vasoconstrictors make it worse.', 'High-dose noradrenaline', 'Re-open the duct', 'Fluid boluses until BP normal'))
+    teach = [('Patho', 'other', [patho]), ('Types', 'other', [ptypes]), ('Size', 'other', [psize]), ('Anatomy', 'other', [anat]), ('Case', 'other', [case]), ('Decide', 'other', [dec])]
     for ics in (3, 4):
         key = f'pda-ics{ics}'; nth = '3rd' if ics == 3 else '4th'
         sp = which_space(key, DC, PDA); th = thoracotomy(key, ics)
@@ -347,7 +418,7 @@ def add(procs, ask, has, LM, S):
             st[2]['labels'] = ['pda-clip', 'pda', 'n-rln']; st[2]['highlight'] = ['pda-clip']
         proc(key, 'pda', 'Patent ductus arteriosus ligation', f'PDA: left thoracotomy, {nth} space' + (' (infant, clip)' if ics == 3 else ' (standard, ligation)'),
              'Closure of a large PDA through a left posterolateral thoracotomy: indications, the 3rd or 4th space, the vagus and recurrent laryngeal nerve, test occlusion, ligation or clip.',
-             [*teach, ('Which space', 'other', [sp]), ('Thoracotomy', 'other', [th]), ('Nerves', 'other', st[:1]), ('Test', 'other', st[1:2]), ('Ligate', 'other', st[2:])], PDA_SRC)
+             [*teach, ('Which space', 'other', [sp]), ('Thoracotomy', 'other', [th]), ('Nerves', 'other', st[:1]), ('Test', 'other', st[1:2]), ('Ligate', 'other', st[2:]), ('After', 'other', [plcs])], PDA_SRC)
 
     # =================================================================================================== coarctation
     CC = P('coa-c'); COA = hv(['coa-segment', 'coa-shelf'])
