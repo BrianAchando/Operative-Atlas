@@ -160,6 +160,7 @@ The **interlobar pulmonary artery** appears in its sheath. Get onto the sheath: 
   > In a complete fissure the interlobar artery lies just under the visceral pleura where the fissures meet.
 - [ ] The fissure is fused
 - [ ] The superior vein is short
+- [ ] The pulmonary vein is already divided
 
 ## [lo-segmental] First segmental arteries in the fissure
 
@@ -174,6 +175,7 @@ Map the lower lobe branches first: **A6** behind, often opposite the lingular ar
   > A6 is the first lower-lobe branch and leaves the posterior aspect of the artery; take it by mistake and the superior segment is devascularised.
 - [ ] The basal trunk
 - [ ] The truncus anterior
+- [ ] The superior pulmonary vein
 
 ## [lo-truncus] Truncus anterior: ligate and divide
 
@@ -194,6 +196,7 @@ A short, wide truncus that will not take three ties is stapled instead.
   > On the left the nerve loops under the arch; on the right it loops under the subclavian artery.
 - [ ] Below the left main bronchus
 - [ ] At the level of the inferior pulmonary vein
+- [ ] At the carina, passing behind the left main bronchus
 
 ## [lo-bronchus] Upper lobe bronchus: clamp, inflate, staple
 
@@ -214,6 +217,7 @@ Keep the phrenic nerve on the pericardium, pass the vascular stapler round the s
   > Dividing arteries first avoids congesting the lobe; in cancer surgery the vein-first argument (less tumour-cell shedding) is debated.
 - [ ] The vein is easier to reach from behind
 - [ ] It avoids the phrenic nerve
+- [ ] It lets the lobe collapse sooner
 
 ## [lo-specimen] Specimen out, nodes, leak test
 
@@ -256,7 +260,7 @@ Doses: [electrolytes](#approach=cticu-doses&step=0), [vasoactive drugs](#approac
 - [Hansen HJ, Petersen RH. Video-assisted thoracoscopic lobectomy using a standardized three-port anterior approach: the Copenhagen experience. Ann Cardiothorac Surg 2012;1(1):70-76](https://doi.org/10.3978/j.issn.2225-319X.2012.04.15)
 - [McElnay P, Casali G, Batchelor T, West D. Adopting a standardized anterior approach significantly increases VATS lobectomy rates. Eur J Cardiothorac Surg 2014;46(1):100](https://academic.oup.com/ejcts/article/46/1/100/394433)
 - [Rusch VW, et al. The IASLC lung cancer staging project: a proposal for a new international lymph node map. J Thorac Oncol 2009](https://pubmed.ncbi.nlm.nih.gov/19357537)
-- [Lim E, et al. Video-assisted thoracoscopic versus open lobectomy in patients with early-stage lung cancer (VIOLET): a randomised controlled trial. Lancet Oncol 2022](https://pubmed.ncbi.nlm.nih.gov/?term=VIOLET+video-assisted+thoracoscopic+versus+open+lobectomy+Lim+2022)
-- [Saji H, et al. Segmentectomy versus lobectomy in small-sized peripheral non-small-cell lung cancer (JCOG0802/WJOG4607L). Lancet 2022;399:1607-17](https://pubmed.ncbi.nlm.nih.gov/?term=JCOG0802+segmentectomy+versus+lobectomy+Saji+2022)
-- [Altorki N, et al. Lobar or sublobar resection for peripheral stage IA non-small-cell lung cancer (CALGB 140503). N Engl J Med 2023;388:489-98](https://pubmed.ncbi.nlm.nih.gov/?term=CALGB+140503+lobar+or+sublobar+resection+Altorki+2023)
+- [Lim E, et al. Video-assisted thoracoscopic or open lobectomy in early-stage lung cancer (VIOLET). NEJM Evid 2022;1](https://doi.org/10.1056/EVIDoa2100016)
+- [Saji H, et al. Segmentectomy versus lobectomy in small-sized peripheral non-small-cell lung cancer (JCOG0802/WJOG4607L). Lancet 2022;399:1607-17](https://doi.org/10.1016/S0140-6736(21)02333-3)
+- [Altorki N, et al. Lobar or sublobar resection for peripheral stage IA non-small-cell lung cancer (CALGB 140503). N Engl J Med 2023;388:489-98](https://doi.org/10.1056/NEJMoa2212083)
 - [Wasserthal J, et al. TotalSegmentator. Radiol Artif Intell 2023](https://doi.org/10.1148/ryai.230024)

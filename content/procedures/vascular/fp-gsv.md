@@ -90,7 +90,7 @@ Template and how to use it: [CTICU protocol, consent](#approach=cticu-consent&st
 **Q:** Which commitment comes with a vein bypass?
 - [x] Graft surveillance with duplex scans and possible further procedures
   > Vein graft stenoses are found and fixed before occlusion.
-- [ ] None after discharge
+- [ ] No follow-up after discharge
 - [ ] Warfarin for life in all
 - [ ] Weekly angiograms
 
@@ -136,7 +136,7 @@ Doses: [electrolytes](#approach=cticu-doses&step=0), [vasoactive drugs](#approac
 **Q:** Day 1 after fem-pop bypass: the graft pulse is lost and the foot is cold. Next?
 - [x] Call the consultant: early graft thrombosis needs return to theatre
   > Early failure is usually technical: inflow, twist, or the distal anastomosis.
-- [ ] Elevate and observe
+- [ ] Elevate the leg and observe
 - [ ] Aspirin only
 - [ ] Wait for the morning duplex
 

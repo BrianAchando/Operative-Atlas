@@ -209,7 +209,7 @@ Doses: [electrolytes](#approach=cticu-doses&step=0), [vasoactive drugs](#approac
 
 ## Sources
 
-- [Norgren L, et al. Inter-Society Consensus for the Management of Peripheral Arterial Disease (TASC II). J Vasc Surg 2007;45(Suppl S):S5-67](https://radcalculator.com/calc/tasc-ii)
+- [Norgren L, et al. Inter-Society Consensus for the Management of Peripheral Arterial Disease (TASC II). J Vasc Surg 2007;45(Suppl S):S5-67](https://doi.org/10.1016/j.jvs.2006.12.037)
 - [Nordanstig J, et al. ESVS 2024 clinical practice guidelines on the management of asymptomatic lower limb peripheral arterial disease and intermittent claudication. Eur J Vasc Endovasc Surg 2024;67:9-96](https://www.sciencedirect.com/science/article/pii/S1078588423007414)
 - [Conte MS, et al. Global vascular guidelines on the management of chronic limb-threatening ischemia. J Vasc Surg 2019;69(6S):3S-125S](https://angiolsurgery.org/library/recommendations/2019/recommendations_chronic_limb-threatening_ischemia_2019.pdf)
 - [de Vries SO, Hunink MG. Results of aortic bifurcation grafts for aortoiliac occlusive disease: a meta-analysis. J Vasc Surg 1997;26:558-69](https://www.ncbi.nlm.nih.gov/books/NBK66938/)
@@ -220,4 +220,4 @@ Doses: [electrolytes](#approach=cticu-doses&step=0), [vasoactive drugs](#approac
 - [Robbs JV, Paruk N. Management of HIV vasculopathy: a South African experience. Eur J Vasc Endovasc Surg 2010;39(Suppl 1):S25-31](https://www.sciencedirect.com/science/article/pii/S1078588410000055)
 - [Van Marle J, Mistry PP, Botes K. HIV-occlusive vascular disease. S Afr J Surg](https://www.ajol.info/index.php/sajs/article/view/50473)
 - [Genga E, Oyoo O, Adebajo A. Vasculitis in Africa. Curr Rheumatol Rep 2018;20:4](https://link.springer.com/article/10.1007/s11926-018-0711-y)
-- [Leriche R, Morel A. The syndrome of thrombotic obliteration of the aortic bifurcation. Ann Surg 1948;127:193-206](https://www.ccjm.org/content/88/9/482)
+- [Matsuura H, Honda H. Leriche syndrome. Cleve Clin J Med 2021;88:482-3 (modern clinical review; the original description is Leriche R, Morel A. Ann Surg 1948;127:193-206)](https://www.ccjm.org/content/88/9/482)

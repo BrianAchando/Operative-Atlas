@@ -22,6 +22,7 @@ The **recurrent laryngeal nerves** run up in the **tracheo-esophageal grooves** 
   > They run in the tracheo-esophageal grooves just beside the trachea; staying on the wall (especially laterally and behind) keeps them out of harm. Searching for them in scar injures them.
 - [ ] Identify and sling both nerves first
 - [ ] Divide the lateral pedicles widely
+- [ ] Free both nerves circumferentially and mark them with vessel loops
 
 ## [tr-decide] Before you resect
 
@@ -36,6 +37,7 @@ Operate when the inflammation has settled, the patient is **off steroids** and o
   > Beyond that, tension rises steeply and dehiscence and restenosis follow.
 - [ ] Up to three quarters
 - [ ] No more than 1 cm
+- [ ] The whole trachea, if the neck is flexed
 
 ## [trachea-cervical-consent] Consent: what to discuss with this patient
 
@@ -135,6 +137,7 @@ Take the cross-field tube out and **advance the oral tube past the anastomosis**
   > Placing every suture first keeps the view open; flexion and the stay sutures take the tension off while they are tied.
 - [ ] One by one as each is placed
 - [ ] Before the membranous wall
+- [ ] After the posterior wall, with the neck fully extended
 
 ## [tr-after] Guardian stitch, extubation, bronchoscopy
 

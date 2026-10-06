@@ -22,6 +22,7 @@ A 62-year-old man, **angina (CCS III) despite full medical therapy**; stress ima
   > In stable single-vessel disease, trials have not shown a survival benefit; the indication is symptoms despite optimal medical therapy (and here an anatomy unfavourable for PCI).
 - [ ] Improving survival
 - [ ] Preventing a future myocardial infarction
+- [ ] Improving left ventricular function in all patients
 
 ## [cabg-1v-consent] Consent: what to discuss with this patient
 
@@ -115,6 +116,7 @@ Bring the LIMA pedicle down lateral to the pulmonary artery, with no tension or 
   > On a single graft, a technical failure means an anterior infarct; fix it before closing.
 - [ ] Accept: flow improves later
 - [ ] Give nitrates and close
+- [ ] Wait for the flow to improve after protamine
 
 ## [cabg-1v-icu] ICU and post-operative care
 
@@ -139,20 +141,20 @@ Doses: [electrolytes](#approach=cticu-doses&step=0), [vasoactive drugs](#approac
   > Early aspirin after CABG reduces death and ischaemic complications (Mangano, NEJM 2002).
 - [ ] Warfarin
 - [ ] Clopidogrel loading only
-- [ ] Nothing until day 3
+- [ ] Aspirin only after the drains are out on day 3
 
 ## Sources
 
 - [Lawton JS, Tamis-Holland JE, et al. 2021 ACC/AHA/SCAI guideline for coronary artery revascularization. J Am Coll Cardiol 2022;79:e21-e129](https://pubmed.ncbi.nlm.nih.gov/34882435/)
 - [Kouchoukos NT, Blackstone EH, Hanley FL, Kirklin JK. Kirklin/Barratt-Boyes Cardiac Surgery, 4th ed. Elsevier 2013: coronary artery bypass](https://pubmed.ncbi.nlm.nih.gov/?term=Kirklin+Barratt-Boyes+coronary+artery+bypass)
-- [Farkouh ME, et al. Strategies for multivessel revascularization in patients with diabetes (FREEDOM). N Engl J Med 2012;367:2375-84](https://pubmed.ncbi.nlm.nih.gov/?term=FREEDOM+trial+Farkouh+multivessel+revascularization+diabetes+2012)
+- [Farkouh ME, et al. Strategies for multivessel revascularization in patients with diabetes (FREEDOM). N Engl J Med 2012;367:2375-84](https://doi.org/10.1056/NEJMoa1211585)
 - [Velazquez EJ, et al. Coronary-artery bypass surgery in patients with ischemic cardiomyopathy (STICHES, 10 years). N Engl J Med 2016;374:1511-20](https://pubmed.ncbi.nlm.nih.gov/?term=Velazquez+STICHES+ischemic+cardiomyopathy+2016)
 - [Taggart DP, et al. Bilateral versus single internal-thoracic-artery grafts at 10 years (ART). N Engl J Med 2019;380:437-46](https://www.nejm.org/doi/full/10.1056/NEJMoa1808783)
-- [Gaudino M, et al. Radial-artery or saphenous-vein grafts in coronary-artery bypass surgery (RADIAL). N Engl J Med 2018;378:2069-77](https://www.acc.org/latest-in-cardiology/journal-scans/2018/04/30/14/44/radial-artery-or-saphenous-vein-grafts-in-cabg)
+- [Gaudino M, et al. Radial-artery or saphenous-vein grafts in coronary-artery bypass surgery (RADIAL). N Engl J Med 2018;378:2069-77](https://doi.org/10.1056/NEJMoa1716026)
 - [Zenati MA, et al. Randomized trial of endoscopic or open vein-graft harvesting (REGROUP). N Engl J Med 2019](https://www.nejm.org/doi/full/10.1056/NEJMoa1812390)
 - [No-touch vein grafts in coronary artery bypass surgery: a registry-based randomized clinical trial (SWEDEGRAFT). Eur Heart J 2025;46:1720](https://academic.oup.com/eurheartj/article/46/18/1720/8023883)
 - [Graft patency of no-touch versus conventionally harvested saphenous vein conduits: meta-analysis of 7 randomized trials. 2025](https://www.sciencedirect.com/science/article/pii/S2666273625000555)
 - [Maron DJ, et al. Initial invasive or conservative strategy for stable coronary disease (ISCHEMIA). N Engl J Med 2020;382:1395-407](https://www.nejm.org/doi/full/10.1056/NEJMoa1915922)
 - [Blazek S, et al. Comparison of bare-metal stenting with minimally invasive bypass surgery for stenosis of the LAD: 10-year follow-up of a randomized trial. JACC Cardiovasc Interv 2013;6:20-6](https://www.jacc.org/doi/10.1016/j.jcin.2012.09.008)
-- [Lamy A, et al. Five-year outcomes after off-pump or on-pump coronary-artery bypass grafting (CORONARY). N Engl J Med 2016;375:2359-68](https://www.acc.org/Latest-in-Cardiology/Clinical-Trials/2014/06/08/17/13/CORONARY)
-- [Shroyer AL, et al. Five-year outcomes after on-pump and off-pump coronary-artery bypass (ROOBY-FS). N Engl J Med 2017;377:623-32; Quin JA, et al. Ten-year outcomes. JAMA Surg 2022](https://www.tctmd.com/news/rooby-fs-10-year-data-affirm-pump-cabg-default-strategy)
+- [Lamy A, et al. Five-year outcomes after off-pump or on-pump coronary-artery bypass grafting (CORONARY). N Engl J Med 2016;375:2359-68](https://doi.org/10.1056/NEJMoa1601564)
+- [Shroyer AL, et al. Five-year outcomes after on-pump and off-pump coronary-artery bypass (ROOBY-FS). N Engl J Med 2017;377:623-32; Quin JA, et al. Ten-year outcomes. JAMA Surg 2022](https://doi.org/10.1056/NEJMoa1614341)

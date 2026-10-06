@@ -61,6 +61,10 @@ Both **internal mammary arteries** are divided with the sternum. In arrest they 
 
 Find each end 1–2 cm from the sternal edge on the cut surface and **ligate or clip** all four. A missed mammary is a common cause of return to theatre.
 
+### Case
+
+A **30-year-old man** with a gunshot wound crossing the mediastinum arrests in the resuscitation room. A left anterolateral thoracotomy is extended across the sternum into a **clamshell**; tamponade is released, a right ventricular wound is oversewn and the heart restarts with a systolic pressure rising to 90 mmHg. Now **blood wells up along both cut edges of the sternum**.
+
 ### Question
 
 **Q:** After a clamshell, the heart restarts and the chest fills with blood from the wound edges. First suspect?
@@ -68,6 +72,7 @@ Find each end 1–2 cm from the sternal edge on the cut surface and **ligate or 
   > Both are cut with the sternum and do not bleed until there is a pressure.
 - [ ] The intercostal veins
 - [ ] The pericardiophrenic vessels
+- [ ] The azygos vein
 
 ## [cs-lid] Lift the lid
 
@@ -111,7 +116,7 @@ Doses: [electrolytes](#approach=cticu-doses&step=0), [vasoactive drugs](#approac
 
 ## Sources
 
-- [Seamon MJ, et al. An evidence-based approach to patient selection for emergency department thoracotomy: a practice management guideline from the Eastern Association for the Surgery of Trauma. J Trauma Acute Care Surg 2015;79(1):159-173](https://pubmed.ncbi.nlm.nih.gov/?term=Seamon+emergency+department+thoracotomy+Eastern+Association+2015)
+- [Seamon MJ, et al. An evidence-based approach to patient selection for emergency department thoracotomy: a practice management guideline from the Eastern Association for the Surgery of Trauma. J Trauma Acute Care Surg 2015;79(1):159-173](https://doi.org/10.1097/TA.0000000000000648)
 - [Burlew CC, et al. Western Trauma Association critical decisions in trauma: resuscitative thoracotomy. J Trauma Acute Care Surg 2012;73(6):1359-1363](https://pubmed.ncbi.nlm.nih.gov/?term=Burlew+Western+Trauma+Association+resuscitative+thoracotomy)
 - [Simms ER, et al. Bilateral anterior thoracotomy (clamshell incision) is the ideal emergency thoracotomy incision: an anatomic study. World J Surg 2013;37(6):1277-1285](https://pubmed.ncbi.nlm.nih.gov/?term=Simms+clamshell+incision+ideal+emergency+thoracotomy)
 - [Wall MJ Jr, Hirshberg A, Mattox KL. Pulmonary tractotomy with selective vascular ligation for penetrating injuries to the lung. Am J Surg 1994;168(6):665-669](https://pubmed.ncbi.nlm.nih.gov/?term=Wall+Hirshberg+Mattox+pulmonary+tractotomy)

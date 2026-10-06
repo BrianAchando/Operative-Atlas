@@ -105,7 +105,7 @@ Template and how to use it: [CTICU protocol, consent](#approach=cticu-consent&st
   > Restoring flow to dead or injured muscle releases potassium and myoglobin.
 - [ ] Paraplegia
 - [ ] Stroke
-- [ ] Chylothorax
+- [ ] Phrenic nerve palsy
 
 ## [ali-expose] Expose the common femoral bifurcation; control; transverse arteriotomy
 
@@ -179,6 +179,6 @@ Doses: [electrolytes](#approach=cticu-doses&step=0), [vasoactive drugs](#approac
 
 ## Sources
 
-- [Björck M, et al. ESVS 2020 clinical practice guidelines on the management of acute limb ischaemia. Eur J Vasc Endovasc Surg 2020;59:173-218](https://www.researchgate.net/publication/338287618_European_Society_for_Vascular_Surgery_ESVS_2020_Clinical_Practice_Guidelines_on_the_Management_of_Acute_Limb_Ischaemia)
+- [Björck M, et al. ESVS 2020 clinical practice guidelines on the management of acute limb ischaemia. Eur J Vasc Endovasc Surg 2020;59:173-218](https://doi.org/10.1016/j.ejvs.2019.09.006)
 - [Managing acute limb ischemia: a contemporary workflow. Endovascular Today 2026](https://evtoday.com/articles/2026-feb/managing-acute-limb-ischemia-a-contemporary-workflow)
 - [AO Surgery Reference: compartment syndrome (lower limb), two-incision fasciotomy](https://surgeryreference.aofoundation.org/orthopedic-trauma/pediatric-trauma/tibial-shaft/further-reading/compartment-syndrome)

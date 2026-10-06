@@ -28,7 +28,7 @@ Associations: **bicuspid aortic valve** (common), intracranial aneurysms, Turner
 - [x] Prostaglandin E1 infusion
   > Reopening the duct restores lower-body perfusion in duct-dependent coarctation; repair follows once the baby is resuscitated.
 - [ ] Adrenaline bolus only
-- [ ] Ibuprofen
+- [ ] Indomethacin to close the duct
 - [ ] Furosemide
 
 ## [coa-anatomy] The isthmus, the collaterals and the spinal cord
@@ -214,7 +214,7 @@ Doses: [electrolytes](#approach=cticu-doses&step=0), [vasoactive drugs](#approac
 **Q:** Day 1 after coarctation repair: BP 165/100, abdominal pain, legs moving well. Next?
 - [x] Treat the paradoxical hypertension (beta-blocker or nitroprusside), withhold feeds, examine the abdomen
   > Post-coarctectomy hypertension and mesenteric arteritis go together; control BP and rest the gut.
-- [ ] Ignore: it settles
+- [ ] Ignore it: it settles without treatment
 - [ ] Immediate re-operation
 - [ ] Fluid bolus
 

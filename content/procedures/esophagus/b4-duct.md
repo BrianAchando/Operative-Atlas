@@ -13,6 +13,10 @@ From the **cisterna chyli** (L1–L2, behind and right of the aorta) through the
 
 So an injury **below T5 gives a right chylothorax**, above it a left one. Doubled and plexiform ducts are common.
 
+### Case
+
+A **58-year-old man** has a left upper lobectomy with mediastinal node dissection for adenocarcinoma. On day 3, after eating, the **left chest drain fluid turns milky**, 900 mL in 24 hours; the fluid triglyceride is **3.1 mmol/L**.
+
 ### Question
 
 **Q:** After a left upper lobectomy, a patient has a milky left pleural effusion. At what level is the duct most likely injured?
@@ -20,6 +24,7 @@ So an injury **below T5 gives a right chylothorax**, above it a left one. Double
   > The duct crosses from right to left at T4-T6: upper injuries leak into the left chest, lower ones into the right.
 - [ ] At the cisterna chyli
 - [ ] Below T8
+- [ ] At the diaphragm, below T10
 
 ## [td-decide] Chylothorax: when to operate
 
@@ -72,7 +77,7 @@ Template and how to use it: [CTICU protocol, consent](#approach=cticu-consent&st
   > Surgery follows a failed trial of fat-free feeding or TPN, especially with high output.
 - [ ] For every chylothorax on day 1
 - [ ] Never
-- [ ] Only for malignancy
+- [ ] Only when the chylothorax is malignant
 
 ## [td-setup] Right VATS, whichever side the effusion is
 

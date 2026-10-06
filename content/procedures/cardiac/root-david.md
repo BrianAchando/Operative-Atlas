@@ -20,6 +20,7 @@ The valve works as a unit with its root: the **ventriculo-aortic junction** (the
   > This is type I (functional annulus dilatation) regurgitation: the cusps are normal, which is exactly the case for keeping them.
 - [ ] The cusps are torn
 - [ ] The cusps are calcified and restricted
+- [ ] The leaflets are perforated by endocarditis
 
 ## [rd-decide] Who is right for a valve-sparing root?
 
@@ -28,6 +29,10 @@ The valve works as a unit with its root: the **ventriculo-aortic junction** (the
 **Reimplantation (David)** puts the whole valve inside a graft and fixes the base, so it also treats a dilated annulus. **Remodelling (Yacoub)** replaces the sinuses with a scalloped graft but leaves the base free (often with an external ring).
 
 > **Evidence:** in David's 20-year series (374 patients), survival was 69% at 20 years and 97% were free of reoperation at 10 years. A 2023 meta-analysis of reimplantation (44 studies, 7,878 patients) found early mortality 1.6% and 91% freedom from reoperation at 10 years, with no difference between bicuspid and tricuspid valves. A meta-analysis of 14 cohort studies (1,672 patients) found lower late mortality and reoperation after reimplantation than after remodelling (retrospective data). No valve means no anticoagulation and very low rates of valve-related events.
+
+### Case
+
+A **28-year-old man** with Marfan syndrome diagnosed in childhood, on a beta-blocker. Annual echo shows the root growing from 4.6 to **5.0 cm** over two years; **mild central AR**; the cusps are thin and mobile with no calcification. He plays recreational football and wants to avoid lifelong warfarin.
 
 ### Question
 
@@ -117,6 +122,7 @@ Repeat every 15–20 minutes (retrograde, or down the ostia), or as the solution
   > Root cardioplegia is going through the incompetent valve into the LV, not down the coronaries. Distension injures the myocardium.
 - [ ] Increase the root infusion pressure
 - [ ] Cool further and wait for arrest
+- [ ] Clamp the root and continue the infusion at higher flow
 
 ## [rd-dissect] Free the root down to the base; excise the sinuses
 
@@ -157,6 +163,7 @@ Look at the valve from above. The free margins should meet at the same level, we
   > A low-lying cusp is prolapsing; shortening its free margin (central plication) restores coaptation. Leaving it means residual AR and early failure.
 - [ ] Accept it: it will settle
 - [ ] Convert to a Bentall immediately
+- [ ] Replace the aortic valve with a mechanical prosthesis
 
 ## [rd-buttons] Reimplant the coronary buttons
 
@@ -173,6 +180,7 @@ Test each suture line (cardioplegia down the graft) **before** the distal anasto
   > The right button, placed too low or with the heart empty, kinks when the heart fills. Go back on bypass and redo it (or bypass the RCA).
 - [ ] Air in the left main
 - [ ] A paravalvular leak
+- [ ] Left main ostial stenosis from the valve
 
 ## [rd-distal] Distal anastomosis; TOE of the repaired valve
 
@@ -201,8 +209,8 @@ Doses: [electrolytes](#approach=cticu-doses&step=0), [vasoactive drugs](#approac
 **Q:** After a Bentall, new ST elevation in the inferior leads. Think of?
 - [x] Right coronary button kinking or ischaemia
   > Coronary button problems present early with ST change or arrhythmia: echo and angiography.
-- [ ] Pericarditis only
-- [ ] Normal after bypass
+- [ ] Pericarditis, which needs only an NSAID
+- [ ] Left main button kinking
 - [ ] Hypokalaemia
 
 ## Sources

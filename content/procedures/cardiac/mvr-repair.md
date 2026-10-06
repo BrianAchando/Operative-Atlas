@@ -58,6 +58,7 @@ Round the posterior annulus, in the AV groove: the **circumflex artery** (close 
   > It runs in the AV groove close to the annulus there, especially in a left-dominant circulation.
 - [ ] The AV node
 - [ ] The right coronary artery
+- [ ] The left main coronary artery
 
 ## [mr-case] Case: a teenager with severe rheumatic mitral regurgitation
 
@@ -244,6 +245,7 @@ Check that **both leaflets open and close fully**: nothing trapped (preserved ch
   > Preserved chordae, suture tails or pledgets can trap a leaflet; fix it now, not after the clamp is off.
 - [ ] That the LA appendage is closed
 - [ ] That the sutures are cut short
+- [ ] That the sewing ring is level with the annulus on all sides
 
 ## [mr-close] Close the atrium, de-air, clamp off
 
@@ -293,6 +295,7 @@ Before either: temperature 36–37 °C, sinus rhythm or pacing, potassium and ha
   > The RV is failing against a high pulmonary pressure; more supported reperfusion and RV-directed support usually rescue it. Pushing on off bypass drives the RV into failure.
 - [ ] Give protamine and push inotropes off bypass
 - [ ] Decannulate and accept the low output
+- [ ] Close the chest and wean in the ICU on a balloon pump alone
 
 ## [mr-decannulate] Separate, then decannulate in order
 

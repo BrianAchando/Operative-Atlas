@@ -31,7 +31,7 @@ Chain: Large left-to-right shunt → High pulmonary flow and pressure → Heart 
   > Shunted blood passes through the lungs and returns to the LA and LV; the RV ejects it straight on in systole.
 - [ ] The right atrium and right ventricle
 - [ ] The right atrium alone
-- [ ] None
+- [ ] The pulmonary arteries only
 
 ## [vsd-types] Five types of VSD: where they sit
 
@@ -196,8 +196,8 @@ Template and how to use it: [CTICU protocol, consent](#approach=cticu-consent&st
 **Q:** Which risk of VSD closure is specific to the anatomy of a perimembranous defect?
 - [x] Complete heart block from injury to the His bundle
   > The bundle runs along the posteroinferior rim; a pacemaker is needed if block persists.
-- [ ] Paraplegia
-- [ ] Chylothorax
+- [ ] Recurrent laryngeal nerve injury
+- [ ] Diaphragm paralysis
 - [ ] Phrenic nerve palsy as the main risk
 
 ## [vsd-sternotomy] Median sternotomy
@@ -292,7 +292,7 @@ Doses: [electrolytes](#approach=cticu-doses&step=0), [vasoactive drugs](#approac
 - [Abman SH, et al. Pediatric pulmonary hypertension: guidelines from the AHA and ATS. Circulation 2015;132:2037-99](https://www.ahajournals.org/doi/10.1161/cir.0000000000000329)
 - [Management of systemic-to-pulmonary shunts and elevated pulmonary vascular resistance. ERJ Open Res 2023;9:00271-2023](https://publications.ersnet.org/content/erjor/9/6/00271-2023)
 - [Baumgartner H, et al. 2020 ESC Guidelines for the management of adult congenital heart disease. Eur Heart J 2021;42:563-645](https://academic.oup.com/eurheartj/article/42/6/563/5898606)
-- [American College of Cardiology. 2020 ESC Guidelines for adult congenital heart disease: key points](https://www.acc.org/latest-in-cardiology/ten-points-to-remember/2020/08/29/13/17/2020-esc-guidelines-for-adult-chd-esc-2020)
+- [Baumgartner H, et al. 2020 ESC Guidelines for the management of adult congenital heart disease. Eur Heart J 2021;42:563-645](https://doi.org/10.1093/eurheartj/ehaa554)
 - [AATS / TSRA primer: surgical techniques 1. ASD, VSD, PDA, coarctation](https://www.aats.org/tsra-primer-surgical-techniques-1-asd-vsd-pda-coarctation)
 - [Osano et al. One-year outcomes and intervention waiting time of patients admitted with congenital heart disease at Kenyatta National Hospital, Kenya. Preprint (Research Square) 2025](https://www.researchsquare.com/article/rs-7386594/v1)
 - [Society of Thoracic Surgeons. Ventricular septal defects (VSD): STS Cardiothoracic Surgery Consult (types 1-4, size by aortic annulus, indications)](https://consult.sts.org/sts/view/Cardiac-and-Congenital/1864080/all/Ventricular_Septal_Defects__VSD_)

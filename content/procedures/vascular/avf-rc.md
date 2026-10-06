@@ -92,7 +92,7 @@ Template and how to use it: [CTICU protocol, consent](#approach=cticu-consent&st
   > Commoner with brachial inflow, diabetes and age.
 - [ ] Paraplegia
 - [ ] Stroke
-- [ ] Chylothorax
+- [ ] Phrenic nerve palsy
 
 ## [av-rc] Radiocephalic fistula at the wrist (Brescia–Cimino)
 
@@ -115,7 +115,7 @@ Over 4–6 weeks the cephalic vein dilates and thickens. Examine it at 4–6 wee
 **Q:** At 6 weeks a radiocephalic fistula has a weak thrill that fades just above the anastomosis. Most likely?
 - [x] A juxta-anastomotic stenosis: ultrasound, then balloon angioplasty or revision
   > The commonest cause of failure to mature in the forearm.
-- [ ] Normal: wait 6 months
+- [ ] Normal maturation: wait 6 months
 - [ ] Heart failure
 - [ ] Steal syndrome
 
@@ -147,5 +147,5 @@ Doses: [electrolytes](#approach=cticu-doses&step=0), [vasoactive drugs](#approac
 ## Sources
 
 - [Lok CE, et al. KDOQI clinical practice guideline for vascular access: 2019 update. Am J Kidney Dis 2020;75(4 Suppl 2):S1-164](https://www.ajkd.org/article/S0272-6386(19)31137-0/fulltext)
-- [A Korean perspective on the 2019 KDOQI vascular access guideline (Kidney Res Clin Pract)](https://www.krcp-ksn.org/m/journal/view.php?number=6004)
+- [Lok CE, et al. KDOQI clinical practice guideline for vascular access: 2019 update. Am J Kidney Dis 2020;75(4 Suppl 2):S1-S164](https://doi.org/10.1053/j.ajkd.2019.12.001)
 - [Rule of 6s for dialysis access (Renal Fellow Network)](https://www.renalfellow.org/2011/09/02/from-rfn-archive-rule-of-6s-for/)

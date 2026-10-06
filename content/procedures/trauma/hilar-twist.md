@@ -55,6 +55,10 @@ With the ligament divided, take the lower lobe in the hand and rotate it **forwa
 
 No clamp in the way, nothing to slip: pack laparotomy pads round the apex to hold the lung turned.
 
+### Case
+
+A **22-year-old man** shot through the left lower chest, systolic pressure 60 despite four units of blood. At left anterolateral thoracotomy 2 L of blood is evacuated, then **brisk bleeding wells up from deep in the lower lobe near the hilum**, more than a hand over the wound can hold. You decide to control the whole hilum by twisting the lung. The **inferior pulmonary ligament is still intact**.
+
 ### Question
 
 **Q:** What must be done before a hilar twist?
@@ -62,6 +66,7 @@ No clamp in the way, nothing to slip: pack laparotomy pads round the apex to hol
   > The ligament tethers the lower lobe to the mediastinum; the lung cannot turn until it is cut.
 - [ ] Divide the pulmonary artery
 - [ ] Open the fissure
+- [ ] Divide the pulmonary vein
 
 ## [tw-after] Damage control, then back
 
@@ -99,7 +104,7 @@ Doses: [electrolytes](#approach=cticu-doses&step=0), [vasoactive drugs](#approac
 
 ## Sources
 
-- [Seamon MJ, et al. An evidence-based approach to patient selection for emergency department thoracotomy: a practice management guideline from the Eastern Association for the Surgery of Trauma. J Trauma Acute Care Surg 2015;79(1):159-173](https://pubmed.ncbi.nlm.nih.gov/?term=Seamon+emergency+department+thoracotomy+Eastern+Association+2015)
+- [Seamon MJ, et al. An evidence-based approach to patient selection for emergency department thoracotomy: a practice management guideline from the Eastern Association for the Surgery of Trauma. J Trauma Acute Care Surg 2015;79(1):159-173](https://doi.org/10.1097/TA.0000000000000648)
 - [Burlew CC, et al. Western Trauma Association critical decisions in trauma: resuscitative thoracotomy. J Trauma Acute Care Surg 2012;73(6):1359-1363](https://pubmed.ncbi.nlm.nih.gov/?term=Burlew+Western+Trauma+Association+resuscitative+thoracotomy)
 - [Simms ER, et al. Bilateral anterior thoracotomy (clamshell incision) is the ideal emergency thoracotomy incision: an anatomic study. World J Surg 2013;37(6):1277-1285](https://pubmed.ncbi.nlm.nih.gov/?term=Simms+clamshell+incision+ideal+emergency+thoracotomy)
 - [Wall MJ Jr, Hirshberg A, Mattox KL. Pulmonary tractotomy with selective vascular ligation for penetrating injuries to the lung. Am J Surg 1994;168(6):665-669](https://pubmed.ncbi.nlm.nih.gov/?term=Wall+Hirshberg+Mattox+pulmonary+tractotomy)

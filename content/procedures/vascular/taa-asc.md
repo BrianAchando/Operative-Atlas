@@ -108,7 +108,7 @@ Template and how to use it: [CTICU protocol, consent](#approach=cticu-consent&st
 - [x] Stroke and neurological injury
   > Brain protection (antegrade cerebral perfusion, hypothermia) reduces but does not remove it.
 - [ ] Paraplegia is the main risk
-- [ ] Chylothorax
+- [ ] Phrenic nerve palsy
 - [ ] Heart block
 
 ## [tas-cpb] Sternotomy; axillary cannulation; cool
@@ -150,11 +150,11 @@ Doses: [electrolytes](#approach=cticu-doses&step=0), [vasoactive drugs](#approac
 
 ## Sources
 
-- [Isselbacher EM, et al. 2022 ACC/AHA guideline for the diagnosis and management of aortic disease. Circulation 2022;146:e334-e482](https://www.acc.org/latest-in-cardiology/ten-points-to-remember/2022/11/01/12/21/2022-guideline-on-aortic-disease-2-gl-ad)
+- [Isselbacher EM, et al. 2022 ACC/AHA guideline for the diagnosis and management of aortic disease. Circulation 2022;146:e334-e482](https://doi.org/10.1161/CIR.0000000000001106)
 - [Czerny M, et al. 2024 EACTS/STS guidelines for diagnosing and treating acute and chronic syndromes of the aortic organ. Eur J Cardiothorac Surg 2024;65:ezad426](https://academic.oup.com/ejcts/article/65/2/ezad426/7614462)
 - [Coady MA, et al. What is the appropriate size criterion for resection of thoracic aortic aneurysms? J Thorac Cardiovasc Surg 1997;113:476-91](https://www.sciencedirect.com/science/article/pii/S002252239770360X)
 - [Coselli JS, et al. Cerebrospinal fluid drainage reduces paraplegia after thoracoabdominal aortic aneurysm repair: a randomized clinical trial. J Vasc Surg 2002;35:631-9](https://www.sciencedirect.com/science/article/pii/S0741521402791477)
-- [Coselli JS, et al. Outcomes of 3309 thoracoabdominal aortic aneurysm repairs. J Thorac Cardiovasc Surg 2016;151:1323-38](https://vascsurg.me/wp-content/uploads/2016/05/open-taaa-repair-coselli.pdf)
+- [Coselli JS, et al. Outcomes of 3309 thoracoabdominal aortic aneurysm repairs. J Thorac Cardiovasc Surg 2016;151:1323-38](https://doi.org/10.1016/j.jtcvs.2015.12.050)
 - [Fairman RM, et al. Pivotal results of the Medtronic Vascular Talent thoracic stent graft system: the VALOR trial. J Vasc Surg 2008;48:546-54](https://www.sciencedirect.com/science/article/pii/S0741521408005119)
 - [Cheng D, et al. Endovascular aortic repair versus open surgical repair for descending thoracic aortic disease: a systematic review and meta-analysis. J Am Coll Cardiol 2010;55:986-1001](https://www.ncbi.nlm.nih.gov/books/NBK79689/)
 - [Matsumura JS, et al. The Society for Vascular Surgery practice guidelines: management of the left subclavian artery with thoracic endovascular aortic repair. J Vasc Surg 2009;50:1155-8](https://www.sciencedirect.com/science/article/pii/S0741521409018230)

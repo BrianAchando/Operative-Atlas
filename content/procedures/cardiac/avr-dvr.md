@@ -53,6 +53,7 @@ What the sutures and the debridement can injure:
   > The His bundle runs in the membranous septum just below that commissure.
 - [ ] Mitral regurgitation
 - [ ] Occlusion of the left main
+- [ ] Aortic regurgitation from a perforated cusp
 
 ## [ad-case] Case: rheumatic mitral stenosis with mixed aortic disease
 
@@ -125,9 +126,9 @@ Template and how to use it: [CTICU protocol, consent](#approach=cticu-consent&st
 **Q:** Which AVR risk is specific to the valve's position next to the conduction system?
 - [x] Complete heart block needing a permanent pacemaker
   > The His bundle runs beneath the non-coronary/right-coronary commissure.
-- [ ] Mitral stenosis
-- [ ] Chylothorax
-- [ ] Paraplegia
+- [ ] Phrenic nerve palsy
+- [ ] Recurrent laryngeal nerve injury
+- [ ] Stroke from calcific embolism as the position-specific risk
 
 ## [ad-sternotomy] Median sternotomy, pericardial cradle
 
@@ -157,6 +158,7 @@ Repeat every 15–20 minutes (retrograde, or down the ostia), or as the solution
   > Root cardioplegia is going through the incompetent valve into the LV, not down the coronaries. Distension injures the myocardium.
 - [ ] Increase the root infusion pressure
 - [ ] Cool further and wait for arrest
+- [ ] Clamp the root and continue the infusion at higher flow
 
 ## [ad-aortotomy] Oblique aortotomy into the non-coronary sinus
 
@@ -187,6 +189,7 @@ Remove the sponge, **irrigate the LV and root** with saline and suction, and loo
   > That area is the membranous septum carrying the His bundle. Take less calcium there; a little residual calcium is safer than a VSD or heart block.
 - [ ] The left main coronary
 - [ ] The anterior mitral leaflet
+- [ ] The right coronary ostium
 
 ## [ad-atriotomy] Sondergaard's groove and the left atriotomy
 
@@ -262,6 +265,7 @@ Check that **both leaflets open and close fully**: nothing trapped (preserved ch
   > Preserved chordae, suture tails or pledgets can trap a leaflet; fix it now, not after the clamp is off.
 - [ ] That the LA appendage is closed
 - [ ] That the sutures are cut short
+- [ ] That the sewing ring is level with the annulus on all sides
 
 ## [ad-size] Size, and avoid patient–prosthesis mismatch
 
@@ -283,6 +287,7 @@ If the annulus is too small:
   > 1.2 / 1.9 = 0.63 cm²/m², which is 0.65 or less: severe by VARC-3 (BMI under 30).
 - [ ] EOAi 0.63: acceptable
 - [ ] EOAi 1.1: no mismatch
+- [ ] EOAi 0.9: mild mismatch, no action
 
 ## [ad-sutures] Annular sutures: which technique?
 
@@ -313,6 +318,7 @@ Keep pledgets and sutures clear of the **ostia**; take shallow bites under the *
   > Supra-annular seating gives the largest valve. Pledgets protect calcified tissue from cutting through; simple interrupted bites (Tabata) gain orifice where the tissue is sound. Everting sutures would push the valve intra-annular and a size down.
 - [ ] Everting mattress sutures all round
 - [ ] A continuous polypropylene suture
+- [ ] Everting mattress sutures with the pledgets on the ventricular side
 
 ## [avr-dvr-size-a] Size the aortic prosthesis to the patient
 
@@ -354,6 +360,7 @@ Before closing: look into **both ostia** (nothing overhanging); check for **gaps
   > Coronary compromise right after SAVR is the prosthesis or embolism until proved otherwise: go back on bypass, inspect, and re-seat or graft.
 - [ ] Heart block
 - [ ] Patient–prosthesis mismatch
+- [ ] Protamine reaction
 
 ## [ad-close] Close the left atrium, then the aorta; de-air
 
@@ -382,6 +389,7 @@ Then venous cannula out, protamine, arterial cannula out last.
   > This is dynamic LVOT obstruction with systolic anterior motion of the mitral leaflet, which inotropes worsen. Fill, slow and constrict.
 - [ ] More adrenaline
 - [ ] Go back on bypass and replace the mitral valve
+- [ ] Add a vasodilator and reduce preload further
 
 ## [avr-dvr-icu] ICU and post-operative care
 
@@ -404,7 +412,7 @@ Doses: [electrolytes](#approach=cticu-doses&step=0), [vasoactive drugs](#approac
 **Q:** After AVR, complete heart block: the epicardial wires are not capturing. Next?
 - [x] Call the consultant; increase output, check connections, prepare transcutaneous pacing
   > Loss of capture in complete heart block is an emergency.
-- [ ] Observe
+- [ ] Wait for the rhythm to recover without checking the wires
 - [ ] Give a beta-blocker
 - [ ] Remove the wires
 
@@ -417,7 +425,7 @@ Doses: [electrolytes](#approach=cticu-doses&step=0), [vasoactive drugs](#approac
 - [Best evidence topic: in young patients with rheumatic aortic regurgitation, is a Ross operation associated with more autograft failure? Interact CardioVasc Thorac Surg 2010;10:600](https://academic.oup.com/icvts/article/10/4/600/659372)
 - [Mentias A, et al. Transcatheter versus surgical aortic valve replacement in patients with rheumatic aortic stenosis. J Am Coll Cardiol 2021;77:1703-13](https://pubmed.ncbi.nlm.nih.gov/33832596/)
 - [Ross J Jr, Braunwald E. Aortic stenosis. Circulation 1968;38(1 Suppl):61-7](https://pubmed.ncbi.nlm.nih.gov/?term=Ross+Braunwald+aortic+stenosis+Circulation+1968)
-- [Rossebø AB, et al. Intensive lipid lowering with simvastatin and ezetimibe in aortic stenosis (SEAS). N Engl J Med 2008;359:1343-56](https://pubmed.ncbi.nlm.nih.gov/?term=Rossebo+SEAS+simvastatin+ezetimibe+aortic+stenosis+2008)
+- [Rossebø AB, et al. Intensive lipid lowering with simvastatin and ezetimibe in aortic stenosis (SEAS). N Engl J Med 2008;359:1343-56](https://doi.org/10.1056/NEJMoa0804602)
 - [Surgical implications of the 2023 ESC endocarditis guidelines endorsed by EACTS: bridging guidelines and practice. Eur J Cardiothorac Surg 2025;67:ezaf225](https://academic.oup.com/ejcts/article/67/7/ezaf225/8185406)
 - [Ribeiro HB, et al. Predictive factors, management, and clinical outcomes of coronary obstruction following TAVI. J Am Coll Cardiol 2013;62:1552-62](https://pubmed.ncbi.nlm.nih.gov/?term=Ribeiro+coronary+obstruction+transcatheter+aortic+valve+implantation+predictive+factors+2013)
 - [Delgado V, et al. 2023 ESC Guidelines for the management of endocarditis. Eur Heart J 2023;44:3948-4042](https://academic.oup.com/eurheartj/article/44/39/3948/7243107)
@@ -427,8 +435,8 @@ Doses: [electrolytes](#approach=cticu-doses&step=0), [vasoactive drugs](#approac
 - [Praz F, Borger MA, et al. 2025 ESC/EACTS Guidelines for the management of valvular heart disease. Eur Heart J 2025](https://www.escardio.org/guidelines/clinical-practice-guidelines/all-esc-practice-guidelines/valvular-heart-disease/)
 - [Otto CM, Nishimura RA, et al. 2020 ACC/AHA guideline for the management of patients with valvular heart disease. Circulation 2021;143:e72-e227](https://pubmed.ncbi.nlm.nih.gov/33332150/)
 - [Isselbacher EM, et al. 2022 ACC/AHA guideline for the diagnosis and management of aortic disease. Circulation 2022](https://pubmed.ncbi.nlm.nih.gov/36322642/)
-- [Mack MJ, et al. Transcatheter aortic-valve replacement with a balloon-expandable valve in low-risk patients (PARTNER 3). N Engl J Med 2019](https://pubmed.ncbi.nlm.nih.gov/?term=Mack+PARTNER+3+low-risk+transcatheter+NEJM+2019)
-- [Popma JJ, et al. Transcatheter aortic-valve replacement with a self-expanding valve in low-risk patients (Evolut Low Risk). N Engl J Med 2019](https://pubmed.ncbi.nlm.nih.gov/?term=Popma+Evolut+low+risk+self-expanding+NEJM+2019)
+- [Mack MJ, et al. Transcatheter aortic-valve replacement with a balloon-expandable valve in low-risk patients (PARTNER 3). N Engl J Med 2019;380:1695-705](https://doi.org/10.1056/NEJMoa1814052)
+- [Popma JJ, et al. Transcatheter aortic-valve replacement with a self-expanding valve in low-risk patients (Evolut Low Risk). N Engl J Med 2019;380:1706-15](https://doi.org/10.1056/NEJMoa1816885)
 - [Généreux P, et al. Valve Academic Research Consortium 3 (VARC-3): updated endpoint definitions. J Am Coll Cardiol 2021](https://pubmed.ncbi.nlm.nih.gov/?term=VARC-3+updated+endpoint+definitions+Genereux+2021)
 - [Impact of prosthesis-patient mismatch after surgical aortic valve replacement: systematic review and meta-analysis of reconstructed time-to-event data of 122 989 patients. J Am Heart Assoc 2024](https://www.ahajournals.org/doi/10.1161/JAHA.123.033176)
 - [Englberger L, et al. Importance of implant technique on risk of major paravalvular leak after St. Jude mechanical valve replacement (AVERT). Eur J Cardiothorac Surg 2005;28:838-43](https://academic.oup.com/ejcts/article/28/6/838/377180)

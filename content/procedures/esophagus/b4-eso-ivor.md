@@ -35,7 +35,7 @@ Separate clinical, pathological and post-neoadjuvant (yp) stage groups; squamous
 - [x] Bronchoscopy, to exclude invasion of the trachea or left main bronchus (T4b)
   > Mid-third tumours sit against the membranous trachea and left main bronchus; airway invasion makes the tumour unresectable and changes the plan.
 - [ ] Colonoscopy
-- [ ] A barium enema
+- [ ] Lower limb Doppler
 - [ ] Bone marrow biopsy
 
 ## [il-anat] The esophagus and its neighbours
@@ -113,9 +113,9 @@ Template and how to use it: [CTICU protocol, consent](#approach=cticu-consent&st
 **Q:** Which long-term effect must be discussed before esophagectomy?
 - [x] Reflux, early satiety, dumping and possible anastomotic stricture
   > These shape life after surgery and are part of informed consent.
-- [ ] Better appetite than before
-- [ ] No dietary change
-- [ ] Hair loss
+- [ ] Better appetite and weight gain
+- [ ] No change in diet is expected
+- [ ] Chronic diarrhea only
 
 ## [il-lap] Abdomen: mobilise the stomach
 
@@ -127,7 +127,7 @@ Lift the stomach up; the **left gastric pedicle** is taut in the lesser sac. Cle
 
 ## [il-thor] Right thoracotomy (or right VATS)
 
-Left lateral decubitus. Right posterolateral thoracotomy through the **5th space** (or four-port VATS / prone thoracoscopy). The right lung is isolated and retracted forward.
+Left lateral decubitus. Right posterolateral thoracotomy through the **5th space** (or VATS: **two-port** at KNH <span class="tag knh">KNH practice</span>; four-port or prone thoracoscopy elsewhere). The right lung is isolated and retracted forward.
 
 ## [il-azygos] Divide the azygos arch
 
@@ -203,10 +203,10 @@ Doses: [electrolytes](#approach=cticu-doses&step=0), [vasoactive drugs](#approac
 - [Shapiro J, et al. Neoadjuvant chemoradiotherapy plus surgery versus surgery alone for oesophageal cancer (CROSS long-term). Lancet Oncol 2015;16:1090-8](https://www.sciencedirect.com/science/article/abs/pii/S1470204515000406)
 - [Hoeppner J, et al. Perioperative chemotherapy or preoperative chemoradiotherapy in esophageal cancer (ESOPEC). N Engl J Med 2025](https://www.nejm.org/doi/abs/10.1056/NEJMoa2409408)
 - [Kelly RJ, et al. Adjuvant nivolumab in resected esophageal or gastroesophageal junction cancer (CheckMate 577). N Engl J Med 2021;384:1191-203](https://www.nejm.org/doi/full/10.1056/NEJMoa2032125)
-- [Biere SS, et al. Minimally invasive versus open oesophagectomy (TIME). Lancet 2012;379:1887-92](https://pubmed.ncbi.nlm.nih.gov/?term=Biere+minimally+invasive+versus+open+oesophagectomy+TIME+Lancet+2012)
+- [Biere SS, et al. Minimally invasive versus open oesophagectomy (TIME). Lancet 2012;379:1887-92](https://doi.org/10.1016/S0140-6736(12)60516-9)
 - [Mariette C, et al. Hybrid minimally invasive esophagectomy for esophageal cancer (MIRO). N Engl J Med 2019;380:152-62](https://www.nejm.org/doi/full/10.1056/NEJMoa1805101)
-- [Stahl M, et al. Chemoradiation with and without surgery in locally advanced squamous cell carcinoma of the esophagus. J Clin Oncol 2005;23:2310-7](https://pubmed.ncbi.nlm.nih.gov/?term=Stahl+chemoradiation+with+and+without+surgery+squamous+esophagus+2005)
+- [Stahl M, et al. Chemoradiation with and without surgery in locally advanced squamous cell carcinoma of the esophagus. J Clin Oncol 2005;23:2310-7](https://doi.org/10.1200/JCO.2005.00.034)
 - [Homs MY, et al. Single-dose brachytherapy versus metal stent placement for the palliation of dysphagia (SIREC). Lancet 2004;364:1497-504](https://pubmed.ncbi.nlm.nih.gov/?term=Homs+single-dose+brachytherapy+versus+metal+stent+SIREC+2004)
-- [Orringer MB, et al. Two thousand transhiatal esophagectomies. Ann Surg 2007;246:363-374](https://pubmed.ncbi.nlm.nih.gov/?term=Orringer+two+thousand+transhiatal+esophagectomies)
-- [Low DE, et al. International consensus on standardization of data collection for complications associated with esophagectomy (ECCG). Ann Surg 2015](https://pubmed.ncbi.nlm.nih.gov/?term=Esophagectomy+Complications+Consensus+Group+2015)
-- [Hulscher JB, et al. Extended transthoracic resection compared with limited transhiatal resection for adenocarcinoma of the esophagus. N Engl J Med 2002;347:1662-9](https://pubmed.ncbi.nlm.nih.gov/?term=Hulscher+extended+transthoracic+transhiatal+2002)
+- [Orringer MB, et al. Two thousand transhiatal esophagectomies. Ann Surg 2007;246:363-374](https://doi.org/10.1097/SLA.0b013e31814697f2)
+- [Low DE, et al. International consensus on standardization of data collection for complications associated with esophagectomy (ECCG). Ann Surg 2015](https://doi.org/10.1097/SLA.0000000000001098)
+- [Hulscher JB, et al. Extended transthoracic resection compared with limited transhiatal resection for adenocarcinoma of the esophagus. N Engl J Med 2002;347:1662-9](https://doi.org/10.1056/NEJMoa022343)

@@ -28,6 +28,7 @@ Dependent arm forward on a board; upper arm on a rest, shoulder flexed about 90Â
   > It lifts the chest off the dependent shoulder; placed in the axilla it compresses the brachial plexus and axillary vessels.
 - [ ] In the dependent axilla
 - [ ] Under the upper arm
+- [ ] Under the non-dependent (upper) axilla
 
 ## [por-landmarks] Landmarks on the side you operate on
 
@@ -52,6 +53,7 @@ The **auscultatory triangle** (latissimus, trapezius, medial border of the scapu
   > It runs on the outer surface of serratus anterior in the mid-axillary line; serratus paralysis lets the scapula wing.
 - [ ] The thoracodorsal nerve
 - [ ] The intercostobrachial nerve
+- [ ] The suprascapular nerve
 
 ## Sources
 

@@ -41,6 +41,10 @@ What the sutures can injure:
 
 > **Evidence:** CTSN trial (Gammie et al., NEJM 2022; 401 patients having mitral repair for degenerative MR, with moderate TR or a dilated annulus): adding annuloplasty cut the two-year composite of reoperation, progression or severe TR from 10.2% to 3.9%. It did not change mortality, and it raised the permanent pacemaker rate to 14.1% vs 2.5%. TRILUMINATE (TEER, NEJM 2023) and TRISCEND II (TTVR, NEJM 2025) improved quality of life in severe TR; TTVR needed a new pacemaker in about a quarter of patients.
 
+### Case
+
+A **36-year-old woman** with rheumatic mitral stenosis (valve area 0.9 cm², mean gradient 14 mmHg), in atrial fibrillation, listed for **mitral valve replacement**. Echo: **mild TR**, but the **tricuspid annulus measures 44 mm** and the right atrium is enlarged; estimated pulmonary pressure 55 mmHg. She has been admitted twice with **ankle and abdominal swelling** (right heart failure) and LVEF is 60%.
+
 ### Question
 
 **Q:** Rheumatic mitral stenosis for MVR. Mild TR, but the tricuspid annulus measures 44 mm and there has been right heart failure. What do the guidelines advise?
@@ -48,6 +52,7 @@ What the sutures can injure:
   > An annulus of 40 mm or more, or previous right heart failure, makes concomitant annuloplasty reasonable even with less than severe TR: the annulus keeps dilating after the mitral operation, and reoperation for late TR carries high risk.
 - [ ] Leave it; mild TR regresses once the mitral valve is fixed
 - [ ] Replace the tricuspid valve
+- [ ] Insert a tricuspid bioprosthesis because the annulus exceeds 40 mm
 
 ## [tv-replace-consent] Consent: what to discuss with this patient
 
@@ -91,9 +96,9 @@ Template and how to use it: [CTICU protocol, consent](#approach=cticu-consent&st
 **Q:** Which risk is higher after tricuspid surgery than after most valve operations?
 - [x] Heart block needing a permanent pacemaker
   > The AV node lies close to the septal leaflet annulus.
-- [ ] Paraplegia
-- [ ] Chylothorax
-- [ ] Colonic ischaemia
+- [ ] Phrenic nerve palsy
+- [ ] Left main coronary injury
+- [ ] Recurrent laryngeal nerve injury
 
 ## [tx-sternotomy] Median sternotomy, pericardial cradle
 
@@ -121,6 +126,7 @@ After a mitral operation the tricuspid is often done **after the clamp is off**,
   > Watching the rhythm while tying is the point of the beating-heart technique: a block that appears with one stitch often resolves when it is removed.
 - [ ] Carry on and put in a pacemaker later
 - [ ] Give atropine and continue
+- [ ] Convert to cardiopulmonary bypass and replace the valve
 
 ## [tx-atriotomy] Right atriotomy
 
@@ -165,6 +171,7 @@ Lower and tie a **large** prosthesis (the right heart tolerates no gradient). Or
   > Survival is the same either way, but mechanical tricuspid valves thrombose far more often (about sixfold); a tissue valve also allows later valve-in-valve and avoids warfarin in pregnancy.
 - [ ] A mechanical valve for durability
 - [ ] A homograft
+- [ ] A pulmonary autograft
 
 ## [tx-close] Close the atrium, release the snares, wean
 
@@ -197,7 +204,7 @@ Doses: [electrolytes](#approach=cticu-doses&step=0), [vasoactive drugs](#approac
 - [x] Treat RV failure: inodilator, avoid more fluid, lower pulmonary resistance
   > The RV fails with overload and high afterload.
 - [ ] Fluid bolus
-- [ ] Increase PEEP a lot
+- [ ] Raise PEEP to push blood through the lungs
 - [ ] Beta-blocker
 
 ## Sources
