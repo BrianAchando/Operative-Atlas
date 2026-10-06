@@ -32,14 +32,6 @@ Chain: Cavity colonized by *Aspergillus* → Fungal ball (aspergilloma) → **Er
 - [ ] The fungal ball itself
 - [ ] Capillaries in the cavity wall only
 
-## [asp-open-ro-anatomy] The right hilum from behind
-
-From behind, the **upper lobe bronchus** leaves the right main bronchus high, above the artery (the eparterial bronchus), with the **bronchus intermedius** continuing below. The **azygos arch** crosses above it into the SVC; the **vagus** runs down behind the hilum.
-
-Where the fissures meet, the interlobar artery gives the **ascending posterior artery (A2)** up to the upper lobe, the **middle lobe artery** forward and **A6** back.
-
-Order from behind: **fissure → ascending arteries → bronchus → truncus → upper lobe veins**.
-
 ## [asp-open-case] Case: aspergilloma with hemoptysis
 
 **Simple aspergilloma** in a fit patient with recurrent hemoptysis: **resection** (right upper lobectomy). Embolization bought time; bleeding recurs in a large proportion. Exclude active TB first.
@@ -113,79 +105,11 @@ Template and how to use it: [CTICU protocol, consent](#approach=cticu-consent&st
 - [ ] Antifungal tablets alone will cure it
 - [ ] Surgery is safest in complex disease
 
-## [asp-open-ro-thor] Posterolateral thoracotomy, 5th intercostal space
+## [asp-open-operation] The operation: resection
 
-Left lateral decubitus, table flexed, the arm forward. The incision curves from the **anterior axillary line** to a point midway between the **tip of the scapula** and the spine.
+**A simple aspergilloma is resected, most often by lobectomy**: the [right upper lobectomy](#approach=rul-open&step=4) is the model for an upper lobe cavity; a left upper cavity follows the [left upper lobectomy](#approach=lul-open&step=4). The steps are fissure, arteries, bronchus, veins.
 
-Divide **latissimus dorsi**, spare and retract **serratus anterior**, count the ribs from above under the scapula, and enter the chest over the **upper border of the 6th rib** so the neurovascular bundle under the 5th is spared. Open the space with the **rib spreader**, slowly.
-
-## [asp-open-ro-fissure] Open the fissure junction with a peanut
-
-Where the horizontal and oblique fissures meet, open the visceral pleura and **dissect bluntly with the peanut** onto the interlobar artery.
-
-Map its branches before dividing anything: **A2** up into the upper lobe, the **middle lobe artery** forward, **A6** back, the **basal trunk** down.
-
-## [asp-open-ro-ascending] Ascending arteries to the upper lobe
-
-In the open fissure, follow the interlobar artery up: the **ascending posterior artery (A2)** is the first upper lobe branch you meet from here, and any **ascending anterior branch** lies just in front.
-
-Keep the **middle lobe artery** and **A6**, which leave at about the same level. Divide the ascending branches.
-
-### Question
-
-**Q:** Dividing the ascending posterior artery in the fissure, which branch arises close by and must be kept?
-- [x] The superior segmental artery of the lower lobe (A6)
-  > A2 leaves the interlobar artery at about the level of A6 and the middle lobe artery; identify all three before dividing.
-- [ ] The truncus anterior
-- [ ] The azygos vein
-
-## [asp-open-ro-bronchus] Upper lobe bronchus: clamp, inflate, staple
-
-Sweep **stations 10R and 11R** toward the specimen. The **upper lobe bronchus** leaves the right main bronchus high; below it the **bronchus intermedius** must stay intact.
-
-Close the stapler (thick-tissue reload) on the upper lobe bronchus and inflate: **the middle and lower lobes must ventilate**. Then fire.
-
-From behind, the bronchus is reached by opening the posterior mediastinal pleura below the azygos arch, in front of the vagus.
-
-### Question
-
-**Q:** Stapler closed on the right upper lobe bronchus: which lobes must inflate?
-- [x] The middle and lower lobes
-  > If the middle and lower lobes do not ventilate, the stapler is across the bronchus intermedius or the main bronchus.
-- [ ] Only the lower lobe
-- [ ] None: the lung is collapsed
-
-## [asp-open-ro-truncus] Truncus anterior: ligate and divide
-
-The **truncus anterior** is the first branch of the right pulmonary artery, leaving its upper surface for the apical and anterior segments. It is short and wide, just below the **azygos arch** and behind the SVC.
-
-Clear the **station 10R** node from the angle between the truncus and the artery; that exposes the length you need. Two ties on the artery side, one on the lobe side, then divide.
-
-### Question
-
-**Q:** What lies immediately above the right truncus anterior as you clear it?
-- [x] The azygos arch
-  > The azygos arches forward over the right main bronchus into the SVC just above the truncus; it can be divided for exposure if needed.
-- [ ] The phrenic nerve
-- [ ] The inferior pulmonary vein
-
-## [asp-open-ro-veins] Upper lobe veins: staple, keep the middle lobe vein
-
-Roll the lobe back to show the front of the hilum. Only the **upper lobe veins** remain. Keep the phrenic nerve on the pericardium and the **middle lobe vein** out of the jaws, then fire.
-
-### Question
-
-**Q:** Stapling the upper lobe veins, which tributary of the superior pulmonary vein must be kept?
-- [x] The middle lobe vein
-  > The middle lobe vein is the lowest tributary of the right superior vein; taking it with the upper lobe veins leaves the middle lobe congested and may force a bilobectomy.
-- [ ] The apical vein
-- [ ] The inferior pulmonary vein
-
-## [asp-open-ro-specimen] Specimen out, nodes, leak test
-
-Bag the lobe and remove it. Complete the nodal dissection: **stations 2R and 4R** (between the SVC, trachea and azygos), **7** below the carina, **10R and 11R** at the hilum.
-
-Leak-test the stump under saline. Check that the **middle lobe** is pink, ventilating and not twisted; if it is mobile on a complete fissure, fix it to the lower lobe to prevent torsion.
+**What differs here**: dense, vascular apical adhesions, so an extrapleural plane may be needed; bleeding from chest wall collaterals; do not enter the cavity (spillage of the fungal ball); plan a muscle flap if a space will remain. Open surgery, or VATS only in experienced hands.
 
 ## [asp-open-icu] ICU and post-operative care
 

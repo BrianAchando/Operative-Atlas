@@ -41,14 +41,6 @@ Chain: Deficient bronchial cartilage or compression → Airway collapses in expi
 - [ ] Oxygen
 - [ ] Surgical consultation
 
-## [cle-open-lo-anatomy] The hilum from behind and in the fissure
-
-Seen from behind and from the fissure, the **pulmonary artery** is the key: it arches over the left main bronchus, then descends in the fissure, giving off its upper lobe branches one by one.
-
-In the fissure: the **posterior segmental** artery up and back, the **lingular** artery forward, the **superior segmental (A6)** to the lower lobe behind, the **basal trunk** continuing down. The **truncus anterior** is the first branch, high on the anterosuperior surface.
-
-Order of division from behind: **fissure → posterior segmental → truncus → bronchus → vein**.
-
 ## [cle-open-case] Case: a neonate with congenital lobar emphysema
 
 Symptomatic CLE: **left upper lobectomy** (in a neonate by thoracotomy through the 4th or 5th space, or thoracoscopy in experienced hands). Mild, stable cases can be observed.
@@ -121,83 +113,11 @@ Template and how to use it: [CTICU protocol, consent](#approach=cticu-consent&st
 - [ ] The whole lung is removed
 - [ ] It is only needed if a pneumothorax is seen
 
-## [cle-open-lo-thor] Posterolateral thoracotomy, 5th intercostal space
+## [cle-open-operation] The operation: lobectomy
 
-Right lateral decubitus, table flexed, the arm forward. The incision curves from the **anterior axillary line** to a point midway between the **tip of the scapula** and the spine.
+**Symptomatic CLE is treated by lobectomy.** A left upper lesion is a [left upper lobectomy](#approach=lul-open&step=4) through a thoracotomy (thoracoscopy in experienced hands); a right middle or right upper lesion is the [right middle](#approach=rml-open&step=4) or [right upper](#approach=rul-open&step=4) lobectomy. The steps are those of the adult operation in a much smaller chest: fissure, arteries, bronchus, veins.
 
-Divide **latissimus dorsi**, spare and retract **serratus anterior**, count the ribs from above under the scapula, and enter the chest over the **upper border of the 6th rib** so the neurovascular bundle under the 5th is spared. Open the space with the **rib spreader**, slowly.
-
-## [cle-open-lo-fissure] Open the fissure bluntly with a peanut
-
-Retract the upper lobe forward and up, the lower lobe back and down. Where the oblique fissure is deepest, open the visceral pleura and **dissect bluntly with the peanut**, sweeping along the line of the artery.
-
-The **interlobar pulmonary artery** appears in its sheath. Get onto the sheath: everything that follows is dissected on the artery.
-
-### Question
-
-**Q:** A fissure-first approach works best when…
-- [x] The fissure is complete and the artery is visible in it
-  > In a complete fissure the interlobar artery lies just under the visceral pleura where the fissures meet.
-- [ ] The fissure is fused
-- [ ] The superior vein is short
-
-## [cle-open-lo-segmental] First segmental arteries in the fissure
-
-Follow the artery up and back. The **posterior segmental artery** (A1+2c, sometimes two) is the first upper lobe branch you meet from the fissure, leaving the posterosuperior surface as the artery arches over the bronchus. The **lingular artery** runs forward into the lingula.
-
-Map the lower lobe branches first: **A6** behind, often opposite the lingular artery, and the **basal trunk** below. Then divide the upper lobe branches.
-
-### Question
-
-**Q:** In the fissure, which lower-lobe branch arises posteriorly, often opposite the lingular artery?
-- [x] The superior segmental artery (A6)
-  > A6 is the first lower-lobe branch and leaves the posterior aspect of the artery; take it by mistake and the superior segment is devascularized.
-- [ ] The basal trunk
-- [ ] The truncus anterior
-
-## [cle-open-lo-truncus] Truncus anterior: ligate and divide
-
-Follow the artery up to its first branch. Open the mediastinal pleura over the top of the hilum, in front of the vagus, and dissect the **truncus anterior** circumferentially.
-
-**Ligate** it: two ties on the pulmonary artery side, one on the lobe side, then divide between. The truncus is short: leave enough stump for the ties.
-
-The aortic arch, the **recurrent laryngeal nerve** and the station 5 nodes are just above.
-
-### Pearl
-
-A short, wide truncus that will not take three ties is stapled instead.
-
-### Question
-
-**Q:** Where does the left recurrent laryngeal nerve leave the vagus?
-- [x] At the aortic arch, hooking under it beside the ligamentum arteriosum
-  > On the left the nerve loops under the arch; on the right it loops under the subclavian artery.
-- [ ] Below the left main bronchus
-- [ ] At the level of the inferior pulmonary vein
-
-## [cle-open-lo-bronchus] Upper lobe bronchus: clamp, inflate, staple
-
-With the upper lobe arteries divided, the **upper lobe bronchus** lies free beneath where the artery arched over it. Clear station 11 at the secondary carina.
-
-Pass the endostapler (thick-tissue reload), close it, and **inflate: the lower lobe must ventilate** before firing.
-
-## [cle-open-lo-vein] Pulmonary veins: superior vein last
-
-Roll the lobe back to show the front of the hilum. Two veins: the **superior pulmonary vein** from the upper lobe, and below it the **inferior pulmonary vein** from the lower lobe, which stays.
-
-Keep the phrenic nerve on the pericardium, pass the vascular stapler round the superior vein and fire. The lobe is now free except for any fused fissure.
-
-### Question
-
-**Q:** Taking the vein last, what is the argument for doing it this way?
-- [x] Arterial inflow is stopped before venous outflow
-  > Dividing arteries first avoids congesting the lobe; in cancer surgery the vein-first argument (less tumor-cell shedding) is debated.
-- [ ] The vein is easier to reach from behind
-- [ ] It avoids the phrenic nerve
-
-## [cle-open-lo-specimen] Specimen out, nodes, leak test
-
-Staple any remaining fused fissure anteriorly, bag and remove the lobe, and complete the nodal dissection: stations 5, 6, 7, 10 and 11. Leak-test the stump under saline.
+**What differs in an infant**: gentle or spontaneous ventilation until the chest is open, no nitrous oxide, the surgeon scrubbed at induction; the lobe herniates out of the incision and the child improves at once.
 
 ## [cle-open-icu] ICU and post-operative care
 

@@ -52,14 +52,6 @@ Frequencies are the historical figures. So the CPAM types still in use are **1 t
 - [ ] Bronchial atresia of the lower lobe
 - [ ] Nothing: all CPAMs are harmless
 
-## [cpam-open-llo-anatomy] The lower lobe hilum
-
-Three structures leave the lower lobe, each lower and more posterior than its upper lobe counterpart. The **inferior pulmonary vein** is the lowest structure of the hilum, with the **inferior pulmonary ligament** running down from its lower border to the diaphragm.
-
-In the fissure the artery gives the **superior segmental artery (A6)** posteriorly, often opposite the **lingular artery**, and continues as the **basal trunk**. The **lower lobe bronchus** lies behind and between the artery and the vein; its superior segmental branch (B6) leaves early and posteriorly.
-
-Keep in view what stays: the **lingular artery**, the **posterior segmental arteries** and the **upper lobe bronchus**.
-
 ## [cpam-open-case] Case: an infected CPAM in a child
 
 A symptomatic, recurrently infected **type 1 CPAM**: **left lower lobectomy** once the infection has settled (a segmentectomy only if the lesion is small and clearly confined). Complete excision matters: type 1 lesions carry a risk of mucinous adenocarcinoma, especially if incompletely removed. Check the CT for a systemic artery (a hybrid lesion with sequestration): an unseen feeder from the aorta in the inferior ligament bleeds.
@@ -129,83 +121,11 @@ Template and how to use it: [CTICU protocol, consent](#approach=cticu-consent&st
 - [ ] Because it always causes hydrops
 - [ ] Because it grows back
 
-## [cpam-open-llo-thor] Posterolateral thoracotomy, 5th intercostal space
+## [cpam-open-operation] The operation: lobectomy
 
-Right lateral decubitus, table flexed, the arm forward. The incision curves from the **anterior axillary line** to a point midway between the **tip of the scapula** and the spine.
+**A symptomatic CPAM is treated by lobectomy** (segmentectomy only in selected cases). A left lower lesion is a [left lower lobectomy](#approach=lll-open&step=4); other lobes follow the matching lobectomy, for example the [right lower](#approach=rll-open&step=4). The steps are those of the adult operation in a smaller chest: ligament, fissure, arteries, vein, bronchus.
 
-Divide **latissimus dorsi**, spare and retract **serratus anterior**, count the ribs from above under the scapula, and enter the chest over the **upper border of the 6th rib** so the neurovascular bundle under the 5th is spared. Open the space with the **rib spreader**, slowly.
-
-## [cpam-open-llo-ligament] Divide the inferior pulmonary ligament
-
-Retract the lower lobe up and forward. Divide the **inferior pulmonary ligament** with the diathermy hook from the diaphragm upward, close to the lung, taking the **station 9** nodes with the specimen.
-
-Stop at the lower border of the **inferior pulmonary vein**. The esophagus and the descending aorta are just medial: keep the hook on the lung side.
-
-## [cpam-open-llo-fissure] Open the fissure bluntly with a peanut
-
-Retract the upper lobe forward and up, the lower lobe back and down. Open the visceral pleura where the fissure is deepest and **dissect bluntly with the peanut** onto the interlobar artery.
-
-Identify the **A6** branch behind, the **basal trunk** continuing down and the **lingular artery** in front, before dividing anything.
-
-### Question
-
-**Q:** A fissure-first approach works best when…
-- [x] The fissure is complete and the artery is visible in it
-  > In a complete fissure the interlobar artery lies just under the visceral pleura where the fissures meet.
-- [ ] The fissure is fused
-- [ ] The superior vein is short
-
-## [cpam-open-llo-artery] Superior segmental artery (A6) and basal trunk
-
-In the open fissure the artery is followed down. **A6** leaves its posterior surface first; the **basal trunk** continues below. Opposite A6, on the anterior surface, is the **lingular artery**, which stays.
-
-Divide A6 and the basal trunk separately with the vascular stapler.
-
-### Pearl
-
-If A6 arises high and the basal trunk is short, staple them separately; one stapler across both risks the lingular artery.
-
-### Question
-
-**Q:** Which upper lobe artery often arises opposite A6 and must be protected?
-- [x] The lingular artery (A4+5)
-  > The lingular artery leaves the anterior aspect of the interlobar artery, often at the level of A6; stapling the basal trunk too high can take it.
-- [ ] The truncus anterior
-- [ ] The inferior pulmonary vein
-
-## [cpam-open-llo-vein] Inferior pulmonary vein: staple
-
-With the ligament divided the **inferior pulmonary vein** lies free at the bottom of the hilum. Clear it circumferentially.
-
-Before stapling, **see the superior pulmonary vein** as a separate structure: a common venous trunk, a recognized variant on the left, taken here would drain the whole lung.
-
-### Question
-
-**Q:** Before stapling the inferior pulmonary vein, what must you confirm?
-- [x] That the superior pulmonary vein is separate and drains the upper lobe
-  > A common pulmonary vein taken as the "inferior vein" drains the whole lung.
-- [ ] That the fissure is complete
-- [ ] That A6 is already divided
-
-## [cpam-open-llo-bronchus] Lower lobe bronchus: clamp, inflate, staple
-
-Sweep the **station 11** nodes up into the specimen and expose the **lower lobe bronchus** down to the secondary carina. Staple proximal to the **superior segmental bronchus (B6)**, which leaves early and posteriorly.
-
-Close the stapler (thick-tissue reload) and inflate: **the upper lobe must ventilate**. Then fire.
-
-### Question
-
-**Q:** Stapler closed on the lower lobe bronchus: what must happen when the lung is inflated?
-- [x] The upper lobe expands
-  > If the upper lobe does not ventilate, the stapler is across the left main or upper lobe bronchus.
-- [ ] The lower lobe expands
-- [ ] Nothing should move
-
-## [cpam-open-llo-specimen] Specimen out, nodes, leak test
-
-Bag the lobe and remove it. Complete the nodal dissection: **station 7** below the carina, **9** in the ligament, **10 and 11** at the hilum; for lower lobe tumors the subcarinal nodes matter most.
-
-Leak-test the bronchial stump under saline and check that the upper lobe fills the chest; an upper lobe that does not reach the apex may need an apical drain.
+**What matters here**: complete excision, because some lesions carry a malignancy risk; check the CT for a systemic feeder from the aorta before dividing the inferior ligament; operate once an infection has settled.
 
 ## [cpam-open-icu] ICU and post-operative care
 

@@ -4027,22 +4027,34 @@ if TX_OK:
     # ---- congenital lung lesions have entries of their own: each is cloned from the raw open-lobectomy skeleton, then given its own pathophysiology and case.
     # The lobectomies themselves carry the general lung-cancer pathophysiology and staging, like the other approaches.
     import copy as _cp
-    def cong_entry(key, src, op, opName, approach, summary, patho, case_, group='Congenital lung lesions', srcs=CONG_SRC):
+    def cong_entry(key, src, op, opName, approach, summary, patho, case_, op_title, op_body, group='Congenital lung lesions', srcs=CONG_SRC):
         if src not in procs: return
         q = _cp.deepcopy(procs[src])
         q.update({'id': f'open-{op}', 'op': op, 'opName': opName, 'name': opName, 'approach': approach, 'summary': summary, 'group': group})
         for s in q['steps']: s['id'] = f"{key}-{s['id']}"
         procs[key] = q
         add_case(key, patho, case_, srcs)
+        # the operation itself is the lobectomy: keep one step that points to it, instead of repeating its steps
+        st = q['steps']; teach = ('Pathophysiology', 'Anatomy', 'Case', 'Decision')
+        o = dict(next(s for s in st if s['phase'] not in teach))
+        for kk in ('lead', 'pearl', 'ask', 'askAfter', 'pose'): o.pop(kk, None)
+        o.update({'id': f'{key}-operation', 'phase': 'Operation', 'title': op_title, 'body': op_body, 'seq': 2})
+        pat_ = next(s for s in st if s['phase'] == 'Pathophysiology'); cas_ = next(s for s in st if s['phase'] == 'Case')
+        pat_['seq'] = 0; cas_['seq'] = 1
+        q['steps'] = [pat_, cas_, o]
+        q['sequence'] = [{'label': 'Patho', 'kind': 'other'}, {'label': 'Case', 'kind': 'other'}, {'label': 'Operation', 'kind': 'other'}]
     cong_entry('cle-open', 'lul-open', 'cle', 'Congenital lobar emphysema', 'Left upper lobectomy, open (the commonest site)',
                'An over-distended lobe from a ball-valve bronchus: where it sits, how it presents, the drain trap, the anesthetic, and lobectomy.',
-               {**cong_patho('cle'), 'opacity': {'rul': 0.45, 'rml': 0.55, 'lll': 0.2, 'rll': 0.2}, 'highlight': ['cle-lul', 'rml', 'rul'], 'labels': ['cle-lul', 'rml', 'rul']}, cle_case)
+               {**cong_patho('cle'), 'opacity': {'rul': 0.45, 'rml': 0.55, 'lll': 0.2, 'rll': 0.2}, 'highlight': ['cle-lul', 'rml', 'rul'], 'labels': ['cle-lul', 'rml', 'rul']}, cle_case,
+               'The operation: lobectomy', '<p><b>Symptomatic CLE is treated by lobectomy.</b> A left upper lesion is a <a class="link" href="#approach=lul-open&step=4">left upper lobectomy</a> through a thoracotomy (thoracoscopy in experienced hands); a right middle or right upper lesion is the <a class="link" href="#approach=rml-open&step=4">right middle</a> or <a class="link" href="#approach=rul-open&step=4">right upper</a> lobectomy. The steps are those of the adult operation in a much smaller chest: fissure, arteries, bronchus, veins.</p><p><b>What differs in an infant</b>: gentle or spontaneous ventilation until the chest is open, no nitrous oxide, the surgeon scrubbed at induction; the lobe herniates out of the incision and the child improves at once.</p>')
     cong_entry('cpam-open', 'lll-open', 'cpam', 'Congenital pulmonary airway malformation (CPAM)', 'Left lower lobectomy, open (any lobe is possible)',
                'A cystic or solid malformation of one lobe: Stocker types, hydrops and the CVR, the infection and malignancy risk, timing, and lobectomy.',
-               {**cong_patho('cpam'), 'highlight': ['cpam-lll'], 'labels': ['cpam-lll', 'lll']}, cpam_case)
+               {**cong_patho('cpam'), 'highlight': ['cpam-lll'], 'labels': ['cpam-lll', 'lll']}, cpam_case,
+               'The operation: lobectomy', '<p><b>A symptomatic CPAM is treated by lobectomy</b> (segmentectomy only in selected cases). A left lower lesion is a <a class="link" href="#approach=lll-open&step=4">left lower lobectomy</a>; other lobes follow the matching lobectomy, for example the <a class="link" href="#approach=rll-open&step=4">right lower</a>. The steps are those of the adult operation in a smaller chest: ligament, fissure, arteries, vein, bronchus.</p><p><b>What matters here</b>: complete excision, because some lesions carry a malignancy risk; check the CT for a systemic feeder from the aorta before dividing the inferior ligament; operate once an infection has settled.</p>')
     cong_entry('asp-open', 'rul-open', 'asp', 'Aspergilloma (post-TB cavity)', 'Right upper lobectomy, open (upper lobes most often)',
                'A fungal ball in a post-TB cavity: simple versus complex disease, the hemoptysis pathway, embolization as a bridge, and resection.',
-               tb_patho(), asp_case, group='Lung infection and cavities', srcs=TB_SRC)
+               tb_patho(), asp_case,
+               'The operation: resection', '<p><b>A simple aspergilloma is resected, most often by lobectomy</b>: the <a class="link" href="#approach=rul-open&step=4">right upper lobectomy</a> is the model for an upper lobe cavity; a left upper cavity follows the <a class="link" href="#approach=lul-open&step=4">left upper lobectomy</a>. The steps are fissure, arteries, bronchus, veins.</p><p><b>What differs here</b>: dense, vascular apical adhesions, so an extrapleural plane may be needed; bleeding from chest wall collaterals; do not enter the cavity (spillage of the fungal ball); plan a muscle flap if a space will remain. Open surgery, or VATS only in experienced hands.</p>', group='Lung infection and cavities', srcs=TB_SRC)
     add_case('rul-open', lc_patho('right', 'rul'), lc_case('right', 'rul', 'o'), LC_SRC)
     add_case('lul-open', lc_patho('left', 'lul'), lc_case('left', 'lul', 'o'), LC_SRC)
     add_case('lll-open', lc_patho('left', 'lll'), lc_case('left', 'lll', 'o'), LC_SRC)
