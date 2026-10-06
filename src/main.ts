@@ -521,28 +521,32 @@ function calcBox(kind: 'aortic' | 'mitral' | 'bt'): HTMLElement {
     w.i.addEventListener('input', run); box.append(w.row);
     box.append(out); run(); return box;
   }
-  const w = num('Weight', 'kg', '60'), ht = num('Height', 'cm', '165'), sz = num('Prosthesis size (optional)', 'mm', '');
-  const eoa = num("Its reference EOA from the manufacturer's chart (optional)", 'cm²', '');
+  const w = num('Weight', 'kg', '60'), ht = num('Height', 'cm', '165');
+  const eoa = num("Optional: a prosthesis's reference EOA (manufacturer's chart)", 'cm²', '');
+  // PHN normal echo database (Lopez 2017): diameter / BSA^0.5 has mean and SD below (cm); BSA by Haycock
+  const NORM = kind === 'aortic' ? [{ n: 'Annulus', m: 1.48, sd: 0.14 }] : [{ n: 'Annulus, AP', m: 2.31, sd: 0.24 }, { n: 'Annulus, lateral', m: 2.23, sd: 0.22 }];
+  const SIZES = kind === 'aortic' ? [17, 19, 21, 23, 25, 27, 29] : [15, 17, 19, 21, 23, 25, 27, 29, 31, 33];
   const run = () => {
     const kg = parseFloat(w.i.value), cm = parseFloat(ht.i.value);
-    const bsa = Math.sqrt((kg * cm) / 3600), bmi = kg / Math.pow(cm / 100, 2);
-    const obese = bmi >= 30;
+    if (!(kg > 0 && cm > 0)) { out.innerHTML = '<p>Enter height and weight.</p>'; return; }
+    const bsa = 0.024265 * Math.pow(kg, 0.5378) * Math.pow(cm, 0.3964);       // Haycock
+    const bmi = kg / Math.pow(cm / 100, 2); const obese = bmi >= 30;
+    const sq = Math.sqrt(bsa);
+    const d = NORM.map((x) => ({ ...x, mean: x.m * sq * 10, lo: (x.m - 2 * x.sd) * sq * 10, hi: (x.m + 2 * x.sd) * sq * 10 }));
+    const dm = d.reduce((a, x) => a + x.mean, 0) / d.length;
+    const area = kind === 'aortic' ? Math.PI * Math.pow(d[0]!.mean / 20, 2) : (Math.PI / 4) * (d[0]!.mean / 10) * (d[1]!.mean / 10);
+    const fit = SIZES.filter((x) => x <= dm + 0.5).pop() ?? SIZES[0]!;
     const [mod, sev] = kind === 'aortic' ? (obese ? [0.70, 0.55] : [0.85, 0.65]) : [1.2, 0.9];
-    let html = `<p>BSA (Mosteller) <b>${f(bsa)} m²</b> · BMI ${f(bmi, 1)}${obese && kind === 'aortic' ? ' (obese thresholds used)' : ''}</p>`
-      + `<p>To <b>avoid PPM</b> the prosthesis needs a reference EOA of at least <b>${f(bsa * mod)} cm²</b>; below <b>${f(bsa * sev)} cm²</b> the mismatch is <b>severe</b>. `
-      + "Pick the smallest size whose EOA on the manufacturer's chart reaches this.</p>";
+    let html = `<p class="calc-big">Expected annulus: <b>${f(dm, 0)} mm</b> · area ${f(area)} cm²</p>`
+      + `<p>Likely to take about a <b>${fit} mm</b> prosthesis (the sizer decides). Normal range (z −2 to +2): ${d.map((x) => `${x.n.toLowerCase()} ${f(x.lo, 0)}–${f(x.hi, 0)} mm`).join('; ')}.</p>`
+      + `<p>To avoid prosthesis–patient mismatch the valve needs a reference EOA of at least <b>${f(bsa * mod)} cm²</b> (severe below ${f(bsa * sev)} cm²): pick the smallest size whose EOA on the manufacturer's chart reaches it.</p>`
+      + `<p class="calc-note">BSA (Haycock) ${f(bsa)} m² · BMI ${f(bmi, 1)}${obese && kind === 'aortic' ? ' (obese PPM thresholds used)' : ''}. Annulus norms are from healthy children to 18 years (PHN); in adults and in rheumatic valves treat them as a guide only.</p>`;
+    if (kind === 'mitral' && kg < 40) html += `<p>Child: a ${fit} mm valve is <b>${f(fit / kg)} mm/kg</b>. A high size-to-weight ratio predicts early death (LVOT obstruction, circumflex and conduction injury); do not oversize or force a big valve supra-annular.</p>`;
     const e = parseFloat(eoa.i.value);
-    if (Number.isFinite(e) && e > 0) {
-      const i = e / bsa; const g = i > mod ? 'no PPM' : i > sev ? 'moderate PPM' : 'severe PPM';
-      html += `<p>Indexed EOA <b>${f(i)} cm²/m²</b>: <span class="tag ${i > mod ? 'knh' : 'prop'}">${g}</span></p>`;
-    }
-    const s = parseFloat(sz.i.value);
-    if (kind === 'mitral' && Number.isFinite(s) && s > 0 && kg < 40) {
-      html += `<p>Child: prosthesis size/weight <b>${f(s / kg)} mm/kg</b>. A high ratio predicts early death (LVOT obstruction, circumflex and conduction injury); avoid oversizing and supra-annular placement of a too-large valve.</p>`;
-    }
+    if (Number.isFinite(e) && e > 0) { const ii = e / bsa; html += `<p>That prosthesis: indexed EOA <b>${f(ii)} cm²/m²</b> <span class="tag ${ii > mod ? 'knh' : 'prop'}">${ii > mod ? 'no PPM' : ii > sev ? 'moderate PPM' : 'severe PPM'}</span></p>`; }
     out.innerHTML = html;
   };
-  for (const x of [w, ht, sz, eoa]) { x.i.addEventListener('input', run); box.append(x.row); }
+  for (const x of [w, ht, eoa]) { x.i.addEventListener('input', run); box.append(x.row); }
   box.append(out); run(); return box;
 }
 

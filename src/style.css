@@ -266,3 +266,4 @@ body.stage-light #hover { color: #33505e; }
 .calc-out p { margin: 6px 0 0; font-size: 13px; }
 .calc-big { font: 700 18px var(--display); color: var(--text); }
 .calc-big b { color: var(--cova-cta); }
+.calc-note { color: var(--muted); font-size: 12px !important; }

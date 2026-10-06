@@ -701,13 +701,14 @@ def add(procs, ask, has, LM, S):
              [('Patho', 'other', [ppatho]), ('Decide', 'other', [pdec]), ('Sternotomy', 'other', bypass('band', 'a band')[:1]), ('Band', 'other', [pdo])], PAL_SRC)
 
     # =================================================================================================== prosthesis sizing (MVR, AVR): height, weight and PPM
-    PPM_SRC = [{'title': 'Hahn RT, Pibarot P. Prosthesis-patient mismatch in transcatheter and surgical aortic valve replacement. Ann Cardiothorac Surg 2024', 'url': 'https://www.annalscts.com/article/view/17102/html'},
+    PPM_SRC = [{'title': 'Lopez L, et al. Relationship of echocardiographic Z scores adjusted for body surface area to age, sex, race and ethnicity: the Pediatric Heart Network normal echocardiogram database. Circ Cardiovasc Imaging 2017', 'url': 'https://www.pediatricheartnetwork.org/wp-content/uploads/2020/07/Lopez-Circulation.pdf'},
+               {'title': 'Hahn RT, Pibarot P. Prosthesis-patient mismatch in transcatheter and surgical aortic valve replacement. Ann Cardiothorac Surg 2024', 'url': 'https://www.annalscts.com/article/view/17102/html'},
                {'title': 'Magne J, et al. Impact of prosthesis-patient mismatch on survival after mitral valve replacement. Circulation 2007;115:1417-25', 'url': 'https://www.ahajournals.org/doi/10.1161/circulationaha.106.631549'},
                {'title': 'Mitral valve replacement in children: balancing durability and risk with mechanical and bioprosthetic valves. Interdiscip Cardiovasc Thorac Surg 2024;38:ivae034', 'url': 'https://academic.oup.com/icvts/article/38/3/ivae034/7623437'}]
     SIZE_BODY = {
         'mitral': ('Size the mitral prosthesis to the patient',
             '<p>The sizer tells you what the <b>annulus</b> takes; the patient\'s <b>body size</b> tells you what orifice they need. Too small a valve for the body is <b>prosthesis–patient mismatch (PPM)</b>: persistent gradients, pulmonary hypertension and worse survival.</p>'
-            + '<ol><li>Body surface area from height and weight (Mosteller: √(height cm × weight kg / 3600))</li>'
+            + '<ol><li>Body surface area from height and weight (Haycock); the expected annulus is about <b>2.3 cm × √BSA</b> (z-score norms)</li>'
               '<li>Minimum EOA = <b>BSA × 1.2 cm²/m²</b> to avoid PPM (severe if the indexed EOA is ≤0.9)</li>'
               '<li>Choose the smallest size whose <b>reference EOA</b> on the manufacturer\'s chart reaches it</li></ol>'
             + tbl(['Problem', 'Options'],
@@ -716,7 +717,7 @@ def add(procs, ask, has, LM, S):
             + ev('Magne et al., Circulation 2007: mitral PPM (indexed EOA ≤1.2 cm²/m²; severe ≤0.9) reduced survival after MVR. ICVTS 2024 (children): median prosthesis size/weight about 1.7 mm/kg; oversizing and supra-annular placement linked to death; 44–65% of 15–17 mm mechanical valves replaced within years.')),
         'aortic': ('Size the aortic prosthesis to the patient',
             '<p>A valve that fits the annulus can still be <b>too small for the patient</b>. Aortic prosthesis–patient mismatch leaves a gradient, less LV mass regression and worse long-term outcomes.</p>'
-            + '<ol><li>Body surface area from height and weight (Mosteller)</li>'
+            + '<ol><li>Body surface area from height and weight (Haycock); the expected annulus is about <b>1.48 cm × √BSA</b> (z-score norms)</li>'
               '<li>Minimum EOA = <b>BSA × 0.85 cm²/m²</b> (BMI 30 or more: × 0.70) to avoid PPM; severe if ≤0.65 (≤0.55 when obese)</li>'
               '<li>Pick the smallest size whose <b>reference EOA</b> reaches it on the manufacturer\'s chart</li></ol>'
             + tbl(['If the projected EOA is too small', 'Options'],
