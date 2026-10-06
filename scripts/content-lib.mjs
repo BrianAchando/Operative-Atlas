@@ -3,8 +3,9 @@
 // questions, sources) live in content/procedures/**/*.md, which anyone can edit. content-build.mjs merges them.
 import fs from 'node:fs';
 import path from 'node:path';
+import { fileURLToPath } from 'node:url';
 
-export const ROOT = path.resolve(path.dirname(new URL(import.meta.url).pathname), '..');
+export const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 export const BASE = path.join(ROOT, 'content', '_base', 'procedures.base.json');
 export const DIR = path.join(ROOT, 'content', 'procedures');
 
@@ -18,6 +19,7 @@ export function walk(dir) {
 
 /** parse one procedure file into { meta, steps: Map(id -> {title, body, lead, pearl, ask}), sources } */
 export function parse(text, file = '') {
+  text = text.replace(/\r\n?/g, '\n'); // Windows line endings (git autocrlf, Notepad)
   const errors = [];
   let meta = {}; let rest = text;
   const fm = text.match(/^---\n([\s\S]*?)\n---\n?/);
