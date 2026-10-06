@@ -477,6 +477,41 @@ OPS.update({
 })
 KEY_OF.update({'asd': 'asd', 'vsd': 'vsd', 'pda': 'pda', 'coa': 'coa'})
 
+OPS.update({
+    'tof': dict(kind='card', c=dict(risk='Age and weight, cyanosis and haematocrit, PA size, coronary anatomy', common=['ICU for a few days', 'Drains, pacing wires', 'Some desaturation at first if a PFO is left open'],
+                                    serious=['Low cardiac output from a stiff RV ("restrictive physiology")', 'Junctional ectopic tachycardia', 'Complete heart block', 'Residual VSD or RVOT obstruction needing re-operation', 'Death (under 5% for uncomplicated repair)'],
+                                    specific=['Pulmonary regurgitation, especially after a transannular patch: lifelong follow-up and likely pulmonary valve replacement later', 'Late arrhythmias'],
+                                    alt=['BT shunt or RVOT stent first, repair later', 'No surgery: progressive cyanosis, spells, stroke, brain abscess, early death'], kenya=['Waiting time; spells while waiting (propranolol)', 'Follow-up echo access for decades']),
+                icu=['Restrictive RV: low output with high CVP and a small, stiff RV; keep preload, avoid high airway pressures, milrinone; early extubation helps', 'JET: cool to about 35 °C, correct Mg²⁺ and K⁺, reduce catecholamines, amiodarone; atrial pacing faster than the JET', 'Echo: residual VSD, RVOT gradient, pulmonary regurgitation, effusions; chylothorax', 'Children: doses by weight with the paediatric intensivist'],
+                q1=('What must the family understand about a transannular patch?', 'It leaves pulmonary regurgitation; most will need a pulmonary valve later in life',
+                    'The repair is not the last operation: lifelong follow-up of the RV.', 'It is a cure with no follow-up', 'It causes stroke', 'It needs lifelong warfarin'),
+                q2=('6 h after TOF repair: CVP 16, BP low, small RV on echo with forward diastolic flow in the PA, ascites. Problem?', 'Restrictive RV physiology',
+                    'A stiff hypertrophied RV fills poorly; support with preload, milrinone, low airway pressures, and let the PFO decompress the right heart.', 'Hypovolaemia only', 'Tamponade only', 'LV failure'),
+                ev='Merck: perioperative mortality under 5% for uncomplicated repair.'),
+    'bt': dict(kind='card', c=dict(risk='Weight and age, diagnosis (single ventricle higher risk), shunt size per kg', common=['ICU', 'Drain'],
+                                   serious=['Shunt thrombosis (sudden desaturation, loss of the murmur)', 'Over-circulation and low diastolic pressure', 'Phrenic nerve injury', 'Death (around 1 in 10 in some infant series)'],
+                                   specific=['A second operation (complete repair or next stage) is planned', 'Aspirin until the next operation'],
+                                   alt=['Ductal or RVOT stent', 'Early complete repair where anatomy allows'], kenya=['Access to oxygen saturation monitoring and aspirin at home']),
+               icu=['Heparin early (unit protocol), then aspirin', 'Target saturations about 75–85%; falling saturation or loss of the shunt murmur: shunt thrombosis, an emergency (heparin, echo, theatre or cath)', 'Diastolic pressure and lactate: over-circulation; avoid hyperventilation and high oxygen, which drop PVR further', 'Children: doses by weight'],
+               q1=('Which complication of a BT shunt is an emergency the parents should recognise?', 'Shunt blockage: the baby becomes suddenly bluer',
+                   'Thrombosis is commonest early; sudden desaturation needs immediate assessment.', 'Mild cough', 'Sweating with feeds', 'Slight fever'),
+               q2=('12 h after a BT shunt, SpO₂ falls from 82% to 60% and the continuous murmur has gone. Next?', 'Heparin bolus, urgent echo and return to theatre or the cath lab',
+                   'Acute shunt thrombosis is life-threatening; restore flow quickly.', 'Increase oxygen and wait', 'Furosemide', 'Start propranolol'),
+               ev='Dirks 2013: early thrombosis 9.4%, mortality 9.4% in 32 infants.'),
+    'band': dict(kind='card', c=dict(risk='Weight, sepsis, the underlying lesion', common=['ICU', 'Drain'],
+                                     serious=['Band too tight (cyanosis) or too loose (heart failure persists)', 'Band migration onto a branch PA', 'Pulmonary valve distortion', 'Death'],
+                                     specific=['A further operation to remove the band and repair the heart is planned', 'Branch PA may need repair at debanding'],
+                                     alt=['Primary repair if possible', 'Medical therapy (risk of pulmonary vascular disease)'], kenya=['Growth monitoring while waiting for the definitive repair']),
+                 icu=['Saturations and BP: too tight = cyanosis, bradycardia, RV failure; too loose = continued failure', 'Echo gradient across the band daily at first', 'Children: doses by weight'],
+                 q1=('Why will a banded child need another operation?', 'The band is palliation: the defect still needs closing and the band removed',
+                     'Banding protects the lungs while the child grows; definitive repair follows.', 'Bands dissolve', 'Only if the band breaks', 'They do not'),
+                 q2=('After banding, a 4 kg infant is bradycardic and saturations have fallen to 70% (biventricular). Next?', 'Band too tight: loosen it',
+                     'Excessive restriction causes cyanosis and RV pressure overload; loosen and re-measure.', 'Give fluids and wait', 'Tighten more', 'Start a beta-blocker'),
+                 ev='Trusler rules: loosen for distal PA collapse, cyanosis or bradycardia.'),
+})
+KEY_OF.update({'tof': 'tof'})
+APPR_OF.update({'pal-bt': 'bt', 'pal-band': 'band'})
+
 CORE_LINK = {'card': ('cticu-cardiac', 'cardiac core'), 'thx': ('cticu-thoracic', 'thoracic core'), 'vasc': ('cticu-vascular', 'vascular core')}
 TEACH = ('Pathophysiology', 'Anatomy', 'Case', 'Decision')
 

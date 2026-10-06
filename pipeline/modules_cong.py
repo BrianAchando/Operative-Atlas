@@ -22,27 +22,40 @@ tbl = lambda head, *rows: ('<table class="mini"><tr>' + ''.join(f'<th>{h}</th>' 
                            + ''.join('<tr>' + ''.join(f'<td>{c}</td>' for c in r) + '</tr>' for r in rows) + '</table>')
 ADULT = '<p class="note">The model is an adult heart: in a child the relations are the same and everything is smaller.</p>'
 
+OPER_SRC = [{'title': 'Abman SH, et al. Pediatric pulmonary hypertension: guidelines from the AHA and ATS. Circulation 2015;132:2037-99', 'url': 'https://www.ahajournals.org/doi/10.1161/cir.0000000000000329'},
+            {'title': 'Management of systemic-to-pulmonary shunts and elevated pulmonary vascular resistance. ERJ Open Res 2023;9:00271-2023', 'url': 'https://publications.ersnet.org/content/erjor/9/6/00271-2023'}]
 ESC = {'title': 'Baumgartner H, et al. 2020 ESC Guidelines for the management of adult congenital heart disease. Eur Heart J 2021;42:563-645', 'url': 'https://academic.oup.com/eurheartj/article/42/6/563/5898606'}
 ESC_ACC = {'title': 'American College of Cardiology. 2020 ESC Guidelines for adult congenital heart disease: key points', 'url': 'https://www.acc.org/latest-in-cardiology/ten-points-to-remember/2020/08/29/13/17/2020-esc-guidelines-for-adult-chd-esc-2020'}
 ESC_REV = {'title': 'Comments on the 2020 ESC guidelines for the management of adult congenital heart disease. Rev Esp Cardiol 2021', 'url': 'https://www.revespcardiol.org/en-comments-on-2020-esc-guidelines-articulo-S1885585721000773'}
 TSRA = {'title': 'AATS / TSRA primer: surgical techniques 1. ASD, VSD, PDA, coarctation', 'url': 'https://www.aats.org/tsra-primer-surgical-techniques-1-asd-vsd-pda-coarctation'}
 KNH = {'title': 'Osano et al. One-year outcomes and intervention waiting time of patients admitted with congenital heart disease at Kenyatta National Hospital, Kenya. Preprint (Research Square) 2025', 'url': 'https://www.researchsquare.com/article/rs-7386594/v1'}
-ASD_SRC = [ESC, ESC_ACC, TSRA, KNH,
+ASD_SRC = [*OPER_SRC, ESC, ESC_ACC, TSRA, KNH,
+           {'title': '5-Minute Clinical Consult: atrial septal defect (types and proportions; spontaneous closure)', 'url': 'https://www.unboundmedicine.com/5minute/view/5-Minute-Clinical-Consult/816415/all/Atrial_Septal_Defect'},
+           {'title': 'Medscape: sinus venosus atrial septal defects', 'url': 'https://emedicine.medscape.com/article/892151-overview'},
            {'title': 'Haleem SM, Kanmanthareddy A. Catheter management of atrial septal defect. StatPearls, updated 2025', 'url': 'https://www.ncbi.nlm.nih.gov/books/NBK536908/'}]
-VSD_SRC = [ESC, ESC_ACC, TSRA, KNH,
+VSD_SRC = [*OPER_SRC, ESC, ESC_ACC, TSRA, KNH,
            {'title': 'Society of Thoracic Surgeons. Ventricular septal defects (VSD): STS Cardiothoracic Surgery Consult (types 1-4, size by aortic annulus, indications)', 'url': 'https://consult.sts.org/sts/view/Cardiac-and-Congenital/1864080/all/Ventricular_Septal_Defects__VSD_'},
            {'title': 'Jacobs JP, et al. Congenital Heart Surgery Nomenclature and Database Project: ventricular septal defect. Ann Thorac Surg 2000;69:S25-35', 'url': 'https://www.sciencedirect.com/science/article/abs/pii/S0003497599012709'},
            {'title': 'Lopez L, et al. Classification of ventricular septal defects for ICD-11. Ann Thorac Surg 2018', 'url': 'https://ipccc.net/wp-content/uploads/2024/01/2018-11-ANNALS-Lopez-2018-VSD-Classification.pdf'},
            {'title': 'WFSA Anaesthesia Tutorial of the Week 316: ventricular septal defects (size relative to the aortic annulus)', 'url': 'https://resources.wfsahq.org/wp-content/uploads/316_english.pdf'},
            {'title': 'Azab S, et al. Permanent complete heart block following surgical closure of isolated ventricular septal defect. Egypt J Chest Dis Tuberc 2013;62:529-33', 'url': 'https://www.sciencedirect.com/science/article/pii/S0422763813000332'},
            {'title': 'Yoneyama F, et al. Conduction disorders after perimembranous ventricular septal defect closure: continuous versus interrupted suturing. Eur J Cardiothorac Surg 2022;62:ezab407', 'url': 'https://academic.oup.com/ejcts/article/62/1/ezab407/6373863'}]
-PDA_SRC = [ESC, ESC_ACC, TSRA, KNH,
+PDA_SRC = [*OPER_SRC, ESC, ESC_ACC, TSRA, KNH,
            {'title': 'Krichenko A, et al. Angiographic classification of the isolated, persistently patent ductus arteriosus. Am J Cardiol 1989 (summary: Pediatric Echocardiography library)', 'url': 'https://pedecho.org/library/chd/pda'},
            {'title': 'Fernando R, et al. PDA classification based on size and haemodynamic significance (table), 2013', 'url': 'https://www.researchgate.net/figure/Patent-ductus-arteriosus-PDA-classification-based-on-size-and-hemodynamic-significance_tbl2_259111641'},
            {'title': 'Sathanandam S, et al. Scoring system for post-ligation cardiac syndrome after transcatheter and surgical PDA closure in extremely low birthweight infants. Circulation 2019', 'url': 'https://www.researchgate.net/publication/342702564_Scoring_System_for_Post_Ligation_Cardiac_Syndrome_and_Its_Utility_After_Transcatheter_and_Surgical_Patent_Ductus_Arteriosus_Ligation_in_Extremely_Low_Birthweight_Infants'},
            {'title': 'Surgical management of PDA in the very preterm infant and postligation cardiac compromise. Thoracic Key', 'url': 'https://thoracickey.com/surgical-management-of-patent-ductus-arteriosus-in-the-very-preterm-infant-and-postligation-cardiac-compromise/'},
            {'title': 'Patent ductus arteriosus: surgical technique. Thoracic Key (from a cardiac surgery textbook)', 'url': 'https://thoracickey.com/patent-ductus-arteriosus/'},
            {'title': 'Subbian S, Winn MMA, Kiraly L. Surgical ligation of patent ductus arteriosus in pre-term infants: a narrative review. Pediatr Med 2024', 'url': 'https://pm.amegroups.org/article/view/7773/html'}]
+TOF_SRC = [{'title': 'Merck Manual Professional: tetralogy of Fallot (components, timing of repair, outcomes)', 'url': 'https://www.merckmanuals.com/professional/pediatrics/congenital-cardiovascular-anomalies/tetralogy-of-fallot'},
+           {'title': 'Awori MN, et al. Tetralogy of Fallot repair: optimal z-score use for transannular patch insertion. Eur J Cardiothorac Surg 2013;43:483-6', 'url': 'https://academic.oup.com/ejcts/article/43/3/483/716816'},
+           {'title': 'Awori MN, Mehta NP, Mitema FO, Kebba N. Optimal use of z-scores to preserve the pulmonary valve annulus during repair of tetralogy of Fallot. World J Pediatr Congenit Heart Surg 2018', 'url': 'https://doi.org/10.1177/2150135118757991'},
+           {'title': 'Schaffner D, et al. Outcome of humanitarian patients with late complete repair of tetralogy of Fallot: a 13-year single-centre experience. Int J Cardiol Congenit Heart Dis 2022', 'url': 'https://pmc.ncbi.nlm.nih.gov/articles/PMC11658541/'},
+           {'title': 'Boston Children\'s CICU: tetralogy of Fallot and hypercyanotic spells', 'url': 'https://bchcicu.org/tof-hypercyanotic-spells/'}, TSRA, KNH]
+PAL_SRC = [{'title': 'Dirks V, et al. Modified Blalock Taussig shunt: a not-so-simple palliative procedure. Eur J Cardiothorac Surg 2013;44:1096-102', 'url': 'https://academic.oup.com/ejcts/article/44/6/1096/521356'},
+           {'title': 'Trusler GA, Mustard WT. A method of banding the pulmonary artery for large isolated ventricular septal defect with and without transposition of the great arteries. Ann Thorac Surg 1972', 'url': 'https://www.sciencedirect.com/science/article/abs/pii/S0003497510648667'},
+           {'title': 'Trusler rules for pulmonary artery banding (Pedi Cardiology)', 'url': 'https://www.pedicardiology.net/2015/11/trusler-rules-for-pulmonary-artery.html'},
+           {'title': 'Pulmonary artery banding. Multimedia Manual of Cardiothoracic Surgery', 'url': 'https://mmcts.org/tutorial/16'}, TSRA, KNH]
 COA_SRC = [ESC, ESC_REV, TSRA, KNH,
            {'title': 'Farag ES, et al. Aortic coarctation repair through left thoracotomy: results in the modern era. Eur J Cardiothorac Surg 2019;55:331-7', 'url': 'https://academic.oup.com/ejcts/article/55/2/331/5079307'},
            {'title': 'Brewer LA, et al. Spinal cord complications following surgery for coarctation of the aorta. J Thorac Cardiovasc Surg 1972', 'url': 'https://pubmed.ncbi.nlm.nih.gov/5054875/'}]
@@ -78,6 +91,22 @@ def add(procs, ask, has, LM, S):
             for s in sts: steps.append({**copy.deepcopy(s), 'seq': i})
         procs[key] = {'id': key, 'op': op, 'opName': opName, 'side': 'both', 'name': opName, 'approach': approach, 'summary': summary,
                       'ports': [], 'steps': steps, 'sources': sources, 'group': 'Congenital cardiac', 'sequence': sq}
+
+    def operability(id_, v, show, labels, opacity, lesion):
+        return step(id_, 'Decision', 'Is this patient still operable?',
+            f'<p>A {lesion} seen late, as so many are in Kenya, raises one question before any other: <b>has the pulmonary vascular bed remodelled beyond repair?</b> Closing a defect in a patient with fixed pulmonary vascular disease removes the "pop-off" for the right heart and shortens life.</p>'
+            + tbl(['', 'Points to operable', 'Warns of inoperable (Eisenmenger)'],
+                  ['History', 'Breathless, poor growth, chest infections (high flow)', 'Fewer infections and "better" with age; exertional cyanosis, syncope, haemoptysis'],
+                  ['Examination', 'Normal saturations; loud flow murmur; big active heart', '<b>Resting or exercise desaturation</b>, clubbing; murmur fading; loud single P2; RV heave; small heart on X-ray'],
+                  ['Echo', 'Left-to-right shunt throughout; dilated left heart (VSD, PDA) or right heart (ASD)', '<b>Bidirectional or right-to-left shunt</b>; RV hypertrophy; left heart no longer dilated'],
+                  ['Catheter (the decider)', '<b>PVRi under about 4 WU·m²</b> (PVR under 3 WU in adults); PVR/SVR under 1/3; Qp:Qs 1.5 or more', '<b>PVRi over 8 WU·m²</b> (PVR 5 WU or more in adults despite treatment); PVR/SVR over about 0.4'])
+            + ul('<b>Grey zone</b> (PVRi about 4–8 WU·m²): individual decision in a team with pulmonary hypertension expertise; the response to oxygen or nitric oxide helps, though criteria for shunts are not standardised',
+                 '<b>Treat-and-repair</b> (pulmonary vasodilators first, then a fenestrated or flap-valve closure) is used in selected patients but remains controversial',
+                 'Where catheterisation is not available, a clear left-to-right shunt with a dilated left heart and normal saturations is reassuring; any desaturation or bidirectional flow needs a catheter before surgery')
+            + ev('6th World Symposium: PVRi 4 WU·m² as the operability cut-off, 4–8 individual, over 8 inoperable; AHA/ATS 2015: PVRi 6–8 WU·m² individual, PVR/SVR under 1/3 operable; ESC 2020 (adults): PVR under 3 WU class I, 3–5 WU IIa, 5 WU or more only in selected cases; vasoreactivity criteria for shunts not established (ERJ Open Res 2023).'),
+            v, show=show, labels=labels, opacity=opacity, after=True,
+            quiz=ask(f'A 7-year-old with a large {lesion} now has saturations of 89% at rest and bidirectional shunting on echo. Next step?', 'Cardiac catheterisation with PVR measurement and vasoreactivity testing before any decision',
+                     'Desaturation and bidirectional flow suggest advanced pulmonary vascular disease; closure could be lethal if PVR is fixed.', 'Close the defect urgently', 'Discharge: the shunt has improved', 'Pulmonary artery band'))
 
     # ------------------------------------------------------------ bypass steps borrowed from the transseptal mitral operation
     MS = {s['id']: s for s in procs['mvr-septal']['steps']}
@@ -183,9 +212,32 @@ def add(procs, ask, has, LM, S):
         + ev('AATS/TSRA primer: autologous pericardium or Gore-Tex, running polypropylene; left side de-aired through the aortic root vent before the suture line is completed.'),
         asd_v(dist=140), show=[*CH, 'asd-defect', 'asd-patch', 'asd-suture', *TV, *KOCH], highlight=['asd-patch'], danger=hv(['tv-avnode']), labels=['asd-patch', 'asd-suture'],
         opacity={**CH_OP, 'ra': 0.06}, ct=AC, action={'kind': 'reveal', 'label': 'Sew in the patch', 'port': 'sternotomy', 'ids': ['asd-patch', 'asd-suture']})
+    ASDL = hv(['asd-loc-svs', 'asd-loc-ivs', 'asd-loc-primum', 'asd-loc-cs'])
+    atypes = step('asd-types', 'Anatomy', 'Types of ASD and where they sit',
+        tbl(['Type', 'Share', 'Where', 'Goes with', 'Closure'],
+            ['<b>Secundum</b>', 'About 70–75%', 'Fossa ovalis, mid-septum', 'Usually isolated', 'Device (good rims) or patch'],
+            ['<b>Primum</b>', '15–20%', 'Low septum, just above the AV valves', 'Cleft mitral valve (partial AV septal defect)', 'Surgery: patch and repair of the cleft'],
+            ['<b>Sinus venosus, superior</b>', 'Up to about 10% (both forms)', 'At the SVC entry, outside the fossa', '<b>Right upper pulmonary vein draining to the SVC</b>, almost always', 'Surgery: baffle the veins to the LA (patch, two-patch or Warden)'],
+            ['<b>Sinus venosus, inferior</b>', '(rarer)', 'At the IVC entry', 'Right lower pulmonary vein to the IVC', 'Surgery'],
+            ['<b>Coronary sinus (unroofed)</b>', 'Under 1%', 'At the coronary sinus orifice', 'Often a left SVC to the coronary sinus', 'Surgery'])
+        + ev('Proportions: 5-Minute Clinical Consult (secundum 75%, primum 15–20%, sinus venosus 5–10%, coronary sinus under 1%); Medscape: superior sinus venosus almost always with anomalous right upper pulmonary vein drainage to the SVC.'),
+        asd_v(dist=170), show=[*CH, 'asd-defect', *ASDL, *KOCH], highlight=['asd-defect', *ASDL], labels=['asd-defect', *ASDL], opacity={**CH_OP, 'ra': 0.08}, spin=True, ct=AC, after=True,
+        quiz=ask('Which ASD is almost always accompanied by anomalous pulmonary venous drainage?', 'Superior sinus venosus defect',
+                 'The right upper pulmonary vein drains to the SVC; the repair must baffle it to the left atrium.', 'Secundum', 'Primum', 'Coronary sinus'))
+    asize = step('asd-size', 'Anatomy', 'Size, and what the heart shows',
+        '<p>An ASD is judged less by its millimetres than by its <b>effect on the right heart</b>:</p>'
+        + tbl(['Finding', 'Meaning'],
+              ['Small defect, normal RA and RV in an infant', 'Often closes on its own: the smaller the defect and the younger the child, the likelier. Review'],
+              ['<b>RA and RV dilated</b>, Qp:Qs 1.5 or more', 'Haemodynamically significant: close (if PVR allows)'],
+              ['Defect over about 38 mm or rims under 5 mm', 'Too big or too poorly supported for a device: surgery'],
+              ['Adult with AF, paradoxical embolism, or symptoms', 'Close even if older; AF may persist'])
+        + '<p>Unlike a VSD or PDA, an ASD dilates the <b>right</b> heart: shunted blood goes RA → RV → lungs → LA and round again.</p>'
+        + ev('Spontaneous closure: 5-Minute Clinical Consult. Device limits (rims over 5 mm, defect up to 38 mm): StatPearls 2025. Closure at Qp:Qs over 1.5 with RV volume overload: ESC 2020.'),
+        asd_v(), show=[*CH, *ASD], highlight=['asd-defect'], labels=['asd-defect', 'ra', 'rv'], opacity={**CH_OP, 'ra': 0.3, 'rv': 0.3}, ct=AC)
+    aoper = operability('asd-operable', asd_v(), [*CH, *ASD], ['asd-defect', 'asd-shunt'], CH_OP, 'ASD')
     proc('asd-patch', 'asd', 'Atrial septal defect closure', 'Secundum ASD: pericardial patch (sternotomy, bypass)',
          'Surgical patch closure of a secundum ASD with deficient rims: indications, device or surgery, the rims and Koch\'s triangle, bicaval bypass, patch, de-airing.',
-         [('Patho', 'other', [patho]), ('Anatomy', 'other', [anat]), ('Case', 'other', [case]), ('Decide', 'other', [dec]),
+         [('Patho', 'other', [patho]), ('Types', 'other', [atypes]), ('Size', 'other', [asize]), ('Anatomy', 'other', [anat]), ('Case', 'other', [case]), ('Decide', 'other', [dec]), ('Operable?', 'other', [aoper]),
           ('Sternotomy', 'other', bypass('asd', 'an ASD')[:1]), ('Bypass', 'other', bypass('asd', 'an ASD')[1:3]), ('Atrium', 'other', bypass('asd', 'an ASD')[3:]),
           ('Inspect', 'other', [inspect]), ('Patch', 'other', [patch]), ('Close', 'other', finish('asd', '', ['asd-patch', 'asd-suture']))], ASD_SRC)
 
@@ -260,7 +312,7 @@ def add(procs, ask, has, LM, S):
         '<p>Retract the anterior and septal leaflets with fine stay sutures. Look for the defect under the septal leaflet; tethering chordae may hide its edges. If they do, <b>detach the septal leaflet</b> 2 mm from the annulus and resuspend it at the end.</p>'
         '<p>Name the rims aloud: aortic valve above, conduction tissue posteroinferiorly, the muscular septum below.</p>'
         + ev('AATS/TSRA primer: anterior and septal tricuspid leaflets retracted with 6-0 polypropylene stay sutures.'),
-        vsd_v(dist=115), show=[*CH, 'vsd-defect', *TV, *KOCH, 'his-bundle', *CUSPS, 'ra-incision'], highlight=['vsd-defect'], danger=hv(['his-bundle', 'cusp-r', 'cusp-n']),
+        vsd_v(d=V(1, -0.05, 0.1), dist=125), show=[*CH, 'vsd-defect', *TV, *KOCH, 'his-bundle', *CUSPS, 'ra-incision'], highlight=['vsd-defect'], danger=hv(['his-bundle', 'cusp-r', 'cusp-n']),
         labels=hv(['vsd-defect', 'tv-septal', 'his-bundle']), opacity=VOP, ct=VC)
     patch = step('vsd-patch', 'Defect', 'Patch the defect; protect the His bundle',
         '<p>A <b>Dacron, PTFE or treated pericardial patch</b> a little larger than the defect, on the RV side. Interrupted pledgeted sutures or a running 5-0/6-0 polypropylene.</p>'
@@ -269,14 +321,14 @@ def add(procs, ask, has, LM, S):
              '<b>Across the tricuspid annulus</b>: transition sutures through the base of the septal leaflet')
         + '<p>Test the tricuspid valve with saline and resuspend a detached leaflet. Watch the rhythm when the heart beats again.</p>'
         + ev('TSRA primer: the conduction system runs close to the posteroinferior edge: partial-thickness bites. Yoneyama 2022: in perimembranous outlet defects the conduction tissue deviates toward the LV side, which favours shallow continuous suturing.'),
-        vsd_v(dist=115), show=[*CH, 'vsd-defect', 'vsd-patch', 'vsd-suture', *TV, *KOCH, 'his-bundle', *CUSPS], highlight=['vsd-patch'], danger=hv(['his-bundle']),
+        vsd_v(d=V(1, -0.05, 0.1), dist=125), show=[*CH, 'vsd-defect', 'vsd-patch', 'vsd-suture', *TV, *KOCH, 'his-bundle', *CUSPS], highlight=['vsd-patch'], danger=hv(['his-bundle']),
         labels=['vsd-patch', 'vsd-suture', 'his-bundle'], opacity=VOP, ct=VC, after=True,
         action={'kind': 'reveal', 'label': 'Sew in the patch', 'port': 'sternotomy', 'ids': ['vsd-patch', 'vsd-suture']},
         quiz=ask('Where along a perimembranous VSD is the His bundle at risk?', 'The posteroinferior rim, near the apex of Koch\'s triangle',
                  'The bundle penetrates at the apex of Koch\'s triangle and runs along the posteroinferior margin of the defect.', 'The superior rim, under the aortic valve', 'The anterior muscular rim', 'Only in muscular VSDs'))
     proc('vsd-pm', 'vsd', 'Ventricular septal defect closure', 'Perimembranous VSD: transatrial patch closure',
          'Closure of a large perimembranous VSD through the right atrium and tricuspid valve: timing, operability (PVR), the His bundle, the aortic valve, patch technique.',
-         [('Patho', 'other', [patho]), ('Types', 'other', [types]), ('Size', 'other', [size]), ('Anatomy', 'other', [anat]), ('Case', 'other', [case]), ('Decide', 'other', [dec]),
+         [('Patho', 'other', [patho]), ('Types', 'other', [types]), ('Size', 'other', [size]), ('Anatomy', 'other', [anat]), ('Case', 'other', [case]), ('Decide', 'other', [dec]), ('Operable?', 'other', [operability('vsd-operable', vsd_v(), [*CH, *VSD], ['vsd-defect', 'vsd-shunt'], VOP, 'VSD')]),
           ('Sternotomy', 'other', bypass('vsd', 'a VSD')[:1]), ('Bypass', 'other', bypass('vsd', 'a VSD')[1:3]), ('Atrium', 'other', bypass('vsd', 'a VSD')[3:]),
           ('Expose', 'other', [expose]), ('Patch', 'other', [patch]),
           ('Close', 'other', finish('vsd', '<p>Check the rhythm off bypass: <b>complete heart block</b> needs temporary pacing; if it persists beyond about 7–10 days, a permanent pacemaker.</p>', ['vsd-patch', 'vsd-suture']))], VSD_SRC)
@@ -405,7 +457,7 @@ def add(procs, ask, has, LM, S):
         left(DC, 140, (-1, -0.15, 0.55)), show=[*LCH, *PDA, 'pda-ligatures'], highlight=['pda-ligatures'], labels=['pda-ligatures', 'aorta'], opacity=THX_OP, ct=DC, after=True,
         quiz=ask('Eight hours after PDA ligation, a 900 g preterm becomes hypotensive and needs more oxygen. Echo: LV output low. Best first treatment?', 'Milrinone (afterload reduction and inotropy), with cautious volume',
                  'Post-ligation cardiac syndrome is an afterload problem for an immature LV; vasoconstrictors make it worse.', 'High-dose noradrenaline', 'Re-open the duct', 'Fluid boluses until BP normal'))
-    teach = [('Patho', 'other', [patho]), ('Types', 'other', [ptypes]), ('Size', 'other', [psize]), ('Anatomy', 'other', [anat]), ('Case', 'other', [case]), ('Decide', 'other', [dec])]
+    teach = [('Patho', 'other', [patho]), ('Types', 'other', [ptypes]), ('Size', 'other', [psize]), ('Anatomy', 'other', [anat]), ('Case', 'other', [case]), ('Decide', 'other', [dec]), ('Operable?', 'other', [operability('pda-operable', left(DC, 150), [*LCH, *PDA], ['pda', 'pa-left'], THX_OP, 'PDA')])]
     for ics in (3, 4):
         key = f'pda-ics{ics}'; nth = '3rd' if ics == 3 else '4th'
         sp = which_space(key, DC, PDA); th = thoracotomy(key, ics)
@@ -494,4 +546,155 @@ def add(procs, ask, has, LM, S):
          'Repair of a juxtaductal coarctation through a left thoracotomy: neonatal and later presentations, stent or surgery, the 3rd or 4th space, collaterals and the spinal cord, extended end-to-end anastomosis.',
          [('Patho', 'other', [patho]), ('Anatomy', 'other', [anat]), ('Case', 'other', [case]), ('Decide', 'other', [dec]), ('Which space', 'other', [sp]),
           ('Thoracotomy', 'other', [th]), ('Mobilise', 'other', [mob]), ('Clamp', 'other', [clamp]), ('Resect', 'other', [resect]), ('Anastomose', 'other', [anast])], COA_SRC)
-    print('  congenital: asd-patch, vsd-pm, pda-ics3, pda-ics4, coa-eea')
+
+    # =================================================================================================== tetralogy of Fallot
+    if has('tof-vsd'):
+        TC = P('tof-vsd-c'); PV = P('pv-c'); RVOT = P('rvot-c')
+        TOF = hv(['tof-vsd', 'tof-override', 'tof-infundibulum', 'tof-pv'])
+        TOP = {**CH_OP, 'rv': 0.12, 'pa-trunk': 0.3, 'aorta': 0.35, 'tv-septal': 0.4, 'tv-anterior': 0.4, 'tv-posterior': 0.4}
+        t_v = lambda dist=170, d=(0.55, 0.75, 0.35): view((TC + RVOT) / 2, d, dist)
+        patho = step('tof-patho', 'Pathophysiology', 'Pathophysiology: tetralogy of Fallot',
+            '<p>One developmental error, <b>anterior and cephalad deviation of the outlet septum</b>, produces all four features:</p>'
+            + ul('<b>Malalignment VSD</b>: large, non-restrictive, under the aorta', '<b>RV outflow tract obstruction</b>: infundibular muscle, a small valve and annulus, sometimes small branch PAs',
+                 '<b>Overriding aorta</b>: straddling the defect', '<b>RV hypertrophy</b>: the RV pumps at systemic pressure')
+            + chain('Equal RV and LV pressures (large VSD)', 'RVOT obstruction sets the shunt', '!More obstruction: right-to-left, cyanosis', 'Polycythaemia, clubbing, squatting, spells')
+            + '<p>The spectrum runs from a "pink tet" (mild obstruction, net left-to-right) to severe cyanosis or pulmonary atresia. Untreated, about 55% survive 5 years and 30% 10 years.</p>' + ADULT
+            + ev('Merck Manual: four components, shunt direction set by RVOT obstruction; untreated survival 55% at 5 and 30% at 10 years.'),
+            t_v(), show=[*CH, *TOF], highlight=['tof-vsd', 'tof-infundibulum'], labels=['tof-vsd', 'tof-override', 'tof-infundibulum', 'tof-pv'], opacity=TOP, after=True, spin=True, ct=TC,
+            quiz=ask('What sets the degree of cyanosis in tetralogy?', 'The severity of RV outflow tract obstruction',
+                     'The VSD is always large; the harder it is to eject into the PA, the more RV blood goes to the aorta.', 'The size of the VSD', 'The degree of aortic override alone', 'The heart rate'))
+        anat = step('tof-anatomy', 'Anatomy', 'The anatomy the repair must respect',
+            ul('The <b>VSD</b> lies under the aortic valve; its posteroinferior rim carries the <b>His bundle</b> (perimembranous extension), as in an isolated perimembranous VSD',
+               'The <b>infundibulum</b>: hypertrophied septal and parietal bands; resect enough, but not the moderator band or the septal attachments of the tricuspid valve',
+               'The <b>pulmonary valve and annulus</b>: measured with Hegar dilators against normal values (z-score)',
+               'The <b>coronaries</b>: look before any ventriculotomy; a major coronary (for example the LAD arising from the right coronary) crossing the RV outflow changes the plan (conduit or limited incision)')
+            + ADULT,
+            t_v(150), show=[*CH, *TOF, *TV, *KOCH, 'his-bundle', *CUSPS, 'coronaries'], highlight=['tof-vsd', 'tof-infundibulum', 'tof-pv'], danger=hv(['his-bundle', 'coronaries']),
+            labels=hv(['tof-vsd', 'tof-infundibulum', 'tof-pv', 'his-bundle', 'coronaries']), opacity={**TOP, 'coronaries': 0.9}, spin=True, ct=TC)
+        spell = step('tof-spell', 'Pathophysiology', 'Hypercyanotic (tet) spell: what to do',
+            '<p>Agitation, crying or dehydration → infundibular spasm and falling SVR → more right-to-left shunt → deeper cyanosis, which drives more hyperpnoea and acidosis. Break the cycle:</p>'
+            + '<ol><li><b>Calm the child; knee-chest position</b> (raises SVR and venous return); 100% oxygen</li>'
+              '<li><b>Morphine</b> to stop hyperpnoea; IV fluid bolus to fill the RV</li>'
+              '<li><b>Raise SVR: phenylephrine</b> (1–5 µg/kg IV) or vasopressin</li>'
+              '<li><b>Beta-blocker</b> (propranolol, or esmolol infusion) to relax the infundibulum</li>'
+              '<li>Sedation, intubation and ventilation if refractory (beware falling SVR on induction); correct acidosis</li>'
+              '<li>A spell is an indication for <b>early surgery</b>: repair or a shunt</li></ol>'
+            + ev('Boston Children\'s CICU: knee-chest, oxygen, morphine, volume, phenylephrine 1–5 µg/kg, beta-blockade; operative repair often indicated after recurrent or even single spells.'),
+            t_v(), show=[*CH, *TOF], highlight=['tof-infundibulum', 'tof-override'], labels=['tof-infundibulum', 'tof-override'], opacity=TOP, ct=TC, after=True,
+            quiz=ask('A 9-month-old with tetralogy is deeply cyanosed and hyperpnoeic after crying. Oxygen and knee-chest have not helped. Next?', 'Morphine and a fluid bolus, then phenylephrine to raise SVR',
+                     'Stop the hyperpnoea, fill the RV and raise systemic resistance so less blood shunts right to left.', 'Furosemide', 'Adrenaline bolus to increase contractility', 'Sodium nitroprusside'))
+        case = step('tof-case', 'Case', 'Case: a 3-year-old with tetralogy',
+            '<p>Late presentation is the rule here. Complete repair is still the aim; the question is whether the pulmonary arteries and annulus allow it.</p>'
+            + ev('Schaffner et al. 2022: 165 humanitarian patients (many from sub-Saharan Africa), median age 4.5 years at repair: no early deaths in 161 complete repairs; transannular patch in 38%; preserved valve function linked to shorter ventilation and ICU stay.'),
+            t_v(), show=[*CH, *TOF], highlight=['tof-vsd'], labels=['tof-vsd', 'tof-pv'], opacity=TOP, ct=TC,
+            lead='<p>A <b>3-year-old girl, 11 kg</b>, from Kisii, referred with cyanosis since infancy, squatting after play and two spells this year. SpO₂ 74%, clubbing, single S2, harsh ejection murmur. Hb 19 g/dL. '
+                 'Echo: tetralogy with a large malalignment VSD, infundibular and valvar stenosis, <b>pulmonary annulus 9 mm (z-score about −2)</b>, confluent branch PAs of good size, left arch, no major coronary across the RVOT.</p>',
+            quiz=ask('Best plan?', 'Complete repair now, on bypass',
+                     'Good-sized branch PAs and no coronary obstacle: a symptomatic child with spells should have complete repair; a shunt first is for unsuitable anatomy or a very small, sick infant.', 'BT shunt and repair at 10 years', 'Propranolol and review', 'PA band'))
+        dec = step('tof-decision', 'Decision', 'Repair, shunt first, and keeping the valve',
+            tbl(['Question', 'Answer'],
+                ['When?', 'Elective complete repair usually at about 2–6 months (earlier for spells or severe cyanosis); a late presenter is repaired when seen'],
+                ['Shunt first?', 'Small or sick neonates, very small PAs, complex anatomy or a coronary across the RVOT: modified BT shunt (or RVOT/duct stent), repair later'],
+                ['Keep the valve?', 'Preserve the annulus when it can be opened enough; a transannular patch relieves obstruction at the cost of free pulmonary regurgitation and later RV dilatation'],
+                ['Which z-score?', 'No single cut-off: z-scores depend on the normal dataset used. Decide on the annulus achieved and the residual gradient after valvotomy'],
+                ['Success off bypass', 'Low residual RV pressure (RV:LV ratio well under systemic; many accept up to about 0.7) and no significant residual VSD on TOE'])
+            + ev('Merck: elective repair at 2–6 months; shunt or RVOT stent for low birth weight or complex anatomy. Awori et al. (EJCTS 2013; WJPCHS 2018, from Nairobi): the same z-score means very different annulus sizes across normal datasets, so a rigid z-score cut-off for a transannular patch is unreliable.'),
+            t_v(), show=[*CH, *TOF], highlight=['tof-pv'], labels=['tof-pv', 'tof-infundibulum'], opacity=TOP, ct=TC)
+        vsdc = step('tof-vsd', 'Repair', 'Close the VSD through the right atrium',
+            '<p>Through the tricuspid valve (retract or detach the septal leaflet) close the VSD with a <b>Dacron or pericardial patch</b>, baffling the LV to the aorta. '
+            'Shallow bites on the RV side at the <b>posteroinferior rim</b> (His bundle); along the superior rim, sutures pass close to the aortic valve. The muscular rim toward the outlet is sewn through the hypertrophied septal band.</p>',
+            t_v(140, (1, -0.05, 0.1)), show=[*CH, 'tof-vsd', 'tof-vsd-patch', *TV, *KOCH, 'his-bundle', *CUSPS], highlight=['tof-vsd-patch'], danger=hv(['his-bundle']),
+            labels=['tof-vsd-patch', 'his-bundle'], opacity=TOP, ct=TC, action={'kind': 'reveal', 'label': 'Sew in the VSD patch', 'port': 'sternotomy', 'ids': ['tof-vsd-patch']})
+        rvot = step('tof-rvot', 'Repair', 'Open the RV outflow: resect, valvotomy, measure',
+            '<p>Through the right atrium and tricuspid valve, or a limited infundibular incision: <b>divide and resect the obstructing septal and parietal bands</b>. '
+            'Through the pulmonary trunk: <b>commissurotomy</b> of the fused valve. Then pass <b>Hegar dilators</b> across the annulus and compare with the expected size for the child\'s body surface area.</p>',
+            view(RVOT, (0.15, 0.75, 0.9), 125), show=[*CH, 'tof-vsd-patch', 'tof-infundibulum', 'tof-pv', 'pa-trunk'], highlight=['tof-infundibulum'], labels=['tof-infundibulum', 'tof-pv'],
+            opacity={**TOP, 'pa-trunk': 0.35}, ct=RVOT, action={'kind': 'decorticate', 'label': 'Resect the muscle bands', 'port': 'sternotomy', 'ids': ['tof-infundibulum']})
+        tap = step('tof-tap', 'Repair', 'Transannular patch, if the annulus is too small',
+            '<p>If the annulus remains too small: <b>extend the incision across the annulus</b> onto the pulmonary trunk and close it with a <b>pericardial transannular patch</b>, '
+            'keeping the RV incision as short as possible. A monocusp can reduce early regurgitation.</p>'
+            '<p>Off bypass: measure <b>RV and LV pressures</b> and check for a residual VSD on TOE. A high RV:LV ratio means residual obstruction to relieve before leaving theatre.</p>',
+            view(RVOT, (0.15, 0.75, 0.9), 135), show=[*CH, 'tof-vsd-patch', 'tof-pv', 'tof-tap', 'tof-incision', 'pa-trunk'], highlight=['tof-tap'], labels=['tof-tap', 'tof-pv'],
+            opacity={**TOP, 'pa-trunk': 0.35}, ct=RVOT, after=True, action={'kind': 'reveal', 'label': 'Sew the transannular patch', 'port': 'sternotomy', 'ids': ['tof-incision', 'tof-tap']},
+            quiz=ask('What is the long-term price of a transannular patch?', 'Free pulmonary regurgitation, leading to RV dilatation and later pulmonary valve replacement',
+                     'Opening the annulus removes the valve function; the RV dilates over years.', 'Recurrent VSD', 'Aortic stenosis', 'Complete heart block'))
+        proc('tof-repair', 'tof', 'Tetralogy of Fallot repair', 'Complete repair: VSD patch, RVOT resection, ± transannular patch',
+             'Complete repair of tetralogy: the four features, tet spells, timing and late presentation, shunt first or repair, the z-score debate, VSD closure, RVOT relief and the transannular patch.',
+             [('Patho', 'other', [patho]), ('Spells', 'other', [spell]), ('Anatomy', 'other', [anat]), ('Case', 'other', [case]), ('Decide', 'other', [dec]),
+              ('Sternotomy', 'other', bypass('tof', 'tetralogy')[:1]), ('Bypass', 'other', bypass('tof', 'tetralogy')[1:3]), ('Atrium', 'other', bypass('tof', 'tetralogy')[3:]),
+              ('VSD', 'other', [vsdc]), ('RVOT', 'other', [rvot]), ('Patch', 'other', [tap]),
+              ('Close', 'other', finish('tof', '<p>Leave a small <b>patent foramen ovale</b> in a hypertrophied, stiff RV: it lets the right heart off-load early (at the cost of some desaturation).</p>', ['tof-vsd-patch', 'tof-tap']))], TOF_SRC)
+
+    # =================================================================================================== palliation: modified BT shunt and PA band
+    if has('bt-shunt') and has('pa-band'):
+        BC = P('bt-c'); BAND = P('band-c')
+        BTV = hv(['bct', 'rcca', 'svc', 'aorta', 'pa-trunk', 'n-phrenic-r', 'n-vagus-r', 'lbcv'])
+        BOP = {'aorta': 0.45, 'svc': 0.4, 'pa-trunk': 0.55, 'lbcv': 0.35}
+        b_v = lambda dist=150: view(BC, (0.8, 0.45, 0.6), dist)
+        bpatho = step('bt-patho', 'Pathophysiology', 'Why a shunt: too little pulmonary blood flow',
+            '<p>A systemic-to-pulmonary shunt <b>adds pulmonary blood flow</b> when the RV outflow cannot: tetralogy with small PAs or in a sick infant, pulmonary atresia, critical pulmonary stenosis, tricuspid atresia and other single-ventricle circulations.</p>'
+            + chain('Too little flow to the lungs', 'Cyanosis, acidosis (or duct-dependent: prostaglandin E1)', '!PTFE tube from a systemic artery to a PA', 'Saturations about 75–85%, PAs grow')
+            + '<p>The balance is delicate: too small a shunt leaves the baby blue; too big floods the lungs and steals diastolic flow from the coronaries and the gut.</p>',
+            b_v(), show=[*BTV, 'bt-shunt'], highlight=['bt-shunt'], labels=['bt-shunt', 'bct', 'svc', 'aorta'], opacity=BOP, after=True, spin=True,
+            quiz=ask('A shunt that is too large for the baby causes what?', 'Pulmonary over-circulation with diastolic steal: low diastolic pressure, coronary and gut ischaemia',
+                     'Blood runs off into the lungs throughout diastole; coronary perfusion and mesenteric flow fall.', 'Worse cyanosis', 'Hypertension', 'Nothing'))
+        banat = step('bt-anatomy', 'Anatomy', 'Innominate artery, right PA and the nerves',
+            '<p><b>KNH practice: median sternotomy</b>, with a graft from the <b>innominate artery or the right subclavian artery</b> to the <b>right pulmonary artery</b>; the exact technique varies by consultant. The right PA is reached medial to the SVC, between the SVC and the ascending aorta. '
+            'Through a thoracotomy (classical), from the subclavian artery to the ipsilateral PA. Protect the <b>phrenic</b> and <b>vagus</b> nerves (and the recurrent laryngeal nerve hooking the subclavian on the right).</p>',
+            b_v(130), show=[*BTV, 'bt-shunt', 'bt-anast'], highlight=['bt-shunt'], danger=hv(['n-phrenic-r', 'n-vagus-r']), labels=hv(['bt-shunt', 'bct', 'svc', 'n-phrenic-r']), opacity=BOP, spin=True)
+        bcase = step('bt-case', 'Case', 'Case: a blue 6-week-old',
+            '<p>Tetralogy with very small PAs, too small and sick for complete repair: a <b>modified BT shunt</b> now, repair later.</p>',
+            b_v(), show=[*BTV], labels=['bct', 'pa-trunk'], opacity=BOP,
+            lead='<p>A <b>6-week-old, 3.4 kg</b>, increasingly cyanosed (SpO₂ 62%), poor feeding. Echo: tetralogy with severe infundibular stenosis, a hypoplastic annulus and <b>branch PAs of 3 mm</b>; the duct has closed.</p>',
+            quiz=ask('Shunt size for a 3.4 kg baby?', '3.5 mm PTFE',
+                     'About 1 mm per kg in small infants: 3–3.5 mm for 3–4 kg; 4 mm for larger infants. Oversizing raises the risk of death from over-circulation.', '6 mm', '2 mm', '5 mm'))
+        bdec = step('bt-decision', 'Decision', 'Shunt size, route and risk',
+            tbl(['Point', 'Practice'],
+                ['Size', '3–3.5 mm for about 3–4 kg; 4 mm for bigger infants (median about 1.2 mm per kg in one series)'],
+                ['Route', '<b>KNH: sternotomy</b>, innominate or right subclavian artery to the right PA (bypass on standby, easy to take down at repair); thoracotomy elsewhere'],
+                ['Alternatives', 'Ductal stent (duct-dependent), RVOT stent or balloon (tetralogy), early complete repair'],
+                ['Risk', 'Not a small operation: mortality around 9% in neonates and infants in one series; early thrombosis about 9%'])
+            + ev('Dirks et al., EJCTS 2013 (32 shunts): sizes 3 mm 25%, 3.5 mm 59%, 4 mm 16%; median 1.21 mm/kg; mortality 9.4%, thrombosis 9.4% within 24 h; lower weight and larger shunt per kg predicted death.'),
+            b_v(), show=[*BTV, 'bt-shunt'], highlight=['bt-shunt'], labels=['bt-shunt'], opacity=BOP)
+        bdo = step('bt-shunt', 'Shunt', 'Sew the shunt: innominate end, then PA end',
+            '<p>Heparin (about 100 U/kg; check the unit protocol). <b>Side-biting clamp</b> on the innominate (or right subclavian) artery; bevel the PTFE tube and sew it end-to-side with running <b>7-0 or 8-0 polypropylene</b>. '
+            'Then a clamp on the right PA (watch saturations: the baby may not tolerate PA clamping), and the distal anastomosis.</p>'
+            '<p>Open the shunt: <b>saturations should rise to about 75–85%</b> and the <b>diastolic pressure fall</b> a little. A thrill should be felt over the tube.</p>',
+            view(BC, (0.5, 0.25, 1), 130), show=[*BTV, 'bt-shunt', 'bt-anast'], highlight=['bt-shunt', 'bt-anast'], labels=['bt-shunt', 'bt-anast'], opacity=BOP,
+            action={'kind': 'reveal', 'label': 'Sew the shunt', 'port': 'sternotomy', 'ids': ['bt-shunt', 'bt-anast']})
+        proc('pal-bt', 'palliation', 'Palliative operations', 'Modified Blalock-Taussig shunt (sternotomy; KNH practice)',
+             'The modified BT shunt for too little pulmonary blood flow: indications, the innominate artery and right PA, shunt sizing, saturations and shunt thrombosis.',
+             [('Patho', 'other', [bpatho]), ('Anatomy', 'other', [banat]), ('Case', 'other', [bcase]), ('Decide', 'other', [bdec]),
+              ('Sternotomy', 'other', bypass('bt', 'a shunt')[:1]), ('Shunt', 'other', [bdo])], PAL_SRC)
+        # ---------------------------------------------------- PA band
+        PBV = hv(['pa-trunk', 'aorta', 'ra', 'rv', 'lv', 'la', 'myocardium', 'svc'])
+        POP = {**CH_OP, 'pa-trunk': 0.7, 'aorta': 0.45}
+        p_v = lambda dist=140: view(BAND, (0.2, 1, 0.4), dist)
+        ppatho = step('band-patho', 'Pathophysiology', 'Why band: too much pulmonary blood flow',
+            '<p>A band <b>restricts pulmonary blood flow and pressure</b> when the defect cannot be closed safely yet: multiple muscular ("Swiss cheese") VSDs, a very small or septic infant, '
+            'single-ventricle circulations with unrestricted flow, or to prepare (train) the LV before a late arterial switch.</p>'
+            + chain('Large left-to-right shunt', 'High PA flow and pressure', '!Band on the trunk', 'Less flow and pressure: heart failure settles, lungs are protected'),
+            p_v(), show=[*PBV, 'pa-band'], highlight=['pa-band'], labels=['pa-band', 'pa-trunk', 'aorta'], opacity=POP, after=True, spin=True,
+            quiz=ask('Why band rather than repair an infant with multiple muscular VSDs?', 'Many apical muscular VSDs are hard to close completely in infancy and some close with time',
+                     'The band protects the lungs while the child grows; some muscular defects close spontaneously.', 'Banding cures VSDs', 'Banding is safer for the conduction system in every VSD', 'It avoids a sternotomy'))
+        pdec = step('band-decision', 'Decision', 'How tight? Trusler\'s rule and the pressures',
+            tbl(['Circulation', 'Band circumference (Trusler)'],
+                ['Two ventricles, left-to-right shunt (VSDs)', '<b>20 mm + 1 mm per kg</b>'],
+                ['Mixing lesions (single ventricle, TGA with VSD)', '<b>24 mm + 1 mm per kg</b>'],
+                ['Large ASD or large PA', 'Add 1–2 mm'])
+            + '<p>Then adjust on the table: <b>distal PA pressure</b> down to about a third to a half of systemic, systemic pressure rising a little, and acceptable saturations (about 90% in a two-ventricle child, 75–85% when there is mixing). '
+              'Loosen if the saturation drops, the distal PA collapses or the heart slows.</p>'
+            + ev('Trusler rules (Pedi Cardiology summary): 20 mm + 1 mm/kg for left-to-right shunts, 24 mm + 1 mm/kg for mixing; add 1–2 mm with a large ASD or PA; tighten until distal PA pressure is about 50% of systemic when pulmonary hypertension is present; loosen for distal PA collapse, cyanosis or bradycardia.'),
+            p_v(), show=[*PBV, 'pa-band'], highlight=['pa-band'], labels=['pa-band'], opacity=POP, after=True,
+            quiz=ask('Trusler\'s band circumference for a 5 kg infant with multiple VSDs (biventricular)?', '25 mm',
+                     '20 mm + 1 mm/kg × 5 kg = 25 mm, then adjusted to the pressures and saturations.', '29 mm', '20 mm', '30 mm'))
+        pdo = step('band-place', 'Band', 'Place the band on the main trunk',
+            '<p>Through a sternotomy (or left thoracotomy): pass the tape (Teflon or PTFE) <b>around the main pulmonary trunk</b>, between the aorta and the PA, <b>midway between the valve and the bifurcation</b>. '
+            'Mark the calculated circumference and tighten in steps while watching the pressures and saturations; then <b>fix the band to the adventitia</b> so it cannot migrate.</p>'
+            + ul('Too proximal: distorts the pulmonary valve', '<b>Too distal: migrates onto the branches</b> (usually the right PA), stenosing one lung', 'Too tight: cyanosis and bradycardia; too loose: no protection'),
+            view(BAND, (0.1, 0.6, 1), 130), show=[*PBV, 'pa-band'], highlight=['pa-band'], labels=['pa-band', 'pa-trunk'], opacity=POP,
+            action={'kind': 'reveal', 'label': 'Tighten the band', 'port': 'sternotomy', 'ids': ['pa-band']})
+        proc('pal-band', 'palliation', 'Palliative operations', 'Pulmonary artery banding',
+             'Pulmonary artery banding for too much pulmonary blood flow: indications, Trusler\'s rule, on-table pressures and saturations, position and migration.',
+             [('Patho', 'other', [ppatho]), ('Decide', 'other', [pdec]), ('Sternotomy', 'other', bypass('band', 'a band')[:1]), ('Band', 'other', [pdo])], PAL_SRC)
+    print('  congenital: asd, vsd, pda, coa, tof, palliation')

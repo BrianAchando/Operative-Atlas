@@ -34,6 +34,13 @@ def arrow(a, b, r):
     return trimesh.util.concatenate([shaft, cone(a + d * L * 0.6, b, r)])
 
 
+def odisc(p, normal, xdir, rx, ry, th=0.9):
+    """a thin ellipse with its long axis along xdir"""
+    c = trimesh.creation.cylinder(radius=1.0, height=th, sections=48); c.apply_scale([rx, ry, 1])
+    z = U(normal); x = U(np.asarray(xdir, float) - z * np.dot(xdir, z)); y = np.cross(z, x)
+    M = np.eye(4); M[:3, 0], M[:3, 1], M[:3, 2], M[:3, 3] = x, y, z, p; c.apply_transform(M); return c
+
+
 def bar(p, d, length, w=3.0, t=2.0, up=SUP):
     """a clamp jaw: a flat bar centred on p, long axis d"""
     b = trimesh.creation.box(extents=[length, w, t])
@@ -64,6 +71,17 @@ def build(ctx):
         emit_mesh('asd-suture', 'Running polypropylene suture line (ASD patch)', 'congenital', SUTURE,
                   ring(ctr - n * 1.6, n, 10.4, 0.55), visible=False)
         LM['asd-c'] = ctr + C
+        svc_b = np.array(S['svc']['bbox']) if 'svc' in S else None
+        ASDL = {
+            'asd-loc-svs': ('Superior sinus venosus defect: at the SVC entry, with the right upper pulmonary vein draining anomalously', (np.array([c('svc')[0], c('svc')[1], svc_b[0][2] + 6]) if svc_b is not None else ctr + SUP * 22) + n * 4, '#3fa7d6'),
+            'asd-loc-ivs': ('Inferior sinus venosus defect: at the IVC entry', ctr - SUP * 17 - ANT * 5 + n * 2, '#8fbf7f'),
+            'asd-loc-primum': ('Ostium primum defect: low, just above the AV valves (a partial AV septal defect)', ctr * 0.45 + c('tv-septal') * 0.55 if 'tv-septal' in S else ctr - SUP * 12, '#c9a36b'),
+            'asd-loc-cs': ('Coronary sinus (unroofed) defect: at the coronary sinus orifice', c('cs-ostium') if 'cs-ostium' in S else ctr - SUP * 14, '#b07fa8'),
+        }
+        for k, (nm, q, col) in ASDL.items():
+            emit_mesh(k, nm, 'congenital', col, trimesh.util.concatenate([ring(q, n, 4.6, 1.0), disc(q, n, 3.8, 3.8, th=0.6)]), visible=False,
+                      note='Schematic marker of the typical position of this ASD type.')
+            LM[k] = q + C
 
     # ============================================================ perimembranous VSD (below the aortic valve, under the septal leaflet)
     if all(i in S for i in ('his-bundle', 'lv', 'rv', 'lvot')):
@@ -190,6 +208,66 @@ def build(ctx):
               trimesh.util.concatenate([bar(W(top) + SUP * 3, side, 34, 3.0, 2.2), bar(pd, side, 30, 3.0, 2.2)]), visible=False,
               note='Schematic. Proximal clamp across the distal arch beyond the left carotid, including the subclavian origin; distal clamp on the descending aorta below the intercostals that have been controlled.')
     LM['coa-c'] = wpt + C; LM['coa-top'] = W(top) + C
+
+    # ============================================================ tetralogy of Fallot, modified BT shunt, pulmonary artery band
+    import nibabel as nib
+    from pathlib import Path
+    hp = Path(ctx.get('work', 'work')) / 'heart.nii.gz'
+    if hp.exists() and all(i in S for i in ('rv', 'lv', 'aortic-annulus', 'his-bundle', 'bct')):
+        himg = nib.as_closest_canonical(nib.load(str(hp))); H = np.asanyarray(himg.dataobj); HA = himg.affine
+        hmm = lambda m: np.argwhere(m) @ HA[:3, :3].T + HA[:3, 3] - C          # atlas frame
+        from scipy import ndimage as ndi
+        PAm, RVm = H == 7, H == 5
+        pa_pts, rv_pts = hmm(PAm), hmm(RVm)
+        rim = hmm(PAm & ndi.binary_dilation(RVm, iterations=2))                 # where the RV outflow meets the trunk: the valve
+        pv = rim.mean(0) if len(rim) > 20 else c('aortic-annulus') + ANT * 14 + LEFT * 10 + SUP * 12
+        # trunk axis: from the valve toward the bifurcation (trunk voxels within 30 mm of the valve)
+        near = pa_pts[np.linalg.norm(pa_pts - pv, axis=1) < 30]
+        pax = U(near.mean(0) - pv) if len(near) else U(SUP + LEFT * 0.3 - ANT * 0.3)
+        def rad_at(q, d):
+            sl = pa_pts[np.abs((pa_pts - q) @ d) < 2.0]
+            sl = sl[np.linalg.norm(sl - q, axis=1) < 25]
+            return float(np.percentile(np.linalg.norm((sl - q) - np.outer((sl - q) @ d, d), axis=1), 85)) if len(sl) > 20 else 9.0
+        r_pa = rad_at(pv + pax * 10, pax)
+        ant = U(ANT - pax * np.dot(ANT, pax))
+        ao = c('aortic-annulus'); nsep = U(c('rv') - c('lv'))
+        tvsd = c('his-bundle') + SUP * 5 + ANT * 4 + nsep * 2
+        emit_mesh('tof-vsd', 'Malalignment VSD (large, subaortic, non-restrictive)', 'congenital', DEFECT,
+                  trimesh.util.concatenate([ring(tvsd, nsep, 8.0, 1.4), disc(tvsd, nsep, 7.0, 7.0, th=0.6)]), opacity=0.9, visible=False,
+                  note='Schematic. Anterior and cephalad deviation of the outlet septum leaves a large defect under the aorta; the aorta straddles it.')
+        emit_mesh('tof-override', 'RV blood ejected into the overriding aorta (right-to-left)', 'congenital', '#3b6fb6',
+                  arrow(c('rv') + (ao - c('rv')) * 0.15, ao + SUP * 6, 3.4), opacity=0.85, visible=False,
+                  note='Schematic. With a non-restrictive VSD and RVOT obstruction, desaturated RV blood goes to the aorta: cyanosis.')
+        inf = pv - pax * 11
+        emit_mesh('tof-infundibulum', 'Infundibular stenosis: hypertrophied septoparietal muscle bands', 'congenital', '#8a2f2f',
+                  ring(inf, pax, max(4.0, r_pa * 0.55), max(2.5, r_pa * 0.38)), visible=False,
+                  note='Schematic. The deviated outlet septum and hypertrophied trabeculations narrow the RV outflow below the valve; this is the dynamic part that spasms in a tet spell.')
+        emit_mesh('tof-pv', 'Small, thickened pulmonary valve and annulus', 'congenital', FIBRE, ring(pv, pax, max(3.5, r_pa * 0.6), 1.6), visible=False,
+                  note='Schematic. Often bicuspid and stenotic; the annulus z-score decides whether it can be kept.')
+        emit_mesh('tof-resection', 'Muscle resected from the RV outflow', 'congenital', '#8a2f2f', ring(inf, pax, max(4.0, r_pa * 0.55), max(2.5, r_pa * 0.38)), visible=False)
+        emit_mesh('tof-vsd-patch', 'VSD patch (closes the VSD, baffling LV to aorta)', 'congenital', DACRON, disc(tvsd + nsep * 1.5, nsep, 9.5, 9.0, th=0.8), visible=False)
+        p0, p1 = pv - pax * 16 + ant * (r_pa + 1.0), pv + pax * 16 + ant * (r_pa + 1.0)
+        tap = odisc((p0 + p1) / 2, ant, pax, 17.0, max(5.0, r_pa * 0.7))
+        emit_mesh('tof-tap', 'Transannular patch (RV outflow, across the annulus, onto the trunk)', 'congenital', PATCH, tap, visible=False,
+                  note='Schematic. Autologous pericardium across the opened annulus when it is too small; relieves obstruction at the cost of free pulmonary regurgitation.')
+        emit_mesh('tof-incision', 'Incision: infundibulum, across the annulus, onto the trunk', 'congenital', INC, tube([p0, (p0 + p1) / 2 + ant * 0.5, p1], 1.0), visible=False)
+        LM['tof-vsd-c'] = tvsd + C; LM['pv-c'] = pv + C; LM['rvot-c'] = inf + C
+        # modified BT shunt: innominate artery to the right pulmonary artery (via sternotomy)
+        rpa_c = pa_pts[(pa_pts[:, 0] > 2) & (pa_pts[:, 0] < 22)]
+        rpa_top = rpa_c[np.argmax(rpa_c[:, 2])] if len(rpa_c) else c('svc') - SUP * 15 - ANT * 10
+        b0 = c('bct') + RIGHT * 5 + SUP * 6
+        bt = [b0, (b0 + rpa_top) / 2 + RIGHT * 9 + ANT * 4, rpa_top + SUP * 2]
+        emit_mesh('bt-shunt', 'Modified Blalock-Taussig shunt (PTFE, 3.5–4 mm): innominate artery to right PA', 'congenital', '#f1f1ea', tube(bt, 2.0), visible=False,
+                  note='Schematic. Gore-Tex tube from the distal innominate (or subclavian) artery to the top of the ipsilateral pulmonary artery.')
+        emit_mesh('bt-anast', 'Shunt anastomoses (running 7-0/8-0 polypropylene)', 'congenital', SUTURE,
+                  trimesh.util.concatenate([ring(bt[0], U(bt[1] - bt[0]), 2.6, 0.45), ring(bt[2], U(bt[2] - bt[1]), 2.6, 0.45)]), visible=False)
+        LM['bt-a'] = b0 + C; LM['bt-p'] = rpa_top + C; LM['bt-c'] = bt[1] + C
+        # pulmonary artery band on the trunk, midway between valve and bifurcation
+        bc = pv + pax * 12
+        rb = rad_at(bc, pax)
+        emit_mesh('pa-band', 'Pulmonary artery band (Teflon or PTFE tape) on the main trunk', 'congenital', '#d8d8d0', ring(bc, pax, rb * 0.92, 1.8), visible=False,
+                  note='Schematic. Placed on the main trunk clear of the valve below and the branches above; tightened to a circumference by Trusler\'s rule and by distal PA pressure.')
+        LM['band-c'] = bc + C
 
     # ============================================================ left posterolateral thoracotomy: 3rd and 4th intercostal spaces
     port, lung_c = ctx['port'], np.asarray(ctx['lung_c'], float)

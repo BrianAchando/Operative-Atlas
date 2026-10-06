@@ -918,7 +918,7 @@ TRLM.update(pathology_new.build(dict(emit=emit, emit_mesh=emit_mesh, W=W, tube=t
                                      LMW={k: W(v) for k, v in TRLM.items()})))
 # ------------------------------------------------------------------ congenital: ASD, VSD, PDA, coarctation, thoracotomy in the 3rd and 4th spaces
 import pathology_cong  # noqa: E402
-TRLM.update(pathology_cong.build(dict(emit_mesh=emit_mesh, W=W, tube=tube, CARINA=CARINA, S={q['id']: q for q in structures}, lpa_mm=lpa_mm,
+TRLM.update(pathology_cong.build(dict(emit_mesh=emit_mesh, W=W, tube=tube, CARINA=CARINA, S={q['id']: q for q in structures}, lpa_mm=lpa_mm, work=WORK,
                                       aorta_mm=aorta_mm, lsca_mm=lsca_mm, port=port, lung_c=lung_c)))
 CW_L |= MD_L; CW_R |= MD_R
 for appr, ps in PORTS.items():
