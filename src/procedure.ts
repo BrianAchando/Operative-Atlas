@@ -53,6 +53,8 @@ export interface Step {
   /** the phase shown above the title: Anatomy, Setup, Fissure, Artery, Bronchus, Vein, Close */
   phase: string;
   body: string;                          // HTML, short paragraphs
+  /** an interactive calculator under the text: valve sizing from height and weight, or BT shunt size from weight */
+  calc?: 'aortic' | 'mitral' | 'bt';
   /** HTML shown above the question and never veiled: a case vignette the question depends on */
   lead?: string;
   /** the question comes after the body (a reading step), and does not veil it */

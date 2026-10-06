@@ -258,3 +258,9 @@ h1, h2, h3, .body h3, .body h4 { font-family: var(--display); font-weight: 800; 
 body.stage-light #hover { color: #33505e; }
 .stage-toggle { position: absolute; right: 10px; bottom: 8px; z-index: 3; font-size: 12px; padding: 4px 10px; border: 1px solid var(--line-2); background: rgba(18, 36, 47, 0.85); color: var(--muted); border-radius: var(--cova-radius-btn); }
 .stage-toggle:hover { color: var(--text); border-color: var(--work); }
+.calc { border: 1px solid var(--work); border-radius: var(--cova-radius-card); background: var(--work-bg); padding: 10px 12px; margin: 10px 0 14px; display: grid; gap: 6px; }
+.calc-h { font: 700 13px var(--display); letter-spacing: 0.02em; color: var(--work); }
+.calc-in { display: grid; grid-template-columns: 1fr 90px 34px; gap: 8px; align-items: center; font-size: 13px; color: var(--muted); }
+.calc-in input { font: inherit; color: var(--text); background: var(--panel); border: 1px solid var(--line-2); border-radius: var(--cova-radius-card); padding: 4px 6px; width: 100%; }
+.calc-in em { font-style: normal; font-size: 12px; }
+.calc-out p { margin: 6px 0 0; font-size: 13px; }

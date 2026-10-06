@@ -469,6 +469,7 @@ function procPanel(): HTMLElement {
     after ? null : ask,
     locked ? h('p', { class: 'veil-note' }, 'Answer to reveal the step.') : null,
     body,
+    st.calc && !locked ? calcBox(st.calc) : null,
     after ? ask : null,
     !locked && (st.highlight?.length || st.danger?.length) ? h('div', { class: 'legend' }, h('span', { class: 'k hi' }, 'Working on'), h('span', { class: 'k danger' }, 'Protect')) : null,
     !locked ? structs : null,
@@ -492,6 +493,56 @@ function shuffled<T>(key: string, xs: T[]): T[] {
 }
 /** "Flag this step": a reviewer reports an error or a suggestion; the form keeps its text across re-renders */
 const flagForms = new Map<string, HTMLElement>();
+
+/** sizing calculators: indexed effective orifice area for valve prostheses, and BT shunt size per kg */
+function calcBox(kind: 'aortic' | 'mitral' | 'bt'): HTMLElement {
+  const num = (label: string, unit: string, val: string) => {
+    const i = h('input', { type: 'number', inputmode: 'decimal', min: '0', step: 'any', value: val, 'aria-label': label }) as HTMLInputElement;
+    return { i, row: h('label', { class: 'calc-in' }, h('span', {}, label), i, h('em', {}, unit)) };
+  };
+  const out = h('div', { class: 'calc-out', 'aria-live': 'polite' });
+  const box = h('div', { class: 'calc' }, h('div', { class: 'calc-h' }, kind === 'bt' ? 'BT shunt size from weight' : `${kind === 'aortic' ? 'Aortic' : 'Mitral'} prosthesis: size from height and weight`));
+  const f = (x: number, d = 2) => (Number.isFinite(x) ? x.toFixed(d) : '–');
+  if (kind === 'bt') {
+    const w = num('Weight', 'kg', '3.4'), g = num('Graft chosen', 'mm', '3.5');
+    const run = () => {
+      const kg = parseFloat(w.i.value), mm = parseFloat(g.i.value);
+      const sizes = [3, 3.5, 4, 5, 6]; const target = kg;
+      const inRange = sizes.filter((x) => x >= kg * 0.9 && x <= kg * 1.1);
+      const sug = inRange[0] ?? sizes.reduce((a, b) => (Math.abs(b - target) < Math.abs(a - target) ? b : a));
+      const r = mm / kg;
+      out.innerHTML = `<p>Starting point at about 1 mm per kg: <b>${sug} mm</b>.</p>`
+        + `<p>Graft chosen: <b>${f(r)} mm/kg</b>${r > 1.5 ? ' <span class="tag prop">large for weight: over-circulation risk</span>' : r < 0.9 ? ' <span class="tag prop">small for weight: cyanosis, thrombosis risk</span>' : ''}. `
+        + 'In the Dirks series the median was 1.21 mm/kg (range 0.9–1.7) and a bigger shunt per kg predicted death. Check the target branch PA is not smaller than the graft; follow the consultant and unit protocol.</p>';
+    };
+    for (const x of [w, g]) { x.i.addEventListener('input', run); box.append(x.row); }
+    box.append(out); run(); return box;
+  }
+  const w = num('Weight', 'kg', '60'), ht = num('Height', 'cm', '165'), sz = num('Prosthesis size (optional)', 'mm', '');
+  const eoa = num("Its reference EOA from the manufacturer's chart (optional)", 'cm²', '');
+  const run = () => {
+    const kg = parseFloat(w.i.value), cm = parseFloat(ht.i.value);
+    const bsa = Math.sqrt((kg * cm) / 3600), bmi = kg / Math.pow(cm / 100, 2);
+    const obese = bmi >= 30;
+    const [mod, sev] = kind === 'aortic' ? (obese ? [0.70, 0.55] : [0.85, 0.65]) : [1.2, 0.9];
+    let html = `<p>BSA (Mosteller) <b>${f(bsa)} m²</b> · BMI ${f(bmi, 1)}${obese && kind === 'aortic' ? ' (obese thresholds used)' : ''}</p>`
+      + `<p>To <b>avoid PPM</b> the prosthesis needs a reference EOA of at least <b>${f(bsa * mod)} cm²</b>; below <b>${f(bsa * sev)} cm²</b> the mismatch is <b>severe</b>. `
+      + "Pick the smallest size whose EOA on the manufacturer's chart reaches this.</p>";
+    const e = parseFloat(eoa.i.value);
+    if (Number.isFinite(e) && e > 0) {
+      const i = e / bsa; const g = i > mod ? 'no PPM' : i > sev ? 'moderate PPM' : 'severe PPM';
+      html += `<p>Indexed EOA <b>${f(i)} cm²/m²</b>: <span class="tag ${i > mod ? 'knh' : 'prop'}">${g}</span></p>`;
+    }
+    const s = parseFloat(sz.i.value);
+    if (kind === 'mitral' && Number.isFinite(s) && s > 0 && kg < 40) {
+      html += `<p>Child: prosthesis size/weight <b>${f(s / kg)} mm/kg</b>. A high ratio predicts early death (LVOT obstruction, circumflex and conduction injury); avoid oversizing and supra-annular placement of a too-large valve.</p>`;
+    }
+    out.innerHTML = html;
+  };
+  for (const x of [w, ht, sz, eoa]) { x.i.addEventListener('input', run); box.append(x.row); }
+  box.append(out); run(); return box;
+}
+
 function flagBox(proc: Procedure, st: Step): HTMLElement {
   const key = `${state.approach}/${st.id}`; const old = flagForms.get(key); if (old) return old;
   let saved = ''; try { saved = localStorage.getItem('hilum-reviewer') ?? ''; } catch { /* storage off */ }

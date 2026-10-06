@@ -650,12 +650,14 @@ def add(procs, ask, has, LM, S):
                      'About 1 mm per kg in small infants: 3–3.5 mm for 3–4 kg; 4 mm for larger infants. Oversizing raises the risk of death from over-circulation.', '6 mm', '2 mm', '5 mm'))
         bdec = step('bt-decision', 'Decision', 'Shunt size, route and risk',
             tbl(['Point', 'Practice'],
-                ['Size', '3–3.5 mm for about 3–4 kg; 4 mm for bigger infants (median about 1.2 mm per kg in one series)'],
+                ['Size by weight', 'About 1–1.2 mm per kg in neonates and small infants: <b>3 mm</b> under about 3 kg, <b>3.5 mm</b> about 3–4 kg, <b>4 mm</b> for bigger infants; older children larger (consultant and unit practice). Use the calculator below'],
+                ['Check the PA', 'The graft should not be bigger than the branch PA it feeds; a small PA with a big graft floods one lung'],
                 ['Route', '<b>KNH: sternotomy</b>, innominate or right subclavian artery to the right PA (bypass on standby, easy to take down at repair); thoracotomy elsewhere'],
                 ['Alternatives', 'Ductal stent (duct-dependent), RVOT stent or balloon (tetralogy), early complete repair'],
                 ['Risk', 'Not a small operation: mortality around 9% in neonates and infants in one series; early thrombosis about 9%'])
             + ev('Dirks et al., EJCTS 2013 (32 shunts): sizes 3 mm 25%, 3.5 mm 59%, 4 mm 16%; median 1.21 mm/kg; mortality 9.4%, thrombosis 9.4% within 24 h; lower weight and larger shunt per kg predicted death.'),
             b_v(), show=[*BTV, 'bt-shunt'], highlight=['bt-shunt'], labels=['bt-shunt'], opacity=BOP)
+        bdec['calc'] = 'bt'
         bdo = step('bt-shunt', 'Shunt', 'Sew the shunt: innominate end, then PA end',
             '<p>Heparin (about 100 U/kg; check the unit protocol). <b>Side-biting clamp</b> on the innominate (or right subclavian) artery; bevel the PTFE tube and sew it end-to-side with running <b>7-0 or 8-0 polypropylene</b>. '
             'Then a clamp on the right PA (watch saturations: the baby may not tolerate PA clamping), and the distal anastomosis.</p>'
@@ -697,4 +699,48 @@ def add(procs, ask, has, LM, S):
         proc('pal-band', 'palliation', 'Palliative operations', 'Pulmonary artery banding',
              'Pulmonary artery banding for too much pulmonary blood flow: indications, Trusler\'s rule, on-table pressures and saturations, position and migration.',
              [('Patho', 'other', [ppatho]), ('Decide', 'other', [pdec]), ('Sternotomy', 'other', bypass('band', 'a band')[:1]), ('Band', 'other', [pdo])], PAL_SRC)
-    print('  congenital: asd, vsd, pda, coa, tof, palliation')
+
+    # =================================================================================================== prosthesis sizing (MVR, AVR): height, weight and PPM
+    PPM_SRC = [{'title': 'Hahn RT, Pibarot P. Prosthesis-patient mismatch in transcatheter and surgical aortic valve replacement. Ann Cardiothorac Surg 2024', 'url': 'https://www.annalscts.com/article/view/17102/html'},
+               {'title': 'Magne J, et al. Impact of prosthesis-patient mismatch on survival after mitral valve replacement. Circulation 2007;115:1417-25', 'url': 'https://www.ahajournals.org/doi/10.1161/circulationaha.106.631549'},
+               {'title': 'Mitral valve replacement in children: balancing durability and risk with mechanical and bioprosthetic valves. Interdiscip Cardiovasc Thorac Surg 2024;38:ivae034', 'url': 'https://academic.oup.com/icvts/article/38/3/ivae034/7623437'}]
+    SIZE_BODY = {
+        'mitral': ('Size the mitral prosthesis to the patient',
+            '<p>The sizer tells you what the <b>annulus</b> takes; the patient\'s <b>body size</b> tells you what orifice they need. Too small a valve for the body is <b>prosthesis–patient mismatch (PPM)</b>: persistent gradients, pulmonary hypertension and worse survival.</p>'
+            + '<ol><li>Body surface area from height and weight (Mosteller: √(height cm × weight kg / 3600))</li>'
+              '<li>Minimum EOA = <b>BSA × 1.2 cm²/m²</b> to avoid PPM (severe if the indexed EOA is ≤0.9)</li>'
+              '<li>Choose the smallest size whose <b>reference EOA</b> on the manufacturer\'s chart reaches it</li></ol>'
+            + tbl(['Problem', 'Options'],
+                  ['Small annulus, small rheumatic woman', 'A valve with a larger EOA for its size; preserve the posterior chordae and seat it well; avoid forcing an oversized valve'],
+                  ['Child', 'Check <b>size / weight</b>: a high ratio predicts early death (LVOT obstruction, circumflex and conduction injury). Supra-annular placement of a too-large valve worsens survival. Small 15–17 mm valves will need replacing as the child grows'])
+            + ev('Magne et al., Circulation 2007: mitral PPM (indexed EOA ≤1.2 cm²/m²; severe ≤0.9) reduced survival after MVR. ICVTS 2024 (children): median prosthesis size/weight about 1.7 mm/kg; oversizing and supra-annular placement linked to death; 44–65% of 15–17 mm mechanical valves replaced within years.')),
+        'aortic': ('Size the aortic prosthesis to the patient',
+            '<p>A valve that fits the annulus can still be <b>too small for the patient</b>. Aortic prosthesis–patient mismatch leaves a gradient, less LV mass regression and worse long-term outcomes.</p>'
+            + '<ol><li>Body surface area from height and weight (Mosteller)</li>'
+              '<li>Minimum EOA = <b>BSA × 0.85 cm²/m²</b> (BMI 30 or more: × 0.70) to avoid PPM; severe if ≤0.65 (≤0.55 when obese)</li>'
+              '<li>Pick the smallest size whose <b>reference EOA</b> reaches it on the manufacturer\'s chart</li></ol>'
+            + tbl(['If the projected EOA is too small', 'Options'],
+                  ['Different prosthesis', 'A supra-annular or stentless bioprosthesis, or a newer mechanical valve with a larger EOA for the same size'],
+                  ['Enlarge the root', 'Posterior annular enlargement (Nicks, Manouguian or a Y-incision) to take one or two sizes more'],
+                  ['Older or high-risk patient', 'Transcatheter options where available'])
+            + ev('Hahn & Pibarot 2024 (VARC-3 categories): moderate PPM indexed EOA 0.85–0.66, severe ≤0.65 cm²/m²; with BMI ≥30, moderate 0.70–0.56, severe ≤0.55; predicted EOAi from reference EOA ÷ BSA guides valve choice before implantation.')),
+    }
+    for key, p_ in procs.items():
+        if p_.get('op') not in ('mvr', 'avr'): continue
+        for i, st in enumerate(list(p_['steps'])):
+            a = st.get('action') or {}
+            if a.get('kind') != 'seat': continue
+            kind = 'mitral' if 'mv-prosthesis' in (a.get('ids') or []) else 'aortic' if 'av-prosthesis' in (a.get('ids') or []) else None
+            if not kind or any(x.get('calc') == kind for x in p_['steps']): continue
+            title, body = SIZE_BODY[kind]
+            sz = {k: copy.deepcopy(st[k]) for k in ('view', 'show', 'hide', 'opacity', 'ct', 'seq') if k in st}
+            sz.update({'id': f'{key}-size-{kind[0]}', 'phase': st['phase'], 'title': title, 'body': body, 'calc': kind, 'highlight': [], 'danger': [], 'labels': [],
+                       'askAfter': True, 'ask': ask('A 1.70 m², BMI 24 adult: what reference EOA must an aortic prosthesis reach to avoid mismatch?' if kind == 'aortic' else 'A 1.40 m² rheumatic patient: what reference EOA must a mitral prosthesis reach to avoid mismatch?',
+                                                       '1.45 cm²' if kind == 'aortic' else '1.68 cm²',
+                                                       'Aortic: BSA × 0.85 = 1.70 × 0.85 ≈ 1.45 cm².' if kind == 'aortic' else 'Mitral: BSA × 1.2 = 1.40 × 1.2 = 1.68 cm².',
+                                                       *(['1.10 cm²', '2.04 cm²', '0.85 cm²'] if kind == 'aortic' else ['1.26 cm²', '1.19 cm²', '2.10 cm²']))})
+            p_['steps'].insert(p_['steps'].index(st), sz)
+        srcs = p_.setdefault('sources', [])
+        for x in PPM_SRC:
+            if x not in srcs: srcs.append(x)
+    print('  congenital: asd, vsd, pda, coa, tof, palliation; prosthesis sizing')
