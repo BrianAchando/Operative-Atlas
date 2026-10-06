@@ -264,3 +264,5 @@ body.stage-light #hover { color: #33505e; }
 .calc-in input { font: inherit; color: var(--text); background: var(--panel); border: 1px solid var(--line-2); border-radius: var(--cova-radius-card); padding: 4px 6px; width: 100%; }
 .calc-in em { font-style: normal; font-size: 12px; }
 .calc-out p { margin: 6px 0 0; font-size: 13px; }
+.calc-big { font: 700 18px var(--display); color: var(--text); }
+.calc-big b { color: var(--cova-cta); }

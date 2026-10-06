@@ -504,18 +504,21 @@ function calcBox(kind: 'aortic' | 'mitral' | 'bt'): HTMLElement {
   const box = h('div', { class: 'calc' }, h('div', { class: 'calc-h' }, kind === 'bt' ? 'BT shunt size from weight' : `${kind === 'aortic' ? 'Aortic' : 'Mitral'} prosthesis: size from height and weight`));
   const f = (x: number, d = 2) => (Number.isFinite(x) ? x.toFixed(d) : '–');
   if (kind === 'bt') {
-    const w = num('Weight', 'kg', '3.4'), g = num('Graft chosen', 'mm', '3.5');
+    const w = num('Weight', 'kg', '3.4');
     const run = () => {
-      const kg = parseFloat(w.i.value), mm = parseFloat(g.i.value);
-      const sizes = [3, 3.5, 4, 5, 6]; const target = kg;
+      const kg = parseFloat(w.i.value);
+      if (!(kg > 0)) { out.innerHTML = '<p>Enter the weight.</p>'; return; }
+      const sizes = [3, 3.5, 4, 5, 6];
       const inRange = sizes.filter((x) => x >= kg * 0.9 && x <= kg * 1.1);
-      const sug = inRange[0] ?? sizes.reduce((a, b) => (Math.abs(b - target) < Math.abs(a - target) ? b : a));
-      const r = mm / kg;
-      out.innerHTML = `<p>Starting point at about 1 mm per kg: <b>${sug} mm</b>.</p>`
-        + `<p>Graft chosen: <b>${f(r)} mm/kg</b>${r > 1.5 ? ' <span class="tag prop">large for weight: over-circulation risk</span>' : r < 0.9 ? ' <span class="tag prop">small for weight: cyanosis, thrombosis risk</span>' : ''}. `
-        + 'In the Dirks series the median was 1.21 mm/kg (range 0.9–1.7) and a bigger shunt per kg predicted death. Check the target branch PA is not smaller than the graft; follow the consultant and unit protocol.</p>';
+      const graft = inRange[0] ?? sizes.reduce((a, b) => (Math.abs(b - kg) < Math.abs(a - kg) ? b : a));
+      const r = graft / kg;
+      const note = kg < 2.5 ? ' <span class="tag prop">very small baby: higher risk; consider a ductal stent</span>' : kg > 6 ? ' <span class="tag prop">beyond infant range: size by the branch PA and consultant practice</span>' : '';
+      out.innerHTML = `<p class="calc-big">Graft: <b>${graft} mm</b> PTFE</p>`
+        + `<p>Calculation: ${f(kg, 1)} kg × 1 mm/kg = ${f(kg, 1)} mm → nearest available graft (3, 3.5, 4, 5, 6 mm) = <b>${graft} mm</b>.</p>`
+        + `<p>${f(r)} mm per kg${note}. Based on about 1 mm per kg (Dirks series: median 1.21 mm/kg, range 0.9–1.7; a bigger shunt per kg predicted death). `
+        + 'Do not use a graft bigger than the branch PA it feeds; the consultant and unit protocol decide.</p>';
     };
-    for (const x of [w, g]) { x.i.addEventListener('input', run); box.append(x.row); }
+    w.i.addEventListener('input', run); box.append(w.row);
     box.append(out); run(); return box;
   }
   const w = num('Weight', 'kg', '60'), ht = num('Height', 'cm', '165'), sz = num('Prosthesis size (optional)', 'mm', '');
