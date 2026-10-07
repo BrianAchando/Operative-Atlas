@@ -225,17 +225,171 @@ def add(procs, ask, has, LM, S):
             quiz=ask('What is the first operation?', 'A guillotine amputation at the ankle to control sepsis, then a definitive level later',
                      'Staging avoids closing a stump in infected tissue.', 'Immediate above-knee amputation', 'Fem-pop bypass', 'Toe amputation only'))
         am_bka = step('am-bka', 'BKA', 'Below-knee amputation: long posterior flap',
-            '<p>Mark the <b>anterior incision</b> at the level of bone section, about <b>12–15 cm below the knee joint</b> (or 10 cm below the tibial tuberosity); the <b>long posterior flap</b> (Burgess) is about as long as the leg is wide at that level. Divide the tibia, bevel its anterior edge, cut the <b>fibula 1–2 cm shorter</b>. Ligate the anterior tibial, posterior tibial and peroneal vessels; pull down, divide and let retract the <b>tibial nerve</b>. Trim the soleus bulk; fold the gastrocnemius flap forward over the bone; close without tension; a soft dressing or rigid removable dressing to prevent knee flexion contracture.</p>',
+            '<p>Mark the <b>anterior incision</b> at the level of bone section, about <b>12–15 cm below the knee joint</b> (or 10 cm below the tibial tuberosity); the <b>long posterior flap</b> (Burgess) is about as long as the leg is wide at that level. Divide the tibia, bevel its anterior edge, cut the <b>fibula 1–2 cm shorter</b>. Ligate the vessels, divide the nerves sharply, fold the gastrocnemius flap forward and close without tension. Full steps with measurements: <a class="link" href="#approach=bka-open&step=3">Below-knee amputation</a>; above the knee: <a class="link" href="#approach=aka-open&step=3">Above-knee amputation</a>.</p>',
             view(K + V(0, 0, -150), (0.4, 0.8, 0.2), 480), show=[*LEG, 'amp-bka'], highlight=['amp-bka'], labels=['amp-bka', 'leg-tibia', 'leg-fibula'], opacity={**LOP, 'amp-bka': 0.6},
             action={'kind': 'reveal', 'label': 'Mark the flap', 'port': 'groin-r', 'ids': ['amp-bka-flap']},
             quiz=ask('Why is the fibula cut shorter than the tibia?', 'So the fibular end does not press into the stump and the socket',
                      'A long fibula is prominent and painful in the prosthesis.', 'To save time', 'To protect the peroneal artery', 'It is not cut'))
         am_after = step('am-after', 'After', 'Stump care, rehabilitation, the other leg',
-            '<p>Pain control (including phantom pain), glucose and nutrition, wound checks. <b>Prevent knee flexion contracture</b>: lie prone, keep the knee straight, early physiotherapy. Stump shaping, then prosthetic fitting at about 6–8 weeks. Examine and protect the <b>other foot</b>: the risk to the second leg is high. Secondary prevention.</p>',
+            '<p>Pain control (including phantom pain), glucose and nutrition, wound checks. <b>Prevent knee flexion contracture</b>: lie prone, keep the knee straight, early physiotherapy. Stump shaping, then prosthetic fitting once healed (often within 3–6 months of surgery). Examine and protect the <b>other foot</b>: the risk to the second leg is high. Secondary prevention.</p>',
             WHOLE, show=[*LEG, 'amp-bka', 'amp-bka-flap'], labels=['amp-bka'], opacity=LOP)
         proc('amp-levels', 'infrainguinal', 'Infrainguinal bypass and amputation', 'Amputation levels',
              'Choosing the level, staged guillotine amputation in sepsis, below-knee amputation with a long posterior flap, rehabilitation.',
              [('Levels', 'other', [am_lv]), ('Case', 'other', [am_case]), ('BKA', 'other', [am_bka]), ('After', 'other', [am_after])], FP_SRC, 'Vascular')
+
+        # ------------------------------------------------------------ BKA and AKA: own entries
+        AMPSRC = [
+            {'title': 'StatPearls: Below-Knee Amputation (NCBI Bookshelf NBK534773)', 'url': 'https://www.ncbi.nlm.nih.gov/books/NBK534773/'},
+            {'title': 'Myers M, Chauvin BJ. Above-the-Knee Amputations. StatPearls 2023', 'url': 'https://www.ncbi.nlm.nih.gov/books/NBK544350/'},
+            {'title': 'Orthobullets: Transtibial (below-the-knee) amputation, technique', 'url': 'https://www.orthobullets.com/approaches/12094/retire-transtibial-below-the-knee-amputation-bka'},
+            {'title': 'University of Washington Orthopaedics: transfemoral (above-knee) amputation surgical guide', 'url': 'https://orthop.washington.edu/sites/default/files/files/AK2printskifl.pdf'},
+            {'title': 'Conte MS, et al. Global vascular guidelines on the management of chronic limb-threatening ischemia. Eur J Vasc Endovasc Surg 2019;58:S1-109', 'url': 'https://www.ejves.com/article/S1078-5884(19)30380-6/fulltext'},
+            {'title': 'Qaarie MY. Life expectancy and mortality after lower extremity amputation: overview and analysis of literature. Cureus 2023', 'url': 'https://www.ncbi.nlm.nih.gov/pmc/articles/PMC10257952/'},
+            {'title': 'Limakatso K, et al. The prevalence and risk factors for phantom limb pain in people with amputations: a systematic review and meta-analysis. PLOS ONE 2020', 'url': 'https://www.ncbi.nlm.nih.gov/pmc/articles/PMC7556495/'},
+            {'title': 'Kwah LK, et al. Rigid dressings versus soft dressings for transtibial amputations. Cochrane Database Syst Rev 2019 (CD012427)', 'url': 'https://www.cochrane.org/evidence/CD012427_rigid-versus-soft-dressings-transtibial-below-knee-amputations'},
+            {'title': 'Waters RL, et al. Energy cost of walking of amputees: the influence of level of amputation. J Bone Joint Surg Am 1976;58:42-6', 'url': 'https://www.semanticscholar.org/paper/Energy-cost-of-walking-of-amputees:-the-influence-Waters-Perry/9d6ff8917e238b65755c'},
+        ]
+        MORT = ('Qaarie, Cureus 2023 (review of published series, very heterogeneous): 30-day mortality averaged about 16% after BKA and AKA alike '
+                '(BKA 6.2–51.4%, AKA 12.7–21.7%); 1-year mortality about 28% after BKA and about 50% after AKA, partly because AKA patients are sicker; 5-year mortality 39–80%.')
+        # ---- below-knee
+        bk_patho = step('bka-patho', 'Pathophysiology', 'Why the leg is lost, and why a below-knee level',
+            '<p><b>Mechanism.</b> In chronic limb-threatening ischemia, atherosclerotic occlusion of the femoropopliteal and tibial arteries leaves the foot with too little flow to heal. In diabetes, <b>neuropathy</b> (no pain, repeated pressure injury) and <b>infection</b> add to ischemia; a small wound becomes an ulcer, then osteomyelitis or wet gangrene. Tissue that cannot heal, or sepsis that cannot be controlled, is the end of the road for the foot.</p>'
+            '<p><b>Indications for a below-knee amputation (BKA)</b></p>'
+            '<ul><li>Unreconstructable CLTI with tissue loss reaching the heel, midfoot or ankle, or a failed revascularization with a non-healable foot.</li>'
+            '<li>Wet gangrene or spreading foot sepsis (a guillotine ankle amputation first, BKA once sepsis settles).</li>'
+            '<li>Uncontrollable pain at rest in a foot that cannot be salvaged.</li>'
+            '<li>Trauma, tumor or infection confined below the knee.</li></ul>'
+            '<p><b>Conditions for success.</b> Enough blood flow to heal the calf flap (a palpable popliteal pulse is a good sign; if in doubt, vascular assessment and revascularization first), infection cleared, and a patient who can use a prosthesis. <b>Prefer BKA over AKA when both would heal</b>: keeping the knee makes prosthetic walking far more likely and less tiring. <b>Relative contraindications</b>: fixed knee flexion contracture, a non-ambulant patient, ischemia or infection reaching above the planned level.</p>'
+            '<p><b>Risk.</b> Cardiac and renal disease, diabetes and age drive outcome. ' + MORT + '</p>'
+            + ev('StatPearls Below-Knee Amputation; Global Vascular Guidelines 2019; Waters et al. 1976; ' + MORT),
+            WHOLE, show=[*LEG, *AMP], highlight=['amp-bka'], labels=['amp-bka', 'leg-tibia', 'leg-fibula'], opacity={**LOP, **{a: 0.45 for a in AMP}}, after=True, spin=True,
+            quiz=ask('Which patient is the best candidate for a below-knee rather than an above-knee amputation?', 'An ambulant diabetic with a non-healable heel ulcer and a palpable popliteal pulse',
+                     'The calf flap can heal and the preserved knee gives the best chance of prosthetic walking.', 'A bed-bound patient with a fixed knee flexion contracture', 'A patient with gangrene reaching above the knee', 'Anyone with a pulseless popliteal artery and no revascularization option'))
+        bk_case = step('bka-case', 'Case', 'Case: failed revascularization, non-healing heel',
+            '<p>He walked unaided before this. Healing the heel is unlikely, and revascularization is no longer possible. Offer a <b>primary below-knee amputation</b>: the infection is confined below the ankle, the popliteal pulse is palpable, and the knee moves fully.</p>',
+            view(A_ + V(0, 60, 40), (0.3, 1, 0.3), 520), show=[*LEG, 'amp-bka'], labels=['amp-bka', 'leg-foot'], opacity=LOP,
+            lead='<p>A <b>62-year-old man</b>, type 2 diabetes for 20 years, a non-healing heel ulcer with osteomyelitis for 4 months. A fem-pop bypass 8 months ago has occluded; angiography shows no distal target. Afebrile, glucose controlled. Popliteal pulse palpable; no pedal pulses. Full knee extension.</p>',
+            quiz=ask('What level and why?', 'A below-knee amputation: the flap should heal and the knee is kept for prosthetic walking',
+                     'The popliteal pulse predicts healing at this level; an above-knee level is held back for failure.', 'An above-knee amputation, as it always heals', 'Another bypass', 'A toe amputation'))
+        bk_inc = step('bka-incision', 'Incision', 'Mark the level and the long posterior flap',
+            '<p>Supine, a sandbag under the thigh, tourniquet optional (not in severe ischemia). Mark in this order:</p>'
+            '<table class="mini"><tr><th>Landmark</th><th>Measurement</th></tr>'
+            '<tr><td><b>Anterior skin incision</b></td><td>about <b>10 to 15 cm below the tibial tubercle</b></td></tr>'
+            '<tr><td><b>Posterior flap</b></td><td>drawn about <b>150% of the anterior flap length</b> (the long posterior, Burgess, flap), enough to fold over the bone without tension</td></tr>'
+            '<tr><td><b>Proportion of the circumference</b></td><td>anterior incision about two-thirds, posterior flap about one-third</td></tr>'
+            '<tr><td><b>Anterior muscle and periosteum</b></td><td>divide the skin, fascia and anterior compartment muscle square to the bone, without beveling the skin</td></tr></table>'
+            '<p>In ischemic limbs, handle the skin edges gently (no forceps on skin, no undermining).</p>'
+            + ev('StatPearls Below-Knee Amputation: incision 10–15 cm from the tibial tubercle, posterior flap 150% of the anterior; Orthobullets (transtibial technique): anterior incision about 10 cm below the tubercle, two-thirds / one-third of the circumference.'),
+            view(K + V(0, 0, -150), (0.4, 0.8, 0.2), 480), show=[*LEG, 'amp-bka'], highlight=['amp-bka'], labels=['amp-bka', 'leg-tibia', 'leg-fibula'], opacity={**LOP, 'amp-bka': 0.6},
+            action={'kind': 'reveal', 'label': 'Mark the flap', 'port': 'groin-r', 'ids': ['amp-bka-flap']},
+            quiz=ask('How long is the posterior flap compared with the anterior one?', 'About 150% of the anterior flap length',
+                     'The long posterior flap carries the best blood supply and folds over the bone.', 'The same length', 'Half', 'No posterior flap is made'))
+        bk_bone = step('bka-bone', 'Bone', 'Divide the tibia and fibula',
+            '<p>Elevate the periosteum only as far as needed. Divide the tibia at the planned level with an oscillating saw, perpendicular to the shaft, and <b>bevel the anterior tibial crest at about 45°</b> so it does not press through the skin. Divide the <b>fibula at least 1 cm proximal</b> to the tibial cut (1 to 2 cm is usual) so it does not touch the socket or skin. Smooth the edges with a rasp; irrigate away bone dust.</p>'
+            '<table class="mini"><tr><th>Structure</th><th>Level</th></tr>'
+            '<tr><td>Tibia</td><td>skin incision 10–15 cm below the tubercle; bone cut 2–3 cm proximal to the anterior skin edge</td></tr>'
+            '<tr><td>Anterior tibial crest</td><td>bevel at about 45°</td></tr>'
+            '<tr><td>Fibula</td><td>at least 1 cm shorter than the tibia</td></tr></table>'
+            + ev('Orthobullets (transtibial technique): tibia cut 2–3 cm proximal to the anterior skin edge, fibula at least 1 cm proximal, distal tibia beveled 45°; StatPearls Below-Knee Amputation: bone cut with an oscillating saw, corners beveled.'),
+            view(K + V(0, 0, -150), (0.4, 0.8, 0.2), 380), show=[*LEG, 'amp-bka'], highlight=['leg-tibia', 'leg-fibula'], labels=['leg-tibia', 'leg-fibula', 'amp-bka'], opacity={**LOP, 'amp-bka': 0.4},
+            quiz=ask('Why is the fibula cut shorter than the tibia?', 'A long fibula is prominent and painful in the socket',
+                     'At least 1 cm shorter keeps the fibular end clear of the skin and socket.', 'To save time', 'To protect the peroneal artery', 'It is not cut'))
+        bk_ves = step('bka-vessels', 'Vessels and nerves', 'Ligate the vessels, divide the nerves',
+            '<p>Identify each pedicle: <b>anterior tibial</b> (anterior compartment, with the deep peroneal nerve), <b>posterior tibial</b> and <b>peroneal</b> (deep posterior compartment, with the tibial nerve). <b>Ligate each artery and vein separately</b> with silk, and clip bleeders.</p>'
+            '<p>Put each nerve (tibial, deep and superficial peroneal, sural, saphenous) under gentle traction, divide it <b>sharply with a fresh blade</b>, and let it retract proximally among the muscle, to reduce painful neuroma. Optional: a local anesthetic block of the nerve ends.</p>'
+            '<p>Trim the soleus and gastrocnemius so the flap is not bulky.</p>'
+            + ev('StatPearls Below-Knee Amputation: each artery identified and ligated, nerves sharply divided after gentle traction; Orthobullets (transtibial technique): pedicles tied with silk, nerve cut sharply as proximally as possible.'),
+            view(K + V(0, 0, -150), (0.4, 0.8, 0.2), 380), show=[*LEG, 'amp-bka', 'leg-ata', 'leg-pta', 'leg-per', 'leg-tpt'], highlight=['leg-ata', 'leg-pta', 'leg-per'], labels=['leg-ata', 'leg-pta', 'leg-per', 'leg-tpt'], opacity={**LOP, 'amp-bka': 0.35},
+            quiz=ask('How are the nerves handled to prevent a painful neuroma?', 'Gentle traction, a sharp division, and retraction into soft tissue',
+                     'A clean cut proximal to the stump end lets the nerve retract away from pressure points.', 'Ligated with the artery', 'Cauterized at the stump end', 'Left long'))
+        bk_cl = step('bka-close', 'Closure', 'Myodesis, drain and closure',
+            '<p>Fold the gastrocnemius-soleus flap forward over the bone. Secure the <b>gastrocnemius aponeurosis to the tibia</b> through drill holes with non-absorbable suture (myodesis) or sew it to the anterior fascia, so the flap covers the bone and stays put. Place a drain under the fascia where you expect a collection. Close the <b>fascia, then the skin</b>, without tension; if the flap is dusky or tight, remove the stitches rather than strangling it.</p>'
+            '<p>Dressing: a <b>soft padded dressing</b>, or a <b>rigid dressing</b> in ambulant patients. The Cochrane review (9 trials, 436 patients) could not prove either better: the evidence is very low-certainty.</p>'
+            + ev('StatPearls Below-Knee Amputation: gastrocnemius aponeurosis secured to the tibia through a drill hole with non-absorbable suture; Orthobullets: blunt drain under the fascia, soft dressing; Kwah et al. Cochrane 2019: rigid dressings may shorten healing, very low-certainty evidence.'),
+            view(K + V(0, 0, -150), (0.4, 0.8, 0.2), 480), show=[*LEG, 'amp-bka', 'amp-bka-flap'], highlight=['amp-bka-flap'], labels=['amp-bka-flap', 'amp-bka'], opacity={**LOP, 'amp-bka': 0.35},
+            quiz=ask('What does the evidence say about rigid versus soft dressings after a BKA?', 'Uncertain: very low-certainty evidence from small trials',
+                     'Choose by the patient: skin, fall risk, and the surgeon\'s experience.', 'Rigid dressings always heal faster', 'Soft dressings are proven better', 'Dressings make no difference to anything'))
+        bk_after = step('bka-after', 'After', 'After a BKA: stump, knee, pain, other leg',
+            '<p><b>Wound.</b> Drain out when the output is low (usually in 24–48 hours); check the flap for dusky skin; sutures out at about 2 weeks (longer in ischemic limbs). A failed flap needs a <b>revision or a higher (AKA) level</b>.</p>'
+            '<p><b>Knee.</b> Straight, not bent over a pillow, to prevent a <b>flexion contracture</b>; lie prone for part of the day; physiotherapy from day 1; sit with the stump supported, never dangling.</p>'
+            '<p><b>Pain.</b> Multimodal analgesia (regular paracetamol, opioids, neuropathic agents as needed). Phantom pain affects about <b>6 in 10</b> people with an amputation (pooled 64%; 54% in developing countries); persistent pre-operative pain, a more proximal level and stump pain raise the risk. Treat early.</p>'
+            '<p><b>Medical.</b> Glucose, nutrition, VTE prophylaxis, antiplatelet and statin for life, smoking cessation, and <b>protect the other foot</b>: examine it every day.</p>'
+            '<p><b>Rehabilitation.</b> Stump shaping, then prosthesis fitting once healed, usually from about 3 to 6 months after surgery; walking is learned over months. Early review of how the patient will manage at home.</p>'
+            + ev('Orthobullets: wound check and sutures at 2 weeks, prosthesis fitting and rehabilitation at 3–6 months; Limakatso et al., PLOS ONE 2020: pooled phantom limb pain prevalence 64% (95% CI 60–68); lower in developing countries (54%); Global Vascular Guidelines 2019: best medical therapy, amputation-prevention teams.'),
+            WHOLE, show=[*LEG, 'amp-bka'], labels=['amp-bka'], opacity=LOP,
+            quiz=ask('After a BKA, why is the knee kept straight?', 'To prevent a knee flexion contracture that stops prosthetic walking',
+                     'A bent knee on a pillow shortens the hamstrings; start extension exercises early.', 'To prevent phantom pain', 'To raise blood pressure', 'It does not matter'))
+        proc('bka-open', 'bka', 'Below-knee amputation', 'Transtibial, long posterior flap',
+             'Why the leg is lost, indications, the long posterior flap with measurements, tibia and fibula levels, nerves and vessels, myodesis and closure, and care after surgery.',
+             [('Patho', 'other', [bk_patho]), ('Case', 'other', [bk_case]), ('Incision', 'other', [bk_inc]), ('Bone', 'other', [bk_bone]), ('Vessels', 'artery', [bk_ves]), ('Closure', 'other', [bk_cl]), ('After', 'other', [bk_after])],
+             AMPSRC, 'Vascular')
+
+        # ---- above-knee
+        ak_patho = step('aka-patho', 'Pathophysiology', 'Why above the knee, and when',
+            '<p><b>Mechanism.</b> The same disease as for a BKA: end-stage CLTI, sepsis, or trauma, but extending above the level where the calf can heal. A thigh amputation is chosen because it <b>heals most reliably</b>: the thigh has a richer blood supply (profunda femoris) than the calf, and muscle bulk covers the bone.</p>'
+            '<p><b>Indications for an above-knee amputation (AKA)</b></p>'
+            '<ul><li>Ischemia or infection extending above a healable BKA level, or a BKA that has failed.</li>'
+            '<li>A <b>fixed knee flexion contracture</b>, or a patient who will not walk (bed-bound, advanced dementia, paralysis).</li>'
+            '<li>Trauma or infection of the leg around the knee; unresectable tumor of the lower leg; life-threatening sepsis (gas gangrene, necrotizing infection).</li>'
+            '<li>A patient too frail for a prosthesis: the aim becomes pain-free, healed, sitting.</li></ul>'
+            '<p><b>Contraindication.</b> Few, once other options are exhausted: only a patient who cannot survive anesthesia and surgery.</p>'
+            '<p><b>Cost.</b> Losing the knee means a much higher energy cost of walking (about 65% more than a person without an amputation) and fewer patients ever walk again. ' + MORT + '</p>'
+            + ev('Myers & Chauvin, StatPearls Above-the-Knee Amputations 2023 (indications, few contraindications, 65% extra energy cost); Waters et al. 1976; ' + MORT),
+            THIGH, show=[*LEG, *AMP], highlight=['amp-aka'], labels=['amp-aka', 'leg-femur'], opacity={**LOP, **{a: 0.45 for a in AMP}}, after=True, spin=True,
+            quiz=ask('Which patient is the best candidate for an above-knee rather than a below-knee amputation?', 'A bed-bound patient with a fixed knee flexion contracture and gangrene of the calf',
+                     'Prosthetic walking is not the goal; the thigh heals reliably.', 'An ambulant patient with a palpable popliteal pulse', 'A young trauma patient with a healthy knee and a distal injury', 'Every patient with a diabetic foot'))
+        ak_case = step('aka-case', 'Case', 'Case: gangrene to the calf in a bed-bound patient',
+            '<p>No chance of walking, a fixed knee contracture, and gangrene above the BKA level: an <b>above-knee amputation</b>. The aim: healed, pain-free, able to sit and transfer.</p>',
+            THIGH, show=[*LEG, 'amp-aka'], labels=['amp-aka', 'leg-femur'], opacity=LOP,
+            lead='<p>A <b>78-year-old woman</b>, bed-bound after a stroke 2 years ago; fixed knee flexion of 40°. Dry gangrene of the foot, now black skin to the mid-calf with a cold, painful leg. Femoral pulse palpable, no pulse below. Hypertensive, creatinine 140 μmol/L.</p>',
+            quiz=ask('Which level, and why?', 'Above-knee: the calf is not healable, and she will not walk',
+                     'The thigh heals most reliably; a prosthesis is not the goal and a contracture rules out a BKA.', 'Below-knee, to keep the knee', 'Guillotine at the ankle only', 'Toe amputation'))
+        ak_inc = step('aka-incision', 'Incision', 'Mark the level and the fish-mouth flaps',
+            '<p>Supine, a sandbag under the buttock. Measure from the knee joint line.</p>'
+            '<table class="mini"><tr><th>Landmark</th><th>Measurement</th></tr>'
+            '<tr><td><b>Femur cut</b></td><td>about <b>12 cm above the knee joint line</b> (the level that leaves room for a prosthetic knee)</td></tr>'
+            '<tr><td><b>Flap length</b></td><td>each flap equals <b>half the diameter of the thigh at the bone cut, plus 1 cm</b></td></tr>'
+            '<tr><td><b>Flap design</b></td><td>anterior and posterior (fish-mouth), or medial and lateral; equal, rounded flaps, no feathered edges</td></tr>'
+            '<tr><td><b>Muscle</b></td><td>divided about <b>2.5–5 cm (1–2 inches) distal to the bone cut</b>, to allow myodesis</td></tr></table>'
+            '<p>Cut decisively through skin, subcutaneous tissue and fascia; no undermining. In severe ischemia, no tourniquet. Keep as much length as will heal.</p>'
+            + ev('Myers & Chauvin, StatPearls 2023: femur cut 12 cm proximal to the joint line, muscle divided 1–2 inches beyond the bone cut; University of Washington transfemoral guide: flap length is half the limb diameter at the bone cut plus 1 cm.'),
+            THIGH, show=[*LEG, 'amp-aka'], highlight=['amp-aka', 'leg-femur'], labels=['amp-aka', 'leg-femur'], opacity={**LOP, 'amp-aka': 0.6},
+            quiz=ask('How long is each fish-mouth flap?', 'Half the thigh diameter at the bone cut, plus 1 cm',
+                     'This gives enough soft tissue to close over the bone without tension.', 'Twice the thigh diameter', 'A fixed 5 cm', 'No flaps are needed'))
+        ak_bone = step('aka-bone', 'Bone', 'Divide the muscle and the femur',
+            '<p>Divide the quadriceps and hamstrings, <b>protecting the adductor muscle and its tendon</b> (needed for the myodesis). Elevate the periosteum to the level of the cut only. Divide the <b>femur 12 cm above the joint line</b> with an oscillating saw, bevel the sharp edge, rasp it smooth, and irrigate.</p>'
+            + ev('Myers & Chauvin, StatPearls 2023: femur 12 cm proximal to the joint line; University of Washington transfemoral guide: adductor muscle and tendon protected for myodesis.'),
+            THIGH, show=[*LEG, 'amp-aka'], highlight=['leg-femur'], labels=['leg-femur', 'amp-aka'], opacity={**LOP, 'amp-aka': 0.4},
+            quiz=ask('Why are the adductors protected when the muscles are divided?', 'They are needed to anchor the myodesis to the femur',
+                     'An adductor myodesis keeps the femur centered and helps the stump function.', 'They contain the nerve', 'They are not important', 'They make the flap thicker'))
+        ak_ves = step('aka-vessels', 'Vessels and nerves', 'Femoral vessels and the sciatic nerve',
+            '<p>In the adductor canal, identify the <b>superficial femoral artery and vein</b>: dissect, then <b>ligate (double tie, or tie and transfix) and divide</b> each separately before cutting. Identify the profunda femoris and keep it patent when possible: it is the stump\'s blood supply.</p>'
+            '<p>Pull the <b>sciatic nerve</b> and the femoral nerve branches down gently and <b>divide them sharply</b> so they retract; ligate any vessel that accompanies the sciatic nerve. Optional: a local anesthetic block of the nerve ends.</p>'
+            + ev('Myers & Chauvin, StatPearls 2023: femoral artery and vein dissected, ligated and divided; nerves sharply divided to reduce neuroma. Keeping the profunda patent and the nerve block are general technique, not from these sources.'),
+            THIGH, show=[*LEG, 'amp-aka', 'leg-sfa'], highlight=['leg-sfa'], labels=['leg-sfa', 'leg-femur', 'amp-aka'], opacity={**LOP, 'amp-aka': 0.35},
+            quiz=ask('How are the femoral vessels managed?', 'Each is dissected, ligated and divided before the limb is released',
+                     'Controlled ligation avoids bleeding after the tourniquet or clamps are off.', 'Cut together with the muscle', 'Clipped without ligation', 'Left open'))
+        ak_cl = step('aka-close', 'Closure', 'Myodesis, drain and closure',
+            '<p><b>Adductor myodesis</b>: with the hip in <b>5–10° of adduction</b>, anchor the adductor tendon to the femur through drill holes with non-absorbable suture. <b>Quadriceps myodesis</b>: with the hip in <b>full extension</b>, anchor the quadriceps to the femur. These stop the muscles retracting and the femur from drifting outward. Place a drain. Close the <b>fascia, then the skin</b> without tension; a padded dressing.</p>'
+            '<p>Common problems if skipped: muscle atrophy, wound infection, dehiscence, and flexion or abduction contractures at the hip.</p>'
+            + ev('Myers & Chauvin, StatPearls 2023: adductor myodesis with hip 5–10° adducted, quadriceps myodesis with hip in full extension; complications include atrophy, wound infection, dehiscence, flexion and abduction contractures.'),
+            THIGH, show=[*LEG, 'amp-aka'], highlight=['amp-aka'], labels=['amp-aka'], opacity={**LOP, 'amp-aka': 0.5},
+            quiz=ask('In what hip position is the adductor myodesis tied?', '5–10° of adduction',
+                     'Tying in slight adduction keeps the femur centered; the quadriceps myodesis is tied in full extension.', 'Full flexion', '45° of abduction', 'Any position'))
+        ak_after = step('aka-after', 'After', 'After an AKA: hip, pain, mobilization, the other leg',
+            '<p><b>Wound.</b> Drain out when the output is low; inspect the flap; sutures out when healed (about 2 weeks in the BKA series cited; longer if ischemic). Failure to heal: debride or revise, rarely a hip disarticulation.</p>'
+            '<p><b>Hip.</b> Prevent <b>hip flexion and abduction contractures</b>: no pillow under the stump, lie prone for part of the day, stump supported in extension when sitting, early physiotherapy.</p>'
+            '<p><b>Pain.</b> Multimodal analgesia. Phantom pain is common (reported in up to 80% of patients in StatPearls; pooled 64% in a meta-analysis) and a more proximal amputation raises the risk. Treat early.</p>'
+            '<p><b>Medical.</b> Glucose, nutrition, VTE prophylaxis, antiplatelet and statin for life, smoking cessation, depression screening (PTSD and depression are common), and daily inspection of the <b>other foot</b>.</p>'
+            '<p><b>Mobility.</b> Early transfers and wheelchair training; a prosthesis only in a patient who can use one (it costs far more energy than a BKA prosthesis). Realistic goals, with the family, before surgery.</p>'
+            + ev('Myers & Chauvin, StatPearls 2023: phantom pain in up to 80%, contractures, depression and PTSD, 65% extra energy cost; Limakatso et al., PLOS ONE 2020: more proximal amputation is a risk factor for phantom pain; Qaarie, Cureus 2023: 1-year mortality after AKA about 50%.'),
+            WHOLE, show=[*LEG, 'amp-aka'], labels=['amp-aka'], opacity=LOP,
+            quiz=ask('Which contractures is an above-knee stump prone to?', 'Hip flexion and abduction',
+                     'A pillow under the stump or prolonged sitting shortens the hip flexors and abductors.', 'Ankle plantarflexion', 'Knee flexion only', 'None'))
+        proc('aka-open', 'aka', 'Above-knee amputation', 'Transfemoral, fish-mouth flaps with myodesis',
+             'When an above-knee level is right, flap and bone measurements, femoral vessels and sciatic nerve, adductor and quadriceps myodesis, and care after surgery.',
+             [('Patho', 'other', [ak_patho]), ('Case', 'other', [ak_case]), ('Incision', 'other', [ak_inc]), ('Bone', 'other', [ak_bone]), ('Vessels', 'artery', [ak_ves]), ('Closure', 'other', [ak_cl]), ('After', 'other', [ak_after])],
+             AMPSRC, 'Vascular')
 
     # =================================================================================================== arteriovenous fistulas
     if has('arm-brachial'):

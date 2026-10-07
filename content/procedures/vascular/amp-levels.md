@@ -99,7 +99,7 @@ Template and how to use it: [CTICU protocol, consent](#approach=cticu-consent&st
 
 ## [am-bka] Below-knee amputation: long posterior flap
 
-Mark the **anterior incision** at the level of bone section, about **12–15 cm below the knee joint** (or 10 cm below the tibial tuberosity); the **long posterior flap** (Burgess) is about as long as the leg is wide at that level. Divide the tibia, bevel its anterior edge, cut the **fibula 1–2 cm shorter**. Ligate the anterior tibial, posterior tibial and peroneal vessels; pull down, divide and let retract the **tibial nerve**. Trim the soleus bulk; fold the gastrocnemius flap forward over the bone; close without tension; a soft dressing or rigid removable dressing to prevent knee flexion contracture.
+Divide the tibia, bevel its anterior edge, cut the **fibula at least 1 cm shorter**, ligate the vessels, divide the nerves sharply, fold the gastrocnemius flap forward and close without tension. Full steps with measurements are in their own entries: [Below-knee amputation](#approach=bka-open&step=3) and, for the thigh, [Above-knee amputation](#approach=aka-open&step=3).
 
 ### Question
 
@@ -112,7 +112,7 @@ Mark the **anterior incision** at the level of bone section, about **12–15 cm 
 
 ## [am-after] Stump care, rehabilitation, the other leg
 
-Pain control (including phantom pain), glucose and nutrition, wound checks. **Prevent knee flexion contracture**: lie prone, keep the knee straight, early physiotherapy. Stump shaping, then prosthetic fitting at about 6–8 weeks. Examine and protect the **other foot**: the risk to the second leg is high. Secondary prevention.
+Pain control (including phantom pain), glucose and nutrition, wound checks. **Prevent knee flexion contracture**: lie prone, keep the knee straight, early physiotherapy. Stump shaping, then prosthetic fitting once healed (often within 3–6 months of surgery). Examine and protect the **other foot**: the risk to the second leg is high. Secondary prevention.
 
 ## [amp-levels-icu] ICU and post-operative care
 

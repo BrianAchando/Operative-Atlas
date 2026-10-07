@@ -264540,7 +264540,7 @@
     "id": "am-bka",
     "phase": "BKA",
     "title": "Below-knee amputation: long posterior flap",
-    "body": "<p>Mark the <b>anterior incision</b> at the level of bone section, about <b>12\u201315 cm below the knee joint</b> (or 10 cm below the tibial tuberosity); the <b>long posterior flap</b> (Burgess) is about as long as the leg is wide at that level. Divide the tibia, bevel its anterior edge, cut the <b>fibula 1\u20132 cm shorter</b>. Ligate the anterior tibial, posterior tibial and peroneal vessels; pull down, divide and let retract the <b>tibial nerve</b>. Trim the soleus bulk; fold the gastrocnemius flap forward over the bone; close without tension; a soft dressing or rigid removable dressing to prevent knee flexion contracture.</p>",
+    "body": "<p>Mark the <b>anterior incision</b> at the level of bone section, about <b>12\u201315 cm below the knee joint</b> (or 10 cm below the tibial tuberosity); the <b>long posterior flap</b> (Burgess) is about as long as the leg is wide at that level. Divide the tibia, bevel its anterior edge, cut the <b>fibula 1\u20132 cm shorter</b>. Ligate the vessels, divide the nerves sharply, fold the gastrocnemius flap forward and close without tension. Full steps with measurements: <a class=\"link\" href=\"#approach=bka-open&step=3\">Below-knee amputation</a>; above the knee: <a class=\"link\" href=\"#approach=aka-open&step=3\">Above-knee amputation</a>.</p>",
     "view": {
      "eye": [
       258.3,
@@ -264686,7 +264686,7 @@
     "id": "am-after",
     "phase": "After",
     "title": "Stump care, rehabilitation, the other leg",
-    "body": "<p>Pain control (including phantom pain), glucose and nutrition, wound checks. <b>Prevent knee flexion contracture</b>: lie prone, keep the knee straight, early physiotherapy. Stump shaping, then prosthetic fitting at about 6\u20138 weeks. Examine and protect the <b>other foot</b>: the risk to the second leg is high. Secondary prevention.</p>",
+    "body": "<p>Pain control (including phantom pain), glucose and nutrition, wound checks. <b>Prevent knee flexion contracture</b>: lie prone, keep the knee straight, early physiotherapy. Stump shaping, then prosthetic fitting once healed (often within 3\u20136 months of surgery). Examine and protect the <b>other foot</b>: the risk to the second leg is high. Secondary prevention.</p>",
     "view": {
      "eye": [
       423.0,
@@ -264961,6 +264961,2665 @@
    },
    {
     "label": "BKA",
+    "kind": "other"
+   },
+   {
+    "label": "After",
+    "kind": "other"
+   },
+   {
+    "label": "ICU",
+    "kind": "other"
+   }
+  ]
+ },
+ "bka-open": {
+  "id": "bka-open",
+  "op": "bka",
+  "opName": "Below-knee amputation",
+  "side": "both",
+  "name": "Below-knee amputation",
+  "approach": "Transtibial, long posterior flap",
+  "summary": "Why the leg is lost, indications, the long posterior flap with measurements, tibia and fibula levels, nerves and vessels, myodesis and closure, and care after surgery.",
+  "ports": [],
+  "steps": [
+   {
+    "id": "bka-patho",
+    "phase": "Pathophysiology",
+    "title": "Why the leg is lost, and why a below-knee level",
+    "body": "<p><b>Mechanism.</b> In chronic limb-threatening ischemia, atherosclerotic occlusion of the femoropopliteal and tibial arteries leaves the foot with too little flow to heal. In diabetes, <b>neuropathy</b> (no pain, repeated pressure injury) and <b>infection</b> add to ischemia; a small wound becomes an ulcer, then osteomyelitis or wet gangrene. Tissue that cannot heal, or sepsis that cannot be controlled, is the end of the road for the foot.</p><p><b>Indications for a below-knee amputation (BKA)</b></p><ul><li>Unreconstructable CLTI with tissue loss reaching the heel, midfoot or ankle, or a failed revascularization with a non-healable foot.</li><li>Wet gangrene or spreading foot sepsis (a guillotine ankle amputation first, BKA once sepsis settles).</li><li>Uncontrollable pain at rest in a foot that cannot be salvaged.</li><li>Trauma, tumor or infection confined below the knee.</li></ul><p><b>Conditions for success.</b> Enough blood flow to heal the calf flap (a palpable popliteal pulse is a good sign; if in doubt, vascular assessment and revascularization first), infection cleared, and a patient who can use a prosthesis. <b>Prefer BKA over AKA when both would heal</b>: keeping the knee makes prosthetic walking far more likely and less tiring. <b>Relative contraindications</b>: fixed knee flexion contracture, a non-ambulant patient, ischemia or infection reaching above the planned level.</p><p><b>Risk.</b> Cardiac and renal disease, diabetes and age drive outcome. Qaarie, Cureus 2023 (review of published series, very heterogeneous): 30-day mortality averaged about 16% after BKA and AKA alike (BKA 6.2\u201351.4%, AKA 12.7\u201321.7%); 1-year mortality about 28% after BKA and about 50% after AKA, partly because AKA patients are sicker; 5-year mortality 39\u201380%.</p><p class=\"evidence\"><b>Evidence:</b> StatPearls Below-Knee Amputation; Global Vascular Guidelines 2019; Waters et al. 1976; Qaarie, Cureus 2023 (review of published series, very heterogeneous): 30-day mortality averaged about 16% after BKA and AKA alike (BKA 6.2\u201351.4%, AKA 12.7\u201321.7%); 1-year mortality about 28% after BKA and about 50% after AKA, partly because AKA patients are sicker; 5-year mortality 39\u201380%.</p>",
+    "view": {
+     "eye": [
+      423.0,
+      1531.7,
+      -690.3
+     ],
+     "target": [
+      48.8,
+      35.0,
+      -840.0
+     ]
+    },
+    "show": [
+     "leg-skin",
+     "leg-femur",
+     "leg-tibia",
+     "leg-fibula",
+     "leg-foot",
+     "cfa-r",
+     "eia-r",
+     "pfa-r",
+     "leg-sfa",
+     "leg-pop",
+     "leg-ata",
+     "leg-tpt",
+     "leg-pta",
+     "leg-per",
+     "leg-dpa",
+     "fv-r",
+     "inguinal-lig-r",
+     "amp-ray",
+     "amp-tma",
+     "amp-bka",
+     "amp-tka",
+     "amp-aka"
+    ],
+    "hide": [
+     "pa-truncus-anterior",
+     "pa-posterior-1",
+     "pa-a6",
+     "pa-posterior-2",
+     "pa-lingular",
+     "pa-basal-trunk",
+     "pa-left",
+     "lul-arteries",
+     "pv-superior",
+     "lul-veins",
+     "pv-inferior",
+     "br-lul",
+     "br-lll",
+     "br-left-main",
+     "trachea",
+     "lul-bronchi",
+     "br-lingular",
+     "br-upper-div",
+     "br-b6",
+     "pv-lingular",
+     "pv-upper-div",
+     "pv-v6",
+     "lul",
+     "lll",
+     "fissure",
+     "heart",
+     "laa",
+     "aorta",
+     "bct",
+     "lcca",
+     "lsca",
+     "svc",
+     "lbcv",
+     "esophagus",
+     "vert-t2",
+     "vert-t3",
+     "vert-t4",
+     "vert-t5",
+     "vert-t6",
+     "vert-t7",
+     "vert-t8",
+     "vert-t9",
+     "vert-t10",
+     "n-phrenic",
+     "n-vagus",
+     "n-rln",
+     "lig-art",
+     "ipl",
+     "ln-5",
+     "ln-6",
+     "ln-7",
+     "ln-10l",
+     "ln-11l",
+     "ln-9l"
+    ],
+    "highlight": [
+     "amp-bka"
+    ],
+    "danger": [],
+    "labels": [
+     "amp-bka",
+     "leg-tibia",
+     "leg-fibula"
+    ],
+    "opacity": {
+     "leg-skin": 0.1,
+     "leg-foot": 0.15,
+     "leg-femur": 0.3,
+     "leg-tibia": 0.4,
+     "leg-fibula": 0.4,
+     "fv-r": 0.5,
+     "amp-ray": 0.45,
+     "amp-tma": 0.45,
+     "amp-bka": 0.45,
+     "amp-tka": 0.45,
+     "amp-aka": 0.45
+    },
+    "ask": {
+     "question": "Which patient is the best candidate for a below-knee rather than an above-knee amputation?",
+     "choices": [
+      {
+       "text": "An ambulant diabetic with a non-healable heel ulcer and a palpable popliteal pulse",
+       "correct": true,
+       "why": "The calf flap can heal and the preserved knee gives the best chance of prosthetic walking."
+      },
+      {
+       "text": "A bed-bound patient with a fixed knee flexion contracture",
+       "correct": false,
+       "why": ""
+      },
+      {
+       "text": "A patient with gangrene reaching above the knee",
+       "correct": false,
+       "why": ""
+      },
+      {
+       "text": "Anyone with a pulseless popliteal artery and no revascularization option",
+       "correct": false,
+       "why": ""
+      }
+     ]
+    },
+    "askAfter": true,
+    "spin": true,
+    "seq": 0
+   },
+   {
+    "id": "bka-case",
+    "phase": "Case",
+    "title": "Case: failed revascularization, non-healing heel",
+    "body": "<p>He walked unaided before this. Healing the heel is unlikely, and revascularization is no longer possible. Offer a <b>primary below-knee amputation</b>: the infection is confined below the ankle, the popliteal pulse is palpable, and the knee moves fully.</p>",
+    "view": {
+     "eye": [
+      192.4,
+      578.7,
+      -1106.4
+     ],
+     "target": [
+      48.8,
+      100.0,
+      -1250.0
+     ]
+    },
+    "show": [
+     "leg-skin",
+     "leg-femur",
+     "leg-tibia",
+     "leg-fibula",
+     "leg-foot",
+     "cfa-r",
+     "eia-r",
+     "pfa-r",
+     "leg-sfa",
+     "leg-pop",
+     "leg-ata",
+     "leg-tpt",
+     "leg-pta",
+     "leg-per",
+     "leg-dpa",
+     "fv-r",
+     "inguinal-lig-r",
+     "amp-bka"
+    ],
+    "hide": [
+     "pa-truncus-anterior",
+     "pa-posterior-1",
+     "pa-a6",
+     "pa-posterior-2",
+     "pa-lingular",
+     "pa-basal-trunk",
+     "pa-left",
+     "lul-arteries",
+     "pv-superior",
+     "lul-veins",
+     "pv-inferior",
+     "br-lul",
+     "br-lll",
+     "br-left-main",
+     "trachea",
+     "lul-bronchi",
+     "br-lingular",
+     "br-upper-div",
+     "br-b6",
+     "pv-lingular",
+     "pv-upper-div",
+     "pv-v6",
+     "lul",
+     "lll",
+     "fissure",
+     "heart",
+     "laa",
+     "aorta",
+     "bct",
+     "lcca",
+     "lsca",
+     "svc",
+     "lbcv",
+     "esophagus",
+     "vert-t2",
+     "vert-t3",
+     "vert-t4",
+     "vert-t5",
+     "vert-t6",
+     "vert-t7",
+     "vert-t8",
+     "vert-t9",
+     "vert-t10",
+     "n-phrenic",
+     "n-vagus",
+     "n-rln",
+     "lig-art",
+     "ipl",
+     "ln-5",
+     "ln-6",
+     "ln-7",
+     "ln-10l",
+     "ln-11l",
+     "ln-9l"
+    ],
+    "highlight": [],
+    "danger": [],
+    "labels": [
+     "amp-bka",
+     "leg-foot"
+    ],
+    "opacity": {
+     "leg-skin": 0.1,
+     "leg-foot": 0.15,
+     "leg-femur": 0.3,
+     "leg-tibia": 0.4,
+     "leg-fibula": 0.4,
+     "fv-r": 0.5
+    },
+    "ask": {
+     "question": "What level and why?",
+     "choices": [
+      {
+       "text": "A below-knee amputation: the flap should heal and the knee is kept for prosthetic walking",
+       "correct": true,
+       "why": "The popliteal pulse predicts healing at this level; an above-knee level is held back for failure."
+      },
+      {
+       "text": "An above-knee amputation, as it always heals",
+       "correct": false,
+       "why": ""
+      },
+      {
+       "text": "Another bypass",
+       "correct": false,
+       "why": ""
+      },
+      {
+       "text": "A toe amputation",
+       "correct": false,
+       "why": ""
+      }
+     ]
+    },
+    "lead": "<p>A <b>62-year-old man</b>, type 2 diabetes for 20 years, a non-healing heel ulcer with osteomyelitis for 4 months. A fem-pop bypass 8 months ago has occluded; angiography shows no distal target. Afebrile, glucose controlled. Popliteal pulse palpable; no pedal pulses. Full knee extension.</p>",
+    "seq": 1
+   },
+   {
+    "id": "bka-open-consent",
+    "phase": "Consent",
+    "seq": 2,
+    "title": "Consent: what to discuss with this patient",
+    "body": "<p><b>1. The patient's own risk</b>: Cardiac and renal risk; sepsis. Quote the figure, not a textbook average.</p><h4>2. Common</h4><ul><li>Wound healing problems</li><li>Phantom sensations and pain</li></ul><h4>3. Serious</h4><ul><li>Revision to a higher level</li><li>Death</li><li>Loss of the other leg later</li></ul><h4>4. Specific to this operation</h4><ul><li>Rehabilitation and a prosthesis over months</li><li>Staged operation in sepsis</li></ul><h4>5. Alternatives</h4><ul><li>Revascularization if the limb is salvageable</li><li>Palliative care</li><li>No operation, and what that means</li></ul><h4>6. Recovery</h4><ul><li>ICU, then ward; drains; walking from day 1</li><li>Return to normal activity over weeks</li><li>Follow-up in clinic</li></ul><h4>7. Kenya-specific</h4><ul><li>Access to and cost of a prosthesis</li><li>Home adaptations</li></ul><p>Template and how to use it: <a class=\"link\" href=\"#approach=cticu-consent&amp;step=0\">CTICU protocol, consent</a>.</p>",
+    "askAfter": true,
+    "ask": {
+     "question": "What should a patient know before a below-knee amputation?",
+     "choices": [
+      {
+       "text": "Healing may need revision; walking with a prosthesis takes months of rehabilitation",
+       "correct": true,
+       "why": "Realistic expectations and the risk to the other leg are part of consent."
+      },
+      {
+       "text": "Walking normally in a week",
+       "correct": false,
+       "why": ""
+      },
+      {
+       "text": "No pain afterwards",
+       "correct": false,
+       "why": ""
+      },
+      {
+       "text": "The other leg is never at risk",
+       "correct": false,
+       "why": ""
+      }
+     ]
+    },
+    "view": {
+     "eye": [
+      192.4,
+      578.7,
+      -1106.4
+     ],
+     "target": [
+      48.8,
+      100.0,
+      -1250.0
+     ]
+    },
+    "show": [
+     "leg-skin",
+     "leg-femur",
+     "leg-tibia",
+     "leg-fibula",
+     "leg-foot",
+     "cfa-r",
+     "eia-r",
+     "pfa-r",
+     "leg-sfa",
+     "leg-pop",
+     "leg-ata",
+     "leg-tpt",
+     "leg-pta",
+     "leg-per",
+     "leg-dpa",
+     "fv-r",
+     "inguinal-lig-r",
+     "amp-bka"
+    ],
+    "hide": [
+     "pa-truncus-anterior",
+     "pa-posterior-1",
+     "pa-a6",
+     "pa-posterior-2",
+     "pa-lingular",
+     "pa-basal-trunk",
+     "pa-left",
+     "lul-arteries",
+     "pv-superior",
+     "lul-veins",
+     "pv-inferior",
+     "br-lul",
+     "br-lll",
+     "br-left-main",
+     "trachea",
+     "lul-bronchi",
+     "br-lingular",
+     "br-upper-div",
+     "br-b6",
+     "pv-lingular",
+     "pv-upper-div",
+     "pv-v6",
+     "lul",
+     "lll",
+     "fissure",
+     "heart",
+     "laa",
+     "aorta",
+     "bct",
+     "lcca",
+     "lsca",
+     "svc",
+     "lbcv",
+     "esophagus",
+     "vert-t2",
+     "vert-t3",
+     "vert-t4",
+     "vert-t5",
+     "vert-t6",
+     "vert-t7",
+     "vert-t8",
+     "vert-t9",
+     "vert-t10",
+     "n-phrenic",
+     "n-vagus",
+     "n-rln",
+     "lig-art",
+     "ipl",
+     "ln-5",
+     "ln-6",
+     "ln-7",
+     "ln-10l",
+     "ln-11l",
+     "ln-9l"
+    ],
+    "opacity": {
+     "leg-skin": 0.1,
+     "leg-foot": 0.15,
+     "leg-femur": 0.3,
+     "leg-tibia": 0.4,
+     "leg-fibula": 0.4,
+     "fv-r": 0.5
+    },
+    "labels": [],
+    "highlight": [],
+    "danger": []
+   },
+   {
+    "id": "bka-incision",
+    "phase": "Incision",
+    "title": "Mark the level and the long posterior flap",
+    "body": "<p>Supine, a sandbag under the thigh, tourniquet optional (not in severe ischemia). Mark in this order:</p><table class=\"mini\"><tr><th>Landmark</th><th>Measurement</th></tr><tr><td><b>Anterior skin incision</b></td><td>about <b>10 to 15 cm below the tibial tubercle</b></td></tr><tr><td><b>Posterior flap</b></td><td>drawn about <b>150% of the anterior flap length</b> (the long posterior, Burgess, flap), enough to fold over the bone without tension</td></tr><tr><td><b>Proportion of the circumference</b></td><td>anterior incision about two-thirds, posterior flap about one-third</td></tr><tr><td><b>Anterior muscle and periosteum</b></td><td>divide the skin, fascia and anterior compartment muscle square to the bone, without beveling the skin</td></tr></table><p>In ischemic limbs, handle the skin edges gently (no forceps on skin, no undermining).</p><p class=\"evidence\"><b>Evidence:</b> StatPearls Below-Knee Amputation: incision 10\u201315 cm from the tibial tubercle, posterior flap 150% of the anterior; Orthobullets (transtibial technique): anterior incision about 10 cm below the tubercle, two-thirds / one-third of the circumference.</p>",
+    "view": {
+     "eye": [
+      258.3,
+      454.0,
+      -945.3
+     ],
+     "target": [
+      48.8,
+      35.0,
+      -1050.0
+     ]
+    },
+    "show": [
+     "leg-skin",
+     "leg-femur",
+     "leg-tibia",
+     "leg-fibula",
+     "leg-foot",
+     "cfa-r",
+     "eia-r",
+     "pfa-r",
+     "leg-sfa",
+     "leg-pop",
+     "leg-ata",
+     "leg-tpt",
+     "leg-pta",
+     "leg-per",
+     "leg-dpa",
+     "fv-r",
+     "inguinal-lig-r",
+     "amp-bka"
+    ],
+    "hide": [
+     "pa-truncus-anterior",
+     "pa-posterior-1",
+     "pa-a6",
+     "pa-posterior-2",
+     "pa-lingular",
+     "pa-basal-trunk",
+     "pa-left",
+     "lul-arteries",
+     "pv-superior",
+     "lul-veins",
+     "pv-inferior",
+     "br-lul",
+     "br-lll",
+     "br-left-main",
+     "trachea",
+     "lul-bronchi",
+     "br-lingular",
+     "br-upper-div",
+     "br-b6",
+     "pv-lingular",
+     "pv-upper-div",
+     "pv-v6",
+     "lul",
+     "lll",
+     "fissure",
+     "heart",
+     "laa",
+     "aorta",
+     "bct",
+     "lcca",
+     "lsca",
+     "svc",
+     "lbcv",
+     "esophagus",
+     "vert-t2",
+     "vert-t3",
+     "vert-t4",
+     "vert-t5",
+     "vert-t6",
+     "vert-t7",
+     "vert-t8",
+     "vert-t9",
+     "vert-t10",
+     "n-phrenic",
+     "n-vagus",
+     "n-rln",
+     "lig-art",
+     "ipl",
+     "ln-5",
+     "ln-6",
+     "ln-7",
+     "ln-10l",
+     "ln-11l",
+     "ln-9l"
+    ],
+    "highlight": [
+     "amp-bka"
+    ],
+    "danger": [],
+    "labels": [
+     "amp-bka",
+     "leg-tibia",
+     "leg-fibula"
+    ],
+    "opacity": {
+     "leg-skin": 0.1,
+     "leg-foot": 0.15,
+     "leg-femur": 0.3,
+     "leg-tibia": 0.4,
+     "leg-fibula": 0.4,
+     "fv-r": 0.5,
+     "amp-bka": 0.6
+    },
+    "action": {
+     "kind": "reveal",
+     "label": "Mark the flap",
+     "port": "groin-r",
+     "ids": [
+      "amp-bka-flap"
+     ]
+    },
+    "ask": {
+     "question": "How long is the posterior flap compared with the anterior one?",
+     "choices": [
+      {
+       "text": "About 150% of the anterior flap length",
+       "correct": true,
+       "why": "The long posterior flap carries the best blood supply and folds over the bone."
+      },
+      {
+       "text": "The same length",
+       "correct": false,
+       "why": ""
+      },
+      {
+       "text": "Half",
+       "correct": false,
+       "why": ""
+      },
+      {
+       "text": "No posterior flap is made",
+       "correct": false,
+       "why": ""
+      }
+     ]
+    },
+    "seq": 3
+   },
+   {
+    "id": "bka-bone",
+    "phase": "Bone",
+    "title": "Divide the tibia and fibula",
+    "body": "<p>Elevate the periosteum only as far as needed. Divide the tibia at the planned level with an oscillating saw, perpendicular to the shaft, and <b>bevel the anterior tibial crest at about 45\u00b0</b> so it does not press through the skin. Divide the <b>fibula at least 1 cm proximal</b> to the tibial cut (1 to 2 cm is usual) so it does not touch the socket or skin. Smooth the edges with a rasp; irrigate away bone dust.</p><table class=\"mini\"><tr><th>Structure</th><th>Level</th></tr><tr><td>Tibia</td><td>skin incision 10\u201315 cm below the tubercle; bone cut 2\u20133 cm proximal to the anterior skin edge</td></tr><tr><td>Anterior tibial crest</td><td>bevel at about 45\u00b0</td></tr><tr><td>Fibula</td><td>at least 1 cm shorter than the tibia</td></tr></table><p class=\"evidence\"><b>Evidence:</b> Orthobullets (transtibial technique): tibia cut 2\u20133 cm proximal to the anterior skin edge, fibula at least 1 cm proximal, distal tibia beveled 45\u00b0; StatPearls Below-Knee Amputation: bone cut with an oscillating saw, corners beveled.</p>",
+    "view": {
+     "eye": [
+      214.6,
+      366.7,
+      -967.1
+     ],
+     "target": [
+      48.8,
+      35.0,
+      -1050.0
+     ]
+    },
+    "show": [
+     "leg-skin",
+     "leg-femur",
+     "leg-tibia",
+     "leg-fibula",
+     "leg-foot",
+     "cfa-r",
+     "eia-r",
+     "pfa-r",
+     "leg-sfa",
+     "leg-pop",
+     "leg-ata",
+     "leg-tpt",
+     "leg-pta",
+     "leg-per",
+     "leg-dpa",
+     "fv-r",
+     "inguinal-lig-r",
+     "amp-bka"
+    ],
+    "hide": [
+     "pa-truncus-anterior",
+     "pa-posterior-1",
+     "pa-a6",
+     "pa-posterior-2",
+     "pa-lingular",
+     "pa-basal-trunk",
+     "pa-left",
+     "lul-arteries",
+     "pv-superior",
+     "lul-veins",
+     "pv-inferior",
+     "br-lul",
+     "br-lll",
+     "br-left-main",
+     "trachea",
+     "lul-bronchi",
+     "br-lingular",
+     "br-upper-div",
+     "br-b6",
+     "pv-lingular",
+     "pv-upper-div",
+     "pv-v6",
+     "lul",
+     "lll",
+     "fissure",
+     "heart",
+     "laa",
+     "aorta",
+     "bct",
+     "lcca",
+     "lsca",
+     "svc",
+     "lbcv",
+     "esophagus",
+     "vert-t2",
+     "vert-t3",
+     "vert-t4",
+     "vert-t5",
+     "vert-t6",
+     "vert-t7",
+     "vert-t8",
+     "vert-t9",
+     "vert-t10",
+     "n-phrenic",
+     "n-vagus",
+     "n-rln",
+     "lig-art",
+     "ipl",
+     "ln-5",
+     "ln-6",
+     "ln-7",
+     "ln-10l",
+     "ln-11l",
+     "ln-9l"
+    ],
+    "highlight": [
+     "leg-tibia",
+     "leg-fibula"
+    ],
+    "danger": [],
+    "labels": [
+     "leg-tibia",
+     "leg-fibula",
+     "amp-bka"
+    ],
+    "opacity": {
+     "leg-skin": 0.1,
+     "leg-foot": 0.15,
+     "leg-femur": 0.3,
+     "leg-tibia": 0.4,
+     "leg-fibula": 0.4,
+     "fv-r": 0.5,
+     "amp-bka": 0.4
+    },
+    "ask": {
+     "question": "Why is the fibula cut shorter than the tibia?",
+     "choices": [
+      {
+       "text": "A long fibula is prominent and painful in the socket",
+       "correct": true,
+       "why": "At least 1 cm shorter keeps the fibular end clear of the skin and socket."
+      },
+      {
+       "text": "To save time",
+       "correct": false,
+       "why": ""
+      },
+      {
+       "text": "To protect the peroneal artery",
+       "correct": false,
+       "why": ""
+      },
+      {
+       "text": "It is not cut",
+       "correct": false,
+       "why": ""
+      }
+     ]
+    },
+    "seq": 4
+   },
+   {
+    "id": "bka-vessels",
+    "phase": "Vessels and nerves",
+    "title": "Ligate the vessels, divide the nerves",
+    "body": "<p>Identify each pedicle: <b>anterior tibial</b> (anterior compartment, with the deep peroneal nerve), <b>posterior tibial</b> and <b>peroneal</b> (deep posterior compartment, with the tibial nerve). <b>Ligate each artery and vein separately</b> with silk, and clip bleeders.</p><p>Put each nerve (tibial, deep and superficial peroneal, sural, saphenous) under gentle traction, divide it <b>sharply with a fresh blade</b>, and let it retract proximally among the muscle, to reduce painful neuroma. Optional: a local anesthetic block of the nerve ends.</p><p>Trim the soleus and gastrocnemius so the flap is not bulky.</p><p class=\"evidence\"><b>Evidence:</b> StatPearls Below-Knee Amputation: each artery identified and ligated, nerves sharply divided after gentle traction; Orthobullets (transtibial technique): pedicles tied with silk, nerve cut sharply as proximally as possible.</p>",
+    "view": {
+     "eye": [
+      214.6,
+      366.7,
+      -967.1
+     ],
+     "target": [
+      48.8,
+      35.0,
+      -1050.0
+     ]
+    },
+    "show": [
+     "leg-skin",
+     "leg-femur",
+     "leg-tibia",
+     "leg-fibula",
+     "leg-foot",
+     "cfa-r",
+     "eia-r",
+     "pfa-r",
+     "leg-sfa",
+     "leg-pop",
+     "leg-ata",
+     "leg-tpt",
+     "leg-pta",
+     "leg-per",
+     "leg-dpa",
+     "fv-r",
+     "inguinal-lig-r",
+     "amp-bka",
+     "leg-ata",
+     "leg-pta",
+     "leg-per",
+     "leg-tpt"
+    ],
+    "hide": [
+     "pa-truncus-anterior",
+     "pa-posterior-1",
+     "pa-a6",
+     "pa-posterior-2",
+     "pa-lingular",
+     "pa-basal-trunk",
+     "pa-left",
+     "lul-arteries",
+     "pv-superior",
+     "lul-veins",
+     "pv-inferior",
+     "br-lul",
+     "br-lll",
+     "br-left-main",
+     "trachea",
+     "lul-bronchi",
+     "br-lingular",
+     "br-upper-div",
+     "br-b6",
+     "pv-lingular",
+     "pv-upper-div",
+     "pv-v6",
+     "lul",
+     "lll",
+     "fissure",
+     "heart",
+     "laa",
+     "aorta",
+     "bct",
+     "lcca",
+     "lsca",
+     "svc",
+     "lbcv",
+     "esophagus",
+     "vert-t2",
+     "vert-t3",
+     "vert-t4",
+     "vert-t5",
+     "vert-t6",
+     "vert-t7",
+     "vert-t8",
+     "vert-t9",
+     "vert-t10",
+     "n-phrenic",
+     "n-vagus",
+     "n-rln",
+     "lig-art",
+     "ipl",
+     "ln-5",
+     "ln-6",
+     "ln-7",
+     "ln-10l",
+     "ln-11l",
+     "ln-9l"
+    ],
+    "highlight": [
+     "leg-ata",
+     "leg-pta",
+     "leg-per"
+    ],
+    "danger": [],
+    "labels": [
+     "leg-ata",
+     "leg-pta",
+     "leg-per",
+     "leg-tpt"
+    ],
+    "opacity": {
+     "leg-skin": 0.1,
+     "leg-foot": 0.15,
+     "leg-femur": 0.3,
+     "leg-tibia": 0.4,
+     "leg-fibula": 0.4,
+     "fv-r": 0.5,
+     "amp-bka": 0.35
+    },
+    "ask": {
+     "question": "How are the nerves handled to prevent a painful neuroma?",
+     "choices": [
+      {
+       "text": "Gentle traction, a sharp division, and retraction into soft tissue",
+       "correct": true,
+       "why": "A clean cut proximal to the stump end lets the nerve retract away from pressure points."
+      },
+      {
+       "text": "Ligated with the artery",
+       "correct": false,
+       "why": ""
+      },
+      {
+       "text": "Cauterized at the stump end",
+       "correct": false,
+       "why": ""
+      },
+      {
+       "text": "Left long",
+       "correct": false,
+       "why": ""
+      }
+     ]
+    },
+    "seq": 5
+   },
+   {
+    "id": "bka-close",
+    "phase": "Closure",
+    "title": "Myodesis, drain and closure",
+    "body": "<p>Fold the gastrocnemius-soleus flap forward over the bone. Secure the <b>gastrocnemius aponeurosis to the tibia</b> through drill holes with non-absorbable suture (myodesis) or sew it to the anterior fascia, so the flap covers the bone and stays put. Place a drain under the fascia where you expect a collection. Close the <b>fascia, then the skin</b>, without tension; if the flap is dusky or tight, remove the stitches rather than strangling it.</p><p>Dressing: a <b>soft padded dressing</b>, or a <b>rigid dressing</b> in ambulant patients. The Cochrane review (9 trials, 436 patients) could not prove either better: the evidence is very low-certainty.</p><p class=\"evidence\"><b>Evidence:</b> StatPearls Below-Knee Amputation: gastrocnemius aponeurosis secured to the tibia through a drill hole with non-absorbable suture; Orthobullets: blunt drain under the fascia, soft dressing; Kwah et al. Cochrane 2019: rigid dressings may shorten healing, very low-certainty evidence.</p>",
+    "view": {
+     "eye": [
+      258.3,
+      454.0,
+      -945.3
+     ],
+     "target": [
+      48.8,
+      35.0,
+      -1050.0
+     ]
+    },
+    "show": [
+     "leg-skin",
+     "leg-femur",
+     "leg-tibia",
+     "leg-fibula",
+     "leg-foot",
+     "cfa-r",
+     "eia-r",
+     "pfa-r",
+     "leg-sfa",
+     "leg-pop",
+     "leg-ata",
+     "leg-tpt",
+     "leg-pta",
+     "leg-per",
+     "leg-dpa",
+     "fv-r",
+     "inguinal-lig-r",
+     "amp-bka",
+     "amp-bka-flap"
+    ],
+    "hide": [
+     "pa-truncus-anterior",
+     "pa-posterior-1",
+     "pa-a6",
+     "pa-posterior-2",
+     "pa-lingular",
+     "pa-basal-trunk",
+     "pa-left",
+     "lul-arteries",
+     "pv-superior",
+     "lul-veins",
+     "pv-inferior",
+     "br-lul",
+     "br-lll",
+     "br-left-main",
+     "trachea",
+     "lul-bronchi",
+     "br-lingular",
+     "br-upper-div",
+     "br-b6",
+     "pv-lingular",
+     "pv-upper-div",
+     "pv-v6",
+     "lul",
+     "lll",
+     "fissure",
+     "heart",
+     "laa",
+     "aorta",
+     "bct",
+     "lcca",
+     "lsca",
+     "svc",
+     "lbcv",
+     "esophagus",
+     "vert-t2",
+     "vert-t3",
+     "vert-t4",
+     "vert-t5",
+     "vert-t6",
+     "vert-t7",
+     "vert-t8",
+     "vert-t9",
+     "vert-t10",
+     "n-phrenic",
+     "n-vagus",
+     "n-rln",
+     "lig-art",
+     "ipl",
+     "ln-5",
+     "ln-6",
+     "ln-7",
+     "ln-10l",
+     "ln-11l",
+     "ln-9l"
+    ],
+    "highlight": [
+     "amp-bka-flap"
+    ],
+    "danger": [],
+    "labels": [
+     "amp-bka-flap",
+     "amp-bka"
+    ],
+    "opacity": {
+     "leg-skin": 0.1,
+     "leg-foot": 0.15,
+     "leg-femur": 0.3,
+     "leg-tibia": 0.4,
+     "leg-fibula": 0.4,
+     "fv-r": 0.5,
+     "amp-bka": 0.35
+    },
+    "ask": {
+     "question": "What does the evidence say about rigid versus soft dressings after a BKA?",
+     "choices": [
+      {
+       "text": "Uncertain: very low-certainty evidence from small trials",
+       "correct": true,
+       "why": "Choose by the patient: skin, fall risk, and the surgeon's experience."
+      },
+      {
+       "text": "Rigid dressings always heal faster",
+       "correct": false,
+       "why": ""
+      },
+      {
+       "text": "Soft dressings are proven better",
+       "correct": false,
+       "why": ""
+      },
+      {
+       "text": "Dressings make no difference to anything",
+       "correct": false,
+       "why": ""
+      }
+     ]
+    },
+    "seq": 6
+   },
+   {
+    "id": "bka-after",
+    "phase": "After",
+    "title": "After a BKA: stump, knee, pain, other leg",
+    "body": "<p><b>Wound.</b> Drain out when the output is low (usually in 24\u201348 hours); check the flap for dusky skin; sutures out at about 2 weeks (longer in ischemic limbs). A failed flap needs a <b>revision or a higher (AKA) level</b>.</p><p><b>Knee.</b> Straight, not bent over a pillow, to prevent a <b>flexion contracture</b>; lie prone for part of the day; physiotherapy from day 1; sit with the stump supported, never dangling.</p><p><b>Pain.</b> Multimodal analgesia (regular paracetamol, opioids, neuropathic agents as needed). Phantom pain affects about <b>6 in 10</b> people with an amputation (pooled 64%; 54% in developing countries); persistent pre-operative pain, a more proximal level and stump pain raise the risk. Treat early.</p><p><b>Medical.</b> Glucose, nutrition, VTE prophylaxis, antiplatelet and statin for life, smoking cessation, and <b>protect the other foot</b>: examine it every day.</p><p><b>Rehabilitation.</b> Stump shaping, then prosthesis fitting once healed, usually from about 3 to 6 months after surgery; walking is learned over months. Early review of how the patient will manage at home.</p><p class=\"evidence\"><b>Evidence:</b> Orthobullets: wound check and sutures at 2 weeks, prosthesis fitting and rehabilitation at 3\u20136 months; Limakatso et al., PLOS ONE 2020: pooled phantom limb pain prevalence 64% (95% CI 60\u201368); lower in developing countries (54%); Global Vascular Guidelines 2019: best medical therapy, amputation-prevention teams.</p>",
+    "view": {
+     "eye": [
+      423.0,
+      1531.7,
+      -690.3
+     ],
+     "target": [
+      48.8,
+      35.0,
+      -840.0
+     ]
+    },
+    "show": [
+     "leg-skin",
+     "leg-femur",
+     "leg-tibia",
+     "leg-fibula",
+     "leg-foot",
+     "cfa-r",
+     "eia-r",
+     "pfa-r",
+     "leg-sfa",
+     "leg-pop",
+     "leg-ata",
+     "leg-tpt",
+     "leg-pta",
+     "leg-per",
+     "leg-dpa",
+     "fv-r",
+     "inguinal-lig-r",
+     "amp-bka"
+    ],
+    "hide": [
+     "pa-truncus-anterior",
+     "pa-posterior-1",
+     "pa-a6",
+     "pa-posterior-2",
+     "pa-lingular",
+     "pa-basal-trunk",
+     "pa-left",
+     "lul-arteries",
+     "pv-superior",
+     "lul-veins",
+     "pv-inferior",
+     "br-lul",
+     "br-lll",
+     "br-left-main",
+     "trachea",
+     "lul-bronchi",
+     "br-lingular",
+     "br-upper-div",
+     "br-b6",
+     "pv-lingular",
+     "pv-upper-div",
+     "pv-v6",
+     "lul",
+     "lll",
+     "fissure",
+     "heart",
+     "laa",
+     "aorta",
+     "bct",
+     "lcca",
+     "lsca",
+     "svc",
+     "lbcv",
+     "esophagus",
+     "vert-t2",
+     "vert-t3",
+     "vert-t4",
+     "vert-t5",
+     "vert-t6",
+     "vert-t7",
+     "vert-t8",
+     "vert-t9",
+     "vert-t10",
+     "n-phrenic",
+     "n-vagus",
+     "n-rln",
+     "lig-art",
+     "ipl",
+     "ln-5",
+     "ln-6",
+     "ln-7",
+     "ln-10l",
+     "ln-11l",
+     "ln-9l"
+    ],
+    "highlight": [],
+    "danger": [],
+    "labels": [
+     "amp-bka"
+    ],
+    "opacity": {
+     "leg-skin": 0.1,
+     "leg-foot": 0.15,
+     "leg-femur": 0.3,
+     "leg-tibia": 0.4,
+     "leg-fibula": 0.4,
+     "fv-r": 0.5
+    },
+    "ask": {
+     "question": "After a BKA, why is the knee kept straight?",
+     "choices": [
+      {
+       "text": "To prevent a knee flexion contracture that stops prosthetic walking",
+       "correct": true,
+       "why": "A bent knee on a pillow shortens the hamstrings; start extension exercises early."
+      },
+      {
+       "text": "To prevent phantom pain",
+       "correct": false,
+       "why": ""
+      },
+      {
+       "text": "To raise blood pressure",
+       "correct": false,
+       "why": ""
+      },
+      {
+       "text": "It does not matter",
+       "correct": false,
+       "why": ""
+      }
+     ]
+    },
+    "seq": 7
+   },
+   {
+    "id": "bka-open-icu",
+    "phase": "ICU",
+    "seq": 8,
+    "title": "ICU and post-operative care",
+    "body": "<p>Start with the <a class=\"link\" href=\"#approach=cticu-vascular&amp;step=0\">vascular core</a>, the <a class=\"link\" href=\"#approach=cticu-core&amp;step=0\">lab schedule</a> and the <a class=\"link\" href=\"#approach=cticu-core&amp;step=2\">escalation table</a>; then this operation's own points.</p><h4>Specific to this operation</h4><ul><li>Sepsis control: glucose, antibiotics, fluids</li><li>Stump wound; knee kept straight (prevent flexion contracture)</li><li>Phantom pain: early, multimodal analgesia</li></ul><h4>Labs</h4><ul><li>Day 1 morning: FBC, UEC, LFTs, Ca, Mg, PO\u2084 <span class=\"tag knh\">KNH practice</span></li></ul><p>Doses: <a class=\"link\" href=\"#approach=cticu-doses&amp;step=0\">electrolytes</a>, <a class=\"link\" href=\"#approach=cticu-doses&amp;step=1\">vasoactive drugs</a>.</p>",
+    "askAfter": true,
+    "ask": {
+     "question": "After BKA the patient lies with the knee bent on a pillow. Why correct it?",
+     "choices": [
+      {
+       "text": "A knee flexion contracture prevents prosthetic walking",
+       "correct": true,
+       "why": "Keep the knee straight and start physiotherapy early."
+      },
+      {
+       "text": "It causes phantom pain",
+       "correct": false,
+       "why": ""
+      },
+      {
+       "text": "It raises blood pressure",
+       "correct": false,
+       "why": ""
+      },
+      {
+       "text": "It is harmless",
+       "correct": false,
+       "why": ""
+      }
+     ]
+    },
+    "view": {
+     "eye": [
+      423.0,
+      1531.7,
+      -690.3
+     ],
+     "target": [
+      48.8,
+      35.0,
+      -840.0
+     ]
+    },
+    "show": [
+     "leg-skin",
+     "leg-femur",
+     "leg-tibia",
+     "leg-fibula",
+     "leg-foot",
+     "cfa-r",
+     "eia-r",
+     "pfa-r",
+     "leg-sfa",
+     "leg-pop",
+     "leg-ata",
+     "leg-tpt",
+     "leg-pta",
+     "leg-per",
+     "leg-dpa",
+     "fv-r",
+     "inguinal-lig-r",
+     "amp-bka"
+    ],
+    "hide": [
+     "pa-truncus-anterior",
+     "pa-posterior-1",
+     "pa-a6",
+     "pa-posterior-2",
+     "pa-lingular",
+     "pa-basal-trunk",
+     "pa-left",
+     "lul-arteries",
+     "pv-superior",
+     "lul-veins",
+     "pv-inferior",
+     "br-lul",
+     "br-lll",
+     "br-left-main",
+     "trachea",
+     "lul-bronchi",
+     "br-lingular",
+     "br-upper-div",
+     "br-b6",
+     "pv-lingular",
+     "pv-upper-div",
+     "pv-v6",
+     "lul",
+     "lll",
+     "fissure",
+     "heart",
+     "laa",
+     "aorta",
+     "bct",
+     "lcca",
+     "lsca",
+     "svc",
+     "lbcv",
+     "esophagus",
+     "vert-t2",
+     "vert-t3",
+     "vert-t4",
+     "vert-t5",
+     "vert-t6",
+     "vert-t7",
+     "vert-t8",
+     "vert-t9",
+     "vert-t10",
+     "n-phrenic",
+     "n-vagus",
+     "n-rln",
+     "lig-art",
+     "ipl",
+     "ln-5",
+     "ln-6",
+     "ln-7",
+     "ln-10l",
+     "ln-11l",
+     "ln-9l"
+    ],
+    "opacity": {
+     "leg-skin": 0.1,
+     "leg-foot": 0.15,
+     "leg-femur": 0.3,
+     "leg-tibia": 0.4,
+     "leg-fibula": 0.4,
+     "fv-r": 0.5
+    },
+    "labels": [
+     "amp-bka"
+    ],
+    "highlight": [],
+    "danger": []
+   }
+  ],
+  "sources": [
+   {
+    "title": "StatPearls: Below-Knee Amputation (NCBI Bookshelf NBK534773)",
+    "url": "https://www.ncbi.nlm.nih.gov/books/NBK534773/"
+   },
+   {
+    "title": "Myers M, Chauvin BJ. Above-the-Knee Amputations. StatPearls 2023",
+    "url": "https://www.ncbi.nlm.nih.gov/books/NBK544350/"
+   },
+   {
+    "title": "Orthobullets: Transtibial (below-the-knee) amputation, technique",
+    "url": "https://www.orthobullets.com/approaches/12094/retire-transtibial-below-the-knee-amputation-bka"
+   },
+   {
+    "title": "University of Washington Orthopaedics: transfemoral (above-knee) amputation surgical guide",
+    "url": "https://orthop.washington.edu/sites/default/files/files/AK2printskifl.pdf"
+   },
+   {
+    "title": "Conte MS, et al. Global vascular guidelines on the management of chronic limb-threatening ischemia. Eur J Vasc Endovasc Surg 2019;58:S1-109",
+    "url": "https://www.ejves.com/article/S1078-5884(19)30380-6/fulltext"
+   },
+   {
+    "title": "Qaarie MY. Life expectancy and mortality after lower extremity amputation: overview and analysis of literature. Cureus 2023",
+    "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC10257952/"
+   },
+   {
+    "title": "Limakatso K, et al. The prevalence and risk factors for phantom limb pain in people with amputations: a systematic review and meta-analysis. PLOS ONE 2020",
+    "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC7556495/"
+   },
+   {
+    "title": "Kwah LK, et al. Rigid dressings versus soft dressings for transtibial amputations. Cochrane Database Syst Rev 2019 (CD012427)",
+    "url": "https://www.cochrane.org/evidence/CD012427_rigid-versus-soft-dressings-transtibial-below-knee-amputations"
+   },
+   {
+    "title": "Waters RL, et al. Energy cost of walking of amputees: the influence of level of amputation. J Bone Joint Surg Am 1976;58:42-6",
+    "url": "https://www.semanticscholar.org/paper/Energy-cost-of-walking-of-amputees:-the-influence-Waters-Perry/9d6ff8917e238b65755c"
+   }
+  ],
+  "group": "Vascular",
+  "sequence": [
+   {
+    "label": "Patho",
+    "kind": "other"
+   },
+   {
+    "label": "Case",
+    "kind": "other"
+   },
+   {
+    "label": "Consent",
+    "kind": "other"
+   },
+   {
+    "label": "Incision",
+    "kind": "other"
+   },
+   {
+    "label": "Bone",
+    "kind": "other"
+   },
+   {
+    "label": "Vessels",
+    "kind": "artery"
+   },
+   {
+    "label": "Closure",
+    "kind": "other"
+   },
+   {
+    "label": "After",
+    "kind": "other"
+   },
+   {
+    "label": "ICU",
+    "kind": "other"
+   }
+  ]
+ },
+ "aka-open": {
+  "id": "aka-open",
+  "op": "aka",
+  "opName": "Above-knee amputation",
+  "side": "both",
+  "name": "Above-knee amputation",
+  "approach": "Transfemoral, fish-mouth flaps with myodesis",
+  "summary": "When an above-knee level is right, flap and bone measurements, femoral vessels and sciatic nerve, adductor and quadriceps myodesis, and care after surgery.",
+  "ports": [],
+  "steps": [
+   {
+    "id": "aka-patho",
+    "phase": "Pathophysiology",
+    "title": "Why above the knee, and when",
+    "body": "<p><b>Mechanism.</b> The same disease as for a BKA: end-stage CLTI, sepsis, or trauma, but extending above the level where the calf can heal. A thigh amputation is chosen because it <b>heals most reliably</b>: the thigh has a richer blood supply (profunda femoris) than the calf, and muscle bulk covers the bone.</p><p><b>Indications for an above-knee amputation (AKA)</b></p><ul><li>Ischemia or infection extending above a healable BKA level, or a BKA that has failed.</li><li>A <b>fixed knee flexion contracture</b>, or a patient who will not walk (bed-bound, advanced dementia, paralysis).</li><li>Trauma or infection of the leg around the knee; unresectable tumor of the lower leg; life-threatening sepsis (gas gangrene, necrotizing infection).</li><li>A patient too frail for a prosthesis: the aim becomes pain-free, healed, sitting.</li></ul><p><b>Contraindication.</b> Few, once other options are exhausted: only a patient who cannot survive anesthesia and surgery.</p><p><b>Cost.</b> Losing the knee means a much higher energy cost of walking (about 65% more than a person without an amputation) and fewer patients ever walk again. Qaarie, Cureus 2023 (review of published series, very heterogeneous): 30-day mortality averaged about 16% after BKA and AKA alike (BKA 6.2\u201351.4%, AKA 12.7\u201321.7%); 1-year mortality about 28% after BKA and about 50% after AKA, partly because AKA patients are sicker; 5-year mortality 39\u201380%.</p><p class=\"evidence\"><b>Evidence:</b> Myers & Chauvin, StatPearls Above-the-Knee Amputations 2023 (indications, few contraindications, 65% extra energy cost); Waters et al. 1976; Qaarie, Cureus 2023 (review of published series, very heterogeneous): 30-day mortality averaged about 16% after BKA and AKA alike (BKA 6.2\u201351.4%, AKA 12.7\u201321.7%); 1-year mortality about 28% after BKA and about 50% after AKA, partly because AKA patients are sicker; 5-year mortality 39\u201380%.</p>",
+    "view": {
+     "eye": [
+      318.0,
+      985.5,
+      -622.6
+     ],
+     "target": [
+      46.8,
+      81.5,
+      -731.0
+     ]
+    },
+    "show": [
+     "leg-skin",
+     "leg-femur",
+     "leg-tibia",
+     "leg-fibula",
+     "leg-foot",
+     "cfa-r",
+     "eia-r",
+     "pfa-r",
+     "leg-sfa",
+     "leg-pop",
+     "leg-ata",
+     "leg-tpt",
+     "leg-pta",
+     "leg-per",
+     "leg-dpa",
+     "fv-r",
+     "inguinal-lig-r",
+     "amp-ray",
+     "amp-tma",
+     "amp-bka",
+     "amp-tka",
+     "amp-aka"
+    ],
+    "hide": [
+     "pa-truncus-anterior",
+     "pa-posterior-1",
+     "pa-a6",
+     "pa-posterior-2",
+     "pa-lingular",
+     "pa-basal-trunk",
+     "pa-left",
+     "lul-arteries",
+     "pv-superior",
+     "lul-veins",
+     "pv-inferior",
+     "br-lul",
+     "br-lll",
+     "br-left-main",
+     "trachea",
+     "lul-bronchi",
+     "br-lingular",
+     "br-upper-div",
+     "br-b6",
+     "pv-lingular",
+     "pv-upper-div",
+     "pv-v6",
+     "lul",
+     "lll",
+     "fissure",
+     "heart",
+     "laa",
+     "aorta",
+     "bct",
+     "lcca",
+     "lsca",
+     "svc",
+     "lbcv",
+     "esophagus",
+     "vert-t2",
+     "vert-t3",
+     "vert-t4",
+     "vert-t5",
+     "vert-t6",
+     "vert-t7",
+     "vert-t8",
+     "vert-t9",
+     "vert-t10",
+     "n-phrenic",
+     "n-vagus",
+     "n-rln",
+     "lig-art",
+     "ipl",
+     "ln-5",
+     "ln-6",
+     "ln-7",
+     "ln-10l",
+     "ln-11l",
+     "ln-9l"
+    ],
+    "highlight": [
+     "amp-aka"
+    ],
+    "danger": [],
+    "labels": [
+     "amp-aka",
+     "leg-femur"
+    ],
+    "opacity": {
+     "leg-skin": 0.1,
+     "leg-foot": 0.15,
+     "leg-femur": 0.3,
+     "leg-tibia": 0.4,
+     "leg-fibula": 0.4,
+     "fv-r": 0.5,
+     "amp-ray": 0.45,
+     "amp-tma": 0.45,
+     "amp-bka": 0.45,
+     "amp-tka": 0.45,
+     "amp-aka": 0.45
+    },
+    "ask": {
+     "question": "Which patient is the best candidate for an above-knee rather than a below-knee amputation?",
+     "choices": [
+      {
+       "text": "A bed-bound patient with a fixed knee flexion contracture and gangrene of the calf",
+       "correct": true,
+       "why": "Prosthetic walking is not the goal; the thigh heals reliably."
+      },
+      {
+       "text": "An ambulant patient with a palpable popliteal pulse",
+       "correct": false,
+       "why": ""
+      },
+      {
+       "text": "A young trauma patient with a healthy knee and a distal injury",
+       "correct": false,
+       "why": ""
+      },
+      {
+       "text": "Every patient with a diabetic foot",
+       "correct": false,
+       "why": ""
+      }
+     ]
+    },
+    "askAfter": true,
+    "spin": true,
+    "seq": 0
+   },
+   {
+    "id": "aka-case",
+    "phase": "Case",
+    "title": "Case: gangrene to the calf in a bed-bound patient",
+    "body": "<p>No chance of walking, a fixed knee contracture, and gangrene above the BKA level: an <b>above-knee amputation</b>. The aim: healed, pain-free, able to sit and transfer.</p>",
+    "view": {
+     "eye": [
+      318.0,
+      985.5,
+      -622.6
+     ],
+     "target": [
+      46.8,
+      81.5,
+      -731.0
+     ]
+    },
+    "show": [
+     "leg-skin",
+     "leg-femur",
+     "leg-tibia",
+     "leg-fibula",
+     "leg-foot",
+     "cfa-r",
+     "eia-r",
+     "pfa-r",
+     "leg-sfa",
+     "leg-pop",
+     "leg-ata",
+     "leg-tpt",
+     "leg-pta",
+     "leg-per",
+     "leg-dpa",
+     "fv-r",
+     "inguinal-lig-r",
+     "amp-aka"
+    ],
+    "hide": [
+     "pa-truncus-anterior",
+     "pa-posterior-1",
+     "pa-a6",
+     "pa-posterior-2",
+     "pa-lingular",
+     "pa-basal-trunk",
+     "pa-left",
+     "lul-arteries",
+     "pv-superior",
+     "lul-veins",
+     "pv-inferior",
+     "br-lul",
+     "br-lll",
+     "br-left-main",
+     "trachea",
+     "lul-bronchi",
+     "br-lingular",
+     "br-upper-div",
+     "br-b6",
+     "pv-lingular",
+     "pv-upper-div",
+     "pv-v6",
+     "lul",
+     "lll",
+     "fissure",
+     "heart",
+     "laa",
+     "aorta",
+     "bct",
+     "lcca",
+     "lsca",
+     "svc",
+     "lbcv",
+     "esophagus",
+     "vert-t2",
+     "vert-t3",
+     "vert-t4",
+     "vert-t5",
+     "vert-t6",
+     "vert-t7",
+     "vert-t8",
+     "vert-t9",
+     "vert-t10",
+     "n-phrenic",
+     "n-vagus",
+     "n-rln",
+     "lig-art",
+     "ipl",
+     "ln-5",
+     "ln-6",
+     "ln-7",
+     "ln-10l",
+     "ln-11l",
+     "ln-9l"
+    ],
+    "highlight": [],
+    "danger": [],
+    "labels": [
+     "amp-aka",
+     "leg-femur"
+    ],
+    "opacity": {
+     "leg-skin": 0.1,
+     "leg-foot": 0.15,
+     "leg-femur": 0.3,
+     "leg-tibia": 0.4,
+     "leg-fibula": 0.4,
+     "fv-r": 0.5
+    },
+    "ask": {
+     "question": "Which level, and why?",
+     "choices": [
+      {
+       "text": "Above-knee: the calf is not healable, and she will not walk",
+       "correct": true,
+       "why": "The thigh heals most reliably; a prosthesis is not the goal and a contracture rules out a BKA."
+      },
+      {
+       "text": "Below-knee, to keep the knee",
+       "correct": false,
+       "why": ""
+      },
+      {
+       "text": "Guillotine at the ankle only",
+       "correct": false,
+       "why": ""
+      },
+      {
+       "text": "Toe amputation",
+       "correct": false,
+       "why": ""
+      }
+     ]
+    },
+    "lead": "<p>A <b>78-year-old woman</b>, bed-bound after a stroke 2 years ago; fixed knee flexion of 40\u00b0. Dry gangrene of the foot, now black skin to the mid-calf with a cold, painful leg. Femoral pulse palpable, no pulse below. Hypertensive, creatinine 140 \u03bcmol/L.</p>",
+    "seq": 1
+   },
+   {
+    "id": "aka-open-consent",
+    "phase": "Consent",
+    "seq": 2,
+    "title": "Consent: what to discuss with this patient",
+    "body": "<p><b>1. The patient's own risk</b>: Cardiac and renal risk; sepsis. Quote the figure, not a textbook average.</p><h4>2. Common</h4><ul><li>Wound healing problems</li><li>Phantom sensations and pain</li></ul><h4>3. Serious</h4><ul><li>Revision to a higher level</li><li>Death</li><li>Loss of the other leg later</li></ul><h4>4. Specific to this operation</h4><ul><li>Rehabilitation and a prosthesis over months</li><li>Staged operation in sepsis</li></ul><h4>5. Alternatives</h4><ul><li>Revascularization if the limb is salvageable</li><li>Palliative care</li><li>No operation, and what that means</li></ul><h4>6. Recovery</h4><ul><li>ICU, then ward; drains; walking from day 1</li><li>Return to normal activity over weeks</li><li>Follow-up in clinic</li></ul><h4>7. Kenya-specific</h4><ul><li>Access to and cost of a prosthesis</li><li>Home adaptations</li></ul><p>Template and how to use it: <a class=\"link\" href=\"#approach=cticu-consent&amp;step=0\">CTICU protocol, consent</a>.</p>",
+    "askAfter": true,
+    "ask": {
+     "question": "What should a patient know before a below-knee amputation?",
+     "choices": [
+      {
+       "text": "Healing may need revision; walking with a prosthesis takes months of rehabilitation",
+       "correct": true,
+       "why": "Realistic expectations and the risk to the other leg are part of consent."
+      },
+      {
+       "text": "Walking normally in a week",
+       "correct": false,
+       "why": ""
+      },
+      {
+       "text": "No pain afterwards",
+       "correct": false,
+       "why": ""
+      },
+      {
+       "text": "The other leg is never at risk",
+       "correct": false,
+       "why": ""
+      }
+     ]
+    },
+    "view": {
+     "eye": [
+      318.0,
+      985.5,
+      -622.6
+     ],
+     "target": [
+      46.8,
+      81.5,
+      -731.0
+     ]
+    },
+    "show": [
+     "leg-skin",
+     "leg-femur",
+     "leg-tibia",
+     "leg-fibula",
+     "leg-foot",
+     "cfa-r",
+     "eia-r",
+     "pfa-r",
+     "leg-sfa",
+     "leg-pop",
+     "leg-ata",
+     "leg-tpt",
+     "leg-pta",
+     "leg-per",
+     "leg-dpa",
+     "fv-r",
+     "inguinal-lig-r",
+     "amp-aka"
+    ],
+    "hide": [
+     "pa-truncus-anterior",
+     "pa-posterior-1",
+     "pa-a6",
+     "pa-posterior-2",
+     "pa-lingular",
+     "pa-basal-trunk",
+     "pa-left",
+     "lul-arteries",
+     "pv-superior",
+     "lul-veins",
+     "pv-inferior",
+     "br-lul",
+     "br-lll",
+     "br-left-main",
+     "trachea",
+     "lul-bronchi",
+     "br-lingular",
+     "br-upper-div",
+     "br-b6",
+     "pv-lingular",
+     "pv-upper-div",
+     "pv-v6",
+     "lul",
+     "lll",
+     "fissure",
+     "heart",
+     "laa",
+     "aorta",
+     "bct",
+     "lcca",
+     "lsca",
+     "svc",
+     "lbcv",
+     "esophagus",
+     "vert-t2",
+     "vert-t3",
+     "vert-t4",
+     "vert-t5",
+     "vert-t6",
+     "vert-t7",
+     "vert-t8",
+     "vert-t9",
+     "vert-t10",
+     "n-phrenic",
+     "n-vagus",
+     "n-rln",
+     "lig-art",
+     "ipl",
+     "ln-5",
+     "ln-6",
+     "ln-7",
+     "ln-10l",
+     "ln-11l",
+     "ln-9l"
+    ],
+    "opacity": {
+     "leg-skin": 0.1,
+     "leg-foot": 0.15,
+     "leg-femur": 0.3,
+     "leg-tibia": 0.4,
+     "leg-fibula": 0.4,
+     "fv-r": 0.5
+    },
+    "labels": [],
+    "highlight": [],
+    "danger": []
+   },
+   {
+    "id": "aka-incision",
+    "phase": "Incision",
+    "title": "Mark the level and the fish-mouth flaps",
+    "body": "<p>Supine, a sandbag under the buttock. Measure from the knee joint line.</p><table class=\"mini\"><tr><th>Landmark</th><th>Measurement</th></tr><tr><td><b>Femur cut</b></td><td>about <b>12 cm above the knee joint line</b> (the level that leaves room for a prosthetic knee)</td></tr><tr><td><b>Flap length</b></td><td>each flap equals <b>half the diameter of the thigh at the bone cut, plus 1 cm</b></td></tr><tr><td><b>Flap design</b></td><td>anterior and posterior (fish-mouth), or medial and lateral; equal, rounded flaps, no feathered edges</td></tr><tr><td><b>Muscle</b></td><td>divided about <b>2.5\u20135 cm (1\u20132 inches) distal to the bone cut</b>, to allow myodesis</td></tr></table><p>Cut decisively through skin, subcutaneous tissue and fascia; no undermining. In severe ischemia, no tourniquet. Keep as much length as will heal.</p><p class=\"evidence\"><b>Evidence:</b> Myers & Chauvin, StatPearls 2023: femur cut 12 cm proximal to the joint line, muscle divided 1\u20132 inches beyond the bone cut; University of Washington transfemoral guide: flap length is half the limb diameter at the bone cut plus 1 cm.</p>",
+    "view": {
+     "eye": [
+      318.0,
+      985.5,
+      -622.6
+     ],
+     "target": [
+      46.8,
+      81.5,
+      -731.0
+     ]
+    },
+    "show": [
+     "leg-skin",
+     "leg-femur",
+     "leg-tibia",
+     "leg-fibula",
+     "leg-foot",
+     "cfa-r",
+     "eia-r",
+     "pfa-r",
+     "leg-sfa",
+     "leg-pop",
+     "leg-ata",
+     "leg-tpt",
+     "leg-pta",
+     "leg-per",
+     "leg-dpa",
+     "fv-r",
+     "inguinal-lig-r",
+     "amp-aka"
+    ],
+    "hide": [
+     "pa-truncus-anterior",
+     "pa-posterior-1",
+     "pa-a6",
+     "pa-posterior-2",
+     "pa-lingular",
+     "pa-basal-trunk",
+     "pa-left",
+     "lul-arteries",
+     "pv-superior",
+     "lul-veins",
+     "pv-inferior",
+     "br-lul",
+     "br-lll",
+     "br-left-main",
+     "trachea",
+     "lul-bronchi",
+     "br-lingular",
+     "br-upper-div",
+     "br-b6",
+     "pv-lingular",
+     "pv-upper-div",
+     "pv-v6",
+     "lul",
+     "lll",
+     "fissure",
+     "heart",
+     "laa",
+     "aorta",
+     "bct",
+     "lcca",
+     "lsca",
+     "svc",
+     "lbcv",
+     "esophagus",
+     "vert-t2",
+     "vert-t3",
+     "vert-t4",
+     "vert-t5",
+     "vert-t6",
+     "vert-t7",
+     "vert-t8",
+     "vert-t9",
+     "vert-t10",
+     "n-phrenic",
+     "n-vagus",
+     "n-rln",
+     "lig-art",
+     "ipl",
+     "ln-5",
+     "ln-6",
+     "ln-7",
+     "ln-10l",
+     "ln-11l",
+     "ln-9l"
+    ],
+    "highlight": [
+     "amp-aka",
+     "leg-femur"
+    ],
+    "danger": [],
+    "labels": [
+     "amp-aka",
+     "leg-femur"
+    ],
+    "opacity": {
+     "leg-skin": 0.1,
+     "leg-foot": 0.15,
+     "leg-femur": 0.3,
+     "leg-tibia": 0.4,
+     "leg-fibula": 0.4,
+     "fv-r": 0.5,
+     "amp-aka": 0.6
+    },
+    "ask": {
+     "question": "How long is each fish-mouth flap?",
+     "choices": [
+      {
+       "text": "Half the thigh diameter at the bone cut, plus 1 cm",
+       "correct": true,
+       "why": "This gives enough soft tissue to close over the bone without tension."
+      },
+      {
+       "text": "Twice the thigh diameter",
+       "correct": false,
+       "why": ""
+      },
+      {
+       "text": "A fixed 5 cm",
+       "correct": false,
+       "why": ""
+      },
+      {
+       "text": "No flaps are needed",
+       "correct": false,
+       "why": ""
+      }
+     ]
+    },
+    "seq": 3
+   },
+   {
+    "id": "aka-bone",
+    "phase": "Bone",
+    "title": "Divide the muscle and the femur",
+    "body": "<p>Divide the quadriceps and hamstrings, <b>protecting the adductor muscle and its tendon</b> (needed for the myodesis). Elevate the periosteum to the level of the cut only. Divide the <b>femur 12 cm above the joint line</b> with an oscillating saw, bevel the sharp edge, rasp it smooth, and irrigate.</p><p class=\"evidence\"><b>Evidence:</b> Myers & Chauvin, StatPearls 2023: femur 12 cm proximal to the joint line; University of Washington transfemoral guide: adductor muscle and tendon protected for myodesis.</p>",
+    "view": {
+     "eye": [
+      318.0,
+      985.5,
+      -622.6
+     ],
+     "target": [
+      46.8,
+      81.5,
+      -731.0
+     ]
+    },
+    "show": [
+     "leg-skin",
+     "leg-femur",
+     "leg-tibia",
+     "leg-fibula",
+     "leg-foot",
+     "cfa-r",
+     "eia-r",
+     "pfa-r",
+     "leg-sfa",
+     "leg-pop",
+     "leg-ata",
+     "leg-tpt",
+     "leg-pta",
+     "leg-per",
+     "leg-dpa",
+     "fv-r",
+     "inguinal-lig-r",
+     "amp-aka"
+    ],
+    "hide": [
+     "pa-truncus-anterior",
+     "pa-posterior-1",
+     "pa-a6",
+     "pa-posterior-2",
+     "pa-lingular",
+     "pa-basal-trunk",
+     "pa-left",
+     "lul-arteries",
+     "pv-superior",
+     "lul-veins",
+     "pv-inferior",
+     "br-lul",
+     "br-lll",
+     "br-left-main",
+     "trachea",
+     "lul-bronchi",
+     "br-lingular",
+     "br-upper-div",
+     "br-b6",
+     "pv-lingular",
+     "pv-upper-div",
+     "pv-v6",
+     "lul",
+     "lll",
+     "fissure",
+     "heart",
+     "laa",
+     "aorta",
+     "bct",
+     "lcca",
+     "lsca",
+     "svc",
+     "lbcv",
+     "esophagus",
+     "vert-t2",
+     "vert-t3",
+     "vert-t4",
+     "vert-t5",
+     "vert-t6",
+     "vert-t7",
+     "vert-t8",
+     "vert-t9",
+     "vert-t10",
+     "n-phrenic",
+     "n-vagus",
+     "n-rln",
+     "lig-art",
+     "ipl",
+     "ln-5",
+     "ln-6",
+     "ln-7",
+     "ln-10l",
+     "ln-11l",
+     "ln-9l"
+    ],
+    "highlight": [
+     "leg-femur"
+    ],
+    "danger": [],
+    "labels": [
+     "leg-femur",
+     "amp-aka"
+    ],
+    "opacity": {
+     "leg-skin": 0.1,
+     "leg-foot": 0.15,
+     "leg-femur": 0.3,
+     "leg-tibia": 0.4,
+     "leg-fibula": 0.4,
+     "fv-r": 0.5,
+     "amp-aka": 0.4
+    },
+    "ask": {
+     "question": "Why are the adductors protected when the muscles are divided?",
+     "choices": [
+      {
+       "text": "They are needed to anchor the myodesis to the femur",
+       "correct": true,
+       "why": "An adductor myodesis keeps the femur centered and helps the stump function."
+      },
+      {
+       "text": "They contain the nerve",
+       "correct": false,
+       "why": ""
+      },
+      {
+       "text": "They are not important",
+       "correct": false,
+       "why": ""
+      },
+      {
+       "text": "They make the flap thicker",
+       "correct": false,
+       "why": ""
+      }
+     ]
+    },
+    "seq": 4
+   },
+   {
+    "id": "aka-vessels",
+    "phase": "Vessels and nerves",
+    "title": "Femoral vessels and the sciatic nerve",
+    "body": "<p>In the adductor canal, identify the <b>superficial femoral artery and vein</b>: dissect, then <b>ligate (double tie, or tie and transfix) and divide</b> each separately before cutting. Identify the profunda femoris and keep it patent when possible: it is the stump's blood supply.</p><p>Pull the <b>sciatic nerve</b> and the femoral nerve branches down gently and <b>divide them sharply</b> so they retract; ligate any vessel that accompanies the sciatic nerve. Optional: a local anesthetic block of the nerve ends.</p><p class=\"evidence\"><b>Evidence:</b> Myers & Chauvin, StatPearls 2023: femoral artery and vein dissected, ligated and divided; nerves sharply divided to reduce neuroma. Keeping the profunda patent and the nerve block are general technique, not from these sources.</p>",
+    "view": {
+     "eye": [
+      318.0,
+      985.5,
+      -622.6
+     ],
+     "target": [
+      46.8,
+      81.5,
+      -731.0
+     ]
+    },
+    "show": [
+     "leg-skin",
+     "leg-femur",
+     "leg-tibia",
+     "leg-fibula",
+     "leg-foot",
+     "cfa-r",
+     "eia-r",
+     "pfa-r",
+     "leg-sfa",
+     "leg-pop",
+     "leg-ata",
+     "leg-tpt",
+     "leg-pta",
+     "leg-per",
+     "leg-dpa",
+     "fv-r",
+     "inguinal-lig-r",
+     "amp-aka",
+     "leg-sfa"
+    ],
+    "hide": [
+     "pa-truncus-anterior",
+     "pa-posterior-1",
+     "pa-a6",
+     "pa-posterior-2",
+     "pa-lingular",
+     "pa-basal-trunk",
+     "pa-left",
+     "lul-arteries",
+     "pv-superior",
+     "lul-veins",
+     "pv-inferior",
+     "br-lul",
+     "br-lll",
+     "br-left-main",
+     "trachea",
+     "lul-bronchi",
+     "br-lingular",
+     "br-upper-div",
+     "br-b6",
+     "pv-lingular",
+     "pv-upper-div",
+     "pv-v6",
+     "lul",
+     "lll",
+     "fissure",
+     "heart",
+     "laa",
+     "aorta",
+     "bct",
+     "lcca",
+     "lsca",
+     "svc",
+     "lbcv",
+     "esophagus",
+     "vert-t2",
+     "vert-t3",
+     "vert-t4",
+     "vert-t5",
+     "vert-t6",
+     "vert-t7",
+     "vert-t8",
+     "vert-t9",
+     "vert-t10",
+     "n-phrenic",
+     "n-vagus",
+     "n-rln",
+     "lig-art",
+     "ipl",
+     "ln-5",
+     "ln-6",
+     "ln-7",
+     "ln-10l",
+     "ln-11l",
+     "ln-9l"
+    ],
+    "highlight": [
+     "leg-sfa"
+    ],
+    "danger": [],
+    "labels": [
+     "leg-sfa",
+     "leg-femur",
+     "amp-aka"
+    ],
+    "opacity": {
+     "leg-skin": 0.1,
+     "leg-foot": 0.15,
+     "leg-femur": 0.3,
+     "leg-tibia": 0.4,
+     "leg-fibula": 0.4,
+     "fv-r": 0.5,
+     "amp-aka": 0.35
+    },
+    "ask": {
+     "question": "How are the femoral vessels managed?",
+     "choices": [
+      {
+       "text": "Each is dissected, ligated and divided before the limb is released",
+       "correct": true,
+       "why": "Controlled ligation avoids bleeding after the tourniquet or clamps are off."
+      },
+      {
+       "text": "Cut together with the muscle",
+       "correct": false,
+       "why": ""
+      },
+      {
+       "text": "Clipped without ligation",
+       "correct": false,
+       "why": ""
+      },
+      {
+       "text": "Left open",
+       "correct": false,
+       "why": ""
+      }
+     ]
+    },
+    "seq": 5
+   },
+   {
+    "id": "aka-close",
+    "phase": "Closure",
+    "title": "Myodesis, drain and closure",
+    "body": "<p><b>Adductor myodesis</b>: with the hip in <b>5\u201310\u00b0 of adduction</b>, anchor the adductor tendon to the femur through drill holes with non-absorbable suture. <b>Quadriceps myodesis</b>: with the hip in <b>full extension</b>, anchor the quadriceps to the femur. These stop the muscles retracting and the femur from drifting outward. Place a drain. Close the <b>fascia, then the skin</b> without tension; a padded dressing.</p><p>Common problems if skipped: muscle atrophy, wound infection, dehiscence, and flexion or abduction contractures at the hip.</p><p class=\"evidence\"><b>Evidence:</b> Myers & Chauvin, StatPearls 2023: adductor myodesis with hip 5\u201310\u00b0 adducted, quadriceps myodesis with hip in full extension; complications include atrophy, wound infection, dehiscence, flexion and abduction contractures.</p>",
+    "view": {
+     "eye": [
+      318.0,
+      985.5,
+      -622.6
+     ],
+     "target": [
+      46.8,
+      81.5,
+      -731.0
+     ]
+    },
+    "show": [
+     "leg-skin",
+     "leg-femur",
+     "leg-tibia",
+     "leg-fibula",
+     "leg-foot",
+     "cfa-r",
+     "eia-r",
+     "pfa-r",
+     "leg-sfa",
+     "leg-pop",
+     "leg-ata",
+     "leg-tpt",
+     "leg-pta",
+     "leg-per",
+     "leg-dpa",
+     "fv-r",
+     "inguinal-lig-r",
+     "amp-aka"
+    ],
+    "hide": [
+     "pa-truncus-anterior",
+     "pa-posterior-1",
+     "pa-a6",
+     "pa-posterior-2",
+     "pa-lingular",
+     "pa-basal-trunk",
+     "pa-left",
+     "lul-arteries",
+     "pv-superior",
+     "lul-veins",
+     "pv-inferior",
+     "br-lul",
+     "br-lll",
+     "br-left-main",
+     "trachea",
+     "lul-bronchi",
+     "br-lingular",
+     "br-upper-div",
+     "br-b6",
+     "pv-lingular",
+     "pv-upper-div",
+     "pv-v6",
+     "lul",
+     "lll",
+     "fissure",
+     "heart",
+     "laa",
+     "aorta",
+     "bct",
+     "lcca",
+     "lsca",
+     "svc",
+     "lbcv",
+     "esophagus",
+     "vert-t2",
+     "vert-t3",
+     "vert-t4",
+     "vert-t5",
+     "vert-t6",
+     "vert-t7",
+     "vert-t8",
+     "vert-t9",
+     "vert-t10",
+     "n-phrenic",
+     "n-vagus",
+     "n-rln",
+     "lig-art",
+     "ipl",
+     "ln-5",
+     "ln-6",
+     "ln-7",
+     "ln-10l",
+     "ln-11l",
+     "ln-9l"
+    ],
+    "highlight": [
+     "amp-aka"
+    ],
+    "danger": [],
+    "labels": [
+     "amp-aka"
+    ],
+    "opacity": {
+     "leg-skin": 0.1,
+     "leg-foot": 0.15,
+     "leg-femur": 0.3,
+     "leg-tibia": 0.4,
+     "leg-fibula": 0.4,
+     "fv-r": 0.5,
+     "amp-aka": 0.5
+    },
+    "ask": {
+     "question": "In what hip position is the adductor myodesis tied?",
+     "choices": [
+      {
+       "text": "5\u201310\u00b0 of adduction",
+       "correct": true,
+       "why": "Tying in slight adduction keeps the femur centered; the quadriceps myodesis is tied in full extension."
+      },
+      {
+       "text": "Full flexion",
+       "correct": false,
+       "why": ""
+      },
+      {
+       "text": "45\u00b0 of abduction",
+       "correct": false,
+       "why": ""
+      },
+      {
+       "text": "Any position",
+       "correct": false,
+       "why": ""
+      }
+     ]
+    },
+    "seq": 6
+   },
+   {
+    "id": "aka-after",
+    "phase": "After",
+    "title": "After an AKA: hip, pain, mobilization, the other leg",
+    "body": "<p><b>Wound.</b> Drain out when the output is low; inspect the flap; sutures out when healed (about 2 weeks in the BKA series cited; longer if ischemic). Failure to heal: debride or revise, rarely a hip disarticulation.</p><p><b>Hip.</b> Prevent <b>hip flexion and abduction contractures</b>: no pillow under the stump, lie prone for part of the day, stump supported in extension when sitting, early physiotherapy.</p><p><b>Pain.</b> Multimodal analgesia. Phantom pain is common (reported in up to 80% of patients in StatPearls; pooled 64% in a meta-analysis) and a more proximal amputation raises the risk. Treat early.</p><p><b>Medical.</b> Glucose, nutrition, VTE prophylaxis, antiplatelet and statin for life, smoking cessation, depression screening (PTSD and depression are common), and daily inspection of the <b>other foot</b>.</p><p><b>Mobility.</b> Early transfers and wheelchair training; a prosthesis only in a patient who can use one (it costs far more energy than a BKA prosthesis). Realistic goals, with the family, before surgery.</p><p class=\"evidence\"><b>Evidence:</b> Myers & Chauvin, StatPearls 2023: phantom pain in up to 80%, contractures, depression and PTSD, 65% extra energy cost; Limakatso et al., PLOS ONE 2020: more proximal amputation is a risk factor for phantom pain; Qaarie, Cureus 2023: 1-year mortality after AKA about 50%.</p>",
+    "view": {
+     "eye": [
+      423.0,
+      1531.7,
+      -690.3
+     ],
+     "target": [
+      48.8,
+      35.0,
+      -840.0
+     ]
+    },
+    "show": [
+     "leg-skin",
+     "leg-femur",
+     "leg-tibia",
+     "leg-fibula",
+     "leg-foot",
+     "cfa-r",
+     "eia-r",
+     "pfa-r",
+     "leg-sfa",
+     "leg-pop",
+     "leg-ata",
+     "leg-tpt",
+     "leg-pta",
+     "leg-per",
+     "leg-dpa",
+     "fv-r",
+     "inguinal-lig-r",
+     "amp-aka"
+    ],
+    "hide": [
+     "pa-truncus-anterior",
+     "pa-posterior-1",
+     "pa-a6",
+     "pa-posterior-2",
+     "pa-lingular",
+     "pa-basal-trunk",
+     "pa-left",
+     "lul-arteries",
+     "pv-superior",
+     "lul-veins",
+     "pv-inferior",
+     "br-lul",
+     "br-lll",
+     "br-left-main",
+     "trachea",
+     "lul-bronchi",
+     "br-lingular",
+     "br-upper-div",
+     "br-b6",
+     "pv-lingular",
+     "pv-upper-div",
+     "pv-v6",
+     "lul",
+     "lll",
+     "fissure",
+     "heart",
+     "laa",
+     "aorta",
+     "bct",
+     "lcca",
+     "lsca",
+     "svc",
+     "lbcv",
+     "esophagus",
+     "vert-t2",
+     "vert-t3",
+     "vert-t4",
+     "vert-t5",
+     "vert-t6",
+     "vert-t7",
+     "vert-t8",
+     "vert-t9",
+     "vert-t10",
+     "n-phrenic",
+     "n-vagus",
+     "n-rln",
+     "lig-art",
+     "ipl",
+     "ln-5",
+     "ln-6",
+     "ln-7",
+     "ln-10l",
+     "ln-11l",
+     "ln-9l"
+    ],
+    "highlight": [],
+    "danger": [],
+    "labels": [
+     "amp-aka"
+    ],
+    "opacity": {
+     "leg-skin": 0.1,
+     "leg-foot": 0.15,
+     "leg-femur": 0.3,
+     "leg-tibia": 0.4,
+     "leg-fibula": 0.4,
+     "fv-r": 0.5
+    },
+    "ask": {
+     "question": "Which contractures is an above-knee stump prone to?",
+     "choices": [
+      {
+       "text": "Hip flexion and abduction",
+       "correct": true,
+       "why": "A pillow under the stump or prolonged sitting shortens the hip flexors and abductors."
+      },
+      {
+       "text": "Ankle plantarflexion",
+       "correct": false,
+       "why": ""
+      },
+      {
+       "text": "Knee flexion only",
+       "correct": false,
+       "why": ""
+      },
+      {
+       "text": "None",
+       "correct": false,
+       "why": ""
+      }
+     ]
+    },
+    "seq": 7
+   },
+   {
+    "id": "aka-open-icu",
+    "phase": "ICU",
+    "seq": 8,
+    "title": "ICU and post-operative care",
+    "body": "<p>Start with the <a class=\"link\" href=\"#approach=cticu-vascular&amp;step=0\">vascular core</a>, the <a class=\"link\" href=\"#approach=cticu-core&amp;step=0\">lab schedule</a> and the <a class=\"link\" href=\"#approach=cticu-core&amp;step=2\">escalation table</a>; then this operation's own points.</p><h4>Specific to this operation</h4><ul><li>Sepsis control: glucose, antibiotics, fluids</li><li>Stump wound; knee kept straight (prevent flexion contracture)</li><li>Phantom pain: early, multimodal analgesia</li></ul><h4>Labs</h4><ul><li>Day 1 morning: FBC, UEC, LFTs, Ca, Mg, PO\u2084 <span class=\"tag knh\">KNH practice</span></li></ul><p>Doses: <a class=\"link\" href=\"#approach=cticu-doses&amp;step=0\">electrolytes</a>, <a class=\"link\" href=\"#approach=cticu-doses&amp;step=1\">vasoactive drugs</a>.</p>",
+    "askAfter": true,
+    "ask": {
+     "question": "After BKA the patient lies with the knee bent on a pillow. Why correct it?",
+     "choices": [
+      {
+       "text": "A knee flexion contracture prevents prosthetic walking",
+       "correct": true,
+       "why": "Keep the knee straight and start physiotherapy early."
+      },
+      {
+       "text": "It causes phantom pain",
+       "correct": false,
+       "why": ""
+      },
+      {
+       "text": "It raises blood pressure",
+       "correct": false,
+       "why": ""
+      },
+      {
+       "text": "It is harmless",
+       "correct": false,
+       "why": ""
+      }
+     ]
+    },
+    "view": {
+     "eye": [
+      423.0,
+      1531.7,
+      -690.3
+     ],
+     "target": [
+      48.8,
+      35.0,
+      -840.0
+     ]
+    },
+    "show": [
+     "leg-skin",
+     "leg-femur",
+     "leg-tibia",
+     "leg-fibula",
+     "leg-foot",
+     "cfa-r",
+     "eia-r",
+     "pfa-r",
+     "leg-sfa",
+     "leg-pop",
+     "leg-ata",
+     "leg-tpt",
+     "leg-pta",
+     "leg-per",
+     "leg-dpa",
+     "fv-r",
+     "inguinal-lig-r",
+     "amp-aka"
+    ],
+    "hide": [
+     "pa-truncus-anterior",
+     "pa-posterior-1",
+     "pa-a6",
+     "pa-posterior-2",
+     "pa-lingular",
+     "pa-basal-trunk",
+     "pa-left",
+     "lul-arteries",
+     "pv-superior",
+     "lul-veins",
+     "pv-inferior",
+     "br-lul",
+     "br-lll",
+     "br-left-main",
+     "trachea",
+     "lul-bronchi",
+     "br-lingular",
+     "br-upper-div",
+     "br-b6",
+     "pv-lingular",
+     "pv-upper-div",
+     "pv-v6",
+     "lul",
+     "lll",
+     "fissure",
+     "heart",
+     "laa",
+     "aorta",
+     "bct",
+     "lcca",
+     "lsca",
+     "svc",
+     "lbcv",
+     "esophagus",
+     "vert-t2",
+     "vert-t3",
+     "vert-t4",
+     "vert-t5",
+     "vert-t6",
+     "vert-t7",
+     "vert-t8",
+     "vert-t9",
+     "vert-t10",
+     "n-phrenic",
+     "n-vagus",
+     "n-rln",
+     "lig-art",
+     "ipl",
+     "ln-5",
+     "ln-6",
+     "ln-7",
+     "ln-10l",
+     "ln-11l",
+     "ln-9l"
+    ],
+    "opacity": {
+     "leg-skin": 0.1,
+     "leg-foot": 0.15,
+     "leg-femur": 0.3,
+     "leg-tibia": 0.4,
+     "leg-fibula": 0.4,
+     "fv-r": 0.5
+    },
+    "labels": [
+     "amp-aka"
+    ],
+    "highlight": [],
+    "danger": []
+   }
+  ],
+  "sources": [
+   {
+    "title": "StatPearls: Below-Knee Amputation (NCBI Bookshelf NBK534773)",
+    "url": "https://www.ncbi.nlm.nih.gov/books/NBK534773/"
+   },
+   {
+    "title": "Myers M, Chauvin BJ. Above-the-Knee Amputations. StatPearls 2023",
+    "url": "https://www.ncbi.nlm.nih.gov/books/NBK544350/"
+   },
+   {
+    "title": "Orthobullets: Transtibial (below-the-knee) amputation, technique",
+    "url": "https://www.orthobullets.com/approaches/12094/retire-transtibial-below-the-knee-amputation-bka"
+   },
+   {
+    "title": "University of Washington Orthopaedics: transfemoral (above-knee) amputation surgical guide",
+    "url": "https://orthop.washington.edu/sites/default/files/files/AK2printskifl.pdf"
+   },
+   {
+    "title": "Conte MS, et al. Global vascular guidelines on the management of chronic limb-threatening ischemia. Eur J Vasc Endovasc Surg 2019;58:S1-109",
+    "url": "https://www.ejves.com/article/S1078-5884(19)30380-6/fulltext"
+   },
+   {
+    "title": "Qaarie MY. Life expectancy and mortality after lower extremity amputation: overview and analysis of literature. Cureus 2023",
+    "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC10257952/"
+   },
+   {
+    "title": "Limakatso K, et al. The prevalence and risk factors for phantom limb pain in people with amputations: a systematic review and meta-analysis. PLOS ONE 2020",
+    "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC7556495/"
+   },
+   {
+    "title": "Kwah LK, et al. Rigid dressings versus soft dressings for transtibial amputations. Cochrane Database Syst Rev 2019 (CD012427)",
+    "url": "https://www.cochrane.org/evidence/CD012427_rigid-versus-soft-dressings-transtibial-below-knee-amputations"
+   },
+   {
+    "title": "Waters RL, et al. Energy cost of walking of amputees: the influence of level of amputation. J Bone Joint Surg Am 1976;58:42-6",
+    "url": "https://www.semanticscholar.org/paper/Energy-cost-of-walking-of-amputees:-the-influence-Waters-Perry/9d6ff8917e238b65755c"
+   }
+  ],
+  "group": "Vascular",
+  "sequence": [
+   {
+    "label": "Patho",
+    "kind": "other"
+   },
+   {
+    "label": "Case",
+    "kind": "other"
+   },
+   {
+    "label": "Consent",
+    "kind": "other"
+   },
+   {
+    "label": "Incision",
+    "kind": "other"
+   },
+   {
+    "label": "Bone",
+    "kind": "other"
+   },
+   {
+    "label": "Vessels",
+    "kind": "artery"
+   },
+   {
+    "label": "Closure",
     "kind": "other"
    },
    {
