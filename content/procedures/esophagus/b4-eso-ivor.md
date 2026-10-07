@@ -161,7 +161,7 @@ Nasogastric tube past the anastomosis; feeding jejunostomy by unit policy.
 
 ## [il-after] What goes wrong
 
-**Anastomotic leak** and **conduit necrosis** (fever, arrhythmia, effluent in the drain: contrast study or endoscopy). **Chylothorax** (milky drain output once fed). **Recurrent laryngeal nerve palsy** (hoarseness, aspiration), mostly after neck dissection. Pneumonia above all: early mobilization, physiotherapy, sitting up.
+**Anastomotic leak** and **conduit necrosis** (fever, new AF, turbid or salivary drain, rising CRP: CT with oral contrast first, then endoscopy; see [Esophagectomy: anastomotic leak](#approach=eso-leak&step=0)). **Chylothorax** (milky drain output once fed). **Recurrent laryngeal nerve palsy** (hoarseness, aspiration), mostly after neck dissection. Pneumonia above all: early mobilization, physiotherapy, sitting up.
 
 ## [b4-eso-ivor-icu] ICU and post-operative care
 
@@ -174,7 +174,7 @@ Start with the [thoracic core](#approach=cticu-thoracic&step=0), the [lab schedu
 -   Jejunostomy feeds from day 1–2 <span class="tag knh">KNH practice</span>; refeeding precautions in the malnourished (start at no more than 10 kcal/kg/day; PO₄, K⁺, Mg²⁺ daily for 3 days) <span class="tag prop">proposed</span>
 -   Oral sips day 6–7 with a clean drain, falling CRP and a well patient <span class="tag knh">KNH practice</span>
 -   NG on free drainage, never re-passed blind; head up 30°
--   New AF, fever, rising CRP or PCT, turbid or salivary drain: CT with oral contrast, then endoscopy
+-   New AF, fever, rising CRP or PCT, turbid or salivary drain: CT with oral contrast, then endoscopy ([leak management](#approach=eso-leak&step=3))
 
 #### Labs
 

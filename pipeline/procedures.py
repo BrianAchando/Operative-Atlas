@@ -1661,7 +1661,7 @@ if B4_OK:
                                       'action': {'kind': 'reveal', 'label': 'Make the anastomosis', 'port': 'thor-r' if which == 'chest' else 'neck', 'ids': [f'anast-{which}']},
                                       'ct': ct(R(Lm(f'anast-{which}')), 'axial', 'mediastinum')}
     after = lambda pre, seq_: {'id': f'{pre}-after', 'phase': 'After', 'seq': seq_, 'title': 'What goes wrong',
-                               'body': '<p><b>Anastomotic leak</b> and <b>conduit necrosis</b> (fever, arrhythmia, effluent in the drain: contrast study or endoscopy). <b>Chylothorax</b> (milky drain output once fed). '
+                               'body': '<p><b>Anastomotic leak</b> and <b>conduit necrosis</b> (fever, new AF, turbid or salivary drain, rising CRP: CT with oral contrast first, then endoscopy; see <a class="link" href="#approach=eso-leak&amp;step=0">Esophagectomy: anastomotic leak</a>). <b>Chylothorax</b> (milky drain output once fed). '
                                        '<b>Recurrent laryngeal nerve palsy</b> (hoarseness, aspiration), mostly after neck dissection. Pneumonia above all: early mobilisation, physiotherapy, sitting up.</p>',
                                'view': front(mid_eso, 560, (0.35, 1, 0.2)), 'show': ESO, 'hide': LUNGS_ALL + INTRA, 'opacity': {'heart': 0.25},
                                'labels': ['thoracic-duct', 'n-rln'], 'ct': ct(R(mid_eso), 'coronal', 'mediastinum')}
@@ -4809,6 +4809,8 @@ import modules_cong
 modules_cong.add(procs, ask, has, LM, S)
 import postop
 postop.apply(procs, ask, has)
+import modules_leak   # after postop: the leak module carries its own consent and ICU steps
+modules_leak.add(procs, ask, has, LM, S)
 # operations appear in the menu in this order
 ORDER = ['position', 'thoracotomy-l', 'thoracotomy-r', 'vats-ports-l', 'vats-ports-r', 'lul', 'lll', 'rul', 'rml', 'rll', 'pnl', 'pnr', 'bronchiectasis', 'asp', 'seg-lingula', 'seg-lul-updiv', 'seg-s6', 'trachea', 'thymectomy', 'oesophagectomy', 'duct', 'empyema', 'ppe', 'cle', 'cpam', 'rt', 'clamshell', 'cardio', 'tract', 'hilar', 'mvr', 'avr', 'root', 'tricuspid', 'cabg', 'pericardium', 'asd', 'vsd', 'pda', 'coa', 'tof', 'palliation', 'aiod', 'aaa', 'taa', 'ali', 'infrainguinal', 'bka', 'aka', 'avf', 'cticu']
 procs = dict(sorted(procs.items(), key=lambda kv: (ORDER.index(kv[1]['op']), list(procs).index(kv[0]))))
