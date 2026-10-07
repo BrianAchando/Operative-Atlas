@@ -109884,12 +109884,12 @@
     "body": "<p>Start with the <a class=\"link\" href=\"#approach=cticu-thoracic&amp;step=0\">thoracic core</a>, the <a class=\"link\" href=\"#approach=cticu-core&amp;step=0\">lab schedule</a> and the <a class=\"link\" href=\"#approach=cticu-core&amp;step=2\">escalation table</a>; then this operation's own points.</p><h4>Specific to this operation</h4><ul><li>Gentle ventilation; early extubation</li><li>Chest drain: air leak and chest X-ray for re-expansion</li><li>Send the specimen for histology: Stocker type, and exclude pleuropulmonary blastoma (type 4)</li></ul><h4>Labs</h4><ul><li>Day 1 morning: FBC, UEC, LFTs, Ca, Mg, PO\u2084 <span class=\"tag knh\">KNH practice</span></li></ul><p>Doses: <a class=\"link\" href=\"#approach=cticu-doses&amp;step=0\">electrolytes</a>, <a class=\"link\" href=\"#approach=cticu-doses&amp;step=1\">vasoactive drugs</a>.</p><p class=\"evidence\"><b>Evidence:</b> StatPearls (CPAM): resection for symptomatic lesions, elective resection at 6-12 months versus surveillance debated. Dehner et al., Pediatr Dev Pathol 2023: type 4 is pleuropulmonary blastoma.</p>",
     "askAfter": true,
     "ask": {
-     "question": "The histology of a child's resected \"CPAM\" shows rhabdomyoblastic cells and a DICER1 variant. What does this mean?",
+     "question": "A child's resected lesion is reported as \"type 4 CPAM\". How is this diagnosis now understood?",
      "choices": [
       {
-       "text": "It was a pleuropulmonary blastoma type I: refer for oncology and genetic counseling",
+       "text": "As a cystic pleuropulmonary blastoma, a tumor: refer for oncology",
        "correct": true,
-       "why": "Type 4 CPAM is now regarded as cystic pleuropulmonary blastoma, which is a tumor, not a malformation."
+       "why": "Type 4 is now known to represent cystic pleuropulmonary blastoma and should be diagnosed as such; it is not a malformation."
       },
       {
        "text": "A benign type 1 CPAM; no action",

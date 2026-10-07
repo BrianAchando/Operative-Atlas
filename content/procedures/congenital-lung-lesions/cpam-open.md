@@ -31,8 +31,8 @@ Chain: Disordered lung development or bronchial atresia → Abnormal cystic or s
 | --- | --- | --- | --- | --- |
 | 0 | 1-3% | Trachea and bronchi | Bilateral, diffuse; lethal | Now **congenital acinar dysplasia** (germline *TBX4*, *FGFR2* variants), not a CPAM |
 | 1 | 50-70% | Bronchi | Single or multiloculated **large cysts** | Good prognosis; KRAS; rarely mucinous adenocarcinoma |
-| 2 | 10-40% | Bronchioles | Multiple **small cysts**; bronchial atresia and other anomalies | Variable prognosis; acquired from bronchial atresia; same pathology as extralobar sequestration |
-| 3 | 5-10% | Alveoli | **Solid-looking**; may involve a whole lobe and compress the others | Hydrops, hypoplasia, poor prognosis |
+| 2 | 10-40% | Bronchioles | Multiple **small cysts**; bronchial atresia and other anomalies | Arises with bronchial atresia; no KRAS mutations; usually asymptomatic |
+| 3 | 5-10% | Alveoli | **Solid-looking** (small irregular airway spaces); typically involves a whole lobe | About half have KRAS mutations; mucinous cell clusters in about 45% |
 | 4 | 10-15% | Acinar | Peripheral thin-walled cysts | Now **pleuropulmonary blastoma type I** (*DICER1*): resect and treat as a tumor |
 
 Frequencies are the historical figures. So the CPAM types still in use are **1 to 3**; types 0 and 4 are other diseases.
@@ -147,9 +147,9 @@ Doses: [electrolytes](#approach=cticu-doses&step=0), [vasoactive drugs](#approac
 
 ### Question
 
-**Q:** The histology of a child's resected "CPAM" shows rhabdomyoblastic cells and a DICER1 variant. What does this mean?
-- [x] It was a pleuropulmonary blastoma type I: refer for oncology and genetic counseling
-  > Type 4 CPAM is now regarded as cystic pleuropulmonary blastoma, which is a tumor, not a malformation.
+**Q:** A child's resected lesion is reported as "type 4 CPAM". How is this diagnosis now understood?
+- [x] As a cystic pleuropulmonary blastoma, a tumor: refer for oncology
+  > Type 4 is now known to represent cystic pleuropulmonary blastoma and should be diagnosed as such; it is not a malformation.
 - [ ] A benign type 1 CPAM; no action
 - [ ] A bronchogenic cyst
 - [ ] A lung abscess
