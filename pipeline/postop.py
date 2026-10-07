@@ -464,7 +464,7 @@ OPS.update({
                    'Adhesion beds and bronchial collaterals bleed; sustained output above the thresholds needs theatre.', 'Strip the drain', 'Clamp the drain', 'Give furosemide')),
 })
 KEY_OF.update({'pericardium': 'peri', 'ali': 'ali', 'avf': 'avf', 'bronchiectasis': 'bx'})
-APPR_OF.update({'fp-gsv': 'fempop', 'amp-levels': 'amp'})
+APPR_OF.update({'fp-gsv': 'fempop', 'amp-levels': 'amp', 'bka-open': 'amp', 'aka-open': 'amp'})
 
 
 # ------------------------------------------------------------------ congenital series (children: doses by weight, paediatric ICU team)
