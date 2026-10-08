@@ -88,26 +88,39 @@ class Side:
         t = np.radians(a)
         return np.stack([self.c[0] + self.sg * r * np.cos(t), self.c[1] + r * np.sin(t), z], axis=-1)
 
-    def sheet(self, region, radius) -> trimesh.Trimesh | None:
-        """a surface over the grid cells where region(z, az) holds, at radius(z, az)"""
+    def sheet(self, region, radius, thick=5.0) -> trimesh.Trimesh | None:
+        """a muscle sheet over the part of the wall where region(z, az) holds: its deep surface at radius(z, az), `thick` mm
+        thick. Sampled finely, voxelised and meshed, so the borders are smooth and rounded rather than stepped by the grid."""
         Z, A = np.meshgrid(self.zg, self.ag, indexing='ij')
-        R = radius(Z, A); G = region(Z, A); valid = ~np.isnan(R)
-        if not (G & valid).any(): return None
-        M = G & ndimage.binary_fill_holes(G & valid)
-        # radius in the small unsampled holes: nearest sampled value
-        ii = ndimage.distance_transform_edt(~valid, return_distances=False, return_indices=True); R = R[tuple(ii)]
-        R = ndimage.gaussian_filter(R, 1.0)
-        if M.sum() < 20: return None
-        P = self.point(Z, A, R)
-        idx = -np.ones(M.shape, int); idx[M] = np.arange(M.sum())
-        V = P[M]
-        f = []
-        for i in range(M.shape[0] - 1):
-            for j in range(M.shape[1] - 1):
-                a, b, c, d = idx[i, j], idx[i, j + 1], idx[i + 1, j], idx[i + 1, j + 1]
-                if min(a, b, c, d) >= 0: f += [[a, b, d], [a, d, c]]
-        m = trimesh.Trimesh(V, np.array(f), process=True)
-        m.remove_unreferenced_vertices()
+        R = radius(Z, A); valid = ~np.isnan(R)
+        if not (region(Z, A) & valid).any(): return None
+        ii = ndimage.distance_transform_edt(~valid, return_distances=False, return_indices=True); R = ndimage.gaussian_filter(R[tuple(ii)], 1.0)
+        hole = ndimage.binary_fill_holes(region(Z, A) & valid)
+        # a finer grid: 0.8 mm of height by 0.5 degrees of azimuth
+        zf = np.arange(self.zg[0], self.zg[-1], 0.8); af = np.arange(self.ag[0], self.ag[-1], 0.5)
+        Zf, Af = np.meshgrid(zf, af, indexing='ij')
+        iz = np.clip(np.round((Zf - self.zg[0]) / ZS).astype(int), 0, len(self.zg) - 1); ia = np.clip(np.round((Af - self.ag[0]) / AS).astype(int), 0, len(self.ag) - 1)
+        Rf = ndimage.map_coordinates(R, [(Zf - self.zg[0]) / ZS, (Af - self.ag[0]) / AS], order=1, mode='nearest')
+        M = region(Zf, Af) & hole[iz, ia]
+        if M.sum() < 80: return None
+        pts = np.concatenate([self.point(Zf[M], Af[M], Rf[M] + d) for d in np.linspace(0.3, thick, max(3, int(thick / 0.9)))])
+        h = 0.9; lo = pts.min(0) - 4 * h; shp = np.ceil((pts.max(0) + 4 * h - lo) / h).astype(int) + 1
+        occ = np.zeros(shp, np.float32); q = np.round((pts - lo) / h).astype(int); occ[q[:, 0], q[:, 1], q[:, 2]] = 1.0
+        occ = ndimage.gaussian_filter(occ, 1.1)
+        from skimage.measure import marching_cubes
+        try:
+            v, f, _, _ = marching_cubes(occ, 0.22, spacing=(h, h, h), allow_degenerate=False)
+        except (ValueError, RuntimeError):
+            return None
+        m = trimesh.Trimesh(v + lo, f[:, ::-1], process=True)
+        parts = m.split(only_watertight=False)
+        if len(parts) > 1: m = max(parts, key=lambda x: len(x.faces))
+        trimesh.smoothing.filter_taubin(m, lamb=0.5, nu=0.53, iterations=8)
+        target = max(1500, int(m.area * 0.25))
+        if len(m.faces) > target:
+            try: m = m.simplify_quadric_decimation(face_count=target)
+            except Exception: pass
+        m.fix_normals()
         return m
 
     def on_wall(self, p):
@@ -184,27 +197,27 @@ def build(ctx):
         saw = lambda Zg: 7 * np.sign(np.sin(2 * np.pi * (Zg - H.zr(1)) / 22.0))
         sa_low = lambda Ag: np.interp(Ag, [H.scap_med, min(H.tip_az, -45.0), 0, 55], [H.tip[2] + 25, H.tip[2] - 5, H.zr(8), H.zr(6, 50)])
         sa = H.sheet(lambda Zg, Ag: (Ag >= H.scap_med) & (Ag <= 52 + saw(Zg)) & (Zg <= H.zr(1) - 4) & (Zg >= sa_low(Ag)),
-                     lambda Zg, Ag: cage(Zg, Ag) + 4.0)
+                     lambda Zg, Ag: cage(Zg, Ag) + 4.0, thick=4.0)
         # latissimus dorsi: from T7-T12 and the lower ribs, over the scapular tip, to the axilla; its free anterior border is the posterior axillary fold
         tip_a = min(H.tip_az, -45.0)
         ld_top = lambda Ag: np.interp(Ag, [H.spine_az, tip_a, -18], [T7, H.tip[2] + 18, Z3])
         ld_front = lambda Zg: np.interp(Zg, [H.zr(10), Z3], [4, -18])
         ld = H.sheet(lambda Zg, Ag: (Ag >= H.spine_az + 3) & (Ag <= ld_front(Zg)) & (Zg <= ld_top(Ag)) & (Zg >= max(T12, H.z0 + 6)),
-                     lambda Zg, Ag: over(Zg, Ag, 12.0, (scap, 4.0), (erec, 4.0)))
+                     lambda Zg, Ag: over(Zg, Ag, 12.0, (scap, 4.0), (erec, 4.0)), thick=6.0)
         # trapezius (middle and lower fibres): outermost, from the spinous processes to the spine of the scapula
         tr_lat = lambda Zg: np.interp(Zg, [T12, H.tip[2], H.scap_top], [H.spine_az + 6, H.spine_az + 26, H.scap_med + 25])
         tr = H.sheet(lambda Zg, Ag: (Ag >= H.spine_az + 1) & (Ag <= tr_lat(Zg)) & (Zg >= T12),
-                     lambda Zg, Ag: over(Zg, Ag, 18.0, (scap, 9.0), (erec, 9.0)))
+                     lambda Zg, Ag: over(Zg, Ag, 18.0, (scap, 9.0), (erec, 9.0)), thick=5.0)
         # rhomboids: spinous processes C7-T5 to the medial border of the scapula, deep to trapezius
         rh = H.sheet(lambda Zg, Ag: (Ag >= H.spine_az + 2) & (Ag <= H.scap_med + 6) & (Zg >= T5) & (Zg <= T1),
-                     lambda Zg, Ag: over(Zg, Ag, 10.0, (erec, 5.0)))
+                     lambda Zg, Ag: over(Zg, Ag, 10.0, (erec, 5.0)), thick=6.0)
         # pectoralis major: clavicle and sternum to the humerus; lateral border is the anterior axillary fold
         pm_lat = lambda Zg: np.interp(Zg, [H.zr(6, 70), Z3], [62, 28])
         pm = H.sheet(lambda Zg, Ag: (Ag >= pm_lat(Zg)) & (Ag <= 128) & (Zg >= H.zr(6, 70)),
-                     lambda Zg, Ag: cage(Zg, Ag) + 12.0)
+                     lambda Zg, Ag: cage(Zg, Ag) + 12.0, thick=8.0)
         # intercostal muscles: flush with the ribs, over the lateral chest wall
         ic = H.sheet(lambda Zg, Ag: (Ag >= -125) & (Ag <= 95) & (Zg >= Z9) & (Zg <= H.zr(2)),
-                     lambda Zg, Ag: cage(Zg, Ag) - 1.5)
+                     lambda Zg, Ag: cage(Zg, Ag) - 2.5, thick=3.0)
         side_name = s
         SHADE = {'serratus': '#cf6f63', 'latdorsi': '#8f3129', 'trapezius': '#7d3346', 'rhomboid': '#a3584c', 'pecmajor': '#b8483c', 'intercostal': '#5e2323'}
         for id_, name, m, op, note in (

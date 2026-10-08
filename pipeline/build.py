@@ -932,6 +932,8 @@ TRLM.update(pathology_vasc2.build(dict(emit_mesh=emit_mesh, tube=tube, CARINA=CA
 # ------------------------------------------------------------------ second-generation limb anatomy: tapered, filleted vessel trees; shaped bones (replaces the earlier tubes by id)
 import anatomy_limb  # noqa: E402
 TRLM.update({k: v + CARINA for k, v in anatomy_limb.build(dict(emit_mesh=emit_mesh, LMW={k: W(v) for k, v in TRLM.items()})).items()})
+import anatomy_thx  # noqa: E402
+TRLM.update({k: v + CARINA for k, v in anatomy_thx.build(dict(emit_mesh=emit_mesh, ts=ts, AT=AT, CARINA=CARINA, LMW={k: W(v) for k, v in TRLM.items()})).items()})
 CW_L |= MD_L; CW_R |= MD_R
 for appr, ps in PORTS.items():
     for k, nm, p in ps:
