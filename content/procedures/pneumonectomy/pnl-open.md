@@ -30,9 +30,9 @@ Chain: Cavity colonized by *Aspergillus* → Fungal ball (aspergilloma) → **Er
 **Q:** Where does the blood come from in hemoptysis from a post-TB cavity?
 - [x] Hypertrophied bronchial and non-bronchial systemic arteries, at systemic pressure
   > That is why it can be massive, and why bronchial (and intercostal, phrenic) artery embolization controls it; the pulmonary artery is the source in a minority (Rasmussen aneurysm).
-- [ ] The pulmonary veins
+- [ ] The pulmonary veins, which become congested around the cavity and rupture into it under pressure
 - [ ] The fungal ball itself
-- [ ] Capillaries in the cavity wall only
+- [ ] Capillaries in the cavity wall only, eroded by the fungal ball rubbing against the lining
 
 ## [pnlo-anatomy] The left hilum as a whole
 
@@ -53,10 +53,10 @@ A **29-year-old woman**, treated twice for TB (the second time for multidrug-res
 ### Question
 
 **Q:** Why does a perfusion scan matter before this pneumonectomy?
-- [x] It shows how little the destroyed lung contributes, so the predicted postoperative function is close to the current function
+- [x] It shows the destroyed lung contributes little, so predicted postoperative function is close to current function
   > ppoFEV1 is calculated from the fraction of perfusion to the lung left behind; here 92% of perfusion goes to the right lung.
-- [ ] To look for pulmonary emboli
-- [ ] To locate the bleeding vessel
+- [ ] To look for pulmonary emboli in the healthy lung, which would need full anticoagulation before any lung resection
+- [ ] To locate the bleeding vessel, since the perfusion defect marks the bronchial artery that must be ligated first
 - [ ] It is not needed
 
 ## [pnl-open-consent] Consent: what to discuss with this patient
@@ -111,8 +111,8 @@ Template and how to use it: [CTICU protocol, consent](#approach=cticu-consent&st
 **Q:** Why is sleeve lobectomy offered, where possible, instead of pneumonectomy?
 - [x] Similar cancer control with lower mortality and better lung function
   > Parenchyma-sparing: pneumonectomy carries higher mortality and permanent loss of function.
-- [ ] It is quicker
-- [ ] It needs no bronchial anastomosis
+- [ ] It is quicker, because the bronchus is divided once and no stump needs closure
+- [ ] It needs no bronchial anastomosis, as the airway is closed with a stapler
 - [ ] It avoids a thoracotomy
 
 ## [pnlo-thor] Posterolateral thoracotomy, 5th intercostal space
@@ -136,9 +136,9 @@ The **main pulmonary artery** now lies free above the bronchus. Clear it proxima
 **Q:** Why trial-clamp the main pulmonary artery before dividing it?
 - [x] To see whether the right ventricle tolerates the whole cardiac output going to one lung
   > Acute right heart strain or a fall in pressure on clamping warns that pneumonectomy may not be tolerated.
-- [ ] To check for bleeding from the bronchial arteries
+- [ ] To check for bleeding from the bronchial arteries, which supply the lung once the pulmonary artery is closed
 - [ ] To test the bronchial stump
-- [ ] To check pulmonary vein pressure
+- [ ] To check pulmonary vein pressure, which must rise before the artery can be divided safely
 
 ## [pnlo-spv] Superior pulmonary vein: staple
 
@@ -159,8 +159,8 @@ On the left the bronchus runs under the aortic arch: pull the lung down and out 
 **Q:** Why staple the main bronchus flush with the carina?
 - [x] A long stump pools secretions and is prone to breakdown (bronchopleural fistula)
   > The shorter the stump, the less dead space for infection and dehiscence.
-- [ ] To preserve the contralateral lung
-- [ ] To make the specimen easier to remove
+- [ ] To preserve the contralateral lung, by keeping the staple line away from the opposite main bronchus
+- [ ] To make the specimen easier to remove through a smaller incision and with less traction on the hilum
 - [ ] To make the stump easier to see
 
 ## [pnlo-specimen] Specimen out, cover the stump, leak test
@@ -191,8 +191,8 @@ Doses: [electrolytes](#approach=cticu-doses&step=0), [vasoactive drugs](#approac
 **Q:** Day 9 after right pneumonectomy: coughing serosanguinous fluid, fluid level has fallen. First action?
 - [x] Lie the patient operated side down, then drain the space and arrange bronchoscopy
   > Bronchopleural fistula: protect the remaining lung from spill-over first.
-- [ ] Lie operated side up
-- [ ] Suction on the drain
+- [ ] Lie the patient operated side up, so the space fluid drains away from the bronchial stump
+- [ ] Apply high suction to the drain to empty the space before changing the patient's position
 - [ ] Start a diuretic
 
 ## Sources

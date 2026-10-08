@@ -52,11 +52,11 @@ An aneurysm is a diameter of **3.0 cm or more**. Growth accelerates as it enlarg
 ### Question
 
 **Q:** Why does an aneurysm grow faster as it gets bigger?
-- [x] Wall tension rises with the radius (Laplace's law), so the larger the aneurysm, the greater the stress on an already weakened wall
+- [x] Wall tension rises with radius (Laplace's law), so a larger aneurysm puts more stress on an already weak wall
   > T = P × r: at the same blood pressure a 6 cm aneurysm carries twice the wall tension of a 3 cm aorta. That is why growth and rupture risk accelerate with size.
-- [ ] Blood flow slows
+- [ ] Blood flow slows in the wider sac, and the stagnant blood lets proteases digest the wall faster than in a small one
 - [ ] Thrombus lining the sac weakens it
-- [ ] Blood pressure rises with size
+- [ ] Blood pressure rises with aneurysm size, because the sac stiffens the aorta and raises systolic pressure everywhere
 
 ## [as-anatomy] The infrarenal aorta and its neighbors
 
@@ -71,8 +71,8 @@ What to protect: the **left renal vein** above the neck (and a retroaortic or ci
 **Q:** Which vein lies behind the right common iliac artery and is torn by careless encircling of that artery?
 - [x] The left common iliac vein (near the confluence of the IVC)
   > The iliac veins lie behind and slightly to the right of the arteries; the left common iliac vein crosses behind the right common iliac artery to reach the IVC. Clamp the iliacs without encircling them.
-- [ ] The left renal vein
-- [ ] The inferior mesenteric vein
+- [ ] The left renal vein, which crosses behind the aorta to reach the IVC at this level
+- [ ] The inferior mesenteric vein, which runs behind the iliac bifurcation to join the IVC
 - [ ] The gonadal vein
 
 ## [as-case] Case: a pararenal aneurysm through the left flank
@@ -90,11 +90,11 @@ A **66-year-old woman**, hypertensive, a previous laparotomy for a perforated du
 ### Question
 
 **Q:** Why the left flank (retroperitoneal) approach here?
-- [x] It exposes the aorta above the renal arteries up to the hiatus and avoids her scarred abdomen
+- [x] It exposes the aorta above the renals up to the hiatus and avoids her scarred abdomen
   > The left retroperitoneal route gives direct access to the para- and supravisceral aorta (dividing the left crus) and stays out of the peritoneal cavity; the right renal artery is harder to reach from this side.
-- [ ] It gives better access to the right iliac artery
+- [ ] It gives better access to the right iliac artery, which lies directly under a left flank incision
 - [ ] It is quicker for infrarenal aneurysms
-- [ ] It avoids the need for a suprarenal clamp
+- [ ] It avoids the need for a suprarenal clamp, because the aorta can be controlled below the renal arteries
 
 ## [aaa-supra-consent] Consent: what to discuss with this patient
 
@@ -144,8 +144,8 @@ Template and how to use it: [CTICU protocol, consent](#approach=cticu-consent&st
 - [x] Sexual dysfunction from injury to the hypogastric plexus
   > The autonomic nerves over the left common iliac and aortic bifurcation can be injured.
 - [ ] Retinal artery occlusion
-- [ ] Hoarseness
-- [ ] Paraplegia, which is common after infrarenal repair
+- [ ] Hoarseness from recurrent laryngeal nerve traction during infrarenal aortic exposure
+- [ ] Paraplegia, which is common after infrarenal repair because the clamp interrupts the artery of Adamkiewicz
 
 ## [as-flank] Left flank incision; the retroperitoneal plane
 
@@ -174,11 +174,11 @@ Open the aneurysm longitudinally on its right anterior surface (away from the IM
 ### Question
 
 **Q:** Before tying the distal anastomosis, why flush the graft?
-- [x] To wash out air, thrombus and debris that would otherwise embolize to the legs or pelvis
+- [x] To wash out air, thrombus and debris that would otherwise embolize distally
   > Brief release of the iliac, then aortic clamps flushes the graft; debris left in it embolizes to the feet ("trash foot") or the pelvis.
-- [ ] To test the proximal anastomosis only
+- [ ] To test the proximal anastomosis only, since the distal suture line can be checked after the clamps are off
 - [ ] It is not needed
-- [ ] To reduce heparin effect
+- [ ] To reduce heparin effect by diluting the drug in the graft before restoring flow to the legs
 
 ## [as-renal] Cold renal perfusion; reimplant the left renal
 
@@ -200,8 +200,8 @@ Check both kidneys (color, a pulse in each renal artery) and the bowel; urine ou
 - [x] To keep the graft away from the duodenum and prevent an aortoenteric fistula
   > Direct contact between the graft suture line and the duodenum can erode into the bowel months or years later: a catastrophic bleed.
 - [ ] To stop back-bleeding
-- [ ] To help the graft endothelialize
-- [ ] For cosmetic reasons
+- [ ] To help the graft endothelialize, as contact with the sac wall lets endothelium grow across the whole prosthesis
+- [ ] For cosmetic reasons, to reduce the visible bulge of the aneurysm sac under the abdominal wall
 
 ## [aaa-supra-icu] ICU and post-operative care
 
@@ -225,9 +225,9 @@ Doses: [electrolytes](#approach=cticu-doses&step=0), [vasoactive drugs](#approac
 **Q:** Day 1 after rupture repair: girth rising, urine 10 mL/h despite filling, airway pressures rising. Next?
 - [x] Measure bladder pressure and call the consultant: compartment syndrome
   > Oliguria despite filling with a tense abdomen: more fluid makes it worse.
-- [ ] More fluid boluses
+- [ ] More fluid boluses, since low urine output on day 1 most likely reflects ongoing hypovolemia
 - [ ] Furosemide
-- [ ] Observe and recheck in the morning
+- [ ] Observe and recheck in the morning, as oliguria and rising pressures are expected after rupture repair
 
 ## Sources
 

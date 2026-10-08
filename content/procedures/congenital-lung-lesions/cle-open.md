@@ -37,8 +37,8 @@ Chain: Deficient bronchial cartilage or compression → Airway collapses in expi
 **Q:** A 3-week-old with tachypnea has a hyperlucent left upper zone and mediastinal shift. Vascular markings are visible in the lucent area. What must you avoid?
 - [x] Inserting a chest drain for a presumed pneumothorax
   > Vascular markings mean over-distended lung, not free air: this is CLE. A drain would enter the lobe and cause a large air leak. The treatment is lobectomy.
-- [ ] A CT scan
-- [ ] Oxygen
+- [ ] A CT scan, because the radiation dose outweighs any diagnostic benefit
+- [ ] Oxygen, since it worsens air trapping in the emphysematous lobe
 - [ ] Surgical consultation
 
 ## [cle-open-case] Case: a neonate with congenital lobar emphysema
@@ -60,9 +60,9 @@ A **5-week-old boy**, increasing tachypnea and feeding difficulty; SpO₂ 90% in
 **Q:** At induction the child desaturates and becomes hypotensive with bag ventilation. Best immediate action?
 - [x] Open the chest quickly and let the lobe decompress out of the wound
   > Positive pressure inflates the trapped lobe further (tension physiology). Opening the chest decompresses it at once; this is why the surgeon is scrubbed at induction.
-- [ ] Increase the ventilation pressure
-- [ ] Give nitrous oxide
-- [ ] Insert a chest drain
+- [ ] Increase the ventilation pressure to recruit the compressed normal lung
+- [ ] Give nitrous oxide to deepen anesthesia and lower airway pressure
+- [ ] Insert a chest drain to decompress the presumed tension pneumothorax
 
 ## [cle-open-consent] Consent: what to discuss with this patient
 
@@ -107,11 +107,11 @@ Template and how to use it: [CTICU protocol, consent](#approach=cticu-consent&st
 ### Question
 
 **Q:** What should parents be told about lobectomy for symptomatic CLE?
-- [x] It removes the over-distended lobe so the other lung can expand, and breathing usually improves quickly
+- [x] It removes the over-distended lobe so the other lung can expand; breathing usually improves quickly
   > The lobe compresses the remaining lung and the heart; removing it relieves the compression.
-- [ ] It will need repeating when the child grows
-- [ ] The whole lung is removed
-- [ ] It is only needed if a pneumothorax is seen
+- [ ] It will need repeating as the child grows, because the remaining lobes usually become emphysematous in turn
+- [ ] The whole lung is removed, because the emphysema usually involves every lobe on that side as well
+- [ ] It is only needed if a pneumothorax is seen, as the lobe otherwise shrinks back on its own
 
 ## [cle-open-operation] The operation: lobectomy
 
@@ -142,9 +142,9 @@ Doses: [electrolytes](#approach=cticu-doses&step=0), [vasoactive drugs](#approac
 **Q:** Day 1 after lobectomy for CLE: a new fast breathing rate, saturations falling, a drain that has stopped swinging. Next?
 - [x] Check the drain for blockage or kinking and get a chest X-ray; call the surgeon
   > A blocked drain with an air leak or a collapsed lung needs fast correction in a small child.
-- [ ] Give sedation and observe
+- [ ] Give sedation and observe, as fast breathing on day 1 is usually from pain and anxiety
 - [ ] Stop oxygen
-- [ ] Remove the drain
+- [ ] Remove the drain, since a drain that no longer swings has done its job and the lung is up
 
 ## Sources
 

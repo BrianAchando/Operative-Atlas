@@ -29,8 +29,8 @@ Chain: Left-to-right shunt → RA, RV and pulmonary arteries carry 1.5–3 times
 **Q:** What mainly decides how much blood crosses a large ASD?
 - [x] The relative compliance (filling) of the two ventricles
   > With a large defect the atria share one pressure; flow goes to the ventricle that fills more easily, the RV.
-- [ ] The size of the hole alone
-- [ ] Systolic LV pressure
+- [ ] The size of the hole alone, as a larger defect carries a proportionally bigger shunt
+- [ ] Systolic LV pressure, which drives blood across the defect into the right atrium
 - [ ] The heart rate
 
 ## [asd-types] Types of ASD and where they sit
@@ -51,8 +51,8 @@ Chain: Left-to-right shunt → RA, RV and pulmonary arteries carry 1.5–3 times
 - [x] Superior sinus venosus defect
   > The right upper pulmonary vein drains to the SVC; the repair must baffle it to the left atrium.
 - [ ] Secundum
-- [ ] Primum
-- [ ] Coronary sinus
+- [ ] Primum, because the defect lies next to the pulmonary venous confluence
+- [ ] Coronary sinus, as the unroofed sinus receives the right pulmonary veins
 
 ## [asd-size] Size, and what the heart shows
 
@@ -97,9 +97,9 @@ A **26-year-old woman** referred from a county hospital with breathlessness on c
 **Q:** What is the best option?
 - [x] Surgical patch closure: the inferior rim is too deficient for a device
   > Shunt and normal PVR make closure class I; a deficient inferior (IVC) rim makes device closure unsafe, while an absent aortic rim alone is often tolerated by devices.
-- [ ] Device closure
+- [ ] Device closure, as only the superior rims are needed to hold a device in position
 - [ ] Observe: she is young
-- [ ] Sildenafil and review
+- [ ] Sildenafil and review, to lower the pulmonary pressure before any closure
 
 ## [asd-decision] Close or not; device or surgery
 
@@ -133,10 +133,10 @@ A ASD seen late, as so many are in Kenya, raises one question before any other: 
 ### Question
 
 **Q:** A 7-year-old with a large ASD now has saturations of 89% at rest and bidirectional shunting on echo. Next step?
-- [x] Cardiac catheterization with PVR measurement and vasoreactivity testing before any decision
+- [x] Cardiac catheterization with PVR and vasoreactivity testing before deciding
   > Desaturation and bidirectional flow suggest advanced pulmonary vascular disease; closure could be lethal if PVR is fixed.
-- [ ] Close the defect urgently
-- [ ] Discharge: the shunt has improved
+- [ ] Close the defect urgently, since bidirectional shunting means the right heart is failing and needs off-loading
+- [ ] Discharge: the shunt has improved, as less flow across the defect means the volume load has fallen
 - [ ] Pulmonary artery band
 
 ## [asd-patch-consent] Consent: what to discuss with this patient
@@ -185,8 +185,8 @@ Template and how to use it: [CTICU protocol, consent](#approach=cticu-consent&st
 **Q:** Which late problem after surgical ASD closure should the family know about?
 - [x] Post-pericardiotomy syndrome: fever, chest pain and an effusion in the first weeks
   > It responds to anti-inflammatories; a growing effusion needs echo and sometimes drainage.
-- [ ] Complete heart block in most
-- [ ] Lifelong warfarin
+- [ ] Complete heart block in most, because the patch suture line runs through the AV node in every repair
+- [ ] Lifelong warfarin to stop thrombus forming on the pericardial or Dacron patch surface
 - [ ] Need for a valve replacement
 
 ## [asd-sternotomy] Median sternotomy
@@ -221,8 +221,8 @@ Identify the **IVC orifice and the Eustachian valve** before the first stitch: t
 - [x] IVC blood diverted into the left atrium: cyanosis after the operation
   > The Eustachian valve guards the IVC orifice; the patch must go to the septal rim, or the IVC is baffled to the left side.
 - [ ] Complete heart block
-- [ ] Tricuspid stenosis
-- [ ] Left-to-right shunt through the patch
+- [ ] Tricuspid stenosis, as the patch edge narrows the tricuspid inflow from the IVC
+- [ ] Left-to-right shunt through the patch, which stays open until it endothelializes
 
 ## [asd-patch] Sew in the pericardial patch
 
@@ -264,8 +264,8 @@ Doses: [electrolytes](#approach=cticu-doses&step=0), [vasoactive drugs](#approac
 **Q:** Day 3 after ASD closure: fever, pleuritic pain, rub, small effusion, well perfused. Likely cause?
 - [x] Post-pericardiotomy syndrome
   > Treat with anti-inflammatories and watch the effusion; exclude infection.
-- [ ] Patch dehiscence
-- [ ] Endocarditis
+- [ ] Patch dehiscence with a new shunt and right heart strain
+- [ ] Endocarditis on the patch, given fever so early after surgery
 - [ ] Pulmonary embolism
 
 ## Sources

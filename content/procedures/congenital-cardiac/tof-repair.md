@@ -29,8 +29,8 @@ The spectrum runs from a "pink tet" (mild obstruction, net left-to-right) to sev
 **Q:** What sets the degree of cyanosis in tetralogy?
 - [x] The severity of RV outflow tract obstruction
   > The VSD is always large; the harder it is to eject into the PA, the more RV blood goes to the aorta.
-- [ ] The size of the VSD
-- [ ] The degree of aortic override alone
+- [ ] The size of the VSD, since a larger defect allows more right-to-left flow
+- [ ] The degree of aortic override alone, independent of outflow obstruction
 - [ ] The heart rate
 
 ## [tof-spell] Hypercyanotic (tet) spell: what to do
@@ -52,8 +52,8 @@ Agitation, crying or dehydration → infundibular spasm and falling SVR → more
 - [x] Morphine and a fluid bolus, then phenylephrine to raise SVR
   > Stop the hyperpnea, fill the RV and raise systemic resistance so less blood shunts right to left.
 - [ ] Furosemide
-- [ ] Adrenaline bolus to increase contractility
-- [ ] Sodium nitroprusside
+- [ ] Adrenaline bolus to increase contractility and push blood through the outflow tract
+- [ ] Sodium nitroprusside to lower afterload and improve forward flow
 
 ## [tof-anatomy] The anatomy the repair must respect
 
@@ -140,11 +140,11 @@ Template and how to use it: [CTICU protocol, consent](#approach=cticu-consent&st
 ### Question
 
 **Q:** What must the family understand about a transannular patch?
-- [x] It leaves pulmonary regurgitation; most will need a pulmonary valve later in life
+- [x] It leaves pulmonary regurgitation; most will need a pulmonary valve later
   > The repair is not the last operation: lifelong follow-up of the RV.
-- [ ] It is a cure with no follow-up
-- [ ] It causes stroke
-- [ ] It needs lifelong warfarin
+- [ ] It is a cure with no follow-up, as the patch grows with the child
+- [ ] It causes stroke, because clot forms on the patch and crosses into the systemic circulation
+- [ ] It needs lifelong warfarin to stop thrombus forming on the outflow tract patch
 
 ## [tof-sternotomy] Median sternotomy
 
@@ -183,10 +183,10 @@ Off bypass: measure **RV and LV pressures** and check for a residual VSD on TOE.
 ### Question
 
 **Q:** What is the long-term price of a transannular patch?
-- [x] Free pulmonary regurgitation, leading to RV dilatation and later pulmonary valve replacement
+- [x] Free pulmonary regurgitation, RV dilatation and later pulmonary valve replacement
   > Opening the annulus removes the valve function; the RV dilates over years.
-- [ ] Recurrent VSD
-- [ ] Aortic stenosis
+- [ ] Recurrent VSD, as the outflow patch pulls the VSD suture line apart as the child grows
+- [ ] Aortic stenosis, as the enlarged outflow tract compresses and distorts the aortic root
 - [ ] Complete heart block
 
 ## [tof-close] De-air, close the atrium, release the clamp
@@ -223,8 +223,8 @@ Doses: [electrolytes](#approach=cticu-doses&step=0), [vasoactive drugs](#approac
 **Q:** 6 h after TOF repair: CVP 16, BP low, small RV on echo with forward diastolic flow in the PA, ascites. Problem?
 - [x] Restrictive RV physiology
   > A stiff hypertrophied RV fills poorly; support with preload, milrinone, low airway pressures, and let the PFO decompress the right heart.
-- [ ] Hypovolemia only
-- [ ] Tamponade only
+- [ ] Hypovolemia only, as the small RV shows it is underfilled
+- [ ] Tamponade only, given the high CVP and low BP
 - [ ] LV failure
 
 ## Sources

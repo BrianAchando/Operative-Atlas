@@ -41,8 +41,8 @@ Chain: Primary tumor → **Blood: brain, bone, adrenal, liver (M1)**
 **Q:** Under the 9th edition, a 2.6 cm tumor (T1c) with metastasis in a single mediastinal station (subcarinal, station 7) and no distant spread is stage…
 - [x] IIB (T1 N2a)
   > The 9th edition splits N2: a single station (N2a) with a T1 tumor is IIB; several stations (N2b) make it IIIA. Many single-station N2 patients are now treated with neoadjuvant chemo-immunotherapy and surgery.
-- [ ] IIIA
-- [ ] IIIB
+- [ ] IIIA, because any mediastinal nodal disease places the tumor in stage III
+- [ ] IIIB, as subcarinal nodes are classed with contralateral (N3) nodes
 - [ ] IV
 
 ## [a-anatomy] The left hilum you are about to meet
@@ -68,11 +68,11 @@ A **58-year-old woman**, never a smoker, cooked over a wood fire for 30 years. S
 ### Question
 
 **Q:** Why did she need EBUS when the PET showed no nodal uptake?
-- [x] A tumor over 3 cm carries a significant risk of occult mediastinal nodes; guidelines advise invasive staging for tumors over 3 cm, central tumors or cN1
+- [x] Over 3 cm, occult N2 risk is significant; invasive staging is advised for tumors >3 cm, central tumors or cN1
   > PET misses small nodal deposits. ESTS 2014 recommends invasive staging for central tumors, tumors over 3 cm, or suspected N1 even when PET is negative.
-- [ ] EBUS is required before every lobectomy
-- [ ] To confirm the EGFR mutation
-- [ ] Because she had been treated for TB
+- [ ] EBUS is required before every lobectomy, whatever the tumor size, location or PET findings, to exclude N2 disease
+- [ ] To confirm the EGFR mutation, because targeted therapy must be planned before resection in every adenocarcinoma
+- [ ] Because she had been treated for TB, and old TB nodes are always PET-avid so a negative scan cannot be trusted
 
 ## [lul-anterior-consent] Consent: what to discuss with this patient
 
@@ -124,10 +124,10 @@ Template and how to use it: [CTICU protocol, consent](#approach=cticu-consent&st
 ### Question
 
 **Q:** Which of these belongs in consent for a VATS lobectomy in a patient with healed TB?
-- [x] A higher chance of conversion to open and of bleeding from adhesions and calcified nodes
+- [x] Higher risk of conversion to open and of bleeding from adhesions and calcified nodes
   > Post-TB pleural and nodal changes make VATS dissection harder; the conversion risk is a material risk.
-- [ ] A guaranteed shorter stay
-- [ ] No chest drain
+- [ ] A guaranteed shorter stay, because VATS avoids rib spreading even when there are dense adhesions
+- [ ] No chest drain, since a VATS lobectomy seals the pleura well enough to manage without one
 - [ ] No risk of air leak
 
 ## [a-setup] Position and ports
@@ -149,9 +149,9 @@ The **superior pulmonary vein** comes into view as the most anterior structure. 
 **Q:** Where does the left phrenic nerve run relative to the hilum?
 - [x] Anterior to it, on the pericardium
   > The phrenic nerve descends on the pericardium anterior to the hilum; the vagus passes behind it.
-- [ ] Posterior to it, with the vagus
+- [ ] Posterior to it, running with the vagus behind the left main bronchus
 - [ ] Inside the fissure
-- [ ] Lateral to it, on the chest wall
+- [ ] Lateral to it, on the chest wall alongside the internal thoracic vessels
 
 ## [a-spv] Superior pulmonary vein: staple
 
@@ -168,9 +168,9 @@ Staple far enough from the pericardium to leave a cuff, close enough to catch al
 **Q:** Before stapling the superior vein, what must you confirm?
 - [x] That the inferior pulmonary vein is separate and drains the lower lobe
   > A common pulmonary vein (a variant) taken as the "superior vein" drains the whole lung.
-- [ ] That the lingular artery is already divided
+- [ ] That the lingular artery is already divided, because the lingular vein drains with the lower lobe
 - [ ] That the fissure is complete
-- [ ] That the bronchus is already divided
+- [ ] That the bronchus is already divided, so the vein can be reached safely from behind the hilum
 
 ## [a-truncus] Truncus anterior: staple
 
@@ -183,8 +183,8 @@ Clear the **station 5 and 10** nodes to open the angle, then staple (or ligate) 
 **Q:** Clearing station 5 above the truncus, which nerve is at risk?
 - [x] Left recurrent laryngeal nerve
   > It leaves the vagus at the arch and hooks under it beside the ligamentum arteriosum, in the AP window.
-- [ ] Left phrenic nerve
-- [ ] Thoracic duct
+- [ ] Left phrenic nerve, which hooks beneath the ligamentum arteriosum
+- [ ] Thoracic duct, which crosses the aortopulmonary window at this level
 - [ ] Right phrenic nerve
 
 ## [a-bronchus] Upper lobe bronchus: clamp, inflate, staple

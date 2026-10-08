@@ -1014,6 +1014,9 @@ import anatomy_heart, anatomy_nodes  # noqa: E402
 for _k, _v in anatomy_heart.build(dict(emit_mesh=emit_mesh, LMW=landmarks, root=str(Path(__file__).resolve().parent.parent))).items():
     landmarks[_k] = [round(float(x), 1) for x in _v]
 anatomy_nodes.build(dict(emit_mesh=emit_mesh, structures=structures))
+import anatomy_cong  # noqa: E402
+for _k, _v in anatomy_cong.build(dict(emit_mesh=emit_mesh, S={q['id']: q for q in structures}, root=str(Path(__file__).resolve().parent.parent))).items():
+    landmarks[_k] = [round(float(x), 1) for x in _v]
 atlas = {
     'ct': {'file': 'ct.hu8.gz', 'dims': [int(x) for x in shape], 'affine': [[round(float(x), 4) for x in row] for row in w_aff[:3]], 'scale': STEP, 'offset': HU0, 'spacing': vox},
     'labels': {'file': 'labels.u8.gz', 'lut': lut},

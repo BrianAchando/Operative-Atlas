@@ -26,9 +26,9 @@ Chain: I exudative (days): free-flowing, sterile → II fibrinopurulent (1–2 w
 **Q:** After 5 days of a small-bore drain and antibiotics a loculated collection remains and the patient is still febrile. Next step?
 - [x] Intrapleural tPA plus DNase, or surgical referral (VATS) if unsuitable or it fails
   > MIST2: the combination (not either drug alone, nor streptokinase) improves drainage and reduces surgery; persistent sepsis despite drainage is the trigger for surgery.
-- [ ] Intrapleural streptokinase
+- [ ] Intrapleural streptokinase alone, which is as effective as tPA with DNase in loculated infection
 - [ ] Continue and wait 2 more weeks
-- [ ] Intrapleural DNase alone
+- [ ] Intrapleural DNase alone, to thin the pus so it drains through the small-bore tube
 
 ## [em-stages] Empyema: three stages
 
@@ -60,9 +60,9 @@ A **38-year-old man**, 10 days of community-acquired pneumonia; febrile, CRP 280
 **Q:** What finding on pleural fluid most clearly mandated chest drainage here?
 - [x] pH 7.0 (with positive culture and turbid fluid)
   > A pleural pH of 7.2 or less indicates complicated parapneumonic effusion or empyema; culture positivity and pus are independent indications.
-- [ ] Protein over 30 g/L
+- [ ] Protein over 30 g/L, which confirms an exudate needing a drain
 - [ ] A lymphocytic effusion
-- [ ] Fluid volume over 1 L
+- [ ] Fluid volume over 1 L, which mandates drainage whatever the pH
 
 ## [b4-emp-vats-consent] Consent: what to discuss with this patient
 
@@ -108,9 +108,9 @@ Template and how to use it: [CTICU protocol, consent](#approach=cticu-consent&st
 **Q:** Before decortication for empyema, which alternative should the patient hear about?
 - [x] A chest drain with intrapleural tPA and DNase
   > MIST2 (NEJM 2011): improved drainage and fewer surgical referrals.
-- [ ] Antibiotics by mouth only
+- [ ] Antibiotics by mouth only, continued until the collection resorbs on its own
 - [ ] Observation
-- [ ] Pneumonectomy
+- [ ] Pneumonectomy, to remove the infected lung and pleura together in one stage
 
 ## [ev-setup] Ports over the collection
 
@@ -149,8 +149,8 @@ Doses: [electrolytes](#approach=cticu-doses&step=0), [vasoactive drugs](#approac
 **Q:** Day 3 after decortication: persistent fever, new loculated collection on CT. Next?
 - [x] Drain the collection and review cultures, including TB
   > Undrained pus is the usual cause of persistent sepsis.
-- [ ] Change antibiotics only
-- [ ] Remove all drains
+- [ ] Change antibiotics only, as a new collection this early is postoperative serous fluid
+- [ ] Remove all drains, since they are the likely source of the fever
 - [ ] Discharge
 
 ## Sources

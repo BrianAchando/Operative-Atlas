@@ -18,8 +18,8 @@ A structured aid for the conversation: it does not replace the signed KNH consen
 **Q:** What makes a risk material?
 - [x] It is one this patient would want to know, not only a frequent one
   > Serious rare risks (paraplegia, stroke) are material even when uncommon.
-- [ ] Only risks above 10%
-- [ ] Only risks the surgeon worries about
+- [ ] Only risks above 10%, as rarer complications need not be mentioned to the patient
+- [ ] Only risks the surgeon worries about, as judged by a responsible body of surgeons
 - [ ] None if the form is signed
 
 ## [cticu-consent-1] Governance, open decisions and audit

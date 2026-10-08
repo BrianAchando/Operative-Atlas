@@ -28,8 +28,8 @@ More proximal levels cost more energy to walk, so a vascular patient is far more
 **Q:** Why is a below-knee amputation preferred to an above-knee one when both would heal?
 - [x] Keeping the knee makes walking with a prosthesis much more likely and less tiring
   > Energy cost and prosthetic success fall steeply with an above-knee level.
-- [ ] It is quicker to perform
-- [ ] It never needs revision
+- [ ] It is quicker to perform, saving theatre time in patients who are too frail for a longer operation
+- [ ] It never needs revision, because the calf flap heals more reliably than a thigh flap
 - [ ] It avoids anesthesia
 
 ## [am-case] Case: wet gangrene of the foot in a diabetic
@@ -45,8 +45,8 @@ A **58-year-old man**, poorly controlled diabetes. Wet gangrene of the forefoot 
 **Q:** What is the first operation?
 - [x] A guillotine amputation at the ankle to control sepsis, then a definitive level later
   > Staging avoids closing a stump in infected tissue.
-- [ ] Immediate above-knee amputation
-- [ ] Fem-pop bypass
+- [ ] Immediate above-knee amputation, to remove all infected tissue in a single definitive operation
+- [ ] Fem-pop bypass first, so the infected foot can heal before any amputation is considered
 - [ ] Toe amputation only
 
 ## [amp-levels-consent] Consent: what to discuss with this patient
@@ -93,9 +93,9 @@ Template and how to use it: [CTICU protocol, consent](#approach=cticu-consent&st
 **Q:** What should a patient know before a below-knee amputation?
 - [x] Healing may need revision; walking with a prosthesis takes months of rehabilitation
   > Realistic expectations and the risk to the other leg are part of consent.
-- [ ] Walking normally in a week
+- [ ] Walking normally within a week, as modern prostheses can be fitted on the day of surgery
 - [ ] No pain afterwards
-- [ ] The other leg is never at risk
+- [ ] The other leg is never at risk, since the amputation removes the source of the vascular disease
 
 ## [am-bka] Below-knee amputation: long posterior flap
 
@@ -107,8 +107,8 @@ Divide the tibia, bevel its anterior edge, cut the **fibula at least 1 cm shorte
 - [x] So the fibular end does not press into the stump and the socket
   > A long fibula is prominent and painful in the prosthesis.
 - [ ] To save time
-- [ ] To protect the peroneal artery
-- [ ] It is not cut
+- [ ] To protect the peroneal artery, which runs along the fibula and supplies the flap
+- [ ] It is not cut, as the fibula is left intact to stabilize the stump
 
 ## [am-after] Stump care, rehabilitation, the other leg
 
@@ -135,9 +135,9 @@ Doses: [electrolytes](#approach=cticu-doses&step=0), [vasoactive drugs](#approac
 **Q:** After BKA the patient lies with the knee bent on a pillow. Why correct it?
 - [x] A knee flexion contracture prevents prosthetic walking
   > Keep the knee straight and start physiotherapy early.
-- [ ] It causes phantom pain
+- [ ] It causes phantom pain by stretching the sciatic nerve over the knee
 - [ ] It raises blood pressure
-- [ ] It is harmless
+- [ ] It is harmless, since a flexion contracture stretches out once the prosthesis is fitted
 
 ## Sources
 

@@ -41,8 +41,8 @@ Chain: Primary tumor → **Blood: brain, bone, adrenal, liver (M1)**
 **Q:** Under the 9th edition, a 2.6 cm tumor (T1c) with metastasis in a single mediastinal station (subcarinal, station 7) and no distant spread is stage…
 - [x] IIB (T1 N2a)
   > The 9th edition splits N2: a single station (N2a) with a T1 tumor is IIB; several stations (N2b) make it IIIA. Many single-station N2 patients are now treated with neoadjuvant chemo-immunotherapy and surgery.
-- [ ] IIIA
-- [ ] IIIB
+- [ ] IIIA, because any mediastinal nodal disease places the tumor in stage III
+- [ ] IIIB, as subcarinal nodes are classed with contralateral (N3) nodes
 - [ ] IV
 
 ## [rf-anatomy] The right lower lobe hilum
@@ -66,8 +66,8 @@ A **60-year-old man**, smoker. A **5.8 cm** squamous carcinoma in the right lowe
 **Q:** What distinguishes N2a from N2b in the 9th edition?
 - [x] The number of mediastinal stations involved: one (N2a) or several (N2b)
   > The count is by station, not by the number of nodes, and it carries prognostic weight: T3 N2a is IIIA, T3 N2b IIIB.
-- [ ] Node size over 1 cm
-- [ ] Ipsilateral versus contralateral nodes
+- [ ] Node size over 1 cm on CT, with larger nodes classed as N2b regardless of station
+- [ ] Ipsilateral versus contralateral mediastinal nodes, with contralateral disease as N2b
 - [ ] PET uptake intensity
 
 ## [rll-fissure-consent] Consent: what to discuss with this patient
@@ -120,10 +120,10 @@ Template and how to use it: [CTICU protocol, consent](#approach=cticu-consent&st
 ### Question
 
 **Q:** Which of these belongs in consent for a VATS lobectomy in a patient with healed TB?
-- [x] A higher chance of conversion to open and of bleeding from adhesions and calcified nodes
+- [x] Higher risk of conversion to open and of bleeding from adhesions and calcified nodes
   > Post-TB pleural and nodal changes make VATS dissection harder; the conversion risk is a material risk.
-- [ ] A guaranteed shorter stay
-- [ ] No chest drain
+- [ ] A guaranteed shorter stay, because VATS avoids rib spreading even when there are dense adhesions
+- [ ] No chest drain, since a VATS lobectomy seals the pleura well enough to manage without one
 - [ ] No risk of air leak
 
 ## [rf-setup] Position and ports
@@ -143,8 +143,8 @@ Retract the upper and middle lobes forward, the lower lobe back. Where the obliq
 **Q:** A fissure-first right lower lobectomy works best when…
 - [x] The oblique fissure is complete over the artery
   > With a fused fissure the hilum-first order avoids tearing parenchyma over the artery.
-- [ ] The ligament is thick
-- [ ] The azygos is low
+- [ ] The inferior pulmonary ligament is thick and holds the lower lobe steady for dissection
+- [ ] The azygos is low, so the posterior hilum is hidden and the fissure must be opened first
 - [ ] The inferior pulmonary ligament is divided
 
 ## [rf-artery] Superior segmental artery (A6) and basal trunk
@@ -175,8 +175,8 @@ With the ligament divided the **inferior pulmonary vein** lies free at the botto
 **Q:** Before stapling the right inferior vein, which vein must you see separately?
 - [x] The superior pulmonary vein with its middle lobe tributary
   > Taking a common trunk, or catching the middle lobe vein, drains lung you mean to keep.
-- [ ] The azygos vein
-- [ ] The inferior vena cava
+- [ ] The azygos vein, which drains the lower lobe posteriorly and can be mistaken for it
+- [ ] The inferior vena cava, which the inferior pulmonary vein joins just above the diaphragm
 - [ ] The right middle lobe artery
 
 ## [rf-bronchus] Lower lobe bronchus: clamp, inflate, staple
@@ -188,11 +188,11 @@ Close the stapler and inflate: **the upper and middle lobes must ventilate**. Th
 ### Question
 
 **Q:** Stapler closed on the right lower lobe bronchus: what must you check before firing?
-- [x] The upper and middle lobes ventilate and the middle lobe bronchus is not narrowed
+- [x] Upper and middle lobes ventilate and the middle lobe bronchus is not narrowed
   > The middle lobe bronchus arises just above; a stapler across the intermedius takes both lobes.
-- [ ] Only that the lower lobe collapses
+- [ ] Only that the lower lobe collapses when the anesthetist disconnects the ipsilateral lung
 - [ ] The azygos is divided
-- [ ] Only that the stump is long enough to suture
+- [ ] Only that the stump is long enough to suture over if the staple line leaks later
 
 ## [rf-specimen] Specimen out, nodes, leak test
 

@@ -24,8 +24,8 @@ Chain: Continuous left-to-right shunt → Pulmonary over-circulation, LA and LV 
 **Q:** A large PDA with reversed shunt causes which sign?
 - [x] Differential cyanosis: blue toes, pink fingers
   > Desaturated pulmonary blood enters the aorta beyond the left subclavian origin, so the lower body is cyanosed.
-- [ ] Central cyanosis of the lips only
-- [ ] Clubbing of the fingers only
+- [ ] Central cyanosis of the lips only, with pink hands and feet
+- [ ] Clubbing of the fingers only, with the toes spared
 - [ ] A wide fixed split S2
 
 ## [pda-types] Morphology: Krichenko types A to E
@@ -47,8 +47,8 @@ The classification comes from lateral angiography, but echo and CT show the same
 **Q:** Which duct is most dangerous to ligate with simple ties?
 - [x] Type B, window: very short and wide
   > There is no length for two ligatures; division between clamps (or bypass in adults) is safer.
-- [ ] Type A, conical
-- [ ] Type C, tubular
+- [ ] Type A, conical, with a well-formed aortic ampulla
+- [ ] Type C, tubular, with no constriction along its length
 - [ ] Type E, elongated
 
 ## [pda-size] Size and hemodynamic significance
@@ -95,8 +95,8 @@ A **14-month-old girl, 7.4 kg**, with poor weight gain and recurrent chest infec
 **Q:** What is the plan?
 - [x] Surgical ligation through a left thoracotomy
   > A large symptomatic duct with LV volume overload should be closed; if a device is not available, ligation is safe and definitive.
-- [ ] Ibuprofen course
-- [ ] Wait for spontaneous closure
+- [ ] Ibuprofen course, repeated until the duct closes on echo
+- [ ] Wait for spontaneous closure over the next year
 - [ ] Sternotomy and bypass
 
 ## [pda-decision] Medicines, device or surgery
@@ -129,10 +129,10 @@ A PDA seen late, as so many are in Kenya, raises one question before any other: 
 ### Question
 
 **Q:** A 7-year-old with a large PDA now has saturations of 89% at rest and bidirectional shunting on echo. Next step?
-- [x] Cardiac catheterization with PVR measurement and vasoreactivity testing before any decision
+- [x] Cardiac catheterization with PVR and vasoreactivity testing before deciding
   > Desaturation and bidirectional flow suggest advanced pulmonary vascular disease; closure could be lethal if PVR is fixed.
-- [ ] Close the defect urgently
-- [ ] Discharge: the shunt has improved
+- [ ] Close the defect urgently, since bidirectional shunting means the right heart is failing and needs off-loading
+- [ ] Discharge: the shunt has improved, as less flow across the defect means the volume load has fallen
 - [ ] Pulmonary artery band
 
 ## [pda-ics3-space] Which space: 3rd or 4th?
@@ -153,8 +153,8 @@ Both are accepted; the duct and isthmus lie behind the 3rd–4th spaces, and the
 **Q:** Why does accurate rib counting matter more than whether you choose the 3rd or 4th space?
 - [x] Entering the 5th space by mistake puts the duct and isthmus out of reach
   > The target lies behind the 3rd–4th spaces; one space too low and you work up behind the hilum.
-- [ ] The 3rd space is always wrong
-- [ ] The 4th space damages the phrenic nerve
+- [ ] The 3rd space is too high and risks the subclavian artery at entry
+- [ ] The 4th space damages the phrenic nerve, which runs along the posterior rib angle
 - [ ] It does not matter at all
 
 ## [pda-ics3-consent] Consent: what to discuss with this patient
@@ -203,9 +203,9 @@ Template and how to use it: [CTICU protocol, consent](#approach=cticu-consent&st
 **Q:** Which nerve injury should be discussed before PDA ligation?
 - [x] The left recurrent laryngeal nerve (hoarse voice, swallowing)
   > It hooks under the duct and is at risk at every ligation.
-- [ ] The phrenic nerve only
+- [ ] The phrenic nerve only, as it crosses directly over the duct itself
 - [ ] The long thoracic nerve
-- [ ] The hypoglossal nerve
+- [ ] The hypoglossal nerve, which runs close to the aortic arch
 
 ## [pda-ics3-thoracotomy] Left posterolateral thoracotomy, 3rd space
 
@@ -232,8 +232,8 @@ Dissect the **upper and lower borders** of the duct with fine scissors, then pas
 **Q:** During test occlusion the femoral (or foot) saturation probe signal disappears. What has happened?
 - [x] The descending aorta has been clamped, not the duct
   > Lower-body flow stops if the clamp is on the aorta: release and re-identify the three vessels.
-- [ ] The duct is very large
-- [ ] The duct is closed, which is the expected result
+- [ ] The duct is very large, so test occlusion drops cardiac output
+- [ ] The duct is closed, which is the expected result of a good test occlusion
 - [ ] Pulmonary hypertension crisis
 
 ## [pda-ics3-tie] Ligate: aortic end first
@@ -266,9 +266,9 @@ In older children the opposite is seen: a transient rise in blood pressure after
 **Q:** Eight hours after PDA ligation, a 900 g preterm becomes hypotensive and needs more oxygen. Echo: LV output low. Best first treatment?
 - [x] Milrinone (afterload reduction and inotropy), with cautious volume
   > Post-ligation cardiac syndrome is an afterload problem for an immature LV; vasoconstrictors make it worse.
-- [ ] High-dose noradrenaline
+- [ ] High-dose noradrenaline to restore pressure, as vasodilation is the main problem
 - [ ] Re-open the duct
-- [ ] Fluid boluses until BP normal
+- [ ] Fluid boluses until BP is normal, since the low output reflects preload loss
 
 ## [pda-ics3-icu] ICU and post-operative care
 

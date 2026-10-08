@@ -39,8 +39,8 @@ Chain: Medial degeneration → Dilatation → Laplace: tension rises with radius
 - [x] About 7.0 cm
   > Coady et al. found hinge points at 6.0 cm (ascending) and 7.0 cm (descending); guidelines advise repair of the descending aorta at 5.5 cm, before that point.
 - [ ] 4.0 cm
-- [ ] 5.0 cm
-- [ ] 9.0 cm
+- [ ] About 5.0 cm, as for the ascending aorta
+- [ ] About 9.0 cm, as rupture is rare below this size
 
 ## [tv2-anatomy] The descending thoracic aorta and what lies around it
 
@@ -61,11 +61,11 @@ A **71-year-old man**, smoker, COPD (FEV1 48%), hypertension. CT: a **6.4 cm** f
 ### Question
 
 **Q:** The landing zone requires covering his left subclavian, and his left vertebral is dominant. What should be done?
-- [x] Revascularize the left subclavian (carotid-subclavian bypass or transposition) before or at the TEVAR
+- [x] Revascularize the left subclavian (carotid-subclavian bypass or transposition) before or at TEVAR
   > Covering the subclavian with a dominant left vertebral risks posterior-circulation stroke, arm ischemia and spinal cord ischemia; revascularization is strongly recommended in this setting.
-- [ ] Cover it without revascularization
+- [ ] Cover it without revascularization, since the right vertebral and the circle of Willis will compensate for it
 - [ ] Abandon TEVAR
-- [ ] Embolize the vertebral artery
+- [ ] Embolize the left vertebral so the covered subclavian cannot steal from the posterior circulation
 
 ## [taa-tevar-consent] Consent: what to discuss with this patient
 
@@ -111,7 +111,7 @@ Template and how to use it: [CTICU protocol, consent](#approach=cticu-consent&st
 - [x] Lifelong imaging surveillance for endoleak
   > Endovascular repair needs follow-up imaging.
 - [ ] Weekly INR
-- [ ] No follow-up after discharge
+- [ ] No follow-up after discharge once the first CT shows a sealed graft
 - [ ] A permanent chest drain
 
 ## [tv2-deploy] Access, angiography, deploy, completion
@@ -144,7 +144,7 @@ Doses: [electrolytes](#approach=cticu-doses&step=0), [vasoactive drugs](#approac
 **Q:** After TEVAR with left subclavian coverage: cold left hand. Next?
 - [x] Assess and call: arm ischemia may need revascularization
   > Covering the subclavian without revascularization can cause arm ischemia.
-- [ ] Normal after coverage: ignore it
+- [ ] Normal after coverage: ignore it, as collaterals will warm the hand within hours
 - [ ] Raise the arm
 - [ ] Heparin only
 

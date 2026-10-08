@@ -26,8 +26,8 @@ Chain: TB pericardial effusion → Fibrinous, then fibrotic pericardium → Rigi
 **Q:** Which bedside sign points to constriction rather than tamponade?
 - [x] The JVP rises on inspiration (Kussmaul's sign)
   > In constriction the rigid shell stops the right heart accepting the extra inspiratory venous return; pulsus paradoxus is the hallmark of tamponade.
-- [ ] Pulsus paradoxus alone
-- [ ] A large heart on chest X-ray
+- [ ] Pulsus paradoxus alone, which is more marked in constriction than in tamponade
+- [ ] A large heart on chest X-ray, reflecting the thickened pericardium
 - [ ] Bilateral basal crackles
 
 ## [pc-anatomy] The pericardium, the phrenic nerves and what to free
@@ -52,8 +52,8 @@ A **28-year-old woman**, HIV-positive on antiretrovirals, treated for tuberculou
 - [x] Pericardiectomy, before she reaches NYHA class IV
   > Pericardiectomy is indicated when constriction persists or worsens after several weeks of anti-TB therapy; advanced functional class is the strongest predictor of death.
 - [ ] Stop anti-TB therapy and observe
-- [ ] Pericardiocentesis
-- [ ] Diuretics alone indefinitely
+- [ ] Pericardiocentesis to relieve the constriction while anti-TB therapy continues
+- [ ] Diuretics alone indefinitely, as TB constriction resolves after 6 months of therapy
 
 ## [pc-decision] Timing, extent and approach
 
@@ -113,9 +113,9 @@ Template and how to use it: [CTICU protocol, consent](#approach=cticu-consent&st
 **Q:** What should a patient expect after pericardiectomy for long-standing constriction?
 - [x] Improvement over weeks, with a risk of low cardiac output early on
   > The myocardium has atrophied under the shell and needs time and support.
-- [ ] Complete resolution of all symptoms within 24 hours
+- [ ] Complete resolution of all symptoms within 24 hours, as filling is restored once the pericardium is off
 - [ ] A guaranteed normal ejection fraction
-- [ ] Lifelong warfarin
+- [ ] Lifelong warfarin to prevent thrombus on the raw epicardial surface
 
 ## [pc-sternotomy] Median sternotomy; groin prepped for bypass
 
@@ -130,10 +130,10 @@ Incise the thick pericardium over the aorta and right ventricular outflow until 
 ### Question
 
 **Q:** Why is the left ventricle freed before the right?
-- [x] Releasing the right side first can flood a still-constrained left ventricle and cause pulmonary edema
+- [x] Freeing the right first can flood a still-constrained LV and cause pulmonary edema
   > The traditional order protects the lungs: the left side is decompressed first.
-- [ ] The left side is easier
-- [ ] To avoid the phrenic nerve
+- [ ] The left side is easier, and freeing it first lets the right ventricle dilate safely afterwards
+- [ ] To avoid the phrenic nerve, which is only at risk once the right side has been opened
 - [ ] It shortens the operation
 
 ## [pc-peel] Right ventricle, right atrium and the cavae; calcium and the coronaries
@@ -153,8 +153,8 @@ The freed ventricles visibly expand; the CVP falls. Hemostasis over the raw epic
 **Q:** After pericardiectomy, the CVP is 8 but the cardiac output is low and the ventricle looks thin and hypokinetic. Most likely?
 - [x] Myocardial atrophy from long-standing constriction: inotropic support and cautious filling
   > Low output syndrome is the commonest cause of death after pericardiectomy in African series.
-- [ ] Residual constriction: re-operate now
-- [ ] Hypovolemia: give 2 L fluid
+- [ ] Residual constriction from a retained epicardial peel: re-operate now to complete the decortication
+- [ ] Hypovolemia from raw-surface bleeding: give 2 L of fluid to restore the filling pressures to normal
 - [ ] Tamponade
 
 ## [peri-tb-icu] ICU and post-operative care
@@ -180,8 +180,8 @@ Doses: [electrolytes](#approach=cticu-doses&step=0), [vasoactive drugs](#approac
 **Q:** Day 1 after pericardiectomy: low output, CVP 14, a dilated thin RV. Next?
 - [x] Inotropes and diuresis, avoid more fluid
   > The freed but atrophied ventricle dilates with volume; support contractility rather than fill.
-- [ ] Fluid boluses
-- [ ] Re-open for residual constriction
+- [ ] Fluid boluses to stretch the thin RV and raise its output by the Starling mechanism
+- [ ] Re-open for residual constriction, since the high CVP shows the RV is still restricted
 - [ ] Beta-blocker
 
 ## Sources

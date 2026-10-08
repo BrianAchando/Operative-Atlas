@@ -52,11 +52,11 @@ An aneurysm is a diameter of **3.0 cm or more**. Growth accelerates as it enlarg
 ### Question
 
 **Q:** Why does an aneurysm grow faster as it gets bigger?
-- [x] Wall tension rises with the radius (Laplace's law), so the larger the aneurysm, the greater the stress on an already weakened wall
+- [x] Wall tension rises with radius (Laplace's law), so a larger aneurysm puts more stress on an already weak wall
   > T = P × r: at the same blood pressure a 6 cm aneurysm carries twice the wall tension of a 3 cm aorta. That is why growth and rupture risk accelerate with size.
-- [ ] Blood flow slows
+- [ ] Blood flow slows in the wider sac, and the stagnant blood lets proteases digest the wall faster than in a small one
 - [ ] Thrombus lining the sac weakens it
-- [ ] Blood pressure rises with size
+- [ ] Blood pressure rises with aneurysm size, because the sac stiffens the aorta and raises systolic pressure everywhere
 
 ## [ae-anatomy] The infrarenal aorta and its neighbors
 
@@ -71,8 +71,8 @@ What to protect: the **left renal vein** above the neck (and a retroaortic or ci
 **Q:** Which vein lies behind the right common iliac artery and is torn by careless encircling of that artery?
 - [x] The left common iliac vein (near the confluence of the IVC)
   > The iliac veins lie behind and slightly to the right of the arteries; the left common iliac vein crosses behind the right common iliac artery to reach the IVC. Clamp the iliacs without encircling them.
-- [ ] The left renal vein
-- [ ] The inferior mesenteric vein
+- [ ] The left renal vein, which crosses behind the aorta to reach the IVC at this level
+- [ ] The inferior mesenteric vein, which runs behind the iliac bifurcation to join the IVC
 - [ ] The gonadal vein
 
 ## [ae-case] Case: EVAR in a man with COPD
@@ -90,11 +90,11 @@ A **77-year-old man**, COPD (FEV1 45%), ischemic heart disease with a stent 3 ye
 ### Question
 
 **Q:** Which anatomical feature is essential for a standard EVAR?
-- [x] A healthy infrarenal neck long enough for a seal (usually at least 10–15 mm), not too angled or conical
+- [x] A healthy infrarenal neck long enough to seal (usually at least 10–15 mm), not too angled or conical
   > The stent graft seals by radial force against normal aorta below the renal arteries; a short, wide, angled or thrombus-lined neck causes type I endoleak and failure.
-- [ ] A small aneurysm sac
+- [ ] A small aneurysm sac, since large sacs cannot be excluded by a stent graft whatever the neck looks like
 - [ ] A patent IMA
-- [ ] Calcified iliac arteries
+- [ ] Calcified iliac arteries, which give the distal limbs a firm landing zone and stop the graft migrating
 
 ## [aaa-evar-consent] Consent: what to discuss with this patient
 
@@ -140,8 +140,8 @@ Template and how to use it: [CTICU protocol, consent](#approach=cticu-consent&st
 - [x] Lifelong imaging surveillance for endoleak and migration
   > EVAR-1: more reinterventions over time; surveillance detects them.
 - [ ] No follow-up after discharge
-- [ ] Weekly INR
-- [ ] Annual chest X-ray only
+- [ ] Weekly INR checks, since every patient is anticoagulated for life after the stent graft
+- [ ] Annual chest X-ray only, to check that the stent struts have not fractured
 
 ## [ae-access] Femoral access; mark the renal arteries
 
@@ -158,9 +158,9 @@ Introduce the **main body** through one groin, align its top marker just below t
 **Q:** The completion angiogram shows contrast filling the sac from around the top of the graft. What is it, and what now?
 - [x] A type I (proximal seal) endoleak: treat it now (balloon, proximal cuff or anchors)
   > Type I and III endoleaks pressurize the sac and must be fixed; a type II (from lumbars or IMA) is usually observed.
-- [ ] A type II endoleak: observe
+- [ ] A type II endoleak from lumbar or IMA backflow: observe, as most of these seal on their own
 - [ ] Normal: it will thrombose
-- [ ] Convert to open repair immediately
+- [ ] Convert to open repair immediately, since any endoleak on the completion angiogram means EVAR has failed
 
 ## [ae-surv] Completion angiogram, closure, lifelong surveillance
 
@@ -195,9 +195,9 @@ Doses: [electrolytes](#approach=cticu-doses&step=0), [vasoactive drugs](#approac
 **Q:** Day 1 after EVAR: fever 38.4 °C, well, wounds clean. Most likely?
 - [x] Post-implantation syndrome
   > A sterile inflammatory response is common after EVAR; examine and culture if unwell.
-- [ ] Graft infection
+- [ ] Graft infection, which typically shows as fever on the first day after EVAR
 - [ ] Endoleak
-- [ ] Colonic ischemia
+- [ ] Colonic ischemia from loss of the inferior mesenteric artery
 
 ## Sources
 

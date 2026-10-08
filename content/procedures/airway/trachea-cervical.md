@@ -20,9 +20,9 @@ The **recurrent laryngeal nerves** run up in the **tracheo-esophageal grooves** 
 **Q:** How do you protect the recurrent laryngeal nerves during tracheal resection?
 - [x] Keep the dissection on the tracheal wall; do not look for the nerves
   > They run in the tracheo-esophageal grooves just beside the trachea; staying on the wall (especially laterally and behind) keeps them out of harm. Searching for them in scar injures them.
-- [ ] Identify and sling both nerves first
+- [ ] Identify and sling both nerves in the tracheoesophageal groove before mobilizing the trachea
 - [ ] Divide the lateral pedicles widely
-- [ ] Free both nerves circumferentially and mark them with vessel loops
+- [ ] Free both nerves circumferentially along their course and mark them with vessel loops
 
 ## [tr-decide] Before you resect
 
@@ -35,9 +35,9 @@ Operate when the inflammation has settled, the patient is **off steroids** and o
 **Q:** Roughly how much adult trachea can be resected with primary anastomosis?
 - [x] About half (4–5 cm), with mobilization and release maneuvers
   > Beyond that, tension rises steeply and dehiscence and restenosis follow.
-- [ ] Up to three quarters
+- [ ] Up to three quarters, provided both a laryngeal release and a hilar release are performed
 - [ ] No more than 1 cm
-- [ ] The whole trachea, if the neck is flexed
+- [ ] The whole trachea, if the neck is flexed and both hila are mobilized
 
 ## [trachea-cervical-consent] Consent: what to discuss with this patient
 
@@ -86,9 +86,9 @@ Template and how to use it: [CTICU protocol, consent](#approach=cticu-consent&st
 **Q:** Which instruction must the patient understand before tracheal resection?
 - [x] The neck will be held flexed by a chin-to-chest stitch for about a week
   > It protects the anastomosis from tension; understanding it prevents the patient fighting it.
-- [ ] Early neck extension exercises
+- [ ] Early neck extension exercises from day 1 to prevent stiffness and aid swallowing
 - [ ] No voice rest needed
-- [ ] A permanent tracheostomy is routine
+- [ ] A permanent tracheostomy is routine to protect the anastomosis while it heals
 
 ## [tr-incision] Position and collar incision
 
@@ -135,9 +135,9 @@ Take the cross-field tube out and **advance the oral tube past the anastomosis**
 **Q:** When are the anterior (cartilaginous) sutures tied?
 - [x] After all are placed, the neck flexed and the stay sutures crossed
   > Placing every suture first keeps the view open; flexion and the stay sutures take the tension off while they are tied.
-- [ ] One by one as each is placed
+- [ ] One by one as each is placed, so each knot is seated before the next bite
 - [ ] Before the membranous wall
-- [ ] After the posterior wall, with the neck fully extended
+- [ ] After the posterior wall, with the neck fully extended to give the best exposure
 
 ## [tr-after] Guardian stitch, extubation, bronchoscopy
 
@@ -166,8 +166,8 @@ Doses: [electrolytes](#approach=cticu-doses&step=0), [vasoactive drugs](#approac
 **Q:** Day 2 after tracheal resection: new stridor and neck surgical emphysema. Next?
 - [x] Call the consultant and prepare urgent bronchoscopy in theatre
   > Suspect anastomotic dehiscence; secure the airway under direct vision.
-- [ ] Nebulized adrenaline and observe
-- [ ] Remove the guardian stitch
+- [ ] Nebulized adrenaline and observe on the ward, treating it as laryngeal edema
+- [ ] Remove the guardian stitch so the neck can extend and relieve the airway
 - [ ] Increase humidification only
 
 ## Sources

@@ -61,8 +61,8 @@ Rutherford 4–6 is **chronic limb-threatening ischemia (CLTI)**. **Acute** limb
 **Q:** A 50-year-old smoker has buttock claudication, absent femoral pulses and erectile dysfunction. Where is the disease?
 - [x] The distal aorta and both iliac arteries (Leriche syndrome)
   > Buttock claudication and absent femoral pulses place the obstruction above the groins; erectile dysfunction reflects poor internal iliac flow.
-- [ ] The superficial femoral arteries
-- [ ] The popliteal arteries
+- [ ] The superficial femoral arteries, which explains the absent femoral pulses and impotence
+- [ ] The popliteal arteries, as calf and buttock symptoms both arise from popliteal occlusion
 - [ ] The tibial arteries
 
 ## [ax-anatomy] The aortic bifurcation, iliacs and femoral arteries
@@ -88,8 +88,8 @@ A **71-year-old woman**, rest pain and a heel ulcer on the right, ABI 0.3 both s
 **Q:** Before an axillobifemoral bypass, what must be checked in the donor arm?
 - [x] Equal arm pressures and no subclavian or axillary stenosis on the chosen side
   > A stenosed donor artery starves the graft and the arm; a pressure difference over about 20 mmHg suggests subclavian stenosis.
-- [ ] The ABI of the arm
-- [ ] The radial pulse only
+- [ ] The ABI of the arm, since a value above 1.0 alone confirms the axillary inflow is adequate
+- [ ] The radial pulse only, because a palpable pulse at the wrist excludes any proximal stenosis
 - [ ] Nothing: any arm will do
 
 ## [ax-which] Which reconstruction? Aortobifemoral, axillobifemoral, femorofemoral or endovascular
@@ -111,8 +111,8 @@ The choice rests on **the extent of disease** (unilateral or bilateral, how far 
 **Q:** A 70-year-old with a right common iliac occlusion, a normal left iliac on CT, and severe COPD has rest pain in the right foot. Stenting has failed. Which bypass?
 - [x] Femorofemoral cross-over from the left groin
   > Unilateral disease with a healthy donor iliac is the classic indication; it avoids a laparotomy and has better patency than an axillofemoral graft.
-- [ ] Aortobifemoral bypass
-- [ ] Axillobifemoral bypass
+- [ ] Aortobifemoral bypass, as it has the best patency regardless of lung function
+- [ ] Axillobifemoral bypass, since both groins need inflow from an extra-anatomic source
 - [ ] Primary amputation
 
 ## [aiod-axbf-consent] Consent: what to discuss with this patient
@@ -156,8 +156,8 @@ Template and how to use it: [CTICU protocol, consent](#approach=cticu-consent&st
 **Q:** Why is axillobifemoral chosen despite poorer patency?
 - [x] It avoids a laparotomy and aortic clamp in a high-risk patient
   > Extra-anatomic bypass trades durability for lower operative risk.
-- [ ] It lasts longer
-- [ ] It is cheaper to maintain
+- [ ] It lasts longer than an aortobifemoral graft because the extra-anatomic route avoids the aorta
+- [ ] It is cheaper to maintain, as extra-anatomic grafts need no surveillance afterwards
 - [ ] It needs no anesthetic
 
 ## [ax-groins] Expose both femoral bifurcations
@@ -200,8 +200,8 @@ Doses: [electrolytes](#approach=cticu-doses&step=0), [vasoactive drugs](#approac
 **Q:** Which instruction protects an axillobifemoral graft?
 - [x] No BP cuff on the donor arm and do not lie on the graft side
   > External compression can thrombose the graft.
-- [ ] Tight belt support
-- [ ] Sleep on the graft side
+- [ ] Tight belt support over the tunnel to keep the graft from kinking
+- [ ] Sleep on the graft side so body weight holds the subcutaneous tunnel open
 - [ ] Arm raised constantly
 
 ## Sources

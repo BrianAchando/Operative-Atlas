@@ -31,8 +31,8 @@ The seven-part template: [CTICU protocol, consent](#approach=cticu-consent&step=
 **Q:** An unconscious patient needs a resuscitative thoracotomy. How is consent handled?
 - [x] Proceed on necessity to save life, document it, and inform the next of kin as soon as possible
   > Emergency treatment without consent is justified when the patient cannot consent and delay risks life.
-- [ ] Wait for the family
-- [ ] Do not operate
+- [ ] Wait for the family to arrive and sign, because only the next of kin can consent for an unconscious adult
+- [ ] Do not operate, since without written consent any thoracotomy is legally an assault, even to save a life
 - [ ] Ask the police
 
 ## [tw-entry-l] Left anterolateral thoracotomy, 5th space
@@ -64,8 +64,8 @@ A **22-year-old man** shot through the left lower chest, systolic pressure 60 de
 **Q:** What must be done before a hilar twist?
 - [x] Divide the inferior pulmonary ligament
   > The ligament tethers the lower lobe to the mediastinum; the lung cannot turn until it is cut.
-- [ ] Divide the pulmonary artery
-- [ ] Open the fissure
+- [ ] Divide the pulmonary artery, so the twisted lung does not become congested
+- [ ] Open the fissure, so the lobes can rotate freely around the hilum
 - [ ] Divide the pulmonary vein
 
 ## [tw-after] Damage control, then back
@@ -98,8 +98,8 @@ Doses: [electrolytes](#approach=cticu-doses&step=0), [vasoactive drugs](#approac
 **Q:** After a clamshell for penetrating trauma: temperature 34 °C, pH 7.1, oozing. Priority?
 - [x] Correct the lethal triad: warm, transfuse 1:1:1, give TXA if within 3 h
   > Damage-control resuscitation before further surgery.
-- [ ] Return to theatre immediately for definitive repair
-- [ ] Crystalloid boluses
+- [ ] Return to theatre immediately for definitive repair before the coagulopathy is corrected
+- [ ] Crystalloid boluses to restore pressure and dilute the acidosis before any blood is given
 - [ ] Extubate
 
 ## Sources

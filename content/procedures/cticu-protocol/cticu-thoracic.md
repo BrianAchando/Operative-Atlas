@@ -33,8 +33,8 @@ summary: The unit protocol: labs, rounds, escalation, cardiac, thoracic and vasc
 **Q:** Why is regional analgesia central after thoracotomy?
 - [x] Pain prevents coughing, leading to sputum retention and pneumonia
   > Analgesia is lung function.
-- [ ] It shortens the operation
-- [ ] It prevents air leak
+- [ ] It shortens the operation by reducing the depth of general anesthesia needed
+- [ ] It prevents air leak by lowering tension across the bronchial and parenchymal staple lines
 - [ ] It replaces physiotherapy
 
 ## [cticu-thoracic-1] Drains, air leak, pneumonectomy
@@ -66,8 +66,8 @@ summary: The unit protocol: labs, rounds, escalation, cardiac, thoracic and vasc
 **Q:** When can a chest drain come out after lobectomy?
 - [x] No air leak and non-chylous output up to 450 mL/24 h
   > ERAS lung 2019.
-- [ ] Only when output is zero
-- [ ] After 7 days routinely
+- [ ] Only when output is zero, to avoid a re-accumulating effusion
+- [ ] After 7 days routinely, whatever the output and air leak
 - [ ] When the patient asks
 
 ## Sources

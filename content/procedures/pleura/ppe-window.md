@@ -28,9 +28,9 @@ Chain: Infected fluid in a rigid space → Sepsis → **Erodes the stump from ou
 **Q:** Ten days after right pneumonectomy, a patient suddenly coughs up 300 mL of thin brown fluid and becomes breathless. How should he be positioned?
 - [x] Operated (right) side down, or sitting up, so the space fluid cannot flood the left lung
   > This is a bronchopleural fistula: the pneumonectomy space is draining into the airway. Positioning protects the remaining lung until a drain is in.
-- [ ] Left side down
-- [ ] Flat and supine
-- [ ] Head down
+- [ ] Left side down, so the remaining lung is dependent and best perfused for gas exchange
+- [ ] Flat and supine, which keeps the mediastinum central while a drain is placed in the space
+- [ ] Head down, to let the space fluid drain out through the mouth and airway
 
 ## [ppe-anatomy] The right stump and its neighbors
 
@@ -58,8 +58,8 @@ A **61-year-old man**, **right pneumonectomy** 11 days ago for a central squamou
 **Q:** What is the first priority when this patient starts coughing up space fluid?
 - [x] Protect the left lung: position operated side down and drain the space
   > Death in BPF comes from aspiration of the infected space fluid into the remaining lung; positioning and a chest drain stop it, before bronchoscopy or definitive surgery.
-- [ ] Urgent bronchoscopic glue
-- [ ] CT scan first
+- [ ] Urgent bronchoscopic glue to seal the stump before any drainage of the space
+- [ ] CT scan first, to confirm the fistula before the patient is positioned or drained
 - [ ] Start a diuretic
 
 ## [ppe-window-consent] Consent: what to discuss with this patient
@@ -104,9 +104,9 @@ Template and how to use it: [CTICU protocol, consent](#approach=cticu-consent&st
 **Q:** What must a patient know before an open window thoracostomy?
 - [x] The chest stays open for weeks to months, with regular dressings, before closure
   > Expectations about a long course prevent distress and non-attendance.
-- [ ] It closes in a day
+- [ ] It closes in a day once the cavity is cleaned, so only a short admission is needed
 - [ ] No dressings are needed
-- [ ] It cures a fistula immediately
+- [ ] It cures a fistula immediately because the space no longer holds any infected fluid
 
 ## [ppe-drain] Position, drain the space, bronchoscopy
 
@@ -125,9 +125,9 @@ The cavity now drains by gravity and can be packed and inspected; the mediastinu
 **Q:** Where should the open window be placed?
 - [x] Over the most dependent part of the cavity, laterally
   > Gravity drainage needs the lowest point; too high and pus pools below it.
-- [ ] Anteriorly in the 2nd space
+- [ ] Anteriorly in the 2nd space, where the chest wall is thinnest and easiest to dress
 - [ ] Over the stump
-- [ ] Posteriorly at the apex
+- [ ] Posteriorly at the apex, so the window lies over the highest point of the cavity
 
 ## [ppe-pack] Debride, pack or apply negative pressure
 
@@ -164,8 +164,8 @@ Doses: [electrolytes](#approach=cticu-doses&step=0), [vasoactive drugs](#approac
 **Q:** An open window patient coughs up dressing fluid. What does it suggest?
 - [x] A bronchopleural fistula is open
   > Fluid from the space entering the airway means the fistula is patent: review and plan closure.
-- [ ] Normal healing
-- [ ] Pneumonia only
+- [ ] Normal healing, as fluid in the cavity is absorbed and coughed up
+- [ ] Pneumonia only, with secretions that happen to resemble the dressing fluid
 - [ ] Wound infection only
 
 ## Sources

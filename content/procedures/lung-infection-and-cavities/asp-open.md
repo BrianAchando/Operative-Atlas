@@ -28,9 +28,9 @@ Chain: Cavity colonized by *Aspergillus* → Fungal ball (aspergilloma) → **Er
 **Q:** Where does the blood come from in hemoptysis from a post-TB cavity?
 - [x] Hypertrophied bronchial and non-bronchial systemic arteries, at systemic pressure
   > That is why it can be massive, and why bronchial (and intercostal, phrenic) artery embolization controls it; the pulmonary artery is the source in a minority (Rasmussen aneurysm).
-- [ ] The pulmonary veins
+- [ ] The pulmonary veins, which become congested around the cavity and rupture into it under pressure
 - [ ] The fungal ball itself
-- [ ] Capillaries in the cavity wall only
+- [ ] Capillaries in the cavity wall only, eroded by the fungal ball rubbing against the lining
 
 ## [asp-open-case] Case: aspergilloma with hemoptysis
 
@@ -47,11 +47,11 @@ A **42-year-old man**, treated for pulmonary TB 8 years ago (cured). Three episo
 ### Question
 
 **Q:** After successful bronchial artery embolization, why operate on this simple aspergilloma?
-- [x] Hemoptysis often recurs after embolization, and resection of a simple aspergilloma is curative with low risk
+- [x] Hemoptysis often recurs after embolization; resecting a simple aspergilloma is curative and low risk
   > Recurrence after embolization ranges from 10% to over 50%; a simple aspergilloma in a fit patient is best removed, electively, once bleeding has settled.
-- [ ] Embolization is curative; surgery is not needed
+- [ ] Embolization is curative because the bronchial supply to the cavity is permanently occluded, so surgery is not needed
 - [ ] To obtain tissue for TB culture only
-- [ ] Only if itraconazole fails for 2 years
+- [ ] Only if itraconazole fails after 2 years, since antifungal therapy dissolves most fungal balls given enough time
 
 ## [asp-open-consent] Consent: what to discuss with this patient
 
@@ -99,10 +99,10 @@ Template and how to use it: [CTICU protocol, consent](#approach=cticu-consent&st
 ### Question
 
 **Q:** What should a patient with a simple aspergilloma be told about resection?
-- [x] It is the definitive treatment and the risk is low for simple disease; without it, bleeding is the main danger
+- [x] It is the definitive treatment, low risk in simple disease; without it, bleeding is the main danger
   > Embolization controls bleeding for a time but it recurs often; a simple aspergilloma in a fit patient is best removed electively.
-- [ ] It is only needed if the fungal ball grows
-- [ ] Antifungal tablets alone will cure it
+- [ ] It is only needed if the fungal ball grows on serial CT, since a stable fungal ball rarely causes bleeding
+- [ ] Antifungal tablets alone will cure it, because oral azoles penetrate the cavity and dissolve the fungal ball
 - [ ] Surgery is safest in complex disease
 
 ## [asp-open-operation] The operation: resection
@@ -134,8 +134,8 @@ Doses: [electrolytes](#approach=cticu-doses&step=0), [vasoactive drugs](#approac
 **Q:** Day 1 after resection of an aspergilloma: the drain fills with 300 mL of blood in one hour. Next?
 - [x] Call the consultant: sustained bleeding from the adhesion bed needs return to theatre
   > Apical adhesion beds and chest wall collaterals bleed; sustained output above the unit thresholds needs re-exploration.
-- [ ] Clamp the drain
-- [ ] Give tranexamic acid by mouth and wait
+- [ ] Clamp the drain so the blood tamponades the adhesion bed and the bleeding stops on its own
+- [ ] Give tranexamic acid by mouth and wait, as raw adhesion beds usually stop oozing within hours
 - [ ] Start an azole
 
 ## Sources

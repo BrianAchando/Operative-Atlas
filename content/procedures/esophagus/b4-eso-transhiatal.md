@@ -34,9 +34,9 @@ Separate clinical, pathological and post-neoadjuvant (yp) stage groups; squamous
 **Q:** A squamous carcinoma of the middle third lies at the level of the carina. Which test must precede resection?
 - [x] Bronchoscopy, to exclude invasion of the trachea or left main bronchus (T4b)
   > Mid-third tumors sit against the membranous trachea and left main bronchus; airway invasion makes the tumor unresectable and changes the plan.
-- [ ] Colonoscopy
+- [ ] Colonoscopy, to exclude a synchronous colorectal primary before the abdominal phase
 - [ ] Lower limb Doppler
-- [ ] Bone marrow biopsy
+- [ ] Bone marrow biopsy, to exclude marrow spread before a major resection
 
 ## [th-anat] The esophagus and its neighbors
 
@@ -59,9 +59,9 @@ A **68-year-old man**, long-standing reflux, dysphagia; endoscopy: an **adenocar
 **Q:** For resectable esophageal adenocarcinoma, which neoadjuvant strategy did ESOPEC favor?
 - [x] Perioperative FLOT chemotherapy over CROSS chemoradiotherapy
   > 3-year OS 57.4% vs 50.7% (HR 0.70). For squamous carcinoma, CROSS-type chemoradiotherapy remains standard.
-- [ ] CROSS over FLOT
-- [ ] Surgery alone
-- [ ] Definitive chemoradiotherapy
+- [ ] CROSS over FLOT, as radiotherapy gave better local control and survival
+- [ ] Surgery alone, as neither regimen improved survival
+- [ ] Definitive chemoradiotherapy, with esophagectomy kept for salvage only
 
 ## [b4-eso-transhiatal-consent] Consent: what to discuss with this patient
 
@@ -111,8 +111,8 @@ Template and how to use it: [CTICU protocol, consent](#approach=cticu-consent&st
 **Q:** Which long-term effect must be discussed before esophagectomy?
 - [x] Reflux, early satiety, dumping and possible anastomotic stricture
   > These shape life after surgery and are part of informed consent.
-- [ ] Better appetite and weight gain
-- [ ] No change in diet is expected
+- [ ] Better appetite and weight gain once the obstructing tumor is removed
+- [ ] No change in diet is expected, as the gastric conduit works like the native stomach
 - [ ] Chronic diarrhea only
 
 ## [th-lap] Abdomen: mobilize the stomach
@@ -134,7 +134,7 @@ Watch the blood pressure: the heart is compressed by the hand.
 **Q:** During transhiatal blunt dissection the anesthetist reports a large air leak. What has happened?
 - [x] A tear in the membranous trachea or left main bronchus
   > The membranous airway lies directly on the esophagus; advance the tube past the tear and repair it through a right thoracotomy or via the neck.
-- [ ] A pneumothorax
+- [ ] A pneumothorax from a breach of the right mediastinal pleura
 - [ ] An azygos tear
 - [ ] A tear of the left atrium
 
@@ -188,10 +188,10 @@ Doses: [electrolytes](#approach=cticu-doses&step=0), [vasoactive drugs](#approac
 ### Question
 
 **Q:** POD 3 after Ivor Lewis: new AF, CRP 24 mg/dL and cloudy drain fluid. Next?
-- [x] Treat as an anastomotic leak until proven otherwise: CT with oral contrast, then endoscopy
+- [x] Treat as anastomotic leak until proven otherwise: CT with oral contrast, then endoscopy
   > New AF and a CRP above about 17.6 mg/dL on POD 3 with turbid drain fluid point to a leak.
-- [ ] Rate control only
-- [ ] Start oral sips
+- [ ] Rate control only, since new AF is common after esophagectomy and a raised CRP is expected on day 3
+- [ ] Start oral sips to test the anastomosis clinically before arranging any imaging
 - [ ] Remove the chest drain
 
 ## Sources

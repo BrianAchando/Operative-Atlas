@@ -34,9 +34,9 @@ Separate clinical, pathological and post-neoadjuvant (yp) stage groups; squamous
 **Q:** A squamous carcinoma of the middle third lies at the level of the carina. Which test must precede resection?
 - [x] Bronchoscopy, to exclude invasion of the trachea or left main bronchus (T4b)
   > Mid-third tumors sit against the membranous trachea and left main bronchus; airway invasion makes the tumor unresectable and changes the plan.
-- [ ] Colonoscopy
+- [ ] Colonoscopy, to exclude a synchronous colorectal primary before the abdominal phase
 - [ ] Lower limb Doppler
-- [ ] Bone marrow biopsy
+- [ ] Bone marrow biopsy, to exclude marrow spread before a major resection
 
 ## [mk-anat] The esophagus and its neighbors
 
@@ -59,10 +59,10 @@ A **27-year-old man** from western Kenya, dysphagia for 4 months. Endoscopy: a t
 ### Question
 
 **Q:** Why a neck anastomosis (McKeown) for this tumor?
-- [x] A mid-third tumor needs a long proximal margin that a chest anastomosis may not give
+- [x] A mid-third tumor needs a longer proximal margin than a chest anastomosis may give
   > Taking the esophagus into the neck gives a longer margin above the tumor and a complete thoracic lymphadenectomy; a cervical leak is also easier to manage than an intrathoracic one.
-- [ ] It is always required for squamous carcinoma
-- [ ] Because the stomach is too short
+- [ ] It is always required for squamous carcinoma, whatever the level of the tumor in the esophagus
+- [ ] Because the stomach is too short to reach the chest after mobilization
 - [ ] To avoid the abdomen
 
 ## [b4-eso-mckeown-consent] Consent: what to discuss with this patient
@@ -113,8 +113,8 @@ Template and how to use it: [CTICU protocol, consent](#approach=cticu-consent&st
 **Q:** Which long-term effect must be discussed before esophagectomy?
 - [x] Reflux, early satiety, dumping and possible anastomotic stricture
   > These shape life after surgery and are part of informed consent.
-- [ ] Better appetite and weight gain
-- [ ] No change in diet is expected
+- [ ] Better appetite and weight gain once the obstructing tumor is removed
+- [ ] No change in diet is expected, as the gastric conduit works like the native stomach
 - [ ] Chronic diarrhea only
 
 ## [mk-thor] Right thoracotomy (or right VATS)
@@ -193,10 +193,10 @@ Doses: [electrolytes](#approach=cticu-doses&step=0), [vasoactive drugs](#approac
 ### Question
 
 **Q:** POD 3 after Ivor Lewis: new AF, CRP 24 mg/dL and cloudy drain fluid. Next?
-- [x] Treat as an anastomotic leak until proven otherwise: CT with oral contrast, then endoscopy
+- [x] Treat as anastomotic leak until proven otherwise: CT with oral contrast, then endoscopy
   > New AF and a CRP above about 17.6 mg/dL on POD 3 with turbid drain fluid point to a leak.
-- [ ] Rate control only
-- [ ] Start oral sips
+- [ ] Rate control only, since new AF is common after esophagectomy and a raised CRP is expected on day 3
+- [ ] Start oral sips to test the anastomosis clinically before arranging any imaging
 - [ ] Remove the chest drain
 
 ## Sources

@@ -149,4 +149,25 @@ def build(ctx):
         emit_mesh('bx-lul', 'Bronchiectasis: dilated, varicose and cystic bronchi (left upper lobe)', 'pathology', '#e7d9a8', tree, opacity=0.8, visible=False,
                   note='Traction and post-infective bronchiectasis after tuberculosis: thick-walled bronchi wider than their artery (signet ring), cylindrical, varicose and cystic, pooling secretions; recurrent infection and haemoptysis.')
         LM['bx-lul'] = tips[0]
+
+    # ------------------------------------------------------------ pedicled latissimus dorsi flap: a broad, flat muscle sheet, tapering to its tip on the stump
+    if all(f'flap-{i}' in LMW for i in range(5)):
+        P = np.array([LMW[f'flap-{i}'] for i in range(5)], float)
+        Q = Vessel(P, [1, 1], step=2.0).P                                       # the smooth course
+        T = np.gradient(Q, axis=0); T /= np.linalg.norm(T, axis=1, keepdims=True) + 1e-9
+        s = np.r_[0, np.cumsum(np.linalg.norm(np.diff(Q, axis=0), axis=1))]; t = s / s[-1]
+        ax = np.array([0.0, -20.0, -60.0])                                      # roughly the chest's long axis: the sheet lies flat against the wall
+        N = Q - ax; N[:, 2] = 0; N = N - T * (N * T).sum(1, keepdims=True)
+        N = ndimage.uniform_filter1d(N, 15, axis=0, mode='nearest'); N /= np.linalg.norm(N, axis=1, keepdims=True) + 1e-9
+        prims = []
+        for i in range(len(Q)):
+            n = N[i]; w = _unit(np.cross(T[i], n)); n = np.cross(w, T[i])
+            half = 34 - 18 * t[i] ** 0.8; th = 4.2 - 1.6 * t[i]
+            prims.append(Ellipsoid(Q[i], [half, th, 5.0], np.array([w, n, T[i]])))
+        sheet = mesh(prims, voxel=0.6, blend=2.5, smooth=10, density=0.55)
+        # the thoracodorsal pedicle on its deep surface, entering near the base
+        b0 = Q[0] + np.array([0, 0, 1.0]) * 50 + _unit(Q[0] - ax) * 4; b1 = Q[min(12, len(Q) - 1)] - _unit(Q[min(12, len(Q) - 1)] - ax) * 3
+        ped = mesh([Vessel([b0, (b0 + b1) / 2 + np.array([0, 4.0, 0]), b1], [1.6, 1.5, 1.2], step=0.8)], voxel=0.35, blend=0.8, smooth=6, density=1.2)
+        emit_mesh('flap-lat', 'Latissimus dorsi flap (to the stump)', 'pathology', '#a4453d', trimesh.util.concatenate([sheet, ped]), visible=False,
+                  note='A pedicled muscle flap on the thoracodorsal vessels (on its deep surface): broad and flat at its base, tapered and brought into the chest through a window or a resected rib bed to cover the closed stump and fill part of the space.')
     return LM

@@ -22,8 +22,8 @@ Hemodialysis needs blood flow of about 300–400 mL/min, three times a week, for
 **Q:** What did KDOQI 2019 change about access planning?
 - [x] From "fistula first" to a patient-first ESKD Life-Plan
   > The access is chosen for the patient's expected life course, not a fistula at any cost.
-- [ ] Catheters first for everyone
-- [ ] Grafts are preferred to fistulas
+- [ ] Catheters first for everyone, to allow time for vein mapping
+- [ ] Grafts are preferred to fistulas because they can be used sooner after placement
 - [ ] Fistulas only in the leg
 
 ## [av-case] Case: planning access before dialysis starts
@@ -39,8 +39,8 @@ A **45-year-old man**, hypertensive nephropathy, eGFR 14 and falling, not yet on
 **Q:** Which access is first for this man?
 - [x] A radiocephalic fistula in the right (non-dominant) forearm
   > Distal first preserves proximal sites for later; the non-dominant arm leaves the dominant hand free on dialysis.
-- [ ] A tunnelled jugular catheter
-- [ ] A brachiobasilic transposition
+- [ ] A tunnelled jugular catheter, so dialysis can start without waiting for maturation
+- [ ] A brachiobasilic transposition, as it matures faster than any forearm fistula
 - [ ] A thigh graft
 
 ## [avf-rc-consent] Consent: what to discuss with this patient
@@ -90,9 +90,9 @@ Template and how to use it: [CTICU protocol, consent](#approach=cticu-consent&st
 **Q:** Which serious early complication must be explained before a brachial fistula?
 - [x] Steal syndrome: hand ischemia needing urgent correction
   > Commoner with brachial inflow, diabetes and age.
-- [ ] Paraplegia
+- [ ] Paraplegia, from reduced spinal cord flow after the fistula diverts blood
 - [ ] Stroke
-- [ ] Phrenic nerve palsy
+- [ ] Phrenic nerve palsy, from traction during brachial artery exposure
 
 ## [av-rc] Radiocephalic fistula at the wrist (Brescia–Cimino)
 
@@ -115,9 +115,9 @@ Over 4–6 weeks the cephalic vein dilates and thickens. Examine it at 4–6 wee
 **Q:** At 6 weeks a radiocephalic fistula has a weak thrill that fades just above the anastomosis. Most likely?
 - [x] A juxta-anastomotic stenosis: ultrasound, then balloon angioplasty or revision
   > The commonest cause of failure to mature in the forearm.
-- [ ] Normal maturation: wait 6 months
+- [ ] Normal maturation: wait 6 months, as a weak thrill at 6 weeks is expected in the forearm
 - [ ] Heart failure
-- [ ] Steal syndrome
+- [ ] Steal syndrome, as flow diverted to the hand weakens the thrill above the anastomosis
 
 ## [avf-rc-icu] ICU and post-operative care
 
@@ -140,9 +140,9 @@ Doses: [electrolytes](#approach=cticu-doses&step=0), [vasoactive drugs](#approac
 **Q:** Four hours after a radiocephalic fistula the thrill has gone. Next?
 - [x] Call the surgeon: early thrombosis needs urgent exploration
   > Early loss of thrill is usually technical and salvageable if acted on quickly.
-- [ ] Wait 6 weeks
+- [ ] Wait 6 weeks, as the thrill usually returns once the fistula matures
 - [ ] Massage the arm
-- [ ] Start dialysis through it
+- [ ] Start dialysis through it, since needling will restore flow
 
 ## Sources
 

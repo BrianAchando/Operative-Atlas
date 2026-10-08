@@ -38,8 +38,8 @@ summary: The unit protocol: labs, rounds, escalation, cardiac, thoracic and vasc
 - [x] More than 400 mL in the first hour, or sustained high output, or tamponade
   > Correct coagulopathy and temperature, but these thresholds call for the surgeon.
 - [ ] Any drainage at all
-- [ ] Only when Hb is under 5
-- [ ] Never in the first 24 h
+- [ ] Only when Hb is under 5 g/dL, as drain volume alone is too unreliable to act on
+- [ ] Never in the first 24 h, because coagulopathy must be fully corrected before reopening
 
 ## [cticu-cardiac-1] Rhythm, kidneys, glucose, analgesia, day 1
 

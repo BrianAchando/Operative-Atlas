@@ -39,8 +39,8 @@ Chain: Medial degeneration → Dilatation → Laplace: tension rises with radius
 - [x] About 7.0 cm
   > Coady et al. found hinge points at 6.0 cm (ascending) and 7.0 cm (descending); guidelines advise repair of the descending aorta at 5.5 cm, before that point.
 - [ ] 4.0 cm
-- [ ] 5.0 cm
-- [ ] 9.0 cm
+- [ ] About 5.0 cm, as for the ascending aorta
+- [ ] About 9.0 cm, as rupture is rare below this size
 
 ## [tas-anatomy] The ascending aorta and the arch
 
@@ -61,8 +61,8 @@ A **52-year-old man**, 3 months of central chest pain and a hoarse voice. CT: a 
 **Q:** Which coronary lesion is characteristic of syphilitic aortitis?
 - [x] Ostial stenosis of the coronary arteries
   > Aortitis thickens the intima at the root, narrowing the ostia; it needs to be addressed at surgery (endarterectomy, patch or bypass).
-- [ ] Mid-LAD plaque
-- [ ] Coronary aneurysms
+- [ ] Mid-LAD plaque from accelerated atherosclerosis of the vasa vasorum
+- [ ] Coronary aneurysms from spirochete invasion of the media
 - [ ] Coronary spasm
 
 ## [taa-asc-consent] Consent: what to discuss with this patient
@@ -107,7 +107,7 @@ Template and how to use it: [CTICU protocol, consent](#approach=cticu-consent&st
 **Q:** Which risk is specific to hemiarch repair under circulatory arrest?
 - [x] Stroke and neurological injury
   > Brain protection (antegrade cerebral perfusion, hypothermia) reduces but does not remove it.
-- [ ] Paraplegia is the main risk
+- [ ] Paraplegia is the main risk, from spinal cord ischemia during arrest
 - [ ] Phrenic nerve palsy
 - [ ] Heart block
 
@@ -144,8 +144,8 @@ Doses: [electrolytes](#approach=cticu-doses&step=0), [vasoactive drugs](#approac
 **Q:** After hemiarch repair: oozing, platelets 60, fibrinogen 1.0 g/L. Next?
 - [x] Give platelets and fibrinogen (cryoprecipitate)
   > Correct the coagulopathy of circulatory arrest before re-exploring.
-- [ ] Re-open immediately
-- [ ] More protamine only
+- [ ] Re-open immediately before correcting any coagulation defect
+- [ ] More protamine only, since residual heparin explains the oozing
 - [ ] Observe
 
 ## Sources

@@ -29,8 +29,8 @@ Chain: Occlusion → Muscle and nerve ischemia → **Irreversible after about 6 
 **Q:** Which finding moves acute limb ischemia from Rutherford IIa to IIb?
 - [x] Sensory loss beyond the toes, rest pain or muscle weakness
   > IIb is immediately threatened: emergency revascularization.
-- [ ] An absent foot pulse
-- [ ] A cold foot
+- [ ] An absent arterial Doppler signal in the foot, which separates IIb from IIa
+- [ ] A cold, pale foot, which shows the limb is now immediately threatened
 - [ ] Pallor
 
 ## [ali-anatomy] The femoral bifurcation to the trifurcation
@@ -55,8 +55,8 @@ A **34-year-old woman** with rheumatic mitral stenosis and AF, off warfarin for 
 - [x] Unfractionated heparin: a bolus then an infusion
   > Heparin stops propagation of clot while theatre is arranged.
 - [ ] Aspirin only
-- [ ] Thrombolysis on the ward
-- [ ] Warm the leg and observe
+- [ ] Thrombolysis on the ward, started before any imaging is done
+- [ ] Warm the leg with a heating blanket and observe for return of pulses
 
 ## [ali-emb-consent] Consent: what to discuss with this patient
 
@@ -103,9 +103,9 @@ Template and how to use it: [CTICU protocol, consent](#approach=cticu-consent&st
 **Q:** Which risk is specific to revascularizing a limb ischemic for many hours?
 - [x] Reperfusion injury: compartment syndrome, high potassium and kidney injury
   > Restoring flow to dead or injured muscle releases potassium and myoglobin.
-- [ ] Paraplegia
+- [ ] Paraplegia, from sudden reperfusion of the spinal cord arteries supplied through the limb
 - [ ] Stroke
-- [ ] Phrenic nerve palsy
+- [ ] Phrenic nerve palsy, from potassium released into the circulation after reperfusion
 
 ## [ali-expose] Expose the common femoral bifurcation; control; transverse arteriotomy
 
@@ -120,11 +120,11 @@ Over-inflation damages the intima, causing dissection and later stenosis. If the
 ### Question
 
 **Q:** After embolectomy, which sign shows the distal arteries are clear?
-- [x] Brisk back-bleeding and two clean catheter passes, confirmed by a completion angiogram or Doppler signals
+- [x] Brisk back-bleeding and two clean catheter passes, confirmed by completion angiogram or Doppler
   > Back-bleeding alone can come from collaterals; confirm with imaging or pedal Doppler.
-- [ ] The patient says the pain is better
-- [ ] The foot is warm within a minute
-- [ ] A femoral pulse alone
+- [ ] The patient says the pain is better, which is the most reliable sign the run-off is clear
+- [ ] The foot is warm and pink within a minute of releasing the clamps, so the tibial vessels must be open
+- [ ] A femoral pulse alone, since good inflow means the distal arteries must be patent
 
 ## [ali-clear] Clot out; close the arteriotomy; check the foot
 
@@ -174,8 +174,8 @@ Doses: [electrolytes](#approach=cticu-doses&step=0), [vasoactive drugs](#approac
 - [x] Four-compartment fasciotomy now
   > Clinical compartment syndrome needs decompression without waiting for pressure readings.
 - [ ] More analgesia
-- [ ] Elevate the leg high
-- [ ] Repeat embolectomy
+- [ ] Elevate the leg high to reduce the swelling and recheck
+- [ ] Repeat embolectomy, as calf pain means the artery has reoccluded
 
 ## Sources
 

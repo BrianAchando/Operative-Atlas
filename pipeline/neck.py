@@ -67,15 +67,14 @@ def build(ctx):
     emit_mesh('trach-dist', 'Trachea below the stenosis', 'airway', CART, with_rings(dist_, C[0][2], z_lo - 2), visible=False, note='Schematic from the CT centreline.')
     # larynx outline: cricoid ring (a signet, high behind) and the thyroid cartilage laminae
     cc = at(z_cric) + SUP * 4
-    cric = trimesh.creation.annulus(r_min=r_tr - 1, r_max=r_tr + 3, height=7, sections=40); cric.apply_translation(W(cc))
-    emit_mesh('cricoid', 'Cricoid cartilage', 'airway', CART, cric, visible=False, note='Schematic, above this scan: the only complete ring of the airway.')
-    # thyroid cartilage: two laminae meeting in front at about 90 degrees (the prominence), above the cricoid
-    lams = []
-    for sx in (-1, 1):
-        lb = trimesh.creation.box(extents=[2.5, 26, 24]); lb.apply_transform(trimesh.transformations.rotation_matrix(sx * np.pi / 4, [0, 0, 1]))
-        lb.apply_translation(W(cc + SUP * 24 + ANT * (r_tr - 3) + RIGHT * sx * 9)); lams.append(lb)
-    shield_mesh = trimesh.util.concatenate(lams)
-    emit_mesh('thyroid-cart', 'Thyroid cartilage', 'airway', CART, shield_mesh, visible=False, note='Schematic, above this scan: the two laminae meet in front at the laryngeal prominence.')
+    import anatomy_neck
+    base = W(cc) - SUP * 3.5
+    cric = anatomy_neck.cricoid(base, r_tr - 1.0, r_tr + 2.2)
+    emit_mesh('cricoid', 'Cricoid cartilage', 'airway', CART, cric, visible=False,
+              note='Schematic, above this scan: a signet ring, low arch in front and tall lamina behind; the only complete ring of the airway, so a stricture here is the hardest to resect.')
+    # thyroid cartilage: two laminae meeting in front at about 90 degrees (the prominence), above the cricothyroid membrane
+    shield_mesh = anatomy_neck.thyroid(base + SUP * 15 + ANT * (r_tr + 6))
+    emit_mesh('thyroid-cart', 'Thyroid cartilage', 'airway', CART, shield_mesh, visible=False, note='Schematic, above this scan: the two laminae meet in front at the laryngeal prominence; the superior horns reach up to the hyoid and the inferior horns articulate with the cricoid (the recurrent laryngeal nerve enters the larynx just behind that joint).')
     LM['cricoid'] = cc; LM['stenosis'] = at((z_up + z_lo) / 2); LM['cut-up'] = at(z_up); LM['cut-lo'] = at(z_lo)
     ctx['dirs']['trach-axis'] = axis((z_up + z_lo) / 2)
     ctx['scalars']['trach-radius'] = r_tr; ctx['scalars']['stenosis-length'] = L

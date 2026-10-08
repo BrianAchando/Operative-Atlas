@@ -19,8 +19,8 @@ The **root** runs from the ventricular attachment of the cusps (the annulus) to 
 - [x] The dilated sinuses would be left behind and keep enlarging
   > In root disease the sinuses themselves are aneurysmal; a supracoronary graft leaves them in place to dilate or dissect.
 - [ ] The coronary ostia are always too low
-- [ ] An AVR cannot be done in a large root
-- [ ] The coronary ostia always sit too high for an AVR
+- [ ] An AVR cannot be done in a large root because the prosthesis cannot be seated
+- [ ] The coronary ostia always sit too high for an AVR, so the prosthesis cannot be sewn below them
 
 ## [rb-decide] Which root operation
 
@@ -43,8 +43,8 @@ A **45-year-old schoolteacher** with a bicuspid aortic valve known since a murmu
 **Q:** A 45-year-old with a 5.6 cm root aneurysm and a severely stenotic bicuspid valve. What operation fits?
 - [x] A Bentall (mechanical composite graft, if INR monitoring is reliable)
   > The root is past 5.5 cm and the valve is diseased, so valve-sparing is not an option; at 45 guidelines favor a mechanical valve if anticoagulation is safe.
-- [ ] AVR alone
-- [ ] A valve-sparing root replacement
+- [ ] AVR alone, since the root is below the threshold for replacement at the time of valve surgery
+- [ ] A valve-sparing root replacement, as he is young and would avoid anticoagulation
 - [ ] Surveillance
 
 ## [root-bentall-consent] Consent: what to discuss with this patient
@@ -95,8 +95,8 @@ Template and how to use it: [CTICU protocol, consent](#approach=cticu-consent&st
 - [x] Both the autograft and the pulmonary homograft may need later intervention
   > The Ross converts single-valve disease into two-valve disease.
 - [ ] Reoperation never occurs
-- [ ] Only the mitral valve is at risk
-- [ ] Warfarin is lifelong
+- [ ] Only the mitral valve is at risk, as rheumatic changes tend to develop after the Ross
+- [ ] Warfarin is lifelong because the homograft in the pulmonary position tends to thrombose
 
 ## [rb-sternotomy] Median sternotomy, pericardial cradle
 
@@ -122,11 +122,11 @@ Repeat every 15–20 minutes (retrograde, or down the ostia), or as the solution
 ### Question
 
 **Q:** Severe aortic regurgitation. After the cross-clamp, antegrade root cardioplegia is started and the LV swells while the heart keeps beating. Next?
-- [x] Stop the root infusion, vent the LV, open the aorta and give cardioplegia directly into the ostia (and/or retrograde)
+- [x] Stop the root infusion, vent the LV, open the aorta, give ostial (and/or retrograde) cardioplegia
   > Root cardioplegia is going through the incompetent valve into the LV, not down the coronaries. Distension injures the myocardium.
-- [ ] Increase the root infusion pressure
+- [ ] Increase the root infusion pressure until it overcomes the regurgitant valve and the coronaries fill
 - [ ] Cool further and wait for arrest
-- [ ] Clamp the root and continue the infusion at higher flow
+- [ ] Clamp the root more proximally and continue the root infusion at a higher flow until the heart arrests
 
 ## [rb-excise] Transect, excise the sinuses, keep the coronary buttons
 
@@ -157,9 +157,9 @@ Test each suture line (cardioplegia down the graft) **before** the distal anasto
 **Q:** After a Bentall, the patient comes off bypass with inferior ST elevation and a failing RV. The left side looks fine. Most likely?
 - [x] The right coronary button is kinked or under tension
   > The right button, placed too low or with the heart empty, kinks when the heart fills. Go back on bypass and redo it (or bypass the RCA).
-- [ ] Air in the left main
+- [ ] Air in the left main, which typically clears into the inferior territory
 - [ ] A paravalvular leak
-- [ ] Left main ostial stenosis from the valve
+- [ ] Left main ostial stenosis from the valve, causing inferior ischemia and RV failure
 
 ## [rb-distal] Distal anastomosis, de-air, check
 
@@ -184,9 +184,9 @@ Then venous cannula out, protamine, arterial cannula out last.
 **Q:** After AVR for severe AS (small, thick LV), the patient becomes hypotensive on adrenaline. TOE: hyperdynamic LV, mitral leaflet touching the septum in systole, high LVOT gradient. Treatment?
 - [x] Stop inotropes, give volume, a beta-blocker or phenylephrine
   > This is dynamic LVOT obstruction with systolic anterior motion of the mitral leaflet, which inotropes worsen. Fill, slow and constrict.
-- [ ] More adrenaline
+- [ ] More adrenaline to support the small thick ventricle until the pressure recovers
 - [ ] Go back on bypass and replace the mitral valve
-- [ ] Add a vasodilator and reduce preload further
+- [ ] Add a vasodilator and reduce preload further to offload the hypertrophied LV
 
 ## [root-bentall-icu] ICU and post-operative care
 
@@ -209,8 +209,8 @@ Doses: [electrolytes](#approach=cticu-doses&step=0), [vasoactive drugs](#approac
 **Q:** After a Bentall, new ST elevation in the inferior leads. Think of?
 - [x] Right coronary button kinking or ischemia
   > Coronary button problems present early with ST change or arrhythmia: echo and angiography.
-- [ ] Pericarditis, which needs only an NSAID
-- [ ] Left main button kinking
+- [ ] Pericarditis from the operation, which needs only an NSAID and observation
+- [ ] Left main button kinking, which presents with isolated inferior lead changes
 - [ ] Hypokalemia
 
 ## Sources

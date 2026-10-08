@@ -61,8 +61,8 @@ Rutherford 4–6 is **chronic limb-threatening ischemia (CLTI)**. **Acute** limb
 **Q:** A 50-year-old smoker has buttock claudication, absent femoral pulses and erectile dysfunction. Where is the disease?
 - [x] The distal aorta and both iliac arteries (Leriche syndrome)
   > Buttock claudication and absent femoral pulses place the obstruction above the groins; erectile dysfunction reflects poor internal iliac flow.
-- [ ] The superficial femoral arteries
-- [ ] The popliteal arteries
+- [ ] The superficial femoral arteries, which explains the absent femoral pulses and impotence
+- [ ] The popliteal arteries, as calf and buttock symptoms both arise from popliteal occlusion
 - [ ] The tibial arteries
 
 ## [ao-anatomy] The aortic bifurcation, iliacs and femoral arteries
@@ -113,8 +113,8 @@ The choice rests on **the extent of disease** (unilateral or bilateral, how far 
 **Q:** A 70-year-old with a right common iliac occlusion, a normal left iliac on CT, and severe COPD has rest pain in the right foot. Stenting has failed. Which bypass?
 - [x] Femorofemoral cross-over from the left groin
   > Unilateral disease with a healthy donor iliac is the classic indication; it avoids a laparotomy and has better patency than an axillofemoral graft.
-- [ ] Aortobifemoral bypass
-- [ ] Axillobifemoral bypass
+- [ ] Aortobifemoral bypass, as it has the best patency regardless of lung function
+- [ ] Axillobifemoral bypass, since both groins need inflow from an extra-anatomic source
 - [ ] Primary amputation
 
 ## [aiod-abf-consent] Consent: what to discuss with this patient
@@ -161,8 +161,8 @@ Template and how to use it: [CTICU protocol, consent](#approach=cticu-consent&st
 **Q:** Which late complication should the ABF patient know to report?
 - [x] Gastrointestinal bleeding (aortoenteric fistula) or a groin lump or infection
   > Late graft complications present this way.
-- [ ] Hoarseness
-- [ ] Headache
+- [ ] Hoarseness, from late pressure of the graft limbs on the recurrent laryngeal nerve in the chest
+- [ ] Headache, the usual early warning sign of anastomotic false aneurysm formation in the abdomen
 - [ ] Hair loss
 
 ## [ab-groins] Expose both femoral bifurcations
@@ -187,8 +187,8 @@ From the groin and the aorta, a finger (then a tunnelling instrument) creates a 
 - [x] A graft in front of the ureter can compress it and cause hydronephrosis
   > Tunnel along the front of the iliac arteries, under (behind) the ureter; the ureter then lies in front of the graft.
 - [ ] To shorten the graft
-- [ ] To avoid the iliac veins
-- [ ] To prevent infection
+- [ ] To avoid the iliac veins, which lie in front of the ureters along the tunnel to the groin
+- [ ] To prevent infection, because the ureter shields the graft from bowel organisms in the pelvis
 
 ## [ab-graft] Proximal anastomosis, then the femoral anastomoses
 
@@ -221,9 +221,9 @@ Doses: [electrolytes](#approach=cticu-doses&step=0), [vasoactive drugs](#approac
 **Q:** Day 1 after ABF: right foot cold, no Doppler signal. Next?
 - [x] Call the consultant: limb occlusion needs thrombectomy
   > Early limb thrombosis is a technical problem until proven otherwise.
-- [ ] Elevate the leg
+- [ ] Elevate the leg to reduce swelling, which is the usual cause of a lost Doppler signal
 - [ ] Observe
-- [ ] Start aspirin only
+- [ ] Start aspirin only, as early limb thrombosis usually resolves with antiplatelet therapy
 
 ## Sources
 

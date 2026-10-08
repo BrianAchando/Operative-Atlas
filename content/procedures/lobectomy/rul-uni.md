@@ -41,8 +41,8 @@ Chain: Primary tumor → **Blood: brain, bone, adrenal, liver (M1)**
 **Q:** Under the 9th edition, a 2.6 cm tumor (T1c) with metastasis in a single mediastinal station (subcarinal, station 7) and no distant spread is stage…
 - [x] IIB (T1 N2a)
   > The 9th edition splits N2: a single station (N2a) with a T1 tumor is IIB; several stations (N2b) make it IIIA. Many single-station N2 patients are now treated with neoadjuvant chemo-immunotherapy and surgery.
-- [ ] IIIA
-- [ ] IIIB
+- [ ] IIIA, because any mediastinal nodal disease places the tumor in stage III
+- [ ] IIIB, as subcarinal nodes are classed with contralateral (N3) nodes
 - [ ] IV
 
 ## [ruuni-anatomy] The right hilum from behind
@@ -68,9 +68,9 @@ A **54-year-old woman**. An incidental **1.8 cm** part-solid nodule in the right
 **Q:** Which trial showed better overall survival with segmentectomy than lobectomy for peripheral tumors of 2 cm or less?
 - [x] JCOG0802/WJOG4607L
   > 5-year OS 94.3% vs 91.1%, attributed to preserved lung function and fewer deaths from other causes, despite more local recurrence.
-- [ ] CALGB 140503
-- [ ] VIOLET
-- [ ] ADAURA
+- [ ] CALGB 140503 (sublobar resection versus lobectomy)
+- [ ] VIOLET (VATS versus open lobectomy)
+- [ ] ADAURA (adjuvant osimertinib)
 
 ## [rul-uni-consent] Consent: what to discuss with this patient
 
@@ -122,10 +122,10 @@ Template and how to use it: [CTICU protocol, consent](#approach=cticu-consent&st
 ### Question
 
 **Q:** Which of these belongs in consent for a VATS lobectomy in a patient with healed TB?
-- [x] A higher chance of conversion to open and of bleeding from adhesions and calcified nodes
+- [x] Higher risk of conversion to open and of bleeding from adhesions and calcified nodes
   > Post-TB pleural and nodal changes make VATS dissection harder; the conversion risk is a material risk.
-- [ ] A guaranteed shorter stay
-- [ ] No chest drain
+- [ ] A guaranteed shorter stay, because VATS avoids rib spreading even when there are dense adhesions
+- [ ] No chest drain, since a VATS lobectomy seals the pleura well enough to manage without one
 - [ ] No risk of air leak
 
 ## [ruuni-setup] Uniportal incision
@@ -149,8 +149,8 @@ Keep the **middle lobe artery** and **A6**, which leave at about the same level.
 **Q:** Dividing the ascending posterior artery in the fissure, which branch arises close by and must be kept?
 - [x] The superior segmental artery of the lower lobe (A6)
   > A2 leaves the interlobar artery at about the level of A6 and the middle lobe artery; identify all three before dividing.
-- [ ] The truncus anterior
-- [ ] The azygos vein
+- [ ] The truncus anterior, which runs into the fissure alongside the posterior ascending artery
+- [ ] The azygos vein, which runs close to the posterior fissure at this point
 - [ ] The right middle lobe artery
 
 ## [ruuni-bronchus] Upper lobe bronchus: clamp, inflate, staple

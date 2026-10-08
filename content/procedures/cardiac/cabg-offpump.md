@@ -90,8 +90,8 @@ Template and how to use it: [CTICU protocol, consent](#approach=cticu-consent&st
 **Q:** For a diabetic with three-vessel disease, what does the evidence let you say about CABG versus PCI?
 - [x] CABG reduces death and MI compared with PCI (FREEDOM)
   > FREEDOM (NEJM 2012): lower all-cause mortality and MI with CABG in diabetics, with more stroke.
-- [ ] PCI is always better
-- [ ] They are equal
+- [ ] PCI with drug-eluting stents is preferred once diabetes is well controlled
+- [ ] They are equal for death and MI, so the choice rests on patient preference
 - [ ] Medical therapy is best
 
 ## [cf-sternotomy] Median sternotomy, pericardial cradle
@@ -176,8 +176,8 @@ Before closing: the LIMA pedicle lies without tension; the veins do not kink whe
 **Q:** After the LIMA–LAD, TTFM shows mean flow 6 mL/min and PI 9. Next?
 - [x] Inspect the anastomosis and the pedicle; revise the graft now
   > Low flow with a high PI points to a technical problem (kink, twist, anastomotic narrowing). Fixing it before leaving theatre is far safer than finding it after an infarct.
-- [ ] Accept it: flows improve after weaning
-- [ ] Add a vein graft to the LAD later if needed
+- [ ] Accept it: flows improve after weaning as the arterial graft vasodilates
+- [ ] Add a vein graft to the LAD later if needed, leaving the LIMA in place
 - [ ] Convert to off-pump and leave the graft
 
 ## [cabg-offpump-icu] ICU and post-operative care

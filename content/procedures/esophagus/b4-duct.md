@@ -22,8 +22,8 @@ A **58-year-old man** has a left upper lobectomy with mediastinal node dissectio
 **Q:** After a left upper lobectomy, a patient has a milky left pleural effusion. At what level is the duct most likely injured?
 - [x] Above T5, where it runs on the left
   > The duct crosses from right to left at T4-T6: upper injuries leak into the left chest, lower ones into the right.
-- [ ] At the cisterna chyli
-- [ ] Below T8
+- [ ] At the cisterna chyli, at the level of L1–L2
+- [ ] Below T8, where the duct lies to the left of the aorta
 - [ ] At the diaphragm, below T10
 
 ## [td-decide] Chylothorax: when to operate
@@ -73,11 +73,11 @@ Template and how to use it: [CTICU protocol, consent](#approach=cticu-consent&st
 ### Question
 
 **Q:** When is thoracic duct ligation offered?
-- [x] When a chylothorax persists or has a high output despite conservative treatment
+- [x] When a chylothorax persists or has high output despite conservative treatment
   > Surgery follows a failed trial of fat-free feeding or TPN, especially with high output.
-- [ ] For every chylothorax on day 1
+- [ ] For every chylothorax on day 1, before any trial of drainage, diet or octreotide is made
 - [ ] Never
-- [ ] Only when the chylothorax is malignant
+- [ ] Only when the chylothorax is malignant, since traumatic leaks always close on their own
 
 ## [td-setup] Right VATS, whichever side the effusion is
 
@@ -117,9 +117,9 @@ Doses: [electrolytes](#approach=cticu-doses&step=0), [vasoactive drugs](#approac
 **Q:** 24 h after duct ligation, output is unchanged at 1.5 L of milky fluid. Next?
 - [x] Call the consultant: ligation may have failed
   > Output should fall within 24–48 h; persistence suggests a missed or accessory duct.
-- [ ] Start a normal diet
+- [ ] Start a normal diet, since the duct is now tied and fat intake no longer matters
 - [ ] Remove the drain
-- [ ] Give furosemide
+- [ ] Give furosemide to reduce the fluid load draining into the chest
 
 ## Sources
 

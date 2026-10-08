@@ -52,8 +52,8 @@ Type 2 is about 80% of operated defects. Muscular defects are common at birth (a
 **Q:** Which VSD type is most likely to cause aortic regurgitation?
 - [x] Type 1, subarterial (doubly committed)
   > The unsupported right coronary cusp prolapses into the defect; close it even when the shunt is small.
-- [ ] Type 4, muscular
-- [ ] Type 3, inlet
+- [ ] Type 4, muscular, in the apical trabecular septum
+- [ ] Type 3, inlet, beneath the septal leaflet of the tricuspid valve
 - [ ] Gerbode defect
 
 ## [vsd-size] Size, restriction and what the heart shows
@@ -75,9 +75,9 @@ Beware a large defect with a **small heart and little murmur** in an older child
 **Q:** A 6-year-old with a perimembranous VSD has a loud murmur, LV–RV gradient of 80 mmHg and normal LA and LV size. Plan?
 - [x] Follow up; no closure (small restrictive defect)
   > No left heart volume load and normal RV pressure: watch for aortic cusp prolapse and endocarditis.
-- [ ] Close on bypass now
+- [ ] Close on bypass now, as a loud murmur means a large shunt
 - [ ] PA banding
-- [ ] Device closure now
+- [ ] Device closure now to remove the endocarditis risk of any VSD
 
 ## [vsd-anatomy] The perimembranous defect and the conduction tissue
 
@@ -143,10 +143,10 @@ A VSD seen late, as so many are in Kenya, raises one question before any other: 
 ### Question
 
 **Q:** A 7-year-old with a large VSD now has saturations of 89% at rest and bidirectional shunting on echo. Next step?
-- [x] Cardiac catheterization with PVR measurement and vasoreactivity testing before any decision
+- [x] Cardiac catheterization with PVR and vasoreactivity testing before deciding
   > Desaturation and bidirectional flow suggest advanced pulmonary vascular disease; closure could be lethal if PVR is fixed.
-- [ ] Close the defect urgently
-- [ ] Discharge: the shunt has improved
+- [ ] Close the defect urgently, since bidirectional shunting means the right heart is failing and needs off-loading
+- [ ] Discharge: the shunt has improved, as less flow across the defect means the volume load has fallen
 - [ ] Pulmonary artery band
 
 ## [vsd-pm-consent] Consent: what to discuss with this patient
@@ -196,9 +196,9 @@ Template and how to use it: [CTICU protocol, consent](#approach=cticu-consent&st
 **Q:** Which risk of VSD closure is specific to the anatomy of a perimembranous defect?
 - [x] Complete heart block from injury to the His bundle
   > The bundle runs along the posteroinferior rim; a pacemaker is needed if block persists.
-- [ ] Recurrent laryngeal nerve injury
+- [ ] Recurrent laryngeal nerve injury from retraction near the arch
 - [ ] Diaphragm paralysis
-- [ ] Phrenic nerve palsy as the main risk
+- [ ] Phrenic nerve palsy as the main risk, from dissection near the defect
 
 ## [vsd-sternotomy] Median sternotomy
 
@@ -245,8 +245,8 @@ Test the tricuspid valve with saline and resuspend a detached leaflet. Watch the
 **Q:** Where along a perimembranous VSD is the His bundle at risk?
 - [x] The posteroinferior rim, near the apex of Koch's triangle
   > The bundle penetrates at the apex of Koch's triangle and runs along the posteroinferior margin of the defect.
-- [ ] The superior rim, under the aortic valve
-- [ ] The anterior muscular rim
+- [ ] The superior rim, under the aortic valve, where the bundle runs in the outlet septum
+- [ ] The anterior muscular rim, along the septomarginal trabeculation
 - [ ] Only in muscular VSDs
 
 ## [vsd-close] De-air, close the atrium, release the clamp
@@ -283,9 +283,9 @@ Doses: [electrolytes](#approach=cticu-doses&step=0), [vasoactive drugs](#approac
 **Q:** Two hours after VSD closure: heart rate 210, narrow QRS, AV dissociation, low BP. Diagnosis and first steps?
 - [x] Junctional ectopic tachycardia: cool to about 35 °C, correct Mg²⁺, reduce inotropes, consider amiodarone
   > JET is common after VSD surgery; it responds to cooling, electrolytes and less catecholamine.
-- [ ] Sinus tachycardia: give fluid
+- [ ] Sinus tachycardia from hypovolemia and pain: give fluid boluses and deepen sedation until the rate settles
 - [ ] Complete heart block
-- [ ] Atrial flutter: DC shock at once
+- [ ] Atrial flutter with 1:1 conduction: synchronized DC shock at once, then digoxin to control the ventricular rate
 
 ## Sources
 

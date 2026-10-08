@@ -30,8 +30,8 @@ summary: The unit protocol: labs, rounds, escalation, cardiac, thoracic and vasc
 - [x] It may be abdominal compartment syndrome, which fluid worsens
   > Measure bladder pressure when girth rises or oliguria persists despite filling.
 - [ ] Fluid is always right
-- [ ] Oliguria is normal
-- [ ] It is always AKI
+- [ ] Oliguria is normal after aortic clamping and needs no assessment
+- [ ] It is always AKI from suprarenal clamping, which fluid can no longer reverse
 
 ## [cticu-vascular-1] Spinal cord, bypass grafts, endovascular
 

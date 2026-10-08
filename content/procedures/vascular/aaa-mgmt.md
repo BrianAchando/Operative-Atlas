@@ -57,8 +57,8 @@ Both numbers are **axial** measurements. Where the aorta is angulated an axial c
 **Q:** An axial slice shows an AAA of 67.8 × 53.1 mm in a tortuous aorta. Before quoting its size, what do you do?
 - [x] Re-measure perpendicular to the centerline
   > An oblique axial cut through an angulated aorta overstates the diameter; the reportable diameter is the maximum perpendicular to the centerline on a reformat.
-- [ ] Quote the larger axial value, 6.8 cm
-- [ ] Average the two axial values to 6.0 cm
+- [ ] Quote the larger axial value, 6.8 cm, as the safest figure for decisions
+- [ ] Average the two axial values to 6.0 cm to correct for the tortuosity
 - [ ] Repeat a plain abdominal X-ray
 
 ## [aaam-case] A 4.6 cm aneurysm found on an ultrasound

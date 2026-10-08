@@ -24,9 +24,9 @@ A **26-year-old man** is brought in eight minutes after a single stab wound to t
 **Q:** A man with a stab wound to the left chest loses his pulse on arrival; CPR for 6 minutes. What now?
 - [x] Left anterolateral thoracotomy in the resuscitation room
   > Penetrating chest injury, pulseless, CPR well under 15 minutes: the best indication there is (EAST: strong recommendation).
-- [ ] Keep up CPR and give blood only
+- [ ] Keep up CPR and give blood only, as thoracotomy after CPR has no chance of survival
 - [ ] Pericardiocentesis and wait
-- [ ] Immediate transfer to the operating room for CT first
+- [ ] Immediate transfer to CT and then the operating room, to define the injury before opening
 
 ## [rt-consent] Consent: what to discuss with this patient
 
@@ -46,8 +46,8 @@ The seven-part template: [CTICU protocol, consent](#approach=cticu-consent&step=
 **Q:** An unconscious patient needs a resuscitative thoracotomy. How is consent handled?
 - [x] Proceed on necessity to save life, document it, and inform the next of kin as soon as possible
   > Emergency treatment without consent is justified when the patient cannot consent and delay risks life.
-- [ ] Wait for the family
-- [ ] Do not operate
+- [ ] Wait for the family to arrive and sign, because only the next of kin can consent for an unconscious adult
+- [ ] Do not operate, since without written consent any thoracotomy is legally an assault, even to save a life
 - [ ] Ask the police
 
 ## [rt-entry-l] Left anterolateral thoracotomy, 5th space
@@ -69,8 +69,8 @@ A tense, blue, non-pulsatile pericardium is **tamponade**: scoop out the clot an
 **Q:** Where do you open the pericardium?
 - [x] Anterior to the phrenic nerve, parallel to it
   > The nerve runs on the lateral pericardium; a longitudinal cut in front of it spares it. A transverse cut divides it.
-- [ ] Posterior to the phrenic nerve
-- [ ] Transversely across the nerve
+- [ ] Posterior to the phrenic nerve, close to the hilum where the pericardium is thinnest
+- [ ] Transversely across the nerve, to give the widest exposure of the heart
 - [ ] Directly over the phrenic nerve
 
 ## [rt-cardio] Cardiorrhaphy: right ventricular stab wound
@@ -138,8 +138,8 @@ Doses: [electrolytes](#approach=cticu-doses&step=0), [vasoactive drugs](#approac
 **Q:** After a clamshell for penetrating trauma: temperature 34 °C, pH 7.1, oozing. Priority?
 - [x] Correct the lethal triad: warm, transfuse 1:1:1, give TXA if within 3 h
   > Damage-control resuscitation before further surgery.
-- [ ] Return to theatre immediately for definitive repair
-- [ ] Crystalloid boluses
+- [ ] Return to theatre immediately for definitive repair before the coagulopathy is corrected
+- [ ] Crystalloid boluses to restore pressure and dilute the acidosis before any blood is given
 - [ ] Extubate
 
 ## Sources

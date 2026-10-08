@@ -41,8 +41,8 @@ Chain: Primary tumor → **Blood: brain, bone, adrenal, liver (M1)**
 **Q:** Under the 9th edition, a 2.6 cm tumor (T1c) with metastasis in a single mediastinal station (subcarinal, station 7) and no distant spread is stage…
 - [x] IIB (T1 N2a)
   > The 9th edition splits N2: a single station (N2a) with a T1 tumor is IIB; several stations (N2b) make it IIIA. Many single-station N2 patients are now treated with neoadjuvant chemo-immunotherapy and surgery.
-- [ ] IIIA
-- [ ] IIIB
+- [ ] IIIA, because any mediastinal nodal disease places the tumor in stage III
+- [ ] IIIB, as subcarinal nodes are classed with contralateral (N3) nodes
 - [ ] IV
 
 ## [lo-anatomy] The hilum from behind and in the fissure
@@ -68,11 +68,11 @@ A **58-year-old woman**, never a smoker, cooked over a wood fire for 30 years. S
 ### Question
 
 **Q:** Why did she need EBUS when the PET showed no nodal uptake?
-- [x] A tumor over 3 cm carries a significant risk of occult mediastinal nodes; guidelines advise invasive staging for tumors over 3 cm, central tumors or cN1
+- [x] Over 3 cm, occult N2 risk is significant; invasive staging is advised for tumors >3 cm, central tumors or cN1
   > PET misses small nodal deposits. ESTS 2014 recommends invasive staging for central tumors, tumors over 3 cm, or suspected N1 even when PET is negative.
-- [ ] EBUS is required before every lobectomy
-- [ ] To confirm the EGFR mutation
-- [ ] Because she had been treated for TB
+- [ ] EBUS is required before every lobectomy, whatever the tumor size, location or PET findings, to exclude N2 disease
+- [ ] To confirm the EGFR mutation, because targeted therapy must be planned before resection in every adenocarcinoma
+- [ ] Because she had been treated for TB, and old TB nodes are always PET-avid so a negative scan cannot be trusted
 
 ## [lul-open-consent] Consent: what to discuss with this patient
 
@@ -124,10 +124,10 @@ Template and how to use it: [CTICU protocol, consent](#approach=cticu-consent&st
 ### Question
 
 **Q:** Which of these belongs in consent for a VATS lobectomy in a patient with healed TB?
-- [x] A higher chance of conversion to open and of bleeding from adhesions and calcified nodes
+- [x] Higher risk of conversion to open and of bleeding from adhesions and calcified nodes
   > Post-TB pleural and nodal changes make VATS dissection harder; the conversion risk is a material risk.
-- [ ] A guaranteed shorter stay
-- [ ] No chest drain
+- [ ] A guaranteed shorter stay, because VATS avoids rib spreading even when there are dense adhesions
+- [ ] No chest drain, since a VATS lobectomy seals the pleura well enough to manage without one
 - [ ] No risk of air leak
 
 ## [lo-thor] Posterolateral thoracotomy, 5th intercostal space
@@ -147,9 +147,9 @@ The **interlobar pulmonary artery** appears in its sheath. Get onto the sheath: 
 **Q:** A fissure-first approach works best when…
 - [x] The fissure is complete and the artery is visible in it
   > In a complete fissure the interlobar artery lies just under the visceral pleura where the fissures meet.
-- [ ] The fissure is fused
+- [ ] The fissure is fused, as the stapler can divide it before the artery is found
 - [ ] The superior vein is short
-- [ ] The pulmonary vein is already divided
+- [ ] The pulmonary vein is already divided, so the lobe has drained
 
 ## [lo-segmental] First segmental arteries in the fissure
 
@@ -162,8 +162,8 @@ Map the lower lobe branches first: **A6** behind, often opposite the lingular ar
 **Q:** In the fissure, which lower-lobe branch arises posteriorly, often opposite the lingular artery?
 - [x] The superior segmental artery (A6)
   > A6 is the first lower-lobe branch and leaves the posterior aspect of the artery; take it by mistake and the superior segment is devascularized.
-- [ ] The basal trunk
-- [ ] The truncus anterior
+- [ ] The basal trunk, before it divides into the segmental branches
+- [ ] The truncus anterior, the first branch of the pulmonary artery
 - [ ] The superior pulmonary vein
 
 ## [lo-truncus] Truncus anterior: ligate and divide
@@ -183,8 +183,8 @@ A short, wide truncus that will not take three ties is stapled instead.
 **Q:** Where does the left recurrent laryngeal nerve leave the vagus?
 - [x] At the aortic arch, hooking under it beside the ligamentum arteriosum
   > On the left the nerve loops under the arch; on the right it loops under the subclavian artery.
-- [ ] Below the left main bronchus
-- [ ] At the level of the inferior pulmonary vein
+- [ ] Below the left main bronchus, after the vagus has passed behind the hilum toward the esophagus
+- [ ] At the level of the inferior pulmonary vein, as the vagus fans out into the posterior pulmonary plexus
 - [ ] At the carina, passing behind the left main bronchus
 
 ## [lo-bronchus] Upper lobe bronchus: clamp, inflate, staple
@@ -204,9 +204,9 @@ Keep the phrenic nerve on the pericardium, pass the vascular stapler round the s
 **Q:** Taking the vein last, what is the argument for doing it this way?
 - [x] Arterial inflow is stopped before venous outflow
   > Dividing arteries first avoids congesting the lobe; in cancer surgery the vein-first argument (less tumor-cell shedding) is debated.
-- [ ] The vein is easier to reach from behind
-- [ ] It avoids the phrenic nerve
-- [ ] It lets the lobe collapse sooner
+- [ ] The vein is easier to reach from behind once the bronchus has been divided and lifted
+- [ ] It shortens the operation, since the vein can be stapled with the bronchus in one firing
+- [ ] It lets the lobe collapse sooner and so improves exposure of the fissure
 
 ## [lo-specimen] Specimen out, nodes, leak test
 

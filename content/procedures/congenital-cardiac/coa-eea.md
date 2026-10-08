@@ -55,8 +55,8 @@ A **9-year-old boy, 24 kg**, referred with headaches and a blood pressure of **1
 **Q:** Best treatment for this boy?
 - [x] Surgical resection with extended end-to-end anastomosis
   > A child of 24 kg would outgrow a stent; a discrete coarctation with a normal arch is repaired through a left thoracotomy.
-- [ ] Stent now
-- [ ] Antihypertensives only
+- [ ] Stent now, as it gives a durable result with no need for redilation as he grows
+- [ ] Antihypertensives only, with repair deferred until the arm pressure is controlled
 - [ ] Balloon angioplasty as definitive treatment
 
 ## [coa-decision] Which repair?
@@ -89,8 +89,8 @@ Both are accepted; the duct and isthmus lie behind the 3rd–4th spaces, and the
 **Q:** Why does accurate rib counting matter more than whether you choose the 3rd or 4th space?
 - [x] Entering the 5th space by mistake puts the duct and isthmus out of reach
   > The target lies behind the 3rd–4th spaces; one space too low and you work up behind the hilum.
-- [ ] The 3rd space is always wrong
-- [ ] The 4th space damages the phrenic nerve
+- [ ] The 3rd space is too high and risks the subclavian artery at entry
+- [ ] The 4th space damages the phrenic nerve, which runs along the posterior rib angle
 - [ ] It does not matter at all
 
 ## [coa-eea-consent] Consent: what to discuss with this patient
@@ -140,8 +140,8 @@ Template and how to use it: [CTICU protocol, consent](#approach=cticu-consent&st
 **Q:** Which rare but devastating risk of coarctation repair must be discussed?
 - [x] Paraplegia from spinal cord ischemia during clamping
   > Rare (0% in a modern series, about 0.4% historically) but material to any patient.
-- [ ] Complete heart block
-- [ ] Tricuspid regurgitation
+- [ ] Complete heart block from traction on the conduction tissue during the thoracotomy
+- [ ] Tricuspid regurgitation from right ventricular pressure overload after the repair
 - [ ] Endocarditis of the mitral valve
 
 ## [coa-eea-thoracotomy] Left posterolateral thoracotomy, 4th space
@@ -173,8 +173,8 @@ Small dose of heparin. **Proximal clamp** across the distal arch, beyond the lef
 **Q:** Which patient is at most risk of paraplegia during coarctation clamping?
 - [x] One with few collaterals and a long clamp time
   > Good collaterals carry blood to the cord around the clamps; without them, time and temperature decide.
-- [ ] One with large intercostal collaterals
-- [ ] An infant repaired in 10 minutes
+- [ ] One with large intercostal collaterals, which steal flow away from the cord when clamped
+- [ ] An infant repaired in 10 minutes, as the immature cord tolerates no ischemia at all
 - [ ] Any patient with hypertension
 
 ## [coa-resect] Excise the coarctation and the ductal tissue
@@ -212,10 +212,10 @@ Doses: [electrolytes](#approach=cticu-doses&step=0), [vasoactive drugs](#approac
 ### Question
 
 **Q:** Day 1 after coarctation repair: BP 165/100, abdominal pain, legs moving well. Next?
-- [x] Treat the paradoxical hypertension (beta-blocker or nitroprusside), withhold feeds, examine the abdomen
+- [x] Treat paradoxical hypertension (beta-blocker or nitroprusside), withhold feeds, examine the abdomen
   > Post-coarctectomy hypertension and mesenteric arteritis go together; control BP and rest the gut.
-- [ ] Ignore it: it settles without treatment
-- [ ] Immediate re-operation
+- [ ] Ignore it: rebound hypertension settles within a day and the abdominal pain is referred from the thoracotomy
+- [ ] Immediate re-operation, as hypertension with abdominal pain means a residual coarctation or anastomotic leak
 - [ ] Fluid bolus
 
 ## Sources

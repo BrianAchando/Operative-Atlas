@@ -41,8 +41,8 @@ Chain: Primary tumor → **Blood: brain, bone, adrenal, liver (M1)**
 **Q:** Under the 9th edition, a 2.6 cm tumor (T1c) with metastasis in a single mediastinal station (subcarinal, station 7) and no distant spread is stage…
 - [x] IIB (T1 N2a)
   > The 9th edition splits N2: a single station (N2a) with a T1 tumor is IIB; several stations (N2b) make it IIIA. Many single-station N2 patients are now treated with neoadjuvant chemo-immunotherapy and surgery.
-- [ ] IIIA
-- [ ] IIIB
+- [ ] IIIA, because any mediastinal nodal disease places the tumor in stage III
+- [ ] IIIB, as subcarinal nodes are classed with contralateral (N3) nodes
 - [ ] IV
 
 ## [rmbi-anatomy] The middle lobe hilum
@@ -66,8 +66,8 @@ A **71-year-old man**, ex-smoker with COPD, a **2.6 cm** adenocarcinoma in the m
 **Q:** FEV1 55% and DLCO 50%; a middle lobectomy removes 2 of 19 segments. What next?
 - [x] Both ppo values are 30–60%: do a stair climb or shuttle walk test
   > ppoFEV1 ≈ 49% and ppoDLCO ≈ 45%. In the 30–60% band, a simple exercise test (stairs >22 m, shuttle >400 m) separates those who can proceed from those who need CPET.
-- [ ] Operate: both are over 40%
-- [ ] He is inoperable: DLCO is under 60%
+- [ ] Operate: both ppo values are over 40%, which the ACCP algorithm treats as low risk
+- [ ] He is inoperable: DLCO is under 60%, which rules out any anatomical resection
 - [ ] Go straight to pneumonectomy work-up
 
 ## [rml-bi-consent] Consent: what to discuss with this patient
@@ -120,10 +120,10 @@ Template and how to use it: [CTICU protocol, consent](#approach=cticu-consent&st
 ### Question
 
 **Q:** Which of these belongs in consent for a VATS lobectomy in a patient with healed TB?
-- [x] A higher chance of conversion to open and of bleeding from adhesions and calcified nodes
+- [x] Higher risk of conversion to open and of bleeding from adhesions and calcified nodes
   > Post-TB pleural and nodal changes make VATS dissection harder; the conversion risk is a material risk.
-- [ ] A guaranteed shorter stay
-- [ ] No chest drain
+- [ ] A guaranteed shorter stay, because VATS avoids rib spreading even when there are dense adhesions
+- [ ] No chest drain, since a VATS lobectomy seals the pleura well enough to manage without one
 - [ ] No risk of air leak
 
 ## [rmbi-setup] Two ports
@@ -149,9 +149,9 @@ Keep the **upper lobe veins** above it. Divide the middle lobe vein.
 **Q:** Which vein must be kept when dividing the middle lobe vein?
 - [x] The upper lobe tributaries of the superior vein
   > The middle lobe vein joins the superior vein; the upper lobe veins join it just above.
-- [ ] The azygos vein
+- [ ] The azygos vein, which receives the middle lobe vein near its arch
 - [ ] No other vein needs to be preserved
-- [ ] The inferior pulmonary vein
+- [ ] The inferior pulmonary vein, since the middle lobe vein usually drains into it
 
 ## [rmbi-bronchus] Middle lobe bronchus: clamp, inflate, staple
 
@@ -164,8 +164,8 @@ The **interlobar artery** lies immediately behind and lateral to this bronchus: 
 **Q:** Passing the stapler behind the middle lobe bronchus, what lies immediately behind it?
 - [x] The interlobar pulmonary artery
   > The artery runs just behind and lateral to the middle lobe bronchus; a blind anvil tip can injure it.
-- [ ] The azygos vein
-- [ ] The esophagus
+- [ ] The azygos vein, which arches over the bronchus intermedius at this level
+- [ ] The esophagus, separated from the bronchus only by subcarinal nodes
 - [ ] The right upper lobe bronchus
 
 ## [rmbi-fissure-h] Horizontal fissure

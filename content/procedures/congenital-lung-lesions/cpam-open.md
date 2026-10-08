@@ -48,8 +48,8 @@ Frequencies are the historical figures. So the CPAM types still in use are **1 t
 **Q:** A fetus has a CPAM with a CVR of 2.1 on antenatal ultrasound. What is the main concern?
 - [x] Fetal hydrops from a large lesion compressing the heart and mediastinum
   > A CVR over 1.6 is strongly associated with fetal hydrops and worse outcomes, so the fetus needs close surveillance and a plan for antenatal treatment or early delivery and surgery.
-- [ ] A lobe full of trapped air, as in CLE
-- [ ] Bronchial atresia of the lower lobe
+- [ ] A lobe full of trapped air, as in CLE, causing postnatal respiratory distress only
+- [ ] Bronchial atresia of the lower lobe, which a high CVR reliably identifies
 - [ ] Nothing: all CPAMs are harmless
 
 ## [cpam-open-case] Case: an infected CPAM in a child
@@ -68,8 +68,8 @@ A **6-year-old girl**, three admissions for "left lower lobe pneumonia" in a yea
 - [x] A systemic arterial feeder from the aorta (a hybrid lesion or sequestration)
   > Sequestrations and hybrid lesions are supplied from the aorta, often through the inferior ligament; an unrecognized feeder retracts into the abdomen when cut.
 - [ ] A pulmonary vein anomaly
-- [ ] An enlarged subcarinal node
-- [ ] A pericardial cyst
+- [ ] An enlarged subcarinal node, which must be sampled first to exclude malignancy in the lesion
+- [ ] A pericardial cyst adherent to the ligament that could rupture
 
 ## [cpam-open-consent] Consent: what to discuss with this patient
 
@@ -118,8 +118,8 @@ Template and how to use it: [CTICU protocol, consent](#approach=cticu-consent&st
 - [x] Infection tends to recur, and some lesions carry a small risk of malignancy
   > Recurrent infection and a malignancy association (mucinous adenocarcinoma with type 1; pleuropulmonary blastoma) favor removing the whole lesion.
 - [ ] To restore hearing
-- [ ] Because it always causes hydrops
-- [ ] Because it grows back
+- [ ] Because a symptomatic lesion goes on to cause hydrops later in childhood if left
+- [ ] Because it grows in proportion to the child and will compress the heart
 
 ## [cpam-open-operation] The operation: lobectomy
 
@@ -150,9 +150,9 @@ Doses: [electrolytes](#approach=cticu-doses&step=0), [vasoactive drugs](#approac
 **Q:** A child's resected lesion is reported as "type 4 CPAM". How is this diagnosis now understood?
 - [x] As a cystic pleuropulmonary blastoma, a tumor: refer for oncology
   > Type 4 is now known to represent cystic pleuropulmonary blastoma and should be diagnosed as such; it is not a malformation.
-- [ ] A benign type 1 CPAM; no action
-- [ ] A bronchogenic cyst
-- [ ] A lung abscess
+- [ ] A benign type 1 CPAM with large cysts; no further action needed
+- [ ] A bronchogenic cyst arising from the foregut, which needs no follow-up
+- [ ] A lung abscess from infection in a preexisting cyst, needing antibiotics only
 
 ## Sources
 

@@ -29,9 +29,9 @@ summary: Why the leg is lost, indications, the long posterior flap with measurem
 **Q:** Which patient is the best candidate for a below-knee rather than an above-knee amputation?
 - [x] An ambulant diabetic with a non-healable heel ulcer and a palpable popliteal pulse
   > The calf flap can heal and the preserved knee gives the best chance of prosthetic walking.
-- [ ] A bed-bound patient with a fixed knee flexion contracture
+- [ ] A bed-bound patient with a fixed knee flexion contracture who will not use a prosthesis
 - [ ] A patient with gangrene reaching above the knee
-- [ ] Anyone with a pulseless popliteal artery and no revascularization option
+- [ ] Anyone with a pulseless popliteal artery and no revascularization option, whatever the state of the calf
 
 ## [bka-case] Case: failed revascularization, non-healing heel
 
@@ -44,11 +44,11 @@ A **62-year-old man**, type 2 diabetes for 20 years, a non-healing heel ulcer wi
 ### Question
 
 **Q:** What level and why?
-- [x] A below-knee amputation: the flap should heal and the knee is kept for prosthetic walking
+- [x] Below-knee: the flap should heal and the knee is kept for prosthetic walking
   > The popliteal pulse predicts healing at this level; an above-knee level is held back for failure.
-- [ ] An above-knee amputation, as it always heals
+- [ ] An above-knee amputation, as it heals more reliably and the knee adds little for walking
 - [ ] Another bypass
-- [ ] A toe amputation
+- [ ] A toe amputation, accepting the risk of nonhealing to keep the foot
 
 ## [bka-open-consent] Consent: what to discuss with this patient
 
@@ -94,9 +94,9 @@ Template and how to use it: [CTICU protocol, consent](#approach=cticu-consent&st
 **Q:** What should a patient know before a below-knee amputation?
 - [x] Healing may need revision; walking with a prosthesis takes months of rehabilitation
   > Realistic expectations and the risk to the other leg are part of consent.
-- [ ] Walking normally in a week
+- [ ] Walking normally within a week, as modern prostheses can be fitted on the day of surgery
 - [ ] No pain afterwards
-- [ ] The other leg is never at risk
+- [ ] The other leg is never at risk, since the amputation removes the source of the vascular disease
 
 ## [bka-incision] Mark the level and the long posterior flap
 
@@ -118,9 +118,9 @@ In ischemic limbs, handle the skin edges gently (no forceps on skin, no undermin
 **Q:** How long is the posterior flap compared with the anterior one?
 - [x] About 150% of the anterior flap length
   > The long posterior flap carries the best blood supply and folds over the bone.
-- [ ] The same length
+- [ ] The same length, so the scar lies at the end of the stump
 - [ ] Half
-- [ ] No posterior flap is made
+- [ ] No posterior flap is made; equal sagittal flaps are always used
 
 ## [bka-bone] Divide the tibia and fibula
 
@@ -140,7 +140,7 @@ Elevate the periosteum only as far as needed. Divide the tibia at the planned le
 - [x] A long fibula is prominent and painful in the socket
   > At least 1 cm shorter keeps the fibular end clear of the skin and socket.
 - [ ] To save time
-- [ ] To protect the peroneal artery
+- [ ] To protect the peroneal artery, which runs along the fibula and supplies the flap
 - [ ] It is not cut
 
 ## [bka-vessels] Ligate the vessels, divide the nerves
@@ -158,8 +158,8 @@ Trim the soleus and gastrocnemius so the flap is not bulky.
 **Q:** How are the nerves handled to prevent a painful neuroma?
 - [x] Gentle traction, a sharp division, and retraction into soft tissue
   > A clean cut proximal to the stump end lets the nerve retract away from pressure points.
-- [ ] Ligated with the artery
-- [ ] Cauterized at the stump end
+- [ ] Ligated with the artery in one tie to reduce bleeding from the vasa nervorum
+- [ ] Cauterized at the stump end, which seals the nerve and stops it regrowing
 - [ ] Left long
 
 ## [bka-close] Myodesis, drain and closure
@@ -175,8 +175,8 @@ Dressing: a **soft padded dressing**, or a **rigid dressing** in ambulant patien
 **Q:** What does the evidence say about rigid versus soft dressings after a BKA?
 - [x] Uncertain: very low-certainty evidence from small trials
   > Choose by the patient: skin, fall risk, and the surgeon's experience.
-- [ ] Rigid dressings always heal faster
-- [ ] Soft dressings are proven better
+- [ ] Rigid dressings always heal faster and should be standard for every BKA
+- [ ] Soft dressings are proven better, since rigid casts cause more wound breakdown
 - [ ] Dressings make no difference to anything
 
 ## [bka-after] After a BKA: stump, knee, pain, other leg
@@ -198,9 +198,9 @@ Dressing: a **soft padded dressing**, or a **rigid dressing** in ambulant patien
 **Q:** After a BKA, why is the knee kept straight?
 - [x] To prevent a knee flexion contracture that stops prosthetic walking
   > A bent knee on a pillow shortens the hamstrings; start extension exercises early.
-- [ ] To prevent phantom pain
+- [ ] To prevent phantom pain, which is triggered by a bent knee stretching the nerves
 - [ ] To raise blood pressure
-- [ ] It does not matter
+- [ ] It does not matter, as any contracture stretches out once walking begins
 
 ## [bka-open-icu] ICU and post-operative care
 
@@ -223,9 +223,9 @@ Doses: [electrolytes](#approach=cticu-doses&step=0), [vasoactive drugs](#approac
 **Q:** After BKA the patient lies with the knee bent on a pillow. Why correct it?
 - [x] A knee flexion contracture prevents prosthetic walking
   > Keep the knee straight and start physiotherapy early.
-- [ ] It causes phantom pain
+- [ ] It causes phantom pain by stretching the sciatic nerve over the knee
 - [ ] It raises blood pressure
-- [ ] It is harmless
+- [ ] It is harmless, since a flexion contracture stretches out once the prosthesis is fitted
 
 ## Sources
 

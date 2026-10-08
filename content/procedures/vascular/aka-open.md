@@ -29,8 +29,8 @@ summary: When an above-knee level is right, flap and bone measurements, femoral 
 **Q:** Which patient is the best candidate for an above-knee rather than a below-knee amputation?
 - [x] A bed-bound patient with a fixed knee flexion contracture and gangrene of the calf
   > Prosthetic walking is not the goal; the thigh heals reliably.
-- [ ] An ambulant patient with a palpable popliteal pulse
-- [ ] A young trauma patient with a healthy knee and a distal injury
+- [ ] An ambulant patient with a palpable popliteal pulse and a non-healable forefoot ulcer
+- [ ] A young trauma patient with a healthy knee, good skin over the calf and a distal crush injury
 - [ ] Every patient with a diabetic foot
 
 ## [aka-case] Case: gangrene to the calf in a bed-bound patient
@@ -46,8 +46,8 @@ A **78-year-old woman**, bed-bound after a stroke 2 years ago; fixed knee flexio
 **Q:** Which level, and why?
 - [x] Above-knee: the calf is not healable, and she will not walk
   > The thigh heals most reliably; a prosthesis is not the goal and a contracture rules out a BKA.
-- [ ] Below-knee, to keep the knee
-- [ ] Guillotine at the ankle only
+- [ ] Below-knee, to keep the knee even though the calf tissue will not heal
+- [ ] Guillotine at the ankle only, as a definitive level that she can walk on
 - [ ] Toe amputation
 
 ## [aka-open-consent] Consent: what to discuss with this patient
@@ -94,9 +94,9 @@ Template and how to use it: [CTICU protocol, consent](#approach=cticu-consent&st
 **Q:** What should a patient know before a below-knee amputation?
 - [x] Healing may need revision; walking with a prosthesis takes months of rehabilitation
   > Realistic expectations and the risk to the other leg are part of consent.
-- [ ] Walking normally in a week
+- [ ] Walking normally within a week, as modern prostheses can be fitted on the day of surgery
 - [ ] No pain afterwards
-- [ ] The other leg is never at risk
+- [ ] The other leg is never at risk, since the amputation removes the source of the vascular disease
 
 ## [aka-incision] Mark the level and the fish-mouth flaps
 
@@ -118,8 +118,8 @@ Cut decisively through skin, subcutaneous tissue and fascia; no undermining. In 
 **Q:** How long is each fish-mouth flap?
 - [x] Half the thigh diameter at the bone cut, plus 1 cm
   > This gives enough soft tissue to close over the bone without tension.
-- [ ] Twice the thigh diameter
-- [ ] A fixed 5 cm
+- [ ] Twice the thigh diameter, so there is spare skin to close without tension
+- [ ] A fixed 5 cm for every patient, regardless of thigh size
 - [ ] No flaps are needed
 
 ## [aka-bone] Divide the muscle and the femur
@@ -133,9 +133,9 @@ Divide the quadriceps and hamstrings, **protecting the adductor muscle and its t
 **Q:** Why are the adductors protected when the muscles are divided?
 - [x] They are needed to anchor the myodesis to the femur
   > An adductor myodesis keeps the femur centered and helps the stump function.
-- [ ] They contain the nerve
+- [ ] They contain the sciatic nerve, which must be preserved to avoid phantom pain
 - [ ] They are not important
-- [ ] They make the flap thicker
+- [ ] They make the flap thicker, which is the main way the stump is padded
 
 ## [aka-vessels] Femoral vessels and the sciatic nerve
 
@@ -150,8 +150,8 @@ Pull the **sciatic nerve** and the femoral nerve branches down gently and **divi
 **Q:** How are the femoral vessels managed?
 - [x] Each is dissected, ligated and divided before the limb is released
   > Controlled ligation avoids bleeding after the tourniquet or clamps are off.
-- [ ] Cut together with the muscle
-- [ ] Clipped without ligation
+- [ ] Cut together with the muscle and controlled later with diathermy at the stump
+- [ ] Clipped without ligation, as clips alone are secure on large femoral vessels
 - [ ] Left open
 
 ## [aka-close] Myodesis, drain and closure
@@ -167,8 +167,8 @@ Common problems if skipped: muscle atrophy, wound infection, dehiscence, and fle
 **Q:** In what hip position is the adductor myodesis tied?
 - [x] 5–10° of adduction
   > Tying in slight adduction keeps the femur centered; the quadriceps myodesis is tied in full extension.
-- [ ] Full flexion
-- [ ] 45° of abduction
+- [ ] Full flexion, so the stump sits forward for sitting
+- [ ] 45° of abduction, to stretch the muscle before fixing it
 - [ ] Any position
 
 ## [aka-after] After an AKA: hip, pain, mobilization, the other leg
@@ -190,8 +190,8 @@ Common problems if skipped: muscle atrophy, wound infection, dehiscence, and fle
 **Q:** Which contractures is an above-knee stump prone to?
 - [x] Hip flexion and abduction
   > A pillow under the stump or prolonged sitting shortens the hip flexors and abductors.
-- [ ] Ankle plantarflexion
-- [ ] Knee flexion only
+- [ ] Ankle plantarflexion, as in a below-knee stump
+- [ ] Knee flexion only, from the hamstrings pulling on the stump
 - [ ] None
 
 ## [aka-open-icu] ICU and post-operative care
@@ -215,9 +215,9 @@ Doses: [electrolytes](#approach=cticu-doses&step=0), [vasoactive drugs](#approac
 **Q:** After BKA the patient lies with the knee bent on a pillow. Why correct it?
 - [x] A knee flexion contracture prevents prosthetic walking
   > Keep the knee straight and start physiotherapy early.
-- [ ] It causes phantom pain
+- [ ] It causes phantom pain by stretching the sciatic nerve over the knee
 - [ ] It raises blood pressure
-- [ ] It is harmless
+- [ ] It is harmless, since a flexion contracture stretches out once the prosthesis is fitted
 
 ## Sources
 

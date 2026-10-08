@@ -133,7 +133,9 @@ def mitral(L, P_ann, emit_mesh):
     parts = cords(primary, 0.28) + cords(secondary, 0.34) + cords(struts, 0.5)
     emit_mesh('chordae', 'Chordae tendineae (primary, secondary and strut)', 'cardiac', CHORD, trimesh.util.concatenate(parts), visible=False,
               note='Primary chordae fan out to the free edges and stop prolapse; secondary chordae to the ventricular surface of the leaflets keep the ventricle\'s shape (preserve them); two thick strut chordae to the anterior leaflet. Schematic.')
-    return {'mv-c1': C1, 'mv-c2': C2, 'mv-coapt': coap(0.5)}
+    out = {'mv-c1': C1, 'mv-c2': C2, 'mv-coapt': coap(0.5)}
+    out.update(mitral_disease(L, c, n, u, v, R, A, tc, coap, edge, heads_of, emit_mesh))
+    return out
 
 
 def aortic(L, P_ann, emit_mesh):
@@ -172,7 +174,9 @@ def aortic(L, P_ann, emit_mesh):
         mid_edge = O + (A(ca + span / 2) - O) * 0.08 + a * 1.4; nod.apply_translation(mid_edge)
         emit_mesh(f'av-cusp-{k}', names[k], 'cardiac', '#e3d6bf', trimesh.util.concatenate([leaf, nod]), visible=False,
                   note='A semilunar cusp hinged on the crown-shaped annulus; its free edge runs from commissure to the centre, with a nodule of Arantius where the three meet. Shown thickened, as in degenerative or rheumatic stenosis. Schematic.')
-    return {'av-coapt': O}
+    out = {'av-coapt': O}
+    out.update(aortic_disease(L, c, a, e1, e2, A, comm, O, cen, order, emit_mesh))
+    return out
 
 
 def tricuspid(L, P_ann, emit_mesh):
@@ -196,6 +200,130 @@ def tricuspid(L, P_ann, emit_mesh):
             for kk in range(3): G[rows + kk, j] = f - n * (1.0 * (kk + 1))
         emit_mesh(k, names[k], 'cardiac', LEAF, sheet(G, 0.9, smooth=4), visible=False, note='Schematic, fitted to the annulus on this scan.')
     return {'tv-coapt': O}
+
+
+CALC, VEG, FIBRO, EDGE = '#f4f0e0', '#8f5a2a', '#dcc9a6', '#c9b27f'
+
+
+def _lumps(c, r, n, rng, spread=0.6, knob=0.45):
+    """a cauliflower body: a core and n smaller ellipsoids on its surface"""
+    c = np.asarray(c, float); out = [Ellipsoid(c, [r, r * 0.85, r * 0.9])]
+    for _ in range(n):
+        d = U(rng.normal(size=3)); rr = r * rng.uniform(knob * 0.7, knob * 1.2)
+        out.append(Ellipsoid(c + d * r * spread * rng.uniform(0.8, 1.15), [rr, rr, rr]))
+    return out
+
+
+def mitral_disease(L, c, n, u, v, R, A, tc, coap, edge, heads_of, emit_mesh):
+    """rheumatic stenosis (fused funnel), acute rheumatic regurgitation (anterior prolapse) and a vegetation, on the same annulus"""
+    out = {}; rng = np.random.default_rng(11)
+    # ---- chronic rheumatic MS: the leaflets fused into a thick funnel, domed into the LV, with a fish-mouth orifice
+    oc = c - n * 13.0 - u * R * 0.12
+    oa, ob = min(8.0, R * 0.55), 3.2                               # fish-mouth: long axis commissure to commissure (about 0.8-0.9 cm2)
+    cax = U(A(tc) - A(-tc)); cax = U(cax - n * (cax @ n)); bax = np.cross(n, cax)
+    orif = lambda t: oc + cax * np.sin(t) * oa + bax * np.cos(t) * ob
+    ang = lambda p: np.arctan2((p - c) @ v, (p - c) @ u)
+    rows, cols = 18, 120; G = np.zeros((rows, cols, 3))
+    for j, t in enumerate(np.linspace(-np.pi, np.pi, cols, endpoint=False)):
+        h = A(t); d = h - c; d = U(d - n * (d @ n))
+        tt = np.arctan2(d @ cax, d @ bax)                          # the matching point on the orifice
+        f = orif(tt)
+        for i, q in enumerate(np.linspace(0, 1, rows)):
+            G[i, j] = h + (f - h) * q - n * (3.6 * np.sin(np.pi * q)) + d * (1.6 * np.sin(np.pi * q))
+    G = np.concatenate([G, G[:, :1]], axis=1)
+    emit_mesh('rh-mv', 'Rheumatic mitral valve: fused, thickened, fish-mouth orifice', 'cardiac', FIBRO, sheet(G, 2.4, smooth=6), visible=False,
+              note='Schematic chronic rheumatic mitral stenosis: commissural fusion turns the two thickened leaflets into a funnel that domes into the LV in diastole, with a small fish-mouth orifice (here about 0.9 cm2; normal 4-6 cm2).')
+    # rolled, beaded free edge and the two fused commissural ridges running up to the annulus
+    rim = [orif(t) + n * 0.6 for t in np.linspace(-np.pi, np.pi, 41)]
+    bead = lambda x: 1.5 + 0.35 * np.sin(x * 2 * np.pi * 7) ** 2
+    prims = [Vessel(rim, bead, step=0.5)]
+    for sgn in (1, -1):
+        t0 = sgn * np.pi / 2; cm = c + (A(sgn * tc) - c) * 0.95
+        prims.append(Vessel([cm - n * 1.5, (cm + orif(t0)) / 2 - n * 5.0, orif(t0)], [1.4, 2.0, 1.7], step=0.5))
+    emit_mesh('rh-mv-edge', 'Thickened, rolled leaflet edges and fused commissures', 'cardiac', EDGE, mesh(prims, voxel=0.3, blend=1.2, smooth=6, density=1.6), visible=False,
+              note='The fused commissures (the ridges running up to the annulus) are what a balloon or a surgical commissurotomy splits.')
+    out['rh-mv'] = oc; out['rh-comm'] = orif(np.pi / 2)
+    # nodular calcium: clusters at both commissures, a few in the leaflet body
+    calc = []
+    def on_funnel(t, s):
+        h = A(t); d = h - c; d = U(d - n * (d @ n)); f = orif(np.arctan2(d @ cax, d @ bax))
+        return h + (f - h) * s - n * (3.6 * np.sin(np.pi * s)) + d * (1.6 * np.sin(np.pi * s)) + n * 1.2
+    for sgn in (1, -1):
+        for _ in range(3):
+            calc += _lumps(on_funnel(sgn * tc + rng.normal(0, 0.15), rng.uniform(0.45, 0.95)), rng.uniform(1.3, 2.0), 4, rng, 0.7, 0.55)
+    for t in rng.uniform(-np.pi, np.pi, 3):
+        calc += _lumps(on_funnel(t, rng.uniform(0.3, 0.7)), rng.uniform(1.0, 1.5), 3, rng, 0.7, 0.55)
+    emit_mesh('rh-mv-calcium', 'Calcium in the rheumatic mitral valve', 'cardiac', CALC, mesh(calc, voxel=0.25, blend=0.6, smooth=4, density=2.0), visible=False,
+              note='Commissural calcium is the strongest single predictor of a poor balloon result (Wilkins); heavy calcium pushes toward surgery.')
+    # subvalvular disease: short, thick chordae from drawn-up papillary heads, fused into cords
+    ch = []
+    for key, H in heads_of.items():
+        side = np.sign((L[key] - c) @ cax) or 1.0
+        for k, t in enumerate(np.linspace(side * np.pi / 2 - 1.0, side * np.pi / 2 + 1.0, 6)):
+            hd = H[k % 3]; tip = hd + (oc - hd) * 0.18; e = orif(t)
+            ch.append(Vessel([hd, tip + (e - tip) * 0.45, e], [1.5, 1.2, 0.9], step=0.5))
+    emit_mesh('rh-chordae', 'Shortened, thickened, fused chordae', 'cardiac', '#e6dcc2', mesh(ch, voxel=0.3, blend=1.8, smooth=6, density=1.4), visible=False,
+              note='Subvalvular disease: fused, short chordae tether the leaflet tips; severe subvalvular fusion makes a balloon or a repair less likely to succeed.')
+    # ---- acute rheumatic MR: the anterior leaflet billows past the closure line into the LA on elongated chordae
+    rows_, cols_ = 16, 44; G = np.zeros((rows_, cols_, 3))
+    for j, s in enumerate(np.linspace(0, 1, cols_)):
+        h = A(tc - 2 * tc * s); f = coap(s) + n * (11.0 * np.sin(np.pi * s) ** 0.7) + u * 2.0 * np.sin(np.pi * s)
+        for i, q in enumerate(np.linspace(0, 1, rows_)):
+            G[i, j] = h + (f - h) * q + n * (4.5 * np.sin(np.pi * q) * np.sin(np.pi * s) ** 0.5)
+    emit_mesh('mv-ant-prolapse', 'Anterior leaflet prolapsing into the LA (acute rheumatic MR)', 'cardiac', LEAF, sheet(G, 1.3, smooth=4), visible=False,
+              note='Acute rheumatic carditis: inflamed chordae elongate and the anterior leaflet prolapses (Carpentier type II); the annulus dilates (type I).')
+    pe = lambda s: G[-1, int(round(s * (cols_ - 1)))]
+    el = []
+    for key, H in heads_of.items():
+        near1 = np.linalg.norm(L[key] - A(tc)) < np.linalg.norm(L[key] - A(-tc))
+        for g, s in enumerate(np.linspace(0.08, 0.42, 4) if near1 else np.linspace(0.58, 0.92, 4)):
+            el.append(Vessel([H[g % 3], pe(s)], [0.32, 0.26], step=0.6))
+    emit_mesh('chordae-long', 'Elongated chordae (acute carditis)', 'cardiac', CHORD, mesh(el, voxel=0.18, blend=0.3, smooth=3, density=2.0), visible=False)
+    out['mv-prolapse'] = pe(0.5)
+    # ---- vegetation: a friable, lobulated mass on the atrial face of the anterior leaflet near its closing edge, on a short stalk
+    h = A(0.3); f = coap(0.4); base = h + (f - h) * 0.8 - n * (2.6 * np.sin(np.pi * 0.8)) + n * 0.7
+    vp = base + n * 7.0 + u * 0.5
+    veg = _lumps(vp, 4.2, 12, rng, 0.75, 0.5) + [Vessel([base, (base + vp) / 2 + u * 0.8, vp], [1.8, 1.6, 2.2], step=0.4)]
+    emit_mesh('mv-vegetation', 'Vegetation (infective endocarditis), about 12 mm', 'cardiac', VEG, mesh(veg, voxel=0.25, blend=1.0, smooth=5, density=2.5), visible=False,
+              note='On the atrial side of the anterior leaflet, the low-pressure side of the regurgitant jet; friable and lobulated, on a short stalk. 10 mm or more with an embolic event is an indication for urgent surgery (ESC 2023).')
+    out['mv-vegetation'] = vp
+    return out
+
+
+def aortic_disease(L, c, a, e1, e2, A, comm, O, cen, order, emit_mesh):
+    """rheumatic aortic valve (retracted, thickened cusps with rolled edges, one fused commissure) and a cusp vegetation"""
+    out = {}; rng = np.random.default_rng(5)
+    cusps, edges = [], []
+    fused = 0                                                     # the right-left commissure is fused
+    for k in ('r', 'l', 'n'):
+        ia = [i for (x, y), i in order.items() if y == k][0]; ib = [i for (x, y), i in order.items() if x == k][0]
+        ca, cb = comm[ia], comm[ib]
+        span = ((cb - ca) % (2 * np.pi))
+        if span > np.pi: span -= 2 * np.pi
+        Ca, Cb = A(ca), A(cb)
+        rows, cols = 14, 40; G = np.zeros((rows, cols, 3)); fe = []
+        for j, s in enumerate(np.linspace(0.03, 0.97, cols)):
+            h = A(ca + span * s)
+            f = Ca + (O - Ca) * (2 * s) if s <= 0.5 else O + (Cb - O) * (2 * s - 1)
+            near_fused = (ia == fused and s < 0.3) or (ib == fused and s > 0.7)
+            reach = 0.97 if near_fused else 0.62 + 0.1 * abs(2 * s - 1)          # retracted: the free edge stops short of the centre
+            for i, q in enumerate(np.linspace(0, 1, rows)):
+                qq = q * reach
+                G[i, j] = h + (f - h) * qq - a * (2.4 * np.sin(np.pi * qq) * np.sin(np.pi * s) ** 0.6)
+            fe.append(G[-1, j])
+        cusps.append(sheet(G, 2.3, smooth=5))
+        edges.append(Vessel(fe, lambda x: 1.2 + 0.25 * np.sin(x * 2 * np.pi * 5) ** 2, step=0.5))
+    emit_mesh('av-rheum', 'Rheumatic aortic valve: retracted, thickened cusps', 'cardiac', FIBRO, trimesh.util.concatenate(cusps), visible=False,
+              note='Fibrosis retracts and thickens the cusps so that they no longer meet in the centre (a central regurgitant gap); one commissure is fused. Later, fusion and calcium add stenosis (mixed disease).')
+    emit_mesh('av-rheum-edge', 'Rolled, thickened free edges', 'cardiac', EDGE, mesh(edges, voxel=0.3, blend=0.8, smooth=5, density=1.6), visible=False)
+    # vegetation on the ventricular side of the non-coronary cusp, near its free edge
+    t_n = cen['n']; h = A(t_n); base = h + (O - h) * 0.7 - a * 3.0
+    vv = base - a * 4.5
+    veg = _lumps(vv, 3.6, 10, rng, 0.75, 0.5) + [Vessel([base, vv], [1.5, 2.0], step=0.4)]
+    emit_mesh('av-vegetation', 'Vegetation on the aortic valve', 'cardiac', VEG, mesh(veg, voxel=0.25, blend=1.0, smooth=5, density=2.5), visible=False,
+              note='On the ventricular side of the cusp, where the regurgitant jet strikes. Cusp perforation and acute severe regurgitation follow.')
+    out['av-vegetation'] = vv
+    return out
 
 
 def load_rings(root):

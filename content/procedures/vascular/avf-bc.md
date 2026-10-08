@@ -26,8 +26,8 @@ A **67-year-old diabetic man** with **eGFR 16**. Ultrasound shows radial and for
 **Q:** What did KDOQI 2019 change about access planning?
 - [x] From "fistula first" to a patient-first ESKD Life-Plan
   > The access is chosen for the patient's expected life course, not a fistula at any cost.
-- [ ] Catheters first for everyone
-- [ ] Grafts are preferred to fistulas
+- [ ] Catheters first for everyone, to allow time for vein mapping
+- [ ] Grafts are preferred to fistulas because they can be used sooner after placement
 - [ ] Fistulas only in the leg
 
 ## [avf-bc-consent] Consent: what to discuss with this patient
@@ -77,9 +77,9 @@ Template and how to use it: [CTICU protocol, consent](#approach=cticu-consent&st
 **Q:** Which serious early complication must be explained before a brachial fistula?
 - [x] Steal syndrome: hand ischemia needing urgent correction
   > Commoner with brachial inflow, diabetes and age.
-- [ ] Paraplegia
+- [ ] Paraplegia, from reduced spinal cord flow after the fistula diverts blood
 - [ ] Stroke
-- [ ] Phrenic nerve palsy
+- [ ] Phrenic nerve palsy, from traction during brachial artery exposure
 
 ## [av-bc] Brachiocephalic fistula at the elbow
 
@@ -88,11 +88,11 @@ A **transverse incision** in the antecubital fossa. The cephalic vein (or the me
 ### Question
 
 **Q:** Six hours after a brachiocephalic fistula the hand is cold, painful and numb. Diagnosis and action?
-- [x] Access-related hand ischemia (steal): urgent assessment; ligation or a flow-reducing or DRIL procedure
+- [x] Access-related hand ischemia (steal): urgent assessment; ligation, flow reduction or DRIL
   > Severe steal with neurological signs is an emergency; it is commoner with brachial fistulas, in diabetics and the elderly.
-- [ ] Normal postoperative swelling: elevate the arm
-- [ ] Venous hypertension
-- [ ] Thrombosis of the fistula
+- [ ] Normal postoperative swelling: elevate the arm and review the hand in the morning
+- [ ] Venous hypertension from central stenosis: elevate the arm and arrange a venogram next week
+- [ ] Thrombosis of the fistula: the cold hand means the access has clotted and needs thrombectomy
 
 ## [avf-bc-icu] ICU and post-operative care
 
@@ -115,9 +115,9 @@ Doses: [electrolytes](#approach=cticu-doses&step=0), [vasoactive drugs](#approac
 **Q:** Four hours after a radiocephalic fistula the thrill has gone. Next?
 - [x] Call the surgeon: early thrombosis needs urgent exploration
   > Early loss of thrill is usually technical and salvageable if acted on quickly.
-- [ ] Wait 6 weeks
+- [ ] Wait 6 weeks, as the thrill usually returns once the fistula matures
 - [ ] Massage the arm
-- [ ] Start dialysis through it
+- [ ] Start dialysis through it, since needling will restore flow
 
 ## Sources
 

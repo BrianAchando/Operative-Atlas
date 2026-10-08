@@ -33,11 +33,11 @@ Chain: Healed TB: fibrosis, cavities → Traction bronchiectasis → Pooling, in
 ### Question
 
 **Q:** What is the first treatment for massive hemoptysis from post-TB bronchiectasis?
-- [x] Protect the airway (bleeding side down), resuscitate, and bronchial artery embolization; surgery if it fails or recurs
+- [x] Protect the airway (bleeding side down), resuscitate, bronchial artery embolization; surgery if it fails or recurs
   > Embolization controls most bleeding; resection removes the source in localized disease.
-- [ ] Emergency pneumonectomy for all
+- [ ] Emergency pneumonectomy for all, as embolization rarely controls post-TB bleeding and only delays definitive control
 - [ ] Tranexamic acid alone
-- [ ] Bronchoscopy and wait
+- [ ] Bronchoscopy, then wait with the patient lying bleeding side up to drain the blood
 
 ## [bx-lo-anatomy] The hilum from behind and in the fissure
 
@@ -62,8 +62,8 @@ A **32-year-old woman**, TB treated 6 years ago. Two years of daily purulent spu
 **Q:** Which finding makes her a good candidate for resection?
 - [x] Disease confined to one lobe with healthy remaining lung
   > Localized disease with adequate reserve; diffuse bronchiectasis is managed medically.
-- [ ] Bilateral disease
-- [ ] Active TB on sputum
+- [ ] Bilateral disease, as both sides can be cleared at one operation
+- [ ] Active TB on sputum, as resection removes the source of infection
 - [ ] FEV1 25%
 
 ## [bx-lul-consent] Consent: what to discuss with this patient
@@ -111,9 +111,9 @@ Template and how to use it: [CTICU protocol, consent](#approach=cticu-consent&st
 **Q:** Which risk is higher after resection for post-TB bronchiectasis than after lobectomy for a small cancer?
 - [x] Bleeding from adhesions and collaterals, and bronchopleural fistula
   > Inflamed, adherent fields bleed and heal poorly.
-- [ ] A lower risk of air leak than after lobectomy for cancer
+- [ ] A lower risk of air leak, as the scarred lung seals more readily than after cancer lobectomy
 - [ ] Phrenic nerve injury alone
-- [ ] Fewer adhesions than after lobectomy for cancer
+- [ ] Fewer adhesions than after lobectomy for cancer, as TB scars the pleura less
 
 ## [bx-lo-thor] Posterolateral thoracotomy, 5th intercostal space
 
@@ -130,8 +130,8 @@ After TB the lung is often **fused to the chest wall**. Where the adhesions are 
 **Q:** With a densely symphysed apex, which plane is often safest?
 - [x] The extrapleural plane, outside the parietal pleura
   > It avoids tearing into the lung and its cavities; watch the subclavian vessels at the apex.
-- [ ] Straight through the lung
-- [ ] The intrapericardial plane
+- [ ] Straight through the lung, accepting air leak to save time
+- [ ] The intrapericardial plane, to control the hilum before the apex
 - [ ] Leave the lobe stuck
 
 ## [bx-lo-fissure] Open the fissure bluntly with a peanut
@@ -145,9 +145,9 @@ The **interlobar pulmonary artery** appears in its sheath. Get onto the sheath: 
 **Q:** A fissure-first approach works best when…
 - [x] The fissure is complete and the artery is visible in it
   > In a complete fissure the interlobar artery lies just under the visceral pleura where the fissures meet.
-- [ ] The fissure is fused
+- [ ] The fissure is fused, as the stapler can divide it before the artery is found
 - [ ] The superior vein is short
-- [ ] The pulmonary vein is already divided
+- [ ] The pulmonary vein is already divided, so the lobe has drained
 
 ## [bx-lo-segmental] First segmental arteries in the fissure
 
@@ -160,8 +160,8 @@ Map the lower lobe branches first: **A6** behind, often opposite the lingular ar
 **Q:** In the fissure, which lower-lobe branch arises posteriorly, often opposite the lingular artery?
 - [x] The superior segmental artery (A6)
   > A6 is the first lower-lobe branch and leaves the posterior aspect of the artery; take it by mistake and the superior segment is devascularized.
-- [ ] The basal trunk
-- [ ] The truncus anterior
+- [ ] The basal trunk, before it divides into the segmental branches
+- [ ] The truncus anterior, the first branch of the pulmonary artery
 - [ ] The superior pulmonary vein
 
 ## [bx-lo-truncus] Truncus anterior: ligate and divide
@@ -181,8 +181,8 @@ A short, wide truncus that will not take three ties is stapled instead.
 **Q:** Where does the left recurrent laryngeal nerve leave the vagus?
 - [x] At the aortic arch, hooking under it beside the ligamentum arteriosum
   > On the left the nerve loops under the arch; on the right it loops under the subclavian artery.
-- [ ] Below the left main bronchus
-- [ ] At the level of the inferior pulmonary vein
+- [ ] Below the left main bronchus, after the vagus has passed behind the hilum toward the esophagus
+- [ ] At the level of the inferior pulmonary vein, as the vagus fans out into the posterior pulmonary plexus
 - [ ] At the carina, passing behind the left main bronchus
 
 ## [bx-lo-bronchus] Upper lobe bronchus: clamp, inflate, staple
@@ -204,9 +204,9 @@ Keep the phrenic nerve on the pericardium, pass the vascular stapler round the s
 **Q:** Taking the vein last, what is the argument for doing it this way?
 - [x] Arterial inflow is stopped before venous outflow
   > Dividing arteries first avoids congesting the lobe; in cancer surgery the vein-first argument (less tumor-cell shedding) is debated.
-- [ ] The vein is easier to reach from behind
-- [ ] It avoids the phrenic nerve
-- [ ] It lets the lobe collapse sooner
+- [ ] The vein is easier to reach from behind once the bronchus has been divided and lifted
+- [ ] It shortens the operation, since the vein can be stapled with the bronchus in one firing
+- [ ] It lets the lobe collapse sooner and so improves exposure of the fissure
 
 ## [bx-lo-specimen] Specimen out, nodes, leak test
 
@@ -234,9 +234,9 @@ Doses: [electrolytes](#approach=cticu-doses&step=0), [vasoactive drugs](#approac
 **Q:** Day 1 after lobectomy for bronchiectasis: 250 mL/h of blood for 3 hours. Next?
 - [x] Call the consultant: re-exploration for bleeding
   > Adhesion beds and bronchial collaterals bleed; sustained output above the thresholds needs theatre.
-- [ ] Strip the drain
-- [ ] Clamp the drain
-- [ ] Give furosemide
+- [ ] Strip the drain hourly to keep it patent and recheck the output after two more hours
+- [ ] Clamp the drain so the clot tamponades the bleeding point inside the chest
+- [ ] Give furosemide, since the output is mostly reactive fluid after bronchiectasis surgery
 
 ## Sources
 

@@ -26,9 +26,9 @@ Dependent arm forward on a board; upper arm on a rest, shoulder flexed about 90Â
 **Q:** Where does the axillary roll go?
 - [x] Under the dependent chest wall, a hand's breadth below the axilla
   > It lifts the chest off the dependent shoulder; placed in the axilla it compresses the brachial plexus and axillary vessels.
-- [ ] In the dependent axilla
+- [ ] In the dependent axilla, directly under the shoulder to lift it off the table
 - [ ] Under the upper arm
-- [ ] Under the non-dependent (upper) axilla
+- [ ] Under the non-dependent (upper) axilla, to support the arm on the arm board
 
 ## [por-landmarks] Landmarks on the side you operate on
 

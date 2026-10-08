@@ -20,8 +20,8 @@ A 62-year-old man, **angina (CCS III) despite full medical therapy**; stress ima
 **Q:** What is the main aim of revascularizing this man?
 - [x] Relieving angina that persists despite medical therapy
   > In stable single-vessel disease, trials have not shown a survival benefit; the indication is symptoms despite optimal medical therapy (and here an anatomy unfavorable for PCI).
-- [ ] Improving survival
-- [ ] Preventing a future myocardial infarction
+- [ ] Improving survival, as revascularization prolongs life in all stable coronary disease
+- [ ] Preventing a future myocardial infarction, which stenting or grafting reliably achieves
 - [ ] Improving left ventricular function in all patients
 
 ## [cabg-1v-consent] Consent: what to discuss with this patient
@@ -71,8 +71,8 @@ Template and how to use it: [CTICU protocol, consent](#approach=cticu-consent&st
 **Q:** For a diabetic with three-vessel disease, what does the evidence let you say about CABG versus PCI?
 - [x] CABG reduces death and MI compared with PCI (FREEDOM)
   > FREEDOM (NEJM 2012): lower all-cause mortality and MI with CABG in diabetics, with more stroke.
-- [ ] PCI is always better
-- [ ] They are equal
+- [ ] PCI with drug-eluting stents is preferred once diabetes is well controlled
+- [ ] They are equal for death and MI, so the choice rests on patient preference
 - [ ] Medical therapy is best
 
 ## [c1-access] MIDCAB: left anterior mini-thoracotomy
@@ -114,9 +114,9 @@ Bring the LIMA pedicle down lateral to the pulmonary artery, with no tension or 
 **Q:** The LIMA reads mean flow 5 mL/min, PI 12. What next?
 - [x] Look for a kink, twist or anastomotic problem and revise the graft now
   > On a single graft, a technical failure means an anterior infarct; fix it before closing.
-- [ ] Accept: flow improves later
+- [ ] Accept: LIMA flow improves later as the arterial conduit relaxes off bypass
 - [ ] Give nitrates and close
-- [ ] Wait for the flow to improve after protamine
+- [ ] Wait for the flow to improve after protamine, then close if the pulsatility index falls
 
 ## [cabg-1v-icu] ICU and post-operative care
 

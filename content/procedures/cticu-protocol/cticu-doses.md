@@ -61,8 +61,8 @@ Potassium phosphate if K⁺ is low, sodium phosphate otherwise; caution in renal
 **Q:** Maximum KCl rate for K⁺ 2.8 mmol/L without ECG changes?
 - [x] 10 mmol/h, at no more than 40 mmol/L
   > The label limit for K⁺ 2.5 or more; up to 40 mmol/h only with ECG monitoring for severe hypokalemia with ECG changes.
-- [ ] 40 mmol/h peripherally
-- [ ] A 20 mmol push
+- [ ] 40 mmol/h peripherally, as K⁺ below 3.0 needs rapid correction
+- [ ] A 20 mmol push over 2 minutes to restore K⁺ quickly
 - [ ] 100 mmol/h
 
 ## [cticu-doses-1] Noradrenaline and adrenaline infusions

@@ -175,6 +175,7 @@ def build(ctx):
             # latissimus dorsi flap: from its posterior origin, rotated in through the window, laid on the stump
             base_ = port(5, -70, 'right')
             path = [base_, base_ + (wc - base_) * 0.5 - RIGHT * 10, wc - RIGHT * 12, (wc + s1) / 2, s1 + RIGHT * 6]
+            for i_, p_ in enumerate(path): LM[f'flap-{i_}'] = p_                 # the flap's course, for anatomy_thx's sheet
             emit_mesh('flap-lat', 'Latissimus dorsi flap (to the stump)', 'pathology', '#a4453d', tube([W(p) for p in path], 9.0, seg=16), visible=False,
                       note='A pedicled muscle flap on the thoracodorsal vessels brought into the chest (through a window or a resected rib bed) to cover the closed stump and fill part of the space.')
     return LM

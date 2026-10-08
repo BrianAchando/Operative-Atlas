@@ -18,11 +18,11 @@ The balance is delicate: too small a shunt leaves the baby blue; too big floods 
 ### Question
 
 **Q:** A shunt that is too large for the baby causes what?
-- [x] Pulmonary over-circulation with diastolic steal: low diastolic pressure, coronary and gut ischemia
+- [x] Pulmonary over-circulation with diastolic steal, causing coronary and gut ischemia
   > Blood runs off into the lungs throughout diastole; coronary perfusion and mesenteric flow fall.
-- [ ] Worsening cyanosis
+- [ ] Worsening cyanosis, because high shunt flow raises pulmonary pressure and reverses the shunt right-to-left
 - [ ] Hypertension
-- [ ] Pulmonary oligemia and a falling saturation
+- [ ] Pulmonary oligemia and a falling saturation as the shunt competes with the native outflow tract
 
 ## [bt-anatomy] Innominate artery, right PA and the nerves
 
@@ -41,9 +41,9 @@ A **6-week-old, 3.4 kg**, increasingly cyanosed (SpO₂ 62%), poor feeding. Echo
 **Q:** Shunt size for a 3.4 kg baby?
 - [x] 3.5 mm PTFE
   > About 1 mm per kg in small infants: 3–3.5 mm for 3–4 kg; 4 mm for larger infants. Oversizing raises the risk of death from over-circulation.
-- [ ] 6 mm
+- [ ] 6 mm PTFE, to allow for growth
 - [ ] 2 mm
-- [ ] 5 mm
+- [ ] 5 mm PTFE, to limit thrombosis
 
 ## [bt-decision] Shunt size, route and risk
 
@@ -101,8 +101,8 @@ Template and how to use it: [CTICU protocol, consent](#approach=cticu-consent&st
 **Q:** Which complication of a BT shunt is an emergency the parents should recognize?
 - [x] Shunt blockage: the baby becomes suddenly bluer
   > Thrombosis is commonest early; sudden desaturation needs immediate assessment.
-- [ ] Mild cough
-- [ ] Sweating with feeds
+- [ ] Mild cough with a runny nose in the first weeks at home
+- [ ] Sweating with feeds, as many shunted babies do in the first months
 - [ ] A slightly warm baby after a feed
 
 ## [bt-sternotomy] Median sternotomy
@@ -139,8 +139,8 @@ Doses: [electrolytes](#approach=cticu-doses&step=0), [vasoactive drugs](#approac
 **Q:** 12 h after a BT shunt, SpO₂ falls from 82% to 60% and the continuous murmur has gone. Next?
 - [x] Heparin bolus, urgent echo and return to theatre or the cath lab
   > Acute shunt thrombosis is life-threatening; restore flow quickly.
-- [ ] Increase oxygen and wait
-- [ ] Furosemide
+- [ ] Increase oxygen and wait, since the shunt murmur often fades as pulmonary resistance falls
+- [ ] Furosemide, as the desaturation reflects pulmonary edema from over-circulation
 - [ ] Start propranolol
 
 ## Sources

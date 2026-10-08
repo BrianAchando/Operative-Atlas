@@ -26,10 +26,10 @@ Severe AS: aortic valve area under 1.0 cm², mean gradient 40 mmHg or more, peak
 ### Question
 
 **Q:** Why does exertional syncope occur in severe aortic stenosis?
-- [x] Exercise dilates peripheral vessels, but the narrowed valve cannot increase output to match, so pressure falls
+- [x] Exercise vasodilation is not matched by a rise in output across the fixed stenosis, so pressure falls
   > Cardiac output is fixed by the valve; vasodilatation drops the blood pressure and cerebral perfusion. Arrhythmia can also contribute.
-- [ ] Mitral regurgitation develops on exercise
-- [ ] The coronary arteries go into spasm
+- [ ] Mitral regurgitation develops on exercise as the LV dilates, so forward output falls and the patient faints
+- [ ] The coronary arteries go into spasm on exertion, causing transient ventricular standstill and syncope
 - [ ] Blood pools in the LA
 
 ## [ar-anatomy] The aortic root and what lies around it
@@ -70,9 +70,9 @@ A **64-year-old** businessman, breathless on exertion. Echo: **bicuspid** valve 
 **Q:** Why is SAVR, rather than TAVI, the standard for this 64-year-old?
 - [x] He is under 70 at low surgical risk, and the valve is bicuspid
   > Both favor surgery: ESC/EACTS 2025 recommend SAVR under 70 at low risk, and bicuspid valves were excluded from the low-risk TAVI trials.
-- [ ] TAVI is contraindicated after 60
+- [ ] TAVI is contraindicated in anyone over 60 with a bicuspid valve, whatever the surgical risk
 - [ ] His ascending aorta needs replacing
-- [ ] Bioprostheses cannot be implanted by TAVI
+- [ ] Bioprostheses cannot be implanted by TAVI, so a tissue valve requires open surgery
 
 ## [avr-ramt-consent] Consent: what to discuss with this patient
 
@@ -148,11 +148,11 @@ Repeat every 15–20 minutes (retrograde, or down the ostia), or as the solution
 ### Question
 
 **Q:** Severe aortic regurgitation. After the cross-clamp, antegrade root cardioplegia is started and the LV swells while the heart keeps beating. Next?
-- [x] Stop the root infusion, vent the LV, open the aorta and give cardioplegia directly into the ostia (and/or retrograde)
+- [x] Stop the root infusion, vent the LV, open the aorta, give ostial (and/or retrograde) cardioplegia
   > Root cardioplegia is going through the incompetent valve into the LV, not down the coronaries. Distension injures the myocardium.
-- [ ] Increase the root infusion pressure
+- [ ] Increase the root infusion pressure until it overcomes the regurgitant valve and the coronaries fill
 - [ ] Cool further and wait for arrest
-- [ ] Clamp the root and continue the infusion at higher flow
+- [ ] Clamp the root more proximally and continue the root infusion at a higher flow until the heart arrests
 
 ## [ar-aortotomy] Oblique aortotomy into the non-coronary sinus
 
@@ -181,8 +181,8 @@ Remove the sponge, **irrigate the LV and root** with saline and suction, and loo
 **Q:** While debriding, you take calcium from beneath the commissure between the right and non-coronary cusps and see the septum bulge. What is at risk?
 - [x] The His bundle (heart block) and the membranous septum (a VSD)
   > That area is the membranous septum carrying the His bundle. Take less calcium there; a little residual calcium is safer than a VSD or heart block.
-- [ ] The left main coronary
-- [ ] The anterior mitral leaflet
+- [ ] The left main coronary, which runs directly beneath this commissure
+- [ ] The anterior mitral leaflet, which is continuous with the annulus beneath this commissure
 - [ ] The right coronary ostium
 
 ## [ar-size] Size, and avoid patient–prosthesis mismatch
@@ -205,9 +205,9 @@ Through a mini-thoracotomy, a **sutureless or rapid-deployment** valve shortens 
 **Q:** A 1.9 m² patient (BMI 26). The largest valve that fits has an expected EOA of 1.2 cm². What is the predicted mismatch, and what should you consider?
 - [x] EOAi 0.63: severe mismatch; consider annular enlargement or a valve with a larger orifice
   > 1.2 / 1.9 = 0.63 cm²/m², which is 0.65 or less: severe by VARC-3 (BMI under 30).
-- [ ] EOAi 0.63: acceptable
+- [ ] EOAi 0.63: acceptable, because mismatch thresholds only apply when the LV ejection fraction is reduced
 - [ ] EOAi 1.1: no mismatch
-- [ ] EOAi 0.9: mild mismatch, no action
+- [ ] EOAi 0.9: mild mismatch, no action needed because the LV will remodel once the gradient falls
 
 ## [ar-sutures] Annular sutures: which technique?
 
@@ -234,11 +234,11 @@ Keep pledgets and sutures clear of the **ostia**; take shallow bites under the *
 ### Question
 
 **Q:** An elderly woman with a heavily calcified 19 mm annulus, receiving a supra-annular bioprosthesis. Which suture choice best balances sealing and orifice size?
-- [x] Pledgeted non-everting mattress sutures (supra-annular), or simple interrupted where the tissue holds
+- [x] Non-everting pledgeted mattress sutures (supra-annular), or simple interrupted where tissue holds
   > Supra-annular seating gives the largest valve. Pledgets protect calcified tissue from cutting through; simple interrupted bites (Tabata) gain orifice where the tissue is sound. Everting sutures would push the valve intra-annular and a size down.
-- [ ] Everting mattress sutures all round
+- [ ] Everting mattress sutures all round, which seat the valve supra-annularly and so allow a larger size
 - [ ] A continuous polypropylene suture
-- [ ] Everting mattress sutures with the pledgets on the ventricular side
+- [ ] Everting mattress sutures with the pledgets on the ventricular side, keeping the ring intra-annular
 
 ## [avr-ramt-size-a] Size the aortic prosthesis to the patient
 
@@ -276,10 +276,10 @@ Before closing: look into **both ostia** (nothing overhanging); check for **gaps
 ### Question
 
 **Q:** After weaning, new ST elevation in the anterolateral leads and poor anterior wall motion on TOE. The valve looks well seated. First suspicion?
-- [x] The left main ostium is partly obstructed by a post, a pledget or the sewing ring (or has embolized air/debris)
+- [x] Left main ostium partly blocked by a post, pledget or sewing ring (or air/debris embolism)
   > Coronary compromise right after SAVR is the prosthesis or embolism until proved otherwise: go back on bypass, inspect, and re-seat or graft.
-- [ ] Heart block
-- [ ] Patient–prosthesis mismatch
+- [ ] Heart block from deep annular sutures, with loss of AV synchrony causing anterior wall hypokinesis
+- [ ] Patient–prosthesis mismatch, with the high residual gradient causing subendocardial anterior ischemia
 - [ ] Protamine reaction
 
 ## [ar-close] Close the aorta and de-air
@@ -307,9 +307,9 @@ Then venous cannula out, protamine, arterial cannula out last.
 **Q:** After AVR for severe AS (small, thick LV), the patient becomes hypotensive on adrenaline. TOE: hyperdynamic LV, mitral leaflet touching the septum in systole, high LVOT gradient. Treatment?
 - [x] Stop inotropes, give volume, a beta-blocker or phenylephrine
   > This is dynamic LVOT obstruction with systolic anterior motion of the mitral leaflet, which inotropes worsen. Fill, slow and constrict.
-- [ ] More adrenaline
+- [ ] More adrenaline to support the small thick ventricle until the pressure recovers
 - [ ] Go back on bypass and replace the mitral valve
-- [ ] Add a vasodilator and reduce preload further
+- [ ] Add a vasodilator and reduce preload further to offload the hypertrophied LV
 
 ## [avr-ramt-icu] ICU and post-operative care
 
@@ -330,10 +330,10 @@ Doses: [electrolytes](#approach=cticu-doses&step=0), [vasoactive drugs](#approac
 ### Question
 
 **Q:** After AVR, complete heart block: the epicardial wires are not capturing. Next?
-- [x] Call the consultant; increase output, check connections, prepare transcutaneous pacing
+- [x] Call the consultant; raise output, check connections, ready transcutaneous pacing
   > Loss of capture in complete heart block is an emergency.
-- [ ] Wait for the rhythm to recover without checking the wires
-- [ ] Give a beta-blocker
+- [ ] Wait for the rhythm to recover without checking the wires, as block after AVR is usually transient
+- [ ] Give a beta-blocker to slow the atrial rate so the ventricle can follow it 1:1
 - [ ] Remove the wires
 
 ## Sources

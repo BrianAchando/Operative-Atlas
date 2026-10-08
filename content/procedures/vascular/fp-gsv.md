@@ -39,9 +39,9 @@ A **66-year-old man**, diabetic, ex-smoker. 3 months of **rest pain** in the rig
 **Q:** Which conduit gives the best patency to the below-knee popliteal?
 - [x] The patient's own great saphenous vein
   > Autologous vein outperforms prosthetic grafts below the knee.
-- [ ] PTFE
+- [ ] PTFE, which matches vein patency below the knee
 - [ ] Dacron
-- [ ] Cephalic vein from the arm, always
+- [ ] Cephalic vein from the arm, which outperforms leg vein below the knee
 
 ## [fp-gsv-consent] Consent: what to discuss with this patient
 
@@ -90,8 +90,8 @@ Template and how to use it: [CTICU protocol, consent](#approach=cticu-consent&st
 **Q:** Which commitment comes with a vein bypass?
 - [x] Graft surveillance with duplex scans and possible further procedures
   > Vein graft stenoses are found and fixed before occlusion.
-- [ ] No follow-up after discharge
-- [ ] Warfarin for life in all
+- [ ] No follow-up after discharge, because vein grafts do not develop stenoses
+- [ ] Warfarin for life in all, as vein grafts occlude without anticoagulation
 - [ ] Weekly angiograms
 
 ## [fp-vein] Harvest the great saphenous vein; reverse it
@@ -111,8 +111,8 @@ Check a **pulse in the graft** and pedal Doppler signals; a completion angiogram
 **Q:** Why are vein grafts followed with duplex scanning?
 - [x] To detect stenoses in the graft before it occludes, when they can be fixed
   > Most vein graft failures after the first month come from intimal hyperplasia at anastomoses or valve sites.
-- [ ] To measure the ABI only
-- [ ] Because they always infect
+- [ ] To measure the ABI only, which is the most sensitive test for graft stenosis
+- [ ] Because they often infect, and duplex is the best test for graft infection
 - [ ] It is not needed
 
 ## [fp-gsv-icu] ICU and post-operative care
@@ -136,9 +136,9 @@ Doses: [electrolytes](#approach=cticu-doses&step=0), [vasoactive drugs](#approac
 **Q:** Day 1 after fem-pop bypass: the graft pulse is lost and the foot is cold. Next?
 - [x] Call the consultant: early graft thrombosis needs return to theatre
   > Early failure is usually technical: inflow, twist, or the distal anastomosis.
-- [ ] Elevate the leg and observe
+- [ ] Elevate the leg and observe, as the pulse often returns once swelling settles
 - [ ] Aspirin only
-- [ ] Wait for the morning duplex
+- [ ] Wait for the morning duplex before deciding whether to re-explore the graft
 
 ## Sources
 

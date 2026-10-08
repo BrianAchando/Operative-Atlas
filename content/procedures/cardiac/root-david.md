@@ -19,8 +19,8 @@ The valve works as a unit with its root: the **ventriculo-aortic junction** (the
 - [x] The dilated root (STJ and base) pulls the commissures apart, so the cusps no longer meet
   > This is type I (functional annulus dilatation) regurgitation: the cusps are normal, which is exactly the case for keeping them.
 - [ ] The cusps are torn
-- [ ] The cusps are calcified and restricted
-- [ ] The leaflets are perforated by endocarditis
+- [ ] The cusps are calcified and restricted, so they cannot close despite a normal-sized root
+- [ ] The leaflets are perforated by endocarditis, producing a central jet through the cusp bodies
 
 ## [rd-decide] Who is right for a valve-sparing root?
 
@@ -39,9 +39,9 @@ A **28-year-old man** with Marfan syndrome diagnosed in childhood, on a beta-blo
 **Q:** A 28-year-old with Marfan syndrome, root 5.0 cm, mild AR, normal cusps. Which operation keeps his own valve and also stabilizes the annulus?
 - [x] Valve-sparing reimplantation (David)
   > Reimplantation fixes the base inside the graft as well as replacing the sinuses; with normal cusps it avoids a prosthesis and anticoagulation.
-- [ ] Mechanical Bentall
+- [ ] Mechanical Bentall, which keeps the native cusps inside the composite graft
 - [ ] Ross procedure
-- [ ] Remodelling without annuloplasty
+- [ ] Remodelling without annuloplasty, which preserves sinus geometry and fixes the annulus
 
 ## [root-david-consent] Consent: what to discuss with this patient
 
@@ -91,8 +91,8 @@ Template and how to use it: [CTICU protocol, consent](#approach=cticu-consent&st
 - [x] Both the autograft and the pulmonary homograft may need later intervention
   > The Ross converts single-valve disease into two-valve disease.
 - [ ] Reoperation never occurs
-- [ ] Only the mitral valve is at risk
-- [ ] Warfarin is lifelong
+- [ ] Only the mitral valve is at risk, as rheumatic changes tend to develop after the Ross
+- [ ] Warfarin is lifelong because the homograft in the pulmonary position tends to thrombose
 
 ## [rd-sternotomy] Median sternotomy, pericardial cradle
 
@@ -118,11 +118,11 @@ Repeat every 15–20 minutes (retrograde, or down the ostia), or as the solution
 ### Question
 
 **Q:** Severe aortic regurgitation. After the cross-clamp, antegrade root cardioplegia is started and the LV swells while the heart keeps beating. Next?
-- [x] Stop the root infusion, vent the LV, open the aorta and give cardioplegia directly into the ostia (and/or retrograde)
+- [x] Stop the root infusion, vent the LV, open the aorta, give ostial (and/or retrograde) cardioplegia
   > Root cardioplegia is going through the incompetent valve into the LV, not down the coronaries. Distension injures the myocardium.
-- [ ] Increase the root infusion pressure
+- [ ] Increase the root infusion pressure until it overcomes the regurgitant valve and the coronaries fill
 - [ ] Cool further and wait for arrest
-- [ ] Clamp the root and continue the infusion at higher flow
+- [ ] Clamp the root more proximally and continue the root infusion at a higher flow until the heart arrests
 
 ## [rd-dissect] Free the root down to the base; excise the sinuses
 
@@ -161,9 +161,9 @@ Look at the valve from above. The free margins should meet at the same level, we
 **Q:** After reimplantation, one cusp's free margin sits 3 mm lower than the other two, and the effective height is 6 mm. What next?
 - [x] Central plication of the prolapsing cusp, then re-measure
   > A low-lying cusp is prolapsing; shortening its free margin (central plication) restores coaptation. Leaving it means residual AR and early failure.
-- [ ] Accept it: it will settle
+- [ ] Accept it: the cusp will settle into position once the root is pressurized
 - [ ] Convert to a Bentall immediately
-- [ ] Replace the aortic valve with a mechanical prosthesis
+- [ ] Replace the aortic valve with a mechanical prosthesis, as prolapse after reimplantation cannot be corrected
 
 ## [rd-buttons] Reimplant the coronary buttons
 
@@ -178,9 +178,9 @@ Test each suture line (cardioplegia down the graft) **before** the distal anasto
 **Q:** After a Bentall, the patient comes off bypass with inferior ST elevation and a failing RV. The left side looks fine. Most likely?
 - [x] The right coronary button is kinked or under tension
   > The right button, placed too low or with the heart empty, kinks when the heart fills. Go back on bypass and redo it (or bypass the RCA).
-- [ ] Air in the left main
+- [ ] Air in the left main, which typically clears into the inferior territory
 - [ ] A paravalvular leak
-- [ ] Left main ostial stenosis from the valve
+- [ ] Left main ostial stenosis from the valve, causing inferior ischemia and RV failure
 
 ## [rd-distal] Distal anastomosis; TOE of the repaired valve
 
@@ -209,8 +209,8 @@ Doses: [electrolytes](#approach=cticu-doses&step=0), [vasoactive drugs](#approac
 **Q:** After a Bentall, new ST elevation in the inferior leads. Think of?
 - [x] Right coronary button kinking or ischemia
   > Coronary button problems present early with ST change or arrhythmia: echo and angiography.
-- [ ] Pericarditis, which needs only an NSAID
-- [ ] Left main button kinking
+- [ ] Pericarditis from the operation, which needs only an NSAID and observation
+- [ ] Left main button kinking, which presents with isolated inferior lead changes
 - [ ] Hypokalemia
 
 ## Sources

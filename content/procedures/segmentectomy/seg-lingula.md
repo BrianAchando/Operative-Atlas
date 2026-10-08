@@ -41,8 +41,8 @@ Chain: Primary tumor → **Blood: brain, bone, adrenal, liver (M1)**
 **Q:** Under the 9th edition, a 2.6 cm tumor (T1c) with metastasis in a single mediastinal station (subcarinal, station 7) and no distant spread is stage…
 - [x] IIB (T1 N2a)
   > The 9th edition splits N2: a single station (N2a) with a T1 tumor is IIB; several stations (N2b) make it IIIA. Many single-station N2 patients are now treated with neoadjuvant chemo-immunotherapy and surgery.
-- [ ] IIIA
-- [ ] IIIB
+- [ ] IIIA, because any mediastinal nodal disease places the tumor in stage III
+- [ ] IIIB, as subcarinal nodes are classed with contralateral (N3) nodes
 - [ ] IV
 
 ## [sl-anatomy] Lingular segmentectomy (S4+5)
@@ -122,8 +122,8 @@ Template and how to use it: [CTICU protocol, consent](#approach=cticu-consent&st
 **Q:** For a 1.8 cm peripheral NSCLC, what does JCOG0802 let you tell the patient about segmentectomy versus lobectomy?
 - [x] Overall survival was better with segmentectomy, although local recurrence was higher
   > JCOG0802 (Lancet 2022): 5-year OS 94.3% vs 91.1%; local recurrence 10.5% vs 5.4%.
-- [ ] Segmentectomy has no recurrence
-- [ ] Lobectomy has better survival
+- [ ] Segmentectomy has no recurrence, because the margin is checked by frozen section at surgery
+- [ ] Lobectomy has better survival, so segmentectomy should be offered only to unfit patients
 - [ ] They are identical in every respect
 
 ## [sl-setup] Position and ports
@@ -141,9 +141,9 @@ The **interlobar pulmonary artery** appears in its sheath. Get onto the sheath: 
 **Q:** A fissure-first approach works best when…
 - [x] The fissure is complete and the artery is visible in it
   > In a complete fissure the interlobar artery lies just under the visceral pleura where the fissures meet.
-- [ ] The fissure is fused
+- [ ] The fissure is fused, as the stapler can divide it before the artery is found
 - [ ] The superior vein is short
-- [ ] The pulmonary vein is already divided
+- [ ] The pulmonary vein is already divided, so the lobe has drained
 
 ## [sl-artery] Segmental artery
 
@@ -162,9 +162,9 @@ Behind the vein, the **lingular bronchus** leaves the lower side of the upper lo
 **Q:** After the segmental bronchus is divided, how is the intersegmental plane shown with the inflation–deflation method?
 - [x] Inflate the whole lung, then let it deflate: the target segment stays inflated
   > Air trapped behind the divided bronchus keeps the segment inflated while the rest deflates, drawing the boundary; intravenous ICG after dividing the artery is the alternative.
-- [ ] The segment deflates first
+- [ ] The segment deflates first, so it shows as a collapsed area within the inflated lung
 - [ ] By palpation of the fissure
-- [ ] The segment is detected by transillumination of the pleura
+- [ ] The segment is detected by transillumination of the pleura with a bronchoscope light
 
 ## [sl-plane] Divide the intersegmental plane
 
@@ -196,9 +196,9 @@ Doses: [electrolytes](#approach=cticu-doses&step=0), [vasoactive drugs](#approac
 **Q:** Day 3 after segmentectomy: small continuous air leak, lung up, patient well. Next?
 - [x] Keep the drain, no suction, reassess daily; consider a portable valve if it persists
   > Intersegmental-plane leaks usually seal; prolonged leak is defined beyond 5 days.
-- [ ] Return to theatre today
+- [ ] Return to theatre today, since any air leak persisting to day 3 means the staple line has failed
 - [ ] Clamp the drain
-- [ ] High-pressure suction
+- [ ] High-pressure suction, which will seal the leak faster by pulling the lung onto the chest wall
 
 ## Sources
 

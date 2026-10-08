@@ -24,8 +24,8 @@ What the sutures can injure:
 **Q:** Where is the AV node relative to the tricuspid valve?
 - [x] At the apex of Koch's triangle, near the anteroseptal commissure
   > Bounded by the coronary sinus ostium, the tendon of Todaro and the septal leaflet hinge; the node sits at the apex, near the anteroseptal commissure.
-- [ ] Near the anteroposterior commissure
-- [ ] In the middle of the posterior annulus
+- [ ] Near the anteroposterior commissure, where the annulus is thinnest
+- [ ] In the middle of the posterior annulus, well away from the septal leaflet
 - [ ] Beside the right coronary artery
 
 ## [tx-decide] When to operate on the tricuspid, and how
@@ -96,8 +96,8 @@ Template and how to use it: [CTICU protocol, consent](#approach=cticu-consent&st
 **Q:** Which risk is higher after tricuspid surgery than after most valve operations?
 - [x] Heart block needing a permanent pacemaker
   > The AV node lies close to the septal leaflet annulus.
-- [ ] Phrenic nerve palsy
-- [ ] Left main coronary injury
+- [ ] Phrenic nerve palsy from cold injury to the right pericardium
+- [ ] Left main coronary injury from deep annular sutures
 - [ ] Recurrent laryngeal nerve injury
 
 ## [tx-sternotomy] Median sternotomy, pericardial cradle
@@ -124,9 +124,9 @@ After a mitral operation the tricuspid is often done **after the clamp is off**,
 **Q:** Isolated tricuspid ring annuloplasty on the beating heart. While tying the sutures near the anteroseptal commissure, complete heart block appears. Best move?
 - [x] Cut and remove that suture, and place it more superficially or on the atrial side
   > Watching the rhythm while tying is the point of the beating-heart technique: a block that appears with one stitch often resolves when it is removed.
-- [ ] Carry on and put in a pacemaker later
+- [ ] Carry on and put in a pacemaker later, as block appearing during annuloplasty is permanent
 - [ ] Give atropine and continue
-- [ ] Convert to cardiopulmonary bypass and replace the valve
+- [ ] Arrest the heart and replace the valve, since a ring cannot then be placed safely on the septal annulus
 
 ## [tx-atriotomy] Right atriotomy
 
@@ -203,8 +203,8 @@ Doses: [electrolytes](#approach=cticu-doses&step=0), [vasoactive drugs](#approac
 **Q:** After tricuspid repair: CVP rising, low output, RV dilated on echo. Priority?
 - [x] Treat RV failure: inodilator, avoid more fluid, lower pulmonary resistance
   > The RV fails with overload and high afterload.
-- [ ] Fluid bolus
-- [ ] Raise PEEP to push blood through the lungs
+- [ ] Fluid bolus to raise RV preload and output, as the dilated ventricle needs filling
+- [ ] Raise PEEP to recruit the lungs and push blood through the pulmonary circulation
 - [ ] Beta-blocker
 
 ## Sources

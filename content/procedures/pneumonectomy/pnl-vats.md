@@ -41,8 +41,8 @@ Chain: Primary tumor → **Blood: brain, bone, adrenal, liver (M1)**
 **Q:** Under the 9th edition, a 2.6 cm tumor (T1c) with metastasis in a single mediastinal station (subcarinal, station 7) and no distant spread is stage…
 - [x] IIB (T1 N2a)
   > The 9th edition splits N2: a single station (N2a) with a T1 tumor is IIB; several stations (N2b) make it IIIA. Many single-station N2 patients are now treated with neoadjuvant chemo-immunotherapy and surgery.
-- [ ] IIIA
-- [ ] IIIB
+- [ ] IIIA, because any mediastinal nodal disease places the tumor in stage III
+- [ ] IIIB, as subcarinal nodes are classed with contralateral (N3) nodes
 - [ ] IV
 
 ## [lp-anatomy] The left hilum as a whole
@@ -66,9 +66,9 @@ A **63-year-old man**, smoker, hemoptysis. Bronchoscopy: a squamous carcinoma at
 **Q:** Why is bronchopleural fistula commoner after right than left pneumonectomy?
 - [x] The right main bronchial stump has little mediastinal cover and usually a single bronchial artery
   > The left stump retracts under the aortic arch into the mediastinum and usually has two bronchial arteries; the exposed, less well perfused right stump breaks down more often.
-- [ ] The right bronchus is narrower
-- [ ] The left lung is smaller
-- [ ] It is not: left is commoner
+- [ ] The right bronchus is narrower and shorter, so its stump is closed under more tension than the left
+- [ ] The left lung is smaller, so the left space fills faster and supports the stump better
+- [ ] It is not: left is commoner, because the left stump retracts under the aortic arch and is hard to close
 
 ## [pnl-vats-consent] Consent: what to discuss with this patient
 
@@ -122,8 +122,8 @@ Template and how to use it: [CTICU protocol, consent](#approach=cticu-consent&st
 **Q:** Why is sleeve lobectomy offered, where possible, instead of pneumonectomy?
 - [x] Similar cancer control with lower mortality and better lung function
   > Parenchyma-sparing: pneumonectomy carries higher mortality and permanent loss of function.
-- [ ] It is quicker
-- [ ] It needs no bronchial anastomosis
+- [ ] It is quicker, because the bronchus is divided once and no stump needs closure
+- [ ] It needs no bronchial anastomosis, as the airway is closed with a stapler
 - [ ] It avoids a thoracotomy
 
 ## [lp-setup] Position and ports
@@ -153,9 +153,9 @@ The **main pulmonary artery** now lies free above the bronchus. Clear it proxima
 **Q:** Why trial-clamp the main pulmonary artery before dividing it?
 - [x] To see whether the right ventricle tolerates the whole cardiac output going to one lung
   > Acute right heart strain or a fall in pressure on clamping warns that pneumonectomy may not be tolerated.
-- [ ] To check for bleeding from the bronchial arteries
+- [ ] To check for bleeding from the bronchial arteries, which supply the lung once the pulmonary artery is closed
 - [ ] To test the bronchial stump
-- [ ] To check pulmonary vein pressure
+- [ ] To check pulmonary vein pressure, which must rise before the artery can be divided safely
 
 ## [lp-bronchus] Main bronchus: staple flush with the carina
 
@@ -168,8 +168,8 @@ On the left the bronchus runs under the aortic arch: pull the lung down and out 
 **Q:** Why staple the main bronchus flush with the carina?
 - [x] A long stump pools secretions and is prone to breakdown (bronchopleural fistula)
   > The shorter the stump, the less dead space for infection and dehiscence.
-- [ ] To preserve the contralateral lung
-- [ ] To make the specimen easier to remove
+- [ ] To preserve the contralateral lung, by keeping the staple line away from the opposite main bronchus
+- [ ] To make the specimen easier to remove through a smaller incision and with less traction on the hilum
 - [ ] To make the stump easier to see
 
 ## [lp-specimen] Specimen out, cover the stump, leak test
@@ -200,8 +200,8 @@ Doses: [electrolytes](#approach=cticu-doses&step=0), [vasoactive drugs](#approac
 **Q:** Day 9 after right pneumonectomy: coughing serosanguinous fluid, fluid level has fallen. First action?
 - [x] Lie the patient operated side down, then drain the space and arrange bronchoscopy
   > Bronchopleural fistula: protect the remaining lung from spill-over first.
-- [ ] Lie operated side up
-- [ ] Suction on the drain
+- [ ] Lie the patient operated side up, so the space fluid drains away from the bronchial stump
+- [ ] Apply high suction to the drain to empty the space before changing the patient's position
 - [ ] Start a diuretic
 
 ## Sources

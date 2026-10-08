@@ -102410,10 +102410,6 @@
      "n-phrenic-r",
      "n-vagus-r",
      "ipl-r",
-     "ln-4r",
-     "ln-10r",
-     "ln-11r",
-     "ln-9r",
      "leak-collection",
      "leak-effusion",
      "leak-drain",
@@ -102595,10 +102591,6 @@
      "n-phrenic-r",
      "n-vagus-r",
      "ipl-r",
-     "ln-4r",
-     "ln-10r",
-     "ln-11r",
-     "ln-9r",
      "leak-drain",
      "leak-ngt",
      "leak-evt",
@@ -102755,10 +102747,6 @@
      "n-phrenic-r",
      "n-vagus-r",
      "ipl-r",
-     "ln-4r",
-     "ln-10r",
-     "ln-11r",
-     "ln-9r",
      "leak-collection",
      "leak-effusion",
      "leak-drain",
@@ -102934,10 +102922,6 @@
      "n-phrenic-r",
      "n-vagus-r",
      "ipl-r",
-     "ln-4r",
-     "ln-10r",
-     "ln-11r",
-     "ln-9r",
      "leak-effusion",
      "leak-drain",
      "leak-ngt",
@@ -103116,10 +103100,6 @@
      "n-phrenic-r",
      "n-vagus-r",
      "ipl-r",
-     "ln-4r",
-     "ln-10r",
-     "ln-11r",
-     "ln-9r",
      "leak-drain",
      "leak-ngt",
      "leak-evt",
@@ -103296,10 +103276,6 @@
      "n-phrenic-r",
      "n-vagus-r",
      "ipl-r",
-     "ln-4r",
-     "ln-10r",
-     "ln-11r",
-     "ln-9r",
      "leak-collection",
      "leak-effusion",
      "leak-drain",
@@ -103473,10 +103449,6 @@
      "n-phrenic-r",
      "n-vagus-r",
      "ipl-r",
-     "ln-4r",
-     "ln-10r",
-     "ln-11r",
-     "ln-9r",
      "leak-collection",
      "leak-effusion",
      "leak-drain",
@@ -103637,10 +103609,6 @@
      "n-phrenic-r",
      "n-vagus-r",
      "ipl-r",
-     "ln-4r",
-     "ln-10r",
-     "ln-11r",
-     "ln-9r",
      "leak-ngt",
      "leak-evt",
      "leak-evt-tube",
@@ -103825,10 +103793,6 @@
      "n-phrenic-r",
      "n-vagus-r",
      "ipl-r",
-     "ln-4r",
-     "ln-10r",
-     "ln-11r",
-     "ln-9r",
      "leak-defect",
      "leak-collection",
      "leak-effusion",
@@ -103990,10 +103954,6 @@
      "n-phrenic-r",
      "n-vagus-r",
      "ipl-r",
-     "ln-4r",
-     "ln-10r",
-     "ln-11r",
-     "ln-9r",
      "leak-effusion",
      "leak-drain",
      "leak-ngt",
@@ -104177,10 +104137,6 @@
      "n-phrenic-r",
      "n-vagus-r",
      "ipl-r",
-     "ln-4r",
-     "ln-10r",
-     "ln-11r",
-     "ln-9r",
      "leak-collection",
      "leak-effusion",
      "leak-drain",
@@ -104342,10 +104298,6 @@
      "n-phrenic-r",
      "n-vagus-r",
      "ipl-r",
-     "ln-4r",
-     "ln-10r",
-     "ln-11r",
-     "ln-9r",
      "leak-ngt",
      "leak-evt",
      "leak-evt-tube",
@@ -104500,10 +104452,6 @@
      "n-phrenic-r",
      "n-vagus-r",
      "ipl-r",
-     "ln-4r",
-     "ln-10r",
-     "ln-11r",
-     "ln-9r",
      "leak-defect",
      "leak-collection",
      "leak-effusion",
@@ -104693,10 +104641,6 @@
      "n-phrenic-r",
      "n-vagus-r",
      "ipl-r",
-     "ln-4r",
-     "ln-10r",
-     "ln-11r",
-     "ln-9r",
      "leak-evt",
      "leak-evt-tube",
      "leak-stent",
@@ -135344,19 +135288,19 @@
      ],
      "path": [
       [
-       -37.5,
-       18.3,
-       -64.1
+       -36.4,
+       13.6,
+       -62.2
       ],
       [
-       -38.0,
-       19.0,
-       -70.6
+       -36.9,
+       14.3,
+       -68.7
       ],
       [
-       -37.5,
-       18.3,
-       -76.1
+       -36.4,
+       13.6,
+       -74.2
       ]
      ]
     },
@@ -198634,11 +198578,7 @@
      "azygos",
      "n-phrenic-r",
      "n-vagus-r",
-     "ipl-r",
-     "ln-4r",
-     "ln-10r",
-     "ln-11r",
-     "ln-9r"
+     "ipl-r"
     ],
     "highlight": [
      "asd-defect"
@@ -198824,11 +198764,7 @@
      "azygos",
      "n-phrenic-r",
      "n-vagus-r",
-     "ipl-r",
-     "ln-4r",
-     "ln-10r",
-     "ln-11r",
-     "ln-9r"
+     "ipl-r"
     ],
     "highlight": [
      "asd-defect",
@@ -199012,11 +198948,7 @@
      "azygos",
      "n-phrenic-r",
      "n-vagus-r",
-     "ipl-r",
-     "ln-4r",
-     "ln-10r",
-     "ln-11r",
-     "ln-9r"
+     "ipl-r"
     ],
     "highlight": [
      "asd-defect"
@@ -199174,11 +199106,7 @@
      "azygos",
      "n-phrenic-r",
      "n-vagus-r",
-     "ipl-r",
-     "ln-4r",
-     "ln-10r",
-     "ln-11r",
-     "ln-9r"
+     "ipl-r"
     ],
     "highlight": [
      "asd-defect"
@@ -199336,11 +199264,7 @@
      "azygos",
      "n-phrenic-r",
      "n-vagus-r",
-     "ipl-r",
-     "ln-4r",
-     "ln-10r",
-     "ln-11r",
-     "ln-9r"
+     "ipl-r"
     ],
     "highlight": [
      "asd-defect"
@@ -199517,11 +199441,7 @@
      "azygos",
      "n-phrenic-r",
      "n-vagus-r",
-     "ipl-r",
-     "ln-4r",
-     "ln-10r",
-     "ln-11r",
-     "ln-9r"
+     "ipl-r"
     ],
     "highlight": [
      "asd-defect"
@@ -199670,11 +199590,7 @@
      "azygos",
      "n-phrenic-r",
      "n-vagus-r",
-     "ipl-r",
-     "ln-4r",
-     "ln-10r",
-     "ln-11r",
-     "ln-9r"
+     "ipl-r"
     ],
     "highlight": [],
     "danger": [],
@@ -199866,11 +199782,7 @@
      "azygos",
      "n-phrenic-r",
      "n-vagus-r",
-     "ipl-r",
-     "ln-4r",
-     "ln-10r",
-     "ln-11r",
-     "ln-9r"
+     "ipl-r"
     ],
     "opacity": {
      "vert-t2": 0.25,
@@ -200967,11 +200879,7 @@
      "azygos",
      "n-phrenic-r",
      "n-vagus-r",
-     "ipl-r",
-     "ln-4r",
-     "ln-10r",
-     "ln-11r",
-     "ln-9r"
+     "ipl-r"
     ],
     "highlight": [
      "asd-defect"
@@ -201159,11 +201067,7 @@
      "azygos",
      "n-phrenic-r",
      "n-vagus-r",
-     "ipl-r",
-     "ln-4r",
-     "ln-10r",
-     "ln-11r",
-     "ln-9r"
+     "ipl-r"
     ],
     "highlight": [
      "asd-patch"
@@ -202173,11 +202077,7 @@
      "azygos",
      "n-phrenic-r",
      "n-vagus-r",
-     "ipl-r",
-     "ln-4r",
-     "ln-10r",
-     "ln-11r",
-     "ln-9r"
+     "ipl-r"
     ],
     "highlight": [
      "vsd-defect"
@@ -202370,11 +202270,7 @@
      "azygos",
      "n-phrenic-r",
      "n-vagus-r",
-     "ipl-r",
-     "ln-4r",
-     "ln-10r",
-     "ln-11r",
-     "ln-9r"
+     "ipl-r"
     ],
     "highlight": [
      "vsd-defect",
@@ -202563,11 +202459,7 @@
      "azygos",
      "n-phrenic-r",
      "n-vagus-r",
-     "ipl-r",
-     "ln-4r",
-     "ln-10r",
-     "ln-11r",
-     "ln-9r"
+     "ipl-r"
     ],
     "highlight": [
      "vsd-defect"
@@ -202758,11 +202650,7 @@
      "azygos",
      "n-phrenic-r",
      "n-vagus-r",
-     "ipl-r",
-     "ln-4r",
-     "ln-10r",
-     "ln-11r",
-     "ln-9r"
+     "ipl-r"
     ],
     "highlight": [
      "vsd-defect"
@@ -202929,11 +202817,7 @@
      "azygos",
      "n-phrenic-r",
      "n-vagus-r",
-     "ipl-r",
-     "ln-4r",
-     "ln-10r",
-     "ln-11r",
-     "ln-9r"
+     "ipl-r"
     ],
     "highlight": [
      "vsd-defect"
@@ -203112,11 +202996,7 @@
      "azygos",
      "n-phrenic-r",
      "n-vagus-r",
-     "ipl-r",
-     "ln-4r",
-     "ln-10r",
-     "ln-11r",
-     "ln-9r"
+     "ipl-r"
     ],
     "highlight": [
      "vsd-defect"
@@ -203268,11 +203148,7 @@
      "azygos",
      "n-phrenic-r",
      "n-vagus-r",
-     "ipl-r",
-     "ln-4r",
-     "ln-10r",
-     "ln-11r",
-     "ln-9r"
+     "ipl-r"
     ],
     "highlight": [],
     "danger": [],
@@ -203467,11 +203343,7 @@
      "azygos",
      "n-phrenic-r",
      "n-vagus-r",
-     "ipl-r",
-     "ln-4r",
-     "ln-10r",
-     "ln-11r",
-     "ln-9r"
+     "ipl-r"
     ],
     "opacity": {
      "vert-t2": 0.25,
@@ -204575,11 +204447,7 @@
      "azygos",
      "n-phrenic-r",
      "n-vagus-r",
-     "ipl-r",
-     "ln-4r",
-     "ln-10r",
-     "ln-11r",
-     "ln-9r"
+     "ipl-r"
     ],
     "highlight": [
      "vsd-defect"
@@ -204750,11 +204618,7 @@
      "azygos",
      "n-phrenic-r",
      "n-vagus-r",
-     "ipl-r",
-     "ln-4r",
-     "ln-10r",
-     "ln-11r",
-     "ln-9r"
+     "ipl-r"
     ],
     "highlight": [
      "vsd-patch"
@@ -205794,11 +205658,7 @@
      "azygos",
      "n-phrenic-r",
      "n-vagus-r",
-     "ipl-r",
-     "ln-4r",
-     "ln-10r",
-     "ln-11r",
-     "ln-9r"
+     "ipl-r"
     ],
     "highlight": [
      "pda"
@@ -205978,11 +205838,7 @@
      "azygos",
      "n-phrenic-r",
      "n-vagus-r",
-     "ipl-r",
-     "ln-4r",
-     "ln-10r",
-     "ln-11r",
-     "ln-9r"
+     "ipl-r"
     ],
     "highlight": [
      "pda-type-a",
@@ -206143,11 +205999,7 @@
      "azygos",
      "n-phrenic-r",
      "n-vagus-r",
-     "ipl-r",
-     "ln-4r",
-     "ln-10r",
-     "ln-11r",
-     "ln-9r"
+     "ipl-r"
     ],
     "highlight": [
      "pda"
@@ -206297,11 +206149,7 @@
      "azygos",
      "n-phrenic-r",
      "n-vagus-r",
-     "ipl-r",
-     "ln-4r",
-     "ln-10r",
-     "ln-11r",
-     "ln-9r"
+     "ipl-r"
     ],
     "highlight": [
      "pda"
@@ -206460,11 +206308,7 @@
      "azygos",
      "n-phrenic-r",
      "n-vagus-r",
-     "ipl-r",
-     "ln-4r",
-     "ln-10r",
-     "ln-11r",
-     "ln-9r"
+     "ipl-r"
     ],
     "highlight": [
      "pda"
@@ -206638,11 +206482,7 @@
      "azygos",
      "n-phrenic-r",
      "n-vagus-r",
-     "ipl-r",
-     "ln-4r",
-     "ln-10r",
-     "ln-11r",
-     "ln-9r"
+     "ipl-r"
     ],
     "highlight": [
      "pda"
@@ -206790,11 +206630,7 @@
      "azygos",
      "n-phrenic-r",
      "n-vagus-r",
-     "ipl-r",
-     "ln-4r",
-     "ln-10r",
-     "ln-11r",
-     "ln-9r"
+     "ipl-r"
     ],
     "highlight": [],
     "danger": [],
@@ -206966,11 +206802,7 @@
      "azygos",
      "n-phrenic-r",
      "n-vagus-r",
-     "ipl-r",
-     "ln-4r",
-     "ln-10r",
-     "ln-11r",
-     "ln-9r"
+     "ipl-r"
     ],
     "highlight": [
      "incision-l3",
@@ -207175,11 +207007,7 @@
      "azygos",
      "n-phrenic-r",
      "n-vagus-r",
-     "ipl-r",
-     "ln-4r",
-     "ln-10r",
-     "ln-11r",
-     "ln-9r"
+     "ipl-r"
     ],
     "opacity": {
      "vert-t2": 0.25,
@@ -207319,11 +207147,7 @@
      "azygos",
      "n-phrenic-r",
      "n-vagus-r",
-     "ipl-r",
-     "ln-4r",
-     "ln-10r",
-     "ln-11r",
-     "ln-9r"
+     "ipl-r"
     ],
     "highlight": [
      "incision-l3"
@@ -207478,11 +207302,7 @@
      "azygos",
      "n-phrenic-r",
      "n-vagus-r",
-     "ipl-r",
-     "ln-4r",
-     "ln-10r",
-     "ln-11r",
-     "ln-9r"
+     "ipl-r"
     ],
     "highlight": [
      "n-vagus",
@@ -207658,11 +207478,7 @@
      "azygos",
      "n-phrenic-r",
      "n-vagus-r",
-     "ipl-r",
-     "ln-4r",
-     "ln-10r",
-     "ln-11r",
-     "ln-9r"
+     "ipl-r"
     ],
     "highlight": [
      "pda"
@@ -207843,11 +207659,7 @@
      "azygos",
      "n-phrenic-r",
      "n-vagus-r",
-     "ipl-r",
-     "ln-4r",
-     "ln-10r",
-     "ln-11r",
-     "ln-9r"
+     "ipl-r"
     ],
     "highlight": [
      "pda-clip"
@@ -208008,11 +207820,7 @@
      "azygos",
      "n-phrenic-r",
      "n-vagus-r",
-     "ipl-r",
-     "ln-4r",
-     "ln-10r",
-     "ln-11r",
-     "ln-9r"
+     "ipl-r"
     ],
     "highlight": [
      "pda-ligatures"
@@ -208215,11 +208023,7 @@
      "azygos",
      "n-phrenic-r",
      "n-vagus-r",
-     "ipl-r",
-     "ln-4r",
-     "ln-10r",
-     "ln-11r",
-     "ln-9r"
+     "ipl-r"
     ],
     "opacity": {
      "vert-t2": 0.25,
@@ -208490,11 +208294,7 @@
      "azygos",
      "n-phrenic-r",
      "n-vagus-r",
-     "ipl-r",
-     "ln-4r",
-     "ln-10r",
-     "ln-11r",
-     "ln-9r"
+     "ipl-r"
     ],
     "highlight": [
      "pda"
@@ -208674,11 +208474,7 @@
      "azygos",
      "n-phrenic-r",
      "n-vagus-r",
-     "ipl-r",
-     "ln-4r",
-     "ln-10r",
-     "ln-11r",
-     "ln-9r"
+     "ipl-r"
     ],
     "highlight": [
      "pda-type-a",
@@ -208839,11 +208635,7 @@
      "azygos",
      "n-phrenic-r",
      "n-vagus-r",
-     "ipl-r",
-     "ln-4r",
-     "ln-10r",
-     "ln-11r",
-     "ln-9r"
+     "ipl-r"
     ],
     "highlight": [
      "pda"
@@ -208993,11 +208785,7 @@
      "azygos",
      "n-phrenic-r",
      "n-vagus-r",
-     "ipl-r",
-     "ln-4r",
-     "ln-10r",
-     "ln-11r",
-     "ln-9r"
+     "ipl-r"
     ],
     "highlight": [
      "pda"
@@ -209156,11 +208944,7 @@
      "azygos",
      "n-phrenic-r",
      "n-vagus-r",
-     "ipl-r",
-     "ln-4r",
-     "ln-10r",
-     "ln-11r",
-     "ln-9r"
+     "ipl-r"
     ],
     "highlight": [
      "pda"
@@ -209334,11 +209118,7 @@
      "azygos",
      "n-phrenic-r",
      "n-vagus-r",
-     "ipl-r",
-     "ln-4r",
-     "ln-10r",
-     "ln-11r",
-     "ln-9r"
+     "ipl-r"
     ],
     "highlight": [
      "pda"
@@ -209486,11 +209266,7 @@
      "azygos",
      "n-phrenic-r",
      "n-vagus-r",
-     "ipl-r",
-     "ln-4r",
-     "ln-10r",
-     "ln-11r",
-     "ln-9r"
+     "ipl-r"
     ],
     "highlight": [],
     "danger": [],
@@ -209662,11 +209438,7 @@
      "azygos",
      "n-phrenic-r",
      "n-vagus-r",
-     "ipl-r",
-     "ln-4r",
-     "ln-10r",
-     "ln-11r",
-     "ln-9r"
+     "ipl-r"
     ],
     "highlight": [
      "incision-l3",
@@ -209871,11 +209643,7 @@
      "azygos",
      "n-phrenic-r",
      "n-vagus-r",
-     "ipl-r",
-     "ln-4r",
-     "ln-10r",
-     "ln-11r",
-     "ln-9r"
+     "ipl-r"
     ],
     "opacity": {
      "vert-t2": 0.25,
@@ -210015,11 +209783,7 @@
      "azygos",
      "n-phrenic-r",
      "n-vagus-r",
-     "ipl-r",
-     "ln-4r",
-     "ln-10r",
-     "ln-11r",
-     "ln-9r"
+     "ipl-r"
     ],
     "highlight": [
      "incision-l4"
@@ -210174,11 +209938,7 @@
      "azygos",
      "n-phrenic-r",
      "n-vagus-r",
-     "ipl-r",
-     "ln-4r",
-     "ln-10r",
-     "ln-11r",
-     "ln-9r"
+     "ipl-r"
     ],
     "highlight": [
      "n-vagus",
@@ -210354,11 +210114,7 @@
      "azygos",
      "n-phrenic-r",
      "n-vagus-r",
-     "ipl-r",
-     "ln-4r",
-     "ln-10r",
-     "ln-11r",
-     "ln-9r"
+     "ipl-r"
     ],
     "highlight": [
      "pda"
@@ -210538,11 +210294,7 @@
      "azygos",
      "n-phrenic-r",
      "n-vagus-r",
-     "ipl-r",
-     "ln-4r",
-     "ln-10r",
-     "ln-11r",
-     "ln-9r"
+     "ipl-r"
     ],
     "highlight": [
      "pda-ligatures"
@@ -210703,11 +210455,7 @@
      "azygos",
      "n-phrenic-r",
      "n-vagus-r",
-     "ipl-r",
-     "ln-4r",
-     "ln-10r",
-     "ln-11r",
-     "ln-9r"
+     "ipl-r"
     ],
     "highlight": [
      "pda-ligatures"
@@ -210910,11 +210658,7 @@
      "azygos",
      "n-phrenic-r",
      "n-vagus-r",
-     "ipl-r",
-     "ln-4r",
-     "ln-10r",
-     "ln-11r",
-     "ln-9r"
+     "ipl-r"
     ],
     "opacity": {
      "vert-t2": 0.25,
@@ -211187,11 +210931,7 @@
      "azygos",
      "n-phrenic-r",
      "n-vagus-r",
-     "ipl-r",
-     "ln-4r",
-     "ln-10r",
-     "ln-11r",
-     "ln-9r"
+     "ipl-r"
     ],
     "highlight": [
      "coa-segment"
@@ -211372,11 +211112,7 @@
      "azygos",
      "n-phrenic-r",
      "n-vagus-r",
-     "ipl-r",
-     "ln-4r",
-     "ln-10r",
-     "ln-11r",
-     "ln-9r"
+     "ipl-r"
     ],
     "highlight": [
      "coa-segment"
@@ -211537,11 +211273,7 @@
      "azygos",
      "n-phrenic-r",
      "n-vagus-r",
-     "ipl-r",
-     "ln-4r",
-     "ln-10r",
-     "ln-11r",
-     "ln-9r"
+     "ipl-r"
     ],
     "highlight": [
      "coa-segment"
@@ -211717,11 +211449,7 @@
      "azygos",
      "n-phrenic-r",
      "n-vagus-r",
-     "ipl-r",
-     "ln-4r",
-     "ln-10r",
-     "ln-11r",
-     "ln-9r"
+     "ipl-r"
     ],
     "highlight": [
      "coa-segment"
@@ -211878,11 +211606,7 @@
      "azygos",
      "n-phrenic-r",
      "n-vagus-r",
-     "ipl-r",
-     "ln-4r",
-     "ln-10r",
-     "ln-11r",
-     "ln-9r"
+     "ipl-r"
     ],
     "highlight": [
      "incision-l3",
@@ -212088,11 +211812,7 @@
      "azygos",
      "n-phrenic-r",
      "n-vagus-r",
-     "ipl-r",
-     "ln-4r",
-     "ln-10r",
-     "ln-11r",
-     "ln-9r"
+     "ipl-r"
     ],
     "opacity": {
      "vert-t2": 0.25,
@@ -212234,11 +211954,7 @@
      "azygos",
      "n-phrenic-r",
      "n-vagus-r",
-     "ipl-r",
-     "ln-4r",
-     "ln-10r",
-     "ln-11r",
-     "ln-9r"
+     "ipl-r"
     ],
     "highlight": [
      "incision-l4"
@@ -212395,11 +212111,7 @@
      "azygos",
      "n-phrenic-r",
      "n-vagus-r",
-     "ipl-r",
-     "ln-4r",
-     "ln-10r",
-     "ln-11r",
-     "ln-9r"
+     "ipl-r"
     ],
     "highlight": [
      "coa-segment",
@@ -212580,11 +212292,7 @@
      "azygos",
      "n-phrenic-r",
      "n-vagus-r",
-     "ipl-r",
-     "ln-4r",
-     "ln-10r",
-     "ln-11r",
-     "ln-9r"
+     "ipl-r"
     ],
     "highlight": [
      "coa-clamps"
@@ -212770,11 +212478,7 @@
      "azygos",
      "n-phrenic-r",
      "n-vagus-r",
-     "ipl-r",
-     "ln-4r",
-     "ln-10r",
-     "ln-11r",
-     "ln-9r"
+     "ipl-r"
     ],
     "highlight": [
      "coa-segment"
@@ -212933,11 +212637,7 @@
      "azygos",
      "n-phrenic-r",
      "n-vagus-r",
-     "ipl-r",
-     "ln-4r",
-     "ln-10r",
-     "ln-11r",
-     "ln-9r"
+     "ipl-r"
     ],
     "highlight": [
      "coa-anastomosis"
@@ -213124,11 +212824,7 @@
      "azygos",
      "n-phrenic-r",
      "n-vagus-r",
-     "ipl-r",
-     "ln-4r",
-     "ln-10r",
-     "ln-11r",
-     "ln-9r"
+     "ipl-r"
     ],
     "opacity": {
      "vert-t2": 0.25,
@@ -213371,11 +213067,7 @@
      "azygos",
      "n-phrenic-r",
      "n-vagus-r",
-     "ipl-r",
-     "ln-4r",
-     "ln-10r",
-     "ln-11r",
-     "ln-9r"
+     "ipl-r"
     ],
     "highlight": [
      "tof-vsd",
@@ -213560,11 +213252,7 @@
      "azygos",
      "n-phrenic-r",
      "n-vagus-r",
-     "ipl-r",
-     "ln-4r",
-     "ln-10r",
-     "ln-11r",
-     "ln-9r"
+     "ipl-r"
     ],
     "highlight": [
      "tof-infundibulum",
@@ -213759,11 +213447,7 @@
      "azygos",
      "n-phrenic-r",
      "n-vagus-r",
-     "ipl-r",
-     "ln-4r",
-     "ln-10r",
-     "ln-11r",
-     "ln-9r"
+     "ipl-r"
     ],
     "highlight": [
      "tof-vsd",
@@ -213928,11 +213612,7 @@
      "azygos",
      "n-phrenic-r",
      "n-vagus-r",
-     "ipl-r",
-     "ln-4r",
-     "ln-10r",
-     "ln-11r",
-     "ln-9r"
+     "ipl-r"
     ],
     "highlight": [
      "tof-vsd"
@@ -214113,11 +213793,7 @@
      "azygos",
      "n-phrenic-r",
      "n-vagus-r",
-     "ipl-r",
-     "ln-4r",
-     "ln-10r",
-     "ln-11r",
-     "ln-9r"
+     "ipl-r"
     ],
     "highlight": [
      "tof-pv"
@@ -214299,11 +213975,7 @@
      "azygos",
      "n-phrenic-r",
      "n-vagus-r",
-     "ipl-r",
-     "ln-4r",
-     "ln-10r",
-     "ln-11r",
-     "ln-9r"
+     "ipl-r"
     ],
     "opacity": {
      "vert-t2": 0.25,
@@ -215416,11 +215088,7 @@
      "azygos",
      "n-phrenic-r",
      "n-vagus-r",
-     "ipl-r",
-     "ln-4r",
-     "ln-10r",
-     "ln-11r",
-     "ln-9r"
+     "ipl-r"
     ],
     "highlight": [
      "tof-vsd-patch"
@@ -215585,11 +215253,7 @@
      "azygos",
      "n-phrenic-r",
      "n-vagus-r",
-     "ipl-r",
-     "ln-4r",
-     "ln-10r",
-     "ln-11r",
-     "ln-9r"
+     "ipl-r"
     ],
     "highlight": [
      "tof-infundibulum"
@@ -215753,11 +215417,7 @@
      "azygos",
      "n-phrenic-r",
      "n-vagus-r",
-     "ipl-r",
-     "ln-4r",
-     "ln-10r",
-     "ln-11r",
-     "ln-9r"
+     "ipl-r"
     ],
     "highlight": [
      "tof-tap"
@@ -216770,11 +216430,7 @@
      "ln-11l",
      "ln-9l",
      "azygos",
-     "ipl-r",
-     "ln-4r",
-     "ln-10r",
-     "ln-11r",
-     "ln-9r"
+     "ipl-r"
     ],
     "highlight": [
      "bt-shunt"
@@ -216936,11 +216592,7 @@
      "ln-11l",
      "ln-9l",
      "azygos",
-     "ipl-r",
-     "ln-4r",
-     "ln-10r",
-     "ln-11r",
-     "ln-9r"
+     "ipl-r"
     ],
     "highlight": [
      "bt-shunt"
@@ -217077,11 +216729,7 @@
      "ln-11l",
      "ln-9l",
      "azygos",
-     "ipl-r",
-     "ln-4r",
-     "ln-10r",
-     "ln-11r",
-     "ln-9r"
+     "ipl-r"
     ],
     "highlight": [],
     "danger": [],
@@ -217237,11 +216885,7 @@
      "ln-11l",
      "ln-9l",
      "azygos",
-     "ipl-r",
-     "ln-4r",
-     "ln-10r",
-     "ln-11r",
-     "ln-9r"
+     "ipl-r"
     ],
     "highlight": [
      "bt-shunt"
@@ -217400,11 +217044,7 @@
      "ln-11l",
      "ln-9l",
      "azygos",
-     "ipl-r",
-     "ln-4r",
-     "ln-10r",
-     "ln-11r",
-     "ln-9r"
+     "ipl-r"
     ],
     "opacity": {
      "vert-t2": 0.25,
@@ -217763,11 +217403,7 @@
      "ln-11l",
      "ln-9l",
      "azygos",
-     "ipl-r",
-     "ln-4r",
-     "ln-10r",
-     "ln-11r",
-     "ln-9r"
+     "ipl-r"
     ],
     "highlight": [
      "bt-shunt",
@@ -217937,11 +217573,7 @@
      "ln-11l",
      "ln-9l",
      "azygos",
-     "ipl-r",
-     "ln-4r",
-     "ln-10r",
-     "ln-11r",
-     "ln-9r"
+     "ipl-r"
     ],
     "opacity": {
      "vert-t2": 0.25,
@@ -218147,11 +217779,7 @@
      "azygos",
      "n-phrenic-r",
      "n-vagus-r",
-     "ipl-r",
-     "ln-4r",
-     "ln-10r",
-     "ln-11r",
-     "ln-9r"
+     "ipl-r"
     ],
     "highlight": [
      "pa-band"
@@ -218319,11 +217947,7 @@
      "azygos",
      "n-phrenic-r",
      "n-vagus-r",
-     "ipl-r",
-     "ln-4r",
-     "ln-10r",
-     "ln-11r",
-     "ln-9r"
+     "ipl-r"
     ],
     "highlight": [
      "pa-band"
@@ -218515,11 +218139,7 @@
      "azygos",
      "n-phrenic-r",
      "n-vagus-r",
-     "ipl-r",
-     "ln-4r",
-     "ln-10r",
-     "ln-11r",
-     "ln-9r"
+     "ipl-r"
     ],
     "opacity": {
      "vert-t2": 0.25,
@@ -218885,11 +218505,7 @@
      "azygos",
      "n-phrenic-r",
      "n-vagus-r",
-     "ipl-r",
-     "ln-4r",
-     "ln-10r",
-     "ln-11r",
-     "ln-9r"
+     "ipl-r"
     ],
     "highlight": [
      "pa-band"
@@ -219064,11 +218680,7 @@
      "azygos",
      "n-phrenic-r",
      "n-vagus-r",
-     "ipl-r",
-     "ln-4r",
-     "ln-10r",
-     "ln-11r",
-     "ln-9r"
+     "ipl-r"
     ],
     "opacity": {
      "vert-t2": 0.25,
@@ -219303,10 +218915,6 @@
      "n-phrenic-r",
      "n-vagus-r",
      "ipl-r",
-     "ln-4r",
-     "ln-10r",
-     "ln-11r",
-     "ln-9r",
      "ciaa-r",
      "ciaa-thrombus-r",
      "ibd-r",
@@ -219535,10 +219143,6 @@
      "n-phrenic-r",
      "n-vagus-r",
      "ipl-r",
-     "ln-4r",
-     "ln-10r",
-     "ln-11r",
-     "ln-9r",
      "ciaa-r",
      "ciaa-thrombus-r",
      "ibd-r",
@@ -219740,10 +219344,6 @@
      "n-phrenic-r",
      "n-vagus-r",
      "ipl-r",
-     "ln-4r",
-     "ln-10r",
-     "ln-11r",
-     "ln-9r",
      "ciaa-r",
      "ciaa-thrombus-r",
      "ibd-r",
@@ -219944,10 +219544,6 @@
      "n-phrenic-r",
      "n-vagus-r",
      "ipl-r",
-     "ln-4r",
-     "ln-10r",
-     "ln-11r",
-     "ln-9r",
      "ciaa-r",
      "ciaa-thrombus-r",
      "ibd-r",
@@ -220154,10 +219750,6 @@
      "n-phrenic-r",
      "n-vagus-r",
      "ipl-r",
-     "ln-4r",
-     "ln-10r",
-     "ln-11r",
-     "ln-9r",
      "ciaa-r",
      "ciaa-thrombus-r",
      "ibd-r",
@@ -220379,10 +219971,6 @@
      "n-phrenic-r",
      "n-vagus-r",
      "ipl-r",
-     "ln-4r",
-     "ln-10r",
-     "ln-11r",
-     "ln-9r",
      "ciaa-r",
      "ciaa-thrombus-r",
      "ibd-r",
@@ -220577,10 +220165,6 @@
      "n-phrenic-r",
      "n-vagus-r",
      "ipl-r",
-     "ln-4r",
-     "ln-10r",
-     "ln-11r",
-     "ln-9r",
      "ciaa-r",
      "ciaa-thrombus-r",
      "ibd-r",
@@ -220802,10 +220386,6 @@
      "n-phrenic-r",
      "n-vagus-r",
      "ipl-r",
-     "ln-4r",
-     "ln-10r",
-     "ln-11r",
-     "ln-9r",
      "ciaa-r",
      "ciaa-thrombus-r",
      "ibd-r",
@@ -235516,10 +235096,6 @@
      "n-phrenic-r",
      "n-vagus-r",
      "ipl-r",
-     "ln-4r",
-     "ln-10r",
-     "ln-11r",
-     "ln-9r",
      "ciaa-r",
      "ciaa-thrombus-r",
      "ibd-r",
@@ -235723,10 +235299,6 @@
      "n-phrenic-r",
      "n-vagus-r",
      "ipl-r",
-     "ln-4r",
-     "ln-10r",
-     "ln-11r",
-     "ln-9r",
      "ciaa-r",
      "ciaa-thrombus-r",
      "ibd-r",
@@ -235932,10 +235504,6 @@
      "n-phrenic-r",
      "n-vagus-r",
      "ipl-r",
-     "ln-4r",
-     "ln-10r",
-     "ln-11r",
-     "ln-9r",
      "ciaa-r",
      "ciaa-thrombus-r",
      "ibd-r",
@@ -236137,10 +235705,6 @@
      "n-phrenic-r",
      "n-vagus-r",
      "ipl-r",
-     "ln-4r",
-     "ln-10r",
-     "ln-11r",
-     "ln-9r",
      "ciaa-r",
      "ciaa-thrombus-r",
      "ibd-r",
@@ -236343,10 +235907,6 @@
      "n-phrenic-r",
      "n-vagus-r",
      "ipl-r",
-     "ln-4r",
-     "ln-10r",
-     "ln-11r",
-     "ln-9r",
      "ciaa-r",
      "ciaa-thrombus-r",
      "ibd-r",
@@ -236551,10 +236111,6 @@
      "n-phrenic-r",
      "n-vagus-r",
      "ipl-r",
-     "ln-4r",
-     "ln-10r",
-     "ln-11r",
-     "ln-9r",
      "ciaa-r",
      "ciaa-thrombus-r",
      "ibd-r",
@@ -236761,10 +236317,6 @@
      "n-phrenic-r",
      "n-vagus-r",
      "ipl-r",
-     "ln-4r",
-     "ln-10r",
-     "ln-11r",
-     "ln-9r",
      "ciaa-r",
      "ciaa-thrombus-r",
      "ibd-r",
@@ -236969,10 +236521,6 @@
      "n-phrenic-r",
      "n-vagus-r",
      "ipl-r",
-     "ln-4r",
-     "ln-10r",
-     "ln-11r",
-     "ln-9r",
      "ciaa-r",
      "ciaa-thrombus-r",
      "ibd-r",
@@ -258554,10 +258102,6 @@
      "n-phrenic-r",
      "n-vagus-r",
      "ipl-r",
-     "ln-4r",
-     "ln-10r",
-     "ln-11r",
-     "ln-9r",
      "ibd-r",
      "iia-coils-r",
      "eia-ext-r",
@@ -258764,10 +258308,6 @@
      "n-phrenic-r",
      "n-vagus-r",
      "ipl-r",
-     "ln-4r",
-     "ln-10r",
-     "ln-11r",
-     "ln-9r",
      "ciaa-thrombus-r",
      "ibd-r",
      "iia-coils-r",
@@ -258955,10 +258495,6 @@
      "n-phrenic-r",
      "n-vagus-r",
      "ipl-r",
-     "ln-4r",
-     "ln-10r",
-     "ln-11r",
-     "ln-9r",
      "ibd-r",
      "iia-coils-r",
      "eia-ext-r",
@@ -259162,10 +258698,6 @@
      "n-phrenic-r",
      "n-vagus-r",
      "ipl-r",
-     "ln-4r",
-     "ln-10r",
-     "ln-11r",
-     "ln-9r",
      "ciaa-thrombus-r",
      "ibd-r",
      "iia-coils-r",
@@ -259371,10 +258903,6 @@
      "n-phrenic-r",
      "n-vagus-r",
      "ipl-r",
-     "ln-4r",
-     "ln-10r",
-     "ln-11r",
-     "ln-9r",
      "ciaa-thrombus-r",
      "ibd-r",
      "iia-coils-r",
@@ -259574,10 +259102,6 @@
      "n-phrenic-r",
      "n-vagus-r",
      "ipl-r",
-     "ln-4r",
-     "ln-10r",
-     "ln-11r",
-     "ln-9r",
      "ciaa-thrombus-r",
      "iia-coils-r",
      "eia-ext-r",
@@ -259765,10 +259289,6 @@
      "n-phrenic-r",
      "n-vagus-r",
      "ipl-r",
-     "ln-4r",
-     "ln-10r",
-     "ln-11r",
-     "ln-9r",
      "ciaa-thrombus-r",
      "ibd-r",
      "graft-cia-r",
@@ -259955,10 +259475,6 @@
      "n-phrenic-r",
      "n-vagus-r",
      "ipl-r",
-     "ln-4r",
-     "ln-10r",
-     "ln-11r",
-     "ln-9r",
      "ciaa-r",
      "ciaa-thrombus-r",
      "ibd-r",
@@ -260149,10 +259665,6 @@
      "n-phrenic-r",
      "n-vagus-r",
      "ipl-r",
-     "ln-4r",
-     "ln-10r",
-     "ln-11r",
-     "ln-9r",
      "ciaa-r",
      "ciaa-thrombus-r",
      "iia-coils-r",
@@ -271795,10 +271307,6 @@
      "n-phrenic-r",
      "n-vagus-r",
      "ipl-r",
-     "ln-4r",
-     "ln-10r",
-     "ln-11r",
-     "ln-9r",
      "ciaa-r",
      "ciaa-thrombus-r",
      "ibd-r",
@@ -271978,10 +271486,6 @@
      "n-phrenic-r",
      "n-vagus-r",
      "ipl-r",
-     "ln-4r",
-     "ln-10r",
-     "ln-11r",
-     "ln-9r",
      "ciaa-r",
      "ciaa-thrombus-r",
      "ibd-r",
@@ -272161,10 +271665,6 @@
      "n-phrenic-r",
      "n-vagus-r",
      "ipl-r",
-     "ln-4r",
-     "ln-10r",
-     "ln-11r",
-     "ln-9r",
      "ciaa-r",
      "ciaa-thrombus-r",
      "ibd-r",
@@ -272716,10 +272216,6 @@
      "n-phrenic-r",
      "n-vagus-r",
      "ipl-r",
-     "ln-4r",
-     "ln-10r",
-     "ln-11r",
-     "ln-9r",
      "ciaa-r",
      "ciaa-thrombus-r",
      "ibd-r",
@@ -272899,10 +272395,6 @@
      "n-phrenic-r",
      "n-vagus-r",
      "ipl-r",
-     "ln-4r",
-     "ln-10r",
-     "ln-11r",
-     "ln-9r",
      "ciaa-r",
      "ciaa-thrombus-r",
      "ibd-r",

@@ -61,8 +61,8 @@ Rutherford 4–6 is **chronic limb-threatening ischemia (CLTI)**. **Acute** limb
 **Q:** A 50-year-old smoker has buttock claudication, absent femoral pulses and erectile dysfunction. Where is the disease?
 - [x] The distal aorta and both iliac arteries (Leriche syndrome)
   > Buttock claudication and absent femoral pulses place the obstruction above the groins; erectile dysfunction reflects poor internal iliac flow.
-- [ ] The superficial femoral arteries
-- [ ] The popliteal arteries
+- [ ] The superficial femoral arteries, which explains the absent femoral pulses and impotence
+- [ ] The popliteal arteries, as calf and buttock symptoms both arise from popliteal occlusion
 - [ ] The tibial arteries
 
 ## [ae2-anatomy] The aortic bifurcation, iliacs and femoral arteries
@@ -86,10 +86,10 @@ A **61-year-old man**, ex-smoker (stopped a year ago), diabetic. **Buttock and c
 ### Question
 
 **Q:** Why treat this claudicant at all, and why endovascular first?
-- [x] Symptoms still limit his life after exercise and best medical therapy; for iliac occlusions, stenting is effective and less invasive, with surgery in reserve
+- [x] Symptoms still limit him despite exercise and best medical therapy; iliac stenting is effective and less invasive, with surgery in reserve
   > Revascularization for claudication is individualized after conservative therapy fails; for common iliac occlusions (TASC B–C), primary stenting has good patency and low morbidity.
-- [ ] All claudicants need surgery
-- [ ] To prevent amputation, which is likely within a year
+- [ ] All claudicants need surgery once femoral pulses are lost, and endovascular treatment comes first only because open bypass is too dangerous
+- [ ] To prevent amputation, which is likely within a year once an iliac artery occludes, and endovascular treatment is the surest way to avoid that outcome
 - [ ] Because exercise is harmful
 
 ## [ae2-which] Which reconstruction? Aortobifemoral, axillobifemoral, femorofemoral or endovascular
@@ -111,8 +111,8 @@ The choice rests on **the extent of disease** (unilateral or bilateral, how far 
 **Q:** A 70-year-old with a right common iliac occlusion, a normal left iliac on CT, and severe COPD has rest pain in the right foot. Stenting has failed. Which bypass?
 - [x] Femorofemoral cross-over from the left groin
   > Unilateral disease with a healthy donor iliac is the classic indication; it avoids a laparotomy and has better patency than an axillofemoral graft.
-- [ ] Aortobifemoral bypass
-- [ ] Axillobifemoral bypass
+- [ ] Aortobifemoral bypass, as it has the best patency regardless of lung function
+- [ ] Axillobifemoral bypass, since both groins need inflow from an extra-anatomic source
 - [ ] Primary amputation
 
 ## [aiod-endo-consent] Consent: what to discuss with this patient
@@ -156,8 +156,8 @@ Template and how to use it: [CTICU protocol, consent](#approach=cticu-consent&st
 **Q:** What should a patient know about kissing stents compared with bypass?
 - [x] Less invasive, with a higher chance of restenosis and repeat procedures
   > Durability is lower than aortobifemoral bypass for extensive disease.
-- [ ] It never needs repeating
-- [ ] It is riskier than bypass
+- [ ] It never needs repeating, because modern stents in the iliac arteries rarely restenose
+- [ ] It is riskier than bypass, as two stents at the bifurcation double the procedural danger
 - [ ] It needs a laparotomy
 
 ## [ae2-access] Bilateral femoral access; cross the occlusions
@@ -176,8 +176,8 @@ Predilate. Position two **balloon-expandable (covered) stents** side by side, th
 - [x] Iliac rupture: inflate a balloon at the site to control bleeding, then place a covered stent
   > Rupture is rare but lethal; always have an occlusion balloon and covered stents on the shelf.
 - [ ] Vasovagal: give atropine
-- [ ] Contrast reaction: give steroids
-- [ ] Embolism: give heparin
+- [ ] Contrast reaction: give steroids and antihistamine, as back pain is a typical anaphylactoid sign and hypotension follows
+- [ ] Embolism: give heparin and aspirate the clot, since distal embolization from the stent explains the sudden hypotension
 
 ## [ae2-after] Closure, antiplatelet, surveillance
 
@@ -203,8 +203,8 @@ Doses: [electrolytes](#approach=cticu-doses&step=0), [vasoactive drugs](#approac
 **Q:** Two hours after iliac stenting: back pain, BP falling, Hb down. Next?
 - [x] Suspect a retroperitoneal bleed or rupture: call, resuscitate, CT or angiography
   > Access or iliac injury bleeds into the retroperitoneum.
-- [ ] Analgesia and observe
-- [ ] Give furosemide
+- [ ] Analgesia and observe, as back pain after iliac stenting is usually from the sheath site
+- [ ] Give furosemide, since a falling BP with back pain suggests contrast-induced fluid overload
 - [ ] Discharge
 
 ## Sources

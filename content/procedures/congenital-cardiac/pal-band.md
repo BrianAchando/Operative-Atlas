@@ -18,8 +18,8 @@ Chain: Large left-to-right shunt → High PA flow and pressure → **Band on the
 **Q:** Why band rather than repair an infant with multiple muscular VSDs?
 - [x] Many apical muscular VSDs are hard to close completely in infancy and some close with time
   > The band protects the lungs while the child grows; some muscular defects close spontaneously.
-- [ ] Banding cures VSDs
-- [ ] Banding is safer for the conduction system in every VSD
+- [ ] Banding cures VSDs by raising RV pressure until the muscular defects close permanently behind it
+- [ ] Banding is safer for the conduction system in every VSD, so it is preferred over closure for all types
 - [ ] It avoids a sternotomy
 
 ## [band-decision] How tight? Trusler's rule and the pressures
@@ -91,8 +91,8 @@ Template and how to use it: [CTICU protocol, consent](#approach=cticu-consent&st
 **Q:** Why will a banded child need another operation?
 - [x] The band is palliation: the defect still needs closing and the band removed
   > Banding protects the lungs while the child grows; definitive repair follows.
-- [ ] The band dissolves, so the pulmonary artery reopens
-- [ ] Only if the child becomes cyanosed
+- [ ] The band dissolves, so the pulmonary artery reopens and over-circulation returns within months
+- [ ] Only if the child becomes cyanosed, since a well-saturated child has outgrown the need for repair
 - [ ] Only if the band slips
 
 ## [band-sternotomy] Median sternotomy
@@ -130,8 +130,8 @@ Doses: [electrolytes](#approach=cticu-doses&step=0), [vasoactive drugs](#approac
 **Q:** After banding, a 4 kg infant is bradycardic and saturations have fallen to 70% (biventricular). Next?
 - [x] Band too tight: loosen it
   > Excessive restriction causes cyanosis and RV pressure overload; loosen and re-measure.
-- [ ] Give fluids and wait
-- [ ] Tighten more
+- [ ] Give fluids and wait for the RV to adapt to the new afterload
+- [ ] Tighten more, as the low saturation shows too much pulmonary flow
 - [ ] Start a beta-blocker
 
 ## Sources

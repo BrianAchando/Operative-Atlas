@@ -52,11 +52,11 @@ An aneurysm is a diameter of **3.0 cm or more**. Growth accelerates as it enlarg
 ### Question
 
 **Q:** Why does an aneurysm grow faster as it gets bigger?
-- [x] Wall tension rises with the radius (Laplace's law), so the larger the aneurysm, the greater the stress on an already weakened wall
+- [x] Wall tension rises with radius (Laplace's law), so a larger aneurysm puts more stress on an already weak wall
   > T = P × r: at the same blood pressure a 6 cm aneurysm carries twice the wall tension of a 3 cm aorta. That is why growth and rupture risk accelerate with size.
-- [ ] Blood flow slows
+- [ ] Blood flow slows in the wider sac, and the stagnant blood lets proteases digest the wall faster than in a small one
 - [ ] Thrombus lining the sac weakens it
-- [ ] Blood pressure rises with size
+- [ ] Blood pressure rises with aneurysm size, because the sac stiffens the aorta and raises systolic pressure everywhere
 
 ## [ai-anatomy] The infrarenal aorta and its neighbors
 
@@ -71,8 +71,8 @@ What to protect: the **left renal vein** above the neck (and a retroaortic or ci
 **Q:** Which vein lies behind the right common iliac artery and is torn by careless encircling of that artery?
 - [x] The left common iliac vein (near the confluence of the IVC)
   > The iliac veins lie behind and slightly to the right of the arteries; the left common iliac vein crosses behind the right common iliac artery to reach the IVC. Clamp the iliacs without encircling them.
-- [ ] The left renal vein
-- [ ] The inferior mesenteric vein
+- [ ] The left renal vein, which crosses behind the aorta to reach the IVC at this level
+- [ ] The inferior mesenteric vein, which runs behind the iliac bifurcation to join the IVC
 - [ ] The gonadal vein
 
 ## [ai-case] Case: a 6.2 cm infrarenal aneurysm in a fit 64-year-old
@@ -90,10 +90,10 @@ A **64-year-old man**, a retired teacher from Nakuru, hypertensive, ex-smoker. A
 ### Question
 
 **Q:** What is the main long-term drawback of EVAR compared with open repair?
-- [x] The need for lifelong imaging surveillance and reinterventions, with a risk of late rupture
+- [x] Lifelong imaging surveillance and reinterventions, with a risk of late rupture
   > EVAR excludes the sac without removing it; endoleaks and migration can re-pressurize it. EVAR-1 showed more reinterventions and higher late aneurysm mortality after 8 years.
-- [ ] Higher 30-day mortality
-- [ ] Longer hospital stay
+- [ ] Higher 30-day mortality, because the endovascular procedure carries greater early risk than open repair
+- [ ] Longer hospital stay, as patients need prolonged monitoring for endoleak before they can be safely discharged
 - [ ] More blood loss
 
 ## [aaa-infra-consent] Consent: what to discuss with this patient
@@ -144,8 +144,8 @@ Template and how to use it: [CTICU protocol, consent](#approach=cticu-consent&st
 - [x] Sexual dysfunction from injury to the hypogastric plexus
   > The autonomic nerves over the left common iliac and aortic bifurcation can be injured.
 - [ ] Retinal artery occlusion
-- [ ] Hoarseness
-- [ ] Paraplegia, which is common after infrarenal repair
+- [ ] Hoarseness from recurrent laryngeal nerve traction during infrarenal aortic exposure
+- [ ] Paraplegia, which is common after infrarenal repair because the clamp interrupts the artery of Adamkiewicz
 
 ## [ai-lap] Midline laparotomy; expose the aorta
 
@@ -182,11 +182,11 @@ Open the aneurysm longitudinally on its right anterior surface (away from the IM
 ### Question
 
 **Q:** Before tying the distal anastomosis, why flush the graft?
-- [x] To wash out air, thrombus and debris that would otherwise embolize to the legs or pelvis
+- [x] To wash out air, thrombus and debris that would otherwise embolize distally
   > Brief release of the iliac, then aortic clamps flushes the graft; debris left in it embolizes to the feet ("trash foot") or the pelvis.
-- [ ] To test the proximal anastomosis only
+- [ ] To test the proximal anastomosis only, since the distal suture line can be checked after the clamps are off
 - [ ] It is not needed
-- [ ] To reduce heparin effect
+- [ ] To reduce heparin effect by diluting the drug in the graft before restoring flow to the legs
 
 ## [ai-close] Release, close the sac over the graft, check the colon and the feet
 
@@ -198,8 +198,8 @@ Release the clamps **one leg at a time**, slowly, with the anesthetist (declampi
 - [x] To keep the graft away from the duodenum and prevent an aortoenteric fistula
   > Direct contact between the graft suture line and the duodenum can erode into the bowel months or years later: a catastrophic bleed.
 - [ ] To stop back-bleeding
-- [ ] To help the graft endothelialize
-- [ ] For cosmetic reasons
+- [ ] To help the graft endothelialize, as contact with the sac wall lets endothelium grow across the whole prosthesis
+- [ ] For cosmetic reasons, to reduce the visible bulge of the aneurysm sac under the abdominal wall
 
 ## [aaa-infra-icu] ICU and post-operative care
 
@@ -223,9 +223,9 @@ Doses: [electrolytes](#approach=cticu-doses&step=0), [vasoactive drugs](#approac
 **Q:** Day 1 after rupture repair: girth rising, urine 10 mL/h despite filling, airway pressures rising. Next?
 - [x] Measure bladder pressure and call the consultant: compartment syndrome
   > Oliguria despite filling with a tense abdomen: more fluid makes it worse.
-- [ ] More fluid boluses
+- [ ] More fluid boluses, since low urine output on day 1 most likely reflects ongoing hypovolemia
 - [ ] Furosemide
-- [ ] Observe and recheck in the morning
+- [ ] Observe and recheck in the morning, as oliguria and rising pressures are expected after rupture repair
 
 ## Sources
 

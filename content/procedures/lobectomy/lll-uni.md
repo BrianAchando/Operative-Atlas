@@ -41,8 +41,8 @@ Chain: Primary tumor → **Blood: brain, bone, adrenal, liver (M1)**
 **Q:** Under the 9th edition, a 2.6 cm tumor (T1c) with metastasis in a single mediastinal station (subcarinal, station 7) and no distant spread is stage…
 - [x] IIB (T1 N2a)
   > The 9th edition splits N2: a single station (N2a) with a T1 tumor is IIB; several stations (N2b) make it IIIA. Many single-station N2 patients are now treated with neoadjuvant chemo-immunotherapy and surgery.
-- [ ] IIIA
-- [ ] IIIB
+- [ ] IIIA, because any mediastinal nodal disease places the tumor in stage III
+- [ ] IIIB, as subcarinal nodes are classed with contralateral (N3) nodes
 - [ ] IV
 
 ## [lluni-anatomy] The lower lobe hilum
@@ -70,8 +70,8 @@ A **66-year-old man**, smoker (45 pack-years). A **4.6 cm** squamous cell carcin
 **Q:** What stage is a 4.6 cm tumor with an interlobar (station 11) node and a negative mediastinum?
 - [x] IIB (T2b N1 M0)
   > T2b is over 4 up to 5 cm; station 11 is N1 (intrapulmonary/hilar). T2 N1 is stage IIB.
-- [ ] IIA
-- [ ] IIIA
+- [ ] IIA, since a negative mediastinum keeps any T2 tumor in stage IIA
+- [ ] IIIA, because an interlobar node counts as N2 disease
 - [ ] IB
 
 ## [lll-uni-consent] Consent: what to discuss with this patient
@@ -124,10 +124,10 @@ Template and how to use it: [CTICU protocol, consent](#approach=cticu-consent&st
 ### Question
 
 **Q:** Which of these belongs in consent for a VATS lobectomy in a patient with healed TB?
-- [x] A higher chance of conversion to open and of bleeding from adhesions and calcified nodes
+- [x] Higher risk of conversion to open and of bleeding from adhesions and calcified nodes
   > Post-TB pleural and nodal changes make VATS dissection harder; the conversion risk is a material risk.
-- [ ] A guaranteed shorter stay
-- [ ] No chest drain
+- [ ] A guaranteed shorter stay, because VATS avoids rib spreading even when there are dense adhesions
+- [ ] No chest drain, since a VATS lobectomy seals the pleura well enough to manage without one
 - [ ] No risk of air leak
 
 ## [lluni-setup] Uniportal incision
@@ -151,9 +151,9 @@ Identify the **A6** branch behind, the **basal trunk** continuing down and the *
 **Q:** A fissure-first approach works best when…
 - [x] The fissure is complete and the artery is visible in it
   > In a complete fissure the interlobar artery lies just under the visceral pleura where the fissures meet.
-- [ ] The fissure is fused
+- [ ] The fissure is fused, as the stapler can divide it before the artery is found
 - [ ] The superior vein is short
-- [ ] The pulmonary vein is already divided
+- [ ] The pulmonary vein is already divided, so the lobe has drained
 
 ## [lluni-artery] Superior segmental artery (A6) and basal trunk
 
@@ -185,9 +185,9 @@ Before stapling, **see the superior pulmonary vein** as a separate structure: a 
 **Q:** Before stapling the inferior pulmonary vein, what must you confirm?
 - [x] That the superior pulmonary vein is separate and drains the upper lobe
   > A common pulmonary vein taken as the "inferior vein" drains the whole lung.
-- [ ] That the fissure is complete
+- [ ] That the fissure is complete, so the lower lobe can be lifted forward before the vein is taken
 - [ ] That A6 is already divided
-- [ ] That the lingular artery has been divided
+- [ ] That the lingular artery has been divided, because the lingula drains into the inferior vein
 
 ## [lluni-bronchus] Lower lobe bronchus: clamp, inflate, staple
 

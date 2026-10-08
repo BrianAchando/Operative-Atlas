@@ -39,8 +39,8 @@ Chain: Medial degeneration → Dilatation → Laplace: tension rises with radius
 - [x] About 7.0 cm
   > Coady et al. found hinge points at 6.0 cm (ascending) and 7.0 cm (descending); guidelines advise repair of the descending aorta at 5.5 cm, before that point.
 - [ ] 4.0 cm
-- [ ] 5.0 cm
-- [ ] 9.0 cm
+- [ ] About 5.0 cm, as for the ascending aorta
+- [ ] About 9.0 cm, as rupture is rare below this size
 
 ## [ta-anatomy] The descending thoracic aorta and what lies around it
 
@@ -63,10 +63,10 @@ A **34-year-old woman** with **Marfan syndrome**, a valve-sparing root replaceme
 ### Question
 
 **Q:** Why open repair rather than TEVAR in this patient?
-- [x] Marfan syndrome: stent grafts in heritable aortopathy risk landing-zone dilatation, endoleak and retrograde dissection
+- [x] Marfan syndrome: stent grafts risk landing-zone dilatation, endoleak and retrograde dissection
   > Guidelines reserve TEVAR in Marfan and related syndromes for emergencies or as a bridge; open repair is durable.
-- [ ] The aneurysm is too small for TEVAR
-- [ ] TEVAR causes more paraplegia in young patients
+- [ ] The aneurysm is too small for TEVAR, which is reserved for diameters above the open repair threshold
+- [ ] TEVAR causes more paraplegia in young patients, so open repair protects the spinal cord better
 - [ ] Her lung function
 
 ## [taa-open-consent] Consent: what to discuss with this patient
@@ -140,8 +140,8 @@ Open the aneurysm longitudinally, oversew back-bleeding upper intercostals, and 
 **Q:** After an extensive descending repair the patient wakes with weak legs. First moves?
 - [x] Raise the MAP (above about 90 mmHg), drain CSF to below 10 mmHg, correct anemia and hypoxia
   > Delayed spinal cord ischemia often recovers if spinal perfusion pressure (MAP minus CSF pressure) is restored quickly.
-- [ ] Wait and reassess in 24 hours
-- [ ] Give steroids only
+- [ ] Wait and reassess in 24 hours, as leg weakness after anesthesia usually resolves without treatment
+- [ ] Give steroids only, as high-dose methylprednisolone reverses cord edema without other measures
 - [ ] Lower the blood pressure to protect the anastomoses
 
 ## [to-after] Spinal cord watch; the drain
@@ -169,8 +169,8 @@ Doses: [electrolytes](#approach=cticu-doses&step=0), [vasoactive drugs](#approac
 - [x] Raise MAP, drain CSF to target, keep Hb up, call immediately
   > Spinal cord ischemia can recover if perfusion pressure is restored quickly.
 - [ ] Wait for MRI tomorrow
-- [ ] Lower the blood pressure
-- [ ] Remove the CSF drain
+- [ ] Lower the blood pressure to protect the fresh suture lines from bleeding
+- [ ] Remove the CSF drain, since it is the likely cause of the weakness
 
 ## Sources
 

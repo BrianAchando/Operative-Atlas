@@ -37,11 +37,11 @@ Chain: LA pressure ↑ → Pulmonary venous pressure ↑ (breathless, edema) →
 ### Question
 
 **Q:** A 26-year-old woman with moderate rheumatic MS, comfortable at rest, goes into AF at 150 beats per minute and within hours is in pulmonary edema. Why?
-- [x] The short diastole leaves too little time to empty the LA through the narrow valve, so the gradient and LA pressure rise
+- [x] The short diastole leaves too little time to empty the LA across the narrow valve, so LA pressure rises
   > In MS the transmitral gradient rises steeply with heart rate. Slowing the rate (and cardioversion, with anticoagulation) often relieves the edema before anything is done to the valve.
-- [ ] The LV has failed
+- [ ] The LV has failed acutely from the rapid rate, raising end-diastolic pressure that backs up into the lungs
 - [ ] The valve has suddenly narrowed further
-- [ ] AF has caused acute mitral regurgitation
+- [ ] AF has caused acute mitral regurgitation by dilating the annulus, adding a sudden volume load to the LA
 
 ## [ms-anatomy] The mitral valve and what lies around it
 
@@ -79,8 +79,8 @@ A **32-year-old woman** from western Kenya, NYHA III, on monthly benzathine peni
 **Q:** What makes surgery, not a balloon, the right choice here?
 - [x] The left atrial appendage thrombus together with a calcified, unfavorable valve (Wilkins 11)
   > An LA thrombus contraindicates PMC, and the morphology predicts a poor balloon result. A tissue valve would not spare her warfarin, as rheumatic AF needs it anyway.
-- [ ] Her age
-- [ ] The pulmonary pressure of 60 mmHg
+- [ ] Her age, since balloon valvotomy is reserved for patients over 40 with pliable, non-calcified valves
+- [ ] The pulmonary pressure of 60 mmHg, which on its own is a contraindication to balloon valvotomy
 - [ ] Atrial fibrillation alone
 
 ## [mvr-std-consent] Consent: what to discuss with this patient
@@ -134,9 +134,9 @@ Template and how to use it: [CTICU protocol, consent](#approach=cticu-consent&st
 **Q:** A 24-year-old woman planning children needs MVR. Which topic must her consent cover that a 65-year-old's would not?
 - [x] Pregnancy on warfarin: embryopathy, valve thrombosis, and a plan before conception
   > Valve choice in young women is decided with pregnancy in mind (ESC 2018 pregnancy guideline).
-- [ ] The risk of AF
+- [ ] The risk of AF, which is higher in young women after mitral replacement than in older patients
 - [ ] Wound infection
-- [ ] Return to theatre for bleeding
+- [ ] Return to theatre for bleeding, which is more frequent in young women started on warfarin
 
 ## [ms-sternotomy] Median sternotomy, pericardial cradle
 
@@ -171,9 +171,9 @@ With AF, add a **surgical ablation** (a left atrial lesion set or a full Cox-Maz
 **Q:** Why is the appendage closed even though the patient will stay on warfarin?
 - [x] Closure adds protection against stroke on top of anticoagulation
   > In LAAOS III most patients stayed on anticoagulation, and closure still cut stroke and systemic embolism by about a third.
-- [ ] It is not: warfarin makes closure unnecessary
+- [ ] It is not: warfarin makes closure unnecessary, and it is done only to remove thrombus
 - [ ] To shorten bypass time
-- [ ] Warfarin dosing becomes simpler once the appendage is closed
+- [ ] Warfarin dosing becomes simpler once the appendage is closed, as a lower INR target applies
 
 ## [ms-excise] Excise the anterior leaflet; keep the posterior chordae
 
@@ -204,11 +204,11 @@ Whatever the technique, bite **in the annulus, not beyond it**.
 ### Question
 
 **Q:** Rheumatic mitral stenosis with a heavily calcified, small posterior annulus. Which suture technique gives the most secure seat and the largest valve?
-- [x] Pledgeted mattress sutures with ventricular pledgets (non-everting, supra-annular), at least posteriorly
+- [x] Non-everting pledgeted mattress sutures, pledgets on the ventricular side, at least posteriorly
   > Ventricular pledgets hold best in poor tissue and seat the ring above the annulus, which usually allows a larger size. Keep bites in the annulus to spare the circumflex and AV groove, and check that no pledget traps a leaflet.
-- [ ] Unpledgeted simple interrupted sutures
+- [ ] Unpledgeted simple interrupted sutures, which avoid pledget bulk on a small calcified posterior annulus
 - [ ] A continuous polypropylene suture
-- [ ] Everting sutures with atrial pledgets all round, one size smaller
+- [ ] Everting sutures with atrial pledgets all round, downsizing one valve size to clear the annular calcium
 
 ## [mvr-std-size-m] Size the mitral prosthesis to the patient
 
@@ -274,11 +274,11 @@ Serious complications: **AV groove disruption** (catastrophic), circumflex injur
 ### Question
 
 **Q:** Ten minutes after the clamp is released and the root vent is removed, the inferior leads show ST elevation and the RV dilates. The likely cause and the move?
-- [x] Air in the right coronary: stay on (or go back on) bypass, raise the perfusion pressure, and let the heart beat unloaded until it clears
+- [x] Air in the right coronary: stay on (or go back on) bypass, raise perfusion pressure, let the heart beat empty
   > The RCA ostium is uppermost with the patient supine and catches retained left-heart air. Supported, higher-pressure perfusion usually clears it in minutes; weaning onto a failing RV does not. Keeping the root vent on until TOE is clear prevents it.
-- [ ] Circumflex injury from an annular suture: re-arrest and inspect
+- [ ] Left main dissection from the cardioplegia cannula: give nitrates, start an inotrope and carry on with protamine
 - [ ] Protamine reaction: stop the protamine
-- [ ] Prosthetic leaflet stuck: re-open the atrium
+- [ ] Prosthetic leaflet stuck on a retained chord or suture: re-arrest the heart and reopen the left atrium
 
 ## [ms-reperfuse] Reperfuse on bypass, or separate early?
 
@@ -293,11 +293,11 @@ Before either: temperature 36–37 °C, sinus rhythm or pacing, potassium and he
 ### Question
 
 **Q:** After MVR for rheumatic stenosis with severe pulmonary hypertension (clamp time 95 min), the heart is sluggish on first weaning attempt. Best move?
-- [x] Go back to full bypass, rest the heart longer, start RV support (inotrope, pulmonary vasodilator), then wean again
+- [x] Return to full bypass, rest the heart, start RV support (inotrope, pulmonary vasodilator), then re-wean
   > The RV is failing against a high pulmonary pressure; more supported reperfusion and RV-directed support usually rescue it. Pushing on off bypass drives the RV into failure.
-- [ ] Give protamine and push inotropes off bypass
+- [ ] Give protamine and push inotropes off bypass, since more bypass time worsens the pulmonary hypertension
 - [ ] Decannulate and accept the low output
-- [ ] Close the chest and wean in the ICU on a balloon pump alone
+- [ ] Close the chest and wean in the ICU on a balloon pump alone, relying on it to unload the failing right ventricle
 
 ## [ms-decannulate] Separate, then decannulate in order
 
@@ -332,9 +332,9 @@ Doses: [electrolytes](#approach=cticu-doses&step=0), [vasoactive drugs](#approac
 **Q:** Day 1 after mechanical MVR, drains dry. When is the first INR checked?
 - [x] 72 h after the first warfarin dose, while enoxaparin continues
   > Warfarin takes 2–3 days to move the INR; enoxaparin bridges until the INR is in range.
-- [ ] Two hours after the first dose
+- [ ] Two hours after the first dose, to confirm absorption before the second dose
 - [ ] Never: enoxaparin alone
-- [ ] Only at discharge
+- [ ] Only at discharge, since enoxaparin protects the valve fully until then
 
 ## Sources
 

@@ -24,11 +24,11 @@ Chain: Thymus: myoid cells express AChR → Germinal centers: autoreactive B cel
 ### Question
 
 **Q:** Why is thymectomy not recommended for anti-MuSK myasthenia?
-- [x] The thymus is usually normal in MuSK disease, and the antibodies (IgG4) are not driven by thymic germinal centers
+- [x] The thymus is usually normal in MuSK disease, and the IgG4 antibodies are not driven by thymic germinal centers
   > Thymic hyperplasia is a feature of AChR-positive, early-onset disease; guidance (2020) finds no evidence of benefit in MuSK MG.
-- [ ] MuSK patients are too weak for surgery
+- [ ] MuSK patients are too weak for surgery, because their bulbar and respiratory weakness makes any general anesthetic unsafe
 - [ ] It is recommended for all subtypes
-- [ ] The thymus is always malignant in MuSK MG
+- [ ] The thymus is usually a thymoma in MuSK disease, so it needs an oncological resection rather than a standard thymectomy
 
 ## [tx-anat] The thymus and its boundaries
 
@@ -60,8 +60,8 @@ A **19-year-old student**, 8 months of generalized myasthenia with **nasal speec
 **Q:** Which feature most raises her risk of myasthenic crisis after thymectomy?
 - [x] Bulbar weakness with a reduced vital capacity
   > Bulbar-predominant, more severe disease predicts crisis; optimize with IVIG or plasma exchange, and extubate only when strength allows.
-- [ ] Her young age
-- [ ] Thymic hyperplasia on CT
+- [ ] Her young age, as younger patients mount a stronger antibody response after surgery
+- [ ] Thymic hyperplasia on CT, which indicates more active autoimmune disease
 - [ ] Being AChR-positive
 
 ## [b4-thymectomy-subx-consent] Consent: what to discuss with this patient
@@ -109,8 +109,8 @@ Template and how to use it: [CTICU protocol, consent](#approach=cticu-consent&st
 **Q:** What benefit can a patient with generalized MG expect from thymectomy (MGTX)?
 - [x] Better clinical scores and less prednisone over 3 years
   > MGTX (NEJM 2016): improved Quantitative MG score and lower prednisone dose at 3 years; benefit is gradual.
-- [ ] Immediate cure
-- [ ] Stopping all medication the next day
+- [ ] Immediate cure, with the weakness resolving within days of removing the thymus
+- [ ] Stopping all medication the next day, because the antibody source has been removed
 - [ ] No benefit
 
 ## [tx-entry] Subxiphoid approach
@@ -136,8 +136,8 @@ Lift the gland forward off the **left brachiocephalic vein**. One to three **thy
 **Q:** A thymic vein tears flush with the innominate vein. First move?
 - [x] Finger pressure, then a side-biting clamp and a fine suture
   > Blind clips or diathermy on a torn innominate vein make it bigger.
-- [ ] Clip it blindly
-- [ ] Ligate the innominate vein
+- [ ] Clip it blindly in the pool of blood before the tear extends into the innominate vein
+- [ ] Ligate the innominate vein at once, before attempting any pressure or exposure
 - [ ] Apply a vascular clamp across the innominate vein
 
 ## [tx-horns] The upper horns from the thyroid
@@ -172,8 +172,8 @@ Doses: [electrolytes](#approach=cticu-doses&step=0), [vasoactive drugs](#approac
 **Q:** After thymectomy for MG: FVC falls to 15 mL/kg with a weak cough. Next?
 - [x] Call the consultant; prepare to intubate and start IVIG or plasma exchange
   > Myasthenic crisis: the 20/30/40 rule; do not wait for hypercapnia.
-- [ ] Give intravenous magnesium
-- [ ] Increase opioid analgesia
+- [ ] Give intravenous magnesium to strengthen the respiratory muscles and improve the cough
+- [ ] Increase opioid analgesia, since a poor cough after sternotomy is usually due to pain
 - [ ] Start gentamicin
 
 ## Sources
