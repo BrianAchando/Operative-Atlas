@@ -924,6 +924,9 @@ TRLM.update(pathology_cong.build(dict(emit_mesh=emit_mesh, W=W, tube=tube, CARIN
 import pathology_leak  # noqa: E402
 TRLM.update(pathology_leak.build(dict(emit_mesh=emit_mesh, W=W, tube=tube, CARINA=CARINA, S={q['id']: q for q in structures}, LMW={k: W(v) for k, v in TRLM.items()},
                                       eso_mm=eso_mm, rlung_mm=vox_mm(RU_t | RM_t | RD_t)[::5], skin_mm=skin_mm)))
+# ------------------------------------------------------------------ common iliac aneurysm and its repairs; ankle-brachial index cuffs
+import pathology_vasc2  # noqa: E402
+TRLM.update(pathology_vasc2.build(dict(emit_mesh=emit_mesh, tube=tube, CARINA=CARINA, LMW={k: W(v) for k, v in TRLM.items()})))
 CW_L |= MD_L; CW_R |= MD_R
 for appr, ps in PORTS.items():
     for k, nm, p in ps:

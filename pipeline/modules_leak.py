@@ -80,9 +80,9 @@ def add(procs, ask, has, LM, S):
           'It complicates roughly <b>1 in 9 to 1 in 5</b> esophagectomies.</p>'
         + ev('ECCG definition (Low 2015). Incidence 11.4–21.2% and leak-related mortality 7.2–35% across series (Fabbi 2021).'),
         v_close, show=[*CH, 'leak-defect'], highlight=['leak-defect'], labels=['anast-chest', 'conduit-chest'], opacity=OP, ct=D, spin=True,
-        quiz=ask('Why is the tip of the gastric conduit the part most at risk?', 'It is the point farthest from its only feeding artery, the right gastroepiploic',
+        quiz=ask('Why is the tip of the gastric conduit the part most at risk?', 'It is farthest from its feeding artery',
                  'The conduit is perfused along the greater curvature from the right gastroepiploic artery; the tip, now at the anastomosis, is the most distal and least perfused.',
-                 'It is crushed by the circular stapler', 'It is supplied by the left gastric artery, which is divided', 'It lies against the aorta'), after=True)
+                 'It is crushed by the circular stapler', 'It relies on the divided left gastric artery', 'It lies against the pulsating aorta'), after=True)
 
     anat = step('leak-anat', 'Anatomy', 'Where the leak goes',
         '<p>An <b>intrathoracic anastomosis</b> (Ivor Lewis) sits above the azygos arch, behind the trachea and right main bronchus, beside the descending aorta. A leak spills into the <b>posterior mediastinum</b> '
@@ -100,7 +100,7 @@ def add(procs, ask, has, LM, S):
         v_close, show=[*CH, 'leak-defect'], labels=['anast-chest'], opacity=OP, ct=D,
         quiz=ask('What is the first investigation?', 'CT of the chest with oral contrast',
                  'For suspected intrathoracic leak the ISDE consensus recommends CT with oral contrast first (84% agreement): it shows the leak and the collections that need draining.',
-                 'Barium swallow', 'Repeat CRP in 24 hours', 'Bedside methylene blue by mouth'))
+                 'Barium swallow', 'Repeat CRP and white count in 24 hours', 'Bedside methylene blue by mouth'))
 
     diag = step('leak-diagnose', 'Decision', 'Making the diagnosis',
         tbl(['Clue', 'Weight (ISDE 2026)'],
@@ -119,9 +119,9 @@ def add(procs, ask, has, LM, S):
         + ev('ISDE 2026: statements 1–12, all evidence level C (no randomized trials). Fabbi 2021: a CRP around 17 mg/dL (170 mg/L) on day 3 marks a higher risk of leak.'),
         v_close, show=[*CH, 'leak-defect', 'leak-collection'], highlight=['leak-defect'], labels=['leak-collection'], opacity=OP, ct=D, after=True,
         quiz=ask('After a McKeown esophagectomy, a patient on day 6 has a red, swollen neck wound with pus, and is septic. Next?',
-                 'Open the neck wound at the bedside and also get a CT with oral contrast',
+                 'Open the wound at the bedside and get a CT',
                  'With local signs, opening the incision is acceptable first; in a septic patient the ISDE panel recommends a CT as well (89%), because a neck leak can extend into the mediastinum.',
-                 'Contrast swallow only', 'Antibiotics and review in 48 hours', 'Return to theatre for a thoracotomy'))
+                 'Water-soluble contrast swallow only', 'Antibiotics and review in 48 hours', 'Urgent right thoracotomy and redo of the anastomosis'))
 
     decide = step('leak-decide', 'Decision', 'Grade it, then match the treatment',
         tbl(['ECCG type', 'Leak', 'Conduit necrosis'],
@@ -151,8 +151,8 @@ def add(procs, ask, has, LM, S):
         + h4('7. Kenya-specific') + ul('Cost of repeated endoscopy, sponges and stents; what is available here, and when transfer is better', 'Nutrition: the jejunostomy feed the family will need to buy and give')
         + f'<p>Template and how to use it: {link("approach=cticu-consent&amp;step=0", "CTICU protocol, consent")}.</p>',
         v_close, show=[*CH, 'leak-defect'], labels=[], opacity=OP, ct=D, after=True,
-        quiz=ask('Why must a stent placed for a leak be discussed as temporary?', 'Covered stents migrate and can erode; they are removed or exchanged, usually by 4–8 weeks',
-                 'Fully covered stents are left in for a median of 4–8 weeks and then removed; leaving them risks erosion, fistula and bleeding.', 'They dissolve', 'Because they block the airway', 'They are not: stents are permanent'))
+        quiz=ask('Why must a stent placed for a leak be discussed as temporary?', 'They migrate or erode; remove by 4–8 weeks',
+                 'Fully covered stents are left in for a median of 4–8 weeks and then removed; leaving them risks erosion, fistula and bleeding.', 'They dissolve once the leak has healed over', 'They block the airway if left beyond two weeks', 'They are left in for life to prevent a stricture'))
 
     # ------------------------------------------------------------------------------------------------ treatment
     support = step('leak-support', 'Supportive care', 'Supportive care for every leak',
@@ -175,9 +175,9 @@ def add(procs, ask, has, LM, S):
         v_chest, show=[*CH, 'leak-defect', 'leak-collection', 'leak-effusion', 'leak-drain'], highlight=['leak-drain'], labels=['leak-collection', 'leak-effusion'], opacity=OP, ct=E,
         action={'kind': 'reveal', 'label': 'Insert the chest drain', 'port': 'thor-r', 'ids': ['leak-drain']},
         quiz=ask('CT shows a 5 cm mediastinal collection and a right pleural collection after an Ivor Lewis. The patient is stable. Best plan?',
-                 'Supportive care plus drainage of both collections, with endoscopic drainage or closure of the defect',
+                 'Supportive care plus drainage, with endoscopic therapy',
                  'Collections must be drained (ISDE 91–96%); endoscopic closure (EVT, stent) can be added. Surgery is for uncontrolled sepsis or failure.',
-                 'Supportive care alone', 'Immediate rethoracotomy and redo anastomosis', 'Stent alone, without drains'))
+                 'Supportive care alone, with repeat CT in a week', 'Immediate rethoracotomy and redo of the anastomosis', 'A covered stent alone, without draining the collections'))
 
     neck = step('leak-neck', 'Drain', 'The cervical leak: open the wound',
         '<p>Remove the skin sutures over the leak, open the wound down to the collection with a finger, wash it out and <b>pack it</b>; repack daily. Most cervical leaks then heal without further intervention, '
@@ -198,7 +198,7 @@ def add(procs, ask, has, LM, S):
         opacity={**OP, 'conduit-chest': 0.4, 'esophagus': 0.4, 'leak-collection': 0.45}, ct=C,
         action={'kind': 'reveal', 'label': 'Place the sponge in the cavity', 'port': 'thor-r', 'ids': ['leak-evt', 'leak-evt-tube']},
         quiz=ask('What suction is applied to an esophageal EVT sponge?', 'Continuous −100 to −125 mmHg', 'The usual EVT setting is continuous negative pressure of about −100 to −125 mmHg, with sponge changes every 3–4 days.',
-                 'Intermittent −20 mmHg', 'Free drainage only', '−400 mmHg wall suction'))
+                 'Intermittent −20 to −40 mmHg', 'Free drainage into a bag only', 'Full wall suction, about −400 mmHg'))
 
     stent = step('leak-stent', 'Close', 'Covered stent',
         '<p>A <b>fully covered self-expanding metal stent</b> is placed across the anastomosis, landing about 4 cm above and below the defect, to seal it from the lumen. It lets the patient swallow early, '
@@ -227,8 +227,8 @@ def add(procs, ask, has, LM, S):
         view(A + V(0, 0, -10), BACK, 260), show=[*CH, 'leak-necrosis', 'leak-esophagostomy'], highlight=['leak-necrosis'], danger=['leak-necrosis'], labels=['leak-esophagostomy'],
         opacity={**OP, 'conduit-chest': 0.6}, ct=A,
         action={'kind': 'reveal', 'label': 'Bring out the esophagostomy', 'port': 'neck', 'ids': ['leak-esophagostomy']},
-        quiz=ask('Endoscopy on day 4 shows black mucosa over the top 6 cm of the conduit; the patient is on noradrenaline. Plan?', 'Return to theatre: resect the conduit and divert (cervical esophagostomy, feeding jejunostomy)',
-                 'Substantial conduit necrosis needs primary diversion (ISDE 89%); a stent or sponge cannot treat dead tissue.', 'Covered stent across the anastomosis', 'EVT and review in 72 hours', 'Antibiotics alone'))
+        quiz=ask('Endoscopy on day 4 shows black mucosa over the top 6 cm of the conduit; the patient is on noradrenaline. Plan?', 'Resect the conduit and divert',
+                 'Substantial conduit necrosis needs primary diversion (ISDE 89%); a stent or sponge cannot treat dead tissue.', 'Covered stent across the anastomosis', 'EVT and review in 72 hours', 'Antibiotics and repeat endoscopy'))
 
     icu = step('eso-leak-icu', 'ICU', 'ICU and post-operative care',
         f'<p>Start with the {link("approach=cticu-thoracic&amp;step=0", "thoracic core")}, the {link("approach=cticu-core&amp;step=0", "lab schedule")} and the {link("approach=cticu-core&amp;step=2", "escalation table")}; then this treatment\'s own points.</p>'
@@ -244,8 +244,8 @@ def add(procs, ask, has, LM, S):
         + h4('Labs') + ul('FBC, UEC, CRP, albumin, Mg, PO₄ at least every 48 hours while the leak is active')
         + f'<p>Doses: {link("approach=cticu-doses&amp;step=0", "electrolytes")}, {link("approach=cticu-doses&amp;step=1", "vasoactive drugs")}.</p>',
         v_chest, show=[*CH, 'leak-defect', 'leak-collection', 'leak-effusion', 'leak-drain', 'leak-ngt'], labels=['leak-drain'], opacity=OP, ct=C, after=True,
-        quiz=ask('Ten days into EVT, the patient\'s CRP has risen again and the drain shows food particles. Next?', 'Repeat CT with oral contrast to look for an undrained collection, and re-endoscope',
-                 'A rising CRP with gastrointestinal content in the drain means the leak is not controlled; image for collections and reassess the defect and conduit.', 'Stop antibiotics', 'Start oral feeding', 'Discharge to the ward'))
+        quiz=ask('Ten days into EVT, the patient\'s CRP has risen again and the drain shows food particles. Next?', 'Repeat CT and endoscopy for control',
+                 'A rising CRP with gastrointestinal content in the drain means the leak is not controlled; image for collections and reassess the defect and conduit.', 'Stop antibiotics and feed by mouth', 'Discharge to the ward for nursing', 'Start oral feeding to test the leak'))
 
     groups = [('Patho', 'other', [patho]), ('Anatomy', 'other', [anat]), ('Case', 'other', [case]), ('Decision', 'other', [diag, decide]), ('Consent', 'other', [consent]),
               ('Support', 'other', [support]), ('Drain', 'other', [drain, neck]), ('Close', 'bronchus', [evt, stent, reop]), ('Necrosis', 'vein', [nec]), ('ICU', 'other', [icu])]

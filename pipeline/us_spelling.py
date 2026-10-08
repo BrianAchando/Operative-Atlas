@@ -60,6 +60,6 @@ def fix(text):
             cnt[(m.group(0), r)] += 1
             return r
         text = rx.sub(sub, text)
-    text = re.sub('\x00(\d+)\x00', lambda m: prot[int(m.group(1))], text)
+    text = re.sub(r'\x00(\d+)\x00', lambda m: prot[int(m.group(1))], text)
     return text, cnt
 

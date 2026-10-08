@@ -4811,8 +4811,10 @@ import postop
 postop.apply(procs, ask, has)
 import modules_leak   # after postop: the leak module carries its own consent and ICU steps
 modules_leak.add(procs, ask, has, LM, S)
+import modules_vasc2  # PAD best medical therapy, ALI Rutherford IIa, AAA management, common iliac aneurysm
+modules_vasc2.add(procs, ask, has, LM, S)
 # operations appear in the menu in this order
-ORDER = ['position', 'thoracotomy-l', 'thoracotomy-r', 'vats-ports-l', 'vats-ports-r', 'lul', 'lll', 'rul', 'rml', 'rll', 'pnl', 'pnr', 'bronchiectasis', 'asp', 'seg-lingula', 'seg-lul-updiv', 'seg-s6', 'trachea', 'thymectomy', 'oesophagectomy', 'duct', 'empyema', 'ppe', 'cle', 'cpam', 'rt', 'clamshell', 'cardio', 'tract', 'hilar', 'mvr', 'avr', 'root', 'tricuspid', 'cabg', 'pericardium', 'asd', 'vsd', 'pda', 'coa', 'tof', 'palliation', 'aiod', 'aaa', 'taa', 'ali', 'infrainguinal', 'bka', 'aka', 'avf', 'cticu']
+ORDER = ['position', 'thoracotomy-l', 'thoracotomy-r', 'vats-ports-l', 'vats-ports-r', 'lul', 'lll', 'rul', 'rml', 'rll', 'pnl', 'pnr', 'bronchiectasis', 'asp', 'seg-lingula', 'seg-lul-updiv', 'seg-s6', 'trachea', 'thymectomy', 'oesophagectomy', 'duct', 'empyema', 'ppe', 'cle', 'cpam', 'rt', 'clamshell', 'cardio', 'tract', 'hilar', 'mvr', 'avr', 'root', 'tricuspid', 'cabg', 'pericardium', 'asd', 'vsd', 'pda', 'coa', 'tof', 'palliation', 'pad', 'aiod', 'aaa', 'iliac', 'taa', 'ali', 'infrainguinal', 'bka', 'aka', 'avf', 'cticu']
 procs = dict(sorted(procs.items(), key=lambda kv: (ORDER.index(kv[1]['op']), list(procs).index(kv[0]))))
 for v in procs.values():
     v['group'] = v.get('group') or ('Pneumonectomy' if v['op'].startswith('pn') else 'Segmentectomy' if v['op'].startswith('seg-') else 'Lobectomy')

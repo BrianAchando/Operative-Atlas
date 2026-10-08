@@ -20,11 +20,11 @@ Chain: Tip ischemia, tension, technique → Full-thickness defect → **Saliva a
 ### Question
 
 **Q:** Why is the tip of the gastric conduit the part most at risk?
-- [x] It is the point farthest from its only feeding artery, the right gastroepiploic
+- [x] It is farthest from its feeding artery
   > The conduit is perfused along the greater curvature from the right gastroepiploic artery; the tip, now at the anastomosis, is the most distal and least perfused.
 - [ ] It is crushed by the circular stapler
-- [ ] It is supplied by the left gastric artery, which is divided
-- [ ] It lies against the aorta
+- [ ] It relies on the divided left gastric artery
+- [ ] It lies against the pulsating aorta
 
 ## [leak-anat] Where the leak goes
 
@@ -46,7 +46,7 @@ A 62-year-old man had an Ivor Lewis esophagectomy for a lower-third squamous car
 - [x] CT of the chest with oral contrast
   > For suspected intrathoracic leak the ISDE consensus recommends CT with oral contrast first (84% agreement): it shows the leak and the collections that need draining.
 - [ ] Barium swallow
-- [ ] Repeat CRP in 24 hours
+- [ ] Repeat CRP and white count in 24 hours
 - [ ] Bedside methylene blue by mouth
 
 ## [leak-diagnose] Making the diagnosis
@@ -73,11 +73,11 @@ A 62-year-old man had an Ivor Lewis esophagectomy for a lower-third squamous car
 ### Question
 
 **Q:** After a McKeown esophagectomy, a patient on day 6 has a red, swollen neck wound with pus, and is septic. Next?
-- [x] Open the neck wound at the bedside and also get a CT with oral contrast
+- [x] Open the wound at the bedside and get a CT
   > With local signs, opening the incision is acceptable first; in a septic patient the ISDE panel recommends a CT as well (89%), because a neck leak can extend into the mediastinum.
-- [ ] Contrast swallow only
+- [ ] Water-soluble contrast swallow only
 - [ ] Antibiotics and review in 48 hours
-- [ ] Return to theatre for a thoracotomy
+- [ ] Urgent right thoracotomy and redo of the anastomosis
 
 ## [leak-decide] Grade it, then match the treatment
 
@@ -155,11 +155,11 @@ Template and how to use it: [CTICU protocol, consent](#approach=cticu-consent&st
 ### Question
 
 **Q:** Why must a stent placed for a leak be discussed as temporary?
-- [x] Covered stents migrate and can erode; they are removed or exchanged, usually by 4–8 weeks
+- [x] They migrate or erode; remove by 4–8 weeks
   > Fully covered stents are left in for a median of 4–8 weeks and then removed; leaving them risks erosion, fistula and bleeding.
-- [ ] They dissolve
-- [ ] Because they block the airway
-- [ ] They are not: stents are permanent
+- [ ] They dissolve once the leak has healed over
+- [ ] They block the airway if left beyond two weeks
+- [ ] They are left in for life to prevent a stricture
 
 ## [leak-support] Supportive care for every leak
 
@@ -190,11 +190,11 @@ A confirmed leak with **no collection and only mild signs** can be treated this 
 ### Question
 
 **Q:** CT shows a 5 cm mediastinal collection and a right pleural collection after an Ivor Lewis. The patient is stable. Best plan?
-- [x] Supportive care plus drainage of both collections, with endoscopic drainage or closure of the defect
+- [x] Supportive care plus drainage, with endoscopic therapy
   > Collections must be drained (ISDE 91–96%); endoscopic closure (EVT, stent) can be added. Surgery is for uncontrolled sepsis or failure.
-- [ ] Supportive care alone
-- [ ] Immediate rethoracotomy and redo anastomosis
-- [ ] Stent alone, without drains
+- [ ] Supportive care alone, with repeat CT in a week
+- [ ] Immediate rethoracotomy and redo of the anastomosis
+- [ ] A covered stent alone, without draining the collections
 
 ## [leak-neck] The cervical leak: open the wound
 
@@ -221,9 +221,9 @@ An open-pore polyurethane sponge on a tube is placed endoscopically **through th
 **Q:** What suction is applied to an esophageal EVT sponge?
 - [x] Continuous −100 to −125 mmHg
   > The usual EVT setting is continuous negative pressure of about −100 to −125 mmHg, with sponge changes every 3–4 days.
-- [ ] Intermittent −20 mmHg
-- [ ] Free drainage only
-- [ ] −400 mmHg wall suction
+- [ ] Intermittent −20 to −40 mmHg
+- [ ] Free drainage into a bag only
+- [ ] Full wall suction, about −400 mmHg
 
 ## [leak-stent] Covered stent
 
@@ -239,7 +239,7 @@ A **fully covered self-expanding metal stent** is placed across the anastomosis,
 
 ## [leak-reop] Surgery for uncontrolled sepsis
 
-If sepsis is **not controlled**, or drainage and endoscopic treatment have failed: **reopen the right chest, wash out and drain** (84–85%). Decorticate the lung if the empyema has organised. If the defect is small and the tissues healthy, it can be **closed with sutures** and buttressed with tissue (an intercostal muscle or omental flap): a weak recommendation (IIb).
+If sepsis is **not controlled**, or drainage and endoscopic treatment have failed: **reopen the right chest, wash out and drain** (84–85%). Decorticate the lung if the empyema has organized. If the defect is small and the tissues healthy, it can be **closed with sutures** and buttressed with tissue (an intercostal muscle or omental flap): a weak recommendation (IIb).
 
 -   Re-look at the conduit: dusky or black means necrosis, which changes the operation to a diversion
 -   Leave wide drains near the defect; place a feeding jejunostomy if there is none
@@ -262,11 +262,11 @@ At endoscopy the mucosa of the conduit tip is **dusky, black or sloughed**. Limi
 ### Question
 
 **Q:** Endoscopy on day 4 shows black mucosa over the top 6 cm of the conduit; the patient is on noradrenaline. Plan?
-- [x] Return to theatre: resect the conduit and divert (cervical esophagostomy, feeding jejunostomy)
+- [x] Resect the conduit and divert
   > Substantial conduit necrosis needs primary diversion (ISDE 89%); a stent or sponge cannot treat dead tissue.
 - [ ] Covered stent across the anastomosis
 - [ ] EVT and review in 72 hours
-- [ ] Antibiotics alone
+- [ ] Antibiotics and repeat endoscopy
 
 ## [eso-leak-icu] ICU and post-operative care
 
@@ -292,11 +292,11 @@ Doses: [electrolytes](#approach=cticu-doses&step=0), [vasoactive drugs](#approac
 ### Question
 
 **Q:** Ten days into EVT, the patient's CRP has risen again and the drain shows food particles. Next?
-- [x] Repeat CT with oral contrast to look for an undrained collection, and re-endoscope
+- [x] Repeat CT and endoscopy for control
   > A rising CRP with gastrointestinal content in the drain means the leak is not controlled; image for collections and reassess the defect and conduit.
-- [ ] Stop antibiotics
-- [ ] Start oral feeding
-- [ ] Discharge to the ward
+- [ ] Stop antibiotics and feed by mouth
+- [ ] Discharge to the ward for nursing
+- [ ] Start oral feeding to test the leak
 
 ## Sources
 
