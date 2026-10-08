@@ -4813,6 +4813,11 @@ import modules_leak   # after postop: the leak module carries its own consent an
 modules_leak.add(procs, ask, has, LM, S)
 import modules_vasc2  # PAD best medical therapy, ALI Rutherford IIa, AAA management, common iliac aneurysm
 modules_vasc2.add(procs, ask, has, LM, S)
+# the patella goes wherever the femur is shown (anatomy_limb.py)
+if has('leg-patella'):
+    for _p in procs.values():
+        for _s in _p['steps']:
+            if 'leg-femur' in _s.get('show', []) and 'leg-patella' not in _s['show']: _s['show'].append('leg-patella')
 # operations appear in the menu in this order
 ORDER = ['position', 'thoracotomy-l', 'thoracotomy-r', 'vats-ports-l', 'vats-ports-r', 'lul', 'lll', 'rul', 'rml', 'rll', 'pnl', 'pnr', 'bronchiectasis', 'asp', 'seg-lingula', 'seg-lul-updiv', 'seg-s6', 'trachea', 'thymectomy', 'oesophagectomy', 'duct', 'empyema', 'ppe', 'cle', 'cpam', 'rt', 'clamshell', 'cardio', 'tract', 'hilar', 'mvr', 'avr', 'root', 'tricuspid', 'cabg', 'pericardium', 'asd', 'vsd', 'pda', 'coa', 'tof', 'palliation', 'pad', 'aiod', 'aaa', 'iliac', 'taa', 'ali', 'infrainguinal', 'bka', 'aka', 'avf', 'cticu']
 procs = dict(sorted(procs.items(), key=lambda kv: (ORDER.index(kv[1]['op']), list(procs).index(kv[0]))))

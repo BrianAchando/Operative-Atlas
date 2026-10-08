@@ -557,7 +557,8 @@
      "graft-cia-r",
      "abi-cuff-ankle",
      "doppler-pen",
-     "abi-cuff-arm"
+     "abi-cuff-arm",
+     "leg-patella"
     ]
    },
    {
@@ -1092,7 +1093,8 @@
      "graft-cia-r",
      "abi-cuff-ankle",
      "doppler-pen",
-     "abi-cuff-arm"
+     "abi-cuff-arm",
+     "leg-patella"
     ]
    },
    {
@@ -1640,7 +1642,8 @@
      "graft-cia-r",
      "abi-cuff-ankle",
      "doppler-pen",
-     "abi-cuff-arm"
+     "abi-cuff-arm",
+     "leg-patella"
     ]
    },
    {
@@ -2208,7 +2211,8 @@
      "graft-cia-r",
      "abi-cuff-ankle",
      "doppler-pen",
-     "abi-cuff-arm"
+     "abi-cuff-arm",
+     "leg-patella"
     ]
    }
   ],
@@ -2808,7 +2812,8 @@
      "graft-cia-r",
      "abi-cuff-ankle",
      "doppler-pen",
-     "abi-cuff-arm"
+     "abi-cuff-arm",
+     "leg-patella"
     ]
    },
    {
@@ -3343,7 +3348,8 @@
      "graft-cia-r",
      "abi-cuff-ankle",
      "doppler-pen",
-     "abi-cuff-arm"
+     "abi-cuff-arm",
+     "leg-patella"
     ]
    },
    {
@@ -3891,7 +3897,8 @@
      "graft-cia-r",
      "abi-cuff-ankle",
      "doppler-pen",
-     "abi-cuff-arm"
+     "abi-cuff-arm",
+     "leg-patella"
     ]
    },
    {
@@ -4459,7 +4466,8 @@
      "graft-cia-r",
      "abi-cuff-ankle",
      "doppler-pen",
-     "abi-cuff-arm"
+     "abi-cuff-arm",
+     "leg-patella"
     ]
    }
   ],
@@ -5029,7 +5037,8 @@
      "graft-cia-r",
      "abi-cuff-ankle",
      "doppler-pen",
-     "abi-cuff-arm"
+     "abi-cuff-arm",
+     "leg-patella"
     ]
    },
    {
@@ -5554,7 +5563,8 @@
      "graft-cia-r",
      "abi-cuff-ankle",
      "doppler-pen",
-     "abi-cuff-arm"
+     "abi-cuff-arm",
+     "leg-patella"
     ],
     "labels": [
      "mus-latdorsi-l",
@@ -6146,7 +6156,8 @@
      "graft-cia-r",
      "abi-cuff-ankle",
      "doppler-pen",
-     "abi-cuff-arm"
+     "abi-cuff-arm",
+     "leg-patella"
     ]
    },
    {
@@ -6657,7 +6668,8 @@
      "graft-cia-r",
      "abi-cuff-ankle",
      "doppler-pen",
-     "abi-cuff-arm"
+     "abi-cuff-arm",
+     "leg-patella"
     ]
    }
   ],
@@ -7227,7 +7239,8 @@
      "graft-cia-r",
      "abi-cuff-ankle",
      "doppler-pen",
-     "abi-cuff-arm"
+     "abi-cuff-arm",
+     "leg-patella"
     ]
    },
    {
@@ -7752,7 +7765,8 @@
      "graft-cia-r",
      "abi-cuff-ankle",
      "doppler-pen",
-     "abi-cuff-arm"
+     "abi-cuff-arm",
+     "leg-patella"
     ],
     "labels": [
      "mus-latdorsi-l",
@@ -8350,7 +8364,8 @@
      "graft-cia-r",
      "abi-cuff-ankle",
      "doppler-pen",
-     "abi-cuff-arm"
+     "abi-cuff-arm",
+     "leg-patella"
     ]
    },
    {
@@ -8861,7 +8876,8 @@
      "graft-cia-r",
      "abi-cuff-ankle",
      "doppler-pen",
-     "abi-cuff-arm"
+     "abi-cuff-arm",
+     "leg-patella"
     ]
    }
   ],
@@ -9431,7 +9447,8 @@
      "graft-cia-r",
      "abi-cuff-ankle",
      "doppler-pen",
-     "abi-cuff-arm"
+     "abi-cuff-arm",
+     "leg-patella"
     ]
    },
    {
@@ -9956,7 +9973,8 @@
      "graft-cia-r",
      "abi-cuff-ankle",
      "doppler-pen",
-     "abi-cuff-arm"
+     "abi-cuff-arm",
+     "leg-patella"
     ],
     "labels": [
      "mus-latdorsi-l",
@@ -10548,7 +10566,8 @@
      "graft-cia-r",
      "abi-cuff-ankle",
      "doppler-pen",
-     "abi-cuff-arm"
+     "abi-cuff-arm",
+     "leg-patella"
     ]
    },
    {
@@ -11059,7 +11078,8 @@
      "graft-cia-r",
      "abi-cuff-ankle",
      "doppler-pen",
-     "abi-cuff-arm"
+     "abi-cuff-arm",
+     "leg-patella"
     ]
    }
   ],
@@ -11629,7 +11649,8 @@
      "graft-cia-r",
      "abi-cuff-ankle",
      "doppler-pen",
-     "abi-cuff-arm"
+     "abi-cuff-arm",
+     "leg-patella"
     ]
    },
    {
@@ -12154,7 +12175,8 @@
      "graft-cia-r",
      "abi-cuff-ankle",
      "doppler-pen",
-     "abi-cuff-arm"
+     "abi-cuff-arm",
+     "leg-patella"
     ],
     "labels": [
      "mus-latdorsi-r",
@@ -12746,7 +12768,8 @@
      "graft-cia-r",
      "abi-cuff-ankle",
      "doppler-pen",
-     "abi-cuff-arm"
+     "abi-cuff-arm",
+     "leg-patella"
     ]
    },
    {
@@ -13257,7 +13280,8 @@
      "graft-cia-r",
      "abi-cuff-ankle",
      "doppler-pen",
-     "abi-cuff-arm"
+     "abi-cuff-arm",
+     "leg-patella"
     ]
    }
   ],
@@ -13827,7 +13851,8 @@
      "graft-cia-r",
      "abi-cuff-ankle",
      "doppler-pen",
-     "abi-cuff-arm"
+     "abi-cuff-arm",
+     "leg-patella"
     ]
    },
    {
@@ -14352,7 +14377,8 @@
      "graft-cia-r",
      "abi-cuff-ankle",
      "doppler-pen",
-     "abi-cuff-arm"
+     "abi-cuff-arm",
+     "leg-patella"
     ],
     "labels": [
      "mus-latdorsi-r",
@@ -14950,7 +14976,8 @@
      "graft-cia-r",
      "abi-cuff-ankle",
      "doppler-pen",
-     "abi-cuff-arm"
+     "abi-cuff-arm",
+     "leg-patella"
     ]
    },
    {
@@ -15461,7 +15488,8 @@
      "graft-cia-r",
      "abi-cuff-ankle",
      "doppler-pen",
-     "abi-cuff-arm"
+     "abi-cuff-arm",
+     "leg-patella"
     ]
    }
   ],
@@ -16031,7 +16059,8 @@
      "graft-cia-r",
      "abi-cuff-ankle",
      "doppler-pen",
-     "abi-cuff-arm"
+     "abi-cuff-arm",
+     "leg-patella"
     ]
    },
    {
@@ -16556,7 +16585,8 @@
      "graft-cia-r",
      "abi-cuff-ankle",
      "doppler-pen",
-     "abi-cuff-arm"
+     "abi-cuff-arm",
+     "leg-patella"
     ],
     "labels": [
      "mus-latdorsi-r",
@@ -17148,7 +17178,8 @@
      "graft-cia-r",
      "abi-cuff-ankle",
      "doppler-pen",
-     "abi-cuff-arm"
+     "abi-cuff-arm",
+     "leg-patella"
     ]
    },
    {
@@ -17659,7 +17690,8 @@
      "graft-cia-r",
      "abi-cuff-ankle",
      "doppler-pen",
-     "abi-cuff-arm"
+     "abi-cuff-arm",
+     "leg-patella"
     ]
    }
   ],
@@ -18235,7 +18267,8 @@
      "graft-cia-r",
      "abi-cuff-ankle",
      "doppler-pen",
-     "abi-cuff-arm"
+     "abi-cuff-arm",
+     "leg-patella"
     ]
    },
    {
@@ -18748,7 +18781,8 @@
      "graft-cia-r",
      "abi-cuff-ankle",
      "doppler-pen",
-     "abi-cuff-arm"
+     "abi-cuff-arm",
+     "leg-patella"
     ],
     "opacity": {
      "rib-1-l": 0.55,
@@ -19448,7 +19482,8 @@
      "graft-cia-r",
      "abi-cuff-ankle",
      "doppler-pen",
-     "abi-cuff-arm"
+     "abi-cuff-arm",
+     "leg-patella"
     ]
    },
    {
@@ -19961,7 +19996,8 @@
      "graft-cia-r",
      "abi-cuff-ankle",
      "doppler-pen",
-     "abi-cuff-arm"
+     "abi-cuff-arm",
+     "leg-patella"
     ],
     "opacity": {
      "rib-1-l": 0.55,
@@ -20658,7 +20694,8 @@
      "graft-cia-r",
      "abi-cuff-ankle",
      "doppler-pen",
-     "abi-cuff-arm"
+     "abi-cuff-arm",
+     "leg-patella"
     ]
    },
    {
@@ -21170,7 +21207,8 @@
      "graft-cia-r",
      "abi-cuff-ankle",
      "doppler-pen",
-     "abi-cuff-arm"
+     "abi-cuff-arm",
+     "leg-patella"
     ],
     "opacity": {
      "rib-1-l": 0.55,
@@ -21849,7 +21887,8 @@
      "graft-cia-r",
      "abi-cuff-ankle",
      "doppler-pen",
-     "abi-cuff-arm"
+     "abi-cuff-arm",
+     "leg-patella"
     ]
    },
    {
@@ -22361,7 +22400,8 @@
      "graft-cia-r",
      "abi-cuff-ankle",
      "doppler-pen",
-     "abi-cuff-arm"
+     "abi-cuff-arm",
+     "leg-patella"
     ],
     "opacity": {
      "rib-1-l": 0.55,
@@ -23043,7 +23083,8 @@
      "graft-cia-r",
      "abi-cuff-ankle",
      "doppler-pen",
-     "abi-cuff-arm"
+     "abi-cuff-arm",
+     "leg-patella"
     ]
    },
    {
@@ -23556,7 +23597,8 @@
      "graft-cia-r",
      "abi-cuff-ankle",
      "doppler-pen",
-     "abi-cuff-arm"
+     "abi-cuff-arm",
+     "leg-patella"
     ],
     "opacity": {
      "rib-1-r": 0.55,
@@ -24259,7 +24301,8 @@
      "graft-cia-r",
      "abi-cuff-ankle",
      "doppler-pen",
-     "abi-cuff-arm"
+     "abi-cuff-arm",
+     "leg-patella"
     ]
    },
    {
@@ -24772,7 +24815,8 @@
      "graft-cia-r",
      "abi-cuff-ankle",
      "doppler-pen",
-     "abi-cuff-arm"
+     "abi-cuff-arm",
+     "leg-patella"
     ],
     "opacity": {
      "rib-1-r": 0.55,
@@ -25472,7 +25516,8 @@
      "graft-cia-r",
      "abi-cuff-ankle",
      "doppler-pen",
-     "abi-cuff-arm"
+     "abi-cuff-arm",
+     "leg-patella"
     ]
    },
    {
@@ -25984,7 +26029,8 @@
      "graft-cia-r",
      "abi-cuff-ankle",
      "doppler-pen",
-     "abi-cuff-arm"
+     "abi-cuff-arm",
+     "leg-patella"
     ],
     "opacity": {
      "rib-1-r": 0.55,
@@ -26666,7 +26712,8 @@
      "graft-cia-r",
      "abi-cuff-ankle",
      "doppler-pen",
-     "abi-cuff-arm"
+     "abi-cuff-arm",
+     "leg-patella"
     ]
    },
    {
@@ -27178,7 +27225,8 @@
      "graft-cia-r",
      "abi-cuff-ankle",
      "doppler-pen",
-     "abi-cuff-arm"
+     "abi-cuff-arm",
+     "leg-patella"
     ],
     "opacity": {
      "rib-1-r": 0.55,
@@ -219169,7 +219217,8 @@
      "leg-per",
      "leg-dpa",
      "fv-r",
-     "inguinal-lig-r"
+     "inguinal-lig-r",
+     "leg-patella"
     ],
     "hide": [
      "pa-truncus-anterior",
@@ -219400,7 +219449,8 @@
      "leg-dpa",
      "fv-r",
      "inguinal-lig-r",
-     "sfa-occlusion"
+     "sfa-occlusion",
+     "leg-patella"
     ],
     "hide": [
      "pa-truncus-anterior",
@@ -219604,7 +219654,8 @@
      "leg-dpa",
      "fv-r",
      "inguinal-lig-r",
-     "sfa-occlusion"
+     "sfa-occlusion",
+     "leg-patella"
     ],
     "hide": [
      "pa-truncus-anterior",
@@ -219806,7 +219857,8 @@
      "leg-dpa",
      "fv-r",
      "inguinal-lig-r",
-     "abi-cuff-ankle"
+     "abi-cuff-ankle",
+     "leg-patella"
     ],
     "hide": [
      "pa-truncus-anterior",
@@ -220016,7 +220068,8 @@
      "leg-dpa",
      "fv-r",
      "inguinal-lig-r",
-     "sfa-occlusion"
+     "sfa-occlusion",
+     "leg-patella"
     ],
     "hide": [
      "pa-truncus-anterior",
@@ -220240,7 +220293,8 @@
      "leg-dpa",
      "fv-r",
      "inguinal-lig-r",
-     "sfa-occlusion"
+     "sfa-occlusion",
+     "leg-patella"
     ],
     "hide": [
      "pa-truncus-anterior",
@@ -220437,7 +220491,8 @@
      "leg-dpa",
      "fv-r",
      "inguinal-lig-r",
-     "sfa-occlusion"
+     "sfa-occlusion",
+     "leg-patella"
     ],
     "hide": [
      "pa-truncus-anterior",
@@ -220661,7 +220716,8 @@
      "leg-per",
      "leg-dpa",
      "fv-r",
-     "inguinal-lig-r"
+     "inguinal-lig-r",
+     "leg-patella"
     ],
     "hide": [
      "pa-truncus-anterior",
@@ -271386,7 +271442,8 @@
      "fv-r",
      "inguinal-lig-r",
      "ali-embolus",
-     "ali-clot"
+     "ali-clot",
+     "leg-patella"
     ],
     "hide": [
      "pa-truncus-anterior",
@@ -271524,7 +271581,8 @@
      "leg-per",
      "leg-dpa",
      "fv-r",
-     "inguinal-lig-r"
+     "inguinal-lig-r",
+     "leg-patella"
     ],
     "hide": [
      "pa-truncus-anterior",
@@ -271650,7 +271708,8 @@
      "inguinal-lig-r",
      "ali-embolus",
      "ali-clot",
-     "laa-thrombus"
+     "laa-thrombus",
+     "leg-patella"
     ],
     "hide": [
      "pa-truncus-anterior",
@@ -271832,7 +271891,8 @@
      "inguinal-lig-r",
      "ali-embolus",
      "ali-clot",
-     "laa-thrombus"
+     "laa-thrombus",
+     "leg-patella"
     ],
     "hide": [
      "pa-truncus-anterior",
@@ -272014,7 +272074,8 @@
      "inguinal-lig-r",
      "ali-embolus",
      "ali-clot",
-     "laa-thrombus"
+     "laa-thrombus",
+     "leg-patella"
     ],
     "hide": [
      "pa-truncus-anterior",
@@ -272189,7 +272250,8 @@
      "fv-r",
      "inguinal-lig-r",
      "ali-embolus",
-     "incision-groin-r"
+     "incision-groin-r",
+     "leg-patella"
     ],
     "hide": [
      "pa-truncus-anterior",
@@ -272317,7 +272379,8 @@
      "inguinal-lig-r",
      "ali-embolus",
      "ali-clot",
-     "ali-arteriotomy"
+     "ali-arteriotomy",
+     "leg-patella"
     ],
     "hide": [
      "pa-truncus-anterior",
@@ -272439,7 +272502,8 @@
      "inguinal-lig-r",
      "ali-embolus",
      "ali-clot",
-     "fogarty"
+     "fogarty",
+     "leg-patella"
     ],
     "hide": [
      "pa-truncus-anterior",
@@ -272565,7 +272629,8 @@
      "xs-lat",
      "xs-deep",
      "xs-sup",
-     "xs-bones"
+     "xs-bones",
+     "leg-patella"
     ],
     "hide": [
      "pa-truncus-anterior",
@@ -272747,7 +272812,8 @@
      "inguinal-lig-r",
      "ali-embolus",
      "ali-clot",
-     "laa-thrombus"
+     "laa-thrombus",
+     "leg-patella"
     ],
     "hide": [
      "pa-truncus-anterior",
@@ -272997,7 +273063,8 @@
      "fv-r",
      "inguinal-lig-r",
      "ali-embolus",
-     "ali-clot"
+     "ali-clot",
+     "leg-patella"
     ],
     "hide": [
      "pa-truncus-anterior",
@@ -273135,7 +273202,8 @@
      "leg-per",
      "leg-dpa",
      "fv-r",
-     "inguinal-lig-r"
+     "inguinal-lig-r",
+     "leg-patella"
     ],
     "hide": [
      "pa-truncus-anterior",
@@ -273261,7 +273329,8 @@
      "inguinal-lig-r",
      "ali-embolus",
      "ali-clot",
-     "laa-thrombus"
+     "laa-thrombus",
+     "leg-patella"
     ],
     "hide": [
      "pa-truncus-anterior",
@@ -273428,7 +273497,8 @@
      "inguinal-lig-r",
      "ali-embolus",
      "ali-clot",
-     "laa-thrombus"
+     "laa-thrombus",
+     "leg-patella"
     ],
     "hide": [
      "pa-truncus-anterior",
@@ -273534,7 +273604,8 @@
      "fv-r",
      "inguinal-lig-r",
      "ali-embolus",
-     "incision-groin-r"
+     "incision-groin-r",
+     "leg-patella"
     ],
     "hide": [
      "pa-truncus-anterior",
@@ -273662,7 +273733,8 @@
      "inguinal-lig-r",
      "ali-embolus",
      "ali-clot",
-     "ali-arteriotomy"
+     "ali-arteriotomy",
+     "leg-patella"
     ],
     "hide": [
      "pa-truncus-anterior",
@@ -273809,7 +273881,8 @@
      "inguinal-lig-r",
      "ali-embolus",
      "ali-clot",
-     "fogarty"
+     "fogarty",
+     "leg-patella"
     ],
     "hide": [
      "pa-truncus-anterior",
@@ -273935,7 +274008,8 @@
      "xs-lat",
      "xs-deep",
      "xs-sup",
-     "xs-bones"
+     "xs-bones",
+     "leg-patella"
     ],
     "hide": [
      "pa-truncus-anterior",
@@ -274115,7 +274189,8 @@
      "xs-lat",
      "xs-deep",
      "xs-sup",
-     "xs-bones"
+     "xs-bones",
+     "leg-patella"
     ],
     "hide": [
      "pa-truncus-anterior",
@@ -274292,7 +274367,8 @@
      "leg-dpa",
      "fv-r",
      "inguinal-lig-r",
-     "sfa-occlusion"
+     "sfa-occlusion",
+     "leg-patella"
     ],
     "hide": [
      "pa-truncus-anterior",
@@ -274431,7 +274507,8 @@
      "fv-r",
      "inguinal-lig-r",
      "sfa-occlusion",
-     "leg-gsv"
+     "leg-gsv",
+     "leg-patella"
     ],
     "hide": [
      "pa-truncus-anterior",
@@ -274597,7 +274674,8 @@
      "fv-r",
      "inguinal-lig-r",
      "sfa-occlusion",
-     "leg-gsv"
+     "leg-gsv",
+     "leg-patella"
     ],
     "hide": [
      "pa-truncus-anterior",
@@ -274703,7 +274781,8 @@
      "fv-r",
      "inguinal-lig-r",
      "leg-gsv",
-     "sfa-occlusion"
+     "sfa-occlusion",
+     "leg-patella"
     ],
     "hide": [
      "pa-truncus-anterior",
@@ -274821,7 +274900,8 @@
      "leg-dpa",
      "fv-r",
      "inguinal-lig-r",
-     "sfa-occlusion"
+     "sfa-occlusion",
+     "leg-patella"
     ],
     "hide": [
      "pa-truncus-anterior",
@@ -274944,7 +275024,8 @@
      "inguinal-lig-r",
      "sfa-occlusion",
      "graft-fempop",
-     "anast-fempop"
+     "anast-fempop",
+     "leg-patella"
     ],
     "hide": [
      "pa-truncus-anterior",
@@ -275106,7 +275187,8 @@
      "inguinal-lig-r",
      "sfa-occlusion",
      "graft-fempop",
-     "anast-fempop"
+     "anast-fempop",
+     "leg-patella"
     ],
     "hide": [
      "pa-truncus-anterior",
@@ -275278,7 +275360,8 @@
      "amp-tma",
      "amp-bka",
      "amp-tka",
-     "amp-aka"
+     "amp-aka",
+     "leg-patella"
     ],
     "hide": [
      "pa-truncus-anterior",
@@ -275423,7 +275506,8 @@
      "leg-dpa",
      "fv-r",
      "inguinal-lig-r",
-     "amp-bka"
+     "amp-bka",
+     "leg-patella"
     ],
     "hide": [
      "pa-truncus-anterior",
@@ -275585,7 +275669,8 @@
      "leg-dpa",
      "fv-r",
      "inguinal-lig-r",
-     "amp-bka"
+     "amp-bka",
+     "leg-patella"
     ],
     "hide": [
      "pa-truncus-anterior",
@@ -275690,7 +275775,8 @@
      "leg-dpa",
      "fv-r",
      "inguinal-lig-r",
-     "amp-bka"
+     "amp-bka",
+     "leg-patella"
     ],
     "hide": [
      "pa-truncus-anterior",
@@ -275837,7 +275923,8 @@
      "fv-r",
      "inguinal-lig-r",
      "amp-bka",
-     "amp-bka-flap"
+     "amp-bka-flap",
+     "leg-patella"
     ],
     "hide": [
      "pa-truncus-anterior",
@@ -275973,7 +276060,8 @@
      "fv-r",
      "inguinal-lig-r",
      "amp-bka",
-     "amp-bka-flap"
+     "amp-bka-flap",
+     "leg-patella"
     ],
     "hide": [
      "pa-truncus-anterior",
@@ -276141,7 +276229,8 @@
      "amp-tma",
      "amp-bka",
      "amp-tka",
-     "amp-aka"
+     "amp-aka",
+     "leg-patella"
     ],
     "hide": [
      "pa-truncus-anterior",
@@ -276285,7 +276374,8 @@
      "leg-dpa",
      "fv-r",
      "inguinal-lig-r",
-     "amp-bka"
+     "amp-bka",
+     "leg-patella"
     ],
     "hide": [
      "pa-truncus-anterior",
@@ -276447,7 +276537,8 @@
      "leg-dpa",
      "fv-r",
      "inguinal-lig-r",
-     "amp-bka"
+     "amp-bka",
+     "leg-patella"
     ],
     "hide": [
      "pa-truncus-anterior",
@@ -276552,7 +276643,8 @@
      "leg-dpa",
      "fv-r",
      "inguinal-lig-r",
-     "amp-bka"
+     "amp-bka",
+     "leg-patella"
     ],
     "hide": [
      "pa-truncus-anterior",
@@ -276698,7 +276790,8 @@
      "leg-dpa",
      "fv-r",
      "inguinal-lig-r",
-     "amp-bka"
+     "amp-bka",
+     "leg-patella"
     ],
     "hide": [
      "pa-truncus-anterior",
@@ -276841,7 +276934,8 @@
      "leg-ata",
      "leg-pta",
      "leg-per",
-     "leg-tpt"
+     "leg-tpt",
+     "leg-patella"
     ],
     "hide": [
      "pa-truncus-anterior",
@@ -276983,7 +277077,8 @@
      "fv-r",
      "inguinal-lig-r",
      "amp-bka",
-     "amp-bka-flap"
+     "amp-bka-flap",
+     "leg-patella"
     ],
     "hide": [
      "pa-truncus-anterior",
@@ -277120,7 +277215,8 @@
      "leg-dpa",
      "fv-r",
      "inguinal-lig-r",
-     "amp-bka"
+     "amp-bka",
+     "leg-patella"
     ],
     "hide": [
      "pa-truncus-anterior",
@@ -277280,7 +277376,8 @@
      "leg-dpa",
      "fv-r",
      "inguinal-lig-r",
-     "amp-bka"
+     "amp-bka",
+     "leg-patella"
     ],
     "hide": [
      "pa-truncus-anterior",
@@ -277480,7 +277577,8 @@
      "amp-tma",
      "amp-bka",
      "amp-tka",
-     "amp-aka"
+     "amp-aka",
+     "leg-patella"
     ],
     "hide": [
      "pa-truncus-anterior",
@@ -277623,7 +277721,8 @@
      "leg-dpa",
      "fv-r",
      "inguinal-lig-r",
-     "amp-aka"
+     "amp-aka",
+     "leg-patella"
     ],
     "hide": [
      "pa-truncus-anterior",
@@ -277785,7 +277884,8 @@
      "leg-dpa",
      "fv-r",
      "inguinal-lig-r",
-     "amp-aka"
+     "amp-aka",
+     "leg-patella"
     ],
     "hide": [
      "pa-truncus-anterior",
@@ -277890,7 +277990,8 @@
      "leg-dpa",
      "fv-r",
      "inguinal-lig-r",
-     "amp-aka"
+     "amp-aka",
+     "leg-patella"
     ],
     "hide": [
      "pa-truncus-anterior",
@@ -278028,7 +278129,8 @@
      "leg-dpa",
      "fv-r",
      "inguinal-lig-r",
-     "amp-aka"
+     "amp-aka",
+     "leg-patella"
     ],
     "hide": [
      "pa-truncus-anterior",
@@ -278166,7 +278268,8 @@
      "fv-r",
      "inguinal-lig-r",
      "amp-aka",
-     "leg-sfa"
+     "leg-sfa",
+     "leg-patella"
     ],
     "hide": [
      "pa-truncus-anterior",
@@ -278304,7 +278407,8 @@
      "leg-dpa",
      "fv-r",
      "inguinal-lig-r",
-     "amp-aka"
+     "amp-aka",
+     "leg-patella"
     ],
     "hide": [
      "pa-truncus-anterior",
@@ -278440,7 +278544,8 @@
      "leg-dpa",
      "fv-r",
      "inguinal-lig-r",
-     "amp-aka"
+     "amp-aka",
+     "leg-patella"
     ],
     "hide": [
      "pa-truncus-anterior",
@@ -278600,7 +278705,8 @@
      "leg-dpa",
      "fv-r",
      "inguinal-lig-r",
-     "amp-aka"
+     "amp-aka",
+     "leg-patella"
     ],
     "hide": [
      "pa-truncus-anterior",

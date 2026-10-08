@@ -140,7 +140,9 @@ def emit_mesh(id_, name, group, colour, mesh: trimesh.Trimesh, opacity=1.0, visi
            'centroid': [round(float(x), 1) for x in mesh.vertices.mean(0)], 'bbox': [[round(float(x), 1) for x in b[0]], [round(float(x), 1) for x in b[1]]]}
     if not visible: rec['visible'] = False
     if note: rec['note'] = note
-    structures.append(rec)
+    _i = next((i for i, s_ in enumerate(structures) if s_['id'] == id_), None)       # a later module may redraw a structure: replace it in place
+    if _i is None: structures.append(rec)
+    else: structures[_i] = rec
     print(f'  {id_:28s} schematic {nbytes / 1024:6.1f} kB')
 
 
@@ -927,6 +929,9 @@ TRLM.update(pathology_leak.build(dict(emit_mesh=emit_mesh, W=W, tube=tube, CARIN
 # ------------------------------------------------------------------ common iliac aneurysm and its repairs; ankle-brachial index cuffs
 import pathology_vasc2  # noqa: E402
 TRLM.update(pathology_vasc2.build(dict(emit_mesh=emit_mesh, tube=tube, CARINA=CARINA, LMW={k: W(v) for k, v in TRLM.items()})))
+# ------------------------------------------------------------------ second-generation limb anatomy: tapered, filleted vessel trees; shaped bones (replaces the earlier tubes by id)
+import anatomy_limb  # noqa: E402
+TRLM.update({k: v + CARINA for k, v in anatomy_limb.build(dict(emit_mesh=emit_mesh, LMW={k: W(v) for k, v in TRLM.items()})).items()})
 CW_L |= MD_L; CW_R |= MD_R
 for appr, ps in PORTS.items():
     for k, nm, p in ps:
