@@ -101,6 +101,7 @@ async function boot(): Promise<void> {
 
   // ---- 3D
   scene3d = new Scene3D($('#view3d'));
+  if (import.meta.env.DEV) (window as unknown as { cova: unknown }).cova = { scene: scene3d };   // dev only: lets the screenshot scripts move the camera
   if (import.meta.env.DEV) (window as unknown as { __s: Scene3D }).__s = scene3d;
   (window as unknown as { hilum: unknown }).hilum = { get scene() { return scene3d; }, views };
   status.textContent = 'Loading the 3D anatomy…';

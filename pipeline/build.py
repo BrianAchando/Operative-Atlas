@@ -1007,6 +1007,11 @@ _hp = [np.array(rec_of(i)['division']['point']) for i in ('pa-left', 'pv-superio
 landmarks['hilum-l'] = [round(float(x), 1) for x in np.mean(_hp, axis=0)]
 _ax = W(lung_c) - np.mean(_hp, axis=0); _ax[2] = 0; _ax /= np.linalg.norm(_ax)
 landmarks['hilum-l-axis'] = [round(float(x), 3) for x in _ax]
+# second-generation valves (fitted to the annuli above) and node stations: replace the earlier shapes by id
+import anatomy_heart, anatomy_nodes  # noqa: E402
+for _k, _v in anatomy_heart.build(dict(emit_mesh=emit_mesh, LMW=landmarks, root=str(Path(__file__).resolve().parent.parent))).items():
+    landmarks[_k] = [round(float(x), 1) for x in _v]
+anatomy_nodes.build(dict(emit_mesh=emit_mesh, structures=structures))
 atlas = {
     'ct': {'file': 'ct.hu8.gz', 'dims': [int(x) for x in shape], 'affine': [[round(float(x), 4) for x in row] for row in w_aff[:3]], 'scale': STEP, 'offset': HU0, 'spacing': vox},
     'labels': {'file': 'labels.u8.gz', 'lut': lut},
