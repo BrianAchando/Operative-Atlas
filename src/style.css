@@ -294,3 +294,7 @@ body.stage-light #hover { color: #33505e; }
 .pg-num { color: var(--muted); font-size: 12px; }
 @media (max-width: 700px) { .search { width: 150px; } .pg-row { grid-template-columns: 1fr 70px; } .pg-row .pg-num:last-child { display: none; } }
 .sp-select { max-width: 150px; }
+
+.body figure.case-img { margin: 8px 0 12px; }
+.body figure.case-img img { display: block; width: 100%; border-radius: 4px; border: 1px solid var(--line-2); }
+.body figure.case-img figcaption { font-size: 12.5px; color: #9fb0bd; margin-top: 4px; }

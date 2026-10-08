@@ -20,7 +20,7 @@ td.keep((n) => {
   return false;
 });
 // stray "<" in text (e.g. "<30%") is escaped first; blocks Markdown cannot hold are swapped for placeholders and restored as HTML
-const KEEP_BLOCK = [/<p class="(?!evidence)[^"]*">[\s\S]*?<\/p>/g, /<div class="[^"]*">[\s\S]*?<\/div>/g, /<table[^>]*>[\s\S]*?<\/table>/g];
+const KEEP_BLOCK = [/<figure[^>]*>[\s\S]*?<\/figure>/g, /<p class="(?!evidence)[^"]*">[\s\S]*?<\/p>/g, /<div class="[^"]*">[\s\S]*?<\/div>/g, /<table[^>]*>[\s\S]*?<\/table>/g];
 const complexTable = (t) => /colspan|rowspan|style=/.test(t) || /<t[dh][^>]*>[^]*?<(ul|ol|p|br|div)\b/i.test(t);
 const md = (html) => {
   if (!html) return '';

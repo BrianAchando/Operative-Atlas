@@ -21,6 +21,7 @@ tbl = lambda head, *rows: ('<table class="mini"><tr>' + ''.join(f'<th>{h}</th>' 
                            + ''.join('<tr>' + ''.join(f'<td>{c}</td>' for c in r) + '</tr>' for r in rows) + '</table>')
 tag = lambda k, t: f' <span class="tag {k}">{t}</span>'
 link = lambda href, t: f'<a class="link" href="#{href}">{t}</a>'
+fig = lambda src, cap: f'<figure class="case-img"><a href="{src}" target="_blank" rel="noopener"><img src="{src}" alt="" loading="lazy"></a><figcaption>{cap}</figcaption></figure>'
 
 # ---------------------------------------------------------------------------------------------------- sources
 ACC24 = {'title': 'Gornik HL, et al. 2024 ACC/AHA/AACVPR/APMA/ABC/SCAI/SVM/SVN/SVS/SIR/VESS guideline for the management of lower extremity peripheral artery disease. Circulation 2024. doi:10.1161/CIR.0000000000001251',
@@ -331,13 +332,20 @@ def add(procs, ask, has, LM, S):
         AP, highlight=['aaa-infra'], labels=['aaa-infra', 'renal-a-l', 'cia-r'], after=True,
         quiz=ask('Which risk factor is associated with a LOWER prevalence of AAA?', 'Diabetes mellitus',
                  'Diabetes is consistently associated with fewer and slower-growing aneurysms, possibly through glycation stiffening the wall.', 'Cigarette smoking', 'Male sex over 65', 'A brother with an AAA'))
-    aaa_anat = step('aaam-anat', 'Anatomy', 'Measuring the aorta',
+    aaa_anat = step('aaam-anat', 'Anatomy', 'Measuring the aorta: two real scans',
         tbl(['Diameter (infrarenal)', 'Meaning'], ['About 1.5 cm (women), 1.7 cm (men) over 50', 'Normal'], ['2.5–2.9 cm', 'Sub-aneurysmal (ectatic)'], ['<b>3.0 cm or more</b>', '<b>Aneurysm</b>'],
             ['5.5 cm men, 5.0 cm women', 'Usual repair threshold'])
         + ul('<b>Ultrasound</b> for diagnosis and surveillance: maximum anteroposterior diameter, perpendicular to the aortic axis', 'CTA when the threshold is reached, for planning (neck length and angle, iliacs, access)',
              'Look at the <b>iliac arteries</b> too: up to 40% of AAA patients have a common iliac aneurysm (' + link('approach=ciaa-repair&amp;step=0', 'common iliac aneurysm') + ')')
-        + ev('ESVS 2024: diameter primarily by ultrasound; CTA for planning once the threshold is met (Endovascular Today 2024). Common iliac aneurysm in up to 40% of AAA: Bresler et al. 2024.'),
-        AN, show=['aaa-infra'], highlight=['aaa-infra'], labels=['aaa-infra', 'renal-a-l', 'cia-r', 'cia-l'], opacity={'aaa-infra': 0.55})
+        + h4('Two real scans (KNH CTA, de-identified)')
+        + fig('media/aaa-case1.jpg', '<b>Infrarenal AAA</b>, axial CTA below the kidneys: 54.1 × 42.1 mm, to the left of the spine. That is just below the 5.5 cm repair threshold for men and above the 5.0 cm threshold for women; the true (perpendicular) diameter decides.')
+        + fig('media/aaa-case2.jpg', '<b>Large AAA at the level of the renal hila</b>: 67.8 × 53.1 mm on an axial slice. At this level the neck may be short or absent: reconstruct along the centerline to see where it starts relative to the renal arteries (infrarenal, juxtarenal or pararenal) before choosing EVAR or open repair.')
+        + '<p>Both numbers are <b>axial</b> measurements. Where the aorta is angulated an axial cut is oblique and <b>overestimates</b> the diameter; on CT, measure the maximum diameter <b>perpendicular to the centerline</b> (multiplanar or curved reformat).</p>'
+        + ev('ESVS 2024: diameter primarily by ultrasound; CTA for planning once the threshold is met (Endovascular Today 2024). Common iliac aneurysm in up to 40% of AAA: Bresler et al. 2024. Images: KNH CT angiograms, patient details removed, used for teaching.'),
+        AN, show=['aaa-infra'], highlight=['aaa-infra'], labels=['aaa-infra', 'renal-a-l', 'cia-r', 'cia-l'], opacity={'aaa-infra': 0.55}, after=True,
+        quiz=ask('An axial slice shows an AAA of 67.8 × 53.1 mm in a tortuous aorta. Before quoting its size, what do you do?', 'Re-measure perpendicular to the centerline',
+                 'An oblique axial cut through an angulated aorta overstates the diameter; the reportable diameter is the maximum perpendicular to the centerline on a reformat.',
+                 'Quote the larger axial value, 6.8 cm', 'Average the two axial values to 6.0 cm', 'Repeat a plain abdominal X-ray'))
     aaa_case = step('aaam-case', 'Case', 'A 4.6 cm aneurysm found on an ultrasound',
         '<p>A <b>66-year-old man</b>, ex-smoker of 30 pack-years (still smokes 5 a day), hypertension on amlodipine, BP 152/90. An abdominal ultrasound for gallstones shows an <b>infrarenal aneurysm of 4.6 cm</b>. '
         'He has no abdominal or back pain; the aorta is not tender. His brother had a "burst artery" at 70.</p>',

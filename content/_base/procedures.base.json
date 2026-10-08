@@ -235542,8 +235542,8 @@
    {
     "id": "aaam-anat",
     "phase": "Anatomy",
-    "title": "Measuring the aorta",
-    "body": "<table class=\"mini\"><tr><th>Diameter (infrarenal)</th><th>Meaning</th></tr><tr><td>About 1.5 cm (women), 1.7 cm (men) over 50</td><td>Normal</td></tr><tr><td>2.5\u20132.9 cm</td><td>Sub-aneurysmal (ectatic)</td></tr><tr><td><b>3.0 cm or more</b></td><td><b>Aneurysm</b></td></tr><tr><td>5.5 cm men, 5.0 cm women</td><td>Usual repair threshold</td></tr></table><ul><li><b>Ultrasound</b> for diagnosis and surveillance: maximum anteroposterior diameter, perpendicular to the aortic axis</li><li>CTA when the threshold is reached, for planning (neck length and angle, iliacs, access)</li><li>Look at the <b>iliac arteries</b> too: up to 40% of AAA patients have a common iliac aneurysm (<a class=\"link\" href=\"#approach=ciaa-repair&amp;step=0\">common iliac aneurysm</a>)</li></ul><p class=\"evidence\"><b>Evidence:</b> ESVS 2024: diameter primarily by ultrasound; CTA for planning once the threshold is met (Endovascular Today 2024). Common iliac aneurysm in up to 40% of AAA: Bresler et al. 2024.</p>",
+    "title": "Measuring the aorta: two real scans",
+    "body": "<table class=\"mini\"><tr><th>Diameter (infrarenal)</th><th>Meaning</th></tr><tr><td>About 1.5 cm (women), 1.7 cm (men) over 50</td><td>Normal</td></tr><tr><td>2.5\u20132.9 cm</td><td>Sub-aneurysmal (ectatic)</td></tr><tr><td><b>3.0 cm or more</b></td><td><b>Aneurysm</b></td></tr><tr><td>5.5 cm men, 5.0 cm women</td><td>Usual repair threshold</td></tr></table><ul><li><b>Ultrasound</b> for diagnosis and surveillance: maximum anteroposterior diameter, perpendicular to the aortic axis</li><li>CTA when the threshold is reached, for planning (neck length and angle, iliacs, access)</li><li>Look at the <b>iliac arteries</b> too: up to 40% of AAA patients have a common iliac aneurysm (<a class=\"link\" href=\"#approach=ciaa-repair&amp;step=0\">common iliac aneurysm</a>)</li></ul><h4>Two real scans (KNH CTA, de-identified)</h4><figure class=\"case-img\"><a href=\"media/aaa-case1.jpg\" target=\"_blank\" rel=\"noopener\"><img src=\"media/aaa-case1.jpg\" alt=\"\" loading=\"lazy\"></a><figcaption><b>Infrarenal AAA</b>, axial CTA below the kidneys: 54.1 \u00d7 42.1 mm, to the left of the spine. That is just below the 5.5 cm repair threshold for men and above the 5.0 cm threshold for women; the true (perpendicular) diameter decides.</figcaption></figure><figure class=\"case-img\"><a href=\"media/aaa-case2.jpg\" target=\"_blank\" rel=\"noopener\"><img src=\"media/aaa-case2.jpg\" alt=\"\" loading=\"lazy\"></a><figcaption><b>Large AAA at the level of the renal hila</b>: 67.8 \u00d7 53.1 mm on an axial slice. At this level the neck may be short or absent: reconstruct along the centerline to see where it starts relative to the renal arteries (infrarenal, juxtarenal or pararenal) before choosing EVAR or open repair.</figcaption></figure><p>Both numbers are <b>axial</b> measurements. Where the aorta is angulated an axial cut is oblique and <b>overestimates</b> the diameter; on CT, measure the maximum diameter <b>perpendicular to the centerline</b> (multiplanar or curved reformat).</p><p class=\"evidence\"><b>Evidence:</b> ESVS 2024: diameter primarily by ultrasound; CTA for planning once the threshold is met (Endovascular Today 2024). Common iliac aneurysm in up to 40% of AAA: Bresler et al. 2024. Images: KNH CT angiograms, patient details removed, used for teaching.</p>",
     "view": {
      "eye": [
       4.1,
@@ -235719,6 +235719,32 @@
      "plane": "axial",
      "window": "mediastinum"
     },
+    "ask": {
+     "question": "An axial slice shows an AAA of 67.8 \u00d7 53.1 mm in a tortuous aorta. Before quoting its size, what do you do?",
+     "choices": [
+      {
+       "text": "Re-measure perpendicular to the centerline",
+       "correct": true,
+       "why": "An oblique axial cut through an angulated aorta overstates the diameter; the reportable diameter is the maximum perpendicular to the centerline on a reformat."
+      },
+      {
+       "text": "Quote the larger axial value, 6.8 cm",
+       "correct": false,
+       "why": ""
+      },
+      {
+       "text": "Average the two axial values to 6.0 cm",
+       "correct": false,
+       "why": ""
+      },
+      {
+       "text": "Repeat a plain abdominal X-ray",
+       "correct": false,
+       "why": ""
+      }
+     ]
+    },
+    "askAfter": true,
     "seq": 1
    },
    {

@@ -29,7 +29,7 @@ An abdominal aortic aneurysm is an infrarenal aorta of **3.0 cm or more** (or 1.
 - [ ] Male sex over 65
 - [ ] A brother with an AAA
 
-## [aaam-anat] Measuring the aorta
+## [aaam-anat] Measuring the aorta: two real scans
 
 | Diameter (infrarenal) | Meaning |
 | --- | --- |
@@ -42,7 +42,24 @@ An abdominal aortic aneurysm is an infrarenal aorta of **3.0 cm or more** (or 1.
 -   CTA when the threshold is reached, for planning (neck length and angle, iliacs, access)
 -   Look at the **iliac arteries** too: up to 40% of AAA patients have a common iliac aneurysm ([common iliac aneurysm](#approach=ciaa-repair&step=0))
 
-> **Evidence:** ESVS 2024: diameter primarily by ultrasound; CTA for planning once the threshold is met (Endovascular Today 2024). Common iliac aneurysm in up to 40% of AAA: Bresler et al. 2024.
+#### Two real scans (KNH CTA, de-identified)
+
+<figure class="case-img"><a href="media/aaa-case1.jpg" target="_blank" rel="noopener"><img src="media/aaa-case1.jpg" alt="" loading="lazy"></a><figcaption><b>Infrarenal AAA</b>, axial CTA below the kidneys: 54.1 × 42.1 mm, to the left of the spine. That is just below the 5.5 cm repair threshold for men and above the 5.0 cm threshold for women; the true (perpendicular) diameter decides.</figcaption></figure>
+
+<figure class="case-img"><a href="media/aaa-case2.jpg" target="_blank" rel="noopener"><img src="media/aaa-case2.jpg" alt="" loading="lazy"></a><figcaption><b>Large AAA at the level of the renal hila</b>: 67.8 × 53.1 mm on an axial slice. At this level the neck may be short or absent: reconstruct along the centerline to see where it starts relative to the renal arteries (infrarenal, juxtarenal or pararenal) before choosing EVAR or open repair.</figcaption></figure>
+
+Both numbers are **axial** measurements. Where the aorta is angulated an axial cut is oblique and **overestimates** the diameter; on CT, measure the maximum diameter **perpendicular to the centerline** (multiplanar or curved reformat).
+
+> **Evidence:** ESVS 2024: diameter primarily by ultrasound; CTA for planning once the threshold is met (Endovascular Today 2024). Common iliac aneurysm in up to 40% of AAA: Bresler et al. 2024. Images: KNH CT angiograms, patient details removed, used for teaching.
+
+### Question
+
+**Q:** An axial slice shows an AAA of 67.8 × 53.1 mm in a tortuous aorta. Before quoting its size, what do you do?
+- [x] Re-measure perpendicular to the centerline
+  > An oblique axial cut through an angulated aorta overstates the diameter; the reportable diameter is the maximum perpendicular to the centerline on a reformat.
+- [ ] Quote the larger axial value, 6.8 cm
+- [ ] Average the two axial values to 6.0 cm
+- [ ] Repeat a plain abdominal X-ray
 
 ## [aaam-case] A 4.6 cm aneurysm found on an ultrasound
 
