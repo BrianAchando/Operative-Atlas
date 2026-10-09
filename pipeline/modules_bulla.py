@@ -116,6 +116,7 @@ def add(procs, ask, has, LM, S):
             ['Inside the space', 'Thin <b>strands</b> (septa, vessels) crossing it', 'No lung markings at all'],
             ['Lung', 'Compressed lung at the <b>base</b> of the bulla; the rest of the lung stays against the wall', 'The whole lung collapses toward the hilum'],
             ['Air on both sides of a thin wall', 'Not seen', 'The <b>double wall sign</b>: a pneumothorax next to a bulla'])
+        + vid('media/bullae-bilateral-ct.mp4', 'media/bullae-bilateral-ct.jpg', 'A real case (identifiers removed): giant bullae on both sides. Note the thin strands crossing the bullae and the compressed lung at the bases; then look for a pneumothorax line.')
         + '<p><b>Never put a drain in on a plain film alone</b> when bullous disease is possible: a drain in a bulla makes a bronchopleural fistula. <b>CT first</b> if the patient is stable.</p>'
         + '<p>On the model: the bulla (pale), the strands crossing it, and the compressed lung at its base (dark). The rest of the lobe and the middle lobe sit below it.</p>'
         + ev('Double wall sign (air on both sides of the bulla wall, parallel to the chest wall) points to a pneumothorax beside a bulla; two adjacent bullae can mimic it; telling the two apart prevents an unnecessary drain (Devalla et al. 2026). CT is the best test to define bullous disease (Buero et al. 2018; Benditt 2006).'),

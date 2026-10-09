@@ -42,6 +42,8 @@ The bulla is **dead space**: it fills and empties poorly and takes no part in ga
 | Lung | Compressed lung at the **base** of the bulla; the rest of the lung stays against the wall | The whole lung collapses toward the hilum |
 | Air on both sides of a thin wall | Not seen | The **double wall sign**: a pneumothorax next to a bulla |
 
+<figure class="case-img"><video src="media/bullae-bilateral-ct.mp4" poster="media/bullae-bilateral-ct.jpg" controls preload="none" playsinline muted></video><figcaption>A real case (identifiers removed): giant bullae on both sides. Note the thin strands crossing the bullae and the compressed lung at the bases; then look for a pneumothorax line.</figcaption></figure>
+
 **Never put a drain in on a plain film alone** when bullous disease is possible: a drain in a bulla makes a bronchopleural fistula. **CT first** if the patient is stable.
 
 On the model: the bulla (pale), the strands crossing it, and the compressed lung at its base (dark). The rest of the lobe and the middle lobe sit below it.
