@@ -150,6 +150,78 @@ def build(ctx):
                   note='Traction and post-infective bronchiectasis after tuberculosis: thick-walled bronchi wider than their artery (signet ring), cylindrical, varicose and cystic, pooling secretions; recurrent infection and haemoptysis.')
         LM['bx-lul'] = tips[0]
 
+    # ------------------------------------------------------------ giant bulla, right upper lobe: the bulla, compressed lung, staple line, drains
+    RU = ts('lung_upper_lobe_right')
+    RLung = RU | ts('lung_middle_lobe_right') | ts('lung_lower_lobe_right')
+    if RU.any():
+        rng = np.random.default_rng(21)
+        idx = np.argwhere(RU); W_ = to_w(idx)
+        top = W_[:, 2] > np.percentile(W_[:, 2], 55)
+        cb = W_[top].mean(0) + ANT * 6 + RIGHT * 6                               # upper, anterolateral part of the lobe
+        a2 = AT.copy(); a2[:3, 3] -= C
+        lo_ = idx.min(0); hi_ = idx.max(0) + 1; sl = tuple(slice(a, b) for a, b in zip(lo_, hi_))
+        sub = RU[sl]; g = np.stack(np.meshgrid(*[np.arange(n) for n in sub.shape], indexing='ij'), -1)
+        Wg = (g + lo_) @ AT[:3, :3].T + AT[:3, 3] - C
+        d = np.linalg.norm((Wg - cb) / np.array([1.0, 1.15, 0.9]), axis=-1)
+        Rb = 46.0
+        bul = sub & (d < Rb)
+        comp = sub & ~bul & (d < Rb + 16)
+        aff = a2.copy(); aff[:3, 3] = a2[:3, 3] + AT[:3, :3] @ lo_
+        bm = meshing.mesh_from_mask(bul, aff, 9000, sigma=1.4, taubin_iterations=20)
+        emit_mesh('bulla-giant', 'Giant bulla (right upper lobe)', 'pathology', '#cfe3ef', bm, opacity=0.35, visible=False,
+                  note='Schematic: a thin-walled air space that has replaced most of the upper lobe and fills more than a third of the hemithorax. It takes part in no gas exchange, traps air, and compresses the better lung around it.')
+        # remnant septa: strands of vessel and fibrous tissue crossing the bulla
+        bs = to_w(np.argwhere(bul & ~ndimage.binary_erosion(bul, iterations=2)) + lo_)
+        sep = []
+        for _ in range(9):
+            a_, b_ = bs[rng.integers(len(bs))], bs[rng.integers(len(bs))]
+            if np.linalg.norm(a_ - b_) < 35: continue
+            m_ = (a_ + b_) / 2 + rng.normal(0, 4, 3)
+            sep.append(Vessel([a_, m_, b_], [0.9, 0.5, 0.9], step=0.8))
+        if sep:
+            emit_mesh('bulla-septa', 'Strands crossing the bulla (remnant vessels and septa)', 'pathology', '#c98f8f', mesh(sep, voxel=0.35, blend=0.6, smooth=4, density=1.2), visible=False,
+                      note='Remnants of lung septa and small vessels; they can bleed or leak air when the bulla is opened.')
+        cm = meshing.mesh_from_mask(comp, aff, 7000, sigma=1.2, taubin_iterations=20)
+        if cm is not None:
+            emit_mesh('bulla-compressed', 'Compressed (atelectatic) lung at the base of the bulla', 'pathology', '#a8585a', cm, opacity=0.85, visible=False,
+                      note='Relatively normal lung squeezed by the bulla. How much of it there is (on CT, crowded vessels at the bulla base) predicts the benefit of bullectomy: the better the compressed lung, the better the result.')
+        # the base (neck) of the bulla: where it meets the compressed lung; the staple line runs across it
+        iface = to_w(np.argwhere(bul & ndimage.binary_dilation(comp, iterations=2)) + lo_)
+        if len(iface) > 50:
+            ic = iface.mean(0); w_, Vv = np.linalg.eigh(np.cov((iface - ic).T)); e1, nrm = Vv[:, 2], Vv[:, 0]
+            if (cb - ic) @ nrm < 0: nrm = -nrm                                        # normal toward the bulla
+            pr = (iface - ic) @ e1; t0, t1 = np.percentile(pr, 4), np.percentile(pr, 96)
+            path = []
+            for t in np.linspace(t0, t1, 7):
+                q = iface[np.abs(pr - t) < 3.0]
+                path.append(q.mean(0) + nrm * 2.0 if len(q) else ic + e1 * t)
+            Pth = Vessel(path, [1, 1], step=1.0).P
+            T_ = np.gradient(Pth, axis=0); T_ /= np.linalg.norm(T_, axis=1, keepdims=True) + 1e-9
+            side = np.cross(T_, nrm); side /= np.linalg.norm(side, axis=1, keepdims=True) + 1e-9
+            parts = [Ellipsoid(p_, [4.5, 0.6, 1.4], np.array([s_, nrm, t_])) for p_, s_, t_ in zip(Pth, side, T_)]     # the buttress strip
+            for k_, (p_, s_, t_) in enumerate(zip(Pth, side, T_)):
+                if k_ % 2: continue
+                for off in (-2.6, -1.2, 1.2, 2.6):
+                    parts.append(Ellipsoid(p_ + s_ * off + nrm * 0.7, [0.25, 0.35, 1.2], np.array([s_, nrm, t_])))   # staples, two rows each side
+            emit_mesh('bulla-staple', 'Staple line across the base of the bulla (buttressed)', 'pathology', '#cfd6dc', mesh(parts, voxel=0.25, blend=0.3, smooth=3, density=1.5), visible=False,
+                      note='Linear staplers fired across the base, in healthy-feeling lung, with buttress strips (bovine pericardium or synthetic) to cut the air leak from the thin emphysematous tissue.')
+            for i_, p_ in enumerate(np.array(path)[::2]): LM[f'bulla-staple-{i_}'] = p_
+            LM['bulla-normal'] = nrm; LM['bulla-base'] = ic
+        LM['bulla'] = cb
+        # chest drains: two, through the 5th-6th space in the mid-axillary line, one to the apex and one to the base posteriorly
+        L = to_w(np.argwhere(RLung)[::4])
+        zc = np.percentile(L[:, 2], 40); band = L[np.abs(L[:, 2] - zc) < 4]
+        e = band[np.argmax(band[:, 0])]                                                   # most lateral point at that height
+        apex = L[np.argmax(L[:, 2] - 0.3 * np.abs(L[:, 1] - e[1]))] - SUP * 12 + ANT * 4 - RIGHT * 6
+        base = L[np.argmin(L[:, 2] + 0.0 * L[:, 1])]; base = np.array([e[0] - 18, e[1] - 45, base[2] + 22])
+        out = e + RIGHT * 34
+        d1 = [out, e + RIGHT * 4, e - RIGHT * 4 + SUP * 25, (e + apex) / 2 + RIGHT * 6, apex]
+        d2 = [out - SUP * 6, e + RIGHT * 4 - SUP * 6, e - RIGHT * 6 - ANT * 15 - SUP * 15, base]
+        emit_mesh('bulla-drains', 'Chest drains: apical and basal (28 Fr)', 'pathology', '#e8eef2',
+                  mesh([Vessel(d1, [4.4] * 5, step=1.0), Vessel(d2, [4.4] * 4, step=1.0)], voxel=0.6, blend=0.5, smooth=4, density=0.6), opacity=0.8, visible=False,
+                  note='Two drains after bullectomy: an apical one for air and a basal one for fluid; on water seal or low suction according to the leak and the lung expansion.')
+        LM['bulla-drain-in'] = e
+
     # ------------------------------------------------------------ pedicled latissimus dorsi flap: a broad, flat muscle sheet, tapering to its tip on the stump
     if all(f'flap-{i}' in LMW for i in range(5)):
         P = np.array([LMW[f'flap-{i}'] for i in range(5)], float)
