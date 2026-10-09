@@ -5,6 +5,7 @@ import { fetchGunzip, invertAffine, type Volume } from './volume.ts';
 import { filesFromDrop, loadImages } from './dicom.ts';
 import type { Procedure, Step } from './procedure.ts';
 import { createAccount } from './account.ts';
+import { createToday } from './today.ts';
 
 const DATA = 'data/';
 
@@ -248,7 +249,7 @@ function buildTopbar(): void {
     h('button', { 'data-src': 'upload', id: 'src-upload', onclick: () => { if (upVol) { state.source = 'upload'; render(); } else $('#file').click(); } }, 'Your CT'));
   const up = h('label', { class: 'btn', for: 'file' }, 'Load DICOM…');
   bar.append(h('div', { class: 'brand' }, h('b', {}, 'COVA'), h('span', {}, 'Cardiothoracic Operative and Vascular Atlas')), modes, spSel, opSel, searchBox(), approach, h('div', { class: 'spacer' }),
-    h('button', { class: 'btn', onclick: showProgress, title: 'Your progress' }, 'Progress'), src, up, (account ??= createAccount(h, procedures, progress, saveLocal)).button);
+    h('button', { class: 'btn', onclick: showProgress, title: 'Your progress' }, 'Progress'), src, up, ...accountButtons());
 }
 
 function pickOp(op: string): void {
@@ -523,6 +524,14 @@ const PKEY = 'cova-progress';
 const progress: Progress = (() => { try { const x = JSON.parse(localStorage.getItem(PKEY) ?? ''); if (x && x.v && x.q) return x as Progress; } catch { /* none yet */ } return { v: {}, q: {} }; })();
 const saveLocal = () => { try { localStorage.setItem(PKEY, JSON.stringify(progress)); } catch { /* storage off */ } };
 let account: ReturnType<typeof createAccount> | undefined;
+let today: ReturnType<typeof createToday> | undefined;
+function accountButtons(): HTMLElement[] {
+  account ??= createAccount(h, procedures, progress, saveLocal);
+  const a = account;
+  today ??= createToday({ h, procedures, progress, save: saveProgress, user: a.user, logCase: a.logCase, onUser: a.onUser,
+    nameOf: (id) => atlas?.structures.find((m) => m.id === id)?.name ?? '' });
+  return [today.button, a.button];
+}
 const saveProgress = () => { saveLocal(); account?.progressChanged(); };
 function markSeen(p: string, id: string): void { (progress.v[p] ??= {})[id] = 1; saveProgress(); }
 function markAnswer(p: string, id: string, right: boolean): void { const q = (progress.q[p] ??= {}); if (!(id in q)) { q[id] = right ? 1 : 0; saveProgress(); } }

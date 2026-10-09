@@ -31,6 +31,9 @@ export function ready(env) {
     env.DB.prepare(`CREATE TABLE IF NOT EXISTS progress (user_id INTEGER PRIMARY KEY, data TEXT NOT NULL, updated TEXT NOT NULL)`),
     env.DB.prepare(`CREATE TABLE IF NOT EXISTS logbook (id INTEGER PRIMARY KEY AUTOINCREMENT, user_id INTEGER NOT NULL, data TEXT NOT NULL, proc TEXT, date TEXT, level TEXT,
       supervisor_id INTEGER, status TEXT NOT NULL DEFAULT 'pending', reviewer_id INTEGER, review_comment TEXT, reviewed TEXT, created TEXT NOT NULL, updated TEXT NOT NULL)`),
+    env.DB.prepare(`CREATE TABLE IF NOT EXISTS plans (id INTEGER PRIMARY KEY AUTOINCREMENT, user_id INTEGER NOT NULL, date TEXT NOT NULL, proc TEXT, op TEXT, note TEXT,
+      log_id INTEGER, created TEXT NOT NULL)`),
+    env.DB.prepare('CREATE INDEX IF NOT EXISTS pl_user ON plans (user_id, date)'),
     env.DB.prepare('CREATE INDEX IF NOT EXISTS lb_user ON logbook (user_id)'),
     env.DB.prepare('CREATE INDEX IF NOT EXISTS lb_sup ON logbook (supervisor_id, status)'),
   ]).then(() => env.DB.prepare('ALTER TABLE users ADD COLUMN start TEXT').run().catch(() => undefined))   // older tables: add the training start date

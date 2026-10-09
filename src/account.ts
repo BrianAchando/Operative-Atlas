@@ -6,7 +6,9 @@ import { CATALOG, LEVELS as CAT_LEVELS, OPS, SKILLS, opForAtlas } from './logcat
 import { analysis, type LogEntry } from './logstats.ts';
 
 type H = (tag: string, attrs?: Record<string, unknown>, ...kids: (Node | string | null | undefined)[]) => HTMLElement;
-export type Progress = { v: Record<string, Record<string, 1>>; q: Record<string, Record<string, 0 | 1>> };
+export type Progress = { v: Record<string, Record<string, 1>>; q: Record<string, Record<string, 0 | 1>>; sr?: Record<string, [number, string]>;
+  daily?: { streak?: number; best?: number; last?: string; days?: Record<string, number>; set?: { day: string; keys: string[]; done: Record<string, 0 | 1> } } };
+export interface Prefill { date: string; proc?: string; op?: string; onSaved?: (id: number) => void }
 export interface User { id: number; email: string; name: string | null; role: 'student' | 'resident' | 'consultant' | null; status: 'new' | 'active' | 'pending' | 'suspended';
   institution: string | null; hospital: string | null; year: string | null; reg_no: string | null; start?: string | null; admin: boolean }
 interface Dir { institutions: string[]; hospitals: string[]; consultants: { id: number; name: string; hospital: string }[] }
@@ -16,7 +18,7 @@ const AREAS = ['Adult cardiac', 'Congenital cardiac', 'General thoracic', 'Esoph
 const CARDIAC = new Set(['Adult cardiac', 'Congenital cardiac']);
 const ROLE_NAME = { student: 'Student', resident: 'Resident', consultant: 'Consultant' } as const;
 
-async function api<T = unknown>(path: string, method = 'GET', body?: unknown): Promise<{ ok: boolean; status: number; data: T & { error?: string } }> {
+export async function api<T = unknown>(path: string, method = 'GET', body?: unknown): Promise<{ ok: boolean; status: number; data: T & { error?: string } }> {
   try {
     const r = await fetch(path, { method, credentials: 'same-origin', headers: body !== undefined ? { 'content-type': 'application/json', 'x-cova': '1' } : { 'x-cova': '1' },
       body: body !== undefined ? JSON.stringify(body) : undefined });
@@ -26,14 +28,15 @@ async function api<T = unknown>(path: string, method = 'GET', body?: unknown): P
 }
 
 export function createAccount(h: H, procedures: Record<string, Procedure>, progress: Progress, saveLocal: () => void) {
-  let user: User | null = null; let enabled = true; let dir: Dir | null = null;
+  let user: User | null = null; let enabled = true; let dir: Dir | null = null; const onUser: ((u: User | null) => void)[] = [];
   const btn = h('button', { class: 'btn acct', onclick: () => (user && user.role ? menu() : signIn()), title: 'Sign in to keep your progress and use the logbook' }, 'Sign in') as HTMLButtonElement;
 
   const paint = () => {
     if (!enabled) { btn.style.display = 'none'; return; }
     btn.style.display = '';
-    btn.textContent = user ? (user.name ? user.name.split(/\s+/)[0]! : user.email) : 'Sign in';
+    btn.textContent = user ? (user.name ? (user.name.split(/\s+/).find((w) => !/^(dr|prof|mr|mrs|ms|miss)\.?$/i.test(w)) ?? user.name) : user.email) : 'Sign in';
     if (user?.role) btn.append(h('span', { class: `role-chip r-${user.role}` }, user.admin ? 'Admin' : ROLE_NAME[user.role]));
+    for (const f of onUser) f(user);
   };
   const overlay = (title: string, ...kids: (Node | null)[]) => {
     document.getElementById('acct-panel')?.remove();
@@ -56,6 +59,11 @@ export function createAccount(h: H, procedures: Record<string, Procedure>, progr
     const s = r.data.data; if (s) {
       for (const [p, m] of Object.entries(s.v ?? {})) Object.assign((progress.v[p] ??= {}), m);
       for (const [p, m] of Object.entries(s.q ?? {})) { const q = (progress.q[p] ??= {}); for (const [k, v] of Object.entries(m)) if (!(k in q)) q[k] = v; }
+      // spaced-repetition boxes: keep the later review of each question; daily record: union of days, best streak
+      const sr = (progress.sr ??= {}); for (const [k, v] of Object.entries(s.sr ?? {})) if (!sr[k] || sr[k]![1] < v[1]) sr[k] = v;
+      if (s.daily) { const d = (progress.daily ??= {}); d.days = { ...(s.daily.days ?? {}), ...(d.days ?? {}) };
+        if ((s.daily.last ?? '') > (d.last ?? '')) { d.last = s.daily.last; d.streak = s.daily.streak; if (!d.set || (s.daily.set?.day ?? '') > d.set.day) d.set = s.daily.set; }
+        d.best = Math.max(d.best ?? 0, s.daily.best ?? 0); }
       saveLocal();
     }
     void api('api/progress', 'PUT', progress);
@@ -172,6 +180,18 @@ export function createAccount(h: H, procedures: Record<string, Procedure>, progr
   const areaOf = (k: string) => { const g = procedures[k]?.group ?? ''; return /Cardiac$/.test(g) && !/Congenital/.test(g) ? 'Adult cardiac' : /Congenital cardiac/.test(g) ? 'Congenital cardiac'
     : g === 'Vascular' ? 'Vascular (open)' : g === 'Esophagus' ? 'Esophageal' : g === 'Airway' ? 'Airway' : g === 'Trauma' ? 'Trauma' : g ? 'General thoracic' : ''; };
 
+  // cases saved while offline: kept on the device and sent when the connection returns
+  const QKEY = 'cova-queue';
+  const queue = (o: Record<string, unknown>, _tag: string) => { try { const a = JSON.parse(localStorage.getItem(QKEY) ?? '[]'); a.push(o); localStorage.setItem(QKEY, JSON.stringify(a)); } catch { /* storage off */ } };
+  async function flush(): Promise<void> {
+    let a: Record<string, unknown>[] = []; try { a = JSON.parse(localStorage.getItem(QKEY) ?? '[]'); } catch { return; }
+    if (!a.length || !user) return;
+    const rest: Record<string, unknown>[] = [];
+    for (const o of a) { const r = await api('api/logbook', 'POST', o); if (!r.ok && r.status === 0) rest.push(o); }
+    try { localStorage.setItem(QKEY, JSON.stringify(rest)); } catch { /* storage off */ }
+  }
+  window.addEventListener('online', () => { void flush(); });
+
   async function logbook(): Promise<void> {
     const r = await api<Entry[]>('api/logbook');
     const list = r.ok ? r.data : [];
@@ -195,12 +215,16 @@ export function createAccount(h: H, procedures: Record<string, Procedure>, progr
       h('p', { class: 'foot' }, 'Codes follow the intercollegiate eLogbook (ISCP): O observed, A assisted, S-TS supervised with trainer scrubbed, S-TU supervised with trainer unscrubbed, P performed, T training a junior. Record no patient names or hospital numbers.'));
   }
 
-  async function entryForm(e?: Entry): Promise<void> {
-    const d = dir && dir.consultants.length ? dir : await getDir(); const v = e?.data ?? {};
+  async function entryForm(e?: Entry, pre?: Prefill): Promise<void> {
+    const d = dir && dir.consultants.length ? dir : await getDir();
+    let last: Record<string, string> = {}; try { last = JSON.parse(localStorage.getItem('cova-last') ?? '{}'); } catch { /* none */ }
+    const quick = !!pre && !e;
+    const v: Entry['data'] = e?.data ?? (pre ? { date: pre.date, proc: pre.proc ?? '', hospital: last['hospital'] ?? user?.hospital ?? '', supervisor_id: last['supervisor_id'] ?? '',
+      area: pre.proc ? areaOf(pre.proc) : '', ops: (pre.op || (pre.proc && opForAtlas(pre.proc)) ? [{ op: pre.op || opForAtlas(pre.proc!), comps: {} }] : []) as unknown as string } : {});
     const sv = (k: string) => (v[k] == null ? '' : String(v[k]));
     const inp = (k: string, type = 'text', attrs: Record<string, unknown> = {}) => h('input', { type, value: sv(k), name: k, ...attrs }) as HTMLInputElement;
     const sel = (k: string, opts: string[], blank = 'Choose…') => { const s = select(opts, sv(k), blank); s.name = k; return s; };
-    const date = inp('date', 'date', { max: new Date().toISOString().slice(0, 10) }); if (!e) date.value = new Date().toISOString().slice(0, 10);
+    const date = inp('date', 'date', { max: new Date().toISOString().slice(0, 10) }); if (!e && !pre) date.value = new Date().toISOString().slice(0, 10);
     const proc = h('select', { name: 'proc' }, h('option', { value: '' }, 'Choose from the atlas…'), ...procList().map(([k, t]) => h('option', { value: k, ...(k === sv('proc') ? { selected: true } : {}) }, t)),
       h('option', { value: '__other' }, 'Other (type below)')) as HTMLSelectElement;
     const pother = inp('proc_name', 'text', { placeholder: 'Procedure name, if not in the atlas' });
@@ -239,22 +263,26 @@ export function createAccount(h: H, procedures: Record<string, Procedure>, progr
     const perf = () => { perfBox.style.display = CARDIAC.has(area.value) ? '' : 'none'; };
     area.onchange = perf;
     const m = msg(); const go = h('button', { class: 'btn primary', type: 'submit' }, e ? 'Save changes' : 'Add case') as HTMLButtonElement;
-    const form = h('form', { class: 'acct-form lb-form' },
-      h('fieldset', { class: 'lb-fs' }, h('legend', {}, 'Case'),
-        h('div', { class: 'af-row' }, field('Date', date), field('Hospital', sel('hospital', d.hospitals)), field('Case code', inp('case_code', 'text', { placeholder: 'Your own code, e.g. 2026-041' }), 'Never a name or hospital number')),
-        h('div', { class: 'af-row' }, field('Age', inp('age', 'number', { min: 0 })), field('Unit', sel('age_unit', ['years', 'months', 'days'], 'years')), field('Sex', sel('sex', ['F', 'M'], '–')), field('Urgency', sel('urgency', ['Elective', 'Urgent', 'Emergency', 'Salvage'])))),
-      h('fieldset', { class: 'lb-fs' }, h('legend', {}, 'Operation'),
+    const caseFs = h('fieldset', { class: 'lb-fs' }, h('legend', {}, 'Case'),
+        h('div', { class: 'af-row' }, quick ? null : field('Date', date), field('Hospital', sel('hospital', d.hospitals)), field('Case code', inp('case_code', 'text', { placeholder: 'Your own code, e.g. 2026-041' }), 'Never a name or hospital number')),
+        h('div', { class: 'af-row' }, field('Age', inp('age', 'number', { min: 0 })), field('Unit', sel('age_unit', ['years', 'months', 'days'], 'years')), field('Sex', sel('sex', ['F', 'M'], '–')), field('Urgency', sel('urgency', ['Elective', 'Urgent', 'Emergency', 'Salvage']))));
+    const opFs = h('fieldset', { class: 'lb-fs' }, h('legend', {}, 'Operation'),
         field('Diagnosis / indication', inp('diagnosis', 'text', { placeholder: 'e.g. Severe rheumatic MS, Wilkins 10' })),
-        field('Procedure', proc), pother, h('div', { class: 'af-row' }, field('Area', area), field('Approach', inp('approach', 'text', { placeholder: 'e.g. Median sternotomy, VATS 3-port' })))),
-      opsFs,
-      h('fieldset', { class: 'lb-fs' }, h('legend', {}, 'Overall level and supervisor'), lev, field('Supervising consultant', sup, 'They verify the case. Not listed? Ask them to create a consultant account.'), inp('supervisor_name', 'text', { placeholder: 'Or type the name (cannot verify online)' })),
-      perfBox,
-      h('fieldset', { class: 'lb-fs' }, h('legend', {}, 'Outcome'),
+        quick ? null : field('Procedure', proc), quick ? null : pother, h('div', { class: 'af-row' }, field('Area', area), field('Approach', inp('approach', 'text', { placeholder: 'e.g. Median sternotomy, VATS 3-port' }))));
+    const supFs = h('fieldset', { class: 'lb-fs' }, h('legend', {}, quick ? 'Supervisor' : 'Overall level and supervisor'), quick ? null : lev, field('Supervising consultant', sup, 'They verify the case. Not listed? Ask them to create a consultant account.'), inp('supervisor_name', 'text', { placeholder: 'Or type the name (cannot verify online)' }));
+    const outFs = h('fieldset', { class: 'lb-fs' }, h('legend', {}, 'Outcome'),
         h('div', { class: 'af-row' }, field('Complication', sel('complication', ['None', 'Minor', 'Major'])), field('Clavien-Dindo', sel('clavien', ['I', 'II', 'IIIa', 'IIIb', 'IVa', 'IVb', 'V'], '–')),
-          field('Back to theatre', sel('return_theatre', ['No', 'Yes'], '–')), field('30-day', sel('outcome_30d', ['Alive', 'Died', 'Unknown'], '–')), field('Stay (days)', inp('los_days', 'number', { min: 0 })), field('Blood loss (ml)', inp('blood_ml', 'number', { min: 0 })))),
-      h('fieldset', { class: 'lb-fs' }, h('legend', {}, 'Reflection'), h('textarea', { name: 'notes', rows: 3, placeholder: 'One learning point, or what you would do differently' }, sv('notes'))),
-      h('div', { class: 'lb-actions' }, go, e ? h('button', { class: 'btn ghost', type: 'button', onclick: async () => { if (!confirm('Delete this case?')) return; await fetch(`api/logbook?id=${e.id}`, { method: 'DELETE', headers: { 'x-cova': '1' } }); void logbook(); } }, 'Delete') : null), m);
-    overlay(e ? 'Edit case' : 'Add a case', form); perf();
+          field('Back to theatre', sel('return_theatre', ['No', 'Yes'], '–')), field('30-day', sel('outcome_30d', ['Alive', 'Died', 'Unknown'], '–')), field('Stay (days)', inp('los_days', 'number', { min: 0 })), field('Blood loss (ml)', inp('blood_ml', 'number', { min: 0 }))));
+    const refFs = h('fieldset', { class: 'lb-fs' }, h('legend', {}, 'Reflection'), h('textarea', { name: 'notes', rows: 3, placeholder: 'One learning point, or what you would do differently' }, sv('notes')));
+    const actions = h('div', { class: 'lb-actions' }, go, e ? h('button', { class: 'btn ghost', type: 'button', onclick: async () => { if (!confirm('Delete this case?')) return; await fetch(`api/logbook?id=${e.id}`, { method: 'DELETE', headers: { 'x-cova': '1' } }); void logbook(); } }, 'Delete') : null);
+    const form = quick
+      ? h('form', { class: 'acct-form lb-form' }, h('p', { class: 'quick-head' }, h('b', {}, procName({ proc: pre!.proc ?? '', ops: v['ops'] } as Entry['data']) || 'Case'), ` · ${pre!.date}`), date,
+          opsFs, supFs, perfBox, h('details', { class: 'more' }, h('summary', {}, 'More details (optional): case, outcome, reflection'), caseFs, opFs, outFs, refFs), actions, m,
+          h('input', { type: 'hidden', name: 'proc', value: pre!.proc ?? '' }))
+      : h('form', { class: 'acct-form lb-form' }, caseFs,
+          h('fieldset', { class: 'lb-fs' }, h('legend', {}, 'Procedure'), field('Procedure', proc), pother), opFs, opsFs, supFs, perfBox, outFs, refFs, actions, m);
+    if (quick) { date.type = 'hidden'; date.value = pre!.date; }
+    overlay(e ? 'Edit case' : quick ? 'Log this case' : 'Add a case', form); perf();
     if (sv('proc_name') && !sv('proc')) proc.value = '__other';
     form.addEventListener('submit', async (ev) => {
       ev.preventDefault();
@@ -270,9 +298,11 @@ export function createAccount(h: H, procedures: Record<string, Procedure>, progr
       const ops_ = o['ops'] as { op: string }[];
       if (!o['proc'] && !o['proc_name'] && ops_.length) o['proc_name'] = ops_.map((x) => OPS[x.op]?.name ?? x.op).join(' + ');
       if (e) o['id'] = e.id;
-      go.disabled = true; const r = await api('api/logbook', e ? 'PUT' : 'POST', o); go.disabled = false;
+      try { localStorage.setItem('cova-last', JSON.stringify({ hospital: o['hospital'] ?? '', supervisor_id: o['supervisor_id'] ?? '' })); } catch { /* storage off */ }
+      go.disabled = true; const r = await api<{ id: number }>('api/logbook', e ? 'PUT' : 'POST', o); go.disabled = false;
+      if (r.status === 0 && !e) { queue(o, pre?.onSaved ? 'plan' : ''); m.textContent = 'No connection: saved on this device, it will be sent when you are back online.'; return; }
       if (!r.ok) { m.textContent = r.data.error ?? 'Could not save.'; return; }
-      void logbook();
+      if (pre?.onSaved) { pre.onSaved(r.data.id); document.getElementById('acct-panel')?.remove(); } else void logbook();
     });
   }
 
@@ -333,8 +363,9 @@ export function createAccount(h: H, procedures: Record<string, Procedure>, progr
     const r = await api<{ user: User | null; enabled: boolean }>('api/me');
     enabled = r.ok ? r.data.enabled !== false : false;
     user = r.ok ? r.data.user : null; paint();
-    if (user) { void pull(); if (!user.role) void profile(); }
+    if (user) { void pull(); void flush(); if (!user.role) void profile(); }
   }
   paint(); void init();
-  return { button: btn, progressChanged: push, signedIn: () => !!user };
+  return { button: btn, progressChanged: push, signedIn: () => !!user, user: () => user, logCase: (pre: Prefill) => { void entryForm(undefined, pre); },
+    onUser: (f: (u: User | null) => void) => { onUser.push(f); f(user); } };
 }

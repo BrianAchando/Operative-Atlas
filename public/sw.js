@@ -1,7 +1,7 @@
 // Offline and repeat-visit speed. Pages and the procedure text: network first, so a new deploy shows at once, with
 // the cached copy when offline. The app bundle, CT volumes, meshes and textures: from the cache at once, refreshed in
 // the background (a changed file appears on the next visit).
-const CACHE = 'cova-v4';
+const CACHE = 'cova-v5';
 const FRESH = (u) => u.pathname === '/' || u.pathname.endsWith('.html') || u.pathname.endsWith('.json') || u.pathname.endsWith('.webmanifest');
 
 self.addEventListener('install', (e) => { self.skipWaiting(); e.waitUntil(caches.open(CACHE).then((c) => c.add('/').catch(() => undefined))); });
@@ -11,6 +11,8 @@ self.addEventListener('activate', (e) => {
 self.addEventListener('fetch', (e) => {
   const req = e.request; if (req.method !== 'GET') return;
   const url = new URL(req.url); if (url.origin !== self.location.origin) return;
+  // the account API is always live: never cache sign-in state, logbook or plans
+  if (url.pathname.startsWith('/api/')) return;
   // video and other ranged requests go straight to the network: a cached whole file cannot answer a byte-range request
   if (req.headers.has('range') || url.pathname.startsWith('/media/') || /\.(mp4|webm|mov)$/.test(url.pathname)) return;
   const key = req.mode === 'navigate' ? '/' : req;
