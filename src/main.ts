@@ -4,6 +4,7 @@ import { Scene3D, type StructureMeta } from './scene.ts';
 import { fetchGunzip, invertAffine, type Volume } from './volume.ts';
 import { filesFromDrop, loadImages } from './dicom.ts';
 import type { Procedure, Step } from './procedure.ts';
+import { createAccount } from './account.ts';
 
 const DATA = 'data/';
 
@@ -247,7 +248,7 @@ function buildTopbar(): void {
     h('button', { 'data-src': 'upload', id: 'src-upload', onclick: () => { if (upVol) { state.source = 'upload'; render(); } else $('#file').click(); } }, 'Your CT'));
   const up = h('label', { class: 'btn', for: 'file' }, 'Load DICOM…');
   bar.append(h('div', { class: 'brand' }, h('b', {}, 'COVA'), h('span', {}, 'Cardiothoracic Operative and Vascular Atlas')), modes, spSel, opSel, searchBox(), approach, h('div', { class: 'spacer' }),
-    h('button', { class: 'btn', onclick: showProgress, title: 'Your progress on this device' }, 'Progress'), src, up);
+    h('button', { class: 'btn', onclick: showProgress, title: 'Your progress' }, 'Progress'), src, up, (account ??= createAccount(h, procedures, progress, saveLocal)).button);
 }
 
 function pickOp(op: string): void {
@@ -516,11 +517,13 @@ function shuffled<T>(key: string, xs: T[]): T[] {
 /** "Flag this step": a reviewer reports an error or a suggestion; the form keeps its text across re-renders */
 const flagForms = new Map<string, HTMLElement>();
 
-// ------------------------------------------------------------------ progress (kept on this device until accounts exist)
+// ------------------------------------------------------------------ progress (on this device, and with the account when signed in)
 type Progress = { v: Record<string, Record<string, 1>>; q: Record<string, Record<string, 0 | 1>> };
 const PKEY = 'cova-progress';
 const progress: Progress = (() => { try { const x = JSON.parse(localStorage.getItem(PKEY) ?? ''); if (x && x.v && x.q) return x as Progress; } catch { /* none yet */ } return { v: {}, q: {} }; })();
-const saveProgress = () => { try { localStorage.setItem(PKEY, JSON.stringify(progress)); } catch { /* storage off */ } };
+const saveLocal = () => { try { localStorage.setItem(PKEY, JSON.stringify(progress)); } catch { /* storage off */ } };
+let account: ReturnType<typeof createAccount> | undefined;
+const saveProgress = () => { saveLocal(); account?.progressChanged(); };
 function markSeen(p: string, id: string): void { (progress.v[p] ??= {})[id] = 1; saveProgress(); }
 function markAnswer(p: string, id: string, right: boolean): void { const q = (progress.q[p] ??= {}); if (!(id in q)) { q[id] = right ? 1 : 0; saveProgress(); } }
 
@@ -552,7 +555,7 @@ function showProgress(): void {
       wrong.length ? h('details', { class: 'pg-group', open: true }, h('summary', {}, `To revisit: ${wrong.length} question${wrong.length > 1 ? 's' : ''} answered wrongly`),
         ...wrong.slice(0, 40).map(([k, i, t]) => h('div', { class: 'pg-row' }, h('a', { href: `#approach=${k}&step=${i}`, onclick: close }, t)))) : null,
       ...sections,
-      h('p', { class: 'foot' }, 'Saved on this device only. It will move to your account when sign-in arrives. ',
+      h('p', { class: 'foot' }, account?.signedIn() ? 'Kept with your account, on every device you sign in on. ' : 'Saved on this device only; sign in to keep it with your account. ',
         h('button', { class: 'link', onclick: () => { if (confirmReset.dataset['armed']) { progress.v = {}; progress.q = {}; saveProgress(); close(); } else { confirmReset.dataset['armed'] = '1'; confirmReset.textContent = 'Click again to erase'; } } }, 'Reset progress'))));
   const confirmReset = panel.querySelector('.foot .link') as HTMLElement;
   panel.addEventListener('click', (e) => { if (e.target === panel) close(); });

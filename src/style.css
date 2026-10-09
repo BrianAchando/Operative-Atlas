@@ -299,3 +299,68 @@ body.stage-light #hover { color: #33505e; }
 .body figure.case-img img { display: block; width: 100%; border-radius: 4px; border: 1px solid var(--line-2); }
 .body figure.case-img video { display: block; width: 100%; border-radius: 4px; border: 1px solid var(--line-2); background: #000; }
 .body figure.case-img figcaption { font-size: 12.5px; color: #9fb0bd; margin-top: 4px; }
+
+/* accounts */
+.btn.acct { gap: 6px; }
+.btn.primary { background: var(--work); color: #04212b; border-color: var(--work); font-weight: 700; }
+.btn.primary:disabled { opacity: 0.6; }
+.role-chip { font: 600 10px var(--cond); letter-spacing: 0.04em; text-transform: uppercase; padding: 1px 6px; border-radius: 9px; background: var(--raised); color: var(--muted); border: 1px solid var(--line-2); }
+.role-chip.r-consultant { color: #f2c46d; } .role-chip.r-resident { color: var(--work); }
+.acct-box { width: min(620px, 100%); }
+.acct-form { display: grid; gap: 10px; }
+.acct-form p { margin: 0; }
+.af { display: grid; gap: 4px; font-size: 13px; }
+.af > span { color: var(--muted); font-size: 12px; }
+.af small { color: var(--faint); font-size: 11px; }
+.af input, .af select, .acct-form textarea, .lb-fs > input { font: inherit; font-size: 14px; color: var(--text); background: var(--raised); border: 1px solid var(--line-2); border-radius: var(--cova-radius-card); padding: 7px 9px; width: 100%; box-sizing: border-box; }
+.code-in { font-size: 24px !important; letter-spacing: 8px; text-align: center; max-width: 220px; }
+.acct-msg { color: #f2a65a; min-height: 1em; font-size: 13px; }
+.dev { color: #f2c46d; font-size: 12px; }
+.role-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+.role-card { text-align: left; padding: 10px; border: 1px solid var(--line-2); border-radius: var(--cova-radius-card); background: var(--panel); display: grid; gap: 4px; cursor: pointer; }
+.role-card span { font-size: 12px; color: var(--muted); }
+.role-card.on { border-color: var(--work); box-shadow: 0 0 0 1px var(--work) inset; }
+.acct-menu { display: grid; gap: 8px; }
+.acct-who small { color: var(--muted); }
+.lb-actions { display: flex; gap: 8px; flex-wrap: wrap; margin: 6px 0 10px; }
+.lb-row { display: grid; grid-template-columns: 92px 1fr 48px 190px 40px; gap: 8px; align-items: center; padding: 6px 0; border-top: 1px solid var(--line); font-size: 13px; }
+.lb-lev { font: 700 12px var(--cond); }
+.lb-st { font-size: 12px; color: var(--muted); }
+.st-verified .lb-st { color: #7fd18b; } .st-returned .lb-st { color: #f2a65a; }
+.lb-sum { width: 100%; border-collapse: collapse; font-size: 12px; margin: 6px 0; }
+.lb-sum th, .lb-sum td { border: 1px solid var(--line-2); padding: 3px 6px; text-align: left; }
+.lb-fs { border: 1px solid var(--line-2); border-radius: var(--cova-radius-card); padding: 8px 10px 10px; display: grid; gap: 8px; margin: 0; }
+.lb-fs legend { font: 700 12px var(--cond); color: var(--muted); padding: 0 4px; letter-spacing: 0.03em; text-transform: uppercase; }
+.af-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 8px; }
+.lev-cards { display: grid; gap: 4px; }
+.lev { display: grid; grid-template-columns: 18px 46px 1fr; gap: 6px; align-items: center; font-size: 12.5px; padding: 4px 6px; border: 1px solid var(--line); border-radius: 6px; cursor: pointer; }
+.lev b { font: 700 13px var(--cond); }
+.lev:has(input:checked) { border-color: var(--work); background: rgba(79, 195, 209, 0.08); }
+.rv-row { display: grid; grid-template-columns: 1fr 260px; gap: 10px; padding: 8px 0; border-top: 1px solid var(--line); font-size: 13px; }
+.rv-act { display: grid; gap: 6px; align-content: start; }
+.rv-act input { font: inherit; font-size: 13px; color: var(--text); background: var(--raised); border: 1px solid var(--line-2); border-radius: 6px; padding: 5px 7px; }
+.adm td { vertical-align: middle; } .adm .st-pending td { background: rgba(242, 196, 109, 0.08); }
+@media (max-width: 640px) { .role-cards { grid-template-columns: 1fr; } .lb-row { grid-template-columns: 80px 1fr 40px; } .lb-row .lb-st, .lb-row .link { grid-column: 2 / -1; } .rv-row { grid-template-columns: 1fr; } }
+
+/* logbook: component skills and progress analysis */
+.ops-box { display: grid; gap: 8px; }
+.op-block { border: 1px solid var(--line); border-radius: 6px; padding: 8px; display: grid; gap: 6px; }
+.op-head { display: grid; grid-template-columns: 1fr auto; gap: 8px; align-items: center; }
+.op-sel, .lv-sel { font: inherit; font-size: 13px; color: var(--text); background: var(--raised); border: 1px solid var(--line-2); border-radius: 6px; padding: 5px 7px; }
+.comp-list { display: grid; gap: 3px; }
+.comp-row { display: grid; grid-template-columns: 1fr 220px; gap: 8px; align-items: center; font-size: 13px; }
+.comp-row.head { grid-template-columns: 1fr 130px 90px; color: var(--muted); font-size: 11px; text-transform: uppercase; letter-spacing: .03em; }
+.lg h4 { margin: 14px 0 6px; }
+.lg-card { display: grid; gap: 4px; text-align: left; padding: 8px; border: 1px solid var(--line-2); border-radius: var(--cova-radius-card); background: var(--raised); cursor: pointer; }
+.lg-card.wide { cursor: default; }
+.lg-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 8px; }
+.lg-name { font-size: 12.5px; font-weight: 600; line-height: 1.25; min-height: 2.5em; }
+.lg-meta { font-size: 12px; color: var(--muted); } .lg-meta .up { color: #43d17e; font-style: normal; } .lg-meta .down { color: #f2a65a; font-style: normal; }
+.lg-detail { margin: 12px 0; padding: 10px; border: 1px solid var(--line-2); border-radius: var(--cova-radius-card); }
+.lg-chart { width: 100%; height: auto; display: block; }
+.lb-sum.knh tr.op td { font-weight: 700; } .lb-sum.knh td:first-child { white-space: pre; }
+.tr-row { grid-template-columns: 1fr 1fr 150px 70px; }
+.acct-box { width: min(760px, 100%); }
+@media (max-width: 640px) { .comp-row { grid-template-columns: 1fr; } .tr-row { grid-template-columns: 1fr; } }
+.tbl-wrap { overflow-x: auto; } .lg-card.wide + .lg-card.wide { margin-top: 10px; } .lb-sum tr.op td { font-weight: 700; }
+.lb-sum td:first-child { white-space: nowrap; }
