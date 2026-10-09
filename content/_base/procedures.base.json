@@ -563,7 +563,9 @@
      "bulla-septa",
      "bulla-compressed",
      "bulla-staple",
-     "bulla-drains"
+     "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l"
     ]
    },
    {
@@ -1104,7 +1106,9 @@
      "bulla-septa",
      "bulla-compressed",
      "bulla-staple",
-     "bulla-drains"
+     "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l"
     ]
    },
    {
@@ -1658,7 +1662,9 @@
      "bulla-septa",
      "bulla-compressed",
      "bulla-staple",
-     "bulla-drains"
+     "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l"
     ]
    },
    {
@@ -2232,7 +2238,9 @@
      "bulla-septa",
      "bulla-compressed",
      "bulla-staple",
-     "bulla-drains"
+     "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l"
     ]
    }
   ],
@@ -2838,7 +2846,9 @@
      "bulla-septa",
      "bulla-compressed",
      "bulla-staple",
-     "bulla-drains"
+     "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l"
     ]
    },
    {
@@ -3379,7 +3389,9 @@
      "bulla-septa",
      "bulla-compressed",
      "bulla-staple",
-     "bulla-drains"
+     "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l"
     ]
    },
    {
@@ -3933,7 +3945,9 @@
      "bulla-septa",
      "bulla-compressed",
      "bulla-staple",
-     "bulla-drains"
+     "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l"
     ]
    },
    {
@@ -4507,7 +4521,9 @@
      "bulla-septa",
      "bulla-compressed",
      "bulla-staple",
-     "bulla-drains"
+     "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l"
     ]
    }
   ],
@@ -5083,7 +5099,9 @@
      "bulla-septa",
      "bulla-compressed",
      "bulla-staple",
-     "bulla-drains"
+     "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l"
     ]
    },
    {
@@ -5614,7 +5632,9 @@
      "bulla-septa",
      "bulla-compressed",
      "bulla-staple",
-     "bulla-drains"
+     "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l"
     ],
     "labels": [
      "mus-latdorsi-l",
@@ -6212,7 +6232,9 @@
      "bulla-septa",
      "bulla-compressed",
      "bulla-staple",
-     "bulla-drains"
+     "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l"
     ]
    },
    {
@@ -6729,7 +6751,9 @@
      "bulla-septa",
      "bulla-compressed",
      "bulla-staple",
-     "bulla-drains"
+     "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l"
     ]
    }
   ],
@@ -7305,7 +7329,9 @@
      "bulla-septa",
      "bulla-compressed",
      "bulla-staple",
-     "bulla-drains"
+     "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l"
     ]
    },
    {
@@ -7836,7 +7862,9 @@
      "bulla-septa",
      "bulla-compressed",
      "bulla-staple",
-     "bulla-drains"
+     "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l"
     ],
     "labels": [
      "mus-latdorsi-l",
@@ -8440,7 +8468,9 @@
      "bulla-septa",
      "bulla-compressed",
      "bulla-staple",
-     "bulla-drains"
+     "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l"
     ]
    },
    {
@@ -8957,7 +8987,9 @@
      "bulla-septa",
      "bulla-compressed",
      "bulla-staple",
-     "bulla-drains"
+     "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l"
     ]
    }
   ],
@@ -9533,7 +9565,9 @@
      "bulla-septa",
      "bulla-compressed",
      "bulla-staple",
-     "bulla-drains"
+     "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l"
     ]
    },
    {
@@ -10064,7 +10098,9 @@
      "bulla-septa",
      "bulla-compressed",
      "bulla-staple",
-     "bulla-drains"
+     "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l"
     ],
     "labels": [
      "mus-latdorsi-l",
@@ -10662,7 +10698,9 @@
      "bulla-septa",
      "bulla-compressed",
      "bulla-staple",
-     "bulla-drains"
+     "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l"
     ]
    },
    {
@@ -11179,7 +11217,9 @@
      "bulla-septa",
      "bulla-compressed",
      "bulla-staple",
-     "bulla-drains"
+     "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l"
     ]
    }
   ],
@@ -11755,7 +11795,9 @@
      "bulla-septa",
      "bulla-compressed",
      "bulla-staple",
-     "bulla-drains"
+     "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l"
     ]
    },
    {
@@ -12286,7 +12328,9 @@
      "bulla-septa",
      "bulla-compressed",
      "bulla-staple",
-     "bulla-drains"
+     "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l"
     ],
     "labels": [
      "mus-latdorsi-r",
@@ -12884,7 +12928,9 @@
      "bulla-septa",
      "bulla-compressed",
      "bulla-staple",
-     "bulla-drains"
+     "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l"
     ]
    },
    {
@@ -13401,7 +13447,9 @@
      "bulla-septa",
      "bulla-compressed",
      "bulla-staple",
-     "bulla-drains"
+     "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l"
     ]
    }
   ],
@@ -13977,7 +14025,9 @@
      "bulla-septa",
      "bulla-compressed",
      "bulla-staple",
-     "bulla-drains"
+     "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l"
     ]
    },
    {
@@ -14508,7 +14558,9 @@
      "bulla-septa",
      "bulla-compressed",
      "bulla-staple",
-     "bulla-drains"
+     "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l"
     ],
     "labels": [
      "mus-latdorsi-r",
@@ -15112,7 +15164,9 @@
      "bulla-septa",
      "bulla-compressed",
      "bulla-staple",
-     "bulla-drains"
+     "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l"
     ]
    },
    {
@@ -15629,7 +15683,9 @@
      "bulla-septa",
      "bulla-compressed",
      "bulla-staple",
-     "bulla-drains"
+     "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l"
     ]
    }
   ],
@@ -16205,7 +16261,9 @@
      "bulla-septa",
      "bulla-compressed",
      "bulla-staple",
-     "bulla-drains"
+     "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l"
     ]
    },
    {
@@ -16736,7 +16794,9 @@
      "bulla-septa",
      "bulla-compressed",
      "bulla-staple",
-     "bulla-drains"
+     "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l"
     ],
     "labels": [
      "mus-latdorsi-r",
@@ -17334,7 +17394,9 @@
      "bulla-septa",
      "bulla-compressed",
      "bulla-staple",
-     "bulla-drains"
+     "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l"
     ]
    },
    {
@@ -17851,7 +17913,9 @@
      "bulla-septa",
      "bulla-compressed",
      "bulla-staple",
-     "bulla-drains"
+     "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l"
     ]
    }
   ],
@@ -18433,7 +18497,9 @@
      "bulla-septa",
      "bulla-compressed",
      "bulla-staple",
-     "bulla-drains"
+     "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l"
     ]
    },
    {
@@ -18952,7 +19018,9 @@
      "bulla-septa",
      "bulla-compressed",
      "bulla-staple",
-     "bulla-drains"
+     "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l"
     ],
     "opacity": {
      "rib-1-l": 0.55,
@@ -19658,7 +19726,9 @@
      "bulla-septa",
      "bulla-compressed",
      "bulla-staple",
-     "bulla-drains"
+     "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l"
     ]
    },
    {
@@ -20177,7 +20247,9 @@
      "bulla-septa",
      "bulla-compressed",
      "bulla-staple",
-     "bulla-drains"
+     "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l"
     ],
     "opacity": {
      "rib-1-l": 0.55,
@@ -20880,7 +20952,9 @@
      "bulla-septa",
      "bulla-compressed",
      "bulla-staple",
-     "bulla-drains"
+     "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l"
     ]
    },
    {
@@ -21398,7 +21472,9 @@
      "bulla-septa",
      "bulla-compressed",
      "bulla-staple",
-     "bulla-drains"
+     "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l"
     ],
     "opacity": {
      "rib-1-l": 0.55,
@@ -22083,7 +22159,9 @@
      "bulla-septa",
      "bulla-compressed",
      "bulla-staple",
-     "bulla-drains"
+     "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l"
     ]
    },
    {
@@ -22601,7 +22679,9 @@
      "bulla-septa",
      "bulla-compressed",
      "bulla-staple",
-     "bulla-drains"
+     "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l"
     ],
     "opacity": {
      "rib-1-l": 0.55,
@@ -23289,7 +23369,9 @@
      "bulla-septa",
      "bulla-compressed",
      "bulla-staple",
-     "bulla-drains"
+     "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l"
     ]
    },
    {
@@ -23808,7 +23890,9 @@
      "bulla-septa",
      "bulla-compressed",
      "bulla-staple",
-     "bulla-drains"
+     "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l"
     ],
     "opacity": {
      "rib-1-r": 0.55,
@@ -24517,7 +24601,9 @@
      "bulla-septa",
      "bulla-compressed",
      "bulla-staple",
-     "bulla-drains"
+     "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l"
     ]
    },
    {
@@ -25036,7 +25122,9 @@
      "bulla-septa",
      "bulla-compressed",
      "bulla-staple",
-     "bulla-drains"
+     "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l"
     ],
     "opacity": {
      "rib-1-r": 0.55,
@@ -25742,7 +25830,9 @@
      "bulla-septa",
      "bulla-compressed",
      "bulla-staple",
-     "bulla-drains"
+     "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l"
     ]
    },
    {
@@ -26260,7 +26350,9 @@
      "bulla-septa",
      "bulla-compressed",
      "bulla-staple",
-     "bulla-drains"
+     "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l"
     ],
     "opacity": {
      "rib-1-r": 0.55,
@@ -26948,7 +27040,9 @@
      "bulla-septa",
      "bulla-compressed",
      "bulla-staple",
-     "bulla-drains"
+     "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l"
     ]
    },
    {
@@ -27466,7 +27560,9 @@
      "bulla-septa",
      "bulla-compressed",
      "bulla-staple",
-     "bulla-drains"
+     "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l"
     ],
     "opacity": {
      "rib-1-r": 0.55,
@@ -27744,6 +27840,8 @@
      "bulla-compressed",
      "bulla-staple",
      "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l",
      "lul-arteries",
      "lll-arteries",
      "lul-veins",
@@ -27950,7 +28048,9 @@
      "bulla-septa",
      "bulla-compressed",
      "bulla-staple",
-     "bulla-drains"
+     "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l"
     ]
    },
    {
@@ -28048,6 +28148,8 @@
      "bulla-compressed",
      "bulla-staple",
      "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l",
      "lul-arteries",
      "lll-arteries",
      "lul-veins",
@@ -28203,6 +28305,8 @@
      "bulla-compressed",
      "bulla-staple",
      "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l",
      "lul-arteries",
      "lll-arteries",
      "lul-veins",
@@ -28326,7 +28430,9 @@
      "bulla-septa",
      "bulla-compressed",
      "bulla-staple",
-     "bulla-drains"
+     "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l"
     ],
     "pose": "lateral",
     "opacity": {
@@ -28505,7 +28611,9 @@
      "bulla-septa",
      "bulla-compressed",
      "bulla-staple",
-     "bulla-drains"
+     "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l"
     ]
    },
    {
@@ -28661,7 +28769,9 @@
      "bulla-septa",
      "bulla-compressed",
      "bulla-staple",
-     "bulla-drains"
+     "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l"
     ]
    },
    {
@@ -28820,7 +28930,9 @@
      "bulla-septa",
      "bulla-compressed",
      "bulla-staple",
-     "bulla-drains"
+     "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l"
     ]
    },
    {
@@ -28980,7 +29092,9 @@
      "bulla-septa",
      "bulla-compressed",
      "bulla-staple",
-     "bulla-drains"
+     "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l"
     ]
    },
    {
@@ -29139,7 +29253,9 @@
      "bulla-septa",
      "bulla-compressed",
      "bulla-staple",
-     "bulla-drains"
+     "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l"
     ]
    },
    {
@@ -29314,7 +29430,9 @@
      "bulla-septa",
      "bulla-compressed",
      "bulla-staple",
-     "bulla-drains"
+     "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l"
     ]
    },
    {
@@ -29439,7 +29557,9 @@
      "bulla-septa",
      "bulla-compressed",
      "bulla-staple",
-     "bulla-drains"
+     "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l"
     ]
    },
    {
@@ -29545,7 +29665,9 @@
      "bulla-septa",
      "bulla-compressed",
      "bulla-staple",
-     "bulla-drains"
+     "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l"
     ],
     "opacity": {
      "lul-arteries": 0.16,
@@ -29776,6 +29898,8 @@
      "bulla-compressed",
      "bulla-staple",
      "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l",
      "lul-arteries",
      "lll-arteries",
      "lul-veins",
@@ -29982,7 +30106,9 @@
      "bulla-septa",
      "bulla-compressed",
      "bulla-staple",
-     "bulla-drains"
+     "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l"
     ]
    },
    {
@@ -30080,6 +30206,8 @@
      "bulla-compressed",
      "bulla-staple",
      "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l",
      "lul-arteries",
      "lll-arteries",
      "lul-veins",
@@ -30235,6 +30363,8 @@
      "bulla-compressed",
      "bulla-staple",
      "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l",
      "lul-arteries",
      "lll-arteries",
      "lul-veins",
@@ -30358,7 +30488,9 @@
      "bulla-septa",
      "bulla-compressed",
      "bulla-staple",
-     "bulla-drains"
+     "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l"
     ],
     "pose": "lateral",
     "opacity": {
@@ -30554,7 +30686,9 @@
      "bulla-septa",
      "bulla-compressed",
      "bulla-staple",
-     "bulla-drains"
+     "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l"
     ]
    },
    {
@@ -30731,7 +30865,9 @@
      "bulla-septa",
      "bulla-compressed",
      "bulla-staple",
-     "bulla-drains"
+     "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l"
     ]
    },
    {
@@ -30908,7 +31044,9 @@
      "bulla-septa",
      "bulla-compressed",
      "bulla-staple",
-     "bulla-drains"
+     "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l"
     ]
    },
    {
@@ -31064,7 +31202,9 @@
      "bulla-septa",
      "bulla-compressed",
      "bulla-staple",
-     "bulla-drains"
+     "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l"
     ]
    },
    {
@@ -31218,7 +31358,9 @@
      "bulla-septa",
      "bulla-compressed",
      "bulla-staple",
-     "bulla-drains"
+     "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l"
     ]
    },
    {
@@ -31343,7 +31485,9 @@
      "bulla-septa",
      "bulla-compressed",
      "bulla-staple",
-     "bulla-drains"
+     "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l"
     ]
    },
    {
@@ -31449,7 +31593,9 @@
      "bulla-septa",
      "bulla-compressed",
      "bulla-staple",
-     "bulla-drains"
+     "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l"
     ],
     "opacity": {
      "lul-arteries": 0.16,
@@ -31680,6 +31826,8 @@
      "bulla-compressed",
      "bulla-staple",
      "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l",
      "lul-arteries",
      "lll-arteries",
      "lul-veins",
@@ -31886,7 +32034,9 @@
      "bulla-septa",
      "bulla-compressed",
      "bulla-staple",
-     "bulla-drains"
+     "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l"
     ]
    },
    {
@@ -31984,6 +32134,8 @@
      "bulla-compressed",
      "bulla-staple",
      "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l",
      "lul-arteries",
      "lll-arteries",
      "lul-veins",
@@ -32139,6 +32291,8 @@
      "bulla-compressed",
      "bulla-staple",
      "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l",
      "lul-arteries",
      "lll-arteries",
      "lul-veins",
@@ -32272,7 +32426,9 @@
      "bulla-septa",
      "bulla-compressed",
      "bulla-staple",
-     "bulla-drains"
+     "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l"
     ],
     "pose": "lateral",
     "show": [
@@ -32474,7 +32630,9 @@
      "bulla-septa",
      "bulla-compressed",
      "bulla-staple",
-     "bulla-drains"
+     "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l"
     ]
    },
    {
@@ -32651,7 +32809,9 @@
      "bulla-septa",
      "bulla-compressed",
      "bulla-staple",
-     "bulla-drains"
+     "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l"
     ]
    },
    {
@@ -32828,7 +32988,9 @@
      "bulla-septa",
      "bulla-compressed",
      "bulla-staple",
-     "bulla-drains"
+     "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l"
     ]
    },
    {
@@ -32984,7 +33146,9 @@
      "bulla-septa",
      "bulla-compressed",
      "bulla-staple",
-     "bulla-drains"
+     "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l"
     ]
    },
    {
@@ -33138,7 +33302,9 @@
      "bulla-septa",
      "bulla-compressed",
      "bulla-staple",
-     "bulla-drains"
+     "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l"
     ]
    },
    {
@@ -33263,7 +33429,9 @@
      "bulla-septa",
      "bulla-compressed",
      "bulla-staple",
-     "bulla-drains"
+     "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l"
     ]
    },
    {
@@ -33369,7 +33537,9 @@
      "bulla-septa",
      "bulla-compressed",
      "bulla-staple",
-     "bulla-drains"
+     "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l"
     ],
     "opacity": {
      "lul-arteries": 0.16,
@@ -33600,6 +33770,8 @@
      "bulla-compressed",
      "bulla-staple",
      "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l",
      "lul-arteries",
      "lll-arteries",
      "lul-veins",
@@ -33806,7 +33978,9 @@
      "bulla-septa",
      "bulla-compressed",
      "bulla-staple",
-     "bulla-drains"
+     "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l"
     ]
    },
    {
@@ -33904,6 +34078,8 @@
      "bulla-compressed",
      "bulla-staple",
      "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l",
      "lul-arteries",
      "lll-arteries",
      "lul-veins",
@@ -34059,6 +34235,8 @@
      "bulla-compressed",
      "bulla-staple",
      "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l",
      "lul-arteries",
      "lll-arteries",
      "lul-veins",
@@ -34192,7 +34370,9 @@
      "bulla-septa",
      "bulla-compressed",
      "bulla-staple",
-     "bulla-drains"
+     "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l"
     ]
    },
    {
@@ -34384,7 +34564,9 @@
      "bulla-septa",
      "bulla-compressed",
      "bulla-staple",
-     "bulla-drains"
+     "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l"
     ]
    },
    {
@@ -34561,7 +34743,9 @@
      "bulla-septa",
      "bulla-compressed",
      "bulla-staple",
-     "bulla-drains"
+     "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l"
     ]
    },
    {
@@ -34738,7 +34922,9 @@
      "bulla-septa",
      "bulla-compressed",
      "bulla-staple",
-     "bulla-drains"
+     "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l"
     ]
    },
    {
@@ -34894,7 +35080,9 @@
      "bulla-septa",
      "bulla-compressed",
      "bulla-staple",
-     "bulla-drains"
+     "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l"
     ]
    },
    {
@@ -35048,7 +35236,9 @@
      "bulla-septa",
      "bulla-compressed",
      "bulla-staple",
-     "bulla-drains"
+     "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l"
     ]
    },
    {
@@ -35173,7 +35363,9 @@
      "bulla-septa",
      "bulla-compressed",
      "bulla-staple",
-     "bulla-drains"
+     "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l"
     ]
    },
    {
@@ -35279,7 +35471,9 @@
      "bulla-septa",
      "bulla-compressed",
      "bulla-staple",
-     "bulla-drains"
+     "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l"
     ],
     "opacity": {
      "lul-arteries": 0.16,
@@ -35510,6 +35704,8 @@
      "bulla-compressed",
      "bulla-staple",
      "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l",
      "lul-arteries",
      "lll-arteries",
      "lul-veins",
@@ -35716,7 +35912,9 @@
      "bulla-septa",
      "bulla-compressed",
      "bulla-staple",
-     "bulla-drains"
+     "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l"
     ]
    },
    {
@@ -35814,6 +36012,8 @@
      "bulla-compressed",
      "bulla-staple",
      "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l",
      "lul-arteries",
      "lll-arteries",
      "lul-veins",
@@ -35969,6 +36169,8 @@
      "bulla-compressed",
      "bulla-staple",
      "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l",
      "lul-arteries",
      "lll-arteries",
      "lul-veins",
@@ -36102,7 +36304,9 @@
      "bulla-septa",
      "bulla-compressed",
      "bulla-staple",
-     "bulla-drains"
+     "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l"
     ]
    },
    {
@@ -36294,7 +36498,9 @@
      "bulla-septa",
      "bulla-compressed",
      "bulla-staple",
-     "bulla-drains"
+     "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l"
     ]
    },
    {
@@ -36471,7 +36677,9 @@
      "bulla-septa",
      "bulla-compressed",
      "bulla-staple",
-     "bulla-drains"
+     "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l"
     ]
    },
    {
@@ -36648,7 +36856,9 @@
      "bulla-septa",
      "bulla-compressed",
      "bulla-staple",
-     "bulla-drains"
+     "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l"
     ]
    },
    {
@@ -36804,7 +37014,9 @@
      "bulla-septa",
      "bulla-compressed",
      "bulla-staple",
-     "bulla-drains"
+     "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l"
     ]
    },
    {
@@ -36958,7 +37170,9 @@
      "bulla-septa",
      "bulla-compressed",
      "bulla-staple",
-     "bulla-drains"
+     "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l"
     ]
    },
    {
@@ -37083,7 +37297,9 @@
      "bulla-septa",
      "bulla-compressed",
      "bulla-staple",
-     "bulla-drains"
+     "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l"
     ]
    },
    {
@@ -37189,7 +37405,9 @@
      "bulla-septa",
      "bulla-compressed",
      "bulla-staple",
-     "bulla-drains"
+     "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l"
     ],
     "opacity": {
      "lul-arteries": 0.16,
@@ -37420,6 +37638,8 @@
      "bulla-compressed",
      "bulla-staple",
      "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l",
      "lul-arteries",
      "lll-arteries",
      "lul-veins",
@@ -37626,7 +37846,9 @@
      "bulla-septa",
      "bulla-compressed",
      "bulla-staple",
-     "bulla-drains"
+     "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l"
     ]
    },
    {
@@ -37724,6 +37946,8 @@
      "bulla-compressed",
      "bulla-staple",
      "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l",
      "lul-arteries",
      "lll-arteries",
      "lul-veins",
@@ -37878,6 +38102,8 @@
      "bulla-compressed",
      "bulla-staple",
      "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l",
      "lul-arteries",
      "lll-arteries",
      "lul-veins",
@@ -38001,7 +38227,9 @@
      "bulla-septa",
      "bulla-compressed",
      "bulla-staple",
-     "bulla-drains"
+     "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l"
     ],
     "pose": "lateral",
     "opacity": {
@@ -38165,7 +38393,9 @@
      "bulla-septa",
      "bulla-compressed",
      "bulla-staple",
-     "bulla-drains"
+     "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l"
     ]
    },
    {
@@ -38356,7 +38586,9 @@
      "bulla-septa",
      "bulla-compressed",
      "bulla-staple",
-     "bulla-drains"
+     "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l"
     ]
    },
    {
@@ -38533,7 +38765,9 @@
      "bulla-septa",
      "bulla-compressed",
      "bulla-staple",
-     "bulla-drains"
+     "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l"
     ]
    },
    {
@@ -38688,7 +38922,9 @@
      "bulla-septa",
      "bulla-compressed",
      "bulla-staple",
-     "bulla-drains"
+     "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l"
     ]
    },
    {
@@ -38847,7 +39083,9 @@
      "bulla-septa",
      "bulla-compressed",
      "bulla-staple",
-     "bulla-drains"
+     "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l"
     ]
    },
    {
@@ -38973,7 +39211,9 @@
      "bulla-septa",
      "bulla-compressed",
      "bulla-staple",
-     "bulla-drains"
+     "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l"
     ]
    },
    {
@@ -39081,7 +39321,9 @@
      "bulla-septa",
      "bulla-compressed",
      "bulla-staple",
-     "bulla-drains"
+     "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l"
     ],
     "opacity": {
      "lul-arteries": 0.16,
@@ -39312,6 +39554,8 @@
      "bulla-compressed",
      "bulla-staple",
      "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l",
      "lul-arteries",
      "lll-arteries",
      "lul-veins",
@@ -39518,7 +39762,9 @@
      "bulla-septa",
      "bulla-compressed",
      "bulla-staple",
-     "bulla-drains"
+     "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l"
     ]
    },
    {
@@ -39616,6 +39862,8 @@
      "bulla-compressed",
      "bulla-staple",
      "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l",
      "lul-arteries",
      "lll-arteries",
      "lul-veins",
@@ -39770,6 +40018,8 @@
      "bulla-compressed",
      "bulla-staple",
      "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l",
      "lul-arteries",
      "lll-arteries",
      "lul-veins",
@@ -39893,7 +40143,9 @@
      "bulla-septa",
      "bulla-compressed",
      "bulla-staple",
-     "bulla-drains"
+     "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l"
     ],
     "pose": "lateral",
     "opacity": {
@@ -40057,7 +40309,9 @@
      "bulla-septa",
      "bulla-compressed",
      "bulla-staple",
-     "bulla-drains"
+     "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l"
     ]
    },
    {
@@ -40212,7 +40466,9 @@
      "bulla-septa",
      "bulla-compressed",
      "bulla-staple",
-     "bulla-drains"
+     "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l"
     ]
    },
    {
@@ -40371,7 +40627,9 @@
      "bulla-septa",
      "bulla-compressed",
      "bulla-staple",
-     "bulla-drains"
+     "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l"
     ]
    },
    {
@@ -40517,7 +40775,9 @@
      "bulla-septa",
      "bulla-compressed",
      "bulla-staple",
-     "bulla-drains"
+     "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l"
     ]
    },
    {
@@ -40693,7 +40953,9 @@
      "bulla-septa",
      "bulla-compressed",
      "bulla-staple",
-     "bulla-drains"
+     "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l"
     ]
    },
    {
@@ -40819,7 +41081,9 @@
      "bulla-septa",
      "bulla-compressed",
      "bulla-staple",
-     "bulla-drains"
+     "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l"
     ]
    },
    {
@@ -40927,7 +41191,9 @@
      "bulla-septa",
      "bulla-compressed",
      "bulla-staple",
-     "bulla-drains"
+     "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l"
     ],
     "opacity": {
      "lul-arteries": 0.16,
@@ -41158,6 +41424,8 @@
      "bulla-compressed",
      "bulla-staple",
      "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l",
      "lul-arteries",
      "lll-arteries",
      "lul-veins",
@@ -41364,7 +41632,9 @@
      "bulla-septa",
      "bulla-compressed",
      "bulla-staple",
-     "bulla-drains"
+     "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l"
     ]
    },
    {
@@ -41462,6 +41732,8 @@
      "bulla-compressed",
      "bulla-staple",
      "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l",
      "lul-arteries",
      "lll-arteries",
      "lul-veins",
@@ -41616,6 +41888,8 @@
      "bulla-compressed",
      "bulla-staple",
      "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l",
      "lul-arteries",
      "lll-arteries",
      "lul-veins",
@@ -41749,7 +42023,9 @@
      "bulla-septa",
      "bulla-compressed",
      "bulla-staple",
-     "bulla-drains"
+     "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l"
     ],
     "pose": "lateral",
     "show": [
@@ -41919,7 +42195,9 @@
      "bulla-septa",
      "bulla-compressed",
      "bulla-staple",
-     "bulla-drains"
+     "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l"
     ]
    },
    {
@@ -42110,7 +42388,9 @@
      "bulla-septa",
      "bulla-compressed",
      "bulla-staple",
-     "bulla-drains"
+     "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l"
     ]
    },
    {
@@ -42287,7 +42567,9 @@
      "bulla-septa",
      "bulla-compressed",
      "bulla-staple",
-     "bulla-drains"
+     "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l"
     ]
    },
    {
@@ -42442,7 +42724,9 @@
      "bulla-septa",
      "bulla-compressed",
      "bulla-staple",
-     "bulla-drains"
+     "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l"
     ]
    },
    {
@@ -42601,7 +42885,9 @@
      "bulla-septa",
      "bulla-compressed",
      "bulla-staple",
-     "bulla-drains"
+     "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l"
     ]
    },
    {
@@ -42727,7 +43013,9 @@
      "bulla-septa",
      "bulla-compressed",
      "bulla-staple",
-     "bulla-drains"
+     "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l"
     ]
    },
    {
@@ -42835,7 +43123,9 @@
      "bulla-septa",
      "bulla-compressed",
      "bulla-staple",
-     "bulla-drains"
+     "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l"
     ],
     "opacity": {
      "lul-arteries": 0.16,
@@ -43066,6 +43356,8 @@
      "bulla-compressed",
      "bulla-staple",
      "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l",
      "lul-arteries",
      "lll-arteries",
      "lul-veins",
@@ -43272,7 +43564,9 @@
      "bulla-septa",
      "bulla-compressed",
      "bulla-staple",
-     "bulla-drains"
+     "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l"
     ]
    },
    {
@@ -43370,6 +43664,8 @@
      "bulla-compressed",
      "bulla-staple",
      "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l",
      "lul-arteries",
      "lll-arteries",
      "lul-veins",
@@ -43524,6 +43820,8 @@
      "bulla-compressed",
      "bulla-staple",
      "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l",
      "lul-arteries",
      "lll-arteries",
      "lul-veins",
@@ -43657,7 +43955,9 @@
      "bulla-septa",
      "bulla-compressed",
      "bulla-staple",
-     "bulla-drains"
+     "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l"
     ]
    },
    {
@@ -43817,7 +44117,9 @@
      "bulla-septa",
      "bulla-compressed",
      "bulla-staple",
-     "bulla-drains"
+     "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l"
     ]
    },
    {
@@ -44008,7 +44310,9 @@
      "bulla-septa",
      "bulla-compressed",
      "bulla-staple",
-     "bulla-drains"
+     "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l"
     ]
    },
    {
@@ -44185,7 +44489,9 @@
      "bulla-septa",
      "bulla-compressed",
      "bulla-staple",
-     "bulla-drains"
+     "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l"
     ]
    },
    {
@@ -44340,7 +44646,9 @@
      "bulla-septa",
      "bulla-compressed",
      "bulla-staple",
-     "bulla-drains"
+     "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l"
     ]
    },
    {
@@ -44499,7 +44807,9 @@
      "bulla-septa",
      "bulla-compressed",
      "bulla-staple",
-     "bulla-drains"
+     "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l"
     ]
    },
    {
@@ -44625,7 +44935,9 @@
      "bulla-septa",
      "bulla-compressed",
      "bulla-staple",
-     "bulla-drains"
+     "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l"
     ]
    },
    {
@@ -44733,7 +45045,9 @@
      "bulla-septa",
      "bulla-compressed",
      "bulla-staple",
-     "bulla-drains"
+     "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l"
     ],
     "opacity": {
      "lul-arteries": 0.16,
@@ -44964,6 +45278,8 @@
      "bulla-compressed",
      "bulla-staple",
      "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l",
      "lul-arteries",
      "lll-arteries",
      "lul-veins",
@@ -45170,7 +45486,9 @@
      "bulla-septa",
      "bulla-compressed",
      "bulla-staple",
-     "bulla-drains"
+     "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l"
     ]
    },
    {
@@ -45268,6 +45586,8 @@
      "bulla-compressed",
      "bulla-staple",
      "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l",
      "lul-arteries",
      "lll-arteries",
      "lul-veins",
@@ -45422,6 +45742,8 @@
      "bulla-compressed",
      "bulla-staple",
      "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l",
      "lul-arteries",
      "lll-arteries",
      "lul-veins",
@@ -45555,7 +45877,9 @@
      "bulla-septa",
      "bulla-compressed",
      "bulla-staple",
-     "bulla-drains"
+     "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l"
     ]
    },
    {
@@ -45715,7 +46039,9 @@
      "bulla-septa",
      "bulla-compressed",
      "bulla-staple",
-     "bulla-drains"
+     "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l"
     ]
    },
    {
@@ -45906,7 +46232,9 @@
      "bulla-septa",
      "bulla-compressed",
      "bulla-staple",
-     "bulla-drains"
+     "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l"
     ]
    },
    {
@@ -46083,7 +46411,9 @@
      "bulla-septa",
      "bulla-compressed",
      "bulla-staple",
-     "bulla-drains"
+     "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l"
     ]
    },
    {
@@ -46238,7 +46568,9 @@
      "bulla-septa",
      "bulla-compressed",
      "bulla-staple",
-     "bulla-drains"
+     "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l"
     ]
    },
    {
@@ -46397,7 +46729,9 @@
      "bulla-septa",
      "bulla-compressed",
      "bulla-staple",
-     "bulla-drains"
+     "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l"
     ]
    },
    {
@@ -46523,7 +46857,9 @@
      "bulla-septa",
      "bulla-compressed",
      "bulla-staple",
-     "bulla-drains"
+     "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l"
     ]
    },
    {
@@ -46631,7 +46967,9 @@
      "bulla-septa",
      "bulla-compressed",
      "bulla-staple",
-     "bulla-drains"
+     "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l"
     ],
     "opacity": {
      "lul-arteries": 0.16,
@@ -46862,6 +47200,8 @@
      "bulla-compressed",
      "bulla-staple",
      "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l",
      "lul-arteries",
      "lll-arteries",
      "lul-veins",
@@ -47071,7 +47411,9 @@
      "bulla-septa",
      "bulla-compressed",
      "bulla-staple",
-     "bulla-drains"
+     "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l"
     ]
    },
    {
@@ -47169,6 +47511,8 @@
      "bulla-compressed",
      "bulla-staple",
      "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l",
      "lul-arteries",
      "lll-arteries",
      "lul-veins",
@@ -47323,6 +47667,8 @@
      "bulla-compressed",
      "bulla-staple",
      "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l",
      "lul-arteries",
      "lll-arteries",
      "lul-veins",
@@ -47446,7 +47792,9 @@
      "bulla-septa",
      "bulla-compressed",
      "bulla-staple",
-     "bulla-drains"
+     "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l"
     ],
     "pose": "lateral",
     "opacity": {
@@ -47605,7 +47953,9 @@
      "bulla-septa",
      "bulla-compressed",
      "bulla-staple",
-     "bulla-drains"
+     "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l"
     ]
    },
    {
@@ -47760,7 +48110,9 @@
      "bulla-septa",
      "bulla-compressed",
      "bulla-staple",
-     "bulla-drains"
+     "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l"
     ]
    },
    {
@@ -47907,7 +48259,9 @@
      "bulla-septa",
      "bulla-compressed",
      "bulla-staple",
-     "bulla-drains"
+     "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l"
     ]
    },
    {
@@ -48054,7 +48408,9 @@
      "bulla-septa",
      "bulla-compressed",
      "bulla-staple",
-     "bulla-drains"
+     "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l"
     ]
    },
    {
@@ -48200,7 +48556,9 @@
      "bulla-septa",
      "bulla-compressed",
      "bulla-staple",
-     "bulla-drains"
+     "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l"
     ]
    },
    {
@@ -48346,7 +48704,9 @@
      "bulla-septa",
      "bulla-compressed",
      "bulla-staple",
-     "bulla-drains"
+     "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l"
     ]
    },
    {
@@ -48519,7 +48879,9 @@
      "bulla-septa",
      "bulla-compressed",
      "bulla-staple",
-     "bulla-drains"
+     "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l"
     ]
    },
    {
@@ -48646,7 +49008,9 @@
      "bulla-septa",
      "bulla-compressed",
      "bulla-staple",
-     "bulla-drains"
+     "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l"
     ]
    },
    {
@@ -48754,7 +49118,9 @@
      "bulla-septa",
      "bulla-compressed",
      "bulla-staple",
-     "bulla-drains"
+     "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l"
     ],
     "opacity": {
      "lul-arteries": 0.16,
@@ -48986,6 +49352,8 @@
      "bulla-compressed",
      "bulla-staple",
      "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l",
      "lul-arteries",
      "lll-arteries",
      "lul-veins",
@@ -49195,7 +49563,9 @@
      "bulla-septa",
      "bulla-compressed",
      "bulla-staple",
-     "bulla-drains"
+     "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l"
     ]
    },
    {
@@ -49293,6 +49663,8 @@
      "bulla-compressed",
      "bulla-staple",
      "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l",
      "lul-arteries",
      "lll-arteries",
      "lul-veins",
@@ -49447,6 +49819,8 @@
      "bulla-compressed",
      "bulla-staple",
      "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l",
      "lul-arteries",
      "lll-arteries",
      "lul-veins",
@@ -49570,7 +49944,9 @@
      "bulla-septa",
      "bulla-compressed",
      "bulla-staple",
-     "bulla-drains"
+     "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l"
     ],
     "pose": "lateral",
     "opacity": {
@@ -49746,7 +50122,9 @@
      "bulla-septa",
      "bulla-compressed",
      "bulla-staple",
-     "bulla-drains"
+     "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l"
     ]
    },
    {
@@ -49922,7 +50300,9 @@
      "bulla-septa",
      "bulla-compressed",
      "bulla-staple",
-     "bulla-drains"
+     "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l"
     ]
    },
    {
@@ -50069,7 +50449,9 @@
      "bulla-septa",
      "bulla-compressed",
      "bulla-staple",
-     "bulla-drains"
+     "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l"
     ]
    },
    {
@@ -50215,7 +50597,9 @@
      "bulla-septa",
      "bulla-compressed",
      "bulla-staple",
-     "bulla-drains"
+     "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l"
     ]
    },
    {
@@ -50370,7 +50754,9 @@
      "bulla-septa",
      "bulla-compressed",
      "bulla-staple",
-     "bulla-drains"
+     "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l"
     ]
    },
    {
@@ -50497,7 +50883,9 @@
      "bulla-septa",
      "bulla-compressed",
      "bulla-staple",
-     "bulla-drains"
+     "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l"
     ]
    },
    {
@@ -50605,7 +50993,9 @@
      "bulla-septa",
      "bulla-compressed",
      "bulla-staple",
-     "bulla-drains"
+     "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l"
     ],
     "opacity": {
      "lul-arteries": 0.16,
@@ -50837,6 +51227,8 @@
      "bulla-compressed",
      "bulla-staple",
      "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l",
      "lul-arteries",
      "lll-arteries",
      "lul-veins",
@@ -51046,7 +51438,9 @@
      "bulla-septa",
      "bulla-compressed",
      "bulla-staple",
-     "bulla-drains"
+     "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l"
     ]
    },
    {
@@ -51144,6 +51538,8 @@
      "bulla-compressed",
      "bulla-staple",
      "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l",
      "lul-arteries",
      "lll-arteries",
      "lul-veins",
@@ -51298,6 +51694,8 @@
      "bulla-compressed",
      "bulla-staple",
      "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l",
      "lul-arteries",
      "lll-arteries",
      "lul-veins",
@@ -51431,7 +51829,9 @@
      "bulla-septa",
      "bulla-compressed",
      "bulla-staple",
-     "bulla-drains"
+     "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l"
     ],
     "pose": "lateral",
     "show": [
@@ -51613,7 +52013,9 @@
      "bulla-septa",
      "bulla-compressed",
      "bulla-staple",
-     "bulla-drains"
+     "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l"
     ]
    },
    {
@@ -51789,7 +52191,9 @@
      "bulla-septa",
      "bulla-compressed",
      "bulla-staple",
-     "bulla-drains"
+     "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l"
     ]
    },
    {
@@ -51936,7 +52340,9 @@
      "bulla-septa",
      "bulla-compressed",
      "bulla-staple",
-     "bulla-drains"
+     "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l"
     ]
    },
    {
@@ -52082,7 +52488,9 @@
      "bulla-septa",
      "bulla-compressed",
      "bulla-staple",
-     "bulla-drains"
+     "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l"
     ]
    },
    {
@@ -52237,7 +52645,9 @@
      "bulla-septa",
      "bulla-compressed",
      "bulla-staple",
-     "bulla-drains"
+     "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l"
     ]
    },
    {
@@ -52364,7 +52774,9 @@
      "bulla-septa",
      "bulla-compressed",
      "bulla-staple",
-     "bulla-drains"
+     "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l"
     ]
    },
    {
@@ -52472,7 +52884,9 @@
      "bulla-septa",
      "bulla-compressed",
      "bulla-staple",
-     "bulla-drains"
+     "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l"
     ],
     "opacity": {
      "lul-arteries": 0.16,
@@ -52704,6 +53118,8 @@
      "bulla-compressed",
      "bulla-staple",
      "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l",
      "lul-arteries",
      "lll-arteries",
      "lul-veins",
@@ -52913,7 +53329,9 @@
      "bulla-septa",
      "bulla-compressed",
      "bulla-staple",
-     "bulla-drains"
+     "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l"
     ]
    },
    {
@@ -53011,6 +53429,8 @@
      "bulla-compressed",
      "bulla-staple",
      "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l",
      "lul-arteries",
      "lll-arteries",
      "lul-veins",
@@ -53165,6 +53585,8 @@
      "bulla-compressed",
      "bulla-staple",
      "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l",
      "lul-arteries",
      "lll-arteries",
      "lul-veins",
@@ -53298,7 +53720,9 @@
      "bulla-septa",
      "bulla-compressed",
      "bulla-staple",
-     "bulla-drains"
+     "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l"
     ]
    },
    {
@@ -53470,7 +53894,9 @@
      "bulla-septa",
      "bulla-compressed",
      "bulla-staple",
-     "bulla-drains"
+     "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l"
     ]
    },
    {
@@ -53646,7 +54072,9 @@
      "bulla-septa",
      "bulla-compressed",
      "bulla-staple",
-     "bulla-drains"
+     "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l"
     ]
    },
    {
@@ -53793,7 +54221,9 @@
      "bulla-septa",
      "bulla-compressed",
      "bulla-staple",
-     "bulla-drains"
+     "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l"
     ]
    },
    {
@@ -53939,7 +54369,9 @@
      "bulla-septa",
      "bulla-compressed",
      "bulla-staple",
-     "bulla-drains"
+     "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l"
     ]
    },
    {
@@ -54094,7 +54526,9 @@
      "bulla-septa",
      "bulla-compressed",
      "bulla-staple",
-     "bulla-drains"
+     "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l"
     ]
    },
    {
@@ -54221,7 +54655,9 @@
      "bulla-septa",
      "bulla-compressed",
      "bulla-staple",
-     "bulla-drains"
+     "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l"
     ]
    },
    {
@@ -54329,7 +54765,9 @@
      "bulla-septa",
      "bulla-compressed",
      "bulla-staple",
-     "bulla-drains"
+     "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l"
     ],
     "opacity": {
      "lul-arteries": 0.16,
@@ -54561,6 +54999,8 @@
      "bulla-compressed",
      "bulla-staple",
      "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l",
      "lul-arteries",
      "lll-arteries",
      "lul-veins",
@@ -54770,7 +55210,9 @@
      "bulla-septa",
      "bulla-compressed",
      "bulla-staple",
-     "bulla-drains"
+     "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l"
     ]
    },
    {
@@ -54868,6 +55310,8 @@
      "bulla-compressed",
      "bulla-staple",
      "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l",
      "lul-arteries",
      "lll-arteries",
      "lul-veins",
@@ -55022,6 +55466,8 @@
      "bulla-compressed",
      "bulla-staple",
      "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l",
      "lul-arteries",
      "lll-arteries",
      "lul-veins",
@@ -55155,7 +55601,9 @@
      "bulla-septa",
      "bulla-compressed",
      "bulla-staple",
-     "bulla-drains"
+     "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l"
     ]
    },
    {
@@ -55327,7 +55775,9 @@
      "bulla-septa",
      "bulla-compressed",
      "bulla-staple",
-     "bulla-drains"
+     "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l"
     ]
    },
    {
@@ -55503,7 +55953,9 @@
      "bulla-septa",
      "bulla-compressed",
      "bulla-staple",
-     "bulla-drains"
+     "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l"
     ]
    },
    {
@@ -55650,7 +56102,9 @@
      "bulla-septa",
      "bulla-compressed",
      "bulla-staple",
-     "bulla-drains"
+     "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l"
     ]
    },
    {
@@ -55796,7 +56250,9 @@
      "bulla-septa",
      "bulla-compressed",
      "bulla-staple",
-     "bulla-drains"
+     "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l"
     ]
    },
    {
@@ -55951,7 +56407,9 @@
      "bulla-septa",
      "bulla-compressed",
      "bulla-staple",
-     "bulla-drains"
+     "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l"
     ]
    },
    {
@@ -56078,7 +56536,9 @@
      "bulla-septa",
      "bulla-compressed",
      "bulla-staple",
-     "bulla-drains"
+     "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l"
     ]
    },
    {
@@ -56186,7 +56646,9 @@
      "bulla-septa",
      "bulla-compressed",
      "bulla-staple",
-     "bulla-drains"
+     "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l"
     ],
     "opacity": {
      "lul-arteries": 0.16,
@@ -56372,6 +56834,8 @@
      "bulla-compressed",
      "bulla-staple",
      "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l",
      "lul-arteries",
      "lll-arteries",
      "lul-veins",
@@ -56578,7 +57042,9 @@
      "bulla-septa",
      "bulla-compressed",
      "bulla-staple",
-     "bulla-drains"
+     "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l"
     ]
    },
    {
@@ -56676,6 +57142,8 @@
      "bulla-compressed",
      "bulla-staple",
      "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l",
      "lul-arteries",
      "lll-arteries",
      "lul-veins",
@@ -56829,6 +57297,8 @@
      "bulla-compressed",
      "bulla-staple",
      "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l",
      "lul-arteries",
      "lll-arteries",
      "lul-veins",
@@ -56952,7 +57422,9 @@
      "bulla-septa",
      "bulla-compressed",
      "bulla-staple",
-     "bulla-drains"
+     "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l"
     ],
     "pose": "lateral",
     "opacity": {
@@ -57108,7 +57580,9 @@
      "bulla-septa",
      "bulla-compressed",
      "bulla-staple",
-     "bulla-drains"
+     "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l"
     ]
    },
    {
@@ -57264,7 +57738,9 @@
      "bulla-septa",
      "bulla-compressed",
      "bulla-staple",
-     "bulla-drains"
+     "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l"
     ]
    },
    {
@@ -57389,7 +57865,9 @@
      "bulla-septa",
      "bulla-compressed",
      "bulla-staple",
-     "bulla-drains"
+     "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l"
     ]
    },
    {
@@ -57534,7 +58012,9 @@
      "bulla-septa",
      "bulla-compressed",
      "bulla-staple",
-     "bulla-drains"
+     "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l"
     ]
    },
    {
@@ -57691,7 +58171,9 @@
      "bulla-septa",
      "bulla-compressed",
      "bulla-staple",
-     "bulla-drains"
+     "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l"
     ]
    },
    {
@@ -57815,7 +58297,9 @@
      "bulla-septa",
      "bulla-compressed",
      "bulla-staple",
-     "bulla-drains"
+     "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l"
     ]
    },
    {
@@ -57923,7 +58407,9 @@
      "bulla-septa",
      "bulla-compressed",
      "bulla-staple",
-     "bulla-drains"
+     "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l"
     ],
     "opacity": {
      "lul-arteries": 0.16,
@@ -58151,6 +58637,8 @@
      "bulla-compressed",
      "bulla-staple",
      "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l",
      "lul-arteries",
      "lll-arteries",
      "lul-veins",
@@ -58357,7 +58845,9 @@
      "bulla-septa",
      "bulla-compressed",
      "bulla-staple",
-     "bulla-drains"
+     "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l"
     ]
    },
    {
@@ -58455,6 +58945,8 @@
      "bulla-compressed",
      "bulla-staple",
      "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l",
      "lul-arteries",
      "lll-arteries",
      "lul-veins",
@@ -58608,6 +59100,8 @@
      "bulla-compressed",
      "bulla-staple",
      "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l",
      "lul-arteries",
      "lll-arteries",
      "lul-veins",
@@ -58731,7 +59225,9 @@
      "bulla-septa",
      "bulla-compressed",
      "bulla-staple",
-     "bulla-drains"
+     "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l"
     ],
     "pose": "lateral",
     "opacity": {
@@ -58890,7 +59386,9 @@
      "bulla-septa",
      "bulla-compressed",
      "bulla-staple",
-     "bulla-drains"
+     "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l"
     ]
    },
    {
@@ -59028,7 +59526,9 @@
      "bulla-septa",
      "bulla-compressed",
      "bulla-staple",
-     "bulla-drains"
+     "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l"
     ]
    },
    {
@@ -59180,7 +59680,9 @@
      "bulla-septa",
      "bulla-compressed",
      "bulla-staple",
-     "bulla-drains"
+     "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l"
     ]
    },
    {
@@ -59336,7 +59838,9 @@
      "bulla-septa",
      "bulla-compressed",
      "bulla-staple",
-     "bulla-drains"
+     "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l"
     ]
    },
    {
@@ -59481,7 +59985,9 @@
      "bulla-septa",
      "bulla-compressed",
      "bulla-staple",
-     "bulla-drains"
+     "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l"
     ]
    },
    {
@@ -59605,7 +60111,9 @@
      "bulla-septa",
      "bulla-compressed",
      "bulla-staple",
-     "bulla-drains"
+     "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l"
     ]
    },
    {
@@ -59713,7 +60221,9 @@
      "bulla-septa",
      "bulla-compressed",
      "bulla-staple",
-     "bulla-drains"
+     "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l"
     ],
     "opacity": {
      "lul-arteries": 0.16,
@@ -59945,6 +60455,8 @@
      "bulla-compressed",
      "bulla-staple",
      "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l",
      "lul-arteries",
      "lll-arteries",
      "lul-veins",
@@ -60151,7 +60663,9 @@
      "bulla-septa",
      "bulla-compressed",
      "bulla-staple",
-     "bulla-drains"
+     "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l"
     ]
    },
    {
@@ -60249,6 +60763,8 @@
      "bulla-compressed",
      "bulla-staple",
      "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l",
      "lul-arteries",
      "lll-arteries",
      "lul-veins",
@@ -60402,6 +60918,8 @@
      "bulla-compressed",
      "bulla-staple",
      "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l",
      "lul-arteries",
      "lll-arteries",
      "lul-veins",
@@ -60535,7 +61053,9 @@
      "bulla-septa",
      "bulla-compressed",
      "bulla-staple",
-     "bulla-drains"
+     "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l"
     ],
     "pose": "lateral",
     "show": [
@@ -60700,7 +61220,9 @@
      "bulla-septa",
      "bulla-compressed",
      "bulla-staple",
-     "bulla-drains"
+     "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l"
     ]
    },
    {
@@ -60838,7 +61360,9 @@
      "bulla-septa",
      "bulla-compressed",
      "bulla-staple",
-     "bulla-drains"
+     "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l"
     ]
    },
    {
@@ -60990,7 +61514,9 @@
      "bulla-septa",
      "bulla-compressed",
      "bulla-staple",
-     "bulla-drains"
+     "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l"
     ]
    },
    {
@@ -61146,7 +61672,9 @@
      "bulla-septa",
      "bulla-compressed",
      "bulla-staple",
-     "bulla-drains"
+     "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l"
     ]
    },
    {
@@ -61291,7 +61819,9 @@
      "bulla-septa",
      "bulla-compressed",
      "bulla-staple",
-     "bulla-drains"
+     "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l"
     ]
    },
    {
@@ -61415,7 +61945,9 @@
      "bulla-septa",
      "bulla-compressed",
      "bulla-staple",
-     "bulla-drains"
+     "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l"
     ]
    },
    {
@@ -61523,7 +62055,9 @@
      "bulla-septa",
      "bulla-compressed",
      "bulla-staple",
-     "bulla-drains"
+     "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l"
     ],
     "opacity": {
      "lul-arteries": 0.16,
@@ -61755,6 +62289,8 @@
      "bulla-compressed",
      "bulla-staple",
      "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l",
      "lul-arteries",
      "lll-arteries",
      "lul-veins",
@@ -61961,7 +62497,9 @@
      "bulla-septa",
      "bulla-compressed",
      "bulla-staple",
-     "bulla-drains"
+     "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l"
     ]
    },
    {
@@ -62059,6 +62597,8 @@
      "bulla-compressed",
      "bulla-staple",
      "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l",
      "lul-arteries",
      "lll-arteries",
      "lul-veins",
@@ -62212,6 +62752,8 @@
      "bulla-compressed",
      "bulla-staple",
      "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l",
      "lul-arteries",
      "lll-arteries",
      "lul-veins",
@@ -62345,7 +62887,9 @@
      "bulla-septa",
      "bulla-compressed",
      "bulla-staple",
-     "bulla-drains"
+     "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l"
     ]
    },
    {
@@ -62500,7 +63044,9 @@
      "bulla-septa",
      "bulla-compressed",
      "bulla-staple",
-     "bulla-drains"
+     "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l"
     ]
    },
    {
@@ -62638,7 +63184,9 @@
      "bulla-septa",
      "bulla-compressed",
      "bulla-staple",
-     "bulla-drains"
+     "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l"
     ]
    },
    {
@@ -62790,7 +63338,9 @@
      "bulla-septa",
      "bulla-compressed",
      "bulla-staple",
-     "bulla-drains"
+     "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l"
     ]
    },
    {
@@ -62946,7 +63496,9 @@
      "bulla-septa",
      "bulla-compressed",
      "bulla-staple",
-     "bulla-drains"
+     "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l"
     ]
    },
    {
@@ -63091,7 +63643,9 @@
      "bulla-septa",
      "bulla-compressed",
      "bulla-staple",
-     "bulla-drains"
+     "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l"
     ]
    },
    {
@@ -63215,7 +63769,9 @@
      "bulla-septa",
      "bulla-compressed",
      "bulla-staple",
-     "bulla-drains"
+     "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l"
     ]
    },
    {
@@ -63323,7 +63879,9 @@
      "bulla-septa",
      "bulla-compressed",
      "bulla-staple",
-     "bulla-drains"
+     "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l"
     ],
     "opacity": {
      "lul-arteries": 0.16,
@@ -63555,6 +64113,8 @@
      "bulla-compressed",
      "bulla-staple",
      "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l",
      "lul-arteries",
      "lll-arteries",
      "lul-veins",
@@ -63761,7 +64321,9 @@
      "bulla-septa",
      "bulla-compressed",
      "bulla-staple",
-     "bulla-drains"
+     "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l"
     ]
    },
    {
@@ -63859,6 +64421,8 @@
      "bulla-compressed",
      "bulla-staple",
      "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l",
      "lul-arteries",
      "lll-arteries",
      "lul-veins",
@@ -64012,6 +64576,8 @@
      "bulla-compressed",
      "bulla-staple",
      "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l",
      "lul-arteries",
      "lll-arteries",
      "lul-veins",
@@ -64145,7 +64711,9 @@
      "bulla-septa",
      "bulla-compressed",
      "bulla-staple",
-     "bulla-drains"
+     "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l"
     ]
    },
    {
@@ -64300,7 +64868,9 @@
      "bulla-septa",
      "bulla-compressed",
      "bulla-staple",
-     "bulla-drains"
+     "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l"
     ]
    },
    {
@@ -64438,7 +65008,9 @@
      "bulla-septa",
      "bulla-compressed",
      "bulla-staple",
-     "bulla-drains"
+     "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l"
     ]
    },
    {
@@ -64590,7 +65162,9 @@
      "bulla-septa",
      "bulla-compressed",
      "bulla-staple",
-     "bulla-drains"
+     "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l"
     ]
    },
    {
@@ -64746,7 +65320,9 @@
      "bulla-septa",
      "bulla-compressed",
      "bulla-staple",
-     "bulla-drains"
+     "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l"
     ]
    },
    {
@@ -64891,7 +65467,9 @@
      "bulla-septa",
      "bulla-compressed",
      "bulla-staple",
-     "bulla-drains"
+     "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l"
     ]
    },
    {
@@ -65015,7 +65593,9 @@
      "bulla-septa",
      "bulla-compressed",
      "bulla-staple",
-     "bulla-drains"
+     "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l"
     ]
    },
    {
@@ -65123,7 +65703,9 @@
      "bulla-septa",
      "bulla-compressed",
      "bulla-staple",
-     "bulla-drains"
+     "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l"
     ],
     "opacity": {
      "lul-arteries": 0.16,
@@ -65355,6 +65937,8 @@
      "bulla-compressed",
      "bulla-staple",
      "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l",
      "lul-arteries",
      "lll-arteries",
      "lul-veins",
@@ -65562,7 +66146,9 @@
      "bulla-septa",
      "bulla-compressed",
      "bulla-staple",
-     "bulla-drains"
+     "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l"
     ]
    },
    {
@@ -65660,6 +66246,8 @@
      "bulla-compressed",
      "bulla-staple",
      "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l",
      "lul-arteries",
      "lll-arteries",
      "lul-veins",
@@ -65816,6 +66404,8 @@
      "bulla-compressed",
      "bulla-staple",
      "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l",
      "lul-arteries",
      "lll-arteries",
      "lul-veins",
@@ -65939,7 +66529,9 @@
      "bulla-septa",
      "bulla-compressed",
      "bulla-staple",
-     "bulla-drains"
+     "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l"
     ],
     "pose": "lateral",
     "opacity": {
@@ -66100,7 +66692,9 @@
      "bulla-septa",
      "bulla-compressed",
      "bulla-staple",
-     "bulla-drains"
+     "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l"
     ]
    },
    {
@@ -66289,7 +66883,9 @@
      "bulla-septa",
      "bulla-compressed",
      "bulla-staple",
-     "bulla-drains"
+     "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l"
     ]
    },
    {
@@ -66464,7 +67060,9 @@
      "bulla-septa",
      "bulla-compressed",
      "bulla-staple",
-     "bulla-drains"
+     "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l"
     ]
    },
    {
@@ -66618,7 +67216,9 @@
      "bulla-septa",
      "bulla-compressed",
      "bulla-staple",
-     "bulla-drains"
+     "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l"
     ]
    },
    {
@@ -66776,7 +67376,9 @@
      "bulla-septa",
      "bulla-compressed",
      "bulla-staple",
-     "bulla-drains"
+     "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l"
     ]
    },
    {
@@ -66900,7 +67502,9 @@
      "bulla-septa",
      "bulla-compressed",
      "bulla-staple",
-     "bulla-drains"
+     "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l"
     ]
    },
    {
@@ -67008,7 +67612,9 @@
      "bulla-septa",
      "bulla-compressed",
      "bulla-staple",
-     "bulla-drains"
+     "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l"
     ],
     "opacity": {
      "lul-arteries": 0.16,
@@ -67240,6 +67846,8 @@
      "bulla-compressed",
      "bulla-staple",
      "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l",
      "lul-arteries",
      "lll-arteries",
      "lul-veins",
@@ -67447,7 +68055,9 @@
      "bulla-septa",
      "bulla-compressed",
      "bulla-staple",
-     "bulla-drains"
+     "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l"
     ]
    },
    {
@@ -67545,6 +68155,8 @@
      "bulla-compressed",
      "bulla-staple",
      "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l",
      "lul-arteries",
      "lll-arteries",
      "lul-veins",
@@ -67701,6 +68313,8 @@
      "bulla-compressed",
      "bulla-staple",
      "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l",
      "lul-arteries",
      "lll-arteries",
      "lul-veins",
@@ -67824,7 +68438,9 @@
      "bulla-septa",
      "bulla-compressed",
      "bulla-staple",
-     "bulla-drains"
+     "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l"
     ],
     "pose": "lateral",
     "opacity": {
@@ -67985,7 +68601,9 @@
      "bulla-septa",
      "bulla-compressed",
      "bulla-staple",
-     "bulla-drains"
+     "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l"
     ]
    },
    {
@@ -68139,7 +68757,9 @@
      "bulla-septa",
      "bulla-compressed",
      "bulla-staple",
-     "bulla-drains"
+     "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l"
     ]
    },
    {
@@ -68297,7 +68917,9 @@
      "bulla-septa",
      "bulla-compressed",
      "bulla-staple",
-     "bulla-drains"
+     "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l"
     ]
    },
    {
@@ -68443,7 +69065,9 @@
      "bulla-septa",
      "bulla-compressed",
      "bulla-staple",
-     "bulla-drains"
+     "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l"
     ]
    },
    {
@@ -68616,7 +69240,9 @@
      "bulla-septa",
      "bulla-compressed",
      "bulla-staple",
-     "bulla-drains"
+     "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l"
     ]
    },
    {
@@ -68740,7 +69366,9 @@
      "bulla-septa",
      "bulla-compressed",
      "bulla-staple",
-     "bulla-drains"
+     "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l"
     ]
    },
    {
@@ -68848,7 +69476,9 @@
      "bulla-septa",
      "bulla-compressed",
      "bulla-staple",
-     "bulla-drains"
+     "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l"
     ],
     "opacity": {
      "lul-arteries": 0.16,
@@ -69080,6 +69710,8 @@
      "bulla-compressed",
      "bulla-staple",
      "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l",
      "lul-arteries",
      "lll-arteries",
      "lul-veins",
@@ -69287,7 +69919,9 @@
      "bulla-septa",
      "bulla-compressed",
      "bulla-staple",
-     "bulla-drains"
+     "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l"
     ]
    },
    {
@@ -69385,6 +70019,8 @@
      "bulla-compressed",
      "bulla-staple",
      "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l",
      "lul-arteries",
      "lll-arteries",
      "lul-veins",
@@ -69541,6 +70177,8 @@
      "bulla-compressed",
      "bulla-staple",
      "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l",
      "lul-arteries",
      "lll-arteries",
      "lul-veins",
@@ -69674,7 +70312,9 @@
      "bulla-septa",
      "bulla-compressed",
      "bulla-staple",
-     "bulla-drains"
+     "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l"
     ],
     "pose": "lateral",
     "show": [
@@ -69841,7 +70481,9 @@
      "bulla-septa",
      "bulla-compressed",
      "bulla-staple",
-     "bulla-drains"
+     "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l"
     ]
    },
    {
@@ -70030,7 +70672,9 @@
      "bulla-septa",
      "bulla-compressed",
      "bulla-staple",
-     "bulla-drains"
+     "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l"
     ]
    },
    {
@@ -70205,7 +70849,9 @@
      "bulla-septa",
      "bulla-compressed",
      "bulla-staple",
-     "bulla-drains"
+     "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l"
     ]
    },
    {
@@ -70359,7 +71005,9 @@
      "bulla-septa",
      "bulla-compressed",
      "bulla-staple",
-     "bulla-drains"
+     "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l"
     ]
    },
    {
@@ -70517,7 +71165,9 @@
      "bulla-septa",
      "bulla-compressed",
      "bulla-staple",
-     "bulla-drains"
+     "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l"
     ]
    },
    {
@@ -70641,7 +71291,9 @@
      "bulla-septa",
      "bulla-compressed",
      "bulla-staple",
-     "bulla-drains"
+     "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l"
     ]
    },
    {
@@ -70749,7 +71401,9 @@
      "bulla-septa",
      "bulla-compressed",
      "bulla-staple",
-     "bulla-drains"
+     "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l"
     ],
     "opacity": {
      "lul-arteries": 0.16,
@@ -70981,6 +71635,8 @@
      "bulla-compressed",
      "bulla-staple",
      "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l",
      "lul-arteries",
      "lll-arteries",
      "lul-veins",
@@ -71188,7 +71844,9 @@
      "bulla-septa",
      "bulla-compressed",
      "bulla-staple",
-     "bulla-drains"
+     "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l"
     ]
    },
    {
@@ -71286,6 +71944,8 @@
      "bulla-compressed",
      "bulla-staple",
      "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l",
      "lul-arteries",
      "lll-arteries",
      "lul-veins",
@@ -71442,6 +72102,8 @@
      "bulla-compressed",
      "bulla-staple",
      "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l",
      "lul-arteries",
      "lll-arteries",
      "lul-veins",
@@ -71575,7 +72237,9 @@
      "bulla-septa",
      "bulla-compressed",
      "bulla-staple",
-     "bulla-drains"
+     "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l"
     ]
    },
    {
@@ -71732,7 +72396,9 @@
      "bulla-septa",
      "bulla-compressed",
      "bulla-staple",
-     "bulla-drains"
+     "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l"
     ]
    },
    {
@@ -71921,7 +72587,9 @@
      "bulla-septa",
      "bulla-compressed",
      "bulla-staple",
-     "bulla-drains"
+     "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l"
     ]
    },
    {
@@ -72096,7 +72764,9 @@
      "bulla-septa",
      "bulla-compressed",
      "bulla-staple",
-     "bulla-drains"
+     "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l"
     ]
    },
    {
@@ -72250,7 +72920,9 @@
      "bulla-septa",
      "bulla-compressed",
      "bulla-staple",
-     "bulla-drains"
+     "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l"
     ]
    },
    {
@@ -72408,7 +73080,9 @@
      "bulla-septa",
      "bulla-compressed",
      "bulla-staple",
-     "bulla-drains"
+     "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l"
     ]
    },
    {
@@ -72532,7 +73206,9 @@
      "bulla-septa",
      "bulla-compressed",
      "bulla-staple",
-     "bulla-drains"
+     "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l"
     ]
    },
    {
@@ -72640,7 +73316,9 @@
      "bulla-septa",
      "bulla-compressed",
      "bulla-staple",
-     "bulla-drains"
+     "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l"
     ],
     "opacity": {
      "lul-arteries": 0.16,
@@ -72872,6 +73550,8 @@
      "bulla-compressed",
      "bulla-staple",
      "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l",
      "lul-arteries",
      "lll-arteries",
      "lul-veins",
@@ -73079,7 +73759,9 @@
      "bulla-septa",
      "bulla-compressed",
      "bulla-staple",
-     "bulla-drains"
+     "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l"
     ]
    },
    {
@@ -73177,6 +73859,8 @@
      "bulla-compressed",
      "bulla-staple",
      "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l",
      "lul-arteries",
      "lll-arteries",
      "lul-veins",
@@ -73333,6 +74017,8 @@
      "bulla-compressed",
      "bulla-staple",
      "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l",
      "lul-arteries",
      "lll-arteries",
      "lul-veins",
@@ -73466,7 +74152,9 @@
      "bulla-septa",
      "bulla-compressed",
      "bulla-staple",
-     "bulla-drains"
+     "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l"
     ]
    },
    {
@@ -73623,7 +74311,9 @@
      "bulla-septa",
      "bulla-compressed",
      "bulla-staple",
-     "bulla-drains"
+     "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l"
     ]
    },
    {
@@ -73812,7 +74502,9 @@
      "bulla-septa",
      "bulla-compressed",
      "bulla-staple",
-     "bulla-drains"
+     "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l"
     ]
    },
    {
@@ -73987,7 +74679,9 @@
      "bulla-septa",
      "bulla-compressed",
      "bulla-staple",
-     "bulla-drains"
+     "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l"
     ]
    },
    {
@@ -74141,7 +74835,9 @@
      "bulla-septa",
      "bulla-compressed",
      "bulla-staple",
-     "bulla-drains"
+     "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l"
     ]
    },
    {
@@ -74299,7 +74995,9 @@
      "bulla-septa",
      "bulla-compressed",
      "bulla-staple",
-     "bulla-drains"
+     "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l"
     ]
    },
    {
@@ -74423,7 +75121,9 @@
      "bulla-septa",
      "bulla-compressed",
      "bulla-staple",
-     "bulla-drains"
+     "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l"
     ]
    },
    {
@@ -74531,7 +75231,9 @@
      "bulla-septa",
      "bulla-compressed",
      "bulla-staple",
-     "bulla-drains"
+     "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l"
     ],
     "opacity": {
      "lul-arteries": 0.16,
@@ -74763,6 +75465,8 @@
      "bulla-compressed",
      "bulla-staple",
      "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l",
      "lul-arteries",
      "lll-arteries",
      "lul-veins",
@@ -74957,7 +75661,9 @@
      "bulla-septa",
      "bulla-compressed",
      "bulla-staple",
-     "bulla-drains"
+     "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l"
     ]
    },
    {
@@ -75055,6 +75761,8 @@
      "bulla-compressed",
      "bulla-staple",
      "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l",
      "lul-arteries",
      "lll-arteries",
      "lul-veins",
@@ -75208,6 +75916,8 @@
      "bulla-compressed",
      "bulla-staple",
      "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l",
      "lul-arteries",
      "lll-arteries",
      "lul-veins",
@@ -75331,7 +76041,9 @@
      "bulla-septa",
      "bulla-compressed",
      "bulla-staple",
-     "bulla-drains"
+     "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l"
     ],
     "pose": "lateral",
     "opacity": {
@@ -75493,7 +76205,9 @@
      "bulla-septa",
      "bulla-compressed",
      "bulla-staple",
-     "bulla-drains"
+     "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l"
     ]
    },
    {
@@ -75626,7 +76340,9 @@
      "bulla-septa",
      "bulla-compressed",
      "bulla-staple",
-     "bulla-drains"
+     "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l"
     ]
    },
    {
@@ -75760,7 +76476,9 @@
      "bulla-septa",
      "bulla-compressed",
      "bulla-staple",
-     "bulla-drains"
+     "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l"
     ]
    },
    {
@@ -75914,7 +76632,9 @@
      "bulla-septa",
      "bulla-compressed",
      "bulla-staple",
-     "bulla-drains"
+     "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l"
     ]
    },
    {
@@ -76058,7 +76778,9 @@
      "bulla-septa",
      "bulla-compressed",
      "bulla-staple",
-     "bulla-drains"
+     "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l"
     ]
    },
    {
@@ -76204,7 +76926,9 @@
      "bulla-septa",
      "bulla-compressed",
      "bulla-staple",
-     "bulla-drains"
+     "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l"
     ]
    },
    {
@@ -76311,7 +77035,9 @@
      "bulla-septa",
      "bulla-compressed",
      "bulla-staple",
-     "bulla-drains"
+     "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l"
     ],
     "opacity": {
      "lul-arteries": 0.16,
@@ -76597,6 +77323,8 @@
      "bulla-compressed",
      "bulla-staple",
      "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l",
      "lul-arteries",
      "lll-arteries",
      "lul-veins",
@@ -76726,7 +77454,9 @@
      "bulla-septa",
      "bulla-compressed",
      "bulla-staple",
-     "bulla-drains"
+     "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l"
     ]
    },
    {
@@ -76814,6 +77544,8 @@
      "bulla-compressed",
      "bulla-staple",
      "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l",
      "lul-arteries",
      "lll-arteries",
      "lul-veins",
@@ -76955,6 +77687,8 @@
      "bulla-compressed",
      "bulla-staple",
      "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l",
      "lul-arteries",
      "lll-arteries",
      "lul-veins",
@@ -77088,7 +77822,9 @@
      "bulla-septa",
      "bulla-compressed",
      "bulla-staple",
-     "bulla-drains"
+     "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l"
     ],
     "pose": "lateral",
     "show": [
@@ -77256,7 +77992,9 @@
      "bulla-septa",
      "bulla-compressed",
      "bulla-staple",
-     "bulla-drains"
+     "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l"
     ]
    },
    {
@@ -77410,7 +78148,9 @@
      "bulla-septa",
      "bulla-compressed",
      "bulla-staple",
-     "bulla-drains"
+     "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l"
     ]
    },
    {
@@ -77544,7 +78284,9 @@
      "bulla-septa",
      "bulla-compressed",
      "bulla-staple",
-     "bulla-drains"
+     "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l"
     ]
    },
    {
@@ -77677,7 +78419,9 @@
      "bulla-septa",
      "bulla-compressed",
      "bulla-staple",
-     "bulla-drains"
+     "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l"
     ]
    },
    {
@@ -77821,7 +78565,9 @@
      "bulla-septa",
      "bulla-compressed",
      "bulla-staple",
-     "bulla-drains"
+     "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l"
     ]
    },
    {
@@ -77967,7 +78713,9 @@
      "bulla-septa",
      "bulla-compressed",
      "bulla-staple",
-     "bulla-drains"
+     "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l"
     ]
    },
    {
@@ -78074,7 +78822,9 @@
      "bulla-septa",
      "bulla-compressed",
      "bulla-staple",
-     "bulla-drains"
+     "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l"
     ],
     "opacity": {
      "lul-arteries": 0.16,
@@ -78292,6 +79042,8 @@
      "bulla-compressed",
      "bulla-staple",
      "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l",
      "lul-arteries",
      "lll-arteries",
      "lul-veins",
@@ -78488,7 +79240,9 @@
      "bulla-septa",
      "bulla-compressed",
      "bulla-staple",
-     "bulla-drains"
+     "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l"
     ]
    },
    {
@@ -78586,6 +79340,8 @@
      "bulla-compressed",
      "bulla-staple",
      "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l",
      "lul-arteries",
      "lll-arteries",
      "lul-veins",
@@ -78739,6 +79495,8 @@
      "bulla-compressed",
      "bulla-staple",
      "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l",
      "lul-arteries",
      "lll-arteries",
      "lul-veins",
@@ -78862,7 +79620,9 @@
      "bulla-septa",
      "bulla-compressed",
      "bulla-staple",
-     "bulla-drains"
+     "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l"
     ],
     "pose": "lateral",
     "opacity": {
@@ -79026,7 +79786,9 @@
      "bulla-septa",
      "bulla-compressed",
      "bulla-staple",
-     "bulla-drains"
+     "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l"
     ]
    },
    {
@@ -79161,7 +79923,9 @@
      "bulla-septa",
      "bulla-compressed",
      "bulla-staple",
-     "bulla-drains"
+     "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l"
     ]
    },
    {
@@ -79297,7 +80061,9 @@
      "bulla-septa",
      "bulla-compressed",
      "bulla-staple",
-     "bulla-drains"
+     "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l"
     ]
    },
    {
@@ -79454,7 +80220,9 @@
      "bulla-septa",
      "bulla-compressed",
      "bulla-staple",
-     "bulla-drains"
+     "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l"
     ]
    },
    {
@@ -79599,7 +80367,9 @@
      "bulla-septa",
      "bulla-compressed",
      "bulla-staple",
-     "bulla-drains"
+     "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l"
     ]
    },
    {
@@ -79739,7 +80509,9 @@
      "bulla-septa",
      "bulla-compressed",
      "bulla-staple",
-     "bulla-drains"
+     "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l"
     ]
    },
    {
@@ -79846,7 +80618,9 @@
      "bulla-septa",
      "bulla-compressed",
      "bulla-staple",
-     "bulla-drains"
+     "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l"
     ],
     "opacity": {
      "lul-arteries": 0.16,
@@ -80076,6 +80850,8 @@
      "bulla-compressed",
      "bulla-staple",
      "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l",
      "lul-arteries",
      "lll-arteries",
      "lul-veins",
@@ -80272,7 +81048,9 @@
      "bulla-septa",
      "bulla-compressed",
      "bulla-staple",
-     "bulla-drains"
+     "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l"
     ]
    },
    {
@@ -80370,6 +81148,8 @@
      "bulla-compressed",
      "bulla-staple",
      "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l",
      "lul-arteries",
      "lll-arteries",
      "lul-veins",
@@ -80523,6 +81303,8 @@
      "bulla-compressed",
      "bulla-staple",
      "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l",
      "lul-arteries",
      "lll-arteries",
      "lul-veins",
@@ -80656,7 +81438,9 @@
      "bulla-septa",
      "bulla-compressed",
      "bulla-staple",
-     "bulla-drains"
+     "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l"
     ],
     "pose": "lateral",
     "show": [
@@ -80826,7 +81610,9 @@
      "bulla-septa",
      "bulla-compressed",
      "bulla-staple",
-     "bulla-drains"
+     "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l"
     ]
    },
    {
@@ -80983,7 +81769,9 @@
      "bulla-septa",
      "bulla-compressed",
      "bulla-staple",
-     "bulla-drains"
+     "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l"
     ]
    },
    {
@@ -81119,7 +81907,9 @@
      "bulla-septa",
      "bulla-compressed",
      "bulla-staple",
-     "bulla-drains"
+     "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l"
     ]
    },
    {
@@ -81254,7 +82044,9 @@
      "bulla-septa",
      "bulla-compressed",
      "bulla-staple",
-     "bulla-drains"
+     "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l"
     ]
    },
    {
@@ -81399,7 +82191,9 @@
      "bulla-septa",
      "bulla-compressed",
      "bulla-staple",
-     "bulla-drains"
+     "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l"
     ]
    },
    {
@@ -81539,7 +82333,9 @@
      "bulla-septa",
      "bulla-compressed",
      "bulla-staple",
-     "bulla-drains"
+     "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l"
     ]
    },
    {
@@ -81646,7 +82442,9 @@
      "bulla-septa",
      "bulla-compressed",
      "bulla-staple",
-     "bulla-drains"
+     "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l"
     ],
     "opacity": {
      "lul-arteries": 0.16,
@@ -82055,7 +82853,9 @@
      "bulla-septa",
      "bulla-compressed",
      "bulla-staple",
-     "bulla-drains"
+     "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l"
     ]
    },
    {
@@ -82391,7 +83191,9 @@
      "bulla-septa",
      "bulla-compressed",
      "bulla-staple",
-     "bulla-drains"
+     "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l"
     ],
     "pose": "lateral",
     "show": [
@@ -82731,7 +83533,9 @@
      "bulla-septa",
      "bulla-compressed",
      "bulla-staple",
-     "bulla-drains"
+     "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l"
     ],
     "show": [
      "bx-lul",
@@ -82913,7 +83717,9 @@
      "bulla-septa",
      "bulla-compressed",
      "bulla-staple",
-     "bulla-drains"
+     "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l"
     ],
     "show": [
      "bx-lul",
@@ -83095,7 +83901,9 @@
      "bulla-septa",
      "bulla-compressed",
      "bulla-staple",
-     "bulla-drains"
+     "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l"
     ],
     "show": [
      "bx-lul",
@@ -83256,7 +84064,9 @@
      "bulla-septa",
      "bulla-compressed",
      "bulla-staple",
-     "bulla-drains"
+     "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l"
     ],
     "show": [
      "bx-lul",
@@ -83415,7 +84225,9 @@
      "bulla-septa",
      "bulla-compressed",
      "bulla-staple",
-     "bulla-drains"
+     "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l"
     ],
     "show": [
      "bx-lul",
@@ -83545,7 +84357,9 @@
      "bulla-septa",
      "bulla-compressed",
      "bulla-staple",
-     "bulla-drains"
+     "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l"
     ],
     "show": [
      "bx-lul",
@@ -83659,7 +84473,9 @@
      "bulla-septa",
      "bulla-compressed",
      "bulla-staple",
-     "bulla-drains"
+     "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l"
     ],
     "opacity": {
      "lul-arteries": 0.16,
@@ -83933,6 +84749,8 @@
      "bulla-compressed",
      "bulla-staple",
      "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l",
      "lul-arteries",
      "lll-arteries",
      "lul-veins",
@@ -84035,6 +84853,8 @@
      "bulla-compressed",
      "bulla-staple",
      "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l",
      "lul-arteries",
      "lll-arteries",
      "lul-veins",
@@ -84177,6 +84997,8 @@
      "bulla-compressed",
      "bulla-staple",
      "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l",
      "lul-arteries",
      "lll-arteries",
      "lul-veins",
@@ -84310,7 +85132,9 @@
      "bulla-septa",
      "bulla-compressed",
      "bulla-staple",
-     "bulla-drains"
+     "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l"
     ],
     "seq": 3
    },
@@ -84393,7 +85217,9 @@
      "bulla-septa",
      "bulla-compressed",
      "bulla-staple",
-     "bulla-drains"
+     "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l"
     ],
     "ct": {
      "focus": [
@@ -84588,7 +85414,9 @@
      "n-vagus-r",
      "ipl-r",
      "bulla-staple",
-     "bulla-drains"
+     "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l"
     ],
     "highlight": [
      "bulla-giant"
@@ -84752,7 +85580,9 @@
      "n-vagus-r",
      "ipl-r",
      "bulla-staple",
-     "bulla-drains"
+     "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l"
     ],
     "highlight": [
      "bulla-compressed"
@@ -84914,7 +85744,9 @@
      "n-vagus-r",
      "ipl-r",
      "bulla-staple",
-     "bulla-drains"
+     "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l"
     ],
     "highlight": [
      "bulla-giant"
@@ -85075,7 +85907,9 @@
      "n-vagus-r",
      "ipl-r",
      "bulla-staple",
-     "bulla-drains"
+     "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l"
     ],
     "highlight": [
      "bulla-compressed"
@@ -85130,6 +85964,174 @@
     },
     "askAfter": true,
     "seq": 3
+   },
+   {
+    "id": "bul-bilat",
+    "phase": "Decision",
+    "title": "Bilateral giant bullae: the management strategy",
+    "body": "<p>Bullous disease is often <b>bilateral</b>. The plan is decided side by side, not bulla by bulla.</p><figure class=\"case-img\"><video src=\"media/bullae-bilateral-ct.mp4\" poster=\"media/bullae-bilateral-ct.jpg\" controls preload=\"none\" playsinline muted></video><figcaption>Axial CT, apex to upper abdomen (lung window), shared for teaching with identifiers removed. Right: a giant bulla filling most of the hemithorax, the lower lobe compressed at the base. Left: several large upper lobe bullae with septa; the lower lobe dense (compressive collapse or infection). Scroll through and decide: which side first, and what to check at the left base?</figcaption></figure><h4>1. Prepare both lungs (all patients)</h4><ul><li>Stop smoking (confirmed), pulmonary rehabilitation, optimized inhalers, vaccines; treat any infection; confirm TB is treated (GeneXpert)</li><li><b>CT of both sides</b>: size of each bulla against its hemithorax, and the <b>compressed lung</b> under each; emphysema in the rest of the lung</li><li><b>Split function</b>: a perfusion (V/Q) scan shows which side the lung under the bulla is still perfused; plus spirometry, DLCO, blood gas and echo (pulmonary hypertension)</li></ul><h4>2. Both sides giant: the strategy</h4><ul><li><b>Operate the worse side first</b>: the larger bulla, the more compressed but still perfused lung under it, the side of any pneumothorax or infection</li><li><b>Staged VATS</b> is the safer default: the first side, then recovery and reassessment (symptoms, CT, spirometry, DLCO) before the second side, usually within about 3\u20136 months <span class=\"tag prop\">proposed</span></li><li>Often the first side helps enough that the second is delayed or not needed; operate the second side if it is still giant and limiting</li><li><b>One stage</b> (sequential bilateral VATS at one anesthetic, or median sternotomy) only for selected fit patients, similar disease on both sides, experienced anesthesia; it doubles the air leak and risks bilateral re-expansion edema</li></ul><table class=\"mini\"><tr><th>Other situations</th><th>Plan</th></tr><tr><td>One side dominant, the other small</td><td>Operate the dominant side only; follow the other with CT</td></tr><tr><td>Contralateral bulla enlarges under positive pressure during the first side</td><td>Low airway pressures; falling blood pressure and rising pressures: <b>decompress and operate on the second side at once</b></td></tr><tr><td>Bilateral pneumothorax from bullae</td><td>Drain both sides; bullectomy and pleurodesis, the worse side first or sequential bilateral VATS at one anesthetic</td></tr><tr><td>Unfit for resection</td><td><b>Intracavitary drainage (Brompton)</b> of the dominant bulla; best medical therapy; valves only in selected anatomy, not for a giant bulla</td></tr></table><ul><li><b>Median sternotomy</b> reaches both apices and avoids two thoracotomies, but gives poor access to the lower lobes and the back of the left chest</li><li>One-stage surgery saves an anesthetic but takes longer, doubles the air leak, and risks bilateral re-expansion edema: hence many prefer staging</li><li>Lung transplantation is the end of the road for diffuse bilateral disease; not available locally</li></ul><p class=\"evidence\"><b>Evidence:</b> Kitazawa et al. 2017: a planned two-stage VATS approach (one-stage judged more invasive; risk of bilateral re-expansion edema); the contralateral bulla enlarged under positive pressure after the first side and compressed the mediastinum, needing immediate second-side bullectomy; one-stage versus two-stage remains controversial (case reports only). Song et al. 2013: one-stage options include sequential bilateral VATS or contralateral access through the anterior mediastinum. Schipper et al. 2004: 22 of 43 giant bullectomies were bilateral. Sternotomy access and staging interval: unit practice.</p>",
+    "view": {
+     "eye": [
+      -7.5,
+      405.6,
+      121.3
+     ],
+     "target": [
+      -7.5,
+      -1.9,
+      19.4
+     ]
+    },
+    "show": [
+     "rul",
+     "rml",
+     "rll",
+     "lul",
+     "lll",
+     "trachea",
+     "br-right-main",
+     "bulla-giant",
+     "bulla-septa",
+     "bulla-compressed",
+     "bulla-giant-l",
+     "bulla-compressed-l"
+    ],
+    "hide": [
+     "pa-truncus-anterior",
+     "pa-posterior-1",
+     "pa-a6",
+     "pa-posterior-2",
+     "pa-lingular",
+     "pa-basal-trunk",
+     "pa-left",
+     "lul-arteries",
+     "pv-superior",
+     "lul-veins",
+     "pv-inferior",
+     "br-lul",
+     "br-lll",
+     "br-left-main",
+     "lul-bronchi",
+     "br-lingular",
+     "br-upper-div",
+     "br-b6",
+     "pv-lingular",
+     "pv-upper-div",
+     "pv-v6",
+     "fissure-h",
+     "fissure-r",
+     "fissure",
+     "heart",
+     "laa",
+     "aorta",
+     "bct",
+     "lcca",
+     "lsca",
+     "svc",
+     "lbcv",
+     "esophagus",
+     "vert-t2",
+     "vert-t3",
+     "vert-t4",
+     "vert-t5",
+     "vert-t6",
+     "vert-t7",
+     "vert-t8",
+     "vert-t9",
+     "vert-t10",
+     "br-rul",
+     "br-intermedius",
+     "br-rml",
+     "br-rll",
+     "rul-bronchi",
+     "rpa-truncus",
+     "rpa-a3-1",
+     "rpa-ml-1",
+     "rpa-a6",
+     "rpa-a2-1",
+     "rpa-ml-2",
+     "rpa-basal",
+     "rpa",
+     "rul-arteries",
+     "rpv-rul",
+     "rul-veins",
+     "rpv-ml",
+     "rpv-superior",
+     "rpv-inferior",
+     "n-phrenic",
+     "n-vagus",
+     "n-rln",
+     "lig-art",
+     "ipl",
+     "ln-5",
+     "ln-6",
+     "ln-7",
+     "ln-10l",
+     "ln-11l",
+     "ln-9l",
+     "azygos",
+     "n-phrenic-r",
+     "n-vagus-r",
+     "ipl-r",
+     "bulla-staple",
+     "bulla-drains"
+    ],
+    "highlight": [
+     "bulla-giant",
+     "bulla-giant-l"
+    ],
+    "danger": [],
+    "labels": [
+     "bulla-giant",
+     "bulla-giant-l",
+     "bulla-compressed",
+     "bulla-compressed-l"
+    ],
+    "opacity": {
+     "rul": 0.2,
+     "rml": 0.3,
+     "rll": 0.25,
+     "lul": 0.2,
+     "lll": 0.25,
+     "bulla-giant": 0.4,
+     "bulla-giant-l": 0.4
+    },
+    "ct": {
+     "focus": [
+      -7.5,
+      -1.9,
+      19.4
+     ],
+     "plane": "coronal",
+     "window": "lung"
+    },
+    "ask": {
+     "question": "Giant bullae on both sides; the right is larger, with well-perfused compressed lung beneath it. He is fit. What is the usual plan?",
+     "choices": [
+      {
+       "text": "Right VATS bullectomy first, then reassess",
+       "correct": true,
+       "why": "Treat the worse side first and reassess before the second; staging is the safer default. One-stage surgery is reserved for selected fit patients with similar disease on both sides, in experienced hands."
+      },
+      {
+       "text": "One-stage bilateral bullectomy through a median sternotomy to save a second anesthetic",
+       "correct": false,
+       "why": ""
+      },
+      {
+       "text": "Bilateral endobronchial valves to both upper lobes as the first treatment",
+       "correct": false,
+       "why": ""
+      },
+      {
+       "text": "Medical therapy alone, since bilateral disease rules out any operation",
+       "correct": false,
+       "why": ""
+      }
+     ]
+    },
+    "askAfter": true,
+    "seq": 4
    },
    {
     "id": "bul-consent",
@@ -85238,7 +86240,9 @@
      "n-vagus-r",
      "ipl-r",
      "bulla-staple",
-     "bulla-drains"
+     "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l"
     ],
     "highlight": [],
     "danger": [],
@@ -85262,13 +86266,13 @@
      "plane": "coronal",
      "window": "lung"
     },
-    "seq": 4
+    "seq": 5
    },
    {
     "id": "bul-setup",
     "phase": "Setup",
     "title": "Anesthesia, position and ports",
-    "body": "<p><b>Anesthesia is the dangerous part.</b> Positive pressure can blow up the bulla or rupture it into a <b>tension pneumothorax</b>. Keep airway pressures low, allow a longer expiration, <b>no nitrous oxide</b>; isolate the lung early with a <b>double-lumen tube</b>; the surgeon is scrubbed at induction, ready to decompress.</p><ul><li>Lateral decubitus, the bulla side up</li><li>VATS: camera low, utility incision over the 4th space anteriorly, a posterior working port (the anterior approach ports)</li><li>Paravertebral or erector spinae catheter for analgesia: good analgesia is what keeps the patient off the ventilator</li></ul><p class=\"evidence\"><b>Evidence:</b> Avoid nitrous oxide and high airway pressures in bullous disease; one-lung ventilation is a technical advantage (Benditt 2006).</p> <span class=\"tag prop\">proposed</span>",
+    "body": "<p><b>Anesthesia is the dangerous part.</b> Positive pressure can blow up the bulla or rupture it into a <b>tension pneumothorax</b>. Keep airway pressures low, allow a longer expiration, <b>no nitrous oxide</b>; isolate the lung early with a <b>double-lumen tube</b>; the surgeon is scrubbed at induction, ready to decompress.</p><ul><li>Lateral decubitus, the bulla side up</li><li>VATS: camera low, utility incision over the 4th space anteriorly, a posterior working port (the anterior approach ports)</li><li>Paravertebral or erector spinae catheter for analgesia: good analgesia is what keeps the patient off the ventilator</li><li><b>Bilateral disease</b>: the bulla in the ventilated (down) lung can enlarge during one-lung ventilation and compress the mediastinum: watch pressures and blood pressure (Kitazawa et al. 2017)</li></ul><p class=\"evidence\"><b>Evidence:</b> Avoid nitrous oxide and high airway pressures in bullous disease; one-lung ventilation is a technical advantage (Benditt 2006).</p> <span class=\"tag prop\">proposed</span>",
     "view": {
      "frame": [
       "skin"
@@ -85378,7 +86382,9 @@
      "bulla-septa",
      "bulla-compressed",
      "bulla-staple",
-     "bulla-drains"
+     "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l"
     ],
     "highlight": [],
     "danger": [],
@@ -85424,7 +86430,7 @@
       }
      ]
     },
-    "seq": 5,
+    "seq": 6,
     "pose": "lateral"
    },
    {
@@ -85534,7 +86540,9 @@
      "n-vagus-r",
      "ipl-r",
      "bulla-staple",
-     "bulla-drains"
+     "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l"
     ],
     "highlight": [
      "bulla-giant"
@@ -85587,7 +86595,7 @@
       ]
      ]
     },
-    "seq": 6
+    "seq": 7
    },
    {
     "id": "bul-staple",
@@ -85696,7 +86704,9 @@
      "ipl-r",
      "bulla-septa",
      "bulla-staple",
-     "bulla-drains"
+     "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l"
     ],
     "highlight": [
      "bulla-compressed"
@@ -85780,7 +86790,7 @@
      ]
     },
     "askAfter": true,
-    "seq": 7
+    "seq": 8
    },
    {
     "id": "bul-close",
@@ -85888,7 +86898,9 @@
      "ipl-r",
      "bulla-giant",
      "bulla-septa",
-     "bulla-compressed"
+     "bulla-compressed",
+     "bulla-giant-l",
+     "bulla-compressed-l"
     ],
     "highlight": [
      "bulla-staple"
@@ -85923,7 +86935,7 @@
       "bulla-drains"
      ]
     },
-    "seq": 8
+    "seq": 9
    },
    {
     "id": "bul-icu",
@@ -86032,7 +87044,9 @@
      "ipl-r",
      "bulla-giant",
      "bulla-septa",
-     "bulla-compressed"
+     "bulla-compressed",
+     "bulla-giant-l",
+     "bulla-compressed-l"
     ],
     "highlight": [],
     "danger": [],
@@ -86082,7 +87096,7 @@
      ]
     },
     "askAfter": true,
-    "seq": 9
+    "seq": 10
    }
   ],
   "sources": [
@@ -86119,6 +87133,14 @@
     "url": "https://www.panafrican-med-journal.com/content/article/53/154/full"
    },
    {
+    "title": "Kitazawa S, et al. Surgical resection for bilateral giant emphysematous bullae. Clin Med Invest 2017;2. doi:10.15761/CMI.1000125",
+    "url": "https://www.oatext.com/Surgical-resection-for-bilateral-giant-emphysematous-bullae.php"
+   },
+   {
+    "title": "Song N, et al. Bilateral bullectomy through uniportal video-assisted thoracoscopic surgery combined with contralateral access to the anterior mediastinum. J Bras Pneumol 2013",
+    "url": "https://jornaldepneumologia.com.br/details/1802/en-US"
+   },
+   {
     "title": "Bronchoscopic lung volume reduction with an endobronchial valve for huge emphysematous bullae: a case report. BMC Pulm Med 2019",
     "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC6518705/"
    }
@@ -86139,6 +87161,10 @@
    },
    {
     "label": "Decision",
+    "kind": "other"
+   },
+   {
+    "label": "Bilateral",
     "kind": "other"
    },
    {
@@ -86248,6 +87274,8 @@
      "bulla-compressed",
      "bulla-staple",
      "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l",
      "lul-arteries",
      "lll-arteries",
      "lul-veins",
@@ -86454,7 +87482,9 @@
      "bulla-septa",
      "bulla-compressed",
      "bulla-staple",
-     "bulla-drains"
+     "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l"
     ]
    },
    {
@@ -86547,6 +87577,8 @@
      "bulla-compressed",
      "bulla-staple",
      "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l",
      "lul-arteries",
      "lll-arteries",
      "lul-veins",
@@ -86700,6 +87732,8 @@
      "bulla-compressed",
      "bulla-staple",
      "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l",
      "lul-arteries",
      "lll-arteries",
      "lul-veins",
@@ -86823,7 +87857,9 @@
      "bulla-septa",
      "bulla-compressed",
      "bulla-staple",
-     "bulla-drains"
+     "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l"
     ],
     "pose": "lateral",
     "opacity": {
@@ -87022,7 +88058,9 @@
      "bulla-septa",
      "bulla-compressed",
      "bulla-staple",
-     "bulla-drains"
+     "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l"
     ]
    },
    {
@@ -87150,7 +88188,9 @@
      "bulla-septa",
      "bulla-compressed",
      "bulla-staple",
-     "bulla-drains"
+     "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l"
     ]
    },
    {
@@ -87277,7 +88317,9 @@
      "bulla-septa",
      "bulla-compressed",
      "bulla-staple",
-     "bulla-drains"
+     "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l"
     ]
    },
    {
@@ -87424,7 +88466,9 @@
      "bulla-septa",
      "bulla-compressed",
      "bulla-staple",
-     "bulla-drains"
+     "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l"
     ]
    },
    {
@@ -87577,7 +88621,9 @@
      "bulla-septa",
      "bulla-compressed",
      "bulla-staple",
-     "bulla-drains"
+     "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l"
     ]
    },
    {
@@ -87701,7 +88747,9 @@
      "bulla-septa",
      "bulla-compressed",
      "bulla-staple",
-     "bulla-drains"
+     "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l"
     ]
    },
    {
@@ -87810,7 +88858,9 @@
      "bulla-septa",
      "bulla-compressed",
      "bulla-staple",
-     "bulla-drains"
+     "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l"
     ],
     "opacity": {
      "lul-arteries": 0.16,
@@ -88043,6 +89093,8 @@
      "bulla-compressed",
      "bulla-staple",
      "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l",
      "lul-arteries",
      "lll-arteries",
      "lul-veins",
@@ -88253,7 +89305,9 @@
      "bulla-septa",
      "bulla-compressed",
      "bulla-staple",
-     "bulla-drains"
+     "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l"
     ]
    },
    {
@@ -88346,6 +89400,8 @@
      "bulla-compressed",
      "bulla-staple",
      "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l",
      "lul-arteries",
      "lll-arteries",
      "lul-veins",
@@ -88499,6 +89555,8 @@
      "bulla-compressed",
      "bulla-staple",
      "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l",
      "lul-arteries",
      "lll-arteries",
      "lul-veins",
@@ -88622,7 +89680,9 @@
      "bulla-septa",
      "bulla-compressed",
      "bulla-staple",
-     "bulla-drains"
+     "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l"
     ],
     "pose": "lateral",
     "opacity": {
@@ -88821,7 +89881,9 @@
      "bulla-septa",
      "bulla-compressed",
      "bulla-staple",
-     "bulla-drains"
+     "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l"
     ]
    },
    {
@@ -88953,7 +90015,9 @@
      "bulla-septa",
      "bulla-compressed",
      "bulla-staple",
-     "bulla-drains"
+     "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l"
     ]
    },
    {
@@ -89079,7 +90143,9 @@
      "bulla-septa",
      "bulla-compressed",
      "bulla-staple",
-     "bulla-drains"
+     "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l"
     ]
    },
    {
@@ -89226,7 +90292,9 @@
      "bulla-septa",
      "bulla-compressed",
      "bulla-staple",
-     "bulla-drains"
+     "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l"
     ]
    },
    {
@@ -89379,7 +90447,9 @@
      "bulla-septa",
      "bulla-compressed",
      "bulla-staple",
-     "bulla-drains"
+     "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l"
     ]
    },
    {
@@ -89503,7 +90573,9 @@
      "bulla-septa",
      "bulla-compressed",
      "bulla-staple",
-     "bulla-drains"
+     "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l"
     ]
    },
    {
@@ -89612,7 +90684,9 @@
      "bulla-septa",
      "bulla-compressed",
      "bulla-staple",
-     "bulla-drains"
+     "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l"
     ],
     "opacity": {
      "lul-arteries": 0.16,
@@ -89845,6 +90919,8 @@
      "bulla-compressed",
      "bulla-staple",
      "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l",
      "lul-arteries",
      "lll-arteries",
      "lul-veins",
@@ -90051,7 +91127,9 @@
      "bulla-septa",
      "bulla-compressed",
      "bulla-staple",
-     "bulla-drains"
+     "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l"
     ]
    },
    {
@@ -90144,6 +91222,8 @@
      "bulla-compressed",
      "bulla-staple",
      "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l",
      "lul-arteries",
      "lll-arteries",
      "lul-veins",
@@ -90297,6 +91377,8 @@
      "bulla-compressed",
      "bulla-staple",
      "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l",
      "lul-arteries",
      "lll-arteries",
      "lul-veins",
@@ -90420,7 +91502,9 @@
      "bulla-septa",
      "bulla-compressed",
      "bulla-staple",
-     "bulla-drains"
+     "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l"
     ],
     "pose": "lateral",
     "opacity": {
@@ -90619,7 +91703,9 @@
      "bulla-septa",
      "bulla-compressed",
      "bulla-staple",
-     "bulla-drains"
+     "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l"
     ]
    },
    {
@@ -90747,7 +91833,9 @@
      "bulla-septa",
      "bulla-compressed",
      "bulla-staple",
-     "bulla-drains"
+     "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l"
     ]
    },
    {
@@ -90873,7 +91961,9 @@
      "bulla-septa",
      "bulla-compressed",
      "bulla-staple",
-     "bulla-drains"
+     "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l"
     ]
    },
    {
@@ -91020,7 +92110,9 @@
      "bulla-septa",
      "bulla-compressed",
      "bulla-staple",
-     "bulla-drains"
+     "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l"
     ]
    },
    {
@@ -91173,7 +92265,9 @@
      "bulla-septa",
      "bulla-compressed",
      "bulla-staple",
-     "bulla-drains"
+     "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l"
     ]
    },
    {
@@ -91297,7 +92391,9 @@
      "bulla-septa",
      "bulla-compressed",
      "bulla-staple",
-     "bulla-drains"
+     "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l"
     ]
    },
    {
@@ -91406,7 +92502,9 @@
      "bulla-septa",
      "bulla-compressed",
      "bulla-staple",
-     "bulla-drains"
+     "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l"
     ],
     "opacity": {
      "lul-arteries": 0.16,
@@ -93259,6 +94357,8 @@
      "bulla-compressed",
      "bulla-staple",
      "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l",
      "lul-arteries",
      "lll-arteries",
      "lul-veins",
@@ -93524,7 +94624,9 @@
      "bulla-septa",
      "bulla-compressed",
      "bulla-staple",
-     "bulla-drains"
+     "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l"
     ]
    },
    {
@@ -93612,6 +94714,8 @@
      "bulla-compressed",
      "bulla-staple",
      "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l",
      "lul-arteries",
      "lll-arteries",
      "lul-veins",
@@ -93754,6 +94858,8 @@
      "bulla-compressed",
      "bulla-staple",
      "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l",
      "lul-arteries",
      "lll-arteries",
      "lul-veins",
@@ -93986,7 +95092,9 @@
      "bulla-septa",
      "bulla-compressed",
      "bulla-staple",
-     "bulla-drains"
+     "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l"
     ]
    },
    {
@@ -94171,7 +95279,9 @@
      "bulla-septa",
      "bulla-compressed",
      "bulla-staple",
-     "bulla-drains"
+     "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l"
     ]
    },
    {
@@ -94365,7 +95475,9 @@
      "bulla-septa",
      "bulla-compressed",
      "bulla-staple",
-     "bulla-drains"
+     "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l"
     ]
    },
    {
@@ -94552,7 +95664,9 @@
      "bulla-septa",
      "bulla-compressed",
      "bulla-staple",
-     "bulla-drains"
+     "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l"
     ]
    },
    {
@@ -94740,7 +95854,9 @@
      "bulla-septa",
      "bulla-compressed",
      "bulla-staple",
-     "bulla-drains"
+     "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l"
     ]
    },
    {
@@ -94908,7 +96024,9 @@
      "bulla-septa",
      "bulla-compressed",
      "bulla-staple",
-     "bulla-drains"
+     "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l"
     ]
    },
    {
@@ -95063,7 +96181,9 @@
      "bulla-septa",
      "bulla-compressed",
      "bulla-staple",
-     "bulla-drains"
+     "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l"
     ],
     "opacity": {
      "vert-t2": 0.22,
@@ -95267,6 +96387,8 @@
      "bulla-compressed",
      "bulla-staple",
      "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l",
      "lul-arteries",
      "lll-arteries",
      "lul-veins",
@@ -95533,6 +96655,8 @@
      "bulla-compressed",
      "bulla-staple",
      "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l",
      "thymoma"
     ]
    },
@@ -95621,6 +96745,8 @@
      "bulla-compressed",
      "bulla-staple",
      "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l",
      "lul-arteries",
      "lll-arteries",
      "lul-veins",
@@ -95759,6 +96885,8 @@
      "bulla-compressed",
      "bulla-staple",
      "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l",
      "lul-arteries",
      "lll-arteries",
      "lul-veins",
@@ -95963,6 +97091,8 @@
      "bulla-compressed",
      "bulla-staple",
      "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l",
      "thymoma"
     ]
    },
@@ -96149,6 +97279,8 @@
      "bulla-compressed",
      "bulla-staple",
      "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l",
      "thymoma"
     ],
     "labels": []
@@ -96345,6 +97477,8 @@
      "bulla-compressed",
      "bulla-staple",
      "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l",
      "thymoma"
     ]
    },
@@ -96533,6 +97667,8 @@
      "bulla-compressed",
      "bulla-staple",
      "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l",
      "thymoma"
     ],
     "labels": []
@@ -96723,6 +97859,8 @@
      "bulla-compressed",
      "bulla-staple",
      "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l",
      "thymoma"
     ]
    },
@@ -96892,6 +98030,8 @@
      "bulla-compressed",
      "bulla-staple",
      "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l",
      "thymoma"
     ]
    },
@@ -97048,6 +98188,8 @@
      "bulla-compressed",
      "bulla-staple",
      "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l",
      "thymoma"
     ],
     "opacity": {
@@ -97252,6 +98394,8 @@
      "bulla-compressed",
      "bulla-staple",
      "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l",
      "lul-arteries",
      "lll-arteries",
      "lul-veins",
@@ -97518,6 +98662,8 @@
      "bulla-compressed",
      "bulla-staple",
      "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l",
      "thymoma"
     ]
    },
@@ -97606,6 +98752,8 @@
      "bulla-compressed",
      "bulla-staple",
      "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l",
      "lul-arteries",
      "lll-arteries",
      "lul-veins",
@@ -97744,6 +98892,8 @@
      "bulla-compressed",
      "bulla-staple",
      "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l",
      "lul-arteries",
      "lll-arteries",
      "lul-veins",
@@ -97947,6 +99097,8 @@
      "bulla-compressed",
      "bulla-staple",
      "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l",
      "thymoma"
     ],
     "labels": []
@@ -98134,6 +99286,8 @@
      "bulla-compressed",
      "bulla-staple",
      "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l",
      "thymoma"
     ],
     "labels": []
@@ -98330,6 +99484,8 @@
      "bulla-compressed",
      "bulla-staple",
      "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l",
      "thymoma"
     ]
    },
@@ -98518,6 +99674,8 @@
      "bulla-compressed",
      "bulla-staple",
      "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l",
      "thymoma"
     ],
     "labels": []
@@ -98708,6 +99866,8 @@
      "bulla-compressed",
      "bulla-staple",
      "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l",
      "thymoma"
     ]
    },
@@ -98877,6 +100037,8 @@
      "bulla-compressed",
      "bulla-staple",
      "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l",
      "thymoma"
     ]
    },
@@ -99033,6 +100195,8 @@
      "bulla-compressed",
      "bulla-staple",
      "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l",
      "thymoma"
     ],
     "opacity": {
@@ -99246,6 +100410,8 @@
      "bulla-compressed",
      "bulla-staple",
      "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l",
      "lul-arteries",
      "lll-arteries",
      "lul-veins",
@@ -99451,7 +100617,9 @@
      "bulla-septa",
      "bulla-compressed",
      "bulla-staple",
-     "bulla-drains"
+     "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l"
     ],
     "opacity": {
      "vert-t2": 0.22,
@@ -99582,6 +100750,8 @@
      "bulla-compressed",
      "bulla-staple",
      "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l",
      "lul-arteries",
      "lll-arteries",
      "lul-veins",
@@ -99725,6 +100895,8 @@
      "bulla-compressed",
      "bulla-staple",
      "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l",
      "lul-arteries",
      "lll-arteries",
      "lul-veins",
@@ -99898,7 +101070,9 @@
      "bulla-septa",
      "bulla-compressed",
      "bulla-staple",
-     "bulla-drains"
+     "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l"
     ],
     "opacity": {
      "vert-t2": 0.22,
@@ -100061,7 +101235,9 @@
      "bulla-septa",
      "bulla-compressed",
      "bulla-staple",
-     "bulla-drains"
+     "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l"
     ],
     "opacity": {
      "vert-t2": 0.22,
@@ -100216,7 +101392,9 @@
      "bulla-septa",
      "bulla-compressed",
      "bulla-staple",
-     "bulla-drains"
+     "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l"
     ],
     "opacity": {
      "vert-t2": 0.22,
@@ -100352,7 +101530,9 @@
      "bulla-septa",
      "bulla-compressed",
      "bulla-staple",
-     "bulla-drains"
+     "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l"
     ],
     "opacity": {
      "vert-t2": 0.22,
@@ -100519,7 +101699,9 @@
      "bulla-septa",
      "bulla-compressed",
      "bulla-staple",
-     "bulla-drains"
+     "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l"
     ],
     "opacity": {
      "vert-t2": 0.22,
@@ -100702,7 +101884,9 @@
      "bulla-septa",
      "bulla-compressed",
      "bulla-staple",
-     "bulla-drains"
+     "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l"
     ],
     "opacity": {
      "vert-t2": 0.22,
@@ -100865,7 +102049,9 @@
      "bulla-septa",
      "bulla-compressed",
      "bulla-staple",
-     "bulla-drains"
+     "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l"
     ],
     "opacity": {
      "vert-t2": 0.22,
@@ -101043,7 +102229,9 @@
      "bulla-septa",
      "bulla-compressed",
      "bulla-staple",
-     "bulla-drains"
+     "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l"
     ],
     "opacity": {
      "vert-t2": 0.22,
@@ -101208,7 +102396,9 @@
      "bulla-septa",
      "bulla-compressed",
      "bulla-staple",
-     "bulla-drains"
+     "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l"
     ],
     "opacity": {
      "vert-t2": 0.22,
@@ -101373,7 +102563,9 @@
      "bulla-septa",
      "bulla-compressed",
      "bulla-staple",
-     "bulla-drains"
+     "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l"
     ],
     "opacity": {
      "vert-t2": 0.22,
@@ -101552,7 +102744,9 @@
      "bulla-septa",
      "bulla-compressed",
      "bulla-staple",
-     "bulla-drains"
+     "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l"
     ],
     "opacity": {
      "vert-t2": 0.22,
@@ -101767,6 +102961,8 @@
      "bulla-compressed",
      "bulla-staple",
      "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l",
      "lul-arteries",
      "lll-arteries",
      "lul-veins",
@@ -101972,7 +103168,9 @@
      "bulla-septa",
      "bulla-compressed",
      "bulla-staple",
-     "bulla-drains"
+     "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l"
     ],
     "opacity": {
      "vert-t2": 0.22,
@@ -102105,6 +103303,8 @@
      "bulla-compressed",
      "bulla-staple",
      "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l",
      "lul-arteries",
      "lll-arteries",
      "lul-veins",
@@ -102254,6 +103454,8 @@
      "bulla-compressed",
      "bulla-staple",
      "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l",
      "lul-arteries",
      "lll-arteries",
      "lul-veins",
@@ -102413,7 +103615,9 @@
      "bulla-septa",
      "bulla-compressed",
      "bulla-staple",
-     "bulla-drains"
+     "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l"
     ],
     "opacity": {
      "vert-t2": 0.22,
@@ -102549,7 +103753,9 @@
      "bulla-septa",
      "bulla-compressed",
      "bulla-staple",
-     "bulla-drains"
+     "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l"
     ],
     "opacity": {
      "vert-t2": 0.22,
@@ -102716,7 +103922,9 @@
      "bulla-septa",
      "bulla-compressed",
      "bulla-staple",
-     "bulla-drains"
+     "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l"
     ],
     "opacity": {
      "vert-t2": 0.22,
@@ -102899,7 +104107,9 @@
      "bulla-septa",
      "bulla-compressed",
      "bulla-staple",
-     "bulla-drains"
+     "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l"
     ],
     "opacity": {
      "vert-t2": 0.22,
@@ -103067,7 +104277,9 @@
      "bulla-septa",
      "bulla-compressed",
      "bulla-staple",
-     "bulla-drains"
+     "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l"
     ],
     "opacity": {
      "vert-t2": 0.22,
@@ -103230,7 +104442,9 @@
      "bulla-septa",
      "bulla-compressed",
      "bulla-staple",
-     "bulla-drains"
+     "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l"
     ],
     "opacity": {
      "vert-t2": 0.22,
@@ -103395,7 +104609,9 @@
      "bulla-septa",
      "bulla-compressed",
      "bulla-staple",
-     "bulla-drains"
+     "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l"
     ],
     "highlight": [
      "esophagus"
@@ -103551,7 +104767,9 @@
      "bulla-septa",
      "bulla-compressed",
      "bulla-staple",
-     "bulla-drains"
+     "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l"
     ],
     "highlight": [
      "esophagus"
@@ -103728,7 +104946,9 @@
      "bulla-septa",
      "bulla-compressed",
      "bulla-staple",
-     "bulla-drains"
+     "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l"
     ],
     "opacity": {
      "vert-t2": 0.22,
@@ -103893,7 +105113,9 @@
      "bulla-septa",
      "bulla-compressed",
      "bulla-staple",
-     "bulla-drains"
+     "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l"
     ],
     "opacity": {
      "vert-t2": 0.22,
@@ -104059,7 +105281,9 @@
      "bulla-septa",
      "bulla-compressed",
      "bulla-staple",
-     "bulla-drains"
+     "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l"
     ],
     "opacity": {
      "vert-t2": 0.22,
@@ -104238,7 +105462,9 @@
      "bulla-septa",
      "bulla-compressed",
      "bulla-staple",
-     "bulla-drains"
+     "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l"
     ],
     "opacity": {
      "vert-t2": 0.22,
@@ -104457,6 +105683,8 @@
      "bulla-compressed",
      "bulla-staple",
      "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l",
      "lul-arteries",
      "lll-arteries",
      "lul-veins",
@@ -104662,7 +105890,9 @@
      "bulla-septa",
      "bulla-compressed",
      "bulla-staple",
-     "bulla-drains"
+     "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l"
     ],
     "opacity": {
      "vert-t2": 0.22,
@@ -104792,6 +106022,8 @@
      "bulla-compressed",
      "bulla-staple",
      "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l",
      "lul-arteries",
      "lll-arteries",
      "lul-veins",
@@ -104933,6 +106165,8 @@
      "bulla-compressed",
      "bulla-staple",
      "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l",
      "lul-arteries",
      "lll-arteries",
      "lul-veins",
@@ -105106,7 +106340,9 @@
      "bulla-septa",
      "bulla-compressed",
      "bulla-staple",
-     "bulla-drains"
+     "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l"
     ],
     "opacity": {
      "vert-t2": 0.22,
@@ -105269,7 +106505,9 @@
      "bulla-septa",
      "bulla-compressed",
      "bulla-staple",
-     "bulla-drains"
+     "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l"
     ],
     "opacity": {
      "vert-t2": 0.22,
@@ -105436,7 +106674,9 @@
      "bulla-septa",
      "bulla-compressed",
      "bulla-staple",
-     "bulla-drains"
+     "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l"
     ],
     "opacity": {
      "vert-t2": 0.22,
@@ -105635,7 +106875,9 @@
      "bulla-septa",
      "bulla-compressed",
      "bulla-staple",
-     "bulla-drains"
+     "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l"
     ],
     "highlight": [
      "esophagus"
@@ -105791,7 +107033,9 @@
      "bulla-septa",
      "bulla-compressed",
      "bulla-staple",
-     "bulla-drains"
+     "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l"
     ],
     "highlight": [
      "esophagus"
@@ -105969,7 +107213,9 @@
      "bulla-septa",
      "bulla-compressed",
      "bulla-staple",
-     "bulla-drains"
+     "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l"
     ],
     "opacity": {
      "vert-t2": 0.22,
@@ -106134,7 +107380,9 @@
      "bulla-septa",
      "bulla-compressed",
      "bulla-staple",
-     "bulla-drains"
+     "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l"
     ],
     "opacity": {
      "vert-t2": 0.22,
@@ -106300,7 +107548,9 @@
      "bulla-septa",
      "bulla-compressed",
      "bulla-staple",
-     "bulla-drains"
+     "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l"
     ],
     "opacity": {
      "vert-t2": 0.22,
@@ -106479,7 +107729,9 @@
      "bulla-septa",
      "bulla-compressed",
      "bulla-staple",
-     "bulla-drains"
+     "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l"
     ],
     "opacity": {
      "vert-t2": 0.22,
@@ -110290,6 +111542,8 @@
      "bulla-compressed",
      "bulla-staple",
      "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l",
      "lul-arteries",
      "lll-arteries",
      "lul-veins",
@@ -110555,7 +111809,9 @@
      "bulla-septa",
      "bulla-compressed",
      "bulla-staple",
-     "bulla-drains"
+     "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l"
     ],
     "opacity": {
      "vert-t2": 0.22,
@@ -110693,6 +111949,8 @@
      "bulla-compressed",
      "bulla-staple",
      "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l",
      "lul-arteries",
      "lll-arteries",
      "lul-veins",
@@ -110825,6 +112083,8 @@
      "bulla-compressed",
      "bulla-staple",
      "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l",
      "lul-arteries",
      "lll-arteries",
      "lul-veins",
@@ -111009,7 +112269,9 @@
      "bulla-septa",
      "bulla-compressed",
      "bulla-staple",
-     "bulla-drains"
+     "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l"
     ],
     "opacity": {
      "vert-t2": 0.22,
@@ -111160,7 +112422,9 @@
      "bulla-septa",
      "bulla-compressed",
      "bulla-staple",
-     "bulla-drains"
+     "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l"
     ],
     "opacity": {
      "vert-t2": 0.22,
@@ -111355,7 +112619,9 @@
      "bulla-septa",
      "bulla-compressed",
      "bulla-staple",
-     "bulla-drains"
+     "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l"
     ],
     "opacity": {
      "vert-t2": 0.22,
@@ -111530,7 +112796,9 @@
      "bulla-septa",
      "bulla-compressed",
      "bulla-staple",
-     "bulla-drains"
+     "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l"
     ],
     "opacity": {
      "vert-t2": 0.22,
@@ -111699,7 +112967,9 @@
      "bulla-septa",
      "bulla-compressed",
      "bulla-staple",
-     "bulla-drains"
+     "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l"
     ],
     "opacity": {
      "vert-t2": 0.22,
@@ -111882,6 +113152,8 @@
      "bulla-compressed",
      "bulla-staple",
      "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l",
      "lul-arteries",
      "lll-arteries",
      "lul-veins",
@@ -112147,7 +113419,9 @@
      "bulla-septa",
      "bulla-compressed",
      "bulla-staple",
-     "bulla-drains"
+     "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l"
     ],
     "opacity": {
      "vert-t2": 0.22,
@@ -112285,6 +113559,8 @@
      "bulla-compressed",
      "bulla-staple",
      "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l",
      "lul-arteries",
      "lll-arteries",
      "lul-veins",
@@ -112418,6 +113694,8 @@
      "bulla-compressed",
      "bulla-staple",
      "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l",
      "lul-arteries",
      "lll-arteries",
      "lul-veins",
@@ -112596,7 +113874,9 @@
      "bulla-septa",
      "bulla-compressed",
      "bulla-staple",
-     "bulla-drains"
+     "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l"
     ],
     "opacity": {
      "vert-t2": 0.22,
@@ -112747,7 +114027,9 @@
      "bulla-septa",
      "bulla-compressed",
      "bulla-staple",
-     "bulla-drains"
+     "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l"
     ],
     "opacity": {
      "vert-t2": 0.22,
@@ -112938,7 +114220,9 @@
      "bulla-septa",
      "bulla-compressed",
      "bulla-staple",
-     "bulla-drains"
+     "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l"
     ],
     "opacity": {
      "vert-t2": 0.22,
@@ -113134,7 +114418,9 @@
      "bulla-septa",
      "bulla-compressed",
      "bulla-staple",
-     "bulla-drains"
+     "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l"
     ],
     "opacity": {
      "vert-t2": 0.22,
@@ -113303,7 +114589,9 @@
      "bulla-septa",
      "bulla-compressed",
      "bulla-staple",
-     "bulla-drains"
+     "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l"
     ],
     "opacity": {
      "vert-t2": 0.22,
@@ -113522,6 +114810,8 @@
      "bulla-compressed",
      "bulla-staple",
      "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l",
      "ln-5",
      "ln-6",
      "ln-7",
@@ -113697,6 +114987,8 @@
      "bulla-compressed",
      "bulla-staple",
      "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l",
      "ln-5",
      "ln-6",
      "ln-7",
@@ -113877,6 +115169,8 @@
      "bulla-compressed",
      "bulla-staple",
      "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l",
      "ln-5",
      "ln-6",
      "ln-7",
@@ -114048,6 +115342,8 @@
      "bulla-compressed",
      "bulla-staple",
      "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l",
      "ln-5",
      "ln-6",
      "ln-7",
@@ -114187,6 +115483,8 @@
      "bulla-compressed",
      "bulla-staple",
      "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l",
      "ln-5",
      "ln-6",
      "ln-7",
@@ -114362,6 +115660,8 @@
      "bulla-compressed",
      "bulla-staple",
      "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l",
      "ln-5",
      "ln-6",
      "ln-7",
@@ -114540,6 +115840,8 @@
      "bulla-compressed",
      "bulla-staple",
      "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l",
      "ln-5",
      "ln-6",
      "ln-7",
@@ -114685,6 +115987,8 @@
      "bulla-compressed",
      "bulla-staple",
      "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l",
      "ln-5",
      "ln-6",
      "ln-7",
@@ -114852,6 +116156,8 @@
      "bulla-compressed",
      "bulla-staple",
      "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l",
      "ln-5",
      "ln-6",
      "ln-7",
@@ -115087,6 +116393,8 @@
      "bulla-compressed",
      "bulla-staple",
      "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l",
      "ln-5",
      "ln-6",
      "ln-7",
@@ -115262,6 +116570,8 @@
      "bulla-compressed",
      "bulla-staple",
      "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l",
      "ln-5",
      "ln-6",
      "ln-7",
@@ -115442,6 +116752,8 @@
      "bulla-compressed",
      "bulla-staple",
      "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l",
      "ln-5",
      "ln-6",
      "ln-7",
@@ -115613,6 +116925,8 @@
      "bulla-compressed",
      "bulla-staple",
      "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l",
      "ln-5",
      "ln-6",
      "ln-7",
@@ -115752,6 +117066,8 @@
      "bulla-compressed",
      "bulla-staple",
      "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l",
      "ln-5",
      "ln-6",
      "ln-7",
@@ -115921,6 +117237,8 @@
      "bulla-compressed",
      "bulla-staple",
      "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l",
      "ln-5",
      "ln-6",
      "ln-7",
@@ -116090,6 +117408,8 @@
      "bulla-compressed",
      "bulla-staple",
      "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l",
      "ln-5",
      "ln-6",
      "ln-7",
@@ -116293,6 +117613,8 @@
      "bulla-compressed",
      "bulla-staple",
      "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l",
      "ln-5",
      "ln-6",
      "ln-7",
@@ -116446,6 +117768,8 @@
      "bulla-compressed",
      "bulla-staple",
      "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l",
      "ln-5",
      "ln-6",
      "ln-7",
@@ -116614,6 +117938,8 @@
      "bulla-compressed",
      "bulla-staple",
      "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l",
      "ln-5",
      "ln-6",
      "ln-7",
@@ -116843,6 +118169,8 @@
      "bulla-compressed",
      "bulla-staple",
      "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l",
      "lul-arteries",
      "lll-arteries",
      "lul-veins",
@@ -117011,6 +118339,8 @@
      "bulla-compressed",
      "bulla-staple",
      "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l",
      "lul-arteries",
      "lll-arteries",
      "lul-veins",
@@ -117154,6 +118484,8 @@
      "bulla-compressed",
      "bulla-staple",
      "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l",
      "lul-arteries",
      "lll-arteries",
      "lul-veins",
@@ -117287,7 +118619,9 @@
      "bulla-septa",
      "bulla-compressed",
      "bulla-staple",
-     "bulla-drains"
+     "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l"
     ],
     "seq": 3
    },
@@ -117370,7 +118704,9 @@
      "bulla-septa",
      "bulla-compressed",
      "bulla-staple",
-     "bulla-drains"
+     "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l"
     ],
     "ct": {
      "focus": [
@@ -117532,6 +118868,8 @@
      "bulla-compressed",
      "bulla-staple",
      "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l",
      "lul-arteries",
      "lll-arteries",
      "lul-veins",
@@ -117700,6 +119038,8 @@
      "bulla-compressed",
      "bulla-staple",
      "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l",
      "lul-arteries",
      "lll-arteries",
      "lul-veins",
@@ -117842,6 +119182,8 @@
      "bulla-compressed",
      "bulla-staple",
      "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l",
      "lul-arteries",
      "lll-arteries",
      "lul-veins",
@@ -117975,7 +119317,9 @@
      "bulla-septa",
      "bulla-compressed",
      "bulla-staple",
-     "bulla-drains"
+     "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l"
     ],
     "seq": 3
    },
@@ -118058,7 +119402,9 @@
      "bulla-septa",
      "bulla-compressed",
      "bulla-staple",
-     "bulla-drains"
+     "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l"
     ],
     "ct": {
      "focus": [
@@ -225402,6 +226748,8 @@
      "bulla-compressed",
      "bulla-staple",
      "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l",
      "lul",
      "lll",
      "rul",
@@ -225884,6 +227232,8 @@
      "bulla-compressed",
      "bulla-staple",
      "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l",
      "lul",
      "lll",
      "rul",
@@ -226353,6 +227703,8 @@
      "bulla-compressed",
      "bulla-staple",
      "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l",
      "lul",
      "lll",
      "rul",
@@ -226836,6 +228188,8 @@
      "bulla-compressed",
      "bulla-staple",
      "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l",
      "lul",
      "lll",
      "rul",
@@ -227341,6 +228695,8 @@
      "bulla-compressed",
      "bulla-staple",
      "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l",
      "lul",
      "lll",
      "rul",
@@ -227796,6 +229152,8 @@
      "bulla-compressed",
      "bulla-staple",
      "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l",
      "lul",
      "lll",
      "rul",
@@ -228265,6 +229623,8 @@
      "bulla-compressed",
      "bulla-staple",
      "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l",
      "lul",
      "lll",
      "rul",
@@ -228748,6 +230108,8 @@
      "bulla-compressed",
      "bulla-staple",
      "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l",
      "lul",
      "lll",
      "rul",
@@ -229237,6 +230599,8 @@
      "bulla-compressed",
      "bulla-staple",
      "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l",
      "lul",
      "lll",
      "rul",
@@ -229708,6 +231072,8 @@
      "bulla-compressed",
      "bulla-staple",
      "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l",
      "lul",
      "lll",
      "rul",
@@ -230189,6 +231555,8 @@
      "bulla-compressed",
      "bulla-staple",
      "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l",
      "lul",
      "lll",
      "rul",
@@ -230740,6 +232108,8 @@
      "bulla-compressed",
      "bulla-staple",
      "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l",
      "lul",
      "lll",
      "rul",
@@ -231222,6 +232592,8 @@
      "bulla-compressed",
      "bulla-staple",
      "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l",
      "lul",
      "lll",
      "rul",
@@ -231690,6 +233062,8 @@
      "bulla-compressed",
      "bulla-staple",
      "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l",
      "lul",
      "lll",
      "rul",
@@ -232171,6 +233545,8 @@
      "bulla-compressed",
      "bulla-staple",
      "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l",
      "lul",
      "lll",
      "rul",
@@ -232676,6 +234052,8 @@
      "bulla-compressed",
      "bulla-staple",
      "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l",
      "lul",
      "lll",
      "rul",
@@ -233132,6 +234510,8 @@
      "bulla-compressed",
      "bulla-staple",
      "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l",
      "lul",
      "lll",
      "rul",
@@ -233584,6 +234964,8 @@
      "bulla-compressed",
      "bulla-staple",
      "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l",
      "lul",
      "lll",
      "rul",
@@ -234065,6 +235447,8 @@
      "bulla-compressed",
      "bulla-staple",
      "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l",
      "lul",
      "lll",
      "rul",
@@ -234548,6 +235932,8 @@
      "bulla-compressed",
      "bulla-staple",
      "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l",
      "lul",
      "lll",
      "rul",
@@ -235044,6 +236430,8 @@
      "bulla-compressed",
      "bulla-staple",
      "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l",
      "lul",
      "lll",
      "rul",
@@ -235589,6 +236977,8 @@
      "bulla-compressed",
      "bulla-staple",
      "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l",
      "lul",
      "lll",
      "rul",
@@ -236071,6 +237461,8 @@
      "bulla-compressed",
      "bulla-staple",
      "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l",
      "lul",
      "lll",
      "rul",
@@ -236539,6 +237931,8 @@
      "bulla-compressed",
      "bulla-staple",
      "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l",
      "lul",
      "lll",
      "rul",
@@ -237022,6 +238416,8 @@
      "bulla-compressed",
      "bulla-staple",
      "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l",
      "lul",
      "lll",
      "rul",
@@ -237527,6 +238923,8 @@
      "bulla-compressed",
      "bulla-staple",
      "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l",
      "lul",
      "lll",
      "rul",
@@ -237979,6 +239377,8 @@
      "bulla-compressed",
      "bulla-staple",
      "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l",
      "lul",
      "lll",
      "rul",
@@ -238452,6 +239852,8 @@
      "bulla-compressed",
      "bulla-staple",
      "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l",
      "lul",
      "lll",
      "rul",
@@ -238952,6 +240354,8 @@
      "bulla-compressed",
      "bulla-staple",
      "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l",
      "lul",
      "lll",
      "rul",
@@ -239440,6 +240844,8 @@
      "bulla-compressed",
      "bulla-staple",
      "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l",
      "lul",
      "lll",
      "rul",
@@ -241682,6 +243088,8 @@
      "bulla-compressed",
      "bulla-staple",
      "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l",
      "lul",
      "lll",
      "rul",
@@ -242167,6 +243575,8 @@
      "bulla-compressed",
      "bulla-staple",
      "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l",
      "lul",
      "lll",
      "rul",
@@ -242661,6 +244071,8 @@
      "bulla-compressed",
      "bulla-staple",
      "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l",
      "lul",
      "lll",
      "rul",
@@ -243170,6 +244582,8 @@
      "bulla-compressed",
      "bulla-staple",
      "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l",
      "lul",
      "lll",
      "rul",
@@ -243620,6 +245034,8 @@
      "bulla-compressed",
      "bulla-staple",
      "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l",
      "lul",
      "lll",
      "rul",
@@ -244084,6 +245500,8 @@
      "bulla-compressed",
      "bulla-staple",
      "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l",
      "lul",
      "lll",
      "rul",
@@ -244548,6 +245966,8 @@
      "bulla-compressed",
      "bulla-staple",
      "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l",
      "lul",
      "lll",
      "rul",
@@ -245012,6 +246432,8 @@
      "bulla-compressed",
      "bulla-staple",
      "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l",
      "lul",
      "lll",
      "rul",
@@ -245493,6 +246915,8 @@
      "bulla-compressed",
      "bulla-staple",
      "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l",
      "lul",
      "lll",
      "rul",
@@ -245979,6 +247403,8 @@
      "bulla-compressed",
      "bulla-staple",
      "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l",
      "lul",
      "lll",
      "rul",
@@ -246477,6 +247903,8 @@
      "bulla-compressed",
      "bulla-staple",
      "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l",
      "lul",
      "lll",
      "rul",
@@ -246982,6 +248410,8 @@
      "bulla-compressed",
      "bulla-staple",
      "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l",
      "lul",
      "lll",
      "rul",
@@ -247553,6 +248983,8 @@
      "bulla-compressed",
      "bulla-staple",
      "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l",
      "lul",
      "lll",
      "rul",
@@ -248036,6 +249468,8 @@
      "bulla-compressed",
      "bulla-staple",
      "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l",
      "lul",
      "lll",
      "rul",
@@ -248530,6 +249964,8 @@
      "bulla-compressed",
      "bulla-staple",
      "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l",
      "lul",
      "lll",
      "rul",
@@ -249041,6 +250477,8 @@
      "bulla-compressed",
      "bulla-staple",
      "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l",
      "lul",
      "lll",
      "rul",
@@ -249491,6 +250929,8 @@
      "bulla-compressed",
      "bulla-staple",
      "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l",
      "lul",
      "lll",
      "rul",
@@ -249955,6 +251395,8 @@
      "bulla-compressed",
      "bulla-staple",
      "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l",
      "lul",
      "lll",
      "rul",
@@ -250419,6 +251861,8 @@
      "bulla-compressed",
      "bulla-staple",
      "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l",
      "lul",
      "lll",
      "rul",
@@ -250883,6 +252327,8 @@
      "bulla-compressed",
      "bulla-staple",
      "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l",
      "lul",
      "lll",
      "rul",
@@ -251362,6 +252808,8 @@
      "bulla-compressed",
      "bulla-staple",
      "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l",
      "lul",
      "lll",
      "rul",
@@ -251845,6 +253293,8 @@
      "bulla-compressed",
      "bulla-staple",
      "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l",
      "lul",
      "lll",
      "rul",
@@ -252342,6 +253792,8 @@
      "bulla-compressed",
      "bulla-staple",
      "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l",
      "lul",
      "lll",
      "rul",
@@ -252847,6 +254299,8 @@
      "bulla-compressed",
      "bulla-staple",
      "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l",
      "lul",
      "lll",
      "rul",
@@ -253418,6 +254872,8 @@
      "bulla-compressed",
      "bulla-staple",
      "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l",
      "lul",
      "lll",
      "rul",
@@ -253901,6 +255357,8 @@
      "bulla-compressed",
      "bulla-staple",
      "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l",
      "lul",
      "lll",
      "rul",
@@ -254395,6 +255853,8 @@
      "bulla-compressed",
      "bulla-staple",
      "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l",
      "lul",
      "lll",
      "rul",
@@ -254907,6 +256367,8 @@
      "bulla-compressed",
      "bulla-staple",
      "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l",
      "lul",
      "lll",
      "rul",
@@ -255359,6 +256821,8 @@
      "bulla-compressed",
      "bulla-staple",
      "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l",
      "lul",
      "lll",
      "rul",
@@ -255822,6 +257286,8 @@
      "bulla-compressed",
      "bulla-staple",
      "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l",
      "lul",
      "lll",
      "rul",
@@ -256287,6 +257753,8 @@
      "bulla-compressed",
      "bulla-staple",
      "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l",
      "lul",
      "lll",
      "rul",
@@ -256766,6 +258234,8 @@
      "bulla-compressed",
      "bulla-staple",
      "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l",
      "lul",
      "lll",
      "rul",
@@ -257249,6 +258719,8 @@
      "bulla-compressed",
      "bulla-staple",
      "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l",
      "lul",
      "lll",
      "rul",
@@ -257744,6 +259216,8 @@
      "bulla-compressed",
      "bulla-staple",
      "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l",
      "lul",
      "lll",
      "rul",
@@ -258207,6 +259681,8 @@
      "bulla-compressed",
      "bulla-staple",
      "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l",
      "lul",
      "lll",
      "rul",
@@ -258712,6 +260188,8 @@
      "bulla-compressed",
      "bulla-staple",
      "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l",
      "lul",
      "lll",
      "rul",
@@ -259283,6 +260761,8 @@
      "bulla-compressed",
      "bulla-staple",
      "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l",
      "lul",
      "lll",
      "rul",
@@ -259768,6 +261248,8 @@
      "bulla-compressed",
      "bulla-staple",
      "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l",
      "lul",
      "lll",
      "rul",
@@ -260262,6 +261744,8 @@
      "bulla-compressed",
      "bulla-staple",
      "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l",
      "lul",
      "lll",
      "rul",
@@ -260773,6 +262257,8 @@
      "bulla-compressed",
      "bulla-staple",
      "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l",
      "lul",
      "lll",
      "rul",
@@ -261226,6 +262712,8 @@
      "bulla-compressed",
      "bulla-staple",
      "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l",
      "lul",
      "lll",
      "rul",
@@ -261693,6 +263181,8 @@
      "bulla-compressed",
      "bulla-staple",
      "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l",
      "lul",
      "lll",
      "rul",
@@ -262188,6 +263678,8 @@
      "bulla-compressed",
      "bulla-staple",
      "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l",
      "lul",
      "lll",
      "rul",
@@ -262668,6 +264160,8 @@
      "bulla-compressed",
      "bulla-staple",
      "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l",
      "lul",
      "lll",
      "rul",
@@ -265054,6 +266548,8 @@
      "bulla-compressed",
      "bulla-staple",
      "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l",
      "lul",
      "lll",
      "rul",
@@ -265526,6 +267022,8 @@
      "bulla-compressed",
      "bulla-staple",
      "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l",
      "lul",
      "lll",
      "rul",
@@ -265974,6 +267472,8 @@
      "bulla-compressed",
      "bulla-staple",
      "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l",
      "lul",
      "lll",
      "rul",
@@ -266466,6 +267966,8 @@
      "bulla-compressed",
      "bulla-staple",
      "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l",
      "lul",
      "lll",
      "rul",
@@ -266902,6 +268404,8 @@
      "bulla-compressed",
      "bulla-staple",
      "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l",
      "lul",
      "lll",
      "rul",
@@ -267349,6 +268853,8 @@
      "bulla-compressed",
      "bulla-staple",
      "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l",
      "lul",
      "lll",
      "rul",
@@ -267809,6 +269315,8 @@
      "bulla-compressed",
      "bulla-staple",
      "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l",
      "lul",
      "lll",
      "rul",
@@ -268286,6 +269794,8 @@
      "bulla-compressed",
      "bulla-staple",
      "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l",
      "lul",
      "lll",
      "rul",
@@ -268749,6 +270259,8 @@
      "bulla-compressed",
      "bulla-staple",
      "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l",
      "lul",
      "lll",
      "rul",
@@ -269283,6 +270795,8 @@
      "bulla-compressed",
      "bulla-staple",
      "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l",
      "lul",
      "lll",
      "rul",
@@ -269755,6 +271269,8 @@
      "bulla-compressed",
      "bulla-staple",
      "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l",
      "lul",
      "lll",
      "rul",
@@ -270203,6 +271719,8 @@
      "bulla-compressed",
      "bulla-staple",
      "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l",
      "lul",
      "lll",
      "rul",
@@ -270696,6 +272214,8 @@
      "bulla-compressed",
      "bulla-staple",
      "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l",
      "lul",
      "lll",
      "rul",
@@ -271132,6 +272652,8 @@
      "bulla-compressed",
      "bulla-staple",
      "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l",
      "lul",
      "lll",
      "rul",
@@ -271584,6 +273106,8 @@
      "bulla-compressed",
      "bulla-staple",
      "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l",
      "lul",
      "lll",
      "rul",
@@ -272047,6 +273571,8 @@
      "bulla-compressed",
      "bulla-staple",
      "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l",
      "lul",
      "lll",
      "rul",
@@ -272567,6 +274093,8 @@
      "bulla-compressed",
      "bulla-staple",
      "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l",
      "lul",
      "lll",
      "rul",
@@ -273029,6 +274557,8 @@
      "bulla-compressed",
      "bulla-staple",
      "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l",
      "lul",
      "lll",
      "rul",
@@ -273472,6 +275002,8 @@
      "bulla-compressed",
      "bulla-staple",
      "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l",
      "lul",
      "lll",
      "rul",
@@ -273958,6 +275490,8 @@
      "bulla-compressed",
      "bulla-staple",
      "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l",
      "lul",
      "lll",
      "rul",
@@ -274387,6 +275921,8 @@
      "bulla-compressed",
      "bulla-staple",
      "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l",
      "lul",
      "lll",
      "rul",
@@ -274843,6 +276379,8 @@
      "bulla-compressed",
      "bulla-staple",
      "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l",
      "lul",
      "lll",
      "rul",
@@ -275288,6 +276826,8 @@
      "bulla-compressed",
      "bulla-staple",
      "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l",
      "lul",
      "lll",
      "rul",
@@ -275745,6 +277285,8 @@
      "bulla-compressed",
      "bulla-staple",
      "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l",
      "lul",
      "lll",
      "rul",
@@ -287012,7 +288554,9 @@
      "bulla-septa",
      "bulla-compressed",
      "bulla-staple",
-     "bulla-drains"
+     "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l"
     ],
     "opacity": {
      "lul-arteries": 0.3,
@@ -287152,7 +288696,9 @@
      "bulla-septa",
      "bulla-compressed",
      "bulla-staple",
-     "bulla-drains"
+     "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l"
     ],
     "opacity": {
      "lul-arteries": 0.3,
@@ -287614,6 +289160,8 @@
      "bulla-compressed",
      "bulla-staple",
      "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l",
      "lul",
      "lll",
      "rul",
@@ -288091,6 +289639,8 @@
      "bulla-compressed",
      "bulla-staple",
      "bulla-drains",
+     "bulla-giant-l",
+     "bulla-compressed-l",
      "lul",
      "lll",
      "rul",

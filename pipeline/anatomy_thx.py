@@ -222,6 +222,26 @@ def build(ctx):
                   note='Two drains after bullectomy: an apical one for air and a basal one for fluid; on water seal or low suction according to the leak and the lung expansion.')
         LM['bulla-drain-in'] = e
 
+    # ------------------------------------------------------------ the other side: a smaller bulla in the left upper lobe (bilateral disease)
+    LUb = ts('lung_upper_lobe_left')
+    if LUb.any():
+        idx = np.argwhere(LUb); W_ = to_w(idx)
+        top = W_[:, 2] > np.percentile(W_[:, 2], 60)
+        cl = W_[top].mean(0) + ANT * 4 - RIGHT * 6
+        lo_ = idx.min(0); hi_ = idx.max(0) + 1; sl = tuple(slice(a, b) for a, b in zip(lo_, hi_))
+        sub = LUb[sl]; g = np.stack(np.meshgrid(*[np.arange(n) for n in sub.shape], indexing='ij'), -1)
+        Wg = (g + lo_) @ AT[:3, :3].T + AT[:3, 3] - C
+        d = np.linalg.norm((Wg - cl) / np.array([1.0, 1.1, 0.95]), axis=-1)
+        bul = sub & (d < 44.0); comp = sub & ~bul & (d < 58.0)
+        aff = AT.copy(); aff[:3, 3] = AT[:3, 3] + AT[:3, :3] @ lo_ - C
+        bm = meshing.mesh_from_mask(bul, aff, 7000, sigma=1.4, taubin_iterations=20)
+        emit_mesh('bulla-giant-l', 'Giant bulla, left upper lobe', 'pathology', '#cfe3ef', bm, opacity=0.35, visible=False,
+                  note='Schematic: bilateral giant bullae. The left bulla also fills about a third of its hemithorax; it can enlarge under positive pressure while the right side is operated on.')
+        cm = meshing.mesh_from_mask(comp, aff, 5000, sigma=1.2, taubin_iterations=20)
+        if cm is not None:
+            emit_mesh('bulla-compressed-l', 'Compressed lung at the base of the left bulla', 'pathology', '#a8585a', cm, opacity=0.85, visible=False)
+        LM['bulla-l'] = cl
+
     # ------------------------------------------------------------ pedicled latissimus dorsi flap: a broad, flat muscle sheet, tapering to its tip on the stump
     if all(f'flap-{i}' in LMW for i in range(5)):
         P = np.array([LMW[f'flap-{i}'] for i in range(5)], float)

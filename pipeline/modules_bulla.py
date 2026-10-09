@@ -18,6 +18,7 @@ chain = lambda *xs: '<div class="chain">' + '<i>→</i>'.join(f'<span class="hot
 tbl = lambda head, *rows: ('<table class="mini"><tr>' + ''.join(f'<th>{h}</th>' for h in head) + '</tr>'
                            + ''.join('<tr>' + ''.join(f'<td>{c}</td>' for c in r) + '</tr>' for r in rows) + '</table>')
 tag = lambda k, t: f' <span class="tag {k}">{t}</span>'
+vid = lambda src, poster, cap: f'<figure class="case-img"><video src="{src}" poster="{poster}" controls preload="none" playsinline muted></video><figcaption>{cap}</figcaption></figure>'
 link = lambda href, t: f'<a class="link" href="#{href}">{t}</a>'
 
 # ---------------------------------------------------------------------------------------------------- sources
@@ -37,6 +38,10 @@ BTS = {'title': 'Roberts ME, et al. British Thoracic Society guideline for pleur
        'url': 'https://thorax.bmj.com/content/78/11/1143.full.pdf'}
 DEVALLA = {'title': 'Devalla L, et al. Apparent "double wall sign" in emphysematous bullae of the lung. Pan Afr Med J 2026;53:154',
            'url': 'https://www.panafrican-med-journal.com/content/article/53/154/full'}
+KITAZAWA = {'title': 'Kitazawa S, et al. Surgical resection for bilateral giant emphysematous bullae. Clin Med Invest 2017;2. doi:10.15761/CMI.1000125',
+            'url': 'https://www.oatext.com/Surgical-resection-for-bilateral-giant-emphysematous-bullae.php'}
+SONG = {'title': 'Song N, et al. Bilateral bullectomy through uniportal video-assisted thoracoscopic surgery combined with contralateral access to the anterior mediastinum. J Bras Pneumol 2013',
+        'url': 'https://jornaldepneumologia.com.br/details/1802/en-US'}
 EBV_CASE = {'title': 'Bronchoscopic lung volume reduction with an endobronchial valve for huge emphysematous bullae: a case report. BMC Pulm Med 2019',
             'url': 'https://www.ncbi.nlm.nih.gov/pmc/articles/PMC6518705/'}
 
@@ -47,7 +52,7 @@ def add(procs, ask, has, LM, S):
         print('  bullous disease: meshes or source operation missing, skipped'); return
     hv = lambda xs: [i for i in xs if has(i)]
     DEFAULT_ON = [i for i, s in S.items() if s.get('visible', True) is not False or s.get('sideVisible')]
-    NEW = ['bulla-giant', 'bulla-septa', 'bulla-compressed', 'bulla-staple', 'bulla-drains']
+    NEW = ['bulla-giant', 'bulla-septa', 'bulla-compressed', 'bulla-staple', 'bulla-drains', 'bulla-giant-l', 'bulla-compressed-l']
 
     def borrow(key, sid):
         s = next(x for x in procs[key]['steps'] if x['id'] == sid)
@@ -147,6 +152,38 @@ def add(procs, ask, has, LM, S):
                  'For patients too frail for resection, decompressing and draining the bulla through a small incision (Monaldi, Brompton technique) gives relief at lower risk.',
                  'VATS bullectomy with buttressed staplers and an apical pleurectomy', 'Bilateral lung volume reduction surgery through a median sternotomy', 'Endobronchial valves to the right upper lobe after a Chartis assessment'))
 
+    BL = V(LM['bulla-l']) if 'bulla-l' in LM else B * V(-1, 1, 1)
+    BOTH = {'view': view((B + BL) / 2, (0.0, 1.0, 0.25), 420), 'show': LUNGS, 'opacity': {'rul': 0.2, 'rml': 0.3, 'rll': 0.25, 'lul': 0.2, 'lll': 0.25},
+            'ct': {'focus': R((B + BL) / 2), 'plane': 'coronal', 'window': 'lung'}}
+    bilat = step('bul-bilat', 'Decision', 'Bilateral giant bullae: the management strategy',
+        '<p>Bullous disease is often <b>bilateral</b>. The plan is decided side by side, not bulla by bulla.</p>'
+        + vid('media/bullae-bilateral-ct.mp4', 'media/bullae-bilateral-ct.jpg',
+              'Axial CT, apex to upper abdomen (lung window), shared for teaching with identifiers removed. Right: a giant bulla filling most of the hemithorax, the lower lobe compressed at the base. '
+              'Left: several large upper lobe bullae with septa; the lower lobe dense (compressive collapse or infection). Scroll through and decide: which side first, and what to check at the left base?')
+        + h4('1. Prepare both lungs (all patients)')
+        + ul('Stop smoking (confirmed), pulmonary rehabilitation, optimized inhalers, vaccines; treat any infection; confirm TB is treated (GeneXpert)',
+             '<b>CT of both sides</b>: size of each bulla against its hemithorax, and the <b>compressed lung</b> under each; emphysema in the rest of the lung',
+             '<b>Split function</b>: a perfusion (V/Q) scan shows which side the lung under the bulla is still perfused; plus spirometry, DLCO, blood gas and echo (pulmonary hypertension)')
+        + h4('2. Both sides giant: the strategy')
+        + ul('<b>Operate the worse side first</b>: the larger bulla, the more compressed but still perfused lung under it, the side of any pneumothorax or infection',
+             '<b>Staged VATS</b> is the safer default: the first side, then recovery and reassessment (symptoms, CT, spirometry, DLCO) before the second side, usually within about 3–6 months' + tag('prop', 'proposed'),
+             'Often the first side helps enough that the second is delayed or not needed; operate the second side if it is still giant and limiting',
+             '<b>One stage</b> (sequential bilateral VATS at one anesthetic, or median sternotomy) only for selected fit patients, similar disease on both sides, experienced anesthesia; it doubles the air leak and risks bilateral re-expansion edema')
+        + tbl(['Other situations', 'Plan'],
+              ['One side dominant, the other small', 'Operate the dominant side only; follow the other with CT'],
+              ['Contralateral bulla enlarges under positive pressure during the first side', 'Low airway pressures; falling blood pressure and rising pressures: <b>decompress and operate on the second side at once</b>'],
+              ['Bilateral pneumothorax from bullae', 'Drain both sides; bullectomy and pleurodesis, the worse side first or sequential bilateral VATS at one anesthetic'],
+              ['Unfit for resection', '<b>Intracavitary drainage (Brompton)</b> of the dominant bulla; best medical therapy; valves only in selected anatomy, not for a giant bulla'])
+        + ul('<b>Median sternotomy</b> reaches both apices and avoids two thoracotomies, but gives poor access to the lower lobes and the back of the left chest',
+             'One-stage surgery saves an anesthetic but takes longer, doubles the air leak, and risks bilateral re-expansion edema: hence many prefer staging',
+             'Lung transplantation is the end of the road for diffuse bilateral disease; not available locally')
+        + ev('Kitazawa et al. 2017: a planned two-stage VATS approach (one-stage judged more invasive; risk of bilateral re-expansion edema); the contralateral bulla enlarged under positive pressure after the first side and compressed the mediastinum, needing immediate second-side bullectomy; one-stage versus two-stage remains controversial (case reports only). Song et al. 2013: one-stage options include sequential bilateral VATS or contralateral access through the anterior mediastinum. Schipper et al. 2004: 22 of 43 giant bullectomies were bilateral. Sternotomy access and staging interval: unit practice.'),
+        BOTH, show=[*BUL, 'bulla-giant-l', 'bulla-compressed-l'], highlight=['bulla-giant', 'bulla-giant-l'], labels=['bulla-giant', 'bulla-giant-l', 'bulla-compressed', 'bulla-compressed-l'],
+        opacity={'bulla-giant': 0.4, 'bulla-giant-l': 0.4}, after=True,
+        quiz=ask('Giant bullae on both sides; the right is larger, with well-perfused compressed lung beneath it. He is fit. What is the usual plan?', 'Right VATS bullectomy first, then reassess',
+                 'Treat the worse side first and reassess before the second; staging is the safer default. One-stage surgery is reserved for selected fit patients with similar disease on both sides, in experienced hands.',
+                 'One-stage bilateral bullectomy through a median sternotomy to save a second anesthetic', 'Bilateral endobronchial valves to both upper lobes as the first treatment', 'Medical therapy alone, since bilateral disease rules out any operation'))
+
     cons = step('bul-consent', 'Consent', 'Consent: what to discuss with this patient',
         consent('in this case, a stable non-smoker with a large bulla over good compressed lung: low operative mortality in experienced centres (1 death in 43 in one series), but a <b>prolonged air leak is more likely than not</b>.',
                 ['<b>Air leak lasting more than 7 days</b> (about half of patients in one series): the drain stays longer', 'Pain at the port sites and along the ribs; numbness under the breast',
@@ -166,7 +203,8 @@ def add(procs, ask, has, LM, S):
         '<p><b>Anesthesia is the dangerous part.</b> Positive pressure can blow up the bulla or rupture it into a <b>tension pneumothorax</b>. '
         'Keep airway pressures low, allow a longer expiration, <b>no nitrous oxide</b>; isolate the lung early with a <b>double-lumen tube</b>; the surgeon is scrubbed at induction, ready to decompress.</p>'
         + ul('Lateral decubitus, the bulla side up', 'VATS: camera low, utility incision over the 4th space anteriorly, a posterior working port (the anterior approach ports)',
-             'Paravertebral or erector spinae catheter for analgesia: good analgesia is what keeps the patient off the ventilator')
+             'Paravertebral or erector spinae catheter for analgesia: good analgesia is what keeps the patient off the ventilator',
+             '<b>Bilateral disease</b>: the bulla in the ventilated (down) lung can enlarge during one-lung ventilation and compress the mediastinum: watch pressures and blood pressure (Kitazawa et al. 2017)')
         + ev('Avoid nitrous oxide and high airway pressures in bullous disease; one-lung ventilation is a technical advantage (Benditt 2006).') + tag('prop', 'proposed'),
         SETUP, labels=['port-r-anterior-utility', 'port-r-anterior-camera', 'port-r-anterior-posterior'],
         quiz=ask('During induction the airway pressure climbs, the saturation falls and the blood pressure drops. What is the likely cause?', 'Tension pneumothorax from a ruptured bulla',
@@ -215,7 +253,7 @@ def add(procs, ask, has, LM, S):
                  'Return to theatre today for a muscle flap over the staple line', 'Clamp the drain for 24 hours and remove it if the radiograph is unchanged', 'High suction at −40 cmH2O until the leak stops completely'))
 
     steps_ = [(lab, kind, sts) for lab, kind, sts in [
-        ('Patho', 'other', [patho]), ('Anatomy', 'other', [anat]), ('Case', 'other', [case]), ('Decision', 'other', [decide]), ('Consent', 'other', [cons]),
+        ('Patho', 'other', [patho]), ('Anatomy', 'other', [anat]), ('Case', 'other', [case]), ('Decision', 'other', [decide]), ('Bilateral', 'other', [bilat]), ('Consent', 'other', [cons]),
         ('Setup', 'other', [setup]), ('Explore', 'other', [explore]), ('Staple', 'fissure', [staple]), ('Close', 'other', [close]), ('ICU', 'other', [icu])]]
     steps, sq = [], []
     for i, (lab, kind, sts) in enumerate(steps_):
@@ -223,6 +261,6 @@ def add(procs, ask, has, LM, S):
         for s in sts: steps.append({**s, 'seq': i})
     p = {'id': 'bulla-vats', 'op': 'bullous', 'opName': 'Bullous lung disease', 'side': 'right', 'name': 'VATS bullectomy for a giant bulla', 'approach': 'VATS bullectomy (giant bulla)',
          'summary': 'Bulla, bleb or pneumothorax; who benefits from bullectomy; LVRS, valves and drainage; a buttressed staple line; the air leak.',
-         'ports': [], 'steps': steps, 'sources': [SCHIPPER, BENDITT, BUERO, GOLD, NETT, VENN, BTS, DEVALLA, EBV_CASE], 'group': 'Emphysema and bullous disease', 'sequence': sq}
+         'ports': [], 'steps': steps, 'sources': [SCHIPPER, BENDITT, BUERO, GOLD, NETT, VENN, BTS, DEVALLA, KITAZAWA, SONG, EBV_CASE], 'group': 'Emphysema and bullous disease', 'sequence': sq}
     procs['bulla-vats'] = p
     print('  bullous disease: bulla-vats')

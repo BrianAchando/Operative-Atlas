@@ -98,6 +98,47 @@ A **52-year-old fisherman from Kisumu**, 35 pack-years, treated for pulmonary TB
 - [ ] Bilateral lung volume reduction surgery through a median sternotomy
 - [ ] Endobronchial valves to the right upper lobe after a Chartis assessment
 
+## [bul-bilat] Bilateral giant bullae: the management strategy
+
+Bullous disease is often **bilateral**. The plan is decided side by side, not bulla by bulla.
+
+<figure class="case-img"><video src="media/bullae-bilateral-ct.mp4" poster="media/bullae-bilateral-ct.jpg" controls preload="none" playsinline muted></video><figcaption>Axial CT, apex to upper abdomen (lung window), shared for teaching with identifiers removed. Right: a giant bulla filling most of the hemithorax, the lower lobe compressed at the base. Left: several large upper lobe bullae with septa; the lower lobe dense (compressive collapse or infection). Scroll through and decide: which side first, and what to check at the left base?</figcaption></figure>
+
+#### 1\. Prepare both lungs (all patients)
+
+-   Stop smoking (confirmed), pulmonary rehabilitation, optimized inhalers, vaccines; treat any infection; confirm TB is treated (GeneXpert)
+-   **CT of both sides**: size of each bulla against its hemithorax, and the **compressed lung** under each; emphysema in the rest of the lung
+-   **Split function**: a perfusion (V/Q) scan shows which side the lung under the bulla is still perfused; plus spirometry, DLCO, blood gas and echo (pulmonary hypertension)
+
+#### 2\. Both sides giant: the strategy
+
+-   **Operate the worse side first**: the larger bulla, the more compressed but still perfused lung under it, the side of any pneumothorax or infection
+-   **Staged VATS** is the safer default: the first side, then recovery and reassessment (symptoms, CT, spirometry, DLCO) before the second side, usually within about 3–6 months <span class="tag prop">proposed</span>
+-   Often the first side helps enough that the second is delayed or not needed; operate the second side if it is still giant and limiting
+-   **One stage** (sequential bilateral VATS at one anesthetic, or median sternotomy) only for selected fit patients, similar disease on both sides, experienced anesthesia; it doubles the air leak and risks bilateral re-expansion edema
+
+| Other situations | Plan |
+| --- | --- |
+| One side dominant, the other small | Operate the dominant side only; follow the other with CT |
+| Contralateral bulla enlarges under positive pressure during the first side | Low airway pressures; falling blood pressure and rising pressures: **decompress and operate on the second side at once** |
+| Bilateral pneumothorax from bullae | Drain both sides; bullectomy and pleurodesis, the worse side first or sequential bilateral VATS at one anesthetic |
+| Unfit for resection | **Intracavitary drainage (Brompton)** of the dominant bulla; best medical therapy; valves only in selected anatomy, not for a giant bulla |
+
+-   **Median sternotomy** reaches both apices and avoids two thoracotomies, but gives poor access to the lower lobes and the back of the left chest
+-   One-stage surgery saves an anesthetic but takes longer, doubles the air leak, and risks bilateral re-expansion edema: hence many prefer staging
+-   Lung transplantation is the end of the road for diffuse bilateral disease; not available locally
+
+> **Evidence:** Kitazawa et al. 2017: a planned two-stage VATS approach (one-stage judged more invasive; risk of bilateral re-expansion edema); the contralateral bulla enlarged under positive pressure after the first side and compressed the mediastinum, needing immediate second-side bullectomy; one-stage versus two-stage remains controversial (case reports only). Song et al. 2013: one-stage options include sequential bilateral VATS or contralateral access through the anterior mediastinum. Schipper et al. 2004: 22 of 43 giant bullectomies were bilateral. Sternotomy access and staging interval: unit practice.
+
+### Question
+
+**Q:** Giant bullae on both sides; the right is larger, with well-perfused compressed lung beneath it. He is fit. What is the usual plan?
+- [x] Right VATS bullectomy first, then reassess
+  > Treat the worse side first and reassess before the second; staging is the safer default. One-stage surgery is reserved for selected fit patients with similar disease on both sides, in experienced hands.
+- [ ] One-stage bilateral bullectomy through a median sternotomy to save a second anesthetic
+- [ ] Bilateral endobronchial valves to both upper lobes as the first treatment
+- [ ] Medical therapy alone, since bilateral disease rules out any operation
+
 ## [bul-consent] Consent: what to discuss with this patient
 
 **1\. The patient's own risk**: in this case, a stable non-smoker with a large bulla over good compressed lung: low operative mortality in experienced centers (1 death in 43 in one series), but a **prolonged air leak is more likely than not**. Quote the figure, not a textbook average.
@@ -152,6 +193,7 @@ Template and how to use it: [CTICU protocol, consent](#approach=cticu-consent&st
 -   Lateral decubitus, the bulla side up
 -   VATS: camera low, utility incision over the 4th space anteriorly, a posterior working port (the anterior approach ports)
 -   Paravertebral or erector spinae catheter for analgesia: good analgesia is what keeps the patient off the ventilator
+-   **Bilateral disease**: the bulla in the ventilated (down) lung can enlarge during one-lung ventilation and compress the mediastinum: watch pressures and blood pressure (Kitazawa et al. 2017)
 
 > **Evidence:** Avoid nitrous oxide and high airway pressures in bullous disease; one-lung ventilation is a technical advantage (Benditt 2006).
 
@@ -233,4 +275,6 @@ Start with the [thoracic core](#approach=cticu-thoracic&step=0) and the [escalat
 - [Venn GE, Williams PR, Goldstraw P. Intracavity drainage for bullous, emphysematous lung disease: experience with the Brompton technique. Thorax 1988;43:998-1002](https://thorax.bmj.com/content/43/12/998)
 - [Roberts ME, et al. British Thoracic Society guideline for pleural disease. Thorax 2023;78:1143-56](https://thorax.bmj.com/content/78/11/1143.full.pdf)
 - [Devalla L, et al. Apparent "double wall sign" in emphysematous bullae of the lung. Pan Afr Med J 2026;53:154](https://www.panafrican-med-journal.com/content/article/53/154/full)
+- [Kitazawa S, et al. Surgical resection for bilateral giant emphysematous bullae. Clin Med Invest 2017;2. doi:10.15761/CMI.1000125](https://www.oatext.com/Surgical-resection-for-bilateral-giant-emphysematous-bullae.php)
+- [Song N, et al. Bilateral bullectomy through uniportal video-assisted thoracoscopic surgery combined with contralateral access to the anterior mediastinum. J Bras Pneumol 2013](https://jornaldepneumologia.com.br/details/1802/en-US)
 - [Bronchoscopic lung volume reduction with an endobronchial valve for huge emphysematous bullae: a case report. BMC Pulm Med 2019](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC6518705/)
