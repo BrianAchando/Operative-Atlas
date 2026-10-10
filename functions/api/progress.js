@@ -16,6 +16,6 @@ export async function onRequestPut({ request, env }) {
   let d; try { d = JSON.parse(txt); } catch { return J({ error: 'Bad JSON.' }, 400); }
   if (!d || typeof d.v !== 'object' || typeof d.q !== 'object') return J({ error: 'Bad data.' }, 400);
   await env.DB.prepare('INSERT INTO progress (user_id, data, updated) VALUES (?, ?, ?) ON CONFLICT(user_id) DO UPDATE SET data = excluded.data, updated = excluded.updated')
-    .bind(u.id, JSON.stringify({ v: d.v, q: d.q, sr: typeof d.sr === 'object' ? d.sr : {}, daily: typeof d.daily === 'object' ? d.daily : {} }), new Date().toISOString()).run();
+    .bind(u.id, JSON.stringify({ v: d.v, q: d.q, sr: typeof d.sr === 'object' ? d.sr : {}, daily: typeof d.daily === 'object' ? d.daily : {}, exam: typeof d.exam === 'object' ? d.exam : {} }), new Date().toISOString()).run();
   return J({ ok: true });
 }

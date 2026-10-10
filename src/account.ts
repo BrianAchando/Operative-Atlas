@@ -8,7 +8,8 @@ import { analysis, type LogEntry } from './logstats.ts';
 
 type H = (tag: string, attrs?: Record<string, unknown>, ...kids: (Node | string | null | undefined)[]) => HTMLElement;
 export type Progress = { v: Record<string, Record<string, 1>>; q: Record<string, Record<string, 0 | 1>>; sr?: Record<string, [number, string]>;
-  daily?: { streak?: number; best?: number; last?: string; days?: Record<string, number>; set?: { day: string; keys: string[]; done: Record<string, 0 | 1> } } };
+  daily?: { streak?: number; best?: number; last?: string; days?: Record<string, number>; set?: { day: string; keys: string[]; done: Record<string, 0 | 1> } };
+  exam?: { mocks?: { at: string; n: number; right: number; secs: number; areas: string[]; level: string }[]; vivas?: { at: string; proc: string; score: number; max: number; mode: 'self' | 'examiner' }[] } };
 export interface Prefill { date: string; proc?: string; op?: string; onSaved?: (id: number) => void }
 export interface User { id: number; email: string; name: string | null; role: 'student' | 'resident' | 'consultant' | null; status: 'new' | 'active' | 'pending' | 'suspended';
   institution: string | null; hospital: string | null; year: string | null; reg_no: string | null; start?: string | null; admin: boolean }
@@ -65,6 +66,9 @@ export function createAccount(h: H, procedures: Record<string, Procedure>, progr
       if (s.daily) { const d = (progress.daily ??= {}); d.days = { ...(s.daily.days ?? {}), ...(d.days ?? {}) };
         if ((s.daily.last ?? '') > (d.last ?? '')) { d.last = s.daily.last; d.streak = s.daily.streak; if (!d.set || (s.daily.set?.day ?? '') > d.set.day) d.set = s.daily.set; }
         d.best = Math.max(d.best ?? 0, s.daily.best ?? 0); }
+      // exam history: union of papers and vivas by time
+      if (s.exam) { const e = (progress.exam ??= {}); for (const k of ['mocks', 'vivas'] as const) { const have = new Set((e[k] ?? []).map((x) => x.at));
+        (e[k] as { at: string }[] | undefined) = [...(e[k] ?? []), ...((s.exam[k] ?? []) as { at: string }[]).filter((x) => !have.has(x.at))].sort((a, b) => a.at.localeCompare(b.at)).slice(-60) as never; } }
       saveLocal();
     }
     void api('api/progress', 'PUT', progress);

@@ -441,3 +441,29 @@ body.stage-light #hover { color: #33505e; }
 .oc-mods a { color: #8fc7ff; }
 .oc-src { margin-top: 12px; font-size: 12px; color: #a9bcc5; }
 @media (max-width: 640px) { .oc-list { grid-template-columns: 1fr; } .oc-item { min-height: 0; } }
+
+/* exam track */
+.exam-btn { border-color: #6f8fd6; color: #b9cbff; }
+.ex-box { max-width: 820px; }
+.ex-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 10px; margin: 6px 0 10px; }
+.ex-card { text-align: left; font: inherit; color: var(--text); background: var(--raised); border: 1px solid var(--line-2); border-top: 3px solid #6f8fd6; border-radius: 6px; padding: 12px; cursor: pointer; display: flex; flex-direction: column; gap: 6px; }
+.ex-card:hover { border-color: var(--accent, #2bbfae); } .ex-card span { font-size: 13px; color: #a9bcc5; }
+.ex-chk { display: flex; align-items: center; gap: 6px; margin: 10px 0 4px; font-size: 14px; }
+.ex-top { display: flex; justify-content: space-between; align-items: baseline; } .ex-clock { font-size: 20px; font-weight: 700; font-variant-numeric: tabular-nums; }
+.ex-nav { display: flex; flex-wrap: wrap; gap: 4px; margin: 6px 0 10px; }
+.ex-dot { font: inherit; font-size: 11px; width: 28px; height: 26px; border-radius: 4px; border: 1px solid var(--line-2); background: transparent; color: var(--text); cursor: pointer; padding: 0; }
+.ex-dot.done { background: rgba(43,191,174,.25); } .ex-dot.flag { border-color: #e0a63a; box-shadow: inset 0 -3px 0 #e0a63a; } .ex-dot.cur { outline: 2px solid #8fc7ff; }
+.choice.picked { border-color: #8fc7ff; background: rgba(143,199,255,.12); }
+.ex-bars { display: flex; flex-direction: column; gap: 6px; } .ex-bar { display: grid; grid-template-columns: 140px 1fr 50px; gap: 8px; align-items: center; font-size: 13px; }
+.ex-bar i { height: 10px; background: rgba(255,255,255,.07); border-radius: 5px; overflow: hidden; } .ex-bar b { display: block; height: 100%; }
+.ex-bar b.ok, .ex-heat td.ok { background: rgba(43,191,174,.55); } .ex-bar b.mid, .ex-heat td.mid { background: rgba(224,166,58,.5); } .ex-bar b.low, .ex-heat td.low { background: rgba(224,90,74,.5); }
+.ex-heat td { text-align: center; } .ex-heat td small { color: #a9bcc5; font-size: 10px; }
+.ex-rev { border-top: 1px solid var(--line); padding: 8px 0; } .ex-no { color: #ffb4a8; margin: 2px 0; } .ex-ok { color: #8fe0c8; margin: 2px 0; }
+.ex-ask { font-size: 17px; font-weight: 600; margin: 8px 0 12px; }
+.ex-model { border-left: 3px solid #6f8fd6; padding: 4px 12px; margin: 10px 0; background: rgba(111,143,214,.06); border-radius: 4px; }
+.ex-score { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; margin: 10px 0; } .ex-score .chip { font: inherit; width: 40px; height: 34px; border-radius: 6px; border: 1px solid var(--line-2); background: transparent; color: var(--text); cursor: pointer; font-weight: 700; }
+.ex-score .chip.on { background: #6f8fd6; color: #0b1220; } .ex-score small { flex-basis: 100%; }
+td.ok { color: #8fe0c8; } td.low { color: #ffb4a8; }
+@media (max-width: 640px) { .ex-bar { grid-template-columns: 100px 1fr 40px; } }
+.ex-box .lb-actions { flex-wrap: wrap; } .ex-box .lb-actions .btn { white-space: normal; text-align: left; }
+@media (max-width: 640px) { .ex-heat { font-size: 11px; } .ex-heat th, .ex-heat td { padding: 4px 3px; } .ex-heat td small { display: block; } }
