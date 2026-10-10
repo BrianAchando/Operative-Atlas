@@ -5,6 +5,7 @@ import { fetchGunzip, invertAffine, type Volume } from './volume.ts';
 import { filesFromDrop, loadImages } from './dicom.ts';
 import type { Procedure, Step } from './procedure.ts';
 import { createAccount } from './account.ts';
+import { createOnCall } from './oncall.ts';
 import { createToday } from './today.ts';
 
 const DATA = 'data/';
@@ -525,12 +526,14 @@ const progress: Progress = (() => { try { const x = JSON.parse(localStorage.getI
 const saveLocal = () => { try { localStorage.setItem(PKEY, JSON.stringify(progress)); } catch { /* storage off */ } };
 let account: ReturnType<typeof createAccount> | undefined;
 let today: ReturnType<typeof createToday> | undefined;
+let oncall: ReturnType<typeof createOnCall> | undefined;
 function accountButtons(): HTMLElement[] {
   account ??= createAccount(h, procedures, progress, saveLocal);
   const a = account;
   today ??= createToday({ h, procedures, progress, save: saveProgress, user: a.user, logCase: a.logCase, onUser: a.onUser,
     nameOf: (id) => atlas?.structures.find((m) => m.id === id)?.name ?? '' });
-  return [today.button, a.button];
+  oncall ??= createOnCall(h, (k) => (procedures[k] ? `${procedures[k]!.opName} · ${procedures[k]!.approach}` : null));
+  return [oncall.button, today.button, a.button];
 }
 const saveProgress = () => { saveLocal(); account?.progressChanged(); };
 function markSeen(p: string, id: string): void { (progress.v[p] ??= {})[id] = 1; saveProgress(); }
