@@ -1,0 +1,12 @@
+# The weekly trigger for COVA's consultant emails. Cloudflare Pages has no schedules, so this tiny Worker calls
+# /api/digest every Monday at 05:00 UTC (08:00 Nairobi). Deploy once:  cd cron-worker && npx wrangler deploy
+# then set the shared key in BOTH places (same value):  npx wrangler secret put CRON_KEY   and Pages > Settings > Variables: CRON_KEY
+name = "cova-weekly"
+main = "index.js"
+compatibility_date = "2025-01-01"
+
+[triggers]
+crons = ["0 5 * * 1"]
+
+[vars]
+SITE = "https://operative-atlas.pages.dev"

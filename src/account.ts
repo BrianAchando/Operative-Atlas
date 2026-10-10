@@ -1,5 +1,6 @@
 // Accounts: sign in with an emailed code, a profile with role and institution, progress kept with the account, the
-// operative logbook (residents), case verification (consultants) and user approval (administrator).
+// operative logbook (residents; no consultant sign-off), trainee progress, monthly reviews and assigned modules
+// (consultants) and user approval (administrator).
 // The atlas stays open to everyone; signing in adds these features.
 import type { Procedure } from './procedure.ts';
 import { CATALOG, LEVELS as CAT_LEVELS, OPS, SKILLS, opForAtlas } from './logcat.ts';
@@ -74,7 +75,7 @@ export function createAccount(h: H, procedures: Record<string, Procedure>, progr
     const email = h('input', { type: 'email', autocomplete: 'email', placeholder: 'you@example.com', required: true }) as HTMLInputElement;
     const m = msg(); const go = h('button', { class: 'btn primary', type: 'submit' }, 'Email me a code') as HTMLButtonElement;
     const form = h('form', { class: 'acct-form' },
-      h('p', {}, 'The atlas is open to everyone. Sign in to keep your progress on any device, keep a logbook (residents) and verify cases (consultants).'),
+      h('p', {}, 'The atlas is open to everyone. Sign in to keep your progress on any device, keep a logbook (residents) and follow your trainees (consultants).'),
       field('Email', email), go, m,
       h('p', { class: 'foot' }, 'No password: we email a 6-digit code each time. Use the email you check most.'));
     const { panel } = overlay('Sign in', form); email.focus();
@@ -117,7 +118,7 @@ export function createAccount(h: H, procedures: Record<string, Procedure>, progr
     const reg = h('input', { type: 'text', value: user?.reg_no ?? '', placeholder: 'KMPDC number (optional)' }) as HTMLInputElement;
     const start = h('input', { type: 'month', value: user?.start ?? '' }) as HTMLInputElement;
     const roles = h('div', { class: 'role-cards' }, ...(['student', 'resident', 'consultant'] as const).map((r) => {
-      const desc = { student: 'Atlas, quizzes and your progress.', resident: 'All of the above, plus your operative logbook, verified by your consultants.', consultant: 'Verify your trainees\' cases, review and teach. Approved by the administrator.' }[r];
+      const desc = { student: 'Atlas, quizzes and your progress.', resident: 'All of the above, plus your operative logbook and progress analysis.', consultant: 'Follow your trainees\' progress, give monthly reviews and assign modules. Approved by the administrator.' }[r];
       return h('button', { type: 'button', class: `role-card${role === r ? ' on' : ''}`, 'data-r': r, onclick: () => { role = r; sync(); } }, h('b', {}, ROLE_NAME[r]), h('span', {}, desc));
     }));
     const instF = field('University or training institution', inst); const hospF = field('Hospital', hosp); const otherF = field('Other', other);
@@ -150,7 +151,7 @@ export function createAccount(h: H, procedures: Record<string, Procedure>, progr
     overlay(`Welcome, ${user.name ?? ''}`,
       h('p', {}, pending ? 'Your consultant account is waiting for the administrator\'s approval. Until then you have the student and resident features.'
         : user.role === 'resident' ? 'Your progress is now kept with your account. Open your logbook from the account menu (your name, top right).'
-        : user.role === 'consultant' ? 'Cases that residents log with you as supervisor will appear under "Verify cases" in the account menu.'
+        : user.role === 'consultant' ? 'Residents who log cases with you as supervisor appear under "Trainees" in the account menu.'
         : 'Your progress is now kept with your account, on any device.'),
       h('button', { class: 'btn primary', onclick: () => document.getElementById('acct-panel')?.remove() }, 'Continue'));
   }
@@ -163,8 +164,8 @@ export function createAccount(h: H, procedures: Record<string, Procedure>, progr
         h('br'), h('small', {}, [user.institution, user.hospital, user.email].filter(Boolean).join(' · '))),
       h('button', { class: 'btn', onclick: () => { void profile(); } }, 'Edit profile'),
       user.role === 'resident' || user.role === 'consultant' || user.admin ? h('button', { class: 'btn', onclick: () => { void logbook(); } }, 'Logbook') : null,
-      (user.role === 'consultant' && user.status === 'active') || user.admin ? h('button', { class: 'btn', onclick: () => { void review(); } }, 'Verify cases') : null,
-      (user.role === 'consultant' && user.status === 'active') || user.admin ? h('button', { class: 'btn', onclick: () => { void trainees(); } }, 'Trainees: progress') : null,
+      (user.role === 'consultant' && user.status === 'active') || user.admin ? h('button', { class: 'btn', onclick: () => { void trainees(); } }, 'Trainees: progress and reviews') : null,
+      (user.role === 'consultant' && user.status === 'active') || user.admin ? h('button', { class: 'btn', onclick: () => { void assignPanel(); } }, 'Assign modules') : null,
       user.admin ? h('button', { class: 'btn', onclick: () => { void admin(); } }, 'Users') : null,
       h('button', { class: 'btn ghost', onclick: async () => { await api('api/auth/logout', 'POST', {}); user = null; paint(); document.getElementById('acct-panel')?.remove(); } }, 'Sign out'),
     ];
@@ -193,25 +194,26 @@ export function createAccount(h: H, procedures: Record<string, Procedure>, progr
   window.addEventListener('online', () => { void flush(); });
 
   async function logbook(): Promise<void> {
-    const r = await api<Entry[]>('api/logbook');
+    const [r, rv] = await Promise.all([api<Entry[]>('api/logbook'), user?.role === 'resident' ? api<Rev[]>('api/reviews') : Promise.resolve(null), dir ? null : getDir()]);
+    const sname = (id: unknown) => dir?.consultants.find((c) => c.id === id)?.name ?? '';
     const list = r.ok ? r.data : [];
     const counts = new Map<string, Record<string, number>>();
     for (const e of list) { const k = procName(e.data); const c = counts.get(k) ?? {}; c[String(e.data['level'])] = (c[String(e.data['level'])] ?? 0) + 1; counts.set(k, c); }
-    const verified = list.filter((e) => e.status === 'verified').length;
-    const summary = h('details', { class: 'pg-group' }, h('summary', {}, `Consolidated summary: ${list.length} cases, ${verified} verified`),
+    const summary = h('details', { class: 'pg-group' }, h('summary', {}, `Consolidated summary: ${list.length} cases`),
       h('table', { class: 'lb-sum' }, h('tr', {}, h('th', {}, 'Procedure'), ...LEVELS.map(([c]) => h('th', {}, c)), h('th', {}, 'Total')),
         ...[...counts].sort((a, b) => a[0].localeCompare(b[0])).map(([k, c]) => h('tr', {}, h('td', {}, k), ...LEVELS.map(([l]) => h('td', {}, String(c[l] ?? ''))),
           h('td', {}, String(Object.values(c).reduce((a, b) => a + b, 0)))))));
     const rows = list.map((e) => h('div', { class: `lb-row st-${e.status}` },
       h('span', { class: 'lb-date' }, String(e.data['date'] ?? '')), h('span', {}, procName(e.data)), h('span', { class: 'lb-lev' }, String(e.data['level'] ?? '')),
-      h('span', { class: 'lb-st' }, e.status === 'verified' ? `Verified${e.reviewer ? ' by ' + e.reviewer : ''}` : e.status === 'returned' ? `Returned: ${e.review_comment ?? ''}` : 'Awaiting verification'),
+      h('span', { class: 'lb-st' }, e.data['supervisor_name'] ? String(e.data['supervisor_name']) : e.data['supervisor_id'] ? sname(e.data['supervisor_id']) : ''),
       h('button', { class: 'link', onclick: () => { void entryForm(e); } }, 'Edit')));
     overlay('Logbook',
       h('div', { class: 'lb-actions' }, h('button', { class: 'btn primary', onclick: () => { void entryForm(); } }, 'Add a case'),
         h('button', { class: 'btn', onclick: () => overlay('Progress analysis', analysis(h, list as unknown as LogEntry[], user?.start)) }, 'Progress analysis'),
         h('button', { class: 'btn', onclick: () => exportCsv(list) }, 'Export (CSV for Excel)'),
         h('a', { class: 'btn', href: 'media/TCVS-resident-logbook.xlsx', download: '' }, 'Paper / Excel template')),
-      summary, ...(rows.length ? rows : [h('p', { class: 'pg-sum' }, 'No cases yet. Add your first case; your supervising consultant verifies it.')]),
+      rv && rv.ok && rv.data.length ? h('details', { class: 'pg-group', open: true }, h('summary', {}, `Supervisor reviews: latest ${rv.data[0]!.rating}`), reviewList(rv.data)) : null,
+      summary, ...(rows.length ? rows : [h('p', { class: 'pg-sum' }, 'No cases yet. Add your first case: it takes a minute after theatre.')]),
       h('p', { class: 'foot' }, 'Codes follow the intercollegiate eLogbook (ISCP): O observed, A assisted, S-TS supervised with trainer scrubbed, S-TU supervised with trainer unscrubbed, P performed, T training a junior. Record no patient names or hospital numbers.'));
   }
 
@@ -269,7 +271,7 @@ export function createAccount(h: H, procedures: Record<string, Procedure>, progr
     const opFs = h('fieldset', { class: 'lb-fs' }, h('legend', {}, 'Operation'),
         field('Diagnosis / indication', inp('diagnosis', 'text', { placeholder: 'e.g. Severe rheumatic MS, Wilkins 10' })),
         quick ? null : field('Procedure', proc), quick ? null : pother, h('div', { class: 'af-row' }, field('Area', area), field('Approach', inp('approach', 'text', { placeholder: 'e.g. Median sternotomy, VATS 3-port' }))));
-    const supFs = h('fieldset', { class: 'lb-fs' }, h('legend', {}, quick ? 'Supervisor' : 'Overall level and supervisor'), quick ? null : lev, field('Supervising consultant', sup, 'They verify the case. Not listed? Ask them to create a consultant account.'), inp('supervisor_name', 'text', { placeholder: 'Or type the name (cannot verify online)' }));
+    const supFs = h('fieldset', { class: 'lb-fs' }, h('legend', {}, quick ? 'Supervisor' : 'Overall level and supervisor'), quick ? null : lev, field('Supervising consultant', sup, 'Recorded with the case; they follow your progress and give the monthly review. Not listed? Ask them to create a consultant account.'), inp('supervisor_name', 'text', { placeholder: 'Or type the name' }));
     const outFs = h('fieldset', { class: 'lb-fs' }, h('legend', {}, 'Outcome'),
         h('div', { class: 'af-row' }, field('Complication', sel('complication', ['None', 'Minor', 'Major'])), field('Clavien-Dindo', sel('clavien', ['I', 'II', 'IIIa', 'IIIb', 'IVa', 'IVb', 'V'], '–')),
           field('Back to theatre', sel('return_theatre', ['No', 'Yes'], '–')), field('30-day', sel('outcome_30d', ['Alive', 'Died', 'Unknown'], '–')), field('Stay (days)', inp('los_days', 'number', { min: 0 })), field('Blood loss (ml)', inp('blood_ml', 'number', { min: 0 }))));
@@ -311,38 +313,89 @@ export function createAccount(h: H, procedures: Record<string, Procedure>, progr
       'arrest_min', 'blood_ml', 'complication', 'clavien', 'return_theatre', 'outcome_30d', 'los_days', 'notes'];
     const q = (x: unknown) => `"${String(x ?? '').replace(/"/g, '""')}"`;
     const sname = (id: unknown) => dir?.consultants.find((c) => c.id === id)?.name ?? '';
-    const lines = [[...cols, 'status'].join(',')].concat(list.map((e) => [...cols.map((c) => q(c === 'proc_name' ? procName(e.data) : c === 'supervisor_name' ? (e.data[c] || sname(e.data['supervisor_id'])) : e.data[c])), q(e.status)].join(',')));
+    const lines = [cols.join(',')].concat(list.map((e) => [...cols.map((c) => q(c === 'proc_name' ? procName(e.data) : c === 'supervisor_name' ? (e.data[c] || sname(e.data['supervisor_id'])) : e.data[c]))].join(',')));
     const a = h('a', { href: URL.createObjectURL(new Blob(['﻿' + lines.join('\r\n')], { type: 'text/csv' })), download: `cova-logbook-${new Date().toISOString().slice(0, 10)}.csv` }) as HTMLAnchorElement;
     document.body.append(a); a.click(); a.remove();
   }
 
-  // ------------------------------------------------------------------ consultant: verify cases
-  async function review(): Promise<void> {
-    const r = await api<(Entry & { resident: string; institution: string })[]>(`api/logbook?review=${user?.admin ? 'all' : '1'}`);
-    const list = r.ok ? r.data : [];
-    const row = (e: Entry & { resident: string; institution: string }) => {
-      const note = h('input', { type: 'text', placeholder: 'Comment (needed to return a case)' }) as HTMLInputElement;
-      const act = async (status: string) => { if (status === 'returned' && !note.value.trim()) { note.focus(); return; } await api('api/logbook', 'PATCH', { id: e.id, status, comment: note.value }); void review(); };
-      return h('div', { class: `rv-row st-${e.status}` },
-        h('div', {}, h('b', {}, `${e.resident}`), ` · ${e.institution ?? ''}`, h('br'), `${e.data['date']} · ${procName(e.data)} · `, h('b', {}, String(e.data['level'])),
-          h('br'), h('small', {}, [e.data['diagnosis'], e.data['hospital'], e.data['urgency'], e.data['notes']].filter(Boolean).join(' · '))),
-        e.status === 'pending' ? h('div', { class: 'rv-act' }, note, h('button', { class: 'btn primary', onclick: () => act('verified') }, 'Verify'), h('button', { class: 'btn', onclick: () => act('returned') }, 'Return'))
-          : h('div', { class: 'rv-act' }, h('span', {}, e.status === 'verified' ? 'Verified' : `Returned: ${e.review_comment ?? ''}`), h('button', { class: 'link', onclick: () => act('pending') }, 'Undo')));
-    };
-    const pend = list.filter((e) => e.status === 'pending').length;
-    overlay('Verify cases', h('p', { class: 'pg-sum' }, `${pend} awaiting verification`), ...(list.length ? list.map(row) : [h('p', {}, 'No cases name you as supervisor yet.')]));
+  // ------------------------------------------------------------------ consultant: trainees' progress, monthly review, assigned modules
+  type Rev = { id: number; month: string; rating: string; comment: string; plan: string; consultant: string; consultant_id: number; created: string };
+  type Asg = { id: number; proc: string; name: string; note: string; due: string | null; done: string | null; score: string | null; resident?: string; by_name?: string; created: string };
+  const RATINGS = ['On track', 'Needs support', 'Concern'];
+  const monthLabel = (m: string) => new Date(m + '-15T12:00').toLocaleDateString('en-GB', { month: 'long', year: 'numeric' });
+  const asgName = (a: Asg) => a.name || (procedures[a.proc] ? `${procedures[a.proc]!.opName} · ${procedures[a.proc]!.approach}` : a.proc);
+  const reviewList = (rs: Rev[]) => rs.length ? h('div', { class: 'rv-list' }, ...rs.map((r) => h('div', { class: `rv-item rt-${r.rating.replace(/\s+/g, '-').toLowerCase()}` },
+    h('b', {}, monthLabel(r.month)), ` · ${r.rating} · ${r.consultant}`, r.comment ? h('p', {}, r.comment) : null, r.plan ? h('p', {}, h('i', {}, 'Plan: '), r.plan) : null)))
+    : h('p', { class: 'foot' }, 'No monthly reviews yet.');
+  const asgRow = (a: Asg, extra?: HTMLElement | null) => h('div', { class: `lb-row as-row${a.done ? ' st-verified' : a.due && a.due < new Date().toISOString().slice(0, 10) ? ' st-returned' : ''}` },
+    h('span', {}, h('a', { href: `#approach=${a.proc}&step=0`, onclick: () => document.getElementById('acct-panel')?.remove() }, asgName(a)), a.note ? h('small', {}, ` · ${a.note}`) : null),
+    h('span', { class: 'lb-st' }, a.done ? `Done ${a.done.slice(0, 10)}${a.score ? `, questions ${a.score}` : ''}` : a.due ? `Due ${a.due}` : 'Open'), extra ?? null);
+
+  async function trainee(t: { id: number; name: string }): Promise<void> {
+    const [q, rv, as] = await Promise.all([api<{ resident: { start: string }; entries: LogEntry[] }>(`api/logbook?resident=${t.id}`), api<Rev[]>(`api/reviews?resident=${t.id}`), api<Asg[]>(`api/assign?by=me&resident=${t.id}`)]);
+    const now = new Date(); const months = Array.from({ length: 4 }, (_, i) => new Date(now.getFullYear(), now.getMonth() - i, 15).toISOString().slice(0, 7));
+    const mine = (rv.ok ? rv.data : []).filter((r) => r.consultant_id === user?.id);
+    const month = select(months.map(monthLabel), monthLabel(now.getDate() <= 7 ? months[1]! : months[0]!), 'Month…');
+    const rating = h('div', { class: 'rt-pick' }, ...RATINGS.map((r) => h('label', {}, h('input', { type: 'radio', name: 'rt', value: r }), ` ${r}`)));
+    const comment = h('textarea', { rows: 3, placeholder: 'What went well, what to work on (seen by the resident)' }) as HTMLTextAreaElement;
+    const plan = h('input', { type: 'text', placeholder: 'Plan for next month, e.g. lead 2 lobectomies, revise the ICU module' }) as HTMLInputElement;
+    const fill = () => { const m = months[months.map(monthLabel).indexOf(month.value)]; const r = mine.find((x) => x.month === m);
+      comment.value = r?.comment ?? ''; plan.value = r?.plan ?? ''; rating.querySelectorAll('input').forEach((i) => { (i as HTMLInputElement).checked = (i as HTMLInputElement).value === r?.rating; }); };
+    month.onchange = fill; fill();
+    const m1 = msg();
+    const save = h('button', { class: 'btn primary', onclick: async () => {
+      const rt = (rating.querySelector('input:checked') as HTMLInputElement | null)?.value; const m = months[months.map(monthLabel).indexOf(month.value)];
+      if (!m || !rt) { m1.textContent = 'Choose the month and a rating.'; return; }
+      const r = await api('api/reviews', 'POST', { resident_id: t.id, month: m, rating: rt, comment: comment.value, plan: plan.value });
+      if (r.ok) void trainee(t); else m1.textContent = r.data.error ?? 'Could not save.';
+    } }, 'Save review');
+    const asgs = as.ok ? as.data : [];
+    const del = (a: Asg) => h('button', { class: 'link', onclick: async () => { await fetch(`api/assign?id=${a.id}`, { method: 'DELETE', headers: { 'x-cova': '1' } }); void trainee(t); } }, 'Remove');
+    overlay(`${t.name}`,
+      h('details', { class: 'pg-group', open: true }, h('summary', {}, 'Monthly review'),
+        h('div', { class: 'rv-form' }, field('Month', month), field('Rating', rating), field('Comment', comment), field('Plan', plan), h('div', { class: 'lb-actions' }, save), m1),
+        h('h4', {}, 'Earlier reviews'), reviewList(rv.ok ? rv.data : [])),
+      h('details', { class: 'pg-group' }, h('summary', {}, `Modules you assigned: ${asgs.filter((a) => a.done).length}/${asgs.length} done`),
+        ...asgs.map((a) => asgRow(a, del(a))), assignForm([t.id], () => { void trainee(t); })),
+      q.ok ? analysis(h, q.data.entries, q.data.resident.start) : h('p', {}, q.data.error ?? ''));
   }
 
-  // ------------------------------------------------------------------ consultant: trainees' progress (read only)
   async function trainees(): Promise<void> {
-    type T = { id: number; name: string; institution: string; year: string; start: string; cases: number; pending: number };
+    type T = { id: number; name: string; institution: string; year: string; start: string; cases: number };
     const r = await api<T[]>('api/logbook?trainees=1'); const list = r.ok ? r.data : [];
-    overlay('Trainees: progress', ...(list.length ? list.map((t) => h('div', { class: 'lb-row tr-row' }, h('span', {}, h('b', {}, t.name ?? '–')), h('span', {}, `${t.institution ?? ''} ${t.year ?? ''}`),
-      h('span', { class: 'lb-st' }, `${t.cases} cases${t.pending ? `, ${t.pending} to verify` : ''}`),
-      h('button', { class: 'btn', onclick: async () => {
-        const q = await api<{ resident: T; entries: LogEntry[] }>(`api/logbook?resident=${t.id}`);
-        if (q.ok) overlay(`${t.name}: progress`, analysis(h, q.data.entries, q.data.resident.start));
-      } }, 'Open'))) : [h('p', {}, 'No trainees yet: residents appear here once they log a case with you as supervisor.')]));
+    overlay('Trainees', h('p', { class: 'pg-sum' }, h('a', { href: 'api/digest?preview=1', target: '_blank', rel: 'noopener' }, 'Preview your Monday email')), ...(list.length ? list.map((t) => h('div', { class: 'lb-row tr-row' }, h('span', {}, h('b', {}, t.name ?? '–')), h('span', {}, `${t.institution ?? ''} ${t.year ?? ''}`),
+      h('span', { class: 'lb-st' }, `${t.cases} cases`),
+      h('button', { class: 'btn', onclick: () => { void trainee(t); } }, 'Open'))) : [h('p', {}, 'No trainees yet: residents appear here once they log a case with you as supervisor, or once you assign them a module.')]));
+  }
+
+  /** choose a module and a due date, then assign it to the given residents */
+  function assignForm(ids: number[] | (() => number[]), done: () => void): HTMLElement {
+    const proc = h('select', {}, h('option', { value: '' }, 'Choose a module…'), ...procList().map(([k, n]) => h('option', { value: k }, n))) as HTMLSelectElement;
+    const due = h('input', { type: 'date', value: new Date(Date.now() + 7 * 864e5).toISOString().slice(0, 10) }) as HTMLInputElement;
+    const note = h('input', { type: 'text', placeholder: 'Note, e.g. before Thursday\'s list' }) as HTMLInputElement;
+    const m = msg();
+    return h('div', { class: 'as-form' }, h('h4', {}, 'Assign a module'), field('Module', proc), h('div', { class: 'af-row' }, field('Due', due), field('Note', note)),
+      h('div', { class: 'lb-actions' }, h('button', { class: 'btn primary', onclick: async () => {
+        const rid = typeof ids === 'function' ? ids() : ids;
+        if (!proc.value || !rid.length) { m.textContent = 'Choose a module and at least one resident.'; return; }
+        const r = await api<{ n: number }>('api/assign', 'POST', { resident_ids: rid, proc: proc.value, name: proc.selectedOptions[0]?.textContent ?? '', due: due.value, note: note.value });
+        if (r.ok) { m.textContent = `Assigned to ${r.data.n}.`; done(); } else m.textContent = r.data.error ?? 'Could not assign.';
+      } }, 'Assign')), m);
+  }
+
+  async function assignPanel(): Promise<void> {
+    type R = { id: number; name: string; institution: string; year: string };
+    const [rs, as] = await Promise.all([api<R[]>('api/assign?residents=1'), api<Asg[]>('api/assign?by=me')]);
+    const res = rs.ok ? rs.data : []; const picked = new Set<number>();
+    const groups = new Map<string, R[]>(); for (const r of res) { const g = r.institution || 'Other'; (groups.get(g) ?? groups.set(g, []).get(g)!).push(r); }
+    const pick = h('div', { class: 'as-pick' }, ...[...groups].map(([g, l]) => h('fieldset', {}, h('legend', {}, g, ' ',
+      h('button', { class: 'link', onclick: (e: Event) => { (e.currentTarget as HTMLElement).closest('fieldset')!.querySelectorAll('input').forEach((i) => { (i as HTMLInputElement).checked = true; picked.add(Number((i as HTMLInputElement).value)); }); } }, 'all')),
+      ...l.map((r) => h('label', {}, h('input', { type: 'checkbox', value: String(r.id), onchange: (e: Event) => { const i = e.currentTarget as HTMLInputElement; if (i.checked) picked.add(r.id); else picked.delete(r.id); } }), ` ${r.name ?? '–'}${r.year ? ` (${r.year})` : ''}`)))));
+    const made = as.ok ? as.data : [];
+    overlay('Assign modules',
+      res.length ? pick : h('p', {}, 'No active residents yet.'), assignForm(() => [...picked], () => { void assignPanel(); }),
+      h('h4', {}, `Assigned: ${made.filter((a) => a.done).length}/${made.length} done`),
+      ...made.map((a) => asgRow({ ...a, note: [a.resident, a.note].filter(Boolean).join(' · ') })));
   }
 
   // ------------------------------------------------------------------ administrator: users
@@ -350,7 +403,13 @@ export function createAccount(h: H, procedures: Record<string, Procedure>, progr
     type AU = User & { created: string; last_login: string; cases: number };
     const r = await api<AU[]>('api/admin/users'); const list = r.ok ? r.data : [];
     const set = async (id: number, body: Record<string, unknown>) => { await api('api/admin/users', 'PATCH', { id, ...body }); void admin(); };
-    overlay('Users', h('p', { class: 'pg-sum' }, `${list.length} accounts · ${list.filter((u) => u.status === 'pending').length} awaiting approval`),
+    const dm = msg();
+    const sendNow = h('button', { class: 'btn', onclick: async () => {
+      if (!confirm('Send the weekly email to every consultant with something to report now?')) return;
+      const r = await api<{ sent: number; quiet: number; failed: number }>('api/digest', 'POST', {});
+      dm.textContent = r.ok ? `Sent ${r.data.sent}, nothing to report for ${r.data.quiet}${r.data.failed ? `, failed ${r.data.failed} (check the email settings)` : ''}.` : r.data.error ?? 'Failed.';
+    } }, 'Send weekly emails now');
+    overlay('Users', h('p', { class: 'pg-sum' }, `${list.length} accounts · ${list.filter((u) => u.status === 'pending').length} awaiting approval`), h('div', { class: 'lb-actions' }, sendNow), dm,
       h('table', { class: 'lb-sum adm' }, h('tr', {}, ...['Name', 'Role', 'Where', 'Email', 'Cases', 'Status', ''].map((x) => h('th', {}, x))),
         ...list.map((u) => h('tr', { class: `st-${u.status}` }, h('td', {}, u.name ?? '–'), h('td', {}, u.role ? ROLE_NAME[u.role] : '–'), h('td', {}, u.institution || u.hospital || ''),
           h('td', {}, u.email), h('td', {}, String(u.cases)), h('td', {}, u.status),

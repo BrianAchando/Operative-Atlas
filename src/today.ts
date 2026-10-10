@@ -135,7 +135,25 @@ export function createToday(D: Deps) {
   // ------------------------------------------------------------------ the Today screen
   async function open(): Promise<void> {
     const today = iso(new Date()); const tomorrow = addDays(today, 1);
-    const r = await api<Plan[]>(`api/today?from=${addDays(today, -2)}&to=${addDays(today, 7)}`); const plans = r.ok ? r.data : [];
+    type Asg = { id: number; proc: string; name: string; note: string; due: string | null; done: string | null; score: string | null; by_name: string };
+    const [r, ar] = await Promise.all([api<Plan[]>(`api/today?from=${addDays(today, -2)}&to=${addDays(today, 7)}`), D.user()?.role === 'resident' ? api<Asg[]>('api/assign') : Promise.resolve(null)]);
+    const plans = r.ok ? r.data : []; const asgs = ar?.ok ? ar.data : [];
+    // modules a consultant assigned: progress from the steps opened and the module's questions answered
+    const asgBlock = () => {
+      const open_ = asgs.filter((a) => !a.done); const recent = asgs.filter((a) => a.done).slice(0, 3); if (!asgs.length) return null;
+      const row = (a: Asg) => {
+        const p = procedures[a.proc]; const seen = Object.keys(progress.v[a.proc] ?? {}).length; const tot = p?.steps.length ?? 0;
+        const qa = Object.values(progress.q[a.proc] ?? {}); const score = qa.length ? `${qa.filter((x) => x === 1).length}/${qa.length}` : '';
+        const late = !a.done && a.due && a.due < today;
+        return h('div', { class: `td-case as-case${a.done ? ' logged' : ''}${late ? ' late' : ''}` },
+          h('span', { class: 'td-name' }, h('a', { href: `#approach=${a.proc}&step=0`, onclick: () => document.getElementById('today-panel')?.remove() }, a.name || (p ? `${p.opName} · ${p.approach}` : a.proc)),
+            h('small', {}, ` · ${a.by_name}${a.due ? ` · due ${a.due}` : ''}${a.note ? ` · ${a.note}` : ''}`), h('br'),
+            h('small', { class: 'foot' }, a.done ? `Done${a.score ? `, questions ${a.score}` : ''}` : `${seen}/${tot} steps opened${score ? ` · questions ${score}` : ''}`)),
+          a.done ? h('button', { class: 'link', onclick: async () => { await api('api/assign', 'PATCH', { id: a.id, done: false }); void open(); } }, 'Undo')
+            : h('button', { class: 'btn', onclick: async () => { await api('api/assign', 'PATCH', { id: a.id, done: true, score }); void open(); } }, 'Mark done'));
+      };
+      return h('div', { class: 'td-day' }, h('h4', {}, 'Assigned to you', h('small', {}, ` ${open_.length} open`)), ...open_.map(row), ...recent.map(row));
+    };
     const set = todaySet(); const done = set.keys.filter((k) => k in set.done).length; const d = progress.daily ?? {};
     const u = D.user();
     const dayList = (day: string, label: string) => {
@@ -165,6 +183,7 @@ export function createToday(D: Deps) {
         h('div', {}, h('b', {}, 'Daily five'), h('p', { class: 'foot' }, done >= 5 ? `Done today: ${set.keys.filter((k) => set.done[k] === 1).length}/5` : `${done}/5 answered`,
           ` · streak ${d.streak ?? 0} · best ${d.best ?? 0}`)), week(),
         h('button', { class: 'btn primary', onclick: quiz }, done >= 5 ? 'Review' : done ? 'Continue' : 'Start')),
+      asgBlock(),
       h('div', { class: 'td-add' }, when, pick, add),
       dayList(today, 'Today'), dayList(tomorrow, 'Tomorrow'),
       ...[...new Set(plans.map((p) => p.date))].filter((x) => x > tomorrow).map((x) => dayList(x, 'Coming up')),

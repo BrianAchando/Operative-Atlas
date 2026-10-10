@@ -48,8 +48,8 @@ function chart(pts: Pt[], w = 620, hgt = 230): SVGElement {
     g.append(svg('line', { x1: x(0), y1: y(my - k * mx), x2: x(n - 1), y2: y(my + k * (n - 1 - mx)), stroke: '#f2c46d', 'stroke-dasharray': '5 4', 'stroke-width': 1.2 }));
   }
   pts.forEach((p, i) => {
-    const c = svg('circle', { cx: x(i), cy: y(p.rank), r: 5, fill: p.verified ? COL[Math.round(p.rank)]! : '#0b1a22', stroke: COL[Math.round(p.rank)]!, 'stroke-width': 2 });
-    const tt = svg('title', {}); tt.textContent = `${p.date} · ${p.level} · ${p.op}${p.verified ? ' · verified' : ' · awaiting verification'}`; c.append(tt); g.append(c);
+    const c = svg('circle', { cx: x(i), cy: y(p.rank), r: 5, fill: COL[Math.round(p.rank)]!, stroke: COL[Math.round(p.rank)]!, 'stroke-width': 2 });
+    const tt = svg('title', {}); tt.textContent = `${p.date} · ${p.level} · ${p.op}`; c.append(tt); g.append(c);
   });
   const lab = (i: number) => { const t = svg('text', { x: x(i), y: hgt - 12, 'text-anchor': n > 1 && i === n - 1 ? 'end' : n > 1 && i === 0 ? 'start' : 'middle', 'font-size': 10, fill: '#8aa0ab' }); t.textContent = pts[i]!.date.slice(2); g.append(t); };
   if (n) { lab(0); if (n > 1) lab(n - 1); if (n > 4) lab(Math.floor((n - 1) / 2)); }
@@ -93,7 +93,7 @@ export function analysis(h: H, entries: LogEntry[], start?: string | null): HTML
     detail.replaceChildren(h('b', {}, s.label), h('p', { class: 'pg-sum' },
       `${s.pts.length} case${s.pts.length > 1 ? 's' : ''}: from ${s.first.level} (${s.first.date}) to ${s.last.level} (${s.last.date}). `,
       s.firstDoing >= 0 ? `Doing the key parts from case ${s.firstDoing + 1}.` : 'Not yet doing the key parts.'), chart(s.pts),
-      h('p', { class: 'foot' }, 'Filled dots: verified by the consultant; hollow: awaiting verification. Dashed line: the trend. Shaded band: S-TS and above.'));
+      h('p', { class: 'foot' }, 'Each dot is one case. Dashed line: the trend. Shaded band: S-TS and above.'));
     detail.scrollIntoView({ block: 'nearest' });
   };
   const cards = h('div', { class: 'lg-grid' }, ...list.map((s) => {
@@ -140,12 +140,12 @@ function monthly(h: H, entries: LogEntry[]): HTMLElement {
     const t = svg('text', { x: L + i * 82 + 13, y: hgt - 4, 'font-size': 10, fill: '#8aa0ab' }); t.textContent = lv.code; g.append(t);
   });
   const areas = [...new Set(entries.map((e) => String(e.data['area'] || 'Not set')))].sort();
-  const tbl = h('table', { class: 'lb-sum' }, h('tr', {}, h('th', {}, 'Month'), h('th', {}, 'Cases'), h('th', {}, 'Doing key parts'), h('th', {}, 'Verified'), ...areas.map((a) => h('th', {}, a))),
+  const tbl = h('table', { class: 'lb-sum' }, h('tr', {}, h('th', {}, 'Month'), h('th', {}, 'Cases'), h('th', {}, 'Doing key parts'), ...areas.map((a) => h('th', {}, a))),
     ...[...all].reverse().filter((k) => months.has(k)).map((k) => { const es = months.get(k)!;
       return h('tr', {}, h('td', {}, k), h('td', {}, String(es.length)), h('td', {}, String(es.filter((e) => (RANK[String(e.data['level'])] ?? 0) >= SUP).length)),
-        h('td', {}, String(es.filter((e) => e.status === 'verified').length)), ...areas.map((a) => h('td', {}, String(es.filter((e) => String(e.data['area'] || 'Not set') === a).length || '')))); }),
+        ...areas.map((a) => h('td', {}, String(es.filter((e) => String(e.data['area'] || 'Not set') === a).length || '')))); }),
     h('tr', { class: 'op' }, h('td', {}, 'Total'), h('td', {}, String(entries.length)), h('td', {}, String(entries.filter((e) => (RANK[String(e.data['level'])] ?? 0) >= SUP).length)),
-      h('td', {}, String(entries.filter((e) => e.status === 'verified').length)), ...areas.map((a) => h('td', {}, String(entries.filter((e) => String(e.data['area'] || 'Not set') === a).length)))));
+      ...areas.map((a) => h('td', {}, String(entries.filter((e) => String(e.data['area'] || 'Not set') === a).length)))));
   return h('div', { class: 'lg-card wide' }, h('b', {}, 'Cases per month (colored by the highest level you reached in each case)'), g, h('div', { class: 'tbl-wrap' }, tbl));
 }
 

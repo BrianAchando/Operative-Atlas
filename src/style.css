@@ -393,3 +393,24 @@ body.stage-light #hover { color: #33505e; }
 .prep-q { border: 1px solid var(--line); border-radius: 6px; padding: 8px; margin: 6px 0; }
 .quick-head { font-size: 14px; } .more summary { cursor: pointer; color: var(--muted); padding: 6px 0; } .more[open] { display: grid; gap: 10px; }
 @media (max-width: 640px) { .td-quiz { grid-template-columns: 1fr; } .td-add { grid-template-columns: 1fr; } .td-case { grid-template-columns: 1fr auto; } .td-case .link { grid-column: 2; } }
+
+/* consultant loop: monthly review, assigned modules */
+.rv-form .af-row,.as-form .af-row{display:grid;grid-template-columns:1fr 2fr;gap:10px}
+.rt-pick{display:flex;gap:14px;flex-wrap:wrap;padding:4px 0}
+.rt-pick label{display:flex;align-items:center;gap:4px;font-weight:400}
+.rv-list{display:flex;flex-direction:column;gap:8px}
+.rv-item{border-left:3px solid var(--accent,#2bbfae);padding:6px 10px;background:rgba(255,255,255,.03);border-radius:4px}
+.rv-item p{margin:4px 0 0}
+.rv-item.rt-needs-support{border-left-color:#e0a63a}
+.rv-item.rt-concern{border-left-color:#e05a4a}
+.as-form{margin-top:10px;padding-top:6px;border-top:1px solid rgba(255,255,255,.08)}
+.as-pick{display:flex;flex-direction:column;gap:8px;max-height:260px;overflow:auto}
+.as-pick fieldset{border:1px solid rgba(255,255,255,.1);border-radius:6px;padding:6px 10px;display:flex;flex-wrap:wrap;gap:4px 16px}
+.as-pick legend{font-weight:600;padding:0 4px}
+.as-pick label{display:flex;align-items:center;gap:4px;font-weight:400}
+.td-case.as-case.late .td-name small{color:#e0a63a}
+@media (max-width:640px){.rv-form .af-row,.as-form .af-row{grid-template-columns:1fr}}
+.af textarea { font: inherit; font-size: 14px; color: var(--text); background: var(--raised); border: 1px solid var(--line-2); border-radius: var(--cova-radius-card); padding: 7px 9px; width: 100%; box-sizing: border-box; resize: vertical; }
+.rt-pick label { white-space: nowrap; font-size: 14px; }
+.lb-row.as-row { grid-template-columns: 1fr 200px auto; }
+@media (max-width: 640px) { .lb-row.as-row { grid-template-columns: 1fr; } .lb-row.as-row .lb-st { grid-column: auto; } }
